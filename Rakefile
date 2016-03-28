@@ -35,9 +35,8 @@ end
 
 def run_server(environment, solr_port: nil, fcrepo_port: nil)
   with_server(environment, solr_port: solr_port.to_s, fcrepo_port: fcrepo_port.to_s) do
-    puts "\n#{environment.titlecase} servers running:\n"
-    puts "    Fedora..: http://localhost:#{fcrepo_port}/rest/"
-    puts "    Solr....: http://localhost:#{solr_port}/solr/hydra-#{environment}/"
+    puts " ***** Fedora..: http://localhost:#{fcrepo_port}/rest/"
+    puts " ***** Solr....: http://localhost:#{solr_port}/solr/hydra-#{environment}/"
     puts "\n^C to stop"
     begin
       yield
