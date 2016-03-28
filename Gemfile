@@ -38,6 +38,8 @@ group :development, :test do
 
   gem 'rspec'
   gem 'rspec-rails'
+
+  gem 'coveralls', require: false
 end
 
 group :development do
