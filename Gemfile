@@ -40,6 +40,9 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'coveralls', require: false
+
+  gem 'solr_wrapper', '>= 0.3'
+  gem 'fcrepo_wrapper'
 end
 
 group :development do
@@ -49,4 +52,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+
+gem 'sufia', github: 'projecthydra/sufia'
+gem 'rsolr', '~> 1.0.6'
+
+gem 'devise'
+gem 'devise-guests', '~> 0.3'
 
