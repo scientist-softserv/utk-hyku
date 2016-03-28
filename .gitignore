@@ -35,3 +35,7 @@ bower.json
 
 /fcrepo4-data
 /fcrepo4-test-data
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
