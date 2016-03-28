@@ -43,6 +43,10 @@ group :development, :test do
 
   gem 'solr_wrapper', '>= 0.3'
   gem 'fcrepo_wrapper'
+
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+  gem 'dlss_cops'
 end
 
 group :development do
@@ -59,4 +63,3 @@ gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
-
