@@ -3,6 +3,8 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+task default: [:rubocop, :spec]
+
 Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task'
