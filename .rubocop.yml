@@ -1,7 +1,11 @@
 inherit_gem:
   dlss_cops: "config/dlss_baseline.yml"
 
+# Turn on RSpec cops
+require: rubocop-rspec
+
 AllCops:
+  DisplayCopNames: true
   TargetRubyVersion: 2.2
   Exclude:
     - 'bin/**/*'
@@ -10,6 +14,83 @@ AllCops:
     - 'vendor/**/*'
 
 Rails:
+  Enabled: true
+
+# Override DLSS defaults with the default rubocop rules
+
+Metrics/AbcSize:
+  Max: 15
+
+Metrics/BlockNesting:
+  Max: 3
+
+Metrics/ClassLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 10
+
+Metrics/ModuleLength:
+  Max: 100
+
+Style/AccessModifierIndentation:
+  Enabled: true
+
+Style/AlignHash:
+  Enabled: true
+
+Style/AlignParameters:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: true
+
+Style/BlockComments:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: true
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: true
+
+Style/LeadingCommentSpace:
+  Enabled: true
+
+Style/NegatedIf:
+  Enabled: true
+
+Style/NegatedWhile:
+  Enabled: true
+
+Style/RegexpLiteral:
+  Enabled: true
+
+Style/SingleLineBlockParams:
+  Enabled: true
+
+Style/SpaceAfterNot:
+  Enabled: true
+
+Style/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Style/SpaceInsideBrackets:
+  Enabled: true
+
+Style/TrailingBlankLines:
+  Enabled: true
+
+Style/TrailingCommaInLiteral:
+  Enabled: true
+
+RSpec/DescribeClass:
+  Enabled: true
+
+RSpec/FilePath:
   Enabled: true
 
 Metrics/ClassLength:
