@@ -5,6 +5,5 @@ module CurationConcerns
     self.model_class = ::GenericWork
     include HydraEditor::Form::Permissions
     self.terms += [:resource_type]
-
   end
 end
