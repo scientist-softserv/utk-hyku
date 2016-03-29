@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1 class="page-header">Accounts</h1>
 
-<h1>Listing Accounts</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Tenant</th>
@@ -16,9 +14,9 @@
       <tr>
         <td><%= account.tenant %></td>
         <td><%= account.cname %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="col-md-1"><%= link_to 'Show', account %></td>
+        <td class="col-md-1"><%= link_to 'Edit', edit_account_path(account) %></td>
+        <td class="col-md-1"><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
