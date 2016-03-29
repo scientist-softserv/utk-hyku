@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328222239) do
+ActiveRecord::Schema.define(version: 20160329143451) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "tenant"
+    t.string   "cname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "accounts", ["cname", "tenant"], name: "index_accounts_on_cname_and_tenant"
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false

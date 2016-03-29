@@ -39,6 +39,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
 
+  gem 'simplecov', require: false
   gem 'coveralls', require: false
 
   gem 'solr_wrapper', '>= 0.3'
@@ -63,3 +64,4 @@ gem 'devise'
 gem 'devise-guests', '~> 0.3'
 
 gem 'config'
+gem 'apartment'
