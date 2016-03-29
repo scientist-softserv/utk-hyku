@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :accounts
   root 'sufia/homepage#index'
 
   mount Blacklight::Engine => '/'
