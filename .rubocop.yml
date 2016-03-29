@@ -1,6 +1,3 @@
-inherit_gem:
-  dlss_cops: "config/dlss_baseline.yml"
-
 # Turn on RSpec cops
 require: rubocop-rspec
 
@@ -12,91 +9,32 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'vendor/**/*'
+    - '.internal_test_app/**/*'
+    - 'spec/fixtures/**/*'
+    - 'spec/internal/**/*'
+    - 'spec/test_app_templates/**/*'
 
 Rails:
   Enabled: true
 
-# Override DLSS defaults with the default rubocop rules
-
-Metrics/AbcSize:
-  Max: 15
-
-Metrics/BlockNesting:
-  Max: 3
-
-Metrics/ClassLength:
-  Max: 100
-
-Metrics/MethodLength:
-  Max: 10
-
-Metrics/ModuleLength:
-  Max: 100
-
-Style/AccessModifierIndentation:
-  Enabled: true
-
-Style/AlignHash:
-  Enabled: true
-
-Style/AlignParameters:
-  Enabled: true
-
-Style/AsciiComments:
-  Enabled: true
-
-Style/BlockComments:
-  Enabled: true
-
-Style/ClassAndModuleChildren:
-  Enabled: true
-
-Style/EmptyLinesAroundClassBody:
-  Enabled: true
-
-Style/EmptyLinesAroundModuleBody:
-  Enabled: true
-
-Style/LeadingCommentSpace:
-  Enabled: true
-
-Style/NegatedIf:
-  Enabled: true
-
-Style/NegatedWhile:
-  Enabled: true
-
-Style/RegexpLiteral:
-  Enabled: true
-
-Style/SingleLineBlockParams:
-  Enabled: true
-
-Style/SpaceAfterNot:
-  Enabled: true
-
-Style/SpaceAroundEqualsInParameterDefault:
-  Enabled: true
-
-Style/SpaceInsideBrackets:
-  Enabled: true
-
-Style/TrailingBlankLines:
-  Enabled: true
-
-Style/TrailingCommaInLiteral:
-  Enabled: true
-
-RSpec/DescribeClass:
-  Enabled: true
-
-RSpec/FilePath:
-  Enabled: true
-
-Metrics/ClassLength:
+Metrics/LineLength:
+  Max: 120  
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 
-Metrics/LineLength:
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
