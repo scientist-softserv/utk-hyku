@@ -15,4 +15,18 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  before_action :require_active_account!
+
+  rescue_from Apartment::TenantNotFound do
+    redirect_to accounts_path
+  end
+
+  private
+
+    def require_active_account!
+      account = Account.from_request(request)
+
+      raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless account
+    end
 end

@@ -1,0 +1,25 @@
+<%= form_for(@account, class: 'form') do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :tenant %><br>
+    <%= f.text_field :tenant, class: 'form-control', readonly: @account.persisted? %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cname %><br>
+    <%= f.text_field :cname, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
