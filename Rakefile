@@ -3,6 +3,8 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+task default: [:rubocop, :ci]
+
 Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task'
@@ -45,5 +47,3 @@ def run_server(environment, solr_port: nil, fcrepo_port: nil)
     end
   end
 end
-
-task default: [:rubocop, :ci]
