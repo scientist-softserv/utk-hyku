@@ -68,6 +68,10 @@ RSpec.describe AccountsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+      before do
+        expect(Apartment::Tenant).to receive(:create).with('x')
+      end
+
       it "creates a new Account" do
         expect do
           post :create, { account: valid_attributes }, valid_session

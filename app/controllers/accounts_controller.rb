@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  skip_before_action :require_active_account!
+
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -14,7 +16,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
-    @account = Account.new
+    @account = Account.new tenant: request.host, cname: request.host
   end
 
   # GET /accounts/1/edit
@@ -27,7 +29,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
 
     respond_to do |format|
-      if @account.save
+      if @account.save_and_create_tenant
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
