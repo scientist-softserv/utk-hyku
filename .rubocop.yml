@@ -38,3 +38,11 @@ Style/WordArray:
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/views/**/*'
+
+RSpec/FilePath:
+  Exclude:
+    - 'spec/routing/**/*'
