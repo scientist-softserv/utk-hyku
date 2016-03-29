@@ -226,9 +226,6 @@ GEM
     devise-guests (0.5.0)
       devise
     diff-lcs (1.2.5)
-    dlss_cops (0.0.3)
-      rubocop (~> 0.37.0)
-      rubocop-rspec (~> 1.4.0)
     docile (1.1.5)
     dropbox-sdk (1.6.5)
       json
@@ -714,7 +711,6 @@ DEPENDENCIES
   coveralls
   devise
   devise-guests (~> 0.3)
-  dlss_cops
   fcrepo_wrapper
   jbuilder (~> 2.0)
   jquery-rails
