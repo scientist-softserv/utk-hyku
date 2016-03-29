@@ -63,3 +63,4 @@ gem 'devise'
 gem 'devise-guests', '~> 0.3'
 
 gem 'config'
+gem 'apartment'
