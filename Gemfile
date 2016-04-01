@@ -57,7 +57,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'sufia', github: 'projecthydra/sufia'
+gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
