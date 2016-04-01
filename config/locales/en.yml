@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  sufia:
+    product_name: "HyBox Repo"
+    product_twitter_handle: "@HydraInABox"
