@@ -38,6 +38,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
 
   gem 'simplecov', require: false
   gem 'coveralls', require: false

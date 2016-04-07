@@ -10,9 +10,7 @@ class Ability
   def custom_permissions
     # Limits deleting objects to a the admin user
     #
-    # if current_user.admin?
-    #   can [:destroy], ActiveFedora::Base
-    # end
+    can [:manage], :all if admin?
 
     # Limits creating new objects to a specific group
     #
