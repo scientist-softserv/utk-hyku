@@ -46,6 +46,7 @@ RSpec/AnyInstance:
 
 RSpec/DescribeClass:
   Exclude:
+    - 'spec/features/**/*'
     - 'spec/views/**/*'
 
 RSpec/FilePath:
