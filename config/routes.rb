@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resource :site, only: [:edit, :update]
+  resource :site, only: [:edit, :update] do
+    resources :roles, only: [:index, :update]
+  end
+
   resources :accounts
   root 'sufia/homepage#index'
 
