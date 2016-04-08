@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   # Connects this user object to Hydra behaviors.
   include Hydra::User
   # Connects this user object to Curation Concerns behaviors.
@@ -15,10 +16,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_create :add_default_roles
+
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.
   def to_s
     email
   end
+
+  private
+
+    def add_default_roles
+      add_role :admin unless self.class.any?
+    end
 end
