@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 770def9912d933f031fac48621bc56653b4dfcbc
+  revision: bfcb9d863e320edfc6cdb4b8c916ebe2716ba7cf
   branch: master
   specs:
     sufia (7.0.0.beta1)
@@ -11,7 +11,7 @@ GIT
       blacklight-gallery (~> 0.1)
       browse-everything (~> 0.10)
       carrierwave (~> 0.9)
-      curation_concerns (~> 0.12.0.pre1)
+      curation_concerns (~> 0.12.0.pre4)
       daemons (~> 1.1)
       font-awesome-rails (~> 4.2)
       google-api-client (~> 0.7, < 0.9)
