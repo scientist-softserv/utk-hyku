@@ -35,5 +35,11 @@ RSpec.describe User, type: :model do
 
       expect(subject.global_roles.pluck(:name)).to match_array ['admin']
     end
+
+    it 'removes roles' do
+      subject.update(global_roles: ['admin'])
+      subject.update(global_roles: [])
+      expect(subject.global_roles.pluck(:name)).to be_empty
+    end
   end
 end

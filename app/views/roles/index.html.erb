@@ -1,0 +1,17 @@
+<h1>User Roles</h1>
+<table class="table table-striped">
+  <% @users.each do |u| %>
+    <tr>
+      <td><%= u.email %></td>
+      <td>
+        <%= simple_form_for u, wrapper: :horizontal_form, url: site_role_path(u.id) do |f| %>
+          <label>
+            <span class="sr-only">Roles</span>
+            <%= f.collection_select :global_roles, Role.global, :name, :name, { selected: u.global_roles.pluck(:name) }, { multiple: true, class: 'form-control' } %>
+          </label>
+          <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
