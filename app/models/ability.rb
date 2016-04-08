@@ -10,7 +10,7 @@ class Ability
   def custom_permissions
     # Limits deleting objects to a the admin user
     #
-    can [:manage], :all if admin?
+    can [:manage], :all if current_user.has_role? :admin
 
     # Limits creating new objects to a specific group
     #
@@ -18,4 +18,11 @@ class Ability
     #   can [:create], ActiveFedora::Base
     # end
   end
+
+  private
+
+    # Override admin? helper to use rolify roles
+    def admin?
+      current_user.has_role? :admin
+    end
 end
