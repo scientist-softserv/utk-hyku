@@ -9,4 +9,6 @@ class Role < ActiveRecord::Base
             allow_nil: true
 
   scopify
+
+  scope :global, ->() { where(resource: nil) }
 end
