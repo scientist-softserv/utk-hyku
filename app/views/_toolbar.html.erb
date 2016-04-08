@@ -6,7 +6,14 @@
           <span class="fa fa-gear"></span> Admin <span class="caret"></span>
         <% end %>
         <ul class="dropdown-menu">
+          <% if can? :manage, Site %>
             <li><%= link_to 'Settings', main_app.edit_site_path%></li>
+          <% end %>
+
+          <% if can? :manage, Role %>
+              <li><%= link_to 'User roles', main_app.site_roles_path %></li>
+          <% end %>
+
           <% if respond_to? :admin_stats_path %>
             <li><%= link_to 'Repository Statistics', sufia.admin_stats_path %></li>
           <% end %>
