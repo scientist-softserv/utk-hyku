@@ -6,7 +6,7 @@
           <span class="fa fa-gear"></span> Admin <span class="caret"></span>
         <% end %>
         <ul class="dropdown-menu">
-            <li><%= link_to 'Settings', edit_site_path%></li>
+            <li><%= link_to 'Settings', main_app.edit_site_path%></li>
           <% if respond_to? :admin_stats_path %>
             <li><%= link_to 'Repository Statistics', sufia.admin_stats_path %></li>
           <% end %>
