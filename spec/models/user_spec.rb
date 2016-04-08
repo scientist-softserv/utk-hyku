@@ -16,4 +16,30 @@ RSpec.describe User, type: :model do
       expect(next_user).not_to have_role :admin
     end
   end
+
+  describe '#global_roles' do
+    subject { FactoryGirl.create(:admin) }
+
+    it 'fetches the global roles assigned to the user' do
+      expect(subject.global_roles.pluck(:name)).to match_array ['admin']
+    end
+  end
+
+  describe '#global_roles=' do
+    subject { FactoryGirl.create(:user) }
+
+    it 'assigns global roles to the user' do
+      expect(subject.global_roles.pluck(:name)).to be_empty
+
+      subject.update(global_roles: ['admin'])
+
+      expect(subject.global_roles.pluck(:name)).to match_array ['admin']
+    end
+
+    it 'removes roles' do
+      subject.update(global_roles: ['admin'])
+      subject.update(global_roles: [])
+      expect(subject.global_roles.pluck(:name)).to be_empty
+    end
+  end
 end

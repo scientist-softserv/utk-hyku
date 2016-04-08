@@ -25,6 +25,26 @@ class User < ActiveRecord::Base
     email
   end
 
+  def global_roles
+    roles.global
+  end
+
+  def global_roles=(roles)
+    roles.reject!(&:blank?)
+
+    existing_roles = global_roles.pluck(:name)
+    new_roles = roles - existing_roles
+    removed_roles = existing_roles - roles
+
+    new_roles.each do |r|
+      add_role r
+    end
+
+    removed_roles.each do |r|
+      remove_role r
+    end
+  end
+
   private
 
     def add_default_roles
