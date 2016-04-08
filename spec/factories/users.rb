@@ -1,11 +1,15 @@
 FactoryGirl.define do
-  factory :user do
+  factory :base_user, class: User do
     sequence(:email) { |_n| "email-#{srand}@test.com" }
     password 'a password'
     password_confirmation 'a password'
-  end
 
-  factory :admin, parent: :user do
-    group_list 'admin'
+    factory :user do
+      after(:create) { |user| user.remove_role(:admin) }
+    end
+
+    factory :admin do
+      after(:create) { |user| user.add_role(:admin) }
+    end
   end
 end
