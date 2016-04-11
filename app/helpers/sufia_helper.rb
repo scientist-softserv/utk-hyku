@@ -5,6 +5,6 @@ module SufiaHelper
   include Sufia::SufiaHelperBehavior
 
   def application_name
-    Site.instance.application_name || super
+    Site.application_name || super
   end
 end
