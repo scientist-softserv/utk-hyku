@@ -11,7 +11,12 @@ class Account < ActiveRecord::Base
 
   def save_and_create_tenant
     save.tap do |result|
-      Apartment::Tenant.create(tenant) if result
+      break unless result
+
+      Apartment::Tenant.create(tenant) do
+        Site.instance.update(account: self)
+        yield if block_given?
+      end
     end
   end
 end
