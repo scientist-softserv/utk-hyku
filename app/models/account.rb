@@ -14,7 +14,7 @@ class Account < ActiveRecord::Base
       break unless result
 
       Apartment::Tenant.create(tenant) do
-        Site.instance.update(account: self)
+        Site.update(account: self)
         yield if block_given?
       end
     end

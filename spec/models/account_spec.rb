@@ -24,7 +24,7 @@ RSpec.describe Account, type: :model do
 
     it 'initializes the Site configuration with a link back to the Account' do
       subject.save_and_create_tenant do
-        expect(Site.instance.account).to eq subject
+        expect(Site.account).to eq subject
       end
     end
   end
