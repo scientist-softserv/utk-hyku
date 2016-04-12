@@ -3,3 +3,5 @@
 collection:
   dir: solr/config/
   name: hydra-development
+
+cloud: true
