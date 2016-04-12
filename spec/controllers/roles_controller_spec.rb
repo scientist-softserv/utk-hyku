@@ -9,7 +9,7 @@ RSpec.describe RolesController, type: :controller do
   # Site. As you add validations to Site, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    { global_roles: ['admin'] }
+    { site_roles: ['admin'] }
   end
 
   let(:invalid_attributes) do
@@ -52,13 +52,13 @@ RSpec.describe RolesController, type: :controller do
     describe "PUT #update" do
       context "with valid params" do
         let(:new_attributes) do
-          { global_roles: ['admin', 'superadmin'] }
+          { site_roles: ['admin', 'superadmin'] }
         end
 
         it "updates the requested site" do
           put :update, { id: user.id, user: new_attributes }, valid_session
           user.reload
-          expect(user.global_roles.pluck(:name)).to match_array ['admin', 'superadmin']
+          expect(user.site_roles.pluck(:name)).to match_array ['admin', 'superadmin']
         end
 
         it "assigns the requested site as @site" do
