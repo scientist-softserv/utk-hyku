@@ -9,14 +9,18 @@ class Account < ActiveRecord::Base
     find_by(cname: request.host)
   end
 
-  def save_and_create_tenant
+  def save_and_create_tenant(&block)
     save.tap do |result|
       break unless result
 
-      Apartment::Tenant.create(tenant) do
-        Site.update(account: self)
-        yield if block_given?
-      end
+      create_tenant(&block)
+    end
+  end
+
+  def create_tenant
+    Apartment::Tenant.create(tenant) do
+      Site.update(account: self)
+      yield if block_given?
     end
   end
 end

@@ -13,18 +13,19 @@ RSpec.describe Account, type: :model do
   describe '#save_and_create_tenant' do
     subject { described_class.new(tenant: 'x', cname: 'x') }
 
-    after(:each) do
-      Apartment::Tenant.drop('x')
+    before do
+      expect(Apartment::Tenant).to receive(:create).with('x') do |&block|
+        block.call
+      end
     end
 
     it 'creates a new apartment tenant' do
-      expect(Apartment::Tenant).to receive(:create).with('x').and_call_original
       subject.save_and_create_tenant
     end
 
     it 'initializes the Site configuration with a link back to the Account' do
       subject.save_and_create_tenant do
-        expect(Site.account).to eq subject
+        expect(Site.reload.account).to eq subject
       end
     end
   end
