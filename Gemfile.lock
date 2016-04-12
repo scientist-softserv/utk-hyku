@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: bfcb9d863e320edfc6cdb4b8c916ebe2716ba7cf
+  revision: 94d2948292b32b1588872b2c20f4c2598d2a74d1
   branch: master
   specs:
     sufia (7.0.0.beta1)
@@ -252,9 +252,9 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fcrepo_wrapper (0.3.4.1)
+    fcrepo_wrapper (0.4.0)
       ruby-progressbar
-    font-awesome-rails (4.5.0.1)
+    font-awesome-rails (4.6.1.0)
       railties (>= 3.2, < 5.1)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
@@ -729,7 +729,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.3)
   factory_girl_rails
-  fcrepo_wrapper
+  fcrepo_wrapper (~> 0.4)
   is_it_working
   jbuilder (~> 2.0)
   jquery-rails
@@ -743,7 +743,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simplecov
-  solr_wrapper (>= 0.3)
+  solr_wrapper (~> 0.8)
   spring
   sqlite3
   sufia!

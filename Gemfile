@@ -43,8 +43,8 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'coveralls', require: false
 
-  gem 'solr_wrapper', '>= 0.3'
-  gem 'fcrepo_wrapper'
+  gem 'solr_wrapper', '~> 0.8'
+  gem 'fcrepo_wrapper', '~> 0.4'
 
   gem 'rubocop'
   gem 'rubocop-rspec'
