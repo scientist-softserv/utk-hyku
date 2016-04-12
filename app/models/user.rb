@@ -25,29 +25,29 @@ class User < ActiveRecord::Base
     email
   end
 
-  def global_roles
-    roles.global
+  def site_roles
+    roles.site
   end
 
-  def global_roles=(roles)
+  def site_roles=(roles)
     roles.reject!(&:blank?)
 
-    existing_roles = global_roles.pluck(:name)
+    existing_roles = site_roles.pluck(:name)
     new_roles = roles - existing_roles
     removed_roles = existing_roles - roles
 
     new_roles.each do |r|
-      add_role r
+      add_role r, Site.instance
     end
 
     removed_roles.each do |r|
-      remove_role r
+      remove_role r, Site.instance
     end
   end
 
   private
 
     def add_default_roles
-      add_role :admin unless self.class.any?
+      add_role :admin, Site.instance unless self.class.any?
     end
 end

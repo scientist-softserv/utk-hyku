@@ -1,4 +1,6 @@
 class Site < ActiveRecord::Base
+  resourcify
+
   validates :application_name, presence: true, allow_nil: true
 
   belongs_to :account
