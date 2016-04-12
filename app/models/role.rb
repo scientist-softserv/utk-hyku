@@ -10,5 +10,5 @@ class Role < ActiveRecord::Base
 
   scopify
 
-  scope :global, ->() { where(resource: nil) }
+  scope :site, ->() { where(resource_type: "Site") }
 end

@@ -22,6 +22,6 @@ class RolesController < ApplicationController
   protected
 
     def user_params
-      params.require(:user).permit(global_roles: [])
+      params.require(:user).permit(site_roles: [])
     end
 end
