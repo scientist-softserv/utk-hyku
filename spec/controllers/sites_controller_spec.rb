@@ -62,9 +62,8 @@ RSpec.describe SitesController, type: :controller do
 
     describe "GET #edit" do
       it "assigns the requested site as @site" do
-        site = Site.create! valid_attributes
         get :edit, {}, valid_session
-        expect(assigns(:site)).to eq(site)
+        expect(assigns(:site)).to eq(Site.instance)
       end
     end
 
@@ -75,16 +74,14 @@ RSpec.describe SitesController, type: :controller do
         end
 
         it "updates the requested site" do
-          site = Site.create! valid_attributes
           put :update, { site: new_attributes }, valid_session
-          site.reload
-          expect(site.application_name).to eq "New Custom Name"
+          Site.reload
+          expect(Site.application_name).to eq "New Custom Name"
         end
 
         it "assigns the requested site as @site" do
-          site = Site.create! valid_attributes
           put :update, { site: valid_attributes }, valid_session
-          expect(assigns(:site)).to eq(site)
+          expect(assigns(:site)).to eq(Site.instance)
         end
 
         it "redirects to the site" do
@@ -95,9 +92,8 @@ RSpec.describe SitesController, type: :controller do
 
       context "with invalid params" do
         it "assigns the site as @site" do
-          site = Site.create! valid_attributes
           put :update, { site: invalid_attributes }, valid_session
-          expect(assigns(:site)).to eq(site)
+          expect(assigns(:site)).to eq(Site.instance)
         end
 
         it "re-renders the 'edit' template" do
