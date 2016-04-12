@@ -5,7 +5,7 @@ class Site < ActiveRecord::Base
   accepts_nested_attributes_for :account, update_only: true
 
   class << self
-    delegate :account, :application_name, :update, to: :instance
+    delegate :account, :application_name, :reload, :update, to: :instance
 
     def instance
       first || create
