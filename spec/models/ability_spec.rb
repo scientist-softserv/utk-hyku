@@ -16,6 +16,13 @@ RSpec.describe Ability do
 
   describe 'an administrative user' do
     let(:user) { FactoryGirl.create(:admin) }
+    it { is_expected.not_to be_able_to(:manage, :all) }
+    it { is_expected.not_to be_able_to(:manage, Account) }
+    it { is_expected.to be_able_to(:manage, Site) }
+  end
+
+  describe 'a superadmin user' do
+    let(:user) { FactoryGirl.create(:superadmin) }
     it { is_expected.to be_able_to(:manage, :all) }
   end
 end
