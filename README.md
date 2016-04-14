@@ -3,3 +3,10 @@
 [![Stories in Ready](https://badge.waffle.io/projecthydra-labs/hybox.png?label=ready&title=Ready)](https://waffle.io/projecthydra-labs/hybox)
 # hybox
 Hydra-in-a-Box
+
+
+## Development Dependencies
+
+### Postgres
+
+Hydra-in-a-Box supports multitenancy using the `apartment` gem. `apartment` works best with a postgres database.
