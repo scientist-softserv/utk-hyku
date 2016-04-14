@@ -1,6 +1,14 @@
 <% if user_signed_in? %>
   <ul class="nav navbar-nav">
-    <% if can? :manage, :all %>
+    <% if can? :manage, Account %>
+      <li>
+        <%= link_to main_app.accounts_path do %>
+          <span class="fa fa-gears"></span> Accounts
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if can? :manage, Site.instance %>
       <li class="dropdown">
         <%= link_to sufia.admin_stats_path, role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do %>
           <span class="fa fa-gear"></span> Admin <span class="caret"></span>
@@ -8,6 +16,10 @@
         <ul class="dropdown-menu">
           <% if can? :manage, Site %>
             <li><%= link_to 'Settings', main_app.edit_site_path%></li>
+          <% end %>
+          
+          <% if Site.account && can?(:manage, Site.account) %>
+            <li><%= link_to 'Account', main_app.account_path(Site.account) %></li>
           <% end %>
 
           <% if can? :manage, Role %>
