@@ -19,7 +19,7 @@ RSpec.describe 'Site Roles' do
     it 'updates user roles' do
       visit site_roles_path
 
-      within 'tr:nth-child(2)' do
+      within "#edit_user_#{another_user.id}" do
         select 'admin', from: 'Roles'
         click_on 'Update User'
       end
