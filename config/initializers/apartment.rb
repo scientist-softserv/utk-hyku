@@ -43,6 +43,6 @@ Apartment.configure do |config|
   # <== PostgreSQL only options
   #
 
-end unless Rails.env.test?
+end
 
 Rails.application.config.middleware.use 'AccountElevator'
