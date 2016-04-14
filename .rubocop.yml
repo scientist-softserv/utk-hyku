@@ -13,12 +13,13 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'spec/internal/**/*'
     - 'spec/test_app_templates/**/*'
+    - 'Rakefile'
 
 Rails:
   Enabled: true
 
 Metrics/LineLength:
-  Max: 120  
+  Max: 120
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 
