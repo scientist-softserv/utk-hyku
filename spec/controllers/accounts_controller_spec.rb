@@ -87,20 +87,16 @@ RSpec.describe AccountsController, type: :controller do
     end
   end
 
-  context 'as a superadmin' do
-    let(:user) { FactoryGirl.create(:superadmin) }
+  context 'as an admin of a site' do
+    let(:user) { FactoryGirl.create(:user).tap { |u| u.add_role(:admin, Site.instance) } }
+    let(:account) { FactoryGirl.create(:account) }
 
-    describe "GET #index" do
-      it "assigns all accounts as @accounts" do
-        account = Account.create! valid_attributes
-        get :index, {}, valid_session
-        expect(assigns(:accounts)).to include account
-      end
+    before do
+      Site.update(account: account)
     end
 
     describe "GET #show" do
       it "assigns the requested account as @account" do
-        account = Account.create! valid_attributes
         get :show, { id: account.to_param }, valid_session
         expect(assigns(:account)).to eq(account)
       end
@@ -108,7 +104,6 @@ RSpec.describe AccountsController, type: :controller do
 
     describe "GET #edit" do
       it "assigns the requested account as @account" do
-        account = Account.create! valid_attributes
         get :edit, { id: account.to_param }, valid_session
         expect(assigns(:account)).to eq(account)
       end
@@ -121,20 +116,17 @@ RSpec.describe AccountsController, type: :controller do
         end
 
         it "updates the requested account" do
-          account = Account.create! valid_attributes
           put :update, { id: account.to_param, account: new_attributes }, valid_session
           account.reload
           expect(account.cname).to eq 'new.example.com'
         end
 
         it "assigns the requested account as @account" do
-          account = Account.create! valid_attributes
           put :update, { id: account.to_param, account: valid_attributes }, valid_session
           expect(assigns(:account)).to eq(account)
         end
 
         it "redirects to the account" do
-          account = Account.create! valid_attributes
           put :update, { id: account.to_param, account: valid_attributes }, valid_session
           expect(response).to redirect_to(account)
         end
@@ -142,16 +134,66 @@ RSpec.describe AccountsController, type: :controller do
 
       context "with invalid params" do
         it "assigns the account as @account" do
-          account = Account.create! valid_attributes
           put :update, { id: account.to_param, account: invalid_attributes }, valid_session
           expect(assigns(:account)).to eq(account)
         end
 
         it "re-renders the 'edit' template" do
-          account = Account.create! valid_attributes
           put :update, { id: account.to_param, account: invalid_attributes }, valid_session
           expect(response).to render_template("edit")
         end
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "denies the request" do
+        delete :destroy, { id: account.to_param }, valid_session
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    context 'editing another tenants account' do
+      let(:another_account) { FactoryGirl.create(:account) }
+
+      describe "GET #show" do
+        it "denies the request" do
+          get :show, { id: another_account.to_param }, valid_session
+          expect(response).to have_http_status(401)
+        end
+      end
+
+      describe "GET #edit" do
+        it "denies the request" do
+          get :edit, { id: another_account.to_param }, valid_session
+          expect(response).to have_http_status(401)
+        end
+      end
+
+      describe "PUT #update" do
+        it "denies the request" do
+          put :update, { id: another_account.to_param, account: valid_attributes }, valid_session
+          expect(response).to have_http_status(401)
+        end
+      end
+    end
+  end
+
+  context 'as a superadmin' do
+    let(:user) { FactoryGirl.create(:superadmin) }
+
+    describe "GET #index" do
+      it "assigns all accounts as @accounts" do
+        account = FactoryGirl.create(:account)
+        get :index, {}, valid_session
+        expect(assigns(:accounts)).to include account
+      end
+    end
+
+    describe "GET #show" do
+      it "assigns the requested account as @account" do
+        account = Account.create! valid_attributes
+        get :show, { id: account.to_param }, valid_session
+        expect(assigns(:account)).to eq(account)
       end
     end
 
