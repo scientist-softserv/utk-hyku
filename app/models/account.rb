@@ -4,9 +4,19 @@ class Account < ActiveRecord::Base
   validates :tenant, presence: true, uniqueness: true
   validates :cname, presence: true, uniqueness: true
 
+  belongs_to :solr_endpoint
+
+  before_create :create_default_solr_endpoint
+
+  accepts_nested_attributes_for :solr_endpoint, update_only: true
+
   # @return [Account]
   def self.from_request(request)
     find_by(cname: request.host)
+  end
+
+  def switch!
+    solr_endpoint.switch! if solr_endpoint
   end
 
   def save_and_create_tenant(&block)
@@ -22,5 +32,9 @@ class Account < ActiveRecord::Base
       Site.update(account: self)
       yield if block_given?
     end
+  end
+
+  def create_default_solr_endpoint
+    self.solr_endpoint ||= create_solr_endpoint(SolrEndpoint.default_options)
   end
 end

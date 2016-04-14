@@ -212,4 +212,18 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
   end
+
+  describe 'account dependency switching' do
+    let(:account) { FactoryGirl.create(:account) }
+
+    before do
+      Site.update(account: account)
+      allow(controller).to receive(:current_account).and_return(account)
+    end
+
+    it 'switches account information' do
+      expect(account).to receive(:switch!)
+      get :show, { id: account.to_param }, valid_session
+    end
+  end
 end
