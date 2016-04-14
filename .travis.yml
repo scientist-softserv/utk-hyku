@@ -14,3 +14,9 @@ cache: bundler
 
 jdk:
   - oraclejdk8
+
+before_script:
+  - bundle exec rake db:create
+
+services:
+  - postgresql
