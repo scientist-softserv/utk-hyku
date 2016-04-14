@@ -7,7 +7,10 @@ task default: [:rubocop, :ci]
 
 Rails.application.load_tasks
 
-require 'solr_wrapper/rake_task'
+begin
+  require 'solr_wrapper/rake_task'
+rescue LoadError
+end
 
 task :ci do
   run_server 'test', solr_port: 8985, fcrepo_port: 8986 do
