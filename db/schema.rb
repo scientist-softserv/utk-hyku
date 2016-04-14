@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20160415212015) do
   create_table "accounts", force: :cascade do |t|
     t.string   "tenant"
     t.string   "cname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "accounts"
+    t.integer  "solr_endpoint_id"
   end
 
   add_index "accounts", ["cname", "tenant"], name: "index_accounts_on_cname_and_tenant", using: :btree
@@ -72,6 +74,13 @@ ActiveRecord::Schema.define(version: 20160415212015) do
 
   add_index "domain_terms_local_authorities", ["domain_term_id", "local_authority_id"], name: "dtla_by_ids2", using: :btree
   add_index "domain_terms_local_authorities", ["local_authority_id", "domain_term_id"], name: "dtla_by_ids1", using: :btree
+
+  create_table "endpoints", force: :cascade do |t|
+    t.string   "type"
+    t.binary   "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "featured_works", force: :cascade do |t|
     t.integer  "order",           default: 5
