@@ -16,7 +16,7 @@ class Ability
 
     can [:manage], [Site, Role]
 
-    restrict_site_admin_permissions
+    restrict_site_admin_permissions unless current_user.has_role? :superadmin
   end
 
   def superadmin_permissions
@@ -26,6 +26,10 @@ class Ability
   def restrict_site_admin_permissions
     # override curation_concerns admin roles to disable admin privileges on global models
     cannot [:manage, :create, :discover, :show, :read, :edit, :update, :destroy], global_models
+
+    can [:read, :update], Account do |account|
+      account == Site.account
+    end
   end
 
   private
