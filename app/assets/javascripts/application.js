@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks//
+//= require turbolinks
+//= require peek
+//= require peek/views/faraday
+//= require peek/views/performance_bar
 // Required by Blacklight
 //= require blacklight/blacklight
 
