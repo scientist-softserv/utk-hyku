@@ -13,8 +13,7 @@ class Ability
 
   def admin_permissions
     super
-
-    can [:manage], [Site, Role]
+    can [:manage], [Site, Role, User]
 
     restrict_site_admin_permissions unless current_user.has_role? :superadmin
   end
@@ -32,14 +31,14 @@ class Ability
     end
   end
 
+  # Override admin? helper to use rolify roles
+  def admin?
+    current_user.has_role?(:admin, Site.instance)
+  end
+
   private
 
     def global_models
       [Account]
-    end
-
-    # Override admin? helper to use rolify roles
-    def admin?
-      current_user.has_role?(:admin, Site.instance)
     end
 end
