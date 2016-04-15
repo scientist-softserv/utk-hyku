@@ -259,6 +259,9 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     fcrepo_wrapper (0.4.0)
       ruby-progressbar
+    flip (1.0.1)
+      activesupport (>= 3.0, < 5)
+      i18n
     font-awesome-rails (4.6.1.0)
       railties (>= 3.2, < 5.1)
     foreigner (1.7.4)
@@ -761,6 +764,7 @@ DEPENDENCIES
   devise-guests (~> 0.3)
   factory_girl_rails
   fcrepo_wrapper (~> 0.4)
+  flip
   is_it_working
   jbuilder (~> 2.0)
   jquery-rails

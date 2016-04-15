@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411212338) do
+ActiveRecord::Schema.define(version: 20160415212015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(version: 20160411212338) do
 
   add_index "featured_works", ["generic_work_id"], name: "index_featured_works_on_generic_work_id", using: :btree
   add_index "featured_works", ["order"], name: "index_featured_works_on_order", using: :btree
+
+  create_table "features", force: :cascade do |t|
+    t.string   "key",                        null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "file_download_stats", force: :cascade do |t|
     t.datetime "date"
