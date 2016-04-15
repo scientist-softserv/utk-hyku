@@ -78,3 +78,4 @@ gem 'peek-redis'
 gem 'peek-resque'
 
 gem 'flip'
+gem 'lograge'
