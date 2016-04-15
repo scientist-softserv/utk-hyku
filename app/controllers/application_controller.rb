@@ -31,12 +31,22 @@ class ApplicationController < ActionController::Base
     end
 
     def require_active_account!
-      account = Account.from_request(request)
-
-      raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless account
+      raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account
     end
 
     def multitenant?
       Settings.multitenant
+    end
+
+    def current_account
+      @current_account ||= Account.from_request(request)
+    end
+
+    # Add context information to the lograge entries
+    def append_info_to_payload(payload)
+      super
+      payload[:request_id] = request.uuid
+      payload[:user_id] = current_user.id if current_user
+      payload[:account_id] = current_account.cname if current_account
     end
 end
