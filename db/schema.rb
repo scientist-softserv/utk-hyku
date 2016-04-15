@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419214433) do
+ActiveRecord::Schema.define(version: 20160426175813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,10 @@ ActiveRecord::Schema.define(version: 20160419214433) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "external_key"
+    t.integer  "site_id"
   end
+
+  add_index "content_blocks", ["site_id"], name: "index_content_blocks_on_site_id", using: :btree
 
   create_table "domain_terms", force: :cascade do |t|
     t.string "model"
@@ -380,6 +383,7 @@ ActiveRecord::Schema.define(version: 20160419214433) do
   add_index "work_view_stats", ["user_id"], name: "index_work_view_stats_on_user_id", using: :btree
   add_index "work_view_stats", ["work_id"], name: "index_work_view_stats_on_work_id", using: :btree
 
+  add_foreign_key "content_blocks", "sites"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
