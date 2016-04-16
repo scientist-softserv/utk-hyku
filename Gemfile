@@ -79,3 +79,4 @@ gem 'peek-resque'
 
 gem 'flip'
 gem 'lograge'
+gem 'strong_migrations'
