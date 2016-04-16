@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  helper_method :peek_enabled?
+
   before_action :require_active_account!, if: :multitenant?
 
   rescue_from Apartment::TenantNotFound do
@@ -23,6 +25,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def peek_enabled?
+      can? :peek, Lerna::Application
+    end
 
     def require_active_account!
       account = Account.from_request(request)

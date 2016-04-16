@@ -20,6 +20,7 @@ class Ability
 
   def superadmin_permissions
     can :manage, :all if current_user.has_role? :superadmin
+    can :peek, Lerna::Application
   end
 
   def restrict_site_admin_permissions
