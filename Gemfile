@@ -76,3 +76,5 @@ gem 'peek-performance_bar'
 gem 'peek-pg'
 gem 'peek-redis'
 gem 'peek-resque'
+
+gem 'flip'

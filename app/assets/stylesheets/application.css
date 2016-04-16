@@ -14,5 +14,6 @@
  *= require peek
  *= require peek/views/faraday
  *= require peek/views/performance_bar
+ *= require flip
  *= require_self
  */

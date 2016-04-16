@@ -8,6 +8,14 @@
       </li>
     <% end %>
 
+    <% if can? :manage, Feature %>
+      <li>
+        <%= link_to main_app.admin_features_path do %>
+          <span class="fa fa-tasks"></span> Features
+        <% end %>
+      </li>
+    <% end %>
+
     <% if can? :manage, Site.instance %>
       <li class="dropdown">
         <%= link_to sufia.admin_stats_path, role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do %>
