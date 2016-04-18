@@ -19,6 +19,15 @@
     <%= f.label :cname %><br>
     <%= f.text_field :cname, class: 'form-control' %>
   </div>
+
+  <%= f.fields_for :solr_endpoint do |s| %>
+    <h3>Solr Endpoint</h3>
+    <div class="form-group">
+      <%= s.label :url %><br>
+      <%= s.text_field :url, class: 'form-control' %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
   </div>

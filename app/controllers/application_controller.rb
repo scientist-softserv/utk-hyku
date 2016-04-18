@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   helper_method :peek_enabled?
 
   before_action :require_active_account!, if: :multitenant?
+  before_action :set_account_specific_connections!
 
   rescue_from Apartment::TenantNotFound do
     redirect_to accounts_path
@@ -32,6 +33,10 @@ class ApplicationController < ActionController::Base
 
     def require_active_account!
       raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account
+    end
+
+    def set_account_specific_connections!
+      current_account.switch! if current_account
     end
 
     def multitenant?
