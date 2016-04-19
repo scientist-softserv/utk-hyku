@@ -50,5 +50,3 @@ def run_server(environment, solr_port: nil, fcrepo_port: nil)
     end
   end
 end
-
-task "db:schema:dump": "strong_migrations:alphabetize_columns"
