@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount BrowseEverything::Engine => '/browse'
   resource :site, only: [:edit, :update] do
     resources :roles, only: [:index, :update]
   end
