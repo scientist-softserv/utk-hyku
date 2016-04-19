@@ -14,7 +14,7 @@ class SolrEndpoint < Endpoint
   end
 
   def switch!
-    ActiveFedora::SolrService.register(url, connection_options)
+    ActiveFedora::SolrService.instance.conn = connection
     Blacklight.instance_variable_set(:@default_index, connection)
   end
 end
