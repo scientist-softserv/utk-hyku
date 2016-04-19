@@ -7,6 +7,6 @@ module CurationConcerns
     # Adds Sufia behaviors to the controller.
     include Sufia::WorksControllerBehavior
 
-    set_curation_concern_type GenericWork
+    self.curation_concern_type = GenericWork
   end
 end
