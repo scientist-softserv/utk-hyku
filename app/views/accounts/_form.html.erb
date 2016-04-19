@@ -28,6 +28,20 @@
     </div>
   <% end %>
 
+  <%= f.fields_for :fcrepo_endpoint do |s| %>
+    <h3>Fcrepo Endpoint</h3>
+    <div class="form-group">
+      <%= s.label :url %><br>
+      <%= s.text_field :url, class: 'form-control' %>
+      <p class="help-block">(should not end with a slash)</p>
+    </div>
+    <div class="form-group">
+      <%= s.label :base_path %><br>
+      <%= s.text_field :base_path, class: 'form-control' %>
+      <p class="help-block">(should begin with a slash and not end with a slash)</p>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
   </div>

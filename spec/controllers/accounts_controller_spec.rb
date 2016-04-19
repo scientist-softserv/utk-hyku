@@ -32,6 +32,11 @@ RSpec.describe AccountsController, type: :controller do
     { tenant: 'x', cname: 'example.com' }
   end
 
+  let(:valid_fcrepo_endpoint_attributes) do
+    { url: 'http://127.0.0.1:8984/go',
+      base_path: '/dev' }
+  end
+
   let(:invalid_attributes) do
     { tenant: 'missing-cname', cname: '' }
   end
@@ -112,23 +117,21 @@ RSpec.describe AccountsController, type: :controller do
     describe "PUT #update" do
       context "with valid params" do
         let(:new_attributes) do
-          { cname: 'new.example.com' }
+          { cname: 'new.example.com',
+            fcrepo_endpoint_attributes: valid_fcrepo_endpoint_attributes }
         end
 
         it "updates the requested account" do
           put :update, { id: account.to_param, account: new_attributes }, valid_session
           account.reload
           expect(account.cname).to eq 'new.example.com'
+          expect(account.fcrepo_endpoint.url).to eq 'http://127.0.0.1:8984/go'
+          expect(response).to redirect_to(account)
         end
 
         it "assigns the requested account as @account" do
           put :update, { id: account.to_param, account: valid_attributes }, valid_session
           expect(assigns(:account)).to eq(account)
-        end
-
-        it "redirects to the account" do
-          put :update, { id: account.to_param, account: valid_attributes }, valid_session
-          expect(response).to redirect_to(account)
         end
       end
 

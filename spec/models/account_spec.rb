@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Account, type: :model do
+  let(:account) { FactoryGirl.create(:account) }
+
   describe '.from_request' do
     let(:request) { double(host: 'example.com') }
     let!(:account) { described_class.create(tenant: 'example', cname: 'example.com') }
@@ -15,16 +17,23 @@ RSpec.describe Account, type: :model do
 
     before do
       subject.build_solr_endpoint.update(url: 'http://example.com/solr/')
+      subject.build_fcrepo_endpoint.update(url: 'http://example.com/fedora', base_path: '/dev')
       subject.switch!
     end
 
     after do
       ActiveFedora::SolrService.reset!
+      ActiveFedora::Fedora.reset!
       Blacklight.instance_variable_set(:@default_index, old_default_index)
     end
 
     it 'switches the ActiveFedora solr connection' do
       expect(ActiveFedora::SolrService.instance.conn.uri.to_s).to eq 'http://example.com/solr/'
+    end
+
+    it 'switches the ActiveFedora fcrepo connection' do
+      expect(ActiveFedora.fedora.host).to eq 'http://example.com/fedora'
+      expect(ActiveFedora.fedora.base_path).to eq '/dev'
     end
 
     it 'switches the Blacklight solr conection' do
@@ -53,11 +62,20 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#solr_endpoint' do
-    subject { FactoryGirl.create(:account) }
+    subject { account.solr_endpoint }
 
     it 'has a default solr endpoint configuration' do
-      expect(subject.solr_endpoint).to be_present
-      expect(subject.solr_endpoint.url).to eq SolrEndpoint.default_options[:url]
+      expect(subject).to be_present
+      expect(subject.url).to eq SolrEndpoint.default_options[:url]
+    end
+  end
+
+  describe '#fcrepo_endpoint' do
+    subject { account.fcrepo_endpoint }
+
+    it 'has a default fcrepo endpoint configuration' do
+      expect(subject).to be_present
+      expect(subject.url).to eq FcrepoEndpoint.default_options[:url]
     end
   end
 end
