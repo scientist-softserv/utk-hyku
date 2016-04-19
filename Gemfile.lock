@@ -706,8 +706,6 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stomp (1.3.5)
-    strong_migrations (0.1.4)
-      activerecord (>= 3.2.0)
     sxp (0.1.5)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
@@ -788,7 +786,6 @@ DEPENDENCIES
   simplecov
   solr_wrapper (~> 0.8)
   spring
-  strong_migrations
   sufia!
   turbolinks
   uglifier (>= 1.3.0)
