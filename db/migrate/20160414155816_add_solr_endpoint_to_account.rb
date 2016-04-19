@@ -1,6 +1,5 @@
 class AddSolrEndpointToAccount < ActiveRecord::Migration
   def change
-    add_column :accounts, :accounts, :string
-    add_column :accounts, :solr_endpoint_id, :integer
+    add_reference :accounts, :solr_endpoint, index: true
   end
 end
