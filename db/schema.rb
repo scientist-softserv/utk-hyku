@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415212015) do
+ActiveRecord::Schema.define(version: 20160419214433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,15 @@ ActiveRecord::Schema.define(version: 20160415212015) do
   create_table "accounts", force: :cascade do |t|
     t.string   "tenant"
     t.string   "cname"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "accounts"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "solr_endpoint_id"
+    t.integer  "fcrepo_endpoint_id"
   end
 
   add_index "accounts", ["cname", "tenant"], name: "index_accounts_on_cname_and_tenant", using: :btree
+  add_index "accounts", ["fcrepo_endpoint_id"], name: "index_accounts_on_fcrepo_endpoint_id", using: :btree
+  add_index "accounts", ["solr_endpoint_id"], name: "index_accounts_on_solr_endpoint_id", using: :btree
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
