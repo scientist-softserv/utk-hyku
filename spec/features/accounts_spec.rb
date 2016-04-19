@@ -21,16 +21,20 @@ RSpec.describe 'Accounts administration' do
       expect(account.cname).to eq 'example.com'
     end
 
-    it 'changes the solr endpoint url' do
+    it 'changes the account service endpoints' do
       visit edit_account_path(account)
 
-      fill_in 'Url', with: 'http://example.com/solr/'
+      fill_in 'account_solr_endpoint_attributes_url', with: 'http://example.com/solr/'
+      fill_in 'account_fcrepo_endpoint_attributes_url', with: 'http://example.com/fcrepo'
+      fill_in 'account_fcrepo_endpoint_attributes_base_path', with: '/dev'
 
       click_on 'Update Account'
 
       account.reload
 
       expect(account.solr_endpoint.url).to eq 'http://example.com/solr/'
+      expect(account.fcrepo_endpoint.url).to eq 'http://example.com/fcrepo'
+      expect(account.fcrepo_endpoint.base_path).to eq '/dev'
     end
   end
 end
