@@ -79,3 +79,5 @@ gem 'peek-resque'
 
 gem 'flip'
 gem 'lograge'
+
+gem 'zk'
