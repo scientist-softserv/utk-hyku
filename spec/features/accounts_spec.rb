@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Accounts administration' do
   context 'as an superadmin' do
     let(:user) { FactoryGirl.create(:superadmin) }
-    let(:account) { FactoryGirl.create(:account) }
+    let(:account) do
+      FactoryGirl.create(:account, solr_endpoint_attributes: { url: 'http://localhost:8080/solr' },
+                                   fcrepo_endpoint_attributes: { url: 'http://localhost:8080/fcrepo' }
+                        )
+    end
 
     before do
       login_as(user, scope: :user)

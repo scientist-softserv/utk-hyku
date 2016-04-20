@@ -5,11 +5,11 @@ RSpec.describe AccountElevator do
 
   let(:request) { double(host: 'example.com') }
   let(:bad_request) { double(host: 'new.example.com') }
-  let!(:account) { Account.create(tenant: 'x', cname: 'example.com') }
+  let!(:account) { FactoryGirl.create(:account, cname: 'example.com') }
 
   describe '#parse_tenant_name' do
     it 'retrieves the tenant name for the account' do
-      expect(subject.parse_tenant_name(request)).to eq 'x'
+      expect(subject.parse_tenant_name(request)).to eq account.tenant
     end
 
     it 'returns nil if no tenant is found' do
