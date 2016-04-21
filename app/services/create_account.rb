@@ -29,7 +29,7 @@ class CreateAccount
   end
 
   def create_fcrepo_endpoint
-    account.create_fcrepo_endpoint(FcrepoEndpoint.default_options)
+    CreateFcrepoEndpointJob.perform_later(account)
   end
 
   private
