@@ -22,6 +22,7 @@ class Account < ActiveRecord::Base
   def switch
     switch!
     yield
+  ensure
     reset!
   end
 
