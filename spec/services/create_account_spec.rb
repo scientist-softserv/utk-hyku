@@ -30,8 +30,9 @@ RSpec.describe CreateAccount do
 
   describe '#create_fcrepo_endpoint' do
     it 'has a default fcrepo endpoint configuration' do
+      expect(CreateFcrepoEndpointJob).to receive(:perform_later).with(account)
+
       subject.create_fcrepo_endpoint
-      expect(account.fcrepo_endpoint.url).to eq FcrepoEndpoint.default_options[:url]
     end
   end
 end
