@@ -22,9 +22,7 @@ RSpec.describe Account, type: :model do
     end
 
     after do
-      ActiveFedora::SolrService.reset!
-      ActiveFedora::Fedora.reset!
-      Blacklight.instance_variable_set(:@default_index, old_default_index)
+      subject.reset!
     end
 
     it 'switches the ActiveFedora solr connection' do
