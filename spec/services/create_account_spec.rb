@@ -1,0 +1,37 @@
+require 'rails_helper'
+
+RSpec.describe CreateAccount do
+  let(:account) { FactoryGirl.build(:account) }
+  subject { described_class.new(account) }
+
+  describe '#create_tenant' do
+    it 'creates a new apartment tenant' do
+      expect(Apartment::Tenant).to receive(:create).with(account.tenant)
+      subject.create_tenant
+    end
+
+    it 'initializes the Site configuration with a link back to the Account' do
+      expect(Apartment::Tenant).to receive(:create).with(account.tenant) do |&block|
+        block.call
+      end
+
+      subject.create_tenant
+      expect(Site.reload.account).to eq account
+    end
+  end
+
+  describe '#create_solr_collection' do
+    it 'queues a background job to create a solr collection for the account' do
+      expect(CreateSolrCollectionJob).to receive(:perform_later).with(account)
+
+      subject.create_solr_collection
+    end
+  end
+
+  describe '#create_fcrepo_endpoint' do
+    it 'has a default fcrepo endpoint configuration' do
+      subject.create_fcrepo_endpoint
+      expect(account.fcrepo_endpoint.url).to eq FcrepoEndpoint.default_options[:url]
+    end
+  end
+end

@@ -1,0 +1,2 @@
+zookeeper:
+  connection_str: 'localhost:9985/configs'

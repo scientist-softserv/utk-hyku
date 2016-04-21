@@ -5,3 +5,7 @@ collection:
   name: hydra-development
 
 cloud: true
+
+configsets:
+  - dir: solr/config/
+    name: hybox

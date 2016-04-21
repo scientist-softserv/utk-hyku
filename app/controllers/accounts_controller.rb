@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     respond_to do |format|
-      if @account.save_and_create_tenant
+      if CreateAccount.new(@account).save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
