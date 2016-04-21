@@ -190,12 +190,13 @@ RSpec.describe AccountsController, type: :controller do
 
     describe "DELETE #destroy" do
       it "destroys the requested account" do
-        expect do
-          delete :destroy, { id: account.to_param }, valid_session
-        end.to change(Account, :count).by(-1)
+        expect(CleanupAccountJob).to receive(:perform_now).with(account)
+
+        delete :destroy, { id: account.to_param }, valid_session
       end
 
       it "redirects to the accounts list" do
+        expect(CleanupAccountJob).to receive(:perform_now).with(account)
         delete :destroy, { id: account.to_param }, valid_session
         expect(response).to redirect_to(accounts_url)
       end
