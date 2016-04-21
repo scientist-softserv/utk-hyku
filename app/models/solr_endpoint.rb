@@ -17,4 +17,9 @@ class SolrEndpoint < Endpoint
     ActiveFedora::SolrService.instance.conn = connection
     Blacklight.instance_variable_set(:@default_index, connection)
   end
+
+  def reset!
+    ActiveFedora::SolrService.reset!
+    Blacklight.instance_variable_set(:@default_index, nil)
+  end
 end
