@@ -69,12 +69,4 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
-
-  config.before(:suite) do
-    begin
-      SolrConfigUploader.default.upload(Settings.solr.configset_source_path)
-    rescue => e
-      $stderr.puts "Error uploading zookeeper configuration: #{e}"
-    end
-  end
 end
