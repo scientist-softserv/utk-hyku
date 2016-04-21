@@ -56,25 +56,14 @@ RSpec.describe AccountsController, type: :controller do
 
     describe "POST #create" do
       context "with valid params" do
+        let(:create_service) { double(save: true) }
         before do
-          expect(Apartment::Tenant).to receive(:create).with('x')
+          allow(CreateAccount).to receive(:new).with(Account).and_return(create_service)
         end
 
         it "creates a new Account" do
-          expect do
-            post :create, { account: valid_attributes }, valid_session
-          end.to change(Account, :count).by(1)
-        end
-
-        it "assigns a newly created account as @account" do
+          expect(create_service).to receive(:save).and_return(true)
           post :create, { account: valid_attributes }, valid_session
-          expect(assigns(:account)).to be_a(Account)
-          expect(assigns(:account)).to be_persisted
-        end
-
-        it "redirects to the created account" do
-          post :create, { account: valid_attributes }, valid_session
-          expect(response).to redirect_to(Account.last)
         end
       end
 
@@ -183,10 +172,10 @@ RSpec.describe AccountsController, type: :controller do
 
   context 'as a superadmin' do
     let(:user) { FactoryGirl.create(:superadmin) }
+    let!(:account) { FactoryGirl.create(:account) }
 
     describe "GET #index" do
       it "assigns all accounts as @accounts" do
-        account = FactoryGirl.create(:account)
         get :index, {}, valid_session
         expect(assigns(:accounts)).to include account
       end
@@ -194,7 +183,6 @@ RSpec.describe AccountsController, type: :controller do
 
     describe "GET #show" do
       it "assigns the requested account as @account" do
-        account = Account.create! valid_attributes
         get :show, { id: account.to_param }, valid_session
         expect(assigns(:account)).to eq(account)
       end
@@ -202,14 +190,12 @@ RSpec.describe AccountsController, type: :controller do
 
     describe "DELETE #destroy" do
       it "destroys the requested account" do
-        account = Account.create! valid_attributes
         expect do
           delete :destroy, { id: account.to_param }, valid_session
         end.to change(Account, :count).by(-1)
       end
 
       it "redirects to the accounts list" do
-        account = Account.create! valid_attributes
         delete :destroy, { id: account.to_param }, valid_session
         expect(response).to redirect_to(accounts_url)
       end

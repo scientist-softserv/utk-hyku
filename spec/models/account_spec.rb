@@ -40,42 +40,4 @@ RSpec.describe Account, type: :model do
       expect(Blacklight.default_index.uri.to_s).to eq 'http://example.com/solr/'
     end
   end
-
-  describe '#save_and_create_tenant' do
-    subject { described_class.new(tenant: 'x', cname: 'x') }
-
-    before do
-      expect(Apartment::Tenant).to receive(:create).with('x') do |&block|
-        block.call
-      end
-    end
-
-    it 'creates a new apartment tenant' do
-      subject.save_and_create_tenant
-    end
-
-    it 'initializes the Site configuration with a link back to the Account' do
-      subject.save_and_create_tenant do
-        expect(Site.reload.account).to eq subject
-      end
-    end
-  end
-
-  describe '#solr_endpoint' do
-    subject { account.solr_endpoint }
-
-    it 'has a default solr endpoint configuration' do
-      expect(subject).to be_present
-      expect(subject.url).to eq SolrEndpoint.default_options[:url]
-    end
-  end
-
-  describe '#fcrepo_endpoint' do
-    subject { account.fcrepo_endpoint }
-
-    it 'has a default fcrepo endpoint configuration' do
-      expect(subject).to be_present
-      expect(subject.url).to eq FcrepoEndpoint.default_options[:url]
-    end
-  end
 end
