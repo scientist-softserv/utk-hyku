@@ -37,7 +37,7 @@ RSpec.describe Account, type: :model do
     end
 
     it 'switches the Blacklight solr conection' do
-      expect(Blacklight.default_index.uri.to_s).to eq 'http://example.com/solr/'
+      expect(Blacklight.connection_config[:url]).to eq 'http://example.com/solr/'
     end
   end
 
