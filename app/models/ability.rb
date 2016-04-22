@@ -19,7 +19,9 @@ class Ability
   end
 
   def superadmin_permissions
-    can :manage, :all if current_user.has_role? :superadmin
+    return unless current_user.has_role? :superadmin
+
+    can :manage, :all
     can :peek, Lerna::Application
   end
 
