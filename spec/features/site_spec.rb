@@ -58,5 +58,21 @@ RSpec.describe 'Site Configuration' do
         expect(page).to have_content('Custom Full Inst Name (name) requires')
       end
     end
+
+    describe 'homepage content blocks' do
+      before do
+        Site.update(
+          announcement_text: 'FOO',
+          marketing_text: 'BAZ',
+          featured_researcher: 'QUUX'
+        )
+      end
+      it 'updates the homepage' do
+        visit root_path
+        expect(page).to have_content('FOO')
+        expect(page).to have_content('BAZ')
+        expect(page).to have_content('QUUX')
+      end
+    end
   end
 end

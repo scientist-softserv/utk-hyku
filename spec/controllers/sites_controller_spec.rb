@@ -89,6 +89,39 @@ RSpec.describe SitesController, type: :controller do
           expect(Site.institution_name_full).to eq "New Full Custom Inst Name"
         end
 
+        context "with content blocks" do
+          let(:new_attributes) do
+            {
+              application_name: "New Custom Name",
+              institution_name: "New Custom Inst Name",
+              institution_name_full: "New Full Custom Inst Name",
+              announcement_text: 'This is announcement text!',
+              marketing_text: 'This is marketing text!',
+              featured_researcher: 'This is featured researcher!'
+            }
+          end
+
+          let!(:announcement) do
+            FactoryGirl.create(:content_block, name: 'announcement_text')
+          end
+
+          let!(:marketing) do
+            FactoryGirl.create(:content_block, name: 'marketing_text')
+          end
+
+          let!(:researcher) do
+            FactoryGirl.create(:content_block, name: 'featured_researcher')
+          end
+
+          it "updates the requested site" do
+            put :update, { site: new_attributes }, valid_session
+            Site.reload
+            expect(Site.announcement_text.value).to eq "This is announcement text!"
+            expect(Site.marketing_text.value).to eq "This is marketing text!"
+            expect(Site.featured_researcher.value).to eq "This is featured researcher!"
+          end
+        end
+
         it "assigns the requested site as @site" do
           put :update, { site: valid_attributes }, valid_session
           expect(assigns(:site)).to eq(Site.instance)
