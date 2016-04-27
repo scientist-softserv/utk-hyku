@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/iiif/osullivan.git
+  revision: 2ba60d4c35e5fa1cdfc27bbbfad18af3113595d5
+  branch: without_AS-OrderedHash
+  specs:
+    iiif-presentation (0.0.6.pre.dev)
+      activesupport (>= 3.2.18)
+      faraday (~> 0.9.0)
+      json
+
+GIT
   remote: https://github.com/projecthydra/sufia.git
   revision: a7913de4222099b21d2c0a6f101df4b16ce7b1e1
   branch: master
@@ -751,6 +761,7 @@ DEPENDENCIES
   fcrepo_wrapper (~> 0.4)
   flip
   hydra-works (~> 0.9.0)
+  iiif-presentation!
   is_it_working
   jbuilder (~> 2.0)
   jquery-rails
