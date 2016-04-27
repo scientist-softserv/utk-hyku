@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   end
 
   mount Flip::Engine => '/admin/features'
+  mount Riiif::Engine => '/images'
 
   # This must be the very last route in the file because it has a catch-all route for 404 errors.
   # This behavior seems to show up only in production mode.
