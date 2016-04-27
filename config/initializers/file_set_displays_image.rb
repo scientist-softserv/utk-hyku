@@ -1,0 +1,1 @@
+CurationConcerns::FileSetPresenter.include DisplaysImage

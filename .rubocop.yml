@@ -23,6 +23,7 @@ Metrics/LineLength:
   Max: 120
   Exclude:
     - 'app/controllers/catalog_controller.rb'
+    - 'spec/controllers/curation_concerns/generic_works_controller_spec.rb'
 
 Style/IndentationConsistency:
   EnforcedStyle: rails
@@ -39,6 +40,11 @@ Style/WordArray:
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/iiif_manifest/manifest_factory.rb'
+    - 'lib/iiif_manifest/manifest_builder/resource_builder.rb'
 
 Rails/HasAndBelongsToMany:
   Exclude:
