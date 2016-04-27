@@ -82,3 +82,5 @@ gem 'flip'
 gem 'lograge'
 
 gem 'zk'
+
+gem 'riiif', '~> 0.2.0'
