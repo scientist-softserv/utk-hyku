@@ -601,6 +601,8 @@ GEM
       rake
       resque (~> 1.22)
     retriable (1.4.1)
+    riiif (0.2.0)
+      rails (> 3.2.0)
     rolify (5.1.0)
     rsolr (1.0.13)
       builder (>= 2.1.2)
@@ -781,6 +783,7 @@ DEPENDENCIES
   peek-resque
   pg
   rails (= 4.2.6)
+  riiif (~> 0.2.0)
   rolify
   rsolr (~> 1.0.6)
   rspec
