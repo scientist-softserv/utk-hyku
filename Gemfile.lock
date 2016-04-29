@@ -492,6 +492,7 @@ GEM
     pg (0.18.4)
     posix-spawn (0.3.11)
     powerpack (0.1.1)
+    puma (3.4.0)
     qa (0.6.0)
       activerecord-import
       deprecation
@@ -788,6 +789,7 @@ DEPENDENCIES
   peek-redis
   peek-sidekiq
   pg
+  puma
   rails (= 4.2.6)
   riiif (~> 0.2.0)
   rolify
