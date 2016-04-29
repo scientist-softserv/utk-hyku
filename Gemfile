@@ -76,7 +76,7 @@ gem 'peek-git'
 gem 'peek-performance_bar'
 gem 'peek-pg'
 gem 'peek-redis'
-gem 'peek-resque'
+gem 'peek-sidekiq'
 
 gem 'flip'
 gem 'lograge'
@@ -84,3 +84,5 @@ gem 'lograge'
 gem 'zk'
 
 gem 'riiif', '~> 0.2.0'
+
+gem 'sidekiq'

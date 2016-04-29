@@ -10,3 +10,13 @@ Hydra-in-a-Box
 ### Postgres
 
 Hydra-in-a-Box supports multitenancy using the `apartment` gem. `apartment` works best with a postgres database.
+
+
+## Background jobs
+
+Start sidekiq from the root of your Rails application so the jobs will be processed:
+
+```
+bundle exec sidekiq
+```
+
