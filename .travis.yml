@@ -33,3 +33,4 @@ deploy:
   bucket: hybox-deployment-artifacts
   region: us-east-1
   local_dir: build
+  skip_cleanup: true
