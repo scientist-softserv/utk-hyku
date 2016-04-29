@@ -196,6 +196,7 @@ GEM
     config (1.1.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
+    connection_pool (2.2.0)
     coveralls (0.8.13)
       json (~> 1.8)
       simplecov (~> 0.11.0)
@@ -484,9 +485,10 @@ GEM
       atomic (>= 1.0.0)
       peek
       redis
-    peek-resque (2.0.1)
-      peek (>= 0.1.0)
-      resque
+    peek-sidekiq (1.0.3)
+      atomic (>= 1.0.0)
+      peek
+      sidekiq
     pg (0.18.4)
     posix-spawn (0.3.11)
     powerpack (0.1.1)
@@ -654,6 +656,10 @@ GEM
       rdoc (~> 4.0)
     select2-rails (3.5.10)
       thor (~> 0.14)
+    sidekiq (4.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     signet (0.7.2)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -780,7 +786,7 @@ DEPENDENCIES
   peek-performance_bar
   peek-pg
   peek-redis
-  peek-resque
+  peek-sidekiq
   pg
   rails (= 4.2.6)
   riiif (~> 0.2.0)
@@ -792,6 +798,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sidekiq
   simplecov
   solr_wrapper (~> 0.10)
   spring
