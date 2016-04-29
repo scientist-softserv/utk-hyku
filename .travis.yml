@@ -19,7 +19,7 @@ before_script:
   - bundle exec rake db:create
 
 before_deploy:
-  - mkdir build; zip -r build/hybox.zip .
+  - mkdir build; zip -q -r build/hybox.zip .
 
 services:
   - postgresql
