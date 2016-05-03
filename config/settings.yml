@@ -1,7 +1,7 @@
 multitenant: false
 
 solr:
-  url: http://127.0.0.1:8983/solr/
+  url: <%= ENV.fetch('SETTINGS__SOLR__URL', 'http://127.0.0.1:8983/solr/') %>
   configset: hybox
   configset_source_path: <%= File.join(Rails.root, 'solr', 'config') %>
   collection_options:
@@ -9,4 +9,4 @@ solr:
     numShards: 1
 
 zookeeper:
-  connection_str: 'localhost:9983/configs'
+  connection_str: <%= ENV.fetch('SETTINGS__ZOOKEEPER__CONNECTION_STR', 'localhost:9983/configs') %>
