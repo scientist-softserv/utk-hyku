@@ -19,7 +19,8 @@ before_script:
   - bundle exec rake db:create
 
 before_deploy:
-  - git clean -dxf
+  - git clean -dxf; rm -rf vendor/bundle
+  - echo $TRAVIS_COMMIT > REVISION
   - mkdir build; zip -q -r build/hybox.zip .
 
 services:
