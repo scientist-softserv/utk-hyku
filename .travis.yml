@@ -19,6 +19,7 @@ before_script:
   - bundle exec rake db:create
 
 before_deploy:
+  - git clean -dxf
   - mkdir build; zip -q -r build/hybox.zip .
 
 services:
