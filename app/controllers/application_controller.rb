@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   before_action :set_account_specific_connections!
 
   rescue_from Apartment::TenantNotFound do
-    redirect_to accounts_path
+    redirect_to new_account_path
   end
 
   private

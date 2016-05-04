@@ -13,7 +13,7 @@ RSpec.describe 'Home page', type: :request do
     describe 'GET /' do
       it 'redirects to the accounts landing page' do
         get root_path
-        expect(response).to redirect_to(accounts_path)
+        expect(response).to redirect_to(new_account_path)
       end
     end
   end
