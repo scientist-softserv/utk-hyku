@@ -1,1 +1,2 @@
-multitenant: true
+multitenancy:
+  enabled: true

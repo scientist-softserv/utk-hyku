@@ -1,6 +1,7 @@
 # Customer organization account
 class Account < ActiveRecord::Base
   attr_readonly :tenant
+  validates :name, presence: true
   validates :tenant, presence: true, uniqueness: true
   validates :cname, presence: true, uniqueness: true
 
@@ -8,6 +9,11 @@ class Account < ActiveRecord::Base
   belongs_to :fcrepo_endpoint, dependent: :delete
 
   accepts_nested_attributes_for :solr_endpoint, :fcrepo_endpoint, update_only: true
+
+  before_validation do
+    self.tenant ||= SecureRandom.uuid
+    self.cname ||= Settings.multitenancy.default_host % { tenant: name.parameterize } if name
+  end
 
   # @return [Account]
   def self.from_request(request)

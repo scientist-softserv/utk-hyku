@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "accounts/edit", type: :view do
-  let(:account) { Account.create! tenant: "MyString", cname: "MyString" }
+  let(:account) { FactoryGirl.create(:account) }
 
   before(:each) do
     assign(:account, account)

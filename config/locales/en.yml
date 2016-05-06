@@ -21,6 +21,8 @@
 
 en:
   hello: "Hello world"
+  application:
+    tagline: The next-generation repository solution
 
   activerecord:
     attributes:
