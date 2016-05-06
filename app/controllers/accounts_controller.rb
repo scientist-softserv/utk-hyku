@@ -15,7 +15,6 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
-    @account.assign_attributes tenant: request.host, cname: request.host
   end
 
   # GET /accounts/1/edit
@@ -27,8 +26,8 @@ class AccountsController < ApplicationController
   def create
     respond_to do |format|
       if CreateAccount.new(@account).save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
-        format.json { render :show, status: :created, location: @account }
+        format.html { redirect_to first_user_registration_url, notice: 'Account was successfully created.' }
+        format.json { render :show, status: :created, location: @account.cname }
       else
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -63,9 +62,17 @@ class AccountsController < ApplicationController
 
   private
 
+    def first_user_registration_url
+      new_user_registration_url(host: @account.cname)
+    end
+
+    def create_params
+      params.require(:account).permit(:name)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:tenant, :cname,
+      params.require(:account).permit(:name, :cname,
                                       solr_endpoint_attributes: [:id, :url],
                                       fcrepo_endpoint_attributes: [:id, :url, :base_path])
     end

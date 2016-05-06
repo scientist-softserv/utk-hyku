@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="<%= t("sufia.document_language") %>">
+<head>
+  <%= render "layouts/head_tag_content"%>
+</head>
+
+<body>
+  
+<%= render '/masthead' %>
+<%= render '/flash_msg' %>
+
+<%= yield %>
+
+<%= render partial: '/footer' %>
+<%= render 'shared/ajax_modal' %>
+</body>
+</html>

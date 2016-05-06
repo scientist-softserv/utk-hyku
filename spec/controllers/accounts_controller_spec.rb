@@ -29,7 +29,7 @@ RSpec.describe AccountsController, type: :controller do
   # Account. As you add validations to Account, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    { tenant: 'x', cname: 'example.com' }
+    { name: 'x' }
   end
 
   let(:valid_fcrepo_endpoint_attributes) do
@@ -56,14 +56,14 @@ RSpec.describe AccountsController, type: :controller do
 
     describe "POST #create" do
       context "with valid params" do
-        let(:create_service) { double(save: true) }
         before do
-          allow(CreateAccount).to receive(:new).with(Account).and_return(create_service)
+          allow_any_instance_of(CreateAccount).to receive(:create_external_resources)
         end
 
         it "creates a new Account" do
-          expect(create_service).to receive(:save).and_return(true)
-          post :create, { account: valid_attributes }, valid_session
+          expect do
+            post :create, { account: valid_attributes }, valid_session
+          end.to change(Account, :count).by(1)
         end
       end
 

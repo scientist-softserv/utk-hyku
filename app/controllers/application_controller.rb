@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   before_action :set_account_specific_connections!
 
   rescue_from Apartment::TenantNotFound do
-    redirect_to new_account_path
+    redirect_to splash_path
   end
 
   private
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     end
 
     def multitenant?
-      Settings.multitenant
+      Settings.multitenancy.enabled
     end
 
     def current_account
