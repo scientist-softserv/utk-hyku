@@ -5,10 +5,15 @@ RSpec.describe Account, type: :model do
 
   describe '.from_request' do
     let(:request) { double(host: 'example.com') }
+    let(:noncanonical_request) { double(host: 'example.com.') }
     let!(:account) { described_class.create(name: 'example', tenant: 'example', cname: 'example.com') }
 
     it 'retrieves the account that matches the incoming request' do
       expect(described_class.from_request(request)).to eq account
+    end
+
+    it 'canonicalizes the incoming request hostname' do
+      expect(described_class.from_request(noncanonical_request)).to eq account
     end
   end
 
@@ -64,6 +69,16 @@ RSpec.describe Account, type: :model do
 
       expect(ActiveFedora::SolrService.instance.conn.uri.to_s).to eq 'http://127.0.0.1:8985/solr/hydra-test/'
       expect(ActiveFedora.fedora.host).to eq 'http://127.0.0.1:8986/rest'
+    end
+  end
+
+  describe '#save' do
+    subject { FactoryGirl.create(:account) }
+
+    it 'canonicalizes the account cname' do
+      subject.update cname: 'example.com.'
+
+      expect(subject.cname).to eq 'example.com'
     end
   end
 end
