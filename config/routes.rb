@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :accounts
   root 'sufia/homepage#index'
 
+  get 'splash', to: 'splash#index'
+
   mount Blacklight::Engine => '/'
   mount CurationConcerns::Engine, at: '/'
 
