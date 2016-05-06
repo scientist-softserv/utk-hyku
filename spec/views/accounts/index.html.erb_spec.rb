@@ -1,25 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "accounts/index", type: :view do
+  let(:account_a) { FactoryGirl.create(:account) }
+  let(:account_b) { FactoryGirl.create(:account) }
+
   before(:each) do
-    assign(:accounts, [
-             Account.create!(
-               tenant: "Tenant",
-               cname: "Cname"
-             ),
-             Account.create!(
-               tenant: "Tenant 2",
-               cname: "Cname 2"
-             )
-           ])
+    assign(:accounts, [account_a, account_b])
   end
 
   it "renders a list of accounts" do
     render
-    assert_select "tr>td", text: "Tenant".to_s
-    assert_select "tr>td", text: "Cname".to_s
+    assert_select "tr>td", text: account_a.tenant.to_s
+    assert_select "tr>td", text: account_a.cname.to_s
 
-    assert_select "tr>td", text: "Tenant 2".to_s
-    assert_select "tr>td", text: "Cname 2".to_s
+    assert_select "tr>td", text: account_b.tenant.to_s
+    assert_select "tr>td", text: account_b.cname.to_s
   end
 end

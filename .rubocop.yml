@@ -45,9 +45,7 @@ Rails/HasAndBelongsToMany:
     - 'app/models/role.rb'
 
 RSpec/AnyInstance:
-  Exclude:
-    - 'spec/requests/accounts_spec.rb'
-    - 'spec/requests/home_spec.rb'
+  Enabled: false
 
 RSpec/DescribeClass:
   Exclude:

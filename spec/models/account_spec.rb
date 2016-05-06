@@ -5,7 +5,7 @@ RSpec.describe Account, type: :model do
 
   describe '.from_request' do
     let(:request) { double(host: 'example.com') }
-    let!(:account) { described_class.create(tenant: 'example', cname: 'example.com') }
+    let!(:account) { described_class.create(name: 'example', tenant: 'example', cname: 'example.com') }
 
     it 'retrieves the account that matches the incoming request' do
       expect(described_class.from_request(request)).to eq account

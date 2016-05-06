@@ -7,13 +7,13 @@ RSpec.describe 'Home page', type: :request do
 
   context 'without a current tenant' do
     before do
-      allow(Settings).to receive(:multitenant).and_return(true)
+      allow(Settings).to receive(:multitenancy).and_return(double(enabled: true))
     end
 
     describe 'GET /' do
       it 'redirects to the accounts landing page' do
         get root_path
-        expect(response).to redirect_to(new_account_path)
+        expect(response).to redirect_to(splash_path)
       end
     end
   end

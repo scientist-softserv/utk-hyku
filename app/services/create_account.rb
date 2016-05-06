@@ -9,8 +9,11 @@ class CreateAccount
   end
 
   def save
-    account.save &&
-      create_tenant &&
+    account.save && create_external_resources
+  end
+
+  def create_external_resources
+    create_tenant &&
       create_solr_collection &&
       create_fcrepo_endpoint &&
       account.save
