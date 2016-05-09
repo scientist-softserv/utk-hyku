@@ -12,12 +12,28 @@ class Account < ActiveRecord::Base
 
   before_validation do
     self.tenant ||= SecureRandom.uuid
-    self.cname ||= Settings.multitenancy.default_host % { tenant: name.parameterize } if name
+    self.cname ||= default_cname
   end
+
+  before_save :canonicalize_cname
 
   # @return [Account]
   def self.from_request(request)
-    find_by(cname: request.host)
+    find_by(cname: canonical_cname(request.host))
+  end
+
+  # Canonicalize the account cname or request host for comparison
+  #
+  # @param [String] host name
+  # @return [String] canonicalized host name
+  def self.canonical_cname(cname)
+    # DNS host names are case insensitive
+    cname &&= cname.downcase
+
+    # convert complete domain names to relative names
+    cname &&= cname.sub(/\.\Z/, '')
+
+    cname
   end
 
   def switch!
@@ -36,4 +52,17 @@ class Account < ActiveRecord::Base
     solr_endpoint.reset! if solr_endpoint
     fcrepo_endpoint.reset! if fcrepo_endpoint
   end
+
+  private
+
+    def default_cname
+      return unless name
+
+      default_host = Settings.multitenancy.default_host
+      default_host % { tenant: name.parameterize }
+    end
+
+    def canonicalize_cname
+      self.cname &&= self.class.canonical_cname(cname)
+    end
 end
