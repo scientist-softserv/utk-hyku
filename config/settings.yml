@@ -2,6 +2,9 @@ multitenancy:
   enabled: false
   default_host: "<%= ENV.fetch('SETTINGS__MULTITENANCY__DEFAULT_HOST', '%{tenant}.dev') %>"
 
+redis:
+  namespace: hybox
+
 solr:
   url: "<%= ENV.fetch('SETTINGS__SOLR__URL', 'http://127.0.0.1:8983/solr/') %>"
   configset: hybox

@@ -35,4 +35,12 @@ RSpec.describe CreateAccount do
       subject.create_fcrepo_endpoint
     end
   end
+
+  describe '#create_redis_namespace' do
+    it 'has a default redis namespace' do
+      expect(CreateRedisNamespaceJob).to receive(:perform_later).with(account)
+
+      subject.create_redis_namespace
+    end
+  end
 end

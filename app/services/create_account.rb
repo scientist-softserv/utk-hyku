@@ -16,6 +16,7 @@ class CreateAccount
     create_tenant &&
       create_solr_collection &&
       create_fcrepo_endpoint &&
+      create_redis_namespace &&
       account.save
   end
 
@@ -33,6 +34,10 @@ class CreateAccount
 
   def create_fcrepo_endpoint
     CreateFcrepoEndpointJob.perform_later(account)
+  end
+
+  def create_redis_namespace
+    CreateRedisNamespaceJob.perform_later(account)
   end
 
   private
