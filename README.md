@@ -17,6 +17,6 @@ Hydra-in-a-Box supports multitenancy using the `apartment` gem. `apartment` work
 Start sidekiq from the root of your Rails application so the jobs will be processed:
 
 ```
-bundle exec sidekiq -q event -q attach_files -q characterize -q ingest -q derivatives
+bundle exec sidekiq -q event -q attach_files -q characterize -q ingest -q derivatives -q default
 ```
 
