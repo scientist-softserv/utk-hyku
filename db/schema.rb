@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506091234) do
+ActiveRecord::Schema.define(version: 20160510000002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20160506091234) do
     t.integer  "solr_endpoint_id"
     t.integer  "fcrepo_endpoint_id"
     t.string   "name"
+    t.integer  "redis_endpoint_id"
   end
 
   add_index "accounts", ["cname", "tenant"], name: "index_accounts_on_cname_and_tenant", using: :btree
   add_index "accounts", ["fcrepo_endpoint_id"], name: "index_accounts_on_fcrepo_endpoint_id", using: :btree
+  add_index "accounts", ["redis_endpoint_id"], name: "index_accounts_on_redis_endpoint_id", using: :btree
   add_index "accounts", ["solr_endpoint_id"], name: "index_accounts_on_solr_endpoint_id", using: :btree
 
   create_table "bookmarks", force: :cascade do |t|

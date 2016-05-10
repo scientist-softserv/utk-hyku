@@ -7,8 +7,9 @@ class Account < ActiveRecord::Base
 
   belongs_to :solr_endpoint, dependent: :delete
   belongs_to :fcrepo_endpoint, dependent: :delete
+  belongs_to :redis_endpoint, dependent: :delete
 
-  accepts_nested_attributes_for :solr_endpoint, :fcrepo_endpoint, update_only: true
+  accepts_nested_attributes_for :solr_endpoint, :fcrepo_endpoint, :redis_endpoint, update_only: true
 
   before_validation do
     self.tenant ||= SecureRandom.uuid
@@ -39,6 +40,7 @@ class Account < ActiveRecord::Base
   def switch!
     solr_endpoint.switch! if solr_endpoint
     fcrepo_endpoint.switch! if fcrepo_endpoint
+    redis_endpoint.switch! if redis_endpoint
   end
 
   def switch
@@ -51,6 +53,7 @@ class Account < ActiveRecord::Base
   def reset!
     solr_endpoint.reset! if solr_endpoint
     fcrepo_endpoint.reset! if fcrepo_endpoint
+    redis_endpoint.reset! if redis_endpoint
   end
 
   private
