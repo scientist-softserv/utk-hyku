@@ -1,10 +1,6 @@
 class SolrEndpoint < Endpoint
   store :options, accessors: [:url, :collection]
 
-  def self.default_options
-    ActiveFedora::SolrService.instance.conn.options.slice(:url)
-  end
-
   def connection
     RSolr.connect(connection_options)
   end
