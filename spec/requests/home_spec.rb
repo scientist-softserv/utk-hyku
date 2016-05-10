@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Home page', type: :request do
-  before do
-    allow_any_instance_of(ActiveFedora::Fedora).to receive(:init_base_path)
-  end
-
   context 'without a current tenant' do
     before do
       allow(Settings).to receive(:multitenancy).and_return(double(enabled: true))
