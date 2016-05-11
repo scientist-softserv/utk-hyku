@@ -1,0 +1,17 @@
+---
+:queues:
+  - [default, 5]
+  - [event, 2]
+  - attach_files
+  - characterize
+  - ingest
+  - derivatives
+  - batch_create
+  - proxy_deposit
+  - create_work
+  - arkivo_subscription
+  - audit
+  - import_url
+  - ingest_local
+  - resolrize
+  - permissions
