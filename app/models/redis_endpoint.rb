@@ -7,7 +7,7 @@ class RedisEndpoint < Endpoint
 
   # Reset the Redis namespace back to the default value
   def reset!
-    Sufia.config.redis_namespace = Settings.redis.namespace
+    Sufia.config.redis_namespace = Settings.redis.default_namespace
   end
 
   private
