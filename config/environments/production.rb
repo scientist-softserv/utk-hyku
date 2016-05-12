@@ -83,4 +83,7 @@ Rails.application.configure do
     options[:params] = event.payload[:params].except("controller", "action")
     options
   end
+
+  require 'active_job/queue_adapters/better_active_elastic_job_adapter'
+  config.active_job.queue_adapter = :better_active_elastic_job
 end
