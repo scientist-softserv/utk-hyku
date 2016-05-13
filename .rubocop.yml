@@ -41,11 +41,6 @@ Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 
-Metrics/AbcSize:
-  Exclude:
-    - 'lib/iiif_manifest/manifest_factory.rb'
-    - 'lib/iiif_manifest/manifest_builder/resource_builder.rb'
-
 Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/role.rb'
