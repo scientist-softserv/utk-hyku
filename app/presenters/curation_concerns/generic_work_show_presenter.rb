@@ -6,6 +6,6 @@ class CurationConcerns::GenericWorkShowPresenter < Sufia::WorkShowPresenter
   private
 
     def manifest_helper
-      @manifest_helper ||= IIIFManifest::ManifestHelper.new
+      @manifest_helper ||= ManifestHelper.new
     end
 end

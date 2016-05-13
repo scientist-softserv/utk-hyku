@@ -341,7 +341,7 @@ GEM
       activesupport (>= 3.2.18)
       faraday (~> 0.9.0)
       json
-    iiif_manifest (0.1.1)
+    iiif_manifest (0.1.2)
       activesupport (>= 4)
       iiif-presentation (~> 0.1.0)
     is_it_working (1.1.0)
@@ -758,7 +758,7 @@ DEPENDENCIES
   fcrepo_wrapper (~> 0.4)
   flip
   hydra-works (~> 0.9.0)
-  iiif_manifest (~> 0.1.1)
+  iiif_manifest (~> 0.1.2)
   is_it_working
   jbuilder (~> 2.0)
   jquery-rails
