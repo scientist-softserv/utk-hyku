@@ -1,0 +1,11 @@
+# Place any default configuration for solr_wrapper here
+port: 8985
+collection:
+  dir: solr/config/
+  name: hydra-test
+
+cloud: true
+
+configsets:
+  - dir: solr/config/
+    name: hybox
