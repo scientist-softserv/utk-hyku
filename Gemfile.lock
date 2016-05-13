@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/iiif/osullivan.git
-  revision: 2ba60d4c35e5fa1cdfc27bbbfad18af3113595d5
-  branch: without_AS-OrderedHash
-  specs:
-    iiif-presentation (0.0.6.pre.dev)
-      activesupport (>= 3.2.18)
-      faraday (~> 0.9.0)
-      json
-
-GIT
   remote: https://github.com/projecthydra/sufia.git
   revision: a7913de4222099b21d2c0a6f101df4b16ce7b1e1
   branch: master
@@ -347,6 +337,13 @@ GEM
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (>= 0.6)
     i18n (0.7.0)
+    iiif-presentation (0.1.0)
+      activesupport (>= 3.2.18)
+      faraday (~> 0.9.0)
+      json
+    iiif_manifest (0.1.1)
+      activesupport (>= 4)
+      iiif-presentation (~> 0.1.0)
     is_it_working (1.1.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -761,7 +758,7 @@ DEPENDENCIES
   fcrepo_wrapper (~> 0.4)
   flip
   hydra-works (~> 0.9.0)
-  iiif-presentation!
+  iiif_manifest (~> 0.1.1)
   is_it_working
   jbuilder (~> 2.0)
   jquery-rails
