@@ -7,7 +7,7 @@ RSpec.describe CurationConcerns::FileSetPresenter do
   let(:id) { CGI.escape(file_set.original_file.id) }
   before do
     Hydra::Works::AddFileToFileSet.call(file_set,
-                                        fixture_file('world.png'),
+                                        fixture_file('images/world.png'),
                                         :original_file)
   end
 

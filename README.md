@@ -28,3 +28,8 @@ Start sidekiq from the root of your Rails application so the jobs will be proces
 bundle exec sidekiq
 ```
 
+## Importing from purl:
+
+```
+$ ./bin/import_from_purl ../hybox-objects bc390xk2647 bc402fk6835 bc483gc9313
+```
