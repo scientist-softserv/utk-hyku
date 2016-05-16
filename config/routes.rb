@@ -27,7 +27,6 @@ Rails.application.routes.draw do
   end
   curation_concerns_embargo_management
 
-
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
@@ -47,14 +46,14 @@ Rails.application.routes.draw do
   mount Peek::Railtie => '/peek'
 
   namespace :admin do
-    resources :features, only: [ :index ] do
-      resources :strategies, only: [ :update, :destroy ]
+    resources :features, only: [:index] do
+      resources :strategies, only: [:update, :destroy]
     end
   end
 
   namespace :admin do
-    resources :features, only: [ :index ] do
-      resources :strategies, only: [ :update, :destroy ]
+    resources :features, only: [:index] do
+      resources :strategies, only: [:update, :destroy]
     end
   end
 
