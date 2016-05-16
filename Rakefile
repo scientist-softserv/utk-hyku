@@ -32,7 +32,7 @@ namespace :server do
 
   desc 'Run Fedora and Solr for test environment'
   task :test do
-    run_server 'test', solr_port: 8985, fcrepo_port: 8986 do
+    run_server 'test' do
       sleep
     end
   end
