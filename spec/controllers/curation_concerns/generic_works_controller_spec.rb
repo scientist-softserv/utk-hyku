@@ -6,7 +6,7 @@ RSpec.describe CurationConcerns::GenericWorksController do
   let(:file_set) { work.ordered_members.to_a.first }
   before do
     Hydra::Works::AddFileToFileSet.call(file_set,
-                                        fixture_file('world.png'),
+                                        fixture_file('images/world.png'),
                                         :original_file)
   end
   describe '#manifest' do

@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+def validate_hostname!(hostname)
+  return if hostname
+  usage
+  $stderr.puts 'Please provide the hostname to import to.'
+  exit(1)
+end
+
+def validate_druids!(druids)
+  return if druids
+  usage
+  $stderr.puts 'Please provide a list of druids you want to import.'
+  exit(1)
+end
+
+def validate_imagepath!(imagepath)
+  return if imagepath
+  usage
+  $stderr.puts 'Image directory was left blank. No images will be ingested'
+  exit(1)
+end
+
+def load_rails
+  puts 'Loading environment...'
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'stanford'
+  puts 'Starting import...'
+end
+
+def main(hostname, imagepath, druids)
+  validate_hostname!(hostname)
+  validate_druids!(druids)
+  validate_imagepath!(imagepath)
+  load_rails
+
+  Account.use_account!(hostname)
+  size = Stanford::Importer::PurlImporter.new(imagepath, druids).import_all
+
+  puts "Imported #{size} records."
+end
+
+def usage
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <hostname> <image directory> <druids to import>"
+end
+
+main(ARGV[0], ARGV[1], ARGV.drop(2))
