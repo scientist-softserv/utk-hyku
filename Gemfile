@@ -87,3 +87,4 @@ gem 'zk'
 gem 'riiif', '~> 0.2.0'
 
 gem 'sidekiq'
+gem 'iiif_manifest', '~> 0.1.2'

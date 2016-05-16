@@ -20,8 +20,13 @@ Rails.application.routes.draw do
   Hydra::BatchEdit.add_routes(self)
 
   curation_concerns_collections
-  curation_concerns_basic_routes
+  curation_concerns_basic_routes do
+    member do
+      get :manifest
+    end
+  end
   curation_concerns_embargo_management
+
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
