@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510000002) do
+ActiveRecord::Schema.define(version: 20160516190434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,14 +113,14 @@ ActiveRecord::Schema.define(version: 20160510000002) do
   end
 
   create_table "featured_works", force: :cascade do |t|
-    t.integer  "order",           default: 5
-    t.string   "generic_work_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "order",      default: 5
+    t.string   "work_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "featured_works", ["generic_work_id"], name: "index_featured_works_on_generic_work_id", using: :btree
   add_index "featured_works", ["order"], name: "index_featured_works_on_order", using: :btree
+  add_index "featured_works", ["work_id"], name: "index_featured_works_on_work_id", using: :btree
 
   create_table "features", force: :cascade do |t|
     t.string   "key",                        null: false
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20160510000002) do
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
   create_table "proxy_deposit_requests", force: :cascade do |t|
-    t.string   "generic_work_id",                       null: false
+    t.string   "work_id",                               null: false
     t.integer  "sending_user_id",                       null: false
     t.integer  "receiving_user_id",                     null: false
     t.datetime "fulfillment_date"
@@ -312,9 +312,9 @@ ActiveRecord::Schema.define(version: 20160510000002) do
 
   create_table "trophies", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "generic_work_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "uploaded_files", force: :cascade do |t|
