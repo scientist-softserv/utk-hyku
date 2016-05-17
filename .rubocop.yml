@@ -28,6 +28,9 @@ Metrics/LineLength:
 Style/IndentationConsistency:
   EnforcedStyle: rails
 
+Style/DotPosition:
+  EnforcedStyle: leading
+
 Style/Documentation:
   Enabled: false
 
