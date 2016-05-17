@@ -28,9 +28,6 @@ Metrics/LineLength:
 Style/IndentationConsistency:
   EnforcedStyle: rails
 
-Style/ClassAndModuleChildren:
-  Enabled: false
-
 Style/Documentation:
   Enabled: false
 
