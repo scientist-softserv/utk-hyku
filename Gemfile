@@ -59,8 +59,6 @@ end
 
 gem 'blacklight', '~> 6.2'
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
-# Hold here until CurationConcerns beta2 is out
-gem 'hydra-works', '~> 0.9.0'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
