@@ -37,6 +37,17 @@ class Account < ActiveRecord::Base
     cname
   end
 
+  # Change the current active Account.
+  # Required until https://github.com/influitive/apartment/pull/307 is merged
+  # @param [String] cname the host name for the account
+  # @example
+  #   Account.use_account!('whatever.somewhere.io')
+  def self.use_account!(cname)
+    account = find_by_cname(cname)
+    Apartment::Tenant.switch!(account.tenant)
+    account.switch!
+  end
+
   def switch!
     solr_endpoint.switch! if solr_endpoint
     fcrepo_endpoint.switch! if fcrepo_endpoint
