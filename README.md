@@ -5,6 +5,14 @@
 Hydra-in-a-Box
 
 
+## Switching accounts
+
+The recommend way to switch your current session from one account to another is by doing:
+
+```ruby
+Account.use_account!('repo.example.com')
+```
+
 ## Development Dependencies
 
 ### Postgres
