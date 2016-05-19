@@ -17,21 +17,17 @@ module DisplaysImage
 
     def display_image_url(original_file, size = '600,')
       Riiif::Engine.routes.url_helpers.image_url(original_file.id,
-                                                 host: manifest_helper.host,
+                                                 host: @hostname,
                                                  size: size)
     end
 
     def base_image_url(original_file)
-      uri = Riiif::Engine.routes.url_helpers.info_url(original_file.id, host: manifest_helper.host)
+      uri = Riiif::Engine.routes.url_helpers.info_url(original_file.id, host: @hostname)
       # TODO: There should be a riiif route for this:
       uri.sub(%r{/info\.json\Z}, '')
     end
 
     def iiif_endpoint(original_file)
       IIIFManifest::IIIFEndpoint.new(base_image_url(original_file), profile: "http://iiif.io/api/image/2/level2.json")
-    end
-
-    def manifest_helper
-      @manifest_helper ||= ManifestHelper.new
     end
 end
