@@ -344,6 +344,7 @@ GEM
       activesupport (>= 4)
       iiif-presentation (~> 0.1.0)
     is_it_working (1.1.0)
+    iso-639 (0.2.6)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -425,6 +426,10 @@ GEM
     mini_magick (4.5.1)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
+    mods (2.0.3)
+      iso-639
+      nokogiri
+      nom-xml (~> 0.5.2)
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -761,6 +766,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   lograge
+  mods (~> 2.0.3)
   peek
   peek-faraday
   peek-git
