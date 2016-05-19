@@ -17,6 +17,13 @@ module CurationConcerns
       end
     end
 
+    protected
+
+      # Overrideing to pass in a third argument, the hostname. Used for IIIF manifest
+      def presenter
+        @presenter ||= show_presenter.new(curation_concern_from_search_results, current_ability, request.base_url)
+      end
+
     private
 
       def manifest_builder
