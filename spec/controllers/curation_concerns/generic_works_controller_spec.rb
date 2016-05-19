@@ -23,4 +23,16 @@ RSpec.describe CurationConcerns::GenericWorksController do
       expect(response.body).to eq "{\"test\":\"manifest\"}"
     end
   end
+
+  describe "#presenter" do
+    let(:solr_document) { SolrDocument.new(FactoryGirl.create(:generic_work).to_solr) }
+    before do
+      allow(controller).to receive(:curation_concern_from_search_results).and_return(solr_document)
+    end
+    subject { controller.send :presenter }
+    it "initializes a presenter" do
+      expect(subject).to be_kind_of CurationConcerns::GenericWorkShowPresenter
+      expect(subject.manifest_url).to eq "http://test.host/concern/generic_works/#{solr_document.id}/manifest"
+    end
+  end
 end
