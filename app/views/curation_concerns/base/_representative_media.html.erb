@@ -1,10 +1,10 @@
-<% if presenter.representative_id.present? && (fs = ::FileSet.load_instance_from_solr(presenter.representative_id)) %>
-  <%= media_display fs %>
+<% if presenter.representative_id.present? %>
+  <%= media_display presenter.representative_presenter %>
   
   <% # TODO: this is just for a demo. It's a slow find from Fedora %>
-  <% if fs.image? %>
+  <% if presenter.representative_presenter.image? %>
     <div style="margin-top: 0.5em">
-      <%= link_to riiif.image_path(FileSet.find(fs.id).files.first.id, size: '640,') do %>
+      <%= link_to riiif.image_path(FileSet.find(presenter.representative_presenter.id).files.first.id, size: '640,') do %>
         IIIF <i class="glyphicon glyphicon-new-window"></i>
       <% end %>
     </div>
