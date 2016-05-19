@@ -7,7 +7,7 @@ RSpec.describe 'curation_concerns/base/_representative_media' do
 
   before do
     Hydra::Works::AddFileToFileSet.call(file_set,
-                                        File.open(fixture_path + '/world.png'),
+                                        File.open(fixture_path + '/images/world.png'),
                                         :original_file)
     render 'curation_concerns/base/representative_media', presenter: pres
   end
