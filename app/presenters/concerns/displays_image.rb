@@ -17,12 +17,12 @@ module DisplaysImage
 
     def display_image_url(original_file, size = '600,')
       Riiif::Engine.routes.url_helpers.image_url(original_file.id,
-                                                 host: @hostname,
+                                                 host: request.base_url,
                                                  size: size)
     end
 
     def base_image_url(original_file)
-      uri = Riiif::Engine.routes.url_helpers.info_url(original_file.id, host: @hostname)
+      uri = Riiif::Engine.routes.url_helpers.info_url(original_file.id, host: request.base_url)
       # TODO: There should be a riiif route for this:
       uri.sub(%r{/info\.json\Z}, '')
     end
