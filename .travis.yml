@@ -38,6 +38,7 @@ deploy:
     local_dir: build
     skip_cleanup: true
     upload-dir: hybox/branch/${TRAVIS_BRANCH}
+    acl: public_read
     on:
       all_branches: true
   - provider: s3
@@ -50,3 +51,4 @@ deploy:
     skip_cleanup: true
     local_dir: build
     upload-dir: hybox/current
+    acl: public_read
