@@ -105,12 +105,14 @@ module Importer
 
       def log_created(obj)
         Rails.logger.info(
-          "Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})")
+          "Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
+        )
       end
 
       def log_updated(obj)
         Rails.logger.info(
-          "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})")
+          "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
+        )
       end
 
       private
