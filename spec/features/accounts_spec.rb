@@ -5,8 +5,7 @@ RSpec.describe 'Accounts administration' do
     let(:user) { FactoryGirl.create(:superadmin) }
     let(:account) do
       FactoryGirl.create(:account, solr_endpoint_attributes: { url: 'http://localhost:8080/solr' },
-                                   fcrepo_endpoint_attributes: { url: 'http://localhost:8080/fcrepo' }
-                        )
+                                   fcrepo_endpoint_attributes: { url: 'http://localhost:8080/fcrepo' })
     end
 
     before do
