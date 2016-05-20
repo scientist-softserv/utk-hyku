@@ -83,7 +83,7 @@ gem 'lograge'
 
 gem 'zk'
 
-gem 'riiif', '~> 0.2.0'
+gem 'riiif', '~> 0.2.4'
 gem 'mods', '~> 2.0.3'
 
 gem 'sidekiq'
