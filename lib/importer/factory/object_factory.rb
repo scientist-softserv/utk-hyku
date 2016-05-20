@@ -90,10 +90,10 @@ module Importer
           run_callbacks :create do
             if klass == Collection
               @object.attributes = attrs
-              @object.apply_depositor_metadata(User.batchuser)
+              @object.apply_depositor_metadata(User.batch_user)
               @object.save!
             else
-              work_actor = CurationConcerns::CurationConcern.actor(@object, User.batchuser)
+              work_actor = CurationConcerns::CurationConcern.actor(@object, User.batch_user)
               work_actor.create(attrs)
             end
           end
