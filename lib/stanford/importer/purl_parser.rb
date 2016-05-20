@@ -118,8 +118,7 @@ module Stanford
 
       def identifiers
         { identifiers: oai.xpath('./dc:identifier', DC_NS).map(&:text),
-          id: xml.xpath('//identityMetadata/objectId').text.sub('druid:', '')
-        }
+          id: xml.xpath('//identityMetadata/objectId').text.sub('druid:', '') }
       end
 
       def record_origin

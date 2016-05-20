@@ -45,8 +45,8 @@ group :development, :test do
   gem 'solr_wrapper', '~> 0.10'
   gem 'fcrepo_wrapper', '~> 0.4'
 
-  gem 'rubocop', '~> 0.39.0'
-  gem 'rubocop-rspec', '~> 1.4.1'
+  gem 'rubocop', '~> 0.40'
+  gem 'rubocop-rspec', '~> 1.5'
 end
 
 group :development do
