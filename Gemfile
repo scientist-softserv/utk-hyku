@@ -59,6 +59,7 @@ end
 
 gem 'blacklight', '~> 6.2'
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
+gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git', branch: 'factory_arguments'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
