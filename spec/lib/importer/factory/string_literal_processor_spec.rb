@@ -4,8 +4,7 @@ require 'importer'
 RSpec.describe Importer::Factory::StringLiteralProcessor do
   let(:input) do
     { title: ["Stanford residences"],
-      contributor: [{ name: name, type: "corporate" }]
-              }
+      contributor: [{ name: name, type: "corporate" }] }
   end
   subject { described_class.process(input) }
 

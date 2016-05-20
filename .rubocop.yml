@@ -59,3 +59,9 @@ RSpec/DescribeClass:
 RSpec/FilePath:
   Exclude:
     - 'spec/routing/**/*'
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 16

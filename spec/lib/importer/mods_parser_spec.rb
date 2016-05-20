@@ -46,14 +46,16 @@ RSpec.describe Importer::ModsParser do
       expect(attributes[:series_name]).to eq []
       expect(attributes[:restrictions]).to eq []
       expect(attributes[:institution]).to eq [
-        "Stanford University. Libraries. Dept. of Special Collections & University Archives."]
+        "Stanford University. Libraries. Dept. of Special Collections & University Archives."
+      ]
     end
 
     context 'with a file that has a general (untyped) note' do
       let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
       it 'imports notes' do
         expect(attributes[:notes_attributes].first[:value]).to start_with(
-          "\"Left to right: Anna Maria Lathrop")
+          "\"Left to right: Anna Maria Lathrop"
+        )
       end
     end
 
@@ -112,7 +114,8 @@ RSpec.describe Importer::ModsParser do
             finish: ['1919'],
             label: ['circa 1910s'],
             start_qualifier: ['approximate'],
-            finish_qualifier: ['approximate'] }]
+            finish_qualifier: ['approximate'] }
+        ]
       end
     end
 
@@ -137,7 +140,8 @@ RSpec.describe Importer::ModsParser do
             finish: ['1959'],
             label: ['circa 1900s-1950s'],
             start_qualifier: ['approximate'],
-            finish_qualifier: ['approximate'] }]
+            finish_qualifier: ['approximate'] }
+        ]
       end
     end
 
@@ -149,7 +153,8 @@ RSpec.describe Importer::ModsParser do
             finish: [],
             label: [],
             start_qualifier: [],
-            finish_qualifier: [] }]
+            finish_qualifier: [] }
+        ]
       end
     end
 
@@ -165,7 +170,8 @@ RSpec.describe Importer::ModsParser do
             finish: [],
             label: [],
             start_qualifier: [],
-            finish_qualifier: [] }]
+            finish_qualifier: [] }
+        ]
       end
     end
 
@@ -181,7 +187,8 @@ RSpec.describe Importer::ModsParser do
             finish: [],
             label: [],
             start_qualifier: [],
-            finish_qualifier: [] }]
+            finish_qualifier: [] }
+        ]
       end
     end
 
@@ -213,7 +220,8 @@ RSpec.describe Importer::ModsParser do
       expect(attributes[:language]).to eq ['eng']
       expect(attributes[:work_type]).to eq ['still image']
       expect(attributes[:institution]).to eq [
-        'Dept. of Special Collections & University Archives Stanford Univeristy Libraries']
+        'Dept. of Special Collections & University Archives Stanford Univeristy Libraries'
+      ]
     end
   end
 end
