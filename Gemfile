@@ -45,8 +45,8 @@ group :development, :test do
   gem 'solr_wrapper', '~> 0.10'
   gem 'fcrepo_wrapper', '~> 0.4'
 
-  gem 'rubocop'
-  gem 'rubocop-rspec'
+  gem 'rubocop', '~> 0.39.0'
+  gem 'rubocop-rspec', '~> 1.4.1'
 end
 
 group :development do
@@ -59,7 +59,7 @@ end
 
 gem 'blacklight', '~> 6.2'
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
-gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git', branch: 'factory_arguments'
+gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git', branch: 'master'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
