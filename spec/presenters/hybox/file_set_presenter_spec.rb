@@ -3,7 +3,8 @@ require 'iiif_manifest'
 RSpec.describe Hybox::FileSetPresenter do
   let(:file_set) { FactoryGirl.create(:file_set) }
   let(:solr_document) { SolrDocument.new(file_set.to_solr) }
-  let(:presenter) { described_class.new(solr_document, nil, 'http://test.host') }
+  let(:request) { double(base_url: 'http://test.host') }
+  let(:presenter) { described_class.new(solr_document, nil, request) }
   let(:id) { CGI.escape(file_set.original_file.id) }
   before do
     Hydra::Works::AddFileToFileSet.call(file_set,
