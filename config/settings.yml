@@ -15,3 +15,6 @@ solr:
 
 zookeeper:
   connection_str: "<%= ENV.fetch('SETTINGS__ZOOKEEPER__CONNECTION_STR', 'localhost:9983/configs') %>"
+
+active_job_queue:
+  url: <%= ENV['QUEUE_URL'] %>
