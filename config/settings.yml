@@ -18,3 +18,6 @@ zookeeper:
 
 active_job_queue:
   url: <%= ENV['QUEUE_URL'] %>
+
+s3:
+  upload_bucket: <%= ENV['SETTINGS__CARRIERWAVE__S3__UPLOAD_BUCKET'] %>

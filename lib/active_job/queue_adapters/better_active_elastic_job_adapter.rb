@@ -1,3 +1,5 @@
+require 'active_elastic_job'
+
 module ActiveJob
   module QueueAdapters
     class BetterActiveElasticJobAdapter < ActiveElasticJobAdapter
