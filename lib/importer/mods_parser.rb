@@ -83,13 +83,13 @@ module Importer
         title: untyped_title,
         alternative: alt_title,
         description: mods_description,
-        lc_subject: subject,
+        subject: subject,
         extent: mods.physical_description.extent.map { |node| strip_whitespace(node.text) },
         language: language,
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-        work_type: work_type,
+        resource_type: resource_type,
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,
@@ -109,7 +109,7 @@ module Importer
       end
     end
 
-    def work_type
+    def resource_type
       uris = mods.xpath('//mods:mods/mods:typeOfResource/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) }
       return uris if uris.present?
       Array.wrap(mods.typeOfResource.text)
