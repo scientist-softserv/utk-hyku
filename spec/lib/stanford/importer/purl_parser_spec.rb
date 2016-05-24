@@ -10,7 +10,7 @@ RSpec.describe Stanford::Importer::PurlParser do
 
     it "has required attributes" do
       expect(subject[:title]).to eq ['Lake Lagunita']
-      expect(subject[:lc_subject]).to eq ['Lake Lagunita']
+      expect(subject[:subject]).to eq ['Lake Lagunita']
       expect(subject[:language]).to eq ['en']
       expect(subject[:collection]).to eq(id: 'kx532cb7981',
                                          title: ['Stanford historical photograph collection, 1887-circa 1996'])

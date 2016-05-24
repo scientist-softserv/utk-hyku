@@ -74,10 +74,10 @@ module Stanford
         {
           title: untyped_title,
           description: dc_description,
-          lc_subject: subject,
+          subject: subject,
           language: language,
           form_of_work: oai.xpath('./dc:format', DC_NS).map(&:text),
-          work_type: work_type,
+          resource_type: resource_type,
           record_origin: record_origin
         }
       end
@@ -86,7 +86,7 @@ module Stanford
         oai.xpath('./dc:language', DC_NS).map(&:text)
       end
 
-      def work_type
+      def resource_type
         oai.xpath('./dc:type', DC_NS).map(&:text)
       end
 
