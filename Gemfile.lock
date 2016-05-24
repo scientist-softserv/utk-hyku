@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra/curation_concerns.git
-  revision: 97a4ce030d628dd531c8d7aaba91d3032435881d
+  revision: 83d988ab06220c5cd3f5c9d89fcb2470e554bbda
   branch: master
   specs:
     curation_concerns (1.0.0.beta3)
@@ -10,6 +10,7 @@ GIT
       blacklight (~> 6.1)
       blacklight_advanced_search (~> 6.0)
       breadcrumbs_on_rails (~> 2.3)
+      browse-everything (~> 0.10)
       deprecation (~> 1.0)
       hydra-editor (~> 2.0)
       hydra-head (>= 10.0.0.beta1, < 11)
@@ -27,7 +28,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 1e53af0daf8abfb1be521615389b60f2c8c9b07d
+  revision: d5711e797586ceb38c3fba94fe2bcb01a578fa18
   branch: master
   specs:
     sufia (7.0.0.beta1)
@@ -80,7 +81,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-fedora (10.0.0.beta2)
+    active-fedora (10.0.0.beta3)
       active-triples (~> 0.7.1)
       activemodel (>= 4.2, < 6)
       activesupport (>= 4.2.4, < 6)
@@ -455,9 +456,9 @@ GEM
       foreigner (>= 0.9.1)
       rails (>= 3.2.0)
     memoist (0.14.0)
-    mime-types (3.0)
+    mime-types (3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types-data (3.2016.0521)
     mimemagic (0.3.1)
     mini_magick (4.5.1)
     mini_portile2 (2.0.0)
@@ -625,7 +626,7 @@ GEM
     redis (3.3.0)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    redlock (0.1.6)
+    redlock (0.1.7)
       redis (~> 3, >= 3.3.0)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
