@@ -85,8 +85,8 @@ RSpec.describe Importer::ModsParser do
       expect(attributes[:language]).to eq ['en']
     end
 
-    it 'imports work_type' do
-      expect(attributes[:work_type]).to eq ['still image']
+    it 'imports resource_type' do
+      expect(attributes[:resource_type]).to eq ['still image']
     end
 
     it 'imports digital origin', skip: "Need a record with digital origin" do
@@ -218,7 +218,7 @@ RSpec.describe Importer::ModsParser do
       expect(attributes[:description].first).to start_with 'The Stanford historical photograph collection'
       expect(attributes[:extent]).to eq ['40 linear feet']
       expect(attributes[:language]).to eq ['eng']
-      expect(attributes[:work_type]).to eq ['still image']
+      expect(attributes[:resource_type]).to eq ['still image']
       expect(attributes[:institution]).to eq [
         'Dept. of Special Collections & University Archives Stanford Univeristy Libraries'
       ]
