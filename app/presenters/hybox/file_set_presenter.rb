@@ -1,5 +1,5 @@
 module Hybox
-  class FileSetPresenter < CurationConcerns::FileSetPresenter
+  class FileSetPresenter < Sufia::FileSetPresenter
     include DisplaysImage
   end
 end
