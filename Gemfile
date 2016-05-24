@@ -88,4 +88,6 @@ gem 'mods', '~> 2.0.3'
 
 gem 'sidekiq'
 gem 'iiif_manifest', '~> 0.1.2'
+
 gem 'active_elastic_job'
+gem 'fog-aws'
