@@ -10,7 +10,4 @@ if Settings.s3.upload_bucket
     config.fog_directory = Settings.s3.upload_bucket
     config.fog_public = false
   end
-
-  UploadedFileUploader.storage = :fog
-  TinymceAssetUploader.storage = :fog
 end
