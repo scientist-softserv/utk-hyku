@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: d5711e797586ceb38c3fba94fe2bcb01a578fa18
+  revision: 3572c8885e2b00b00afa4dce260ed0a3f2bce5a9
   branch: master
   specs:
     sufia (7.0.0.beta1)
@@ -74,7 +74,7 @@ GEM
     active_attr (0.9.0)
       activemodel (>= 3.0.2, < 5.1)
       activesupport (>= 3.0.2, < 5.1)
-    active_elastic_job (1.6.0)
+    active_elastic_job (1.6.1)
       aws-sdk (~> 2)
       rails (>= 4.2, < 5.0.1)
     active_fedora-noid (1.1.0)
@@ -118,12 +118,12 @@ GEM
       execjs
     awesome_nested_set (3.0.3)
       activerecord (>= 4.0.0, < 5)
-    aws-sdk (2.3.7)
-      aws-sdk-resources (= 2.3.7)
-    aws-sdk-core (2.3.7)
+    aws-sdk (2.3.8)
+      aws-sdk-resources (= 2.3.8)
+    aws-sdk-core (2.3.8)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.7)
-      aws-sdk-core (= 2.3.7)
+    aws-sdk-resources (2.3.8)
+      aws-sdk-core (= 2.3.8)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
