@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 3572c8885e2b00b00afa4dce260ed0a3f2bce5a9
+  revision: 1e30e56b5683bd9a5ac369f72d844adbe9538918
   branch: master
   specs:
     sufia (7.0.0.beta1)
