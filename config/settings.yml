@@ -17,7 +17,7 @@ zookeeper:
   connection_str: "<%= ENV.fetch('SETTINGS__ZOOKEEPER__CONNECTION_STR', 'localhost:9983/configs') %>"
 
 active_job_queue:
-  url: <%= ENV['QUEUE_URL'] %>
+  url: <%= ENV['SETTINGS__ACTIVE_JOB_QUEUE__URL'] %>
 
 s3:
-  upload_bucket: <%= ENV['SETTINGS__CARRIERWAVE__S3__UPLOAD_BUCKET'] %>
+  upload_bucket: <%= ENV['SETTINGS__S3__UPLOAD_BUCKET'] %>
