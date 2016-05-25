@@ -786,7 +786,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
-  config
+  config (~> 1.2)
   coveralls
   devise
   devise-guests (~> 0.3)
