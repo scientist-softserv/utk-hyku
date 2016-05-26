@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
     end
 
     def base_host?
-      request.host == Settings.multitenancy.host
+      Account.canonical_cname(request.host) == Account.canonical_cname(Settings.multitenancy.host)
     end
 
     def current_account
