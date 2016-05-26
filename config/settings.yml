@@ -8,6 +8,8 @@ multitenancy:
   default_host: "%{tenant}.dev"
   host: localhost
 
+ssl_configured: false
+
 redis:
   default_namespace: hybox
 
