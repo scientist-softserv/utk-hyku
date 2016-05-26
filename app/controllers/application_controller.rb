@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  force_ssl if: :ssl_configured?
+
   helper Openseadragon::OpenseadragonHelper
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
@@ -63,5 +65,9 @@ class ApplicationController < ActionController::Base
       payload[:request_id] = request.uuid
       payload[:user_id] = current_user.id if current_user
       payload[:account_id] = current_account.cname if current_account
+    end
+
+    def ssl_configured?
+      ActiveRecord::Type::Boolean.new.type_cast_from_user(Settings.ssl_configured)
     end
 end
