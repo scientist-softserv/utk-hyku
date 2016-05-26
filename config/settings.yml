@@ -27,3 +27,5 @@ active_job_queue:
 
 s3:
   upload_bucket:
+
+fits_path: "fits.sh"
