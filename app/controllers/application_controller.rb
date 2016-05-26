@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   before_action :set_account_specific_connections!
 
   rescue_from Apartment::TenantNotFound do
+    raise ActionController::RoutingError, 'Not Found' unless base_host?
     redirect_to splash_path
   end
 
@@ -41,6 +42,10 @@ class ApplicationController < ActionController::Base
 
     def multitenant?
       Settings.multitenancy.enabled
+    end
+
+    def base_host?
+      request.host == Settings.multitenancy.host
     end
 
     def current_account

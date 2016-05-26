@@ -1,6 +1,7 @@
 multitenancy:
   enabled: false
   default_host: "<%= ENV.fetch('SETTINGS__MULTITENANCY__DEFAULT_HOST', '%{tenant}.dev') %>"
+  host: "<%= ENV.fetch('SETTINGS__MULTITENANCY__HOST', 'localhost') %>"
 
 redis:
   default_namespace: hybox
