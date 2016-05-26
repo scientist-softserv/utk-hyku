@@ -29,3 +29,6 @@ s3:
   upload_bucket:
 
 fits_path: "fits.sh"
+
+# Is this application a worker? (processing queues, not a webapp)
+worker: false
