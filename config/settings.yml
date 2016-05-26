@@ -1,13 +1,18 @@
+# These settings can also be provided as environment variables, in the form, e.g.:
+#    SETTING__ACTIVE_JOB_QUEUE__URL=http://...
+#
+# The mapping is described in `./config/initializers/config.rb`.
+#
 multitenancy:
   enabled: false
-  default_host: "<%= ENV.fetch('SETTINGS__MULTITENANCY__DEFAULT_HOST', '%{tenant}.dev') %>"
-  host: "<%= ENV.fetch('SETTINGS__MULTITENANCY__HOST', 'localhost') %>"
+  default_host: "%{tenant}.dev"
+  host: localhost
 
 redis:
   default_namespace: hybox
 
 solr:
-  url: "<%= ENV.fetch('SETTINGS__SOLR__URL', 'http://127.0.0.1:8983/solr/') %>"
+  url: "http://127.0.0.1:8983/solr/"
   configset: hybox
   configset_source_path: <%= File.join(Rails.root, 'solr', 'config') %>
   collection_options:
@@ -15,10 +20,10 @@ solr:
     numShards: 1
 
 zookeeper:
-  connection_str: "<%= ENV.fetch('SETTINGS__ZOOKEEPER__CONNECTION_STR', 'localhost:9983/configs') %>"
+  connection_str: "localhost:9983/configs"
 
 active_job_queue:
-  url: <%= ENV['SETTINGS__ACTIVE_JOB_QUEUE__URL'] %>
+  url:
 
 s3:
-  upload_bucket: <%= ENV['SETTINGS__S3__UPLOAD_BUCKET'] %>
+  upload_bucket:

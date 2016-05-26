@@ -195,7 +195,7 @@ GEM
     concurrent-ruby (1.0.2)
     concurrent-ruby-ext (1.0.2)
       concurrent-ruby (~> 1.0.2)
-    config (1.2.0)
+    config (1.2.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.0)
@@ -786,7 +786,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
-  config
+  config (~> 1.2, >= 1.2.1)
   coveralls
   devise
   devise-guests (~> 0.3)

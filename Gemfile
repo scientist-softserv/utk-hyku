@@ -64,7 +64,7 @@ gem 'rsolr', '~> 1.0.6'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
 
-gem 'config'
+gem 'config', '~> 1.2', '>= 1.2.1'
 gem 'apartment'
 gem 'rolify'
 gem 'is_it_working'
