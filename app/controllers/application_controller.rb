@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   before_action :set_account_specific_connections!
 
   rescue_from Apartment::TenantNotFound do
-    raise ActionController::RoutingError, 'Not Found' unless base_host?
+    raise ActionController::RoutingError, 'Not Found' unless worker? || base_host?
     redirect_to splash_path
   end
 
@@ -38,6 +38,11 @@ class ApplicationController < ActionController::Base
 
     def set_account_specific_connections!
       current_account.switch! if current_account
+    end
+
+    def worker?
+      # Cast because although YAML supports boolean types, ENV variables don't
+      ActiveRecord::Type::Boolean.new.type_cast_from_user(Settings.worker)
     end
 
     def multitenant?

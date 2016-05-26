@@ -22,6 +22,15 @@ RSpec.describe 'Home page', type: :request do
           expect { get root_path }.to raise_error(ActionController::RoutingError)
         end
       end
+
+      context "on a worker" do
+        before do
+          allow(Settings).to receive(:worker).and_return('true')
+        end
+        it "doesn't raise an exception" do
+          expect { get root_path }.not_to raise_error
+        end
+      end
     end
   end
 
