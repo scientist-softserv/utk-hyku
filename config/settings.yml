@@ -10,6 +10,9 @@ multitenancy:
 
 ssl_configured: false
 
+action_controller:
+  asset_host:
+
 redis:
   default_namespace: hybox
 
