@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/curation_concerns.git
-  revision: b3238e0a8904cb946c4c893ad77e2aea3c6a93d5
+  revision: eba7f5748db4ec4be44e643bca553c479e5f1dc6
   branch: master
   specs:
     curation_concerns (1.0.0.beta5)
@@ -150,7 +150,7 @@ GEM
       multi_json (>= 1.0.0)
     autoprefixer-rails (6.3.6.2)
       execjs
-    awesome_nested_set (3.1.0)
+    awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
     aws-sdk (2.3.9)
       aws-sdk-resources (= 2.3.9)

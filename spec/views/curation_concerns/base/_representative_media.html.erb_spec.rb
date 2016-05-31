@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'curation_concerns/base/_representative_media' do
-  let(:solr_doc) { double(representative_id: file_set.id) }
+  let(:solr_doc) { double(representative_id: file_set.id, hydra_model: GenericWork) }
   let(:pres) { Sufia::WorkShowPresenter.new(solr_doc, nil) }
   let(:file_set) { FileSet.create! { |fs| fs.apply_depositor_metadata('atz') } }
 
@@ -12,7 +12,7 @@ RSpec.describe 'curation_concerns/base/_representative_media' do
     render 'curation_concerns/base/representative_media', presenter: pres
   end
 
-  it 'has a IIIF link' do
-    expect(rendered).to have_link 'IIIF'
+  it 'has a universal viewer' do
+    expect(rendered).to have_selector 'div.viewer'
   end
 end
