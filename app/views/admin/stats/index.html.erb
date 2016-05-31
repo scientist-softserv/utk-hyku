@@ -1,0 +1,30 @@
+<div class="stats">
+  <h1>Statistics for <%= application_name %></h1>
+  <p>Total Users: <%= @presenter.users_count %></p>
+
+  
+  <div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#collections" aria-controls="collections" role="tab" data-toggle="tab">Collections</a></li>
+      <li role="presentation"><a href="#works" aria-controls="works" role="tab" data-toggle="tab">Works</a></li>
+      <li role="presentation"><a href="#downloads" aria-controls="downloads" role="tab" data-toggle="tab">Downloads</a></li>
+      <li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="collections">
+        derp
+      </div>
+      <div role="tabpanel" class="tab-pane" id="works">
+        <%= render "admin/stats/stats_by_date" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="downloads">...</div>
+      <div role="tabpanel" class="tab-pane" id="users">
+        <%= render "admin/stats/top_data" %>
+      </div>
+    </div>
+  </div>
+</div>
