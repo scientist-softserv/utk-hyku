@@ -16,7 +16,15 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="collections">
-        derp
+        <script>
+          $(function() {
+            var graph = require('graph_count_over_time');
+            new graph.GraphCountOverTime('#collection-graph', <%= Sufia::Statistics::Collections.new.points.to_json %>);
+          });
+        </script>
+        <div class="graph-container">
+          <div id="collection-graph" class="graph"></div>
+        </div>
       </div>
       <div role="tabpanel" class="tab-pane" id="works">
         <%= render "admin/stats/stats_by_date" %>
