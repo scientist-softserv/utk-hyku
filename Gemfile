@@ -92,3 +92,5 @@ gem 'iiif_manifest', '~> 0.1.2'
 
 gem 'active_elastic_job'
 gem 'fog-aws'
+
+gem 'secure_headers'
