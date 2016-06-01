@@ -688,6 +688,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    secure_headers (3.3.2)
+      useragent
     select2-rails (3.5.10)
       thor (~> 0.14)
     sidekiq (4.1.2)
@@ -769,6 +771,7 @@ GEM
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.0.5)
+    useragent (0.16.7)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -833,6 +836,7 @@ DEPENDENCIES
   rubocop-rspec (~> 1.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  secure_headers
   sidekiq
   simplecov
   solr_wrapper (~> 0.10)
