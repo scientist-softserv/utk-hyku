@@ -1,13 +1,9 @@
 <% if presenter.representative_id.present? %>
-  <%= media_display presenter.representative_presenter %>
-  
-  <% # TODO: this is just for a demo. It's a slow find from Fedora %>
   <% if presenter.representative_presenter.image? %>
-    <div style="margin-top: 0.5em">
-      <%= link_to riiif.image_path(FileSet.find(presenter.representative_presenter.id).files.first.id, size: '640,') do %>
-        IIIF <i class="glyphicon glyphicon-new-window"></i>
-      <% end %>
-    </div>
+    <%= UniversalViewer.script_tag %>
+    <div class="uv viewer" data-uri="<%= main_app.polymorphic_path [main_app, :manifest, presenter] %>"></div>
+  <% else %>
+    <%= media_display presenter.representative_presenter %>
   <% end %>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>
