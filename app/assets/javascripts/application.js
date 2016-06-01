@@ -20,3 +20,4 @@
 //= require blacklight/blacklight
 
 //= require sufia
+//= require graph_count_over_time
