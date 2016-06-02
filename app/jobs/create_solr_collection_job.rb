@@ -20,7 +20,7 @@ class CreateSolrCollectionJob < ActiveJob::Base
     end
 
     def collection_options
-      Settings.solr.collection_options.to_h
+      Settings.solr.collection_options.to_h.reject { |_k, v| v.blank? }
     end
 
     def collection_exists?(name)

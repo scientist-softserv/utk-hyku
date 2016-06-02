@@ -23,6 +23,8 @@ solr:
   collection_options:
     collection.configName: hybox
     numShards: 1
+    replicationFactor:
+    rule:
 
 zookeeper:
   connection_str: "localhost:9983/configs"
