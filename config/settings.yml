@@ -21,10 +21,20 @@ solr:
   configset: hybox
   configset_source_path: <%= File.join(Rails.root, 'solr', 'config') %>
   collection_options:
-    collection.configName: hybox
-    numShards: 1
-    replicationFactor:
+    async:
+    auto_add_replicas:
+    collection:
+      config_name: hybox
+    create_node_set:
+    max_shards_per_node:
+    num_shards: 1
+    replication_factor:
+    router:
+      name:
+      field:
     rule:
+    shards:
+    snitch:
 
 zookeeper:
   connection_str: "localhost:9983/configs"
