@@ -1,6 +1,11 @@
 export class GraphCountOverTime { 
   constructor(selector, data) {
-    $.plot(selector, [ data ], {
+    this.selector = selector
+    this.data = data
+  }
+
+  activate() {
+    this.plot = $.plot(this.selector, [ this.data ], {
       xaxis: {
         mode: 'time',
         minTickSize: [7, 'day']
@@ -10,6 +15,13 @@ export class GraphCountOverTime {
         tickDecimals: 0,
         min: 0
       }
-    });
+    })
+  }
+
+  shutdown() {
+    if (typeof this.plot === 'undefined') {
+      return
+    }
+    this.plot.shutdown();
   }
 }
