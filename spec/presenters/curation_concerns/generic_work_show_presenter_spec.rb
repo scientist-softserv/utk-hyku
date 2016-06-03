@@ -18,11 +18,14 @@ RSpec.describe CurationConcerns::GenericWorkShowPresenter do
   end
 
   describe "representative_presenter" do
-    let!(:file_set) { FactoryGirl.create(:file_set) }
+    let(:work) { FactoryGirl.create(:work_with_one_file) }
+    let(:document) { work.to_solr }
     before do
-      allow(solr_document).to receive(:representative_id).and_return(file_set.id)
+      work.representative_id = work.file_sets.first.id
     end
-    subject { presenter.representative_presenter }
+    subject do
+      presenter.representative_presenter
+    end
     it "returns a presenter" do
       expect(subject).to be_kind_of Hybox::FileSetPresenter
     end
