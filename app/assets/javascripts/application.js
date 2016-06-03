@@ -21,3 +21,4 @@
 
 //= require sufia
 //= require graph_count_over_time
+//= require statistics_tab_manager
