@@ -35,6 +35,8 @@ class ApplicationController < ActionController::Base
     end
 
     def require_active_account!
+      return if devise_controller? || peek_controller?
+
       raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account
     end
 
@@ -69,5 +71,9 @@ class ApplicationController < ActionController::Base
 
     def ssl_configured?
       ActiveRecord::Type::Boolean.new.type_cast_from_user(Settings.ssl_configured)
+    end
+
+    def peek_controller?
+      is_a? Peek::ResultsController
     end
 end
