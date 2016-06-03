@@ -314,6 +314,7 @@ GEM
       signet (~> 0.7)
     haml (4.0.7)
       tilt
+    honeybadger (2.6.0)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
@@ -796,6 +797,7 @@ DEPENDENCIES
   fcrepo_wrapper (~> 0.4)
   flip
   fog-aws
+  honeybadger (~> 2.0)
   iiif_manifest (~> 0.1.2)
   is_it_working
   jbuilder (~> 2.0)
@@ -833,4 +835,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.12.3
+   1.12.4
