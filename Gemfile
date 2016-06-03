@@ -59,8 +59,6 @@ end
 
 gem 'blacklight', '~> 6.2'
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
-gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git', branch: 'master'
-gem 'active-fedora', git: 'https://github.com/projecthydra/active_fedora.git', branch: 'master'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
