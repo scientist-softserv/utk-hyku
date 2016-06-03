@@ -92,3 +92,5 @@ gem 'active_elastic_job'
 gem 'fog-aws'
 
 gem 'secure_headers'
+
+gem 'honeybadger', '~> 2.0'
