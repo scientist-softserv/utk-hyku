@@ -1,35 +1,3 @@
-GIT
-  remote: https://github.com/projecthydra/sufia.git
-  revision: 7126f15cd8d9d9cb0490935a928c2a937075583f
-  branch: master
-  specs:
-    sufia (7.0.0.beta1)
-      activeresource (~> 4.0)
-      acts_as_follower (>= 0.1.1, < 0.3)
-      blacklight-gallery (~> 0.1)
-      browse-everything (~> 0.10)
-      carrierwave (~> 0.9)
-      curation_concerns (>= 1.0.0.beta7, < 2)
-      daemons (~> 1.1)
-      font-awesome-rails (~> 4.2)
-      google-api-client (~> 0.7, < 0.9)
-      hydra-batch-edit (~> 2.0)
-      jquery-ui-rails (~> 5.0)
-      json-schema
-      legato (~> 0.3)
-      mail_form (~> 1.5)
-      mailboxer (~> 0.12)
-      nest (~> 1.1)
-      oauth
-      oauth2 (~> 0.9)
-      posix-spawn
-      redis-namespace (~> 1.5.2)
-      select2-rails (~> 3.5.9)
-      tinymce-rails (~> 4.1)
-      tinymce-rails-imageupload (~> 4.0.16.beta)
-      yaml_db (~> 0.2)
-      zeroclipboard-rails (~> 0.0.13)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -467,7 +435,7 @@ GEM
     nest (1.1.2)
       redis
     net-http-persistent (2.9.4)
-    noid (0.8.0)
+    noid (0.9.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nom-xml (0.5.4)
@@ -736,6 +704,32 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stomp (1.3.5)
+    sufia (7.0.0.beta1)
+      activeresource (~> 4.0)
+      acts_as_follower (>= 0.1.1, < 0.3)
+      blacklight-gallery (~> 0.1)
+      browse-everything (~> 0.10)
+      carrierwave (~> 0.9)
+      curation_concerns (>= 1.0.0.beta7, < 2)
+      daemons (~> 1.1)
+      font-awesome-rails (~> 4.2)
+      google-api-client (~> 0.7, < 0.9)
+      hydra-batch-edit (~> 2.0)
+      jquery-ui-rails (~> 5.0)
+      json-schema
+      legato (~> 0.3)
+      mail_form (~> 1.5)
+      mailboxer (~> 0.12)
+      nest (~> 1.1)
+      oauth
+      oauth2 (~> 0.9)
+      posix-spawn
+      redis-namespace (~> 1.5.2)
+      select2-rails (~> 3.5.9)
+      tinymce-rails (~> 4.1)
+      tinymce-rails-imageupload (~> 4.0.16.beta)
+      yaml_db (~> 0.2)
+      zeroclipboard-rails (~> 0.0.13)
     sxp (0.1.5)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
@@ -828,7 +822,7 @@ DEPENDENCIES
   simplecov
   solr_wrapper (~> 0.10)
   spring
-  sufia!
+  sufia (= 7.0.0.beta1)
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
