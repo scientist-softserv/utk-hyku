@@ -1,17 +1,12 @@
-export class PieChart { 
-  constructor(selector, data) {
+export class Graph { 
+  constructor(selector, data, options) {
     this.selector = selector
     this.data = data
+    this.options = options;
   }
 
   activate() {
-    this.plot = $.plot(this.selector, this.data, {
-				series: {
-					pie: { 
-						show: true,
-					}
-				}
-			});
+    this.plot = $.plot(this.selector, this.data, this.options);
   }
 
   shutdown() {
@@ -21,4 +16,3 @@ export class PieChart {
     this.plot.shutdown();
   }
 }
-
