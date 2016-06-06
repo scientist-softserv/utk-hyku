@@ -20,23 +20,15 @@ Account.use_account!('repo.example.com')
 Hydra-in-a-Box supports multitenancy using the `apartment` gem. `apartment` works best with a postgres database.
 
 
-## Background jobs
-
-Start sidekiq from the root of your Rails application so the jobs will be processed:
-
-```
-bundle exec sidekiq
-```
-
 ## Importing
-### from purl:
-
-```
-$ ./bin/import_from_purl ../hybox-objects bc390xk2647 bc402fk6835 bc483gc9313
-```
-
 ### from CSV: 
 
 ```
 $ ./bin/import_from_csv localhost spec/fixtures/csv/gse_metadata.csv ../hybox-objects
+```
+
+### from purl:
+
+```
+$ ./bin/import_from_purl ../hybox-objects bc390xk2647 bc402fk6835 bc483gc9313
 ```
