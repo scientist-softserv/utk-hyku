@@ -21,6 +21,5 @@
 
 //= require sufia
 //= require jquery.flot.pie
-//= require graph_count_over_time
-//= require pie_chart 
+//= require flot_graph
 //= require statistics_tab_manager
