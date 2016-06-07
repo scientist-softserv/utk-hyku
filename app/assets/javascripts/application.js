@@ -20,5 +20,7 @@
 //= require blacklight/blacklight
 
 //= require sufia
+//= require jquery.flot.pie
 //= require graph_count_over_time
+//= require pie_chart 
 //= require statistics_tab_manager

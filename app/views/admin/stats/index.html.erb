@@ -25,6 +25,10 @@
         <div class="graph-container">
           <div id="works-graph" class="graph"></div>
         </div>
+        <h2>Works by type:</h2>
+        <div class="graph-container">
+          <div id="works-by-type" class="graph"></div>
+        </div>
       </div>
       <div role="tabpanel" class="tab-pane" id="downloads">...</div>
       <div role="tabpanel" class="tab-pane" id="users">
@@ -33,10 +37,13 @@
       </div>
     </div>
       <script>
+var statistics;
         $(function() {
           var stats = require('statistics_tab_manager');
-          new stats.StatisticsTabManager(<%= Sufia::Statistics::Collections.new.points.to_json %>,
-                                         <%= Sufia::Statistics::Works.new.points.to_json %>)
+          statistics = new stats.StatisticsTabManager(<%= Sufia::Statistics::Collections::OverTime.new.points.to_json.html_safe %>,
+              <%= Sufia::Statistics::Works::OverTime.new.points.to_json.html_safe %>,
+              <%= Sufia::Statistics::Works::ByResourceType.new.query.to_json.html_safe %>
+              )
 
         });
       </script>
