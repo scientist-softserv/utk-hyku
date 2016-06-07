@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 720ff6e26378f9456a8854148ec92d0b2f94a84b
-  branch: stats_refactor
+  revision: a6956934f4d4381754c3ecdec49392e9a6108ccd
+  branch: master
   specs:
     sufia (7.0.0.beta1)
       activeresource (~> 4.0)
@@ -11,6 +11,7 @@ GIT
       carrierwave (~> 0.9)
       curation_concerns (>= 1.0.0.beta7, < 2)
       daemons (~> 1.1)
+      flot-rails (~> 0.0.6)
       font-awesome-rails (~> 4.2)
       google-api-client (~> 0.7, < 0.9)
       hydra-batch-edit (~> 2.0)
@@ -266,6 +267,8 @@ GEM
     flip (1.0.1)
       activesupport (>= 3.0, < 5)
       i18n
+    flot-rails (0.0.6)
+      jquery-rails
     fog-aws (0.9.2)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
