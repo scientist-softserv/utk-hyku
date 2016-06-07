@@ -16,19 +16,43 @@
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="collections">
         <h2>Collections over time</h2>
-        <div class="graph-container">
-          <div id="collection-graph" class="graph"></div>
-        </div>
+        <%=
+          graph_tag('collection-graph', [Sufia::Statistics::Collections::OverTime.new.points], {
+            xaxis: {
+              mode: 'time',
+              minTickSize: [7, 'day']
+            },
+            yaxis: {
+              minTickSize: 1,
+              tickDecimals: 0,
+              min: 0
+            }
+          })
+        %>
       </div>
       <div role="tabpanel" class="tab-pane" id="works">
         <h2>Works over time</h2>
-        <div class="graph-container">
-          <div id="works-graph" class="graph"></div>
-        </div>
+        <%=
+          graph_tag('works-graph', [Sufia::Statistics::Works::OverTime.new.points], {
+            xaxis: {
+              mode: 'time',
+              minTickSize: [7, 'day']
+            },
+            yaxis: {
+              minTickSize: 1,
+              tickDecimals: 0,
+              min: 0
+            }
+          })
+        %>
         <h2>Works by type:</h2>
-        <div class="graph-container">
-          <div id="works-by-type" class="graph"></div>
-        </div>
+        <%=
+          graph_tag('works-by-type', Sufia::Statistics::Works::ByResourceType.new.query, series: {
+            pie: {
+              show: true,
+            }
+          })
+        %>
       </div>
       <div role="tabpanel" class="tab-pane" id="downloads">...</div>
       <div role="tabpanel" class="tab-pane" id="users">
@@ -37,14 +61,10 @@
       </div>
     </div>
       <script>
-var statistics;
-        $(function() {
+        Blacklight.onLoad(function() {
           var stats = require('statistics_tab_manager');
-          statistics = new stats.StatisticsTabManager(<%= Sufia::Statistics::Collections::OverTime.new.points.to_json.html_safe %>,
-              <%= Sufia::Statistics::Works::OverTime.new.points.to_json.html_safe %>,
-              <%= Sufia::Statistics::Works::ByResourceType.new.query.to_json.html_safe %>
-              )
-
+          new stats.Tab('#collections').show();
+          new stats.Tab('#works');
         });
       </script>
 
