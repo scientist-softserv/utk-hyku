@@ -4,9 +4,8 @@
 
   
   <div>
-
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
+    <ul id="statistics-tabs" class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#collections" aria-controls="collections" role="tab" data-toggle="tab">Collections</a></li>
       <li role="presentation"><a href="#works" aria-controls="works" role="tab" data-toggle="tab">Works</a></li>
       <li role="presentation"><a href="#downloads" aria-controls="downloads" role="tab" data-toggle="tab">Downloads</a></li>
@@ -16,23 +15,58 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="collections">
-        <script>
-          $(function() {
-            var graph = require('graph_count_over_time');
-            new graph.GraphCountOverTime('#collection-graph', <%= Sufia::Statistics::Collections.new.points.to_json %>);
-          });
-        </script>
-        <div class="graph-container">
-          <div id="collection-graph" class="graph"></div>
-        </div>
+        <h2>Collections over time</h2>
+        <%=
+          graph_tag('collection-graph', [Sufia::Statistics::Collections::OverTime.new.points], {
+            xaxis: {
+              mode: 'time',
+              minTickSize: [7, 'day']
+            },
+            yaxis: {
+              minTickSize: 1,
+              tickDecimals: 0,
+              min: 0
+            }
+          })
+        %>
       </div>
       <div role="tabpanel" class="tab-pane" id="works">
-        <%= render "admin/stats/stats_by_date" %>
+        <h2>Works over time</h2>
+        <%=
+          graph_tag('works-graph', [Sufia::Statistics::Works::OverTime.new.points], {
+            xaxis: {
+              mode: 'time',
+              minTickSize: [7, 'day']
+            },
+            yaxis: {
+              minTickSize: 1,
+              tickDecimals: 0,
+              min: 0
+            }
+          })
+        %>
+        <h2>Works by type:</h2>
+        <%=
+          graph_tag('works-by-type', Sufia::Statistics::Works::ByResourceType.new.query, series: {
+            pie: {
+              show: true,
+            }
+          })
+        %>
       </div>
       <div role="tabpanel" class="tab-pane" id="downloads">...</div>
       <div role="tabpanel" class="tab-pane" id="users">
+        <%= render "admin/stats/stats_by_date" %>
         <%= render "admin/stats/top_data" %>
       </div>
     </div>
+      <script>
+        Blacklight.onLoad(function() {
+          var stats = require('statistics_tab_manager');
+          new stats.Tab('#collections').show();
+          new stats.Tab('#works');
+        });
+      </script>
+
   </div>
 </div>
