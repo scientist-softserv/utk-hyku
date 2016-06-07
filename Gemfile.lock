@@ -423,7 +423,7 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.1)
     mini_magick (4.5.1)
-    mini_portile2 (2.0.0)
+    mini_portile2 (2.1.0)
     minitest (5.9.0)
     mods (2.0.3)
       iso-639
@@ -436,8 +436,9 @@ GEM
       redis
     net-http-persistent (2.9.4)
     noid (0.9.0)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     nom-xml (0.5.4)
       activesupport (>= 3.2.18)
       i18n
@@ -490,6 +491,7 @@ GEM
       peek
       sidekiq
     pg (0.18.4)
+    pkg-config (1.1.7)
     posix-spawn (0.3.11)
     powerpack (0.1.1)
     puma (3.4.0)
@@ -829,4 +831,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
