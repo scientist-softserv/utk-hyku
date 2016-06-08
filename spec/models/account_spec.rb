@@ -61,7 +61,7 @@ RSpec.describe Account, type: :model do
   describe '#switch' do
     let!(:previous_solr_connection) { Blacklight.default_index }
     let!(:previous_fcrepo_connection) { ActiveFedora.fedora }
-    let!(:previous_redis_namespace) { 'hybox' }
+    let!(:previous_redis_namespace) { 'lerna' }
 
     before do
       subject.build_solr_endpoint.update(url: 'http://example.com/solr/')

@@ -14,17 +14,17 @@ action_controller:
   asset_host:
 
 redis:
-  default_namespace: hybox
+  default_namespace: lerna
 
 solr:
   url: "http://127.0.0.1:8983/solr/"
-  configset: hybox
+  configset: lerna
   configset_source_path: <%= File.join(Rails.root, 'solr', 'config') %>
   collection_options:
     async:
     auto_add_replicas:
     collection:
-      config_name: hybox
+      config_name: lerna
     create_node_set:
     max_shards_per_node:
     num_shards: 1

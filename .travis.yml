@@ -21,7 +21,7 @@ before_script:
 before_deploy:
   - git clean -dxf; rm -rf vendor/bundle
   - echo $TRAVIS_COMMIT > REVISION
-  - mkdir build; zip -q -r build/hybox.zip .
+  - mkdir build; zip -q -r build/lerna.zip .
 
 services:
   - postgresql
