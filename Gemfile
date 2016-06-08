@@ -59,7 +59,7 @@ end
 
 gem 'blacklight', '~> 6.2'
 
-gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'master'
+gem 'sufia', '7.0.0.beta2'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
