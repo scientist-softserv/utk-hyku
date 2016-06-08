@@ -8,6 +8,10 @@ footer.navbar {
     color: $color-medium-gray;
     font-weight: 500;
   }
+
+  .dropdown-menu a {
+    color: $gray;
+  }
 }
 
 #masthead {
