@@ -20,7 +20,7 @@ module Importer
     end
 
     def origin_text
-      'Converted from MODS 3.4 to local RDF profile by Hybox'.freeze
+      'Converted from MODS 3.4 to local RDF profile by Lerna'.freeze
     end
 
     def mods

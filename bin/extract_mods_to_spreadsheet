@@ -6,7 +6,7 @@
 #   'base_path/druid_wg827ks1643/**/descMetadata.xml'
 #
 # Usage example:
-#   ./bin/extract_mods_to_spreadsheet ../hybox-bags/ out.csv
+#   ./bin/extract_mods_to_spreadsheet ../lerna-bags/ out.csv
 
 base_path = ARGV[0]
 output_path = ARGV[1]
@@ -20,7 +20,6 @@ unless output_path
   exit(1)
 end
 
-
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 require 'importer'
@@ -29,7 +28,7 @@ puts 'Starting import...'
 data = Dir.glob("#{base_path}/**/descMetadata.xml").map do |filename|
          # Assumption: filename will contain the druid
          # example:
-         #   "hybox-metadata/GSE/druid_wg827ks1643/data/metadata/descMetadata.xml"
+         #   "lerna-metadata/GSE/druid_wg827ks1643/data/metadata/descMetadata.xml"
          id = filename.gsub(%r{.*/druid_(\w+)/.*}, '\1')
          {id: [id], type: ['ETD']}
            .merge(Importer::ModsParser.new(filename).attributes)
@@ -47,7 +46,6 @@ data.each do |record|
   record.delete(:institution)
   record.delete(:collection) # our data doesn't have collection in it.
 end
-
 
 headers = data.map do |record|
   record.each_with_object({}) { |(k, v), o| o[k] = v.count }
@@ -74,4 +72,3 @@ CSV.open(output_path, "wb") do |csv|
 end
 
 puts 'import complete.'
-
