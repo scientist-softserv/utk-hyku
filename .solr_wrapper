@@ -8,4 +8,4 @@ cloud: true
 
 configsets:
   - dir: solr/config/
-    name: hybox
+    name: lerna

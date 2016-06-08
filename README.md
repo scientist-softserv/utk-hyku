@@ -1,9 +1,10 @@
-[![Build Status](https://travis-ci.org/projecthydra-labs/hybox.svg)](https://travis-ci.org/projecthydra-labs/hybox)
-[![Coverage Status](https://coveralls.io/repos/projecthydra-labs/hybox/badge.svg?branch=master&service=github)](https://coveralls.io/github/projecthydra-labs/hybox?branch=master)
-[![Stories in Ready](https://badge.waffle.io/projecthydra-labs/hybox.png?label=ready&title=Ready)](https://waffle.io/projecthydra-labs/hybox)
-# hybox
-Hydra-in-a-Box
+[![Build Status](https://travis-ci.org/projecthydra-labs/lerna.svg)](https://travis-ci.org/projecthydra-labs/lerna)
+[![Coverage Status](https://coveralls.io/repos/projecthydra-labs/lerna/badge.svg?branch=master&service=github)](https://coveralls.io/github/projecthydra-labs/lerna?branch=master)
+[![Stories in Ready](https://badge.waffle.io/projecthydra-labs/lerna.png?label=ready&title=Ready)](https://waffle.io/projecthydra-labs/lerna)
 
+# Hydra-in-a-Box Repository App
+
+Codename: Lerna
 
 ## Switching accounts
 
@@ -19,16 +20,15 @@ Account.use_account!('repo.example.com')
 
 Hydra-in-a-Box supports multitenancy using the `apartment` gem. `apartment` works best with a postgres database.
 
-
 ## Importing
-### from CSV: 
+### from CSV:
 
-```
-$ ./bin/import_from_csv localhost spec/fixtures/csv/gse_metadata.csv ../hybox-objects
+```bash
+$ ./bin/import_from_csv localhost spec/fixtures/csv/gse_metadata.csv ../lerna-objects
 ```
 
 ### from purl:
 
-```
-$ ./bin/import_from_purl ../hybox-objects bc390xk2647 bc402fk6835 bc483gc9313
+```bash
+$ ./bin/import_from_purl ../lerna-objects bc390xk2647 bc402fk6835 bc483gc9313
 ```

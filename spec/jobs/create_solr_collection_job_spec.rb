@@ -16,7 +16,7 @@ RSpec.describe CreateSolrCollectionJob do
       expect(client).to receive(:get).with('/solr/admin/collections',
                                            params: hash_including(action: 'CREATE',
                                                                   name: account.tenant,
-                                                                  'collection.configName': 'hybox'))
+                                                                  'collection.configName': 'lerna'))
       described_class.perform_now(account)
 
       expect(account.solr_endpoint.url).to eq "#{Settings.solr.url}#{account.tenant}"
@@ -37,7 +37,7 @@ RSpec.describe CreateSolrCollectionJob do
       subject { described_class.new(data).to_h }
       let(:data) do
         {
-          collection: { config_name: 'hybox', blank: '' },
+          collection: { config_name: 'lerna', blank: '' },
           num_shards: 1,
           replication_factor: 5,
           rule: 'asdf',
@@ -51,7 +51,7 @@ RSpec.describe CreateSolrCollectionJob do
       end
 
       it 'collapses nested hashes' do
-        expect(subject).to include('collection.configName': 'hybox')
+        expect(subject).to include('collection.configName': 'lerna')
       end
 
       it 'camelizes key values' do
