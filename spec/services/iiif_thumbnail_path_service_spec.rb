@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe IIIFThumbnailPathService do
-  let(:file_set) { FileSet.new(id: 's1784k724') }
+  let(:file_set) { FileSet.new }
   let(:file) do
     double(id: 's1/78/4k/72/s1784k724/files/6185235a-79b2-4c29-8c24-4d6ad9b11470',
            mime_type: 'image/jpeg')
   end
   before do
     allow(ActiveFedora::Base).to receive(:find).with('s1784k724').and_return(file_set)
-    allow(file_set).to receive_messages(original_file: file)
+    allow(file_set).to receive_messages(original_file: file, id: 's1784k724')
   end
 
   context "on a work" do
