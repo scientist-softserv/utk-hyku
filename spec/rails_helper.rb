@@ -71,4 +71,5 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :view
   config.include Devise::TestHelpers, type: :view
   config.include Fixtures::FixtureFileUpload
+  config.include FactoryGirl::Syntax::Methods
 end
