@@ -24,6 +24,7 @@ Metrics/LineLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
     - 'spec/controllers/curation_concerns/generic_works_controller_spec.rb'
+    - 'spec/services/iiif_thumbnail_path_service_spec.rb'
 
 Style/IndentationConsistency:
   EnforcedStyle: rails
