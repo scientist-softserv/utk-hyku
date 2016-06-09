@@ -1,0 +1,22 @@
+.account-form {
+  margin: 0 10px 30px;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  label,
+  .actions {
+    text-align: right;
+  }
+
+  .actions .btn {
+    margin-left: 10px;
+  }
+
+  .help-block {
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+}

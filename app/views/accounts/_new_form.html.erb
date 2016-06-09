@@ -1,7 +1,7 @@
 <%= form_for(@account, class: 'form') do |f| %>
   <% if @account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <%= pluralize(@account.errors.count, "error") %> prohibited this repository from being saved:
 
       <ul>
       <% @account.errors.full_messages.each do |message| %>
@@ -10,13 +10,24 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
+    <label class="control-label col-md-2 required" for="account_title">Title</label>
+    <div class="col-md-10">
+      <input id="account_title" type="text" class="form-control">
+      <span class="help-block">A human-friendly title for the repository. This can be changed later.</span>
+    </div>
+  </div>
 
   <div class="form-group">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :name, 'Short name', class: 'col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, class: 'form-control' %>
+      <span class="help-block">A single or hyphenated name used for technical aspects of the repository (e.g., "acme" or "acme-library").</span>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit class: 'btn btn-primary' %>
+    <%= link_to 'Back', splash_path %>
+    <%= f.submit 'Next', class: 'btn btn-primary' %>
   </div>
 <% end %>
