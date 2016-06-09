@@ -37,7 +37,7 @@ deploy:
     region: us-east-1
     local_dir: build
     skip_cleanup: true
-    upload-dir: hybox/branch/${TRAVIS_BRANCH}
+    upload-dir: lerna/branch/${TRAVIS_BRANCH}
     acl: public_read
     on:
       all_branches: true
@@ -50,5 +50,5 @@ deploy:
     region: us-east-1
     skip_cleanup: true
     local_dir: build
-    upload-dir: hybox/current
+    upload-dir: lerna/current
     acl: public_read
