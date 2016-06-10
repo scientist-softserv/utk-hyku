@@ -167,4 +167,23 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+
+  config.wrappers :inline,
+    class: :input,
+    hint_class: 'hint', error_class: 'field_with_errors' do |b|
+
+    # mix in special behavior using `use :component`
+    b.use :html5
+    # b.use :placeholder
+
+    # define custom HTML output using `wrapper`
+    b.wrapper tag: :div, class: 'form-group' do |c|
+      c.use :label, class: 'control-label col-md-2'
+      c.wrapper tag: :div, class: 'col-md-10' do |d|
+        d.use :input, class: 'form-control'
+        d.use :hint,  wrap_with: { tag: :span, class: 'help-block' }
+        d.use :error, wrap_with: { tag: :div, class: 'field_with_errors alert-danger' }
+      end
+    end
+  end
 end
