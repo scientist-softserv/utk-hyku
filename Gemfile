@@ -59,7 +59,7 @@ end
 
 gem 'blacklight', '~> 6.2'
 
-gem 'sufia', '7.0.0.beta2'
+gem 'sufia', '7.0.0.beta3'
 gem 'rsolr', '~> 1.0.6'
 
 gem 'devise'
