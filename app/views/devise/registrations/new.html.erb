@@ -1,17 +1,18 @@
-<h2>TEST</h2>
+<div class="row col-md-9 account-form registration">
+  <h2>Create a new account</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :email, :label => 'Email address', required: true, autofocus: true, wrapper: :inline %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), wrapper: :inline %>
+      <%= f.input :password_confirmation, required: true, wrapper: :inline %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <div class="form-actions">
+      <%= render "devise/shared/links" %>
+      <%= f.button :submit, "Create account", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
