@@ -54,6 +54,7 @@ RSpec/AnyInstance:
 
 RSpec/DescribeClass:
   Exclude:
+    - 'spec/requests/**/*'
     - 'spec/features/**/*'
     - 'spec/views/**/*'
 
