@@ -29,7 +29,9 @@ module Importer
         model = attributes.delete(:type) || @model.to_s
         if model.empty?
           $stderr.puts 'ERROR: No model was specified'
+          # rubocop:disable Rails/Exit
           exit(1)
+          # rubocop:enable Rails/Exit
         end
         Factory.for(model).new(attributes, @files_directory).run
       end
