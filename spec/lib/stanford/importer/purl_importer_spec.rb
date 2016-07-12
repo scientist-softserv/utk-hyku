@@ -32,7 +32,7 @@ RSpec.describe Stanford::Importer::PurlImporter do
 
       coll = reloaded.in_collections.first
       expect(coll.id).to eq 'kx532cb7981'
-      expect(coll.title).to eq ['Stanford historical photograph collection, 1887-circa 1996']
+      expect(coll.title).to eq ['Stanford historical photograph collection, 1887-circa 1996 (inclusive)']
       expect(coll.members).to eq [reloaded]
       # collection is restricted until the collection object itself is ingested.
       expect(coll.visibility).to eq 'restricted'
