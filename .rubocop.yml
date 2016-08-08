@@ -52,6 +52,9 @@ Rails/HasAndBelongsToMany:
 RSpec/AnyInstance:
   Enabled: false
 
+RSpec/NamedSubject:
+  Enabled: false
+
 RSpec/DescribeClass:
   Exclude:
     - 'spec/requests/**/*'
