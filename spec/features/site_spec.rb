@@ -37,7 +37,7 @@ RSpec.describe 'Site Configuration' do
         fill_in 'Institution name', with: 'Custom Inst Name'
         click_on 'Update Site'
 
-        visit sufia.static_path action: 'agreement'
+        visit sufia.agreement_path
         expect(page).to have_content('fullname (Custom Inst Name) requires')
       end
     end
@@ -54,7 +54,7 @@ RSpec.describe 'Site Configuration' do
         fill_in 'Full institution name', with: 'Custom Full Inst Name'
         click_on 'Update Site'
 
-        visit sufia.static_path action: 'agreement'
+        visit sufia.agreement_path
         expect(page).to have_content('Custom Full Inst Name (name) requires')
       end
     end
