@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
     def worker?
       # Cast because although YAML supports boolean types, ENV variables don't
-      ActiveRecord::Type::Boolean.new.type_cast_from_user(Settings.worker)
+      ActiveRecord::Type::Boolean.new.cast(Settings.worker)
     end
 
     def multitenant?
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
     end
 
     def ssl_configured?
-      ActiveRecord::Type::Boolean.new.type_cast_from_user(Settings.ssl_configured)
+      ActiveRecord::Type::Boolean.new.cast(Settings.ssl_configured)
     end
 
     def peek_controller?

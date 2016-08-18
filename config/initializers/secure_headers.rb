@@ -1,6 +1,6 @@
 SecureHeaders::Configuration.default do |config|
   config.cookies = {
-    secure: ActiveRecord::Type::Boolean.new.type_cast_from_user(Settings.ssl_configured),
+    secure: ActiveRecord::Type::Boolean.new.cast(Settings.ssl_configured),
     httponly: true, # mark all cookies as "HttpOnly"
     samesite: {
       strict: true # mark all cookies as SameSite=Strict
