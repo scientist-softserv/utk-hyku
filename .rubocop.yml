@@ -1,5 +1,6 @@
 # Turn on RSpec cops
 require: rubocop-rspec
+inherit_from: .rubocop_todo.yml
 
 AllCops:
   DisplayCopNames: true
@@ -65,8 +66,18 @@ RSpec/FilePath:
   Exclude:
     - 'spec/routing/**/*'
 
+RSpec/ExpectActual:
+  Exclude:
+    - 'spec/routing/**/*'
+
 RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/MessageExpectation:
   Enabled: false
 
 RSpec/ExampleLength:
   Max: 16
+
+RSpec/MultipleExpectations:
+  Enabled: false
