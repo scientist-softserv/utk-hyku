@@ -4,7 +4,7 @@ RSpec.describe "accounts/index", type: :view do
   let(:account_a) { FactoryGirl.create(:account) }
   let(:account_b) { FactoryGirl.create(:account) }
 
-  before(:each) do
+  before do
     assign(:accounts, [account_a, account_b])
   end
 

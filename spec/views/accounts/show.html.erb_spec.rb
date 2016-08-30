@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "accounts/show", type: :view do
   let(:account) { FactoryGirl.create(:account) }
 
-  before(:each) do
+  before do
     @account = assign(:account, account)
   end
 
