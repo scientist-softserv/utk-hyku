@@ -61,7 +61,6 @@ end
 gem 'blacklight', '~> 6.2'
 
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git'
-gem 'breadcrumbs_on_rails', git: 'https://github.com/weppos/breadcrumbs_on_rails.git'
 gem 'rsolr', '~> 1.1.2'
 
 gem 'devise'
