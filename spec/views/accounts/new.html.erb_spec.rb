@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "accounts/new", type: :view do
-  before(:each) do
+  before do
     assign(:account, Account.new(
                        name: "MyString"
     ))
