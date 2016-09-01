@@ -8,7 +8,8 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: b717c0c70282a2811e8b8a46dc2f8006887b4eab
+  revision: 5cf7bd9d5fb960b351a0f336924d8fc1e1068c86
+  branch: admin_sidebar
   specs:
     sufia (7.1.0)
       acts_as_follower (>= 0.1.1, < 0.3)
