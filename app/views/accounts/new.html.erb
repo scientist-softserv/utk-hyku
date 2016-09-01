@@ -1,5 +1,43 @@
-<div class="row col-md-9 account-form">
-  <h1>Create a new repository</h1>
+<% content_for :page_header do %>
+  <h1><span class="fa fa-gears"></span> Create a new repository</h1>
+<% end %>
 
-  <%= render 'new_form' %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default account-form">
+      <%= form_for(@account, :html => { class: 'form form-horizontal' }) do |f| %>
+        <div class="panel-body">
+            <% if @account.errors.any? %>
+              <div id="error_explanation" class="alert alert-danger">
+                <%= pluralize(@account.errors.count, "error") %> prohibited this repository from being saved:
+
+                <ul>
+                <% @account.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <label class="control-label col-md-2 required" for="account_title">Title</label>
+              <div class="col-md-10">
+                <input id="account_title" type="text" class="form-control">
+                <span class="help-block">A human-friendly title for the repository. This can be changed later.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :name, 'Short name', class: 'col-md-2' %>
+              <div class="col-md-10">
+                <%= f.text_field :name, class: 'form-control' %>
+                <span class="help-block">A single or hyphenated name used for technical aspects of the repository (e.g., "acme" or "acme-library").</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <%= f.submit class: 'btn btn-primary pull-right' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
 </div>
