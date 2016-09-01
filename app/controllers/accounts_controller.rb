@@ -11,6 +11,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
+    authorize! :manage, Account
     add_breadcrumb t(:'sufia.controls.home'), root_path
     add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
     add_breadcrumb t(:'sufia.admin.sidebar.accounts'), accounts_path
