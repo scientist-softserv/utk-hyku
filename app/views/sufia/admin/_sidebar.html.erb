@@ -1,0 +1,59 @@
+                <!-- START X-NAVIGATION -->
+                <ul class="x-navigation">
+                    <li class="xn-logo">
+                        <%= link_to root_path do %>
+                          <span class="glyphicon glyphicon-globe"></span>
+                          <%= application_name %>
+                        <% end %>
+                        <a href="#" class="x-navigation-control"></a>
+                    </li>
+                    <li><%= link_to sufia.admin_stats_path do %>
+                          <span class="fa fa-bar-chart"></span> <%= t('sufia.admin.sidebar.statistics') %>
+                        <% end %>
+                    </li>
+
+                    <li class="xn-title">Configuration</li>
+                    <li class="xn-openable">
+                      <a href="#">
+                        <span class="fa fa-cog"></span>
+                        <span class="xn-text"><%= t('sufia.admin.sidebar.settings') %></span>
+                      </a>
+                      <ul>
+                        <% if can? :manage, Site %>
+                          <li><%= link_to edit_site_path do %>
+                            <span class="fa fa-align-justify"></span> Labels 
+                              <% end %>
+                          </li>
+                        <% end %>
+
+                        <li><%= link_to sufia.admin_features_path do %>
+                              <span class="fa fa-wrench"></span> Technical
+                            <% end %>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li><%= link_to sufia.admin_admin_sets_path do %>
+                      <span class="fa fa-sitemap"></span> <%= t('sufia.admin.sidebar.admin_sets') %>
+                        <% end %>
+                    </li>
+
+                    <% if can? :manage, Role %>
+                      <li><%= link_to main_app.site_roles_path do %>
+                        <span class="fa fa-user"></span> Roles and permissions
+                          <% end %>
+                      </li>
+                    <% end %>
+
+                    <% if can? :manage, Account %>
+                      <li>
+                        <%= link_to main_app.accounts_path do %>
+                          <span class="fa fa-gears"></span> Accounts
+                        <% end %>
+                      </li>
+                    <% elsif Site.account && can?(:manage, Site.account) %>
+                       <li><%= link_to 'Account', main_app.account_path(Site.account) %></li>
+                    <% end %>
+
+                </ul>
+

@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   skip_before_action :require_active_account!
+  layout 'admin'
 
   load_and_authorize_resource
 
