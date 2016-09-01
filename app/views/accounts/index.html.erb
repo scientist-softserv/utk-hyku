@@ -1,27 +1,37 @@
-<h1 class="page-header">Accounts</h1>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Tenant</th>
-      <th>Cname</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.tenant %></td>
-        <td><%= account.cname %></td>
-        <td class="col-md-1"><%= link_to 'Show', account %></td>
-        <td class="col-md-1"><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td class="col-md-1"><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% content_for :page_header do %>
+  <h1><span class="fa fa-gears"></span> <%= t(:'sufia.admin.sidebar.accounts') %></h1>
+  <div class="pull-right">
+    <%= link_to new_account_path, class: 'btn btn-primary' do %>
+      <span class="fa fa-edit"></span> Create new account 
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
-<br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-striped datatable">
+          <thead>
+            <tr>
+              <th>Tenant</th>
+              <th>Cname</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-<%= link_to 'New Account', new_account_path %>
+          <tbody>
+            <% @accounts.each do |account| %>
+              <tr>
+                <td><%= account.tenant %></td>
+                <td><%= account.cname %></td>
+                <td class="col-md-1"><%= link_to 'Show', account %>&nbsp;<%= link_to 'Edit', edit_account_path(account) %>&nbsp;<%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
