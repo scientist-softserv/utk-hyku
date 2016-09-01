@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   # The new layout is used by admins and on the signup page, so don't
   # use the admin layout.
   # TODO: create a separate signup controller?
-  layout 'admin', except: [:new]
+  layout :decide_layout
 
   load_and_authorize_resource
 
@@ -78,6 +78,14 @@ class AccountsController < ApplicationController
   end
 
   private
+
+    def decide_layout
+      if can? :read, :admin_dashboard
+        'admin'
+      else
+        'sufia-one-column'
+      end
+    end
 
     def first_user_registration_url
       new_user_registration_url(host: @account.cname)
