@@ -50,6 +50,7 @@ RSpec.describe AccountsController, type: :controller do
     describe "GET #new" do
       it "assigns a new account as @account" do
         get :new, {}, valid_session
+        expect(response).to render_template("layouts/application")
         expect(assigns(:account)).to be_a_new(Account)
       end
     end
@@ -178,6 +179,7 @@ RSpec.describe AccountsController, type: :controller do
       it "assigns all accounts as @accounts" do
         get :index, {}, valid_session
         expect(assigns(:accounts)).to include account
+        expect(response).to render_template("layouts/admin")
       end
     end
 

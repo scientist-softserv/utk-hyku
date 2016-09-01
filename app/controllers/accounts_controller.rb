@@ -1,6 +1,10 @@
 class AccountsController < ApplicationController
   skip_before_action :require_active_account!
-  layout 'admin'
+
+  # The new layout is used by admins and on the signup page, so don't
+  # use the admin layout.
+  # TODO: create a separate signup controller?
+  layout 'admin', except: [:new]
 
   load_and_authorize_resource
 
