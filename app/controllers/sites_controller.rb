@@ -5,6 +5,10 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
+    add_breadcrumb t(:'sufia.controls.home'), root_path
+    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
+    add_breadcrumb t(:'sufia.admin.sidebar.settings'), edit_site_path
+    add_breadcrumb t(:'sufia.admin.sidebar.labels'), edit_site_path
   end
 
   # PATCH/PUT /sites/1

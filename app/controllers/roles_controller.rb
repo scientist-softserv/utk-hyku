@@ -10,6 +10,9 @@ class RolesController < ApplicationController
   end
 
   def index
+    add_breadcrumb t(:'sufia.controls.home'), root_path
+    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
+    add_breadcrumb t(:'sufia.admin.sidebar.roles_and_permissions'), site_roles_path
   end
 
   def update
