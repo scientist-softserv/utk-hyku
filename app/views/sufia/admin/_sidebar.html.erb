@@ -39,16 +39,16 @@
                     </li>
 
                     <% if can? :manage, Role %>
-                      <li><%= link_to main_app.site_roles_path do %>
-                        <span class="fa fa-user"></span> Roles and permissions
+                      <li><%= link_to site_roles_path do %>
+                        <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.roles_and_permissions') %>
                           <% end %>
                       </li>
                     <% end %>
 
                     <% if can? :manage, Account %>
                       <li>
-                        <%= link_to main_app.accounts_path do %>
-                          <span class="fa fa-gears"></span> Accounts
+                        <%= link_to accounts_path do %>
+                          <span class="fa fa-gears"></span> <%= t('sufia.admin.sidebar.accounts') %>
                         <% end %>
                       </li>
                     <% elsif Site.account && can?(:manage, Site.account) %>

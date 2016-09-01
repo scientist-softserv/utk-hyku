@@ -28,3 +28,10 @@ en:
     attributes:
       site:
         institution_name_full: Full institution name
+  sufia:
+    admin:
+      sidebar:
+        labels:                'Labels'
+        technical:             'Technical'
+        roles_and_permissions: 'Roles and permissions'
+        accounts:              'Accounts'
