@@ -7,6 +7,9 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
+    add_breadcrumb t(:'sufia.controls.home'), root_path
+    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
+    add_breadcrumb t(:'sufia.admin.sidebar.accounts'), accounts_path
   end
 
   # GET /accounts/1
@@ -16,10 +19,18 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
+    add_breadcrumb t(:'sufia.controls.home'), root_path
+    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
+    add_breadcrumb t(:'sufia.admin.sidebar.accounts'), accounts_path
+    add_breadcrumb 'New account', new_account_path
   end
 
   # GET /accounts/1/edit
   def edit
+    add_breadcrumb t(:'sufia.controls.home'), root_path
+    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
+    add_breadcrumb t(:'sufia.admin.sidebar.accounts'), accounts_path
+    add_breadcrumb @account.tenant, edit_account_path(@account)
   end
 
   # POST /accounts
