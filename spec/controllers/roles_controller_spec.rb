@@ -5,35 +5,23 @@ RSpec.describe RolesController, type: :controller do
     sign_in user
   end
 
-  # This should return the minimal set of attributes required to create a valid
-  # Site. As you add validations to Site, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) do
     { site_roles: ['admin'] }
   end
 
-  let(:invalid_attributes) do
-    skip
-  end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # SitesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   context 'with an unprivileged user' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { create(:user) }
 
     describe "GET #edit" do
       it "denies the request" do
-        get :index, {}
+        get :index
         expect(response).not_to have_http_status(200)
       end
     end
 
     describe "PUT #update" do
       it "denies the request" do
-        put :update, id: user.id
+        put :update, params: { id: user.id }
         expect(response).not_to have_http_status(201)
       end
     end
@@ -43,8 +31,13 @@ RSpec.describe RolesController, type: :controller do
     let(:user) { FactoryGirl.create(:admin) }
 
     describe "GET #index" do
-      it "assigns the users as @site" do
-        get :index, {}, valid_session
+      before do
+        # it should not return guest users
+        create(:user, guest: true)
+      end
+
+      it "assigns the users as @users" do
+        get :index
         expect(assigns(:users)).to match_array [user]
       end
     end
@@ -55,19 +48,19 @@ RSpec.describe RolesController, type: :controller do
           { site_roles: ['admin', 'superadmin'] }
         end
 
-        it "updates the requested site" do
-          put :update, { id: user.id, user: new_attributes }, valid_session
+        it "updates the requested role" do
+          put :update, params: { id: user.id, user: new_attributes }
           user.reload
           expect(user.site_roles.pluck(:name)).to match_array ['admin', 'superadmin']
         end
 
-        it "assigns the requested site as @site" do
-          put :update, { id: user.id, user: valid_attributes }, valid_session
+        it "assigns the requested user as @user" do
+          put :update, params: { id: user.id, user: valid_attributes }
           expect(assigns(:user)).to eq(user)
         end
 
         it "redirects to the site roles" do
-          put :update, { id: user.id, user: valid_attributes }, valid_session
+          put :update, params: { id: user.id, user: valid_attributes }
           expect(response).to redirect_to(site_roles_path)
         end
       end
