@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/curation_concerns.git
-  revision: 3e457b6f6f0771bfb85450b32ace250b19d55c6d
+  revision: d0ce9f7f3509525452f9d057ab372155087cb8b7
   specs:
     curation_concerns (1.5.0)
       active-fedora (>= 10.3.0.rc1)
@@ -22,7 +22,7 @@ GIT
       clipboard-rails (~> 1.5)
       hydra-editor (>= 2, < 4)
       hydra-head (>= 10.0.0, < 11)
-      hydra-works (>= 0.12.0)
+      hydra-works (>= 0.14.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
       qa (~> 0.5)
@@ -36,10 +36,9 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 00dee72b929561e05503f3a694b78f6ef6fc4f41
+  revision: dce8310a2be9fd1ae242cdd8f7457d8e34fe32ec
   specs:
     sufia (7.1.0)
-      acts_as_follower (>= 0.1.1, < 0.3)
       almond-rails (~> 0.0.1)
       blacklight (~> 6.5)
       blacklight-gallery (~> 0.1)
@@ -134,7 +133,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_follower (0.2.1)
     addressable (2.3.8)
     almond-rails (0.0.3)
       rails (>= 4.2, < 6)
@@ -148,7 +146,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.4.0.3)
+    autoprefixer-rails (6.4.1)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
@@ -174,7 +172,7 @@ GEM
       rails (>= 4.2, < 6)
       rsolr (~> 1.0, >= 1.0.6)
       twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
-    blacklight-access_controls (0.5.1)
+    blacklight-access_controls (0.6.0)
       blacklight (~> 6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
@@ -367,7 +365,7 @@ GEM
     hydra-pcdm (0.9.0)
       active-fedora (>= 10, < 12)
       mime-types (>= 1)
-    hydra-works (0.13.0)
+    hydra-works (0.14.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (>= 0.8)
@@ -690,7 +688,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     tins (1.12.0)
-    tinymce-rails (4.4.2)
+    tinymce-rails (4.4.3)
       railties (>= 3.1.1)
     tinymce-rails-imageupload (4.0.17.beta)
       railties (>= 3.2, < 6)
