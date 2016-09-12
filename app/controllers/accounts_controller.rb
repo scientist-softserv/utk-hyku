@@ -1,10 +1,7 @@
 class AccountsController < ApplicationController
   skip_before_action :require_active_account!
 
-  # The new layout is used by admins and on the signup page, so don't
-  # use the admin layout.
-  # TODO: create a separate signup controller?
-  layout :decide_layout
+  layout 'admin'
 
   load_and_authorize_resource
 
@@ -43,7 +40,7 @@ class AccountsController < ApplicationController
   def create
     respond_to do |format|
       if CreateAccount.new(@account).save
-        format.html { redirect_to first_user_registration_url, notice: 'Account was successfully created.' }
+        format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account.cname }
       else
         format.html { render :new }
@@ -78,18 +75,6 @@ class AccountsController < ApplicationController
   end
 
   private
-
-    def decide_layout
-      if can? :read, :admin_dashboard
-        'admin'
-      else
-        'sufia-one-column'
-      end
-    end
-
-    def first_user_registration_url
-      new_user_registration_url(host: @account.cname)
-    end
 
     def create_params
       params.require(:account).permit(:name, :title)
