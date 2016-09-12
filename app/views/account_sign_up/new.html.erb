@@ -1,0 +1,38 @@
+<% content_for :page_header do %>
+  <h1><span class="fa fa-gears"></span> Create a new repository</h1>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= form_for(@account, url: account_sign_up_path(@account), html: { class: 'form form-horizontal' }) do |f| %>
+        <% if @account.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <%= pluralize(@account.errors.count, "error") %> prohibited this repository from being saved:
+
+            <ul>
+            <% @account.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :title, 'Title', class: 'col-md-2 control-label required' %>
+          <div class="col-md-10">
+            <%= f.text_field :title, class: 'form-control' %>
+            <span class="help-block">A human-friendly title for the repository. This can be changed later.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name, 'Short name', class: 'col-md-2 control-label' %>
+          <div class="col-md-10">
+            <%= f.text_field :name, class: 'form-control' %>
+            <span class="help-block">A single or hyphenated name used for technical aspects of the repository (e.g., "acme" or "acme-library").</span>
+          </div>
+        </div>
+
+        <%= f.submit class: 'btn btn-primary pull-right' %>
+      <% end %>
+  </div>
+</div>
