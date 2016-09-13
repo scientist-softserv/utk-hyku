@@ -27,7 +27,7 @@ RSpec.describe AccountsController, type: :controller do
     describe "GET #new" do
       it "assigns a new account as @account" do
         get :new
-        expect(response).to render_template("layouts/sufia-one-column")
+        expect(response).to render_template("layouts/admin")
         expect(assigns(:account)).to be_a_new(Account)
       end
     end

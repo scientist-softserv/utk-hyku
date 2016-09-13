@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   end
 
   resources :accounts
+
+  get '/account/sign_up' => 'account_sign_up#new'
+  post '/account/sign_up' => 'account_sign_up#create'
+
   root 'sufia/homepage#index'
 
   get 'splash', to: 'splash#index'
