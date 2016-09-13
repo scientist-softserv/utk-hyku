@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901130045) do
+ActiveRecord::Schema.define(version: 20160913145610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,18 +133,6 @@ ActiveRecord::Schema.define(version: 20160901130045) do
     t.integer  "user_id"
     t.index ["file_id"], name: "index_file_view_stats_on_file_id", using: :btree
     t.index ["user_id"], name: "index_file_view_stats_on_user_id", using: :btree
-  end
-
-  create_table "follows", force: :cascade do |t|
-    t.integer  "followable_id",                   null: false
-    t.string   "followable_type",                 null: false
-    t.integer  "follower_id",                     null: false
-    t.string   "follower_type",                   null: false
-    t.boolean  "blocked",         default: false, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.index ["followable_id", "followable_type"], name: "fk_followables", using: :btree
-    t.index ["follower_id", "follower_type"], name: "fk_follows", using: :btree
   end
 
   create_table "local_authorities", force: :cascade do |t|
@@ -352,6 +340,10 @@ ActiveRecord::Schema.define(version: 20160901130045) do
     t.datetime "groups_last_update"
     t.string   "linkedin_handle"
     t.string   "orcid"
+    t.string   "arkivo_token"
+    t.string   "arkivo_subscription"
+    t.binary   "zotero_token"
+    t.string   "zotero_userid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
