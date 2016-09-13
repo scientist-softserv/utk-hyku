@@ -32,6 +32,7 @@ en:
     admin:
       sidebar:
         labels:                'Labels'
+        content_blocks:        'Content Blocks'
         technical:             'Technical'
         roles_and_permissions: 'Roles and permissions'
         accounts:              'Accounts'

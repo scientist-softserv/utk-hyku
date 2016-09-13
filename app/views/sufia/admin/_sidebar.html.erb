@@ -20,8 +20,12 @@
                       </a>
                       <ul>
                         <% if can? :manage, Site %>
-                          <li><%= link_to edit_site_path do %>
-                            <span class="fa fa-align-justify"></span> Labels 
+                          <li><%= link_to edit_site_labels_path do %>
+                            <span class="fa fa-institution"></span> <%= t('sufia.admin.sidebar.labels') %>
+                              <% end %>
+                          </li>
+                          <li><%= link_to edit_site_content_blocks_path do %>
+                            <span class="fa fa-file-text-o"></span> <%= t('sufia.admin.sidebar.content_blocks') %>
                               <% end %>
                           </li>
                         <% end %>
