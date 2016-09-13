@@ -92,12 +92,12 @@ class AccountsController < ApplicationController
     end
 
     def create_params
-      params.require(:account).permit(:name)
+      params.require(:account).permit(:name, :title)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name, :cname,
+      params.require(:account).permit(:name, :cname, :title,
                                       solr_endpoint_attributes: [:id, :url],
                                       fcrepo_endpoint_attributes: [:id, :url, :base_path])
     end
