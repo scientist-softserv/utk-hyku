@@ -19,9 +19,9 @@
               </div>
             <% end %>
             <div class="form-group">
-              <label class="control-label col-md-2 required" for="account_title">Title</label>
+              <%= f.label :title, 'Title', class: 'col-md-2 control-label required' %>
               <div class="col-md-10">
-                <input id="account_title" type="text" class="form-control">
+                <%= f.text_field :title, class: 'form-control' %>
                 <span class="help-block">A human-friendly title for the repository. This can be changed later.</span>
               </div>
             </div>
