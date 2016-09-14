@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   Hydra::BatchEdit.add_routes(self)
   mount BrowseEverything::Engine => '/browse'
-  resource :site, only: [:edit, :update] do
+  resource :site, only: [] do
     resources :roles, only: [:index, :update]
+    resource :content_blocks, only: [:edit, :update]
+    resource :labels, only: [:edit, :update]
   end
 
   resources :accounts
