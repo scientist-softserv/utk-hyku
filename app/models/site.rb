@@ -9,13 +9,16 @@ class Site < ActiveRecord::Base
 
   delegate :announcement_text, :marketing_text, :featured_researcher,
            :announcement_text=, :marketing_text=, :featured_researcher=,
+           :about_page, :about_page=,
            to: :content_blocks
 
   class << self
     delegate :account, :application_name, :institution_name,
              :institution_name_full, :reload, :update, :announcement_text,
              :marketing_text, :featured_researcher, :announcement_text=,
-             :marketing_text=, :featured_researcher=, to: :instance
+             :marketing_text=, :featured_researcher=,
+             :about_page, :about_page=,
+             to: :instance
 
     def instance
       first_or_create

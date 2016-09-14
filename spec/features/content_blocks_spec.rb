@@ -23,5 +23,17 @@ RSpec.describe 'Site content blocks configuration' do
         expect(page).to have_content('QUUX')
       end
     end
+
+    describe 'about page content blocks' do
+      before do
+        Site.update(
+          about_page: 'FOOM'
+        )
+      end
+      it 'updates the about page' do
+        visit sufia.about_path
+        expect(page).to have_content('FOOM')
+      end
+    end
   end
 end

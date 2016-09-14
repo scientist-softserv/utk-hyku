@@ -32,6 +32,7 @@ class ContentBlocksController < ApplicationController
     def site_params
       params.require(:site).permit(:announcement_text,
                                    :marketing_text,
-                                   :featured_researcher)
+                                   :featured_researcher,
+                                   :about_page)
     end
 end
