@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   include Sufia::Controller
 
   include CurationConcerns::ThemedLayoutController
+  with_themed_layout '1_column'
 
   helper_method :peek_enabled?
 
