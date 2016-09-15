@@ -22,7 +22,7 @@ RSpec.describe AccountSignUpController, type: :controller do
     describe "GET #new" do
       it "assigns a new account as @account" do
         get :new
-        expect(response).to render_template("layouts/sufia-one-column")
+        expect(response).to render_template("layouts/curation_concerns/1_column")
         expect(assigns(:account)).to be_a_new(Account)
       end
     end
