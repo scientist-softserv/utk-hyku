@@ -1,6 +1,4 @@
 class AccountSignUpController < ApplicationController
-  with_themed_layout '1_column'
-
   skip_before_action :require_active_account!
   load_and_authorize_resource instance_name: :account, class: 'Account'
 
