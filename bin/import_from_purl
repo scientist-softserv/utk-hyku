@@ -34,7 +34,7 @@ def main(hostname, imagepath, druids)
   validate_imagepath!(imagepath)
   load_rails
 
-  Account.use_account!(hostname)
+  AccountElevator.switch!(hostname)
   size = Stanford::Importer::PurlImporter.new(imagepath, druids).import_all
 
   puts "Imported #{size} records."

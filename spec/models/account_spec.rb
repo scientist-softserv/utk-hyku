@@ -17,15 +17,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '.use_account!' do
-    let!(:account) { described_class.create(name: 'example', tenant: '12-123-32', cname: 'example.com') }
-    it "changes Apartment::Tenant and calls switch!" do
-      expect_any_instance_of(described_class).to receive(:switch!)
-      expect(Apartment::Tenant).to receive(:switch!).with('12-123-32')
-      described_class.use_account!('example.com')
-    end
-  end
-
   describe '#switch!' do
     let!(:old_default_index) { Blacklight.default_index }
 
