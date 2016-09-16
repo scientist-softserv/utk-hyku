@@ -3,16 +3,13 @@ require 'rails_helper'
 RSpec.describe ActiveJobTenant do
   before do
     allow(Apartment::Tenant).to receive(:current).and_return('x')
+    allow(Account).to receive(:find_by).with(tenant: 'x').and_return(account)
     allow(Apartment::Tenant).to receive(:switch).with('x') do |&block|
       block.call
     end
   end
 
   let(:account) { FactoryGirl.build(:account) }
-
-  before do
-    allow(Account).to receive(:find_by).with(tenant: 'x').and_return(account)
-  end
 
   subject do
     Class.new(ActiveJob::Base) do
@@ -25,12 +22,6 @@ RSpec.describe ActiveJobTenant do
   describe 'tenant context' do
     it 'switches to the tenant database' do
       expect(Apartment::Tenant).to receive(:switch).with('x')
-
-      subject.perform_now
-    end
-
-    it 'switches the other account-based connection' do
-      expect(account).to receive(:switch!)
 
       subject.perform_now
     end

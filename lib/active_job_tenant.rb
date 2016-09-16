@@ -38,8 +38,6 @@ module ActiveJobTenant
 
     def switch
       Apartment::Tenant.switch(current_tenant) do
-        current_account.switch! if current_account
-
         yield
       end
     end
