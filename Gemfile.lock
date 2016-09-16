@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: e712ad0c9f36c76f62c4724399be5f6f51b67361
+  revision: ee24ce39d90accc321cff37f6d38a78ae91eee7c
   specs:
     sufia (7.1.0)
       almond-rails (~> 0.0.1)
@@ -650,7 +650,7 @@ GEM
       useragent
     select2-rails (3.5.10)
       thor (~> 0.14)
-    sidekiq (4.2.0)
+    sidekiq (4.2.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (~> 1.5)
