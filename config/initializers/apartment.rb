@@ -44,4 +44,10 @@ Apartment.configure do |config|
 
 end
 
+Apartment::Tenant.adapter.class.set_callback :switch, :after, ->() do
+  account = Account.find_by(tenant: current)
+
+  account.switch! if account
+end
+
 Rails.application.config.middleware.use 'AccountElevator'
