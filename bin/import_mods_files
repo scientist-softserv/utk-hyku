@@ -46,7 +46,7 @@ def main(hostname, mods_directory, imagepath)
   validate_imagepath!(imagepath)
   load_rails
 
-  Account.use_account!(hostname)
+  AccountElevator.switch!(hostname)
   size = Importer::ModsImporter.new(imagepath, mods_directory).import_all
 
   puts "Imported #{size} records."

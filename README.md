@@ -11,7 +11,7 @@ Codename: Lerna
 The recommend way to switch your current session from one account to another is by doing:
 
 ```ruby
-Account.use_account!('repo.example.com')
+AccountElevator.switch!('repo.example.com')
 ```
 
 ## Development Dependencies
