@@ -9,7 +9,7 @@ class AccountElevator < Apartment::Elevators::Generic
   end
 
   def self.switch!(cname)
-    account = Account.find_by(cname: canonical_cname(cname))
+    account = Account.find_by(cname: Account.canonical_cname(cname))
 
     Apartment::Tenant.switch!(account.tenant)
   end
