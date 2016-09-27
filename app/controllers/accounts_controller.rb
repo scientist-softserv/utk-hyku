@@ -1,6 +1,5 @@
 class AccountsController < ApplicationController
-  skip_before_action :require_active_account!
-
+  before_action :ensure_admin!
   layout 'admin'
 
   load_and_authorize_resource
@@ -75,6 +74,10 @@ class AccountsController < ApplicationController
   end
 
   private
+
+    def ensure_admin!
+      authorize! :read, :admin_dashboard
+    end
 
     def create_params
       params.require(:account).permit(:name, :title)
