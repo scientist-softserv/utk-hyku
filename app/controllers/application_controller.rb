@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Apartment::TenantNotFound do
     raise ActionController::RoutingError, 'Not Found' unless worker? || base_host?
-    redirect_to splash_path
+    redirect_to main_app.splash_path
   end
 
   private
