@@ -58,8 +58,7 @@ group :development do
   gem 'spring'
 end
 
-# Pessimistic versioning due to https://github.com/projectblacklight/blacklight/issues/1534
-gem 'blacklight', '~> 6.6.2'
+gem 'blacklight', '~> 6.7'
 
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git'
 gem 'rsolr', '~> 1.1.2'
