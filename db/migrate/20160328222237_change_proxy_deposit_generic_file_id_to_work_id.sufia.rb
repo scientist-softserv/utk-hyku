@@ -1,5 +1,5 @@
-class ChangeProxyDepositGenericFileIdToGenericWorkId < ActiveRecord::Migration
+class ChangeProxyDepositGenericFileIdToWorkId < ActiveRecord::Migration
   def change
-    rename_column :proxy_deposit_requests, :generic_file_id, :generic_work_id
+    rename_column :proxy_deposit_requests, :generic_file_id, :work_id
   end
 end
