@@ -7,6 +7,13 @@ RSpec.describe ContentBlock, type: :model do
            value: '<h1>About Page</h1>')
   end
 
+  describe '.default_scope' do
+    subject { described_class.about_page.site }
+    it 'has an associated Site' do
+      is_expected.to eq Site.instance
+    end
+  end
+
   describe '.about_page' do
     subject { described_class.about_page.value }
     it { is_expected.to eq '<h1>About Page</h1>' }
