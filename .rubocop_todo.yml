@@ -24,7 +24,6 @@ RSpec/LeadingSubject:
 # Offense count: 13
 RSpec/LetSetup:
   Exclude:
-    - 'spec/controllers/content_blocks_controller_spec.rb'
     - 'spec/lib/importer/factory/etd_factory_spec.rb'
     - 'spec/lib/importer/factory/image_factory_spec.rb'
     - 'spec/lib/stanford/importer/purl_importer_spec.rb'
