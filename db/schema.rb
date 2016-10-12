@@ -409,6 +409,7 @@ ActiveRecord::Schema.define(version: 20161017140860) do
     t.integer  "account_id"
     t.string   "institution_name"
     t.string   "institution_name_full"
+    t.string   "banner_image"
   end
 
   create_table "subject_local_authority_entries", force: :cascade do |t|
