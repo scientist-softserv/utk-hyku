@@ -44,7 +44,9 @@
           <%= nav_link(main_app.edit_site_labels_path) do %>
             <span class="fa fa-institution"></span> <%= t('sufia.admin.sidebar.labels') %>
           <% end %>
-
+          <%= nav_link(main_app.edit_site_appearances_path) do %>
+            <span class="fa fa-paint-brush"></span> <%= t('sufia.admin.sidebar.appearance') %>
+          <% end %>
           <%= nav_link(main_app.edit_site_content_blocks_path) do %>
             <span class="fa fa-file-text-o"></span> <%= t('sufia.admin.sidebar.content_blocks') %>
           <% end %>
