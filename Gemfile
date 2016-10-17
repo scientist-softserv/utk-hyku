@@ -60,7 +60,8 @@ end
 
 gem 'blacklight', '~> 6.7'
 
-gem 'sufia', '~> 7.2'
+gem 'sufia', git: 'https://github.com/projecthydra/sufia.git'
+gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git'
 gem 'rsolr', '~> 1.1.2'
 
 gem 'devise'
