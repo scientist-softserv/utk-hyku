@@ -8,7 +8,8 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/curation_concerns.git
-  revision: 4a0d09837388afbc63d47c1a83a4f917d08f2880
+  revision: 7169243c5d201514dc6204e54369d16c2545b452
+  branch: workflow
   specs:
     curation_concerns (1.6.1)
       active-fedora (>= 10.3.0.rc1)
@@ -19,12 +20,17 @@ GIT
       breadcrumbs_on_rails (>= 3.0.1, < 4)
       browse-everything (~> 0.10)
       clipboard-rails (~> 1.5)
+      dry-equalizer (~> 0.2)
+      dry-struct (~> 0.1)
+      dry-validation (~> 0.9)
+      flot-rails (~> 0.0.7)
       highcharts-rails
       hydra-editor (>= 2, < 4)
       hydra-head (>= 10.0.0, < 11)
       hydra-works (>= 0.14.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
+      power_converter (~> 0.1, >= 0.1.2)
       qa (~> 0.5)
       rails_autolink
       rdf (>= 1.99)
@@ -36,7 +42,8 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: b10da2b9e75a5e7638409e819fac5a2e7bfe65a9
+  revision: 70ea82a0c77a597f2c5c582f6ae1d9e22815c9c4
+  branch: mediated_deposit_epic
   specs:
     sufia (7.2.0)
       almond-rails (~> 0.0.1)
@@ -140,23 +147,23 @@ GEM
     apartment (1.2.0)
       activerecord (>= 3.1.2, < 6.0)
       rack (>= 1.3.6)
-    arel (7.1.2)
+    arel (7.1.4)
     ast (2.3.0)
     atomic (1.1.99)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.5.0.2)
+    autoprefixer-rails (6.5.1)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.6.5)
-      aws-sdk-resources (= 2.6.5)
-    aws-sdk-core (2.6.5)
+    aws-sdk (2.6.11)
+      aws-sdk-resources (= 2.6.11)
+    aws-sdk-core (2.6.11)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.5)
-      aws-sdk-core (= 2.6.5)
+    aws-sdk-resources (2.6.11)
+      aws-sdk-core (= 2.6.11)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -198,7 +205,7 @@ GEM
     builder (3.2.2)
     byebug (9.0.6)
     cancancan (1.15.0)
-    capybara (2.9.2)
+    capybara (2.10.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -249,11 +256,44 @@ GEM
     docile (1.1.5)
     dropbox-sdk (1.6.5)
       json
+    dry-configurable (0.1.7)
+      concurrent-ruby (~> 1.0)
+    dry-container (0.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1, >= 0.1.3)
+    dry-core (0.1.0)
+      concurrent-ruby (~> 1.0)
+    dry-equalizer (0.2.0)
+    dry-logic (0.4.0)
+      dry-container (~> 0.2, >= 0.2.6)
+      dry-core (~> 0.1)
+      dry-equalizer (~> 0.2)
+    dry-struct (0.1.0)
+      dry-configurable (~> 0.1)
+      dry-equalizer (~> 0.2)
+      dry-types (~> 0.9, >= 0.9.0)
+      ice_nine (~> 0.11)
+    dry-types (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1)
+      dry-container (~> 0.3)
+      dry-core (~> 0.1)
+      dry-equalizer (~> 0.2)
+      dry-logic (~> 0.4, >= 0.4.0)
+      inflecto (~> 0.0.0, >= 0.0.2)
+    dry-validation (0.10.3)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.1, >= 0.1.3)
+      dry-container (~> 0.2, >= 0.2.8)
+      dry-core (~> 0.1)
+      dry-equalizer (~> 0.2)
+      dry-logic (~> 0.4, >= 0.4.0)
+      dry-types (~> 0.9, >= 0.9.0)
     ebnf (1.0.1)
       rdf (~> 2.0)
       sxp (~> 1.0)
     erubis (2.7.0)
-    excon (0.53.0)
+    excon (0.54.0)
     execjs (2.7.0)
     extlib (0.9.16)
     factory_girl (4.7.0)
@@ -371,6 +411,7 @@ GEM
       hydra-pcdm (>= 0.8)
       om (~> 3.1)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     iiif-presentation (0.1.0)
       activesupport (>= 3.2.18)
       faraday (~> 0.9.0)
@@ -378,6 +419,7 @@ GEM
     iiif_manifest (0.1.2)
       activesupport (>= 4)
       iiif-presentation (~> 0.1.0)
+    inflecto (0.0.2)
     ipaddress (0.8.3)
     is_it_working (1.1.0)
     iso-639 (0.2.8)
@@ -511,6 +553,7 @@ GEM
       sidekiq
     pg (0.19.0)
     posix-spawn (0.3.11)
+    power_converter (0.1.2)
     powerpack (0.1.1)
     puma (3.6.0)
     qa (0.10.1)
@@ -640,17 +683,17 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sdoc (0.4.1)
+    sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    secure_headers (3.4.1)
+    secure_headers (3.5.0)
       useragent
     select2-rails (3.5.10)
       thor (~> 0.14)
-    sidekiq (4.2.2)
+    sidekiq (4.2.3)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (~> 1.5)
+      rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
     signet (0.7.3)
       addressable (~> 2.3)
@@ -782,7 +825,7 @@ DEPENDENCIES
   rsolr (~> 1.1.2)
   rspec
   rspec-rails
-  rubocop (~> 0.40)
+  rubocop (~> 0.43.0)
   rubocop-rspec (~> 1.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
