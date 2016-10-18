@@ -1,7 +1,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <%= link_to root_path do %>
+                        <%= link_to main_app.root_path do %>
                           <span class="glyphicon glyphicon-globe"></span>
                           <%= application_name %>
                         <% end %>
@@ -20,11 +20,11 @@
                       </a>
                       <ul>
                         <% if can? :manage, Site %>
-                          <li><%= link_to edit_site_labels_path do %>
+                          <li><%= link_to main_app.edit_site_labels_path do %>
                             <span class="fa fa-institution"></span> <%= t('sufia.admin.sidebar.labels') %>
                               <% end %>
                           </li>
-                          <li><%= link_to edit_site_content_blocks_path do %>
+                          <li><%= link_to main_app.edit_site_content_blocks_path do %>
                             <span class="fa fa-file-text-o"></span> <%= t('sufia.admin.sidebar.content_blocks') %>
                               <% end %>
                           </li>
@@ -43,7 +43,7 @@
                     </li>
 
                     <% if can? :manage, Role %>
-                      <li><%= link_to site_roles_path do %>
+                      <li><%= link_to main_app.site_roles_path do %>
                         <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.roles_and_permissions') %>
                           <% end %>
                       </li>
@@ -51,7 +51,7 @@
 
                     <% if can? :manage, Account %>
                       <li>
-                        <%= link_to accounts_path do %>
+                        <%= link_to main_app.accounts_path do %>
                           <span class="fa fa-gears"></span> <%= t('sufia.admin.sidebar.accounts') %>
                         <% end %>
                       </li>
