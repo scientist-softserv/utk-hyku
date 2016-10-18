@@ -46,7 +46,7 @@ group :development, :test do
   gem 'solr_wrapper', '~> 0.10'
   gem 'fcrepo_wrapper', '~> 0.4'
 
-  gem 'rubocop', '~> 0.40'
+  gem 'rubocop', '~> 0.43.0'
   gem 'rubocop-rspec', '~> 1.5'
 end
 
@@ -60,8 +60,8 @@ end
 
 gem 'blacklight', '~> 6.7'
 
-gem 'sufia', git: 'https://github.com/projecthydra/sufia.git'
-gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git'
+gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git', branch: 'workflow'
+gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'mediated_deposit_epic'
 gem 'rsolr', '~> 1.1.2'
 
 gem 'devise'
