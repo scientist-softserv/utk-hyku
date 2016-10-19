@@ -15,14 +15,15 @@ Rails.application.routes.draw do
   root 'sufia/homepage#index'
 
   get 'splash', to: 'splash#index'
+  devise_for :users
 
   mount Blacklight::Engine => '/'
+  mount Sufia::Engine, at: '/'
   mount CurationConcerns::Engine, at: '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new
 
-  devise_for :users
   Hydra::BatchEdit.add_routes(self)
 
   curation_concerns_collections
@@ -52,7 +53,4 @@ Rails.application.routes.draw do
   mount Peek::Railtie => '/peek'
   mount Riiif::Engine => '/images', as: 'riiif'
 
-  # This must be the very last route in the file because it has a catch-all route for 404 errors.
-  # This behavior seems to show up only in production mode.
-  mount Sufia::Engine => '/'
 end
