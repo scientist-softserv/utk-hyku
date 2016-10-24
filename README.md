@@ -6,6 +6,33 @@
 
 Codename: Lerna
 
+## Running the stack
+
+### For development
+
+```bash
+$ solr_wrapper
+$ fcrepo_wrapper
+$ postgres -D ./db/postgres
+$ redis-server /usr/local/etc/redis.conf
+$ bin/setup
+$ bundle exec rails server
+```
+
+### On AWS
+
+AWS CloudFormation templates for the Lerna stack are available in a separate repository:
+
+https://github.com/hybox/aws
+
+### With Docker
+
+We distribute a `docker-compose.yml` configuration for running the Lerna stack and application using docker. Once you have [docker](https://docker.com) installed and running, launch the stack using e.g.:
+
+```bash
+$ docker-compose up -d
+```
+
 ## Switching accounts
 
 The recommend way to switch your current session from one account to another is by doing:
