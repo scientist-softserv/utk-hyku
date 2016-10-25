@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 0ff1da077b9e109fddd658a74811a28c2bd699ab
+  revision: 743ae5d39292147fe4f992f70bdd71ec268a37be
   specs:
     sufia (7.2.0)
       almond-rails (~> 0.0.1)
