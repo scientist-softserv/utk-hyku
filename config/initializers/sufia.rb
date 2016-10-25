@@ -1,4 +1,6 @@
 Sufia.config do |config|
+  # Injected via `rails g sufia:work Image`
+  config.register_curation_concern :image
   config.max_days_between_audits = 7
   config.max_notifications_for_dashboard = 5
 
