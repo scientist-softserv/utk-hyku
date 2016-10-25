@@ -80,7 +80,6 @@ gem 'peek-git'
 gem 'peek-performance_bar'
 gem 'peek-pg'
 gem 'peek-redis'
-gem 'peek-sidekiq'
 
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'lograge'
@@ -90,11 +89,15 @@ gem 'zk'
 gem 'riiif', '~> 0.3'
 gem 'mods', '~> 2.1'
 
-gem 'sidekiq'
 gem 'iiif_manifest', '~> 0.1.2'
 
-gem 'active_elastic_job'
-gem 'fog-aws'
+group :aws do
+  gem 'active_elastic_job'
+  gem 'fog-aws'
+end
+
+gem 'sidekiq'
+gem 'peek-sidekiq'
 
 gem 'secure_headers'
 
