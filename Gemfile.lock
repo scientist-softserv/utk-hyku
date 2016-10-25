@@ -8,29 +8,23 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/curation_concerns.git
-  revision: 7169243c5d201514dc6204e54369d16c2545b452
-  branch: workflow
+  revision: 66e7b0bec6c3c27bcf54aba736b6a760ac7d95c8
   specs:
     curation_concerns (1.6.1)
       active-fedora (>= 10.3.0.rc1)
       active_attr
-      active_fedora-noid (~> 2.0.0.beta1)
+      active_fedora-noid (~> 2.0.0.beta5)
       awesome_nested_set (~> 3.0)
       blacklight (~> 6.3)
       breadcrumbs_on_rails (>= 3.0.1, < 4)
       browse-everything (~> 0.10)
       clipboard-rails (~> 1.5)
-      dry-equalizer (~> 0.2)
-      dry-struct (~> 0.1)
-      dry-validation (~> 0.9)
-      flot-rails (~> 0.0.7)
       highcharts-rails
       hydra-editor (>= 2, < 4)
       hydra-head (>= 10.0.0, < 11)
       hydra-works (>= 0.14.0)
       jquery-ui-rails
       kaminari_route_prefix (~> 0.0.1)
-      power_converter (~> 0.1, >= 0.1.2)
       qa (~> 0.5)
       rails_autolink
       rdf (>= 1.99)
@@ -42,8 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 70ea82a0c77a597f2c5c582f6ae1d9e22815c9c4
-  branch: mediated_deposit_epic
+  revision: 0ff1da077b9e109fddd658a74811a28c2bd699ab
   specs:
     sufia (7.2.0)
       almond-rails (~> 0.0.1)
@@ -121,10 +114,10 @@ GEM
     active_elastic_job (1.6.1)
       aws-sdk (~> 2)
       rails (>= 4.2, < 5.0.1)
-    active_fedora-noid (2.0.0.beta3)
+    active_fedora-noid (2.0.0.beta5)
       active-fedora (>= 9.7, < 12)
       noid (~> 0.9)
-      rails (>= 4.2.6, < 6)
+      rails (>= 4.2.7.1, < 6)
     activejob (5.0.0.1)
       activesupport (= 5.0.0.1)
       globalid (>= 0.3.6)
@@ -154,7 +147,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.5.1)
+    autoprefixer-rails (6.5.1.1)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
@@ -169,14 +162,14 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
-    blacklight (6.7.1)
+    blacklight (6.7.2)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (>= 4.2, < 6)
-      rsolr (~> 1.0, >= 1.0.6)
+      rsolr (>= 1.0.6, < 3)
       twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
     blacklight-access_controls (0.6.1)
       blacklight (~> 6.0)
@@ -218,7 +211,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    clipboard-rails (1.5.13)
+    clipboard-rails (1.5.15)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -256,39 +249,6 @@ GEM
     docile (1.1.5)
     dropbox-sdk (1.6.5)
       json
-    dry-configurable (0.1.7)
-      concurrent-ruby (~> 1.0)
-    dry-container (0.5.0)
-      concurrent-ruby (~> 1.0)
-      dry-configurable (~> 0.1, >= 0.1.3)
-    dry-core (0.1.0)
-      concurrent-ruby (~> 1.0)
-    dry-equalizer (0.2.0)
-    dry-logic (0.4.0)
-      dry-container (~> 0.2, >= 0.2.6)
-      dry-core (~> 0.1)
-      dry-equalizer (~> 0.2)
-    dry-struct (0.1.0)
-      dry-configurable (~> 0.1)
-      dry-equalizer (~> 0.2)
-      dry-types (~> 0.9, >= 0.9.0)
-      ice_nine (~> 0.11)
-    dry-types (0.9.0)
-      concurrent-ruby (~> 1.0)
-      dry-configurable (~> 0.1)
-      dry-container (~> 0.3)
-      dry-core (~> 0.1)
-      dry-equalizer (~> 0.2)
-      dry-logic (~> 0.4, >= 0.4.0)
-      inflecto (~> 0.0.0, >= 0.0.2)
-    dry-validation (0.10.3)
-      concurrent-ruby (~> 1.0)
-      dry-configurable (~> 0.1, >= 0.1.3)
-      dry-container (~> 0.2, >= 0.2.8)
-      dry-core (~> 0.1)
-      dry-equalizer (~> 0.2)
-      dry-logic (~> 0.4, >= 0.4.0)
-      dry-types (~> 0.9, >= 0.9.0)
     ebnf (1.0.1)
       rdf (~> 2.0)
       sxp (~> 1.0)
@@ -324,7 +284,7 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    font-awesome-rails (4.6.3.1)
+    font-awesome-rails (4.7.0.0)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalid (0.3.7)
@@ -411,7 +371,6 @@ GEM
       hydra-pcdm (>= 0.8)
       om (~> 3.1)
     i18n (0.7.0)
-    ice_nine (0.11.2)
     iiif-presentation (0.1.0)
       activesupport (>= 3.2.18)
       faraday (~> 0.9.0)
@@ -419,7 +378,6 @@ GEM
     iiif_manifest (0.1.2)
       activesupport (>= 4)
       iiif-presentation (~> 0.1.0)
-    inflecto (0.0.2)
     ipaddress (0.8.3)
     is_it_working (1.1.0)
     iso-639 (0.2.8)
@@ -553,10 +511,9 @@ GEM
       sidekiq
     pg (0.19.0)
     posix-spawn (0.3.11)
-    power_converter (0.1.2)
     powerpack (0.1.1)
     puma (3.6.0)
-    qa (0.10.1)
+    qa (0.10.2)
       activerecord-import
       deprecation
       faraday
