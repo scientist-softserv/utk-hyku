@@ -13,7 +13,7 @@ RSpec.describe 'Site labels configuration' do
         visit edit_site_labels_path
         fill_in 'Application name', with: 'Custom Name'
         click_on 'Update Site'
-        expect(page).to have_css '.xn-logo', text: 'Custom Name'
+        expect(page).to have_css '.navbar-brand', text: 'Custom Name'
       end
 
       it 'updates the application name in the <head> <title>' do

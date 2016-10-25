@@ -1,63 +1,48 @@
-                <!-- START X-NAVIGATION -->
-                <ul class="x-navigation">
-                    <li class="xn-logo">
-                        <%= link_to main_app.root_path do %>
-                          <span class="glyphicon glyphicon-globe"></span>
-                          <%= application_name %>
-                        <% end %>
-                        <a href="#" class="x-navigation-control"></a>
-                    </li>
-                    <li><%= link_to sufia.admin_stats_path do %>
-                          <span class="fa fa-bar-chart"></span> <%= t('sufia.admin.sidebar.statistics') %>
-                        <% end %>
-                    </li>
+<ul class="nav nav-pills nav-stacked">
+  <%= nav_link(sufia.admin_stats_path) do %>
+    <span class="fa fa-bar-chart"></span> <%= t('sufia.admin.sidebar.statistics') %>
+  <% end %>
 
-                    <li class="xn-title">Configuration</li>
-                    <li class="xn-openable">
-                      <a href="#">
-                        <span class="fa fa-cog"></span>
-                        <span class="xn-text"><%= t('sufia.admin.sidebar.settings') %></span>
-                      </a>
-                      <ul>
-                        <% if can? :manage, Site %>
-                          <li><%= link_to main_app.edit_site_labels_path do %>
-                            <span class="fa fa-institution"></span> <%= t('sufia.admin.sidebar.labels') %>
-                              <% end %>
-                          </li>
-                          <li><%= link_to main_app.edit_site_content_blocks_path do %>
-                            <span class="fa fa-file-text-o"></span> <%= t('sufia.admin.sidebar.content_blocks') %>
-                              <% end %>
-                          </li>
-                        <% end %>
+    <li class="h5">Configuration</li>
+    <li>
+      <a href="#">
+        <span class="fa fa-cog"></span>
+        <span><%= t('sufia.admin.sidebar.settings') %></span>
+      </a>
+      <ul class="nav nav-pills nav-stacked">
+        <% if can? :manage, Site %>
+          <%= nav_link(main_app.edit_site_labels_path) do %>
+            <span class="fa fa-institution"></span> <%= t('sufia.admin.sidebar.labels') %>
+          <% end %>
 
-                        <li><%= link_to sufia.admin_features_path do %>
-                              <span class="fa fa-wrench"></span> Technical
-                            <% end %>
-                        </li>
-                      </ul>
-                    </li>
+          <%= nav_link(main_app.edit_site_content_blocks_path) do %>
+            <span class="fa fa-file-text-o"></span> <%= t('sufia.admin.sidebar.content_blocks') %>
+          <% end %>
+        <% end %>
 
-                    <li><%= link_to sufia.admin_admin_sets_path do %>
-                      <span class="fa fa-sitemap"></span> <%= t('sufia.admin.sidebar.admin_sets') %>
-                        <% end %>
-                    </li>
+        <%= nav_link(sufia.admin_features_path) do %>
+          <span class="fa fa-wrench"></span> Technical
+        <% end %>
+      </ul>
+    </li>
 
-                    <% if can? :manage, Role %>
-                      <li><%= link_to main_app.site_roles_path do %>
-                        <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.roles_and_permissions') %>
-                          <% end %>
-                      </li>
-                    <% end %>
+    <%= nav_link(sufia.admin_admin_sets_path) do %>
+      <span class="fa fa-sitemap"></span> <%= t('sufia.admin.sidebar.admin_sets') %>
+    <% end %>
 
-                    <% if can? :manage, Account %>
-                      <li>
-                        <%= link_to main_app.accounts_path do %>
-                          <span class="fa fa-gears"></span> <%= t('sufia.admin.sidebar.accounts') %>
-                        <% end %>
-                      </li>
-                    <% elsif Site.account && can?(:manage, Site.account) %>
-                       <li><%= link_to 'Account', main_app.account_path(Site.account) %></li>
-                    <% end %>
+    <% if can? :manage, Role %>
+      <%= nav_link(main_app.site_roles_path) do %>
+        <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.roles_and_permissions') %>
+      <% end %>
+    <% end %>
 
-                </ul>
-
+    <% if can? :manage, Account %>
+      <%= nav_link(main_app.accounts_path) do %>
+        <span class="fa fa-gears"></span> <%= t('sufia.admin.sidebar.accounts') %>
+      <% end %>
+    <% elsif Site.account && can?(:manage, Site.account) %>
+      <%= nav_link(main_app.account_path(Site.account)) do %>
+        Account
+      <% end %>
+    <% end %>
+</ul>
