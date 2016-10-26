@@ -119,4 +119,27 @@ footer.navbar {
       text-indent: 2ch;
     }
   }
+
+  .h5 {
+    padding: $nav-link-padding;
+  }
+
+  .collapse-toggle {
+    margin-bottom: 0;
+
+    &::after {
+      content: "❯";
+      float: right;
+      transform: rotate(90deg);
+    }
+
+    &.collapsed {
+      border-bottom: 0;
+
+      &::after {
+        transform: rotate(0deg);
+        transition: transform 0.1s ease;
+      }
+    }
+  }
 }

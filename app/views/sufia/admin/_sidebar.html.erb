@@ -5,11 +5,11 @@
 
     <li class="h5">Configuration</li>
     <li>
-      <a href="#">
+      <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         <span class="fa fa-cog"></span>
         <span><%= t('sufia.admin.sidebar.settings') %></span>
       </a>
-      <ul class="nav nav-pills nav-stacked">
+      <ul class="collapse nav nav-pills nav-stacked" id="collapseExample">
         <% if can? :manage, Site %>
           <%= nav_link(main_app.edit_site_labels_path) do %>
             <span class="fa fa-institution"></span> <%= t('sufia.admin.sidebar.labels') %>
