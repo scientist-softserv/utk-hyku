@@ -1,6 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
-  <%= nav_link(sufia.admin_stats_path) do %>
-    <span class="fa fa-bar-chart"></span> <%= t('sufia.admin.sidebar.statistics') %>
+  <li class="h5"><%= t('sufia.admin.sidebar.repository_activity') %></li>
+  <%= nav_link(sufia.admin_path) do %>
+    <span class="fa fa-dashboard"></span> <%= t('sufia.admin.sidebar.activity_summary') %>
   <% end %>
 
     <li class="h5">Configuration</li>
@@ -44,5 +45,10 @@
       <%= nav_link(main_app.account_path(Site.account)) do %>
         Account
       <% end %>
+    <% end %>
+
+    <li class="h5"><%= t('sufia.admin.sidebar.tasks') %></li>
+    <%= nav_link(sufia.admin_stats_path) do %>
+      <span class="fa fa-bar-chart"></span> <%= t('sufia.admin.sidebar.statistics') %>
     <% end %>
 </ul>

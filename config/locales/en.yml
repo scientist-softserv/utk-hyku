@@ -31,8 +31,12 @@ en:
   sufia:
     admin:
       sidebar:
+        repository_activity: 'Repository activity'
+        activity_summary: 'Activity summary'
         labels:                'Labels'
         content_blocks:        'Content Blocks'
         technical:             'Technical'
         roles_and_permissions: 'Roles and permissions'
         accounts:              'Accounts'
+        tasks: 'Tasks'
+        statistics: 'Reports'
