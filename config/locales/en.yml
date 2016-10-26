@@ -35,6 +35,7 @@ en:
         activity_summary: 'Activity summary'
         user_activity: 'Your activity'
         profile: 'Profile'
+        user_notifications: 'Notifications'
         labels:                'Labels'
         content_blocks:        'Content Blocks'
         technical:             'Technical'

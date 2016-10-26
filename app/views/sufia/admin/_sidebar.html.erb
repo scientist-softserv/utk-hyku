@@ -13,6 +13,10 @@
       <%= nav_link(sufia.profile_path(current_user)) do %>
         <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.profile') %>
       <% end %>
+      <%= nav_link(sufia.notifications_path) do %>
+        <span class="fa fa-bell"></span> <%= t('sufia.admin.sidebar.user_notifications') %>
+         <%= render partial: 'users/notify_number' %>
+      <% end %>
     </ul>
   </li>
 
