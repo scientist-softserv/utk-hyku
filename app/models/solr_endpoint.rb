@@ -9,6 +9,12 @@ class SolrEndpoint < Endpoint
     options.reverse_merge(Blacklight.connection_config).reverse_merge(ActiveFedora::SolrService.instance.conn.options)
   end
 
+  def ping
+    connection.get('admin/ping')['status']
+  rescue RSolr::Error::Http, RSolr::Error::ConnectionRefused
+    false
+  end
+
   def switch!
     ActiveFedora::SolrService.instance.conn = connection
     Blacklight.connection_config = connection_options

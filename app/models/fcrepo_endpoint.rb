@@ -8,4 +8,10 @@ class FcrepoEndpoint < Endpoint
   def reset!
     ActiveFedora::Fedora.reset!
   end
+
+  def ping
+    ActiveFedora::Fedora.instance.connection.head('/').response.success?
+  rescue
+    false
+  end
 end
