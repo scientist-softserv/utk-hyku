@@ -11,12 +11,14 @@ RSpec.describe 'Admin Dashboard' do
     it 'shows the admin page' do
       visit Sufia::Engine.routes.url_helpers.admin_path
       within '#sidebar' do
-        expect(page).to have_link('Statistics')
+        expect(page).to have_link('Activity summary')
         expect(page).to have_link('Labels')
         expect(page).to have_link('Content Blocks')
         expect(page).to have_link('Technical')
         expect(page).to have_link('Administrative Sets')
-        expect(page).to have_link('Roles and permissions')
+        expect(page).to have_link('Define roles and permissions')
+        expect(page).to have_link('Manage users')
+        expect(page).to have_link('Reports')
       end
     end
   end

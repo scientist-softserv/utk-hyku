@@ -4,6 +4,18 @@
     <span class="fa fa-dashboard"></span> <%= t('sufia.admin.sidebar.activity_summary') %>
   <% end %>
 
+  <li>
+    <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseUserActivity" aria-expanded="false" aria-controls="collapseUserActivity">
+      <span class="fa fa-line-chart"></span>
+      <span><%= t('sufia.admin.sidebar.user_activity') %></span>
+    </a>
+    <ul class="collapse nav nav-pills nav-stacked" id="collapseUserActivity">
+      <%= nav_link(sufia.profile_path(current_user)) do %>
+        <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.profile') %>
+      <% end %>
+    </ul>
+  </li>
+
     <li class="h5">Configuration</li>
     <li>
       <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings">
@@ -31,10 +43,26 @@
       <span class="fa fa-sitemap"></span> <%= t('sufia.admin.sidebar.admin_sets') %>
     <% end %>
 
-    <% if can? :manage, Role %>
-      <%= nav_link(main_app.site_roles_path) do %>
-        <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.roles_and_permissions') %>
-      <% end %>
+    <% if can?(:manage, Role) || can?(:manage, User) %>
+    <li>
+      <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseRoles" aria-expanded="false" aria-controls="collapseRoles">
+        <span class="fa fa-users"></span>
+        <span><%= t('sufia.admin.sidebar.roles_and_permissions') %></span>
+      </a>
+      <ul class="collapse nav nav-pills nav-stacked" id="collapseRoles">
+        <% if can? :manage, Role %>
+          <%= nav_link(main_app.site_roles_path) do %>
+            <span class="fa fa-gavel"></span> <%= t('sufia.admin.sidebar.manage_roles_and_permissions') %>
+          <% end %>
+        <% end %>
+
+        <% if can? :manage, User %>
+          <%= nav_link(sufia.profiles_path) do %>
+            <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.manage_users') %>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
     <% end %>
 
     <% if can? :manage, Account %>
