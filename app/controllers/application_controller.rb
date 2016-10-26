@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     def require_active_account!
       return if devise_controller? || peek_controller?
 
-      raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account
+      raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account.persisted?
     end
 
     def set_account_specific_connections!
@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
 
     def current_account
       @current_account ||= Account.from_request(request)
+      @current_account ||= Account.single_tenant_default
     end
 
     # Add context information to the lograge entries
