@@ -36,6 +36,7 @@ en:
         user_activity: 'Your activity'
         profile: 'Profile'
         user_notifications: 'Notifications'
+        transfers: 'Transfers'
         labels:                'Labels'
         content_blocks:        'Content Blocks'
         technical:             'Technical'
