@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   include CurationConcerns::ThemedLayoutController
   with_themed_layout '1_column'
 
-  helper_method :peek_enabled?
+  helper_method :peek_enabled?, :current_account
 
   before_action :require_active_account!, if: :multitenant?
   before_action :set_account_specific_connections!

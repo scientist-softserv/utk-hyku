@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   root 'sufia/homepage#index'
 
   get 'splash', to: 'splash#index'
+  get 'status', to: 'status#index'
   devise_for :users
 
   mount Blacklight::Engine => '/'

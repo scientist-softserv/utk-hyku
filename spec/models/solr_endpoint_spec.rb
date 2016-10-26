@@ -17,9 +17,9 @@ RSpec.describe SolrEndpoint do
   end
 
   describe '#ping' do
-    let(:mock_connection) { double }
+    let(:mock_connection) { double(options: {}) }
     before do
-      allow(RSolr).to receive(:connect).and_return(:mock_connection)
+      allow(RSolr).to receive(:connect).and_return(mock_connection)
     end
     it 'checks if the service is up' do
       allow(mock_connection).to receive(:get).with('admin/ping').and_return('status' => 'OK')
@@ -27,7 +27,7 @@ RSpec.describe SolrEndpoint do
     end
 
     it 'is false if the service is down' do
-      allow(mock_connection).to receive(:get).with('admin/ping').and_raise(RSolr::Error::Http)
+      allow(mock_connection).to receive(:get).with('admin/ping').and_raise(RSolr::Error::Http.new(nil, nil))
       expect(subject.ping).to eq false
     end
   end

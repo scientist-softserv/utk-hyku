@@ -1,0 +1,19 @@
+<h1 class="page-title"><span class="fa fa-flag"></span> <%= t(:'sufia.admin.sidebar.system_status')%></h1>
+
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#services" aria-controls="services" role="tab" data-toggle="tab"><%= t(:'.services') %></a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="services">
+      <ul class="list-group">
+        <%= render partial: 'service', locals: { name: 'Fedora', status: current_account.fcrepo_endpoint.ping } %>
+        <%= render partial: 'service', locals: { name: 'Solr', status: current_account.solr_endpoint.ping } %>
+        <%= render partial: 'service', locals: { name: 'Redis', status: current_account.redis_endpoint.ping } %>
+        <%= render partial: 'service', locals: { name: 'Database', status: ActiveRecord::Base.connection.active? } %>
+      </ul>
+    </div>
+  </div>
+</div>
