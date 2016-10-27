@@ -1,9 +1,19 @@
 <ul class="nav nav-pills nav-stacked">
-  <li class="h5"><%= t('sufia.admin.sidebar.repository_activity') %></li>
-  <%= nav_link(sufia.admin_path) do %>
-    <span class="fa fa-dashboard"></span> <%= t('sufia.admin.sidebar.activity_summary') %>
-  <% end %>
-
+  <li class="h5"><%= t('sufia.admin.sidebar.activity') %></li>
+  <li>
+    <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseRepositoryActivity" aria-expanded="false" aria-controls="collapseRepositoryActivity">
+      <span class="fa fa-line-chart"></span>
+      <span><%= t('sufia.admin.sidebar.repository_activity') %></span>
+    </a>
+    <ul class="collapse nav nav-pills nav-stacked" id="collapseRepositoryActivity">
+      <%= nav_link(sufia.admin_path) do %>
+        <span class="fa fa-dashboard"></span> <%= t('sufia.admin.sidebar.activity_summary') %>
+      <% end %>
+      <%= nav_link(main_app.status_path) do %>
+        <span class="fa fa-flag"></span> <%= t('sufia.admin.sidebar.system_status') %>
+      <% end %>
+    </ul>
+  </li>
   <li>
     <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseUserActivity" aria-expanded="false" aria-controls="collapseUserActivity">
       <span class="fa fa-line-chart"></span>

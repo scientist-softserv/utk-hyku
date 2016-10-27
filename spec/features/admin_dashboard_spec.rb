@@ -24,5 +24,13 @@ RSpec.describe 'Admin Dashboard' do
         expect(page).to have_link('Reports')
       end
     end
+
+    it 'shows the status page' do
+      visit status_path
+      expect(page).to have_content('Fedora OK')
+      expect(page).to have_content('Solr OK')
+      expect(page).to have_content('Redis OK')
+      expect(page).to have_content('Database OK')
+    end
   end
 end

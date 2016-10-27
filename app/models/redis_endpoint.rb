@@ -10,6 +10,12 @@ class RedisEndpoint < Endpoint
     Sufia.config.redis_namespace = Settings.redis.default_namespace
   end
 
+  def ping
+    redis_instance.ping
+  rescue
+    false
+  end
+
   private
 
     def redis_instance
