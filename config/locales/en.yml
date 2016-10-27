@@ -28,10 +28,18 @@ en:
     attributes:
       site:
         institution_name_full: Full institution name
+  status:
+    index:
+      services: 'Services'
+    service:
+      ok: 'OK'
+      down: 'Down'
   sufia:
     admin:
       sidebar:
+        activity: 'Activity'
         repository_activity: 'Repository activity'
+        system_status: 'System status'
         activity_summary: 'Activity summary'
         user_activity: 'Your activity'
         profile: 'Profile'
