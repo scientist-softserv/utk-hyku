@@ -21,7 +21,7 @@ RSpec.describe 'Site Roles' do
 
       within "#edit_user_#{another_user.id}" do
         select 'admin', from: 'Roles'
-        click_on 'Update User'
+        click_on 'Save'
       end
 
       expect(another_user.reload).to have_role :admin, Site.instance

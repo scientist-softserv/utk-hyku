@@ -17,7 +17,7 @@ RSpec.describe 'Accounts administration' do
 
       fill_in 'Cname', with: 'example.com'
 
-      click_on 'Update Account'
+      click_on 'Save'
 
       account.reload
 
@@ -31,7 +31,7 @@ RSpec.describe 'Accounts administration' do
       fill_in 'account_fcrepo_endpoint_attributes_url', with: 'http://example.com/fcrepo'
       fill_in 'account_fcrepo_endpoint_attributes_base_path', with: '/dev'
 
-      click_on 'Update Account'
+      click_on 'Save'
 
       account.reload
 
