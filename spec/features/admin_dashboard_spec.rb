@@ -16,6 +16,7 @@ RSpec.describe 'Admin Dashboard' do
         expect(page).to have_link('Notifications')
         expect(page).to have_link('Transfers')
         expect(page).to have_link('Labels')
+        expect(page).to have_link('Appearance')
         expect(page).to have_link('Content Blocks')
         expect(page).to have_link('Technical')
         expect(page).to have_link('Administrative Sets')
