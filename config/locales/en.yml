@@ -46,6 +46,7 @@ en:
         user_notifications: 'Notifications'
         transfers: 'Transfers'
         labels:                'Labels'
+        appearance:            'Appearance'
         content_blocks:        'Content Blocks'
         technical:             'Technical'
         roles_and_permissions: 'Roles and permissions'

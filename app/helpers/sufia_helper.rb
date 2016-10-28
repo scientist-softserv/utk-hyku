@@ -15,4 +15,8 @@ module SufiaHelper
   def institution_name_full
     Site.institution_name_full || super
   end
+
+  def banner_image
+    Site.instance.banner_image? ? Site.instance.banner_image.url : super
+  end
 end

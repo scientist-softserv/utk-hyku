@@ -12,14 +12,14 @@ RSpec.describe 'Site labels configuration' do
       it 'updates the application name in the brand bar' do
         visit edit_site_labels_path
         fill_in 'Application name', with: 'Custom Name'
-        click_on 'Update Site'
+        click_on 'Save'
         expect(page).to have_css '.navbar-brand', text: 'Custom Name'
       end
 
       it 'updates the application name in the <head> <title>' do
         visit edit_site_labels_path
         fill_in 'Application name', with: 'Custom Name'
-        click_on 'Update Site'
+        click_on 'Save'
 
         expect(page).to have_css 'head title', text: 'Custom Name', visible: false
       end
@@ -35,7 +35,7 @@ RSpec.describe 'Site labels configuration' do
       it 'updates the institution name in the agreement text' do
         visit edit_site_labels_path
         fill_in 'Institution name', with: 'Custom Inst Name'
-        click_on 'Update Site'
+        click_on 'Save'
 
         visit sufia.agreement_path
         expect(page).to have_content('fullname (Custom Inst Name) requires')
@@ -52,7 +52,7 @@ RSpec.describe 'Site labels configuration' do
       it 'updates the full institution name in the agreement text' do
         visit edit_site_labels_path
         fill_in 'Full institution name', with: 'Custom Full Inst Name'
-        click_on 'Update Site'
+        click_on 'Save'
 
         visit sufia.agreement_path
         expect(page).to have_content('Custom Full Inst Name (name) requires')

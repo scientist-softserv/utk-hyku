@@ -3,6 +3,9 @@ class Site < ActiveRecord::Base
 
   validates :application_name, presence: true, allow_nil: true
 
+  # Allow for uploading of site's banner image
+  mount_uploader :banner_image, BannerImageUploader
+
   belongs_to :account
   has_many :content_blocks
   accepts_nested_attributes_for :account, update_only: true
