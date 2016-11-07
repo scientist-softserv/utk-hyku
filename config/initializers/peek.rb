@@ -1,4 +1,4 @@
-Peek.into Peek::Views::Git, nwo: 'projecthydra-labs/lerna'
+Peek.into Peek::Views::Git, nwo: 'projecthydra-labs/hyku'
 Peek.into Peek::Views::Faraday
 Peek.into Peek::Views::PG
 Peek.into Peek::Views::PerformanceBar
