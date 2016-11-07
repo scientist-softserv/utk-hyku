@@ -6,7 +6,7 @@
 #   'base_path/druid_wg827ks1643/**/descMetadata.xml'
 #
 # Usage example:
-#   ./bin/extract_mods_to_spreadsheet ../lerna-bags/ out.csv
+#   ./bin/extract_mods_to_spreadsheet ../hyku-bags/ out.csv
 
 base_path = ARGV[0]
 output_path = ARGV[1]
@@ -28,7 +28,7 @@ puts 'Starting import...'
 data = Dir.glob("#{base_path}/**/descMetadata.xml").map do |filename|
          # Assumption: filename will contain the druid
          # example:
-         #   "lerna-metadata/GSE/druid_wg827ks1643/data/metadata/descMetadata.xml"
+         #   "hyku-metadata/GSE/druid_wg827ks1643/data/metadata/descMetadata.xml"
          id = filename.gsub(%r{.*/druid_(\w+)/.*}, '\1')
          {id: [id], type: ['ETD']}
            .merge(Importer::ModsParser.new(filename).attributes)

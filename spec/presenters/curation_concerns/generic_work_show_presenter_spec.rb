@@ -14,7 +14,7 @@ RSpec.describe CurationConcerns::GenericWorkShowPresenter do
 
   describe "file_presenter_class" do
     subject { described_class.file_presenter_class }
-    it { is_expected.to eq Lerna::FileSetPresenter }
+    it { is_expected.to eq Hyku::FileSetPresenter }
   end
 
   describe "representative_presenter" do
@@ -27,7 +27,7 @@ RSpec.describe CurationConcerns::GenericWorkShowPresenter do
       presenter.representative_presenter
     end
     it "returns a presenter" do
-      expect(subject).to be_kind_of Lerna::FileSetPresenter
+      expect(subject).to be_kind_of Hyku::FileSetPresenter
     end
   end
 end
