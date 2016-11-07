@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/curation_concerns.git
-  revision: c1bc48a70cc6657c09d6ed8ffab105d99fec922c
+  revision: bea508963b828bd0d0844d6148d828536de4b726
   specs:
-    curation_concerns (1.6.1)
+    curation_concerns (1.7.0.alpha)
       active-fedora (>= 10.3.0.rc1)
       active_attr
       active_fedora-noid (~> 2.0.0.beta5)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra/sufia.git
-  revision: 3cf249ff1e7eceb578557380c760babb9dad86da
+  revision: 66dec0030fb906149f01e76d2edd94f7effbb6a7
   specs:
     sufia (7.2.0)
       almond-rails (~> 0.0.1)
@@ -44,7 +44,7 @@ GIT
       blacklight-gallery (~> 0.1)
       browse-everything (>= 0.10.3)
       carrierwave (~> 0.9)
-      curation_concerns (~> 1.6, >= 1.6.1)
+      curation_concerns (~> 1.7.0.alpha)
       daemons (~> 1.1)
       flipflop (~> 2.2)
       flot-rails (~> 0.0.6)
@@ -111,9 +111,9 @@ GEM
     active_attr (0.9.0)
       activemodel (>= 3.0.2, < 5.1)
       activesupport (>= 3.0.2, < 5.1)
-    active_elastic_job (1.6.1)
+    active_elastic_job (1.7.0)
       aws-sdk (~> 2)
-      rails (>= 4.2, < 5.0.1)
+      rails (>= 4.2)
     active_fedora-noid (2.0.0.beta6)
       active-fedora (>= 9.7, < 12)
       noid (~> 0.9)
@@ -134,7 +134,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     almond-rails (0.0.3)
       rails (>= 4.2, < 6)
     apartment (1.2.0)
@@ -147,16 +148,16 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.5.1.1)
+    autoprefixer-rails (6.5.2)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.6.14)
-      aws-sdk-resources (= 2.6.14)
-    aws-sdk-core (2.6.14)
+    aws-sdk (2.6.18)
+      aws-sdk-resources (= 2.6.18)
+    aws-sdk-core (2.6.18)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.14)
-      aws-sdk-core (= 2.6.14)
+    aws-sdk-resources (2.6.18)
+      aws-sdk-core (= 2.6.18)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -476,7 +477,7 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
-    openseadragon (0.3.0)
+    openseadragon (0.3.1)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
     os (0.9.6)
@@ -510,8 +511,9 @@ GEM
       peek
       sidekiq
     pg (0.19.0)
-    posix-spawn (0.3.11)
+    posix-spawn (0.3.12)
     powerpack (0.1.1)
+    public_suffix (2.0.4)
     puma (3.6.0)
     qa (0.10.2)
       activerecord-import
@@ -580,8 +582,7 @@ GEM
       rdf (~> 2.1)
     rdf-xsd (2.0.0)
       rdf (~> 2.0)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    rdoc (4.3.0)
     redic (1.5.0)
       hiredis
     redis (3.3.1)
@@ -647,7 +648,7 @@ GEM
       useragent
     select2-rails (3.5.10)
       thor (~> 0.14)
-    sidekiq (4.2.3)
+    sidekiq (4.2.5)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
@@ -722,7 +723,7 @@ GEM
     useragent (0.16.8)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.3.1)
+    web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       debug_inspector
