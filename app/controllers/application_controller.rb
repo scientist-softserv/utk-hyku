@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   private
 
     def peek_enabled?
-      can? :peek, Lerna::Application
+      can? :peek, Hyku::Application
     end
 
     def require_active_account!

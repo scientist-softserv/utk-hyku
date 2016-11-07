@@ -21,7 +21,7 @@ before_script:
 before_deploy:
   - git clean -dxf; rm -rf vendor/bundle
   - echo $TRAVIS_COMMIT > REVISION
-  - mkdir build; zip -q -r build/lerna.zip .
+  - mkdir build; zip -q -r build/hyku.zip .
 
 services:
   - postgresql
@@ -37,7 +37,7 @@ deploy:
     region: us-east-1
     local_dir: build
     skip_cleanup: true
-    upload-dir: lerna/branch/${TRAVIS_BRANCH}
+    upload-dir: hyku/branch/${TRAVIS_BRANCH}
     acl: public_read
     on:
       all_branches: true
@@ -50,5 +50,5 @@ deploy:
     region: us-east-1
     skip_cleanup: true
     local_dir: build
-    upload-dir: lerna/current
+    upload-dir: hyku/current
     acl: public_read

@@ -1,4 +1,4 @@
-module Lerna
+module Hyku
   module ContentBlockBehavior
     extend ActiveSupport::Concern
 
