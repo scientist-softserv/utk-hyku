@@ -1,6 +1,6 @@
 module CurationConcerns
   class GenericWorkShowPresenter < Sufia::WorkShowPresenter
-    self.file_presenter_class = Lerna::FileSetPresenter
+    self.file_presenter_class = Hyku::FileSetPresenter
 
     def manifest_url
       manifest_helper.polymorphic_url([:manifest, self])

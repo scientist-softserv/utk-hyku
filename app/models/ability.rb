@@ -22,7 +22,7 @@ class Ability
     return unless current_user.has_role? :superadmin
 
     can :manage, :all
-    can :peek, Lerna::Application
+    can :peek, Hyku::Application
   end
 
   def restrict_site_admin_permissions

@@ -1,4 +1,4 @@
-module Lerna
+module Hyku
   class FileSetPresenter < Sufia::FileSetPresenter
     include DisplaysImage
   end

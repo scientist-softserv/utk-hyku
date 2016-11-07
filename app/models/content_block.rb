@@ -1,4 +1,4 @@
 class ContentBlock < ActiveRecord::Base
   include Sufia::ContentBlockBehavior
-  include Lerna::ContentBlockBehavior
+  include Hyku::ContentBlockBehavior
 end

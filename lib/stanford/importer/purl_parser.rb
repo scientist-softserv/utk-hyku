@@ -25,7 +25,7 @@ module Stanford
       end
 
       def origin_text
-        'Imported from PURL to local RDF profile by Lerna'.freeze
+        'Imported from PURL to local RDF profile by Hyku'.freeze
       end
 
       def collection?
