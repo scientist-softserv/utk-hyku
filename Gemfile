@@ -61,7 +61,6 @@ end
 gem 'blacklight', '~> 6.7'
 
 gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git'
-# gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns.git', branch: 'workflow'
 gem 'sufia', git: 'https://github.com/projecthydra/sufia.git'
 # gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'mediated_deposit_epic'
 gem 'rsolr', '~> 1.1.2'
