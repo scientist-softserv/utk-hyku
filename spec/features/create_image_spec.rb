@@ -14,7 +14,8 @@ RSpec.feature 'Create a Image' do
     scenario do
       visit '/'
       click_link "Works"
-      click_link "New Image"
+      click_link "New Work"
+      click_link "Image"
       expect(page).to have_content "Add New Image"
     end
   end
