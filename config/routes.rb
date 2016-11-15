@@ -52,6 +52,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :users, only: :index
+  end
+
   mount Peek::Railtie => '/peek'
   mount Riiif::Engine => '/images', as: 'riiif'
 
