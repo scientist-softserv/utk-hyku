@@ -76,7 +76,7 @@
         <% end %>
 
         <% if can? :manage, User %>
-          <%= nav_link(sufia.profiles_path) do %>
+          <%= nav_link(main_app.admin_users_path) do %>
             <span class="fa fa-user"></span> <%= t('sufia.admin.sidebar.manage_users') %>
           <% end %>
         <% end %>
