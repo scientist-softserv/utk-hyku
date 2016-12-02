@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CurationConcerns::GenericWorksController do
+RSpec.describe Sufia::GenericWorksController do
   let(:user) { FactoryGirl.create(:user) }
   let(:work) { FactoryGirl.create(:work_with_one_file, user: user) }
   let(:file_set) { work.ordered_members.to_a.first }
@@ -14,7 +14,7 @@ RSpec.describe CurationConcerns::GenericWorksController do
     before do
       sign_in user
       allow(IIIFManifest::ManifestFactory).to receive(:new)
-        .with(CurationConcerns::GenericWorkShowPresenter)
+        .with(Sufia::GenericWorkShowPresenter)
         .and_return(manifest_factory)
     end
 
@@ -31,7 +31,7 @@ RSpec.describe CurationConcerns::GenericWorksController do
     end
     subject { controller.send :presenter }
     it "initializes a presenter" do
-      expect(subject).to be_kind_of CurationConcerns::GenericWorkShowPresenter
+      expect(subject).to be_kind_of Sufia::GenericWorkShowPresenter
       expect(subject.manifest_url).to eq "http://test.host/concern/generic_works/#{solr_document.id}/manifest"
     end
   end

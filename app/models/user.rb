@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Connects this user object to Hydra behaviors.
   include Hydra::User
   # Connects this user object to Curation Concerns behaviors.
-  include CurationConcerns::User
+  include Sufia::User
   # Connects this user object to Sufia behaviors.
   include Sufia::User
   include Sufia::UserUsageStats

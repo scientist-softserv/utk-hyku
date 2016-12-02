@@ -3,8 +3,8 @@ class SolrDocument
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
 
-  # Adds CurationConcerns behaviors to the SolrDocument.
-  include CurationConcerns::SolrDocumentBehavior
+  # Adds Sufia behaviors to the SolrDocument.
+  include Sufia::SolrDocumentBehavior
   # Adds Sufia behaviors to the SolrDocument.
   include Sufia::SolrDocumentBehavior
 

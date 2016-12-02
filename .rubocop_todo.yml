@@ -8,15 +8,19 @@ require: rubocop-rspec
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+RSpec/SubjectStub:
+  Exclude:
+    - 'spec/models/solr_endpoint_spec.rb'
+      
 # Offense count: 10
 RSpec/LeadingSubject:
   Exclude:
-    - 'spec/controllers/curation_concerns/generic_works_controller_spec.rb'
+    - 'spec/controllers/sufia/generic_works_controller_spec.rb'
     - 'spec/helpers/admin_stats_helper_spec.rb'
     - 'spec/lib/active_job_tenant_spec.rb'
     - 'spec/lib/importer/factory/string_literal_processor_spec.rb'
     - 'spec/lib/stanford/importer/mods_parser_spec.rb'
-    - 'spec/presenters/curation_concerns/generic_work_show_presenter_spec.rb'
+    - 'spec/presenters/sufia/generic_work_show_presenter_spec.rb'
     - 'spec/services/create_account_spec.rb'
     - 'spec/services/iiif_thumbnail_path_service_spec.rb'
     - 'spec/services/solr_config_uploader_spec.rb'

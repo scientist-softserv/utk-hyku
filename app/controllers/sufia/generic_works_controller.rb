@@ -1,12 +1,12 @@
 require 'iiif_manifest'
-module CurationConcerns
+module Sufia
   class GenericWorksController < ApplicationController
-    include CurationConcerns::CurationConcernController
+    include Sufia::CurationConcernController
     # Adds Sufia behaviors to the controller.
     include Sufia::WorksControllerBehavior
 
     self.curation_concern_type = GenericWork
-    self.show_presenter = CurationConcerns::GenericWorkShowPresenter
+    self.show_presenter = Sufia::GenericWorkShowPresenter
 
     skip_load_and_authorize_resource only: :manifest
 

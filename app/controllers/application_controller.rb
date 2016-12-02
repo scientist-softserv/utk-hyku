@@ -10,12 +10,10 @@ class ApplicationController < ActionController::Base
   include Blacklight::Controller
   include Hydra::Controller::ControllerBehavior
 
-  # Adds CurationConcerns behaviors to the application controller.
-  include CurationConcerns::ApplicationControllerBehavior
   # Adds Sufia behaviors into the application controller
   include Sufia::Controller
 
-  include CurationConcerns::ThemedLayoutController
+  include Sufia::ThemedLayoutController
   with_themed_layout '1_column'
 
   helper_method :peek_enabled?, :current_account

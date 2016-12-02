@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work GenericWork`
 require 'rails_helper'
 
-RSpec.describe CurationConcerns::GenericWorkForm do
+RSpec.describe Sufia::GenericWorkForm do
   it "has tests" do
     skip "Add your tests here"
   end
