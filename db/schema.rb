@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115142214) do
+ActiveRecord::Schema.define(version: 20161202202754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,6 +212,8 @@ ActiveRecord::Schema.define(version: 20161115142214) do
     t.string   "visibility"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "release_date"
+    t.string   "release_period"
     t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", using: :btree
   end
 
@@ -288,7 +290,7 @@ ActiveRecord::Schema.define(version: 20161115142214) do
   create_table "sipity_entities", force: :cascade do |t|
     t.string   "proxy_for_global_id", null: false
     t.integer  "workflow_id",         null: false
-    t.integer  "workflow_state_id",   null: false
+    t.integer  "workflow_state_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["proxy_for_global_id"], name: "sipity_entities_proxy_for_global_id", unique: true, using: :btree
@@ -416,6 +418,7 @@ ActiveRecord::Schema.define(version: 20161115142214) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "label"
     t.index ["name"], name: "index_sipity_workflows_on_name", unique: true, using: :btree
   end
 
