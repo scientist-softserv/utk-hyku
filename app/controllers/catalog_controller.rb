@@ -1,7 +1,6 @@
 class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
-  include Sufia::Catalog
 
   # These before_filters apply the hydra access controls
   before_action :enforce_show_permissions, only: :show
@@ -28,7 +27,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:query_parser] ||= 'dismax'
     config.advanced_search[:form_solr_parameters] ||= {}
 
-    config.search_builder_class = Sufia::SearchBuilder
+    config.search_builder_class = Sufia::CatalogSearchBuilder
 
     # Show gallery view
     config.view.gallery.partials = [:index_header, :index]

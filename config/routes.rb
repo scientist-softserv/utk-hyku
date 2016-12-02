@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  Hydra::BatchEdit.add_routes(self)
   mount BrowseEverything::Engine => '/browse'
   resource :site, only: [] do
     resources :roles, only: [:index, :update]
@@ -21,12 +20,9 @@ Rails.application.routes.draw do
 
   mount Blacklight::Engine => '/'
   mount Sufia::Engine, at: '/'
-  mount CurationConcerns::Engine, at: '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new
-
-  Hydra::BatchEdit.add_routes(self)
 
   curation_concerns_collections
   curation_concerns_basic_routes do

@@ -1,8 +1,8 @@
 # Generated via
 #  `rails generate curation_concerns:work GenericWork`
-module CurationConcerns
+module Sufia
   module Actors
-    class GenericWorkActor < CurationConcerns::Actors::BaseActor
+    class GenericWorkActor < Sufia::Actors::BaseActor
     end
   end
 end

@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate curation_concerns:work GenericWork`
-module CurationConcerns
+module Sufia
   class GenericWorkForm < Sufia::Forms::WorkForm
     self.model_class = ::GenericWork
     include HydraEditor::Form::Permissions

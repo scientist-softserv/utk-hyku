@@ -1,7 +1,5 @@
 class Ability
   include Hydra::Ability
-
-  include CurationConcerns::Ability
   include Sufia::Ability
 
   self.ability_logic += [:everyone_can_create_curation_concerns, :superadmin_permissions]
@@ -12,6 +10,7 @@ class Ability
   end
 
   def admin_permissions
+    return unless admin?
     super
     can [:manage], [Site, Role, User]
 

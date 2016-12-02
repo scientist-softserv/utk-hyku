@@ -1,8 +1,8 @@
 # Generated via
 #  `rails generate curation_concerns:work Image`
-module CurationConcerns
+module Sufia
   module Actors
-    class ImageActor < CurationConcerns::Actors::BaseActor
+    class ImageActor < Sufia::Actors::BaseActor
     end
   end
 end

@@ -1,6 +1,7 @@
 Sufia.config do |config|
-  # Injected via `rails g sufia:work Image`
+  config.register_curation_concern :generic_work
   config.register_curation_concern :image
+
   config.max_days_between_audits = 7
   config.max_notifications_for_dashboard = 5
 
@@ -20,7 +21,7 @@ Sufia.config do |config|
   config.analytics = Settings.google_analytics_id.present?
 
   # Specify a Google Analytics tracking ID to gather usage statistics
-  config.google_analytics_id = Settings.google_analytics_id 
+  config.google_analytics_id = Settings.google_analytics_id
 
   # Specify a date you wish to start collecting Google Analytic statistics for.
   # config.analytic_start_date = DateTime.new(2014,9,10)

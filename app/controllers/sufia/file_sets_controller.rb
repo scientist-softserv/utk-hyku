@@ -1,6 +1,6 @@
-module CurationConcerns
+module Sufia
   class FileSetsController < ApplicationController
-    include CurationConcerns::FileSetsControllerBehavior
+    include Sufia::FileSetsControllerBehavior
     include Sufia::FileSetsControllerBehavior
     self.show_presenter = Hyku::FileSetPresenter
   end

@@ -25,7 +25,7 @@
       <% end %>
       <%= nav_link(sufia.notifications_path) do %>
         <span class="fa fa-bell"></span> <%= t('sufia.admin.sidebar.user_notifications') %>
-         <%= render partial: 'users/notify_number' %>
+         <%= render 'sufia/users/notify_number' %>
       <% end %>
       <%= nav_link(sufia.transfers_path) do %>
         <span class="fa fa-arrows-h"></span> <%= t('sufia.admin.sidebar.transfers') %>
