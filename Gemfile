@@ -89,7 +89,8 @@ gem 'mods', '~> 2.1'
 gem 'iiif_manifest', '~> 0.1.2'
 
 group :aws do
-  gem 'active_elastic_job'
+  # TODO: Version 2.0 causes a failure in spec/lib/active_job/queue_adapters/better_active_elastic_job_adapter_spec.rb
+  gem 'active_elastic_job', '~> 1.7'
   gem 'fog-aws'
 end
 
