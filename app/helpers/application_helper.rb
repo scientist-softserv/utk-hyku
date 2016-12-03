@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include ::SufiaHelper
+  include ::HyraxHelper
   include ContentBlockHelper
 
   def nav_link(href)

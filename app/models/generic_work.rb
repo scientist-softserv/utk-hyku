@@ -1,7 +1,7 @@
 class GenericWork < ActiveFedora::Base
-  include ::Sufia::WorkBehavior
-  include ::Sufia::BasicMetadata
-  include Sufia::WorkBehavior
+  include ::Hyrax::WorkBehavior
+  include ::Hyrax::BasicMetadata
+  include Hyrax::WorkBehavior
   validates :title, presence: { message: 'Your work must have a title.' }
 
   self.indexer = WorkIndexer

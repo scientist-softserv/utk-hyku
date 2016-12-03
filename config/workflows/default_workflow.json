@@ -10,8 +10,8 @@
                     "from_states": [],
                     "transition_to": "deposited",
                     "methods": [
-                        "Sufia::Workflow::GrantEditToDepositor",
-                        "Sufia::Workflow::ActivateObject"
+                        "Hyrax::Workflow::GrantEditToDepositor",
+                        "Hyrax::Workflow::ActivateObject"
                     ]
                 }
             ]

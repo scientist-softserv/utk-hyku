@@ -60,7 +60,7 @@ end
 
 gem 'blacklight', '~> 6.7'
 
-gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: 'cc_subtree'
+gem 'hyrax', git: 'https://github.com/projecthydra-labs/hyrax.git'
 gem 'rsolr', '~> 1.1.2'
 
 gem 'devise'
