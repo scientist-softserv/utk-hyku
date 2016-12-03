@@ -12,14 +12,14 @@ Rails.application.routes.draw do
   get '/account/sign_up' => 'account_sign_up#new'
   post '/account/sign_up' => 'account_sign_up#create'
 
-  root 'sufia/homepage#index'
+  root 'hyrax/homepage#index'
 
   get 'splash', to: 'splash#index'
   get 'status', to: 'status#index'
   devise_for :users
 
   mount Blacklight::Engine => '/'
-  mount Sufia::Engine, at: '/'
+  mount Hyrax::Engine, at: '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new

@@ -1,5 +1,5 @@
 class TransfersController < ApplicationController
-  include Sufia::TransfersControllerBehavior
+  include Hyrax::TransfersControllerBehavior
 
   layout 'admin'
 end
