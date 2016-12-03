@@ -47,7 +47,7 @@ RSpec.describe LabelsController, type: :controller do
 
     describe "PUT #update" do
       it "denies the request" do
-        put :update
+        put :update, params: { site: valid_attributes }
         expect(response).to have_http_status(401)
       end
     end

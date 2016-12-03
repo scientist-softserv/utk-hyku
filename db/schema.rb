@@ -246,8 +246,11 @@ ActiveRecord::Schema.define(version: 20161202202754) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+    t.index ["title"], name: "index_roles_on_title", using: :btree
   end
 
   create_table "searches", force: :cascade do |t|

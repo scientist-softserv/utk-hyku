@@ -17,9 +17,10 @@ RSpec.describe SolrEndpoint do
   end
 
   describe '#ping' do
-    let(:mock_connection) { double(options: {}) }
+    let(:mock_connection) { instance_double(RSolr::Client, options: {}) }
     before do
-      allow(RSolr).to receive(:connect).and_return(mock_connection)
+      # Mocking on the subject, because mocking RSolr.connect causes doubles to leak for some reason
+      allow(subject).to receive(:connection).and_return(mock_connection)
     end
     it 'checks if the service is up' do
       allow(mock_connection).to receive(:get).with('admin/ping').and_return('status' => 'OK')

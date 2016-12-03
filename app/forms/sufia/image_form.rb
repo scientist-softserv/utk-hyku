@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate curation_concerns:work Image`
-module CurationConcerns
+module Sufia
   class ImageForm < Sufia::Forms::WorkForm
     self.model_class = ::Image
     self.terms += [:resource_type]
