@@ -5,7 +5,7 @@ module Admin
     layout 'admin'
 
     def self.local_prefixes
-      ['users']
+      ['sufia/users']
     end
 
     private

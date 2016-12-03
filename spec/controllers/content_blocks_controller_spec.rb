@@ -37,14 +37,14 @@ RSpec.describe ContentBlocksController, type: :controller do
 
     describe "GET #edit" do
       it "denies the request" do
-        get :edit
+        get :edit, params: { site: valid_attributes }
         expect(response).to have_http_status(401)
       end
     end
 
     describe "PUT #update" do
       it "denies the request" do
-        put :update
+        put :update, params: { site: valid_attributes }
         expect(response).to have_http_status(401)
       end
     end

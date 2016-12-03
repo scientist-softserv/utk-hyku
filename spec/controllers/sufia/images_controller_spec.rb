@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work Image`
 require 'rails_helper'
 
-RSpec.describe CurationConcerns::ImagesController do
+RSpec.describe Sufia::ImagesController do
   it "has tests" do
     skip "Add your tests here"
   end

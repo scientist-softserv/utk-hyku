@@ -1,8 +1,8 @@
 # Generated via
 #  `rails generate curation_concerns:work Image`
 class Image < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
-  include ::CurationConcerns::BasicMetadata
+  include ::Sufia::WorkBehavior
+  include ::Sufia::BasicMetadata
   include Sufia::WorkBehavior
   self.human_readable_type = 'Image'
   # Change this to restrict which works can be added as a child.

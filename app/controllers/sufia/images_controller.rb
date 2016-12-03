@@ -1,9 +1,9 @@
 # Generated via
 #  `rails generate curation_concerns:work Image`
 
-module CurationConcerns
+module Sufia
   class ImagesController < ApplicationController
-    include CurationConcerns::CurationConcernController
+    include Sufia::CurationConcernController
     # Adds Sufia behaviors to the controller.
     include Sufia::WorksControllerBehavior
 

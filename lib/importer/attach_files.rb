@@ -29,7 +29,7 @@ module Importer
           return
         end
 
-        actor = CurationConcerns::Actors::FileSetActor.new(FileSet.new, User.batch_user)
+        actor = Sufia::Actors::FileSetActor.new(FileSet.new, User.batch_user)
         actor.create_metadata(work)
         actor.create_content(File.new(path))
       end

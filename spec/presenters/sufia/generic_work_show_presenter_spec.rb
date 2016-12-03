@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CurationConcerns::GenericWorkShowPresenter do
+RSpec.describe Sufia::GenericWorkShowPresenter do
   let(:document) { { "has_model_ssim" => ['GenericWork'], 'id' => '99' } }
   let(:solr_document) { SolrDocument.new(document) }
   let(:request) { double(base_url: 'http://test.host') }

@@ -1,4 +1,4 @@
-module CurationConcerns
+module Sufia
   class GenericWorkShowPresenter < Sufia::WorkShowPresenter
     self.file_presenter_class = Hyku::FileSetPresenter
 
