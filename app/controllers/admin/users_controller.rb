@@ -1,11 +1,11 @@
 module Admin
   class UsersController < ApplicationController
     before_action :ensure_admin!
-    include Sufia::UsersControllerBehavior
+    include Hyrax::UsersControllerBehavior
     layout 'admin'
 
     def self.local_prefixes
-      ['sufia/users']
+      ['hyrax/users']
     end
 
     private

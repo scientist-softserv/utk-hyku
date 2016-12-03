@@ -21,7 +21,7 @@
 // Required by Blacklight
 //= require blacklight/blacklight
 
-//= require sufia
+//= require hyrax
 //= require jquery.flot.pie
 //= require flot_graph
 //= require statistics_tab_manager

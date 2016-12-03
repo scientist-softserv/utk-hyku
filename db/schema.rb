@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202202754) do
+ActiveRecord::Schema.define(version: 20161203173439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,13 @@ ActiveRecord::Schema.define(version: 20161202202754) do
     t.index ["user_id"], name: "index_file_view_stats_on_user_id", using: :btree
   end
 
+  create_table "hyrax_features", force: :cascade do |t|
+    t.string   "key",                        null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "local_authorities", force: :cascade do |t|
     t.string "name"
   end
@@ -246,11 +253,8 @@ ActiveRecord::Schema.define(version: 20161202202754) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
-    t.text     "description"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
-    t.index ["title"], name: "index_roles_on_title", using: :btree
   end
 
   create_table "searches", force: :cascade do |t|
@@ -440,13 +444,6 @@ ActiveRecord::Schema.define(version: 20161202202754) do
     t.string "lowerLabel"
     t.string "url"
     t.index ["lowerLabel"], name: "entries_by_lower_label", using: :btree
-  end
-
-  create_table "sufia_features", force: :cascade do |t|
-    t.string   "key",                        null: false
-    t.boolean  "enabled",    default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
   end
 
   create_table "tinymce_assets", force: :cascade do |t|

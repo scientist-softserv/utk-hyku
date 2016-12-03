@@ -12,7 +12,7 @@
                     "notifications": [
                         {
                             "notification_type": "email",
-                            "name": "Sufia::Workflow::PendingReviewNotification",
+                            "name": "Hyrax::Workflow::PendingReviewNotification",
                             "to": ["approving"]
                         }
                     ]
@@ -24,7 +24,7 @@
                     "notifications": [
                         {
                             "notification_type": "email",
-                            "name": "Sufia::Workflow::CompleteNotification",
+                            "name": "Hyrax::Workflow::CompleteNotification",
                             "to": ["approving"]
                         }
                     ],

@@ -10,6 +10,6 @@ RSpec.describe "pages/show", type: :view do
   it "renders the about_page content block" do
     render
     expect(rendered).to include(page.value)
-    expect(rendered).not_to include('tinymce') # Ensures sufia's view with editor is not rendered.
+    expect(rendered).not_to include('tinymce') # Ensures hyrax's view with editor is not rendered.
   end
 end

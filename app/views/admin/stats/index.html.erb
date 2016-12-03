@@ -17,7 +17,7 @@
       <div role="tabpanel" class="tab-pane active" id="collections">
         <h2>Collections over time</h2>
         <%=
-          graph_tag('collection-graph', [Sufia::Statistics::Collections::OverTime.new.points], {
+          graph_tag('collection-graph', [Hyrax::Statistics::Collections::OverTime.new.points], {
             xaxis: {
               mode: 'time',
               minTickSize: [7, 'day']
@@ -33,7 +33,7 @@
       <div role="tabpanel" class="tab-pane" id="works">
         <h2>Works over time</h2>
         <%=
-          graph_tag('works-graph', [Sufia::Statistics::Works::OverTime.new.points], {
+          graph_tag('works-graph', [Hyrax::Statistics::Works::OverTime.new.points], {
             xaxis: {
               mode: 'time',
               minTickSize: [7, 'day']
@@ -47,7 +47,7 @@
         %>
         <h2>Works by type:</h2>
         <%=
-          graph_tag('works-by-type', Sufia::Statistics::Works::ByResourceType.new.query, series: {
+          graph_tag('works-by-type', Hyrax::Statistics::Works::ByResourceType.new.query, series: {
             pie: {
               show: true,
             }

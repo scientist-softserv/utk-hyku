@@ -27,7 +27,7 @@ RSpec.describe Importer::Factory::ETDFactory do
       allow(File).to receive(:exist?).and_call_original # For byebug, sprockets, etc
       allow(File).to receive(:exist?).with("tmp/files/img.png").and_return(true)
       allow(File).to receive(:new).and_return(file)
-      allow(Sufia::Actors::FileSetActor).to receive(:new)
+      allow(Hyrax::Actors::FileSetActor).to receive(:new)
         .with(FileSet, User).and_return(fs_actor)
     end
     context "for a new image" do

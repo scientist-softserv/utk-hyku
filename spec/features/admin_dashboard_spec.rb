@@ -9,7 +9,7 @@ RSpec.describe 'Admin Dashboard' do
     end
 
     it 'shows the admin page' do
-      visit Sufia::Engine.routes.url_helpers.admin_path
+      visit Hyrax::Engine.routes.url_helpers.admin_path
       within '#sidebar' do
         expect(page).to have_link('Activity summary')
         expect(page).to have_link('Profile')

@@ -1,0 +1,10 @@
+en:
+  hyrax:
+    product_name: "Hydra-in-a-Box"
+    product_twitter_handle: "@HydraInABox"
+    institution_name:   "Hydra in a Box"
+    account_name:       "Hydra in a Box Account Id"
+    directory:
+      suffix:           "@hydrainabox.org"
+    footer:
+      copyright_html: "<strong>Copyright &copy; 2016 Project Hydra</strong> Licensed under the Apache License, Version 2.0"

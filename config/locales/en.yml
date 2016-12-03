@@ -34,7 +34,7 @@ en:
     service:
       ok: 'OK'
       down: 'Down'
-  sufia:
+  hyrax:
     admin:
       sidebar:
         activity: 'Activity'
