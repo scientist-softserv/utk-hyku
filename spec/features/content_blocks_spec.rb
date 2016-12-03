@@ -31,7 +31,7 @@ RSpec.describe 'Site content blocks configuration' do
         )
       end
       it 'updates the about page' do
-        visit sufia.about_path
+        visit hyrax.about_path
         expect(page).to have_content('FOOM')
       end
     end

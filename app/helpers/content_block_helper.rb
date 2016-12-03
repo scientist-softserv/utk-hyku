@@ -1,7 +1,7 @@
 module ContentBlockHelper
-  include Sufia::ContentBlockHelperBehavior
+  include Hyrax::ContentBlockHelperBehavior
 
-  # This is like editable_content_block in sufia, but it doesn't allow editing
+  # This is like editable_content_block in hyrax, but it doesn't allow editing
   # rubocop:disable Rails/OutputSafety
   def displayable_content_block(content_block, **options)
     return if content_block.value.blank?

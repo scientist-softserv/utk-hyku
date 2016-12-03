@@ -11,9 +11,9 @@ class RolesController < ApplicationController
 
   def index
     @users = @users.where(guest: false)
-    add_breadcrumb t(:'sufia.controls.home'), root_path
-    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
-    add_breadcrumb t(:'sufia.admin.sidebar.roles_and_permissions'), site_roles_path
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+    add_breadcrumb t(:'hyrax.admin.sidebar.roles_and_permissions'), site_roles_path
   end
 
   def update

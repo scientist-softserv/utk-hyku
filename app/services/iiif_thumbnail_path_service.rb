@@ -1,4 +1,4 @@
-class IIIFThumbnailPathService < Sufia::WorkThumbnailPathService
+class IIIFThumbnailPathService < Hyrax::WorkThumbnailPathService
   class << self
     protected
 

@@ -5,9 +5,9 @@ class AppearancesController < ApplicationController
 
   # GET /sites/appearances/edit
   def edit
-    add_breadcrumb t(:'sufia.controls.home'), root_path
-    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
-    add_breadcrumb t(:'sufia.admin.sidebar.appearance'), edit_site_appearances_path
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+    add_breadcrumb t(:'hyrax.admin.sidebar.appearance'), edit_site_appearances_path
   end
 
   # PATCH/PUT /sites/1

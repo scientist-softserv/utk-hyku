@@ -4,7 +4,7 @@ class AccountSignUpController < ApplicationController
 
   # GET /accounts/new
   def new
-    add_breadcrumb t(:'sufia.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb 'New account', new_account_path
   end
 

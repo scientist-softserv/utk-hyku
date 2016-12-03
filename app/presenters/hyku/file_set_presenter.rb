@@ -1,5 +1,5 @@
 module Hyku
-  class FileSetPresenter < Sufia::FileSetPresenter
+  class FileSetPresenter < Hyrax::FileSetPresenter
     include DisplaysImage
   end
 end

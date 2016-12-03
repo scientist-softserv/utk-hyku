@@ -5,9 +5,9 @@ class LabelsController < ApplicationController
 
   # GET /sites/1/edit
   def edit
-    add_breadcrumb t(:'sufia.controls.home'), root_path
-    add_breadcrumb t(:'sufia.toolbar.admin.menu'), sufia.admin_path
-    add_breadcrumb t(:'sufia.admin.sidebar.labels'), edit_site_labels_path
+    add_breadcrumb t(:'hyrax.controls.home'), root_path
+    add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+    add_breadcrumb t(:'hyrax.admin.sidebar.labels'), edit_site_labels_path
   end
 
   # PATCH/PUT /sites/1
