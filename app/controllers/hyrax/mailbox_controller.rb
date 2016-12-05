@@ -1,4 +1,4 @@
-require File.join(Hyrax::Engine.paths['app/controllers'].first, 'hyrax/mailbox_controller.rb')
+require_dependency File.join(Hyrax::Engine.paths['app/controllers'].first, 'hyrax/mailbox_controller.rb')
 
 module Hyrax
   class MailboxController
