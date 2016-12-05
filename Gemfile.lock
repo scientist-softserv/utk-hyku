@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: f9c6586a5a566bbb2b481cc934128cf69ade4cc1
+  revision: 849809cf552702a61a31efe317c40e5bb101d976
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -133,7 +133,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    autoprefixer-rails (6.5.3)
+    autoprefixer-rails (6.5.3.1)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
@@ -262,11 +262,11 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       inflecto (~> 0.0.0, >= 0.0.2)
-    dry-validation (0.10.3)
+    dry-validation (0.10.4)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1, >= 0.1.3)
       dry-container (~> 0.2, >= 0.2.8)
-      dry-core (~> 0.1)
+      dry-core (~> 0.2, >= 0.2.1)
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.9, >= 0.9.0)
@@ -493,7 +493,7 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
-    openseadragon (0.3.1)
+    openseadragon (0.3.2)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
     os (0.9.6)
