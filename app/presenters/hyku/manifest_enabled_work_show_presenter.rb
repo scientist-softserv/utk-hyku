@@ -1,5 +1,5 @@
-module Hyrax
-  class GenericWorkShowPresenter < Hyrax::WorkShowPresenter
+module Hyku
+  class ManifestEnabledWorkShowPresenter < Hyrax::WorkShowPresenter
     self.file_presenter_class = Hyku::FileSetPresenter
 
     def manifest_url
