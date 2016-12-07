@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Hyrax::GenericWorkShowPresenter do
+RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
   let(:document) { { "has_model_ssim" => ['GenericWork'], 'id' => '99' } }
   let(:solr_document) { SolrDocument.new(document) }
   let(:request) { double(base_url: 'http://test.host') }
@@ -18,13 +18,15 @@ RSpec.describe Hyrax::GenericWorkShowPresenter do
   end
 
   describe "representative_presenter" do
-    let(:work) { FactoryGirl.create(:work_with_one_file) }
-    let(:document) { work.to_solr }
-    before do
-      work.representative_id = work.file_sets.first.id
-    end
     subject do
       presenter.representative_presenter
+    end
+
+    let(:work) { FactoryGirl.create(:work_with_one_file) }
+    let(:document) { work.to_solr }
+
+    before do
+      work.representative_id = work.file_sets.first.id
     end
     it "returns a presenter" do
       expect(subject).to be_kind_of Hyku::FileSetPresenter

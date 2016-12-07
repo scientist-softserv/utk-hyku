@@ -14,7 +14,7 @@ RSpec.describe Hyrax::GenericWorksController do
     before do
       sign_in user
       allow(IIIFManifest::ManifestFactory).to receive(:new)
-        .with(Hyrax::GenericWorkShowPresenter)
+        .with(Hyku::ManifestEnabledWorkShowPresenter)
         .and_return(manifest_factory)
     end
 
@@ -31,7 +31,7 @@ RSpec.describe Hyrax::GenericWorksController do
     end
     subject { controller.send :presenter }
     it "initializes a presenter" do
-      expect(subject).to be_kind_of Hyrax::GenericWorkShowPresenter
+      expect(subject).to be_kind_of Hyku::ManifestEnabledWorkShowPresenter
       expect(subject.manifest_url).to eq "http://test.host/concern/generic_works/#{solr_document.id}/manifest"
     end
   end
