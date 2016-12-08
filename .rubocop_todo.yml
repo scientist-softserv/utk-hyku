@@ -11,7 +11,7 @@ require: rubocop-rspec
 RSpec/SubjectStub:
   Exclude:
     - 'spec/models/solr_endpoint_spec.rb'
-      
+
 # Offense count: 10
 RSpec/LeadingSubject:
   Exclude:
@@ -20,7 +20,6 @@ RSpec/LeadingSubject:
     - 'spec/lib/active_job_tenant_spec.rb'
     - 'spec/lib/importer/factory/string_literal_processor_spec.rb'
     - 'spec/lib/stanford/importer/mods_parser_spec.rb'
-    - 'spec/presenters/hyrax/generic_work_show_presenter_spec.rb'
     - 'spec/services/create_account_spec.rb'
     - 'spec/services/iiif_thumbnail_path_service_spec.rb'
     - 'spec/services/solr_config_uploader_spec.rb'
