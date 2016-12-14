@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: be367ee3b05f5a5de101b5d8859219649adfa85f
+  revision: 6a700ea5ced3bbc795bf3c727c9075254f2496ce
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
