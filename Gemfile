@@ -65,6 +65,7 @@ gem 'rsolr', '~> 1.1.2'
 
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+gem 'devise-i18n'
 
 gem 'config', '~> 1.2', '>= 1.2.1'
 gem 'apartment'
