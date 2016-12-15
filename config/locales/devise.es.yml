@@ -1,0 +1,8 @@
+es:
+  devise:
+    registrations:
+      new:
+        sign_up: Crear una cuenta
+        sign_up_header: Crear una cuenta nueva
+      shared:
+        sign_up: Crear una cuenta
