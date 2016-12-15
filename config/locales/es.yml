@@ -1,0 +1,35 @@
+es:
+  application:
+    tagline: La solución de repositorio de próxima generación
+
+  activerecord:
+    attributes:
+      site:
+        institution_name_full: El nombre de la institución
+  status:
+    index:
+      services: 'Servicios'
+    service:
+      ok: 'Bueno'
+      down: 'Inactivo'
+  hyrax:
+    admin:
+      sidebar:
+        activity: 'Actividad'
+        repository_activity: 'Actividad de repositorio'
+        system_status: 'Estado del sistema'
+        activity_summary: 'Resumen de la actividad'
+        user_activity: 'Su actividad'
+        profile: 'Perfil'
+        user_notifications: 'Notificaciones'
+        transfers: 'Transferencias'
+        labels:                'Etiquetas'
+        appearance:            'Apariencia'
+        content_blocks:        'Bloques de contenido'
+        technical:             'Técnico'
+        roles_and_permissions: 'Roles y permisos'
+        manage_roles_and_permissions: 'Defina roles y permisos'
+        manage_users: 'Administrar usuarios'
+        accounts:              'Cuentas'
+        tasks: 'Tareas'
+        statistics: 'Informes'
