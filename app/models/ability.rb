@@ -33,11 +33,6 @@ class Ability
     end
   end
 
-  # Override admin? helper to use rolify roles
-  def admin?
-    current_user.has_role?(:admin, Site.instance)
-  end
-
   private
 
     def global_models
