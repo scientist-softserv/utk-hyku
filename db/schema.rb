@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203173439) do
+ActiveRecord::Schema.define(version: 20161215200945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20161203173439) do
     t.datetime "updated_at"
     t.date     "release_date"
     t.string   "release_period"
+    t.string   "workflow_name"
     t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", using: :btree
   end
 
