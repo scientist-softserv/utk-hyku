@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def groups
+    return ['admin'] if has_role?(:admin, Site.instance)
+    []
+  end
+
   private
 
     def add_default_roles

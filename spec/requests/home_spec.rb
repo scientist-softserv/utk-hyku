@@ -12,7 +12,7 @@ RSpec.describe 'Home page', type: :request do
         before { host! 'localhost' }
         it 'redirects to the accounts landing page' do
           get root_path
-          expect(response).to redirect_to(splash_path)
+          expect(response).to redirect_to(splash_path(locale: 'en'))
         end
       end
 
