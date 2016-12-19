@@ -48,9 +48,9 @@ module Hyku
       end
     end
 
-    def nav_link(href)
+    def nav_link(href, **link_options)
       content_tag(:li, class: ('active' if current_page?(href))) do
-        link_to(href) do
+        link_to(href, link_options) do
           yield
         end
       end
