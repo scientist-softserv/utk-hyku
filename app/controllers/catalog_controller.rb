@@ -314,4 +314,10 @@ class CatalogController < ApplicationController
     # mean") suggestion is offered.
     config.spell_max = 5
   end
+
+  # This is overridden just to give us a JSON response for debugging.
+  def show
+    _, @document = fetch params[:id]
+    render json: @document.to_h
+  end
 end
