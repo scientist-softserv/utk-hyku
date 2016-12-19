@@ -52,7 +52,7 @@
           <%= menu.nav_link(main_app.edit_site_appearances_path) do %>
             <span class="fa fa-paint-brush"></span> <%= t('hyrax.admin.sidebar.appearance') %>
           <% end %>
-          <%= menu.nav_link(main_app.edit_site_content_blocks_path) do %>
+          <%= menu.nav_link(main_app.edit_site_content_blocks_path, :'data-no-turbolink' => "true") do %>
             <span class="fa fa-file-text-o"></span> <%= t('hyrax.admin.sidebar.content_blocks') %>
           <% end %>
         <% end %>
