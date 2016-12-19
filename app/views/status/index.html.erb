@@ -1,19 +1,21 @@
-<h1 class="page-title"><span class="fa fa-flag"></span> <%= t(:'hyrax.admin.sidebar.system_status')%></h1>
+<% content_for :page_header do %>
+  <h1><span class="fa fa-flag"></span> <%= t(:'hyrax.admin.sidebar.system_status') %></h1>
+<% end %>
 
-<div>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#services" aria-controls="services" role="tab" data-toggle="tab"><%= t(:'.services') %></a></li>
-  </ul>
-  
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="services">
-      <ul class="list-group">
-        <%= render partial: 'service', locals: { name: 'Fedora', status: current_account.fcrepo_endpoint.ping } %>
-        <%= render partial: 'service', locals: { name: 'Solr', status: current_account.solr_endpoint.ping } %>
-        <%= render partial: 'service', locals: { name: 'Redis', status: current_account.redis_endpoint.ping } %>
-        <%= render partial: 'service', locals: { name: 'Database', status: ActiveRecord::Base.connection.active? } %>
-      </ul>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= t(:'.services') %></h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+            <%= render partial: 'service', locals: { name: 'Fedora', status: current_account.fcrepo_endpoint.ping } %>
+            <%= render partial: 'service', locals: { name: 'Solr', status: current_account.solr_endpoint.ping } %>
+            <%= render partial: 'service', locals: { name: 'Redis', status: current_account.redis_endpoint.ping } %>
+            <%= render partial: 'service', locals: { name: 'Database', status: ActiveRecord::Base.connection.active? } %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
