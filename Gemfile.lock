@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 5ce3664232b11ecde5835825cc8fc3e551a3cdce
+  revision: 2ae08abd378c61a9adf6f9fab24f11be4a264733
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -207,7 +207,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.11.1)
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.0.3)
     concurrent-ruby-ext (1.0.2)
       concurrent-ruby (~> 1.0.2)
     config (1.3.0)
