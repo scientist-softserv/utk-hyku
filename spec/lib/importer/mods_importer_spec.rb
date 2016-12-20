@@ -2,19 +2,12 @@ require 'rails_helper'
 require 'importer'
 require 'importer/mods_parser'
 
-RSpec.describe Importer::ModsImporter do
+RSpec.describe Importer::ModsImporter, :clean do
   let(:image_directory) { 'spec/fixtures/images' }
   let(:importer) { described_class.new(image_directory) }
 
-  before do
-    ActiveFedora::Base.find('kx532cb7981').destroy(eradicate: true) if ActiveFedora::Base.exists?('kx532cb7981')
-  end
-
   describe '#import an image' do
     let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
-    before do
-      ActiveFedora::Base.find('xv169dn4538').destroy(eradicate: true) if ActiveFedora::Base.exists?('xv169dn4538')
-    end
 
     it 'creates a new image and a collection' do
       image = nil

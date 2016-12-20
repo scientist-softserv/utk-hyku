@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importer'
 
-RSpec.describe Importer::Factory::ETDFactory do
+RSpec.describe Importer::Factory::ETDFactory, :clean do
   let(:factory) { described_class.new(attributes) }
 
   let(:files) { [] }
