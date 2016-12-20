@@ -1,11 +1,6 @@
 module Hyku
-  class Group
-    attr_accessor :name, :description
-
-    def initialize(name:, description:)
-      @name = name
-      @description = description
-    end
+  class Group < ApplicationRecord
+    self.table_name = 'hyku_groups'
 
     def number_of_members
       0
