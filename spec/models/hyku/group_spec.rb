@@ -6,7 +6,7 @@ module Hyku
       let (:name) { 'Empty Group' }
       let (:description) { 'Add members plz' }
       subject { described_class.new(name: name, description: description) }
-      it { is_expected.to have_attributes(name: name, description: description, number_of_users: 0) }
+      it { is_expected.to have_attributes(name: name, description: description, number_of_members: 0) }
     end
   end
 end
