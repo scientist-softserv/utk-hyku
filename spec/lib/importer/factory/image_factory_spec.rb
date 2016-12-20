@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importer'
 
-RSpec.describe Importer::Factory::ImageFactory do
+RSpec.describe Importer::Factory::ImageFactory, :clean do
   let(:factory) { described_class.new(attributes) }
 
   let(:files) { [] }
