@@ -50,6 +50,7 @@ en:
         technical:             'Technical'
         roles_and_permissions: 'Roles and permissions'
         manage_roles_and_permissions: 'Define roles and permissions'
+        manage_groups: 'Manage groups'
         manage_users: 'Manage users'
         accounts:              'Accounts'
         tasks: 'Tasks'
