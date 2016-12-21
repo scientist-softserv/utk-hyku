@@ -17,8 +17,24 @@ module Admin
         flash.now[:notice] = "#{new_group.name} created"
         redirect_to admin_groups_path
       else
-        logger.error('Hyku::Group failed to save')
-        flash.now[:error] = 'Group failed to save'
+        logger.error('Hyku::Group could not be created')
+        flash.now[:error] = 'Group could not be created'
+        redirect_to admin_groups_path
+      end
+    end
+
+    def edit
+      @group = Hyku::Group.find_by_id(params[:id])
+    end
+
+    def update
+      group = Hyku::Group.find_by_id(params[:id])
+      if group.save
+        flash.now[:notice] = "#{group.name} updated"
+        redirect_to admin_groups_path
+      else
+        logger.error('Hyku::Group failed to update')
+        flash.now[:error] = 'Group failed to update'
         redirect_to admin_groups_path
       end
     end
