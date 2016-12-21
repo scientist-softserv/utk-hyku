@@ -9,7 +9,7 @@ module Hyku
         {
           name: name,
           description: description,
-          number_of_members: 0
+          number_of_users: 0
         }
       end
       subject { described_class.new(name: name, description: description) }
