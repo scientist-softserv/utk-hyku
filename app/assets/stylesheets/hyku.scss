@@ -124,3 +124,13 @@ footer.navbar {
     padding: $nav-link-padding;
   }
 }
+
+.group-listing {
+  .panel-heading {
+    line-height: 2.4em;
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+}
