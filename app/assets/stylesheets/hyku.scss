@@ -134,3 +134,17 @@ footer.navbar {
     vertical-align: middle;
   }
 }
+
+.callout-danger {
+  background-color: $well-bg;
+  border-color: $brand-danger;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $brand-danger;
+  }
+}

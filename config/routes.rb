@@ -49,7 +49,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: :index
-    resources :groups
+    resources :groups do
+      member do
+        get :remove
+      end
+    end
   end
 
   mount Peek::Railtie => '/peek'
