@@ -39,6 +39,22 @@ module Admin
       end
     end
 
+    def remove
+      @group = Hyku::Group.find_by_id(params[:id])
+    end
+
+    def destroy
+      group = Hyku::Group.find_by_id(params[:id])
+      if group.destroy
+        flash.now[:notice] = "#{group.name} destroyed"
+        redirect_to admin_groups_path
+      else
+        logger.error('Hyku::Group could not be destroyed')
+        flash.now[:error] = 'Group could not be destroyed'
+        redirect_to admin_groups_path
+      end
+    end
+
     private
 
       def deny_access(_exception)
