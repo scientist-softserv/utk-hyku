@@ -1,37 +1,46 @@
-<h1><%= application_name %> Groups</h1>
+<h1>
+  <span class="fa fa-users"></span>
+  Manage Groups
+</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Users</th>
-      <th>Date Created</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td>
-          <b><%= group.name %></b>
-          <% if group.description.present? %>
-            <p class="help-block">
-              <%= group.description %>
-            </p>
-          <% end %>
-        </td>
-        <td>
-          <%= group.number_of_users %>
-        </td>
-        <td>
-          <%= group.created_at.to_date.to_s(:db) %>
-        </td>
-        <td>
-          <%= link_to 'edit groups and users', edit_admin_group_path(group) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New Group', new_admin_group_path, class: 'btn btn-default' %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    There are <b><%= Hyku::Group.all.count %> groups</b> in this repository.
+    <%= link_to 'New Group', new_admin_group_path, class: 'btn btn-primary pull-right' %>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Users</th>
+          <th>Date Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+          <tr>
+            <td>
+              <b><%= group.name %></b>
+              <% if group.description.present? %>
+                <p class="help-block">
+                <%= group.description %>
+                </p>
+              <% end %>
+            </td>
+            <td>
+              <%= group.number_of_users %>
+            </td>
+            <td>
+              <%= group.created_at.to_date.to_s(:db) %>
+            </td>
+            <td>
+              <%= link_to 'edit groups and users', edit_admin_group_path(group) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
