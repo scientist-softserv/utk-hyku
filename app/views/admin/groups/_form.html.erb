@@ -1,0 +1,19 @@
+<%
+  if @group.new_record?
+    target_path = admin_groups_path
+  else
+    target_path = admin_group_path(@group)
+  end
+%>
+<div class="panel panel-default">
+  <%= simple_form_for @group, url: target_path do |f| %>
+    <div class="panel-body">
+      <%= f.input :name %>
+      <%= f.input :description, as: :text %>
+    </div>
+    <div class="panel-footer text-right">
+      <%= link_to 'Cancel', :back, class: 'btn btn-link' %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
