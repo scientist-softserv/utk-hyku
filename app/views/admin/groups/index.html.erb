@@ -1,3 +1,4 @@
+<% content_for :page_title, "Manage Groups // Administration // #{application_name}" %>
 <h1>
   <span class="fa fa-users"></span>
   Manage Groups
@@ -36,7 +37,7 @@
               <%= group.created_at.to_date.to_s(:db) %>
             </td>
             <td>
-              <%= link_to 'edit groups and users', edit_admin_group_path(group) %>
+              <%= link_to 'Edit group & users', edit_admin_group_path(group), class: 'btn btn-default' %>
             </td>
           </tr>
         <% end %>
