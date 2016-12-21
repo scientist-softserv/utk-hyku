@@ -1,0 +1,13 @@
+<h1>New <%= application_name %> Group</h1>
+<div class="panel panel-default">
+  <%= simple_form_for @group, url: admin_groups_path do |f| %>
+    <div class="panel-body">
+      <%= f.input :name %>
+      <%= f.input :description, as: :text %>
+    </div>
+    <div class="panel-footer text-right">
+      <%= link_to 'Cancel', :back, class: 'btn btn-link' %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
