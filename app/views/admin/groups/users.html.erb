@@ -1,0 +1,50 @@
+<% content_for :page_title, "Groups Members // Administration // #{application_name}" %>
+<h1>
+  <span class="fa fa-users"></span>
+  Edit Group
+</h1>
+
+<div class="panel panel-default group-user-listing">
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Joined</th>
+          <th>Last access</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              <%= user.user_key %>
+            </td>
+            <td>
+              <%= user.created_at.to_date.to_s(:db) %>
+            </td>
+            <td>
+              <%= user.updated_at.to_s(:db) %>
+            </td>
+            <td>
+              <%= link_to(
+                'Remove',
+                remove_admin_group_user_path(@group, user),
+                class: 'btn btn-danger',
+                method: :delete,
+                data: {
+                  confirm: 'Are you sure you want to revoke the mebership of this user?'
+                }
+              ) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
