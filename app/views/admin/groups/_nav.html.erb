@@ -22,14 +22,15 @@
 
 <div class="panel-tab-wrapper">
   <ul class="nav nav-tabs">
-    <% tabs.each_key do |tab| %>
-      <% if (controller == tabs[tab][:controller]) && (action == tabs[tab][:action]) %>
+    <% tabs.each_key do |tab_key| %>
+      <% tab = OpenStruct.new(tabs[tab_key].merge({ name: tab_key.to_s.titleize })) %>
+      <% if controller == tab.controller && action == tab.action %>
         <%= content_tag :li, role: 'presentation', class: 'active' do %>
-          <%= link_to tab.to_s.titleize, 'javascript:void(0);' %>
+          <%= link_to tab.name, 'javascript:void(0);' %>
         <% end %>
       <% else %>
         <%= content_tag :li, role: 'presentation' do %>
-          <%= link_to tab.to_s.titleize, tabs[tab][:path] %>
+          <%= link_to tab.name, tab.path %>
         <% end %>
       <% end %>
     <% end %>
