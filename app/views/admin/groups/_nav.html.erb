@@ -1,0 +1,37 @@
+<%
+  controller = params[:controller]
+  action = params[:action]
+  tabs = {
+    description: {
+      controller: 'admin/groups',
+      action: 'edit',
+      path: edit_admin_group_path(@group)
+    },
+    users: {
+      controller: 'admin/group_users',
+      action: 'index',
+      path: admin_group_users_path(@group)
+    },
+    remove: {
+      controller: 'admin/groups',
+      action: 'remove',
+      path: remove_admin_group_path(@group)
+    }
+  }
+%>
+
+<div class="panel-tab-wrapper">
+  <ul class="nav nav-tabs">
+    <% tabs.each_key do |tab| %>
+      <% if (controller == tabs[tab][:controller]) && (action == tabs[tab][:action]) %>
+        <%= content_tag :li, role: 'presentation', class: 'active' do %>
+          <%= link_to tab.to_s.titleize, 'javascript:void(0);' %>
+        <% end %>
+      <% else %>
+        <%= content_tag :li, role: 'presentation' do %>
+          <%= link_to tab.to_s.titleize, tabs[tab][:path] %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
