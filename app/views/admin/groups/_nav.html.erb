@@ -1,29 +1,31 @@
 <%
   controller = params[:controller]
   action = params[:action]
-  tabs = {
-    description: {
+  tabs = [
+    OpenStruct.new({
+      name: 'Description',
       controller: 'admin/groups',
       action: 'edit',
       path: edit_admin_group_path(@group)
-    },
-    users: {
+    }),
+    OpenStruct.new({
+      name: 'Users',
       controller: 'admin/group_users',
       action: 'index',
       path: admin_group_users_path(@group)
-    },
-    remove: {
+    }),
+    OpenStruct.new({
+      name: 'Remove',
       controller: 'admin/groups',
       action: 'remove',
       path: remove_admin_group_path(@group)
-    }
-  }
+    })
+  ]
 %>
 
 <div class="panel-tab-wrapper">
   <ul class="nav nav-tabs">
-    <% tabs.each_key do |tab_key| %>
-      <% tab = OpenStruct.new(tabs[tab_key].merge({ name: tab_key.to_s.titleize })) %>
+    <% tabs.each do |tab| %>
       <% if controller == tab.controller && action == tab.action %>
         <%= content_tag :li, role: 'presentation', class: 'active' do %>
           <%= link_to tab.name, 'javascript:void(0);' %>
