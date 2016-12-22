@@ -53,6 +53,13 @@ Rails.application.routes.draw do
       member do
         get :remove
       end
+
+      resources :users, only: [:index], controller: 'group_users' do
+        member do
+          post :add
+          delete :remove
+        end
+      end
     end
   end
 
