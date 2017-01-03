@@ -147,6 +147,26 @@ footer.navbar {
   }
 }
 
+.group-listing .table {
+  td:nth-child(2),
+  th:nth-child(2) {
+    text-align: right;
+    width: 5em;
+  }
+
+  td:nth-child(3),
+  th:nth-child(3) {
+    text-align: right;
+    width: 9em;
+  }
+
+  td:nth-child(4),
+  th:nth-child(4) {
+    text-align: center;
+    width: 13em;
+  }
+}
+
 .callout-danger {
   background-color: $well-bg;
   border-color: $brand-danger;

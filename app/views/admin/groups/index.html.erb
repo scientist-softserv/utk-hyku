@@ -6,8 +6,13 @@
 
 <div class="panel panel-default group-listing">
   <div class="panel-heading">
-    There are <b><%= Hyku::Group.all.count %> groups</b> in this repository.
-    <%= link_to 'New Group', new_admin_group_path, class: 'btn btn-primary pull-right' %>
+    <% group_count = Hyku::Group.all.count %>
+    <% if group_count == 1 %>
+      There is <b><%= group_count %> group</b> in this repository.
+    <% else %>
+      There are <b><%= group_count%> groups</b> in this repository.
+    <% end %>
+    <%= link_to 'Create New Group', new_admin_group_path, class: 'btn btn-primary pull-right' %>
   </div>
   <div class="panel-body">
     <table class="table table-striped">
