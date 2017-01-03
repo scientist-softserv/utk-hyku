@@ -4,7 +4,7 @@ module Admin
     layout 'admin'
 
     def index
-      @groups = Hyku::Group.all
+      @groups = Hyku::Group.page(page_number).per(page_size)
     end
 
     def new
@@ -67,6 +67,14 @@ module Admin
 
       def new_group_params
         params.require(:hyku_group).permit(:name, :description)
+      end
+
+      def page_number
+        params[:page].to_i || 1
+      end
+
+      def page_size
+        params[:per].to_i || 10
       end
   end
 end
