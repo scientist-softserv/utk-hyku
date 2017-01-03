@@ -148,6 +148,8 @@ footer.navbar {
 }
 
 .group-listing .table {
+  margin-bottom: 0;
+
   td:nth-child(2),
   th:nth-child(2) {
     text-align: right;
