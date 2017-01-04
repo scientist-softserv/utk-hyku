@@ -1,0 +1,7 @@
+<%= form_tag admin_groups_path, method: :get, class: 'form-inline' do |f| %>
+  <div class="form-group">
+    <%= label_tag :q, 'Search' %>
+    <%= text_field_tag :q, params[:q], class: 'form-control' %>
+  </div>
+  <%= submit_tag 'Go', class: 'btn btn-default' %>
+<% end %>
