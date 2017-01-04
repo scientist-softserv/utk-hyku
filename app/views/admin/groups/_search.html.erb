@@ -1,6 +1,10 @@
 <%= form_tag @target, method: :get, class: 'form-inline' do |f| %>
-  <%= hidden_field_tag :per, params[:per] %>
-  <%= hidden_field_tag :page, params[:page] %>
+  <% if params[:per].present? %>
+    <%= hidden_field_tag :per, params[:per] %>
+  <% end %>
+  <% if params[:page].present? %>
+    <%= hidden_field_tag :page, params[:page] %>
+  <% end %>
   <div class="form-group">
     <%= label_tag :q, 'Search' %>
     <%= text_field_tag :q, params[:q], class: 'form-control' %>
