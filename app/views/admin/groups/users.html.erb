@@ -7,6 +7,27 @@
 <%= render '/admin/groups/nav' %>
 <div class="panel panel-default group-user-listing">
   <div class="panel-body">
+
+    <p>Group members assume all privlidges assigned to this group.</p>
+
+    <h3>Add User to Group</h3>
+    <div class="clearfix">
+      <%# NOTE: the path for searching for users will need to be changed %>
+      <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
+        <div class="form-group">
+          <%= label_tag :q, 'Search for user', class: 'control-label' %>
+          <%= text_field_tag :q, params[:q], placeholder: 'Name or ID', class: 'form-control' %>
+        </div>
+        <%= submit_tag 'Go', class: 'btn btn-default' %>
+      <% end %>
+
+      <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
+        <%= text_field_tag :user_id, nil, placeholder: 'User ID', class: 'form-control' %>
+        <%= submit_tag 'Add', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+    <h3>Current Group Members</h3>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -42,7 +63,7 @@
                   confirm: 'Are you sure you want to revoke the mebership of this user?'
                 }
               ) %>
-            </td>
+          </td>
           </tr>
         <% end %>
       </tbody>
