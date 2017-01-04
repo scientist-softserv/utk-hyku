@@ -7,8 +7,8 @@ module Hyku
 
     attr_reader :view_context
 
-    delegate :controller, :controller_name, :content_tag, :current_page?, :link_to,
-             to: :view_context
+    delegate :controller, :controller_name, :action_name, :content_tag,
+             :current_page?, :link_to, to: :view_context
 
     # Returns true if the current controller happens to be one of the controllers that deals
     # with settings.  This is used to keep the parent section on the sidebar open.
@@ -19,7 +19,8 @@ module Hyku
     # Returns true if the current controller happens to be one of the controllers that deals
     # with workflow.  This is used to keep the parent section on the sidebar open.
     def workflows_section?
-      %w(admin workflow_roles).include?(controller_name)
+      %w(workflow_roles).include?(controller_name) ||
+        (controller_name == 'admin' && action_name == 'workflows')
     end
 
     # Returns true if the current controller happens to be one of the controllers that deals

@@ -79,5 +79,8 @@ RSpec/MessageExpectation:
 RSpec/ExampleLength:
   Max: 16
 
+RSpec/NestedGroups:
+  MaxNesting: 4
+
 RSpec/MultipleExpectations:
   Enabled: false
