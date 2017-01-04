@@ -8,65 +8,90 @@
 <div class="panel panel-default group-user-listing">
   <div class="panel-body">
 
-    <p>Group members assume all privlidges assigned to this group.</p>
+    <p class="lead">Group members assume all privlidges assigned to this group.</p>
 
-    <h3>Add User to Group</h3>
-    <div class="clearfix">
-      <%# NOTE: the path for searching for users will need to be changed %>
-      <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
-        <div class="form-group">
-          <%= label_tag :q, 'Search for user', class: 'control-label' %>
-          <%= text_field_tag :q, params[:q], placeholder: 'Name or ID', class: 'form-control' %>
-        </div>
-        <%= submit_tag 'Go', class: 'btn btn-default' %>
-      <% end %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add User to Group</h3>
+      </div>
+      <div class="panel-body">
+        <%# NOTE: the path for searching for users will need to be changed %>
+        <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
+          <div class="form-group">
+            <%= label_tag :q, 'Search for user', class: 'control-label' %>
+            <%= text_field_tag :q, params[:q], placeholder: 'Name or ID', class: 'form-control' %>
+          </div>
+          <%= submit_tag 'Go', class: 'btn btn-default' %>
+        <% end %>
 
-      <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
-        <%= text_field_tag :user_id, nil, placeholder: 'User ID', class: 'form-control' %>
-        <%= submit_tag 'Add', class: 'btn btn-primary' %>
-      <% end %>
+        <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
+          <%= text_field_tag :user_id, nil, placeholder: 'User ID', class: 'form-control' %>
+          <%= submit_tag 'Add', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
 
-    <h3>Current Group Members</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Username</th>
-          <th>Joined</th>
-          <th>Last access</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td>
-              <%= user.name %>
-            </td>
-            <td>
-              <%= user.user_key %>
-            </td>
-            <td>
-              <%= user.created_at.to_date.to_s(:db) %>
-            </td>
-            <td>
-              <%= user.updated_at.to_s(:db) %>
-            </td>
-            <td>
-              <%= link_to(
-                'Remove',
-                remove_admin_group_user_path(@group, user),
-                class: 'btn btn-danger',
-                method: :delete,
-                data: {
-                  confirm: 'Are you sure you want to revoke the mebership of this user?'
-                }
-              ) %>
-          </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Group Members</h3>
+      </div>
+      <div class="panel-body">
+        <div class="container-fluid full-width-container">
+          <div class="row">
+            <div class="col-sm-6">
+              <%= render '/admin/groups/per_page', locals: { target: admin_group_users_path } %>
+            </div>
+            <div class="col-sm-6 text-right">
+              <%= render '/admin/groups/search', locals: { target: admin_group_users_path } %>
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Joined</th>
+              <th>Last access</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= user.name %>
+                </td>
+                <td>
+                  <%= user.user_key %>
+                </td>
+                <td>
+                  <%= user.created_at.to_date.to_s(:db) %>
+                </td>
+                <td>
+                  <%= user.updated_at.to_s(:db) %>
+                </td>
+                <td>
+                  <%= link_to(
+                    'Remove',
+                    remove_admin_group_user_path(@group, user),
+                    class: 'btn btn-danger',
+                    method: :delete,
+                    data: {
+                      confirm: 'Are you sure you want to revoke the mebership of this user?'
+                    }
+                  ) %>
+              </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <nav class="pull-right">
+          <%= paginate @users %>
+        </nav>
+      </div>
+    </div>
   </div>
 </div>

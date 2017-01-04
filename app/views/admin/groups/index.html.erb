@@ -15,53 +15,51 @@
     <%= link_to 'Create New Group', new_admin_group_path, class: 'btn btn-primary pull-right' %>
   </div>
   <div class="panel-body">
-    <div class="container-fluid">
+    <div class="container-fluid full-width-container">
       <div class="row">
         <div class="col-sm-6">
-          <%= render 'per_page' %>
+          <%= render 'per_page', locals: { target: admin_groups_path } %>
         </div>
         <div class="col-sm-6 text-right">
-          <%= render 'search' %>
+          <%= render 'search', locals: { target: admin_groups_path } %>
         </div>
       </div>
     </div>
-    <div class="container-fluid">
-      <table class="table table-striped">
-        <thead>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Users</th>
+          <th>Date Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
           <tr>
-            <th>Name</th>
-            <th>Users</th>
-            <th>Date Created</th>
-            <th>Actions</th>
+            <td>
+              <b><%= group.name %></b>
+              <% if group.description.present? %>
+                <p class="help-block">
+                <%= group.description %>
+                </p>
+              <% end %>
+            </td>
+            <td>
+              <%= group.number_of_users %>
+            </td>
+            <td>
+              <%= group.created_at.to_date.to_s(:db) %>
+            </td>
+            <td>
+              <%= link_to 'Edit group & users', edit_admin_group_path(group), class: 'btn btn-default' %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @groups.each do |group| %>
-            <tr>
-              <td>
-                <b><%= group.name %></b>
-                <% if group.description.present? %>
-                  <p class="help-block">
-                  <%= group.description %>
-                  </p>
-                <% end %>
-              </td>
-              <td>
-                <%= group.number_of_users %>
-              </td>
-              <td>
-                <%= group.created_at.to_date.to_s(:db) %>
-              </td>
-              <td>
-                <%= link_to 'Edit group & users', edit_admin_group_path(group), class: 'btn btn-default' %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <nav class="pull-right">
-        <%= paginate @groups %>
-      </nav>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
+    <nav class="pull-right">
+      <%= paginate @groups %>
+    </nav>
   </div>
 </div>
