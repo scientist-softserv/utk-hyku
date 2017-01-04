@@ -1,0 +1,4 @@
+<%= form_tag admin_groups_path, method: :get, class: 'form-inline' do |f| %>
+  Show <%= select_tag :per, options_for_select([10, 25, 100], selected: params[:per]), class: 'form-control' %> groups per page
+  <%= submit_tag 'Update', class: 'btn btn-default' %>
+<% end %>
