@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 8fd3fcd4053aefbc238913f813ecd5bc931d7916
+  revision: 343f84a2e04ea7a12cd88344a0494b5234f20f72
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -129,17 +129,17 @@ GEM
     arel (7.1.4)
     ast (2.3.0)
     atomic (1.1.99)
-    autoprefixer-rails (6.6.0)
+    autoprefixer-rails (6.6.1)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.6.43)
-      aws-sdk-resources (= 2.6.43)
-    aws-sdk-core (2.6.43)
+    aws-sdk (2.6.44)
+      aws-sdk-resources (= 2.6.44)
+    aws-sdk-core (2.6.44)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.43)
-      aws-sdk-core (= 2.6.43)
+    aws-sdk-resources (2.6.44)
+      aws-sdk-core (= 2.6.44)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -411,7 +411,7 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (2.0.2)
-    json-ld (2.1.1)
+    json-ld (2.1.2)
       multi_json (~> 1.12)
       rdf (~> 2.1)
     json-schema (2.7.0)
@@ -470,7 +470,7 @@ GEM
       redic
     nio4r (1.2.1)
     noid (0.9.0)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     nom-xml (0.6.0)
       activesupport (>= 3.2.18)
@@ -525,13 +525,13 @@ GEM
     posix-spawn (0.3.12)
     power_converter (0.1.2)
     powerpack (0.1.1)
-    public_suffix (2.0.4)
+    public_suffix (2.0.5)
     puma (3.6.2)
-    qa (0.10.2)
+    qa (0.11.0)
       activerecord-import
       deprecation
       faraday
-      nokogiri (~> 1.6.0)
+      nokogiri (~> 1.6)
       rails (>= 4.2.0, < 6.0)
     rack (2.0.1)
     rack-protection (1.5.3)
@@ -572,11 +572,11 @@ GEM
     rdf (2.1.1)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
-    rdf-aggregate-repo (2.0.0)
+    rdf-aggregate-repo (2.1.0)
       rdf (~> 2.0)
     rdf-isomorphic (2.0.0)
       rdf (~> 2.0)
-    rdf-rdfa (2.0.1)
+    rdf-rdfa (2.1.0)
       haml (~> 4.0)
       htmlentities (~> 4.3)
       rdf (~> 2.0)
@@ -590,10 +590,10 @@ GEM
     rdf-turtle (2.0.0)
       ebnf (~> 1.0, >= 1.0.1)
       rdf (~> 2.0)
-    rdf-vocab (2.1.0)
+    rdf-vocab (2.1.1)
       rdf (~> 2.1)
-    rdf-xsd (2.0.0)
-      rdf (~> 2.0)
+    rdf-xsd (2.1.0)
+      rdf (~> 2.1)
     redic (1.5.0)
       hiredis
     redis (3.3.2)
@@ -686,7 +686,7 @@ GEM
       faraday
       ruby-progressbar
       rubyzip
-    solrizer (3.4.0)
+    solrizer (3.4.1)
       activesupport
       daemons
       nokogiri
@@ -713,7 +713,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     tins (1.13.0)
-    tinymce-rails (4.5.1)
+    tinymce-rails (4.5.2)
       railties (>= 3.1.1)
     tinymce-rails-imageupload (4.0.17.beta)
       railties (>= 3.2, < 6)
