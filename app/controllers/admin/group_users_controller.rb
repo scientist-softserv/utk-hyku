@@ -4,7 +4,7 @@ module Admin
 
     def index
       @group = Hyku::Group.find_by_id(params[:group_id])
-      @users = @group.members.page(page_number).per(page_size)
+      @users = @group.search_members(params[:q]).page(page_number).per(page_size)
       render template: 'admin/groups/users'
     end
 
