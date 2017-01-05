@@ -18,6 +18,11 @@ module Admin
     end
 
     def remove
+      group = Hyku::Group.find_by_id(params[:group_id])
+      group.remove_members_by_id(params[:id])
+      respond_to do |format|
+        format.html { redirect_to admin_group_users_path(group) }
+      end
     end
 
     private
