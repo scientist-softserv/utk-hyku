@@ -4,7 +4,7 @@ module Admin
     layout 'admin'
 
     def index
-      @groups = Hyku::Group.page(page_number).per(page_size)
+      @groups = Hyku::Group.search(params[:q]).page(page_number).per(page_size)
     end
 
     def new
