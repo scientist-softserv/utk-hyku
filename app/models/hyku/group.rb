@@ -23,13 +23,13 @@ module Hyku
     end
 
     def add_members_by_id(ids, member_class: DEFAULT_MEMBER_CLASS)
-      new_members = member_class.find(Array.wrap(ids))
-      new_members.collect { |m| m.add_role(MEMBERSHIP_ROLE, self) }
+      new_members = member_class.find(ids)
+      Array.wrap(new_members).collect { |m| m.add_role(MEMBERSHIP_ROLE, self) }
     end
 
     def remove_members_by_id(ids, member_class: DEFAULT_MEMBER_CLASS)
-      old_members = member_class.find(Array.wrap(ids))
-      old_members.collect { |m| m.remove_role(MEMBERSHIP_ROLE, self) }
+      old_members = member_class.find(ids)
+      Array.wrap(old_members).collect { |m| m.remove_role(MEMBERSHIP_ROLE, self) }
     end
 
     def members(member_class: DEFAULT_MEMBER_CLASS)
