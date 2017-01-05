@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new
 
-  curation_concerns_collections
   curation_concerns_basic_routes do
     member do
       get :manifest
