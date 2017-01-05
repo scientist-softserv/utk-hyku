@@ -6,6 +6,14 @@ module Hyku
     MEMBERSHIP_ROLE = :member
     DEFAULT_MEMBER_CLASS = User
 
+    def self.search(query)
+      if query.present?
+        where("name LIKE :q OR description LIKE :q", q: "%#{query}%")
+      else
+        all
+      end
+    end
+
     def add_members_by_id(ids, member_class: DEFAULT_MEMBER_CLASS)
       new_members = member_class.find(Array.wrap(ids))
       new_members.collect { |m| m.add_role(MEMBERSHIP_ROLE, self) }
