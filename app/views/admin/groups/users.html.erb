@@ -25,7 +25,7 @@
         <% end %>
 
         <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
-          <%= text_field_tag :user_id, nil, placeholder: 'User ID', class: 'form-control' %>
+          <%= text_field_tag :user_ids, nil, placeholder: 'User ID', class: 'form-control' %>
           <%= submit_tag 'Add', class: 'btn btn-primary' %>
         <% end %>
       </div>

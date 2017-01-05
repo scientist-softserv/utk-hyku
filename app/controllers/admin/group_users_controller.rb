@@ -4,11 +4,17 @@ module Admin
 
     def index
       @group = Hyku::Group.find_by_id(params[:group_id])
-      @users = User.page(page_number).per(page_size)
+      @users = @group.members.page(page_number).per(page_size)
       render template: 'admin/groups/users'
     end
 
     def add
+      group = Hyku::Group.find_by_id(params[:group_id])
+      users = Array.wrap(params[:user_ids])
+      group.add_members_by_id(users)
+      respond_to do |format|
+        format.html { redirect_to admin_group_users_path(group) }
+      end
     end
 
     def remove
