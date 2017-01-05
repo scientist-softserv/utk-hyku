@@ -176,6 +176,20 @@ footer.navbar {
   padding-right: 0;
 }
 
+.list-scope {
+  position: relative;
+
+  .list-scope--query {
+    padding-right: 1.8em;
+  }
+
+  .list-scope--reset {
+    position: absolute;
+    bottom: .4em;
+    right: .5em;
+  }
+}
+
 .callout-danger {
   background-color: $well-bg;
   border-color: $brand-danger;
