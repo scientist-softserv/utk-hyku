@@ -75,7 +75,7 @@
                 <td>
                   <%= link_to(
                     'Remove',
-                    remove_admin_group_user_path(@group, user),
+                    remove_admin_group_user_path(@group, user.id),
                     class: 'btn btn-danger',
                     method: :delete,
                     data: {
