@@ -46,10 +46,18 @@ class Account < ActiveRecord::Base
     cname
   end
 
+  # Make all the account specific connections active
   def switch!
     solr_endpoint.switch! if solr_endpoint
     fcrepo_endpoint.switch! if fcrepo_endpoint
     redis_endpoint.switch! if redis_endpoint
+    load_workflows
+  end
+
+  # Ensure that some workflows have been loaded into the database
+  def load_workflows
+    return if Sipity::Workflow.any?
+    Hyrax::Workflow::WorkflowImporter.load_workflows
   end
 
   def switch
