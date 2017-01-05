@@ -47,46 +47,48 @@
           </div>
         </div>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Joined</th>
-              <th>Last access</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @users.each do |user| %>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
               <tr>
-                <td>
-                  <%= user.name %>
-                </td>
-                <td>
-                  <%= user.user_key %>
-                </td>
-                <td>
-                  <%= user.created_at.to_date.to_s(:db) %>
-                </td>
-                <td>
-                  <%= user.updated_at.to_s(:db) %>
-                </td>
-                <td>
-                  <%= link_to(
-                    'Remove',
-                    remove_admin_group_user_path(@group, user.id),
-                    class: 'btn btn-danger',
-                    method: :delete,
-                    data: {
-                      confirm: 'Are you sure you want to revoke the mebership of this user?'
-                    }
-                  ) %>
-              </td>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Joined</th>
+                <th>Last access</th>
+                <th>Actions</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <%= user.name %>
+                  </td>
+                  <td>
+                    <%= user.user_key %>
+                  </td>
+                  <td>
+                    <%= user.created_at.to_date.to_s(:db) %>
+                  </td>
+                  <td>
+                    <%= user.updated_at.to_s(:db) %>
+                  </td>
+                  <td>
+                    <%= link_to(
+                      'Remove',
+                      remove_admin_group_user_path(@group, user.id),
+                      class: 'btn btn-danger',
+                      method: :delete,
+                      data: {
+                        confirm: 'Are you sure you want to revoke the mebership of this user?'
+                      }
+                    ) %>
+                </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
 
         <nav class="pull-right">
           <%= paginate @users %>
