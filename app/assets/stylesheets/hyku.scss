@@ -190,6 +190,10 @@ footer.navbar {
   }
 }
 
+.js-typeahead__empty-message {
+  padding: 5px 15px;
+}
+
 .callout-danger {
   background-color: $well-bg;
   border-color: $brand-danger;

@@ -28,3 +28,4 @@
 //= require blacklight_gallery/default
 
 //= require hyku/groups/per_page
+//= require hyku/groups/add_member
