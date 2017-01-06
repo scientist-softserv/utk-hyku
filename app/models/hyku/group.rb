@@ -6,6 +6,8 @@ module Hyku
     MEMBERSHIP_ROLE = :member
     DEFAULT_MEMBER_CLASS = User
 
+    validates_presence_of :name
+
     def self.search(query)
       if query.present?
         where("name LIKE :q OR description LIKE :q", q: "%#{query}%")
