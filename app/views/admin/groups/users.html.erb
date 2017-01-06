@@ -15,18 +15,17 @@
         <h3 class="panel-title">Add User to Group</h3>
       </div>
       <div class="panel-body">
-        <%# NOTE: the path for searching for users will need to be changed %>
-        <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
+        <%= form_tag hyrax.profiles_path, method: :get, class: 'form-inline pull-left js-group-user-search' do |f| %>
           <div class="form-group">
-            <%= label_tag :q, 'Search for user', class: 'control-label' %>
-            <%= text_field_tag :q, params[:q], placeholder: 'Name or ID', class: 'form-control' %>
+            <%= label_tag :uq, 'Search for user', class: 'control-label' %>
+            <%= text_field_tag :uq, params[:uq], placeholder: 'Name or username', class: 'form-control js-group-user-search__query' %>
           </div>
-          <%= submit_tag 'Go', class: 'btn btn-default' %>
+          <%= submit_tag 'Go', class: 'btn btn-default js-group-user-search__submit' %>
         <% end %>
 
-        <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left' do |f| %>
-          <%= text_field_tag :user_ids, nil, placeholder: 'User ID', class: 'form-control' %>
-          <%= submit_tag 'Add', class: 'btn btn-primary' %>
+        <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left js-group-user-add' do |f| %>
+          <%= text_field_tag :user_ids, nil, placeholder: 'User ID', class: 'form-control js-group-user-add__id' %>
+          <%= submit_tag 'Add', class: 'btn btn-primary js-group-user-add__submit' %>
         <% end %>
       </div>
     </div>

@@ -50,6 +50,13 @@ class User < ActiveRecord::Base
     []
   end
 
+  def as_json(options=nil)
+    {
+      id: id,
+      text: to_s
+    }
+  end
+
   private
 
     def add_default_roles
