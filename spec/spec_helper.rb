@@ -16,8 +16,19 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'active_fedora/noid/rspec'
 
 RSpec.configure do |config|
+  include ActiveFedora::Noid::RSpec
+
+  config.before(:suite) do
+    disable_production_minter!
+  end
+
+  config.after(:suite) do
+    enable_production_minter!
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
