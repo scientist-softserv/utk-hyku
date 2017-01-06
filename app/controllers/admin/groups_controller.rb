@@ -1,7 +1,5 @@
 module Admin
-  class GroupsController < ApplicationController
-    before_action :ensure_admin!
-    layout 'admin'
+  class GroupsController < AdminController
 
     def index
       @groups = Hyku::Group.search(params[:q]).page(page_number).per(page_size)
@@ -56,14 +54,6 @@ module Admin
     end
 
     private
-
-      def deny_access(_exception)
-        redirect_to main_app.root_url, alert: "You are not authorized to view this page"
-      end
-
-      def ensure_admin!
-        authorize! :read, :admin_dashboard
-      end
 
       def new_group_params
         params.require(:hyku_group).permit(:name, :description)
