@@ -1,5 +1,6 @@
 module Admin
   class GroupsController < AdminController
+    before_action :load_group, only: [:edit, :update, :destroy]
 
     def index
       @groups = Hyku::Group.search(params[:q]).page(page_number).per(page_size)
@@ -12,48 +13,42 @@ module Admin
     def create
       new_group = Hyku::Group.new(new_group_params)
       if new_group.save
-        flash.now[:notice] = "#{new_group.name} created"
-        redirect_to admin_groups_path
+        redirect_to admin_groups_path, notice: "#{new_group.name} created"
+      elsif new_group.invalid?
+        redirect_to new_admin_group_path, alert: 'Groups must have a name'
       else
-        logger.error('Hyku::Group could not be created')
-        flash.now[:error] = 'Group could not be created'
-        redirect_to admin_groups_path
+        logger.error('Valid Hyku::Group could not be created')
+        redirect_to new_admin_group_path, flash: { error: 'Group could not be created.' }
       end
     end
 
     def edit
-      @group = Hyku::Group.find_by_id(params[:id])
     end
 
     def update
-      group = Hyku::Group.find_by_id(params[:id])
-      if group.save
-        flash.now[:notice] = "#{group.name} updated"
-        redirect_to admin_groups_path
+      if @group.save
+        redirect_to admin_groups_path, notice: "#{@group.name} updated"
+      elsif @group.invalid?
+        redirect_to edit_admin_group_path(@group), alert: "#{@group.name} is invalid and could not be updated."
       else
-        logger.error('Hyku::Group failed to update')
-        flash.now[:error] = 'Group failed to update'
-        redirect_to admin_groups_path
+        logger.error("Valid Hyku::Group id:#{@group.id} could not be updated")
+        redirect_to edit_admin_group_path(@group), flash: { error: "#{@group.name} could not be updated." }
       end
     end
 
-    def remove
-      @group = Hyku::Group.find_by_id(params[:id])
-    end
-
     def destroy
-      group = Hyku::Group.find_by_id(params[:id])
-      if group.destroy
-        flash.now[:notice] = "#{group.name} destroyed"
-        redirect_to admin_groups_path
+      if @group.destroy
+        redirect_to admin_groups_path, notice: "#{@group.name} destroyed"
       else
-        logger.error('Hyku::Group could not be destroyed')
-        flash.now[:error] = 'Group could not be destroyed'
-        redirect_to admin_groups_path
+        logger.error("Hyku::Group id:#{@group.id} could not be destroyed")
+        redirect_to admin_groups_path flash: { error: "#{@group.name} could not be destroyed" }
       end
     end
 
     private
+      def load_group
+        @group = Hyku::Group.find_by_id(params[:id])
+      end
 
       def new_group_params
         params.require(:hyku_group).permit(:name, :description)
