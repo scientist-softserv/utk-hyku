@@ -74,16 +74,11 @@
                     <%= user.updated_at.to_s(:db) %>
                   </td>
                   <td>
-                    <%= link_to(
-                      'Remove',
-                      remove_admin_group_user_path(@group, user.id),
-                      class: 'btn btn-danger',
-                      method: :delete,
-                      data: {
-                        confirm: 'Are you sure you want to revoke the mebership of this user?'
-                      }
-                    ) %>
-                </td>
+                    <%= form_tag remove_admin_group_users_path(group_id: @group.to_param), method: :delete, class: 'form' do |f| %>
+                      <%= hidden_field_tag :user_ids, user.id %>
+                      <%= submit_tag 'Remove', class: 'btn btn-danger' %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
