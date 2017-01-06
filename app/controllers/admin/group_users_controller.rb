@@ -1,7 +1,6 @@
 module Admin
-  class GroupUsersController < ApplicationController
-    layout 'admin'
-    before_action :ensure_admin!, :load_group
+  class GroupUsersController < AdminController
+    before_action :load_group
 
     def index
       @users = @group.search_members(params[:q]).page(page_number).per(page_size)
@@ -23,6 +22,7 @@ module Admin
     end
 
     private
+
       def load_group
         @group = Hyku::Group.find_by_id(params[:group_id])
       end
