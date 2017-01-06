@@ -1,31 +1,32 @@
 module Admin
   class GroupUsersController < ApplicationController
     layout 'admin'
+    before_action :ensure_admin!, :load_group
 
     def index
-      @group = Hyku::Group.find_by_id(params[:group_id])
       @users = @group.search_members(params[:q]).page(page_number).per(page_size)
       render template: 'admin/groups/users'
     end
 
     def add
-      group = Hyku::Group.find_by_id(params[:group_id])
-      users = Array.wrap(params[:user_ids])
-      group.add_members_by_id(users)
+      @group.add_members_by_id(params[:user_ids])
       respond_to do |format|
-        format.html { redirect_to admin_group_users_path(group) }
+        format.html { redirect_to admin_group_users_path(@group) }
       end
     end
 
     def remove
-      group = Hyku::Group.find_by_id(params[:group_id])
-      group.remove_members_by_id(params[:id])
+      @group.remove_members_by_id(params[:user_ids])
       respond_to do |format|
-        format.html { redirect_to admin_group_users_path(group) }
+        format.html { redirect_to admin_group_users_path(@group) }
       end
     end
 
     private
+      def load_group
+        @group = Hyku::Group.find_by_id(params[:group_id])
+      end
+
       def page_number
         params[:page].to_i || 1
       end

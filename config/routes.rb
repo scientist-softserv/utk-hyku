@@ -57,8 +57,6 @@ Rails.application.routes.draw do
       resources :users, only: [:index], controller: 'group_users' do
         collection do
           post :add
-        end
-        member do
           delete :remove
         end
       end
