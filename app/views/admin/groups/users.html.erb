@@ -1,38 +1,38 @@
-<% content_for :page_title, "Groups Members // Administration // #{application_name}" %>
+<% content_for :page_title, [t('hyku.admin.groups.title.edit'), t('hyku.admin.title'), application_name].join(' // ') %>
 <h1>
   <span class="fa fa-users"></span>
-  Edit Group
+  <%= t('hyku.admin.groups.title.edit') %>
 </h1>
 
 <%= render '/admin/groups/nav' %>
 <div class="panel panel-default group-user-listing">
   <div class="panel-body">
 
-    <p class="lead">Group members assume all privlidges assigned to this group.</p>
+    <p class="lead"><%= t('hyku.admin.groups.action.members.description') %></p>
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Add User to Group</h3>
+        <h3 class="panel-title"><%= t('hyku.admin.groups.title.add_user') %></h3>
       </div>
       <div class="panel-body">
         <%= form_tag hyrax.profiles_path, method: :get, class: 'form-inline pull-left js-group-user-search' do |f| %>
           <div class="form-group">
-            <%= label_tag :uq, 'Search for user', class: 'control-label' %>
-            <%= text_field_tag :uq, params[:uq], placeholder: 'Name or username', class: 'form-control js-group-user-search__query' %>
+            <%= label_tag :uq, t('hyku.admin.groups.label.new_member_search'), class: 'control-label' %>
+            <%= text_field_tag :uq, params[:uq], placeholder: t('hyku.admin.groups.hint.member_search'), class: 'form-control js-group-user-search__query' %>
           </div>
           <%= submit_tag 'Go', class: 'btn btn-default js-group-user-search__submit' %>
         <% end %>
 
         <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left js-group-user-add' do |f| %>
-          <%= text_field_tag :user_ids, nil, placeholder: 'User ID', class: 'form-control js-group-user-add__id' %>
-          <%= submit_tag 'Add', class: 'btn btn-primary js-group-user-add__submit' %>
+          <%= text_field_tag :user_ids, nil, placeholder: t('hyku.admin.groups.hint.user_ids'), class: 'form-control js-group-user-add__id' %>
+          <%= submit_tag t('hyku.admin.groups.action.members.submit'), class: 'btn btn-primary js-group-user-add__submit' %>
         <% end %>
       </div>
     </div>
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Current Group Members</h3>
+        <h3 class="panel-title"><%= t('hyku.admin.groups.title.list_members') %></h3>
       </div>
       <div class="panel-body">
         <div class="container-fluid full-width-container">
@@ -50,11 +50,11 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Joined</th>
-                <th>Last access</th>
-                <th>Actions</th>
+                <th><%= t('hyku.users.label.name') %></th>
+                <th><%= t('hyku.users.label.user_key') %></th>
+                <th><%= t('hyku.users.label.date_joined') %></th>
+                <th><%= t('hyku.users.label.last_login') %></th>
+                <th><%= t('hyku.admin.groups.label.actions') %></th>
               </tr>
             </thead>
             <tbody>
@@ -75,7 +75,7 @@
                   <td>
                     <%= form_tag remove_admin_group_users_path(group_id: @group.to_param), method: :delete, class: 'form' do |f| %>
                       <%= hidden_field_tag :user_ids, user.id %>
-                      <%= submit_tag 'Remove', class: 'btn btn-danger' %>
+                      <%= submit_tag t('hyku.admin.groups.action.revoke_membership'), class: 'btn btn-danger' %>
                     <% end %>
                   </td>
                 </tr>

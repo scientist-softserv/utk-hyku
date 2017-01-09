@@ -5,6 +5,8 @@
   <% if params[:page].present? %>
     <%= hidden_field_tag :page, params[:page] %>
   <% end %>
-  Show <%= select_tag :per, options_for_select([10, 25, 100], selected: params[:per]), class: 'form-control js-per-page__select' %> per page
-  <%= submit_tag 'Update', class: 'btn btn-default js-per-page__submit' %>
+  <%= t('hyku.admin.groups.label.per_page_prefix') %>
+  <%= select_tag :per, options_for_select([10, 25, 100], selected: params[:per]), class: 'form-control js-per-page__select' %>
+  <%= t('hyku.admin.groups.label.per_page') %>
+  <%= submit_tag t('hyku.admin.groups.action.per_page'), class: 'btn btn-default js-per-page__submit' %>
 <% end %>

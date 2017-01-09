@@ -1,20 +1,19 @@
-<% content_for :page_title, "Edit Group // Administration // #{application_name}" %>
+<% content_for :page_title, [t('hyku.admin.groups.title.edit'), t('hyku.admin.title'), application_name].join(' // ') %>
 <h1>
   <span class="fa fa-users"></span>
-  Edit Group
+  <%= t('hyku.admin.groups.title.edit') %>
 </h1>
 
 <%= render 'nav' %>
 <div class="panel panel-default">
   <div class="panel-body">
     <blockquote class="callout callout-danger callout-with-action">
-      <h3>Remove Group “<%= @group.name %>”</h3>
+      <h3><%= "#{t('hyku.admin.groups.title.delete')} “#{@group.name}”" %></h3>
       <p>
-        This action is irreversible. It will remove all privileges group members
-        have been assigned through this group.
+      <%= t('hyku.admin.groups.action.remove.description') %>
       </p>
       <div class="callout-action">
-        <%= link_to 'Remove Group',  admin_group_path(@group), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to remove this group?' } %>
+        <%= link_to t('hyku.admin.groups.action.remove.submit'),  admin_group_path(@group), class: 'btn btn-danger', method: :delete, data: { confirm: t('hyku.admin.groups.action.remove.confirmation') } %>
       </div>
     </blockquote>
   </div>

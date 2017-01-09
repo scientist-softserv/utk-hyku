@@ -33,6 +33,57 @@ en:
     service:
       ok: 'OK'
       down: 'Down'
+  hyku:
+    admin:
+      title: 'Administration'
+      groups:
+        describe_quantity_html: "There are <b>%{number} groups</b> in this repository."
+        describe_singular_quantity_html: "There is <b>1 group</b> in this repository."
+        action:
+          create: 'Create New Group'
+          edit_html: 'Edit group &amp; users'
+          members:
+            description: 'Group members assume all privlidges assigned to this group.'
+            submit: 'Add'
+          per_page: 'Update'
+          remove:
+            confirmation: 'Are you sure you want to remove this group?'
+            description: 'This action is irreversible. It will remove all privileges group members have been assigned through this group.'
+            submit: 'Remove'
+          revoke_membership: 'Remove'
+          search:
+            clear: 'Reset'
+            submit: 'Go'
+        hint:
+          member_search: 'Name or username'
+          user_ids: 'User ID'
+        label:
+          actions: 'Actions'
+          created_at: 'Date Created'
+          members: 'Users'
+          name: 'Name'
+          new_member_search: 'Search for User'
+          per_page: 'per page'
+          per_page_prefix: 'Show'
+          search: 'Search'
+        nav:
+          attributes: 'Description'
+          delete: 'Remove'
+          index: 'return to Manage Groups'
+          members: 'Users'
+        title:
+          add_user: 'Add User to Group'
+          delete: 'Remove Group'
+          edit: 'Edit Group'
+          index: 'Manage Groups'
+          list_members: 'Current Group Members'
+          members: 'Group Members'
+    users:
+      label:
+        name: 'Name'
+        user_key: 'Username'
+        date_joined: 'Joined'
+        last_login: 'Last access'
   hyrax:
     admin:
       sidebar:

@@ -4,19 +4,19 @@
   action = params[:action]
   tabs = [
     OpenStruct.new({
-      name: 'Description',
+      name: t('hyku.admin.groups.nav.attributes'),
       controller: 'admin/groups',
       action: 'edit',
       path: edit_admin_group_path(@group)
     }),
     OpenStruct.new({
-      name: 'Users',
+      name: t('hyku.admin.groups.nav.members'),
       controller: 'admin/group_users',
       action: 'index',
       path: admin_group_users_path(@group)
     }),
     OpenStruct.new({
-      name: 'Remove',
+      name: t('hyku.admin.groups.nav.delete'),
       controller: 'admin/groups',
       action: 'remove',
       path: remove_admin_group_path(@group)
@@ -38,5 +38,5 @@
       <% end %>
     <% end %>
   </ul>
-  <%= link_to 'return to Manage Groups', admin_groups_path, class: 'pull-right nav-escape-link' %>
+  <%= link_to t('hyku.admin.groups.nav.index'), admin_groups_path, class: 'pull-right nav-escape-link' %>
 </div>

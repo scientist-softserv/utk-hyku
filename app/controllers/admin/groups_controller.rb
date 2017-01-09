@@ -1,6 +1,6 @@
 module Admin
   class GroupsController < AdminController
-    before_action :load_group, only: [:edit, :update, :destroy]
+    before_action :load_group, only: [:edit, :update, :remove, :destroy]
 
     def index
       @groups = Hyku::Group.search(params[:q]).page(page_number).per(page_size)
@@ -34,6 +34,9 @@ module Admin
         logger.error("Valid Hyku::Group id:#{@group.id} could not be updated")
         redirect_to edit_admin_group_path(@group), flash: { error: "#{@group.name} could not be updated." }
       end
+    end
+
+    def remove
     end
 
     def destroy
