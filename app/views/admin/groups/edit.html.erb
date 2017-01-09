@@ -1,7 +1,7 @@
-<% content_for :page_title, "Edit Group // Administration // #{application_name}" %>
+<% content_for :page_title, [t('hyku.admin.groups.title.edit'), t('hyku.admin.title'), application_name].join(' // ') %>
 <h1>
   <span class="fa fa-users"></span>
-  Edit Group
+  <%= t('hyku.admin.groups.title.edit') %>
 </h1>
 <%= render 'nav' %>
 <%= render 'form' %>

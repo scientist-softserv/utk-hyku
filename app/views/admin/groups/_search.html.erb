@@ -6,11 +6,11 @@
     <%= hidden_field_tag :page, params[:page] %>
   <% end %>
   <div class="form-group list-scope">
-    <%= label_tag :q, 'Search' %>
+    <%= label_tag :q, t('hyku.admin.groups.label.search') %>
     <%= text_field_tag :q, params[:q], class: 'form-control list-scope--query' %>
     <% if params[:q].present? %>
-      <%= link_to content_tag(:span, "&times;".html_safe, :'aria-hidden' => true),  @target, class: 'close list-scope--reset', :'aria-label' => 'Reset' %>
+      <%= link_to content_tag(:span, '&times;'.html_safe, :'aria-hidden' => true),  @target, class: 'close list-scope--reset', :'aria-label' => t('hyku.admin.groups.action.search.clear') %>
     <% end %>
   </div>
-  <%= submit_tag 'Go', class: 'btn btn-primary' %>
+  <%= submit_tag t('hyku.admin.groups.action.search.submit'), class: 'btn btn-primary' %>
 <% end %>

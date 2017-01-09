@@ -2,6 +2,7 @@ en:
   simple_form:
     "yes": 'Yes'
     "no": 'No'
+    cancel: 'Cancel'
     required:
       text: 'required'
       mark: '*'
@@ -11,7 +12,9 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
-    # labels:
+    labels:
+      hyku_group:
+        description: 'Description'
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -19,7 +22,9 @@ en:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
+    hints:
+      hyku_group:
+        description: 'A brief summary of the role of the group'
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
