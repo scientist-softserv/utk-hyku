@@ -9,7 +9,9 @@ class CreateAccount
   end
 
   def save
-    account.save && create_external_resources
+    account.save &&
+      create_external_resources &&
+      load_workflows
   end
 
   def create_external_resources
@@ -38,6 +40,12 @@ class CreateAccount
 
   def create_redis_namespace
     CreateRedisNamespaceJob.perform_later(account)
+  end
+
+  # Ensure that some workflows have been loaded into the database
+  def load_workflows
+    return if Sipity::Workflow.any?
+    Hyrax::Workflow::WorkflowImporter.load_workflows
   end
 
   private

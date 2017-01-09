@@ -43,4 +43,23 @@ RSpec.describe CreateAccount do
       subject.create_redis_namespace
     end
   end
+
+  describe '#load_workflows' do
+    before { allow(Sipity::Workflow).to receive(:any?).and_return(workflows_exist) }
+    context 'when workflows exist' do
+      let(:workflows_exist) { true }
+      it "does nothing" do
+        expect(Hyrax::Workflow::WorkflowImporter).not_to receive(:load_workflows)
+        subject.load_workflows
+      end
+    end
+
+    context 'when no workflows exist' do
+      let(:workflows_exist) { false }
+      it "loads workflow" do
+        expect(Hyrax::Workflow::WorkflowImporter).to receive(:load_workflows)
+        subject.load_workflows
+      end
+    end
+  end
 end
