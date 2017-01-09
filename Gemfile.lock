@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: d247dd973fb6a18b9dedbd95e14bbcf3049b9191
+  revision: 57d02452b959666f1c87ef41493a91c3b1b437d6
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -99,7 +99,7 @@ GEM
     active_elastic_job (1.7.0)
       aws-sdk (~> 2)
       rails (>= 4.2)
-    active_fedora-noid (2.0.0)
+    active_fedora-noid (2.0.1)
       active-fedora (>= 9.7, < 12)
       noid (~> 0.9)
       rails (>= 4.2.7.1, < 6)
@@ -146,7 +146,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
-    blacklight (6.7.2)
+    blacklight (6.7.3)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
@@ -569,7 +569,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.1)
     rake (12.0.0)
-    rdf (2.1.1)
+    rdf (2.2.1)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.1.0)
@@ -587,9 +587,9 @@ GEM
       rdf (~> 2.0)
       rdf-rdfa (~> 2.0)
       rdf-xsd (~> 2.0)
-    rdf-turtle (2.0.0)
-      ebnf (~> 1.0, >= 1.0.1)
-      rdf (~> 2.0)
+    rdf-turtle (2.2.0)
+      ebnf (~> 1.1)
+      rdf (~> 2.2)
     rdf-vocab (2.1.1)
       rdf (~> 2.1)
     rdf-xsd (2.1.0)
