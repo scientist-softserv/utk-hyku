@@ -20,7 +20,7 @@
             <%= label_tag :uq, t('hyku.admin.groups.label.new_member_search'), class: 'control-label' %>
             <%= text_field_tag :uq, params[:uq], placeholder: t('hyku.admin.groups.hint.member_search'), class: 'form-control js-group-user-search__query' %>
           </div>
-          <%= submit_tag 'Go', class: 'btn btn-default js-group-user-search__submit' %>
+          <%= submit_tag t('hyku.admin.groups.action.search.submit'), class: 'btn btn-default js-group-user-search__submit' %>
         <% end %>
 
         <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left js-group-user-add' do |f| %>
