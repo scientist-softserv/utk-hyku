@@ -4,6 +4,8 @@
     <header>
       <%= render 'work_title', presenter: @presenter %>
     </header>
+
+    <span class="state state-<%= @presenter.workflow.state %>"><%= @presenter.workflow.state_label %></span>
   </div>
   <div class="col-sm-12">
     <div class="row">
@@ -14,7 +16,7 @@
     <%= render 'work_description', presenter: @presenter %>
     <%= render 'relationships', presenter: @presenter %>
     <%= render 'metadata', presenter: @presenter %>
-    Last modified: <%= @presenter.date_modified %>
+    <%= t('.last_modified', value: @presenter.date_modified) %>
     <%= render "show_actions", presenter: @presenter %>
     <%= render 'social_media' %>
     <%= render 'citations', presenter: @presenter %>
@@ -24,6 +26,7 @@
 <div class="row">
   <div class="col-sm-12">
     <%= render 'items', presenter: @presenter %>
+    <%= render 'workflow_actions_widget', presenter: @presenter %>
     <%# TODO: we may consider adding these partials in the future %>
     <%#= render 'sharing_with', presenter: @presenter %>
     <%#= render 'user_activity', presenter: @presenter %>
