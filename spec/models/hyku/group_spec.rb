@@ -44,13 +44,81 @@ module Hyku
       end
     end
 
-    describe '#search_members' do
+    context '#search_members' do
+      subject { FactoryGirl.create(:group) }
+      let(:known_user_name) { FactoryGirl.create(:user, display_name: 'Tom Cramer') }
+      let(:known_user_email) { FactoryGirl.create(:user, email: 'tom@project-hydra.com') }
+
+      before(:example) do
+        subject.add_members_by_id([known_user_name.id, known_user_email.id])
+      end
+
+      after(:example) do
+        User.find_by_id(known_user_name.id).destroy
+        User.find_by_id(known_user_email.id).destroy
+        described_class.find_by_id(subject.id).destroy
+      end
+
+      it 'should return members based on name' do
+        expect(subject.search_members(known_user_name.name).count).to eq(1)
+      end
+
+      it 'should return members based on email' do
+        expect(subject.search_members(known_user_email.email).count).to eq(1)
+      end
+
+      it 'should return members based on partial matches' do
+        expect(subject.search_members('Tom').count).to eq(1)
+      end
+
+      it 'should return an empty set when there is no match' do
+        expect(subject.search_members('Jerry').count).to eq(0)
+      end
     end
 
     describe '#add_members_by_id' do
+      subject { FactoryGirl.create(:group) }
+      let(:user) { FactoryGirl.create(:user) }
+      before(:example) { subject.add_members_by_id(user.id) }
+
+      context 'single user id' do
+        it 'should add one user' do
+          expect(subject.members).to include(user)
+        end
+      end
+
+      # This is tested in the setup of #search_members and #remove_members_by_id
+      context 'collection of user ids' do
+        it 'should add multiple users' do
+        end
+      end
     end
 
     describe '#remove_members_by_id' do
+      subject { FactoryGirl.create(:group) }
+
+      context 'single user id' do
+        let(:user) { FactoryGirl.create(:user) }
+        before { subject.add_members_by_id(user.id) }
+
+        it 'should remove one user' do
+          expect(subject.members).to include(user)
+          subject.remove_members_by_id(user.id)
+          expect(subject.members).to_not include(user)
+        end
+      end
+
+      context 'collection of user ids' do
+        let(:user_list) { FactoryGirl.create_list(:user, 3) }
+        let(:user_ids) { user_list.collect { |user| user.id } }
+        before { subject.add_members_by_id(user_ids) }
+
+        it 'should remove multiple users' do
+          expect(subject.members.collect{ |user| user.id }).to eq(user_ids)
+          subject.remove_members_by_id(user_ids)
+          expect(subject.members.count).to eq(0)
+        end
+      end
     end
   end
 end
