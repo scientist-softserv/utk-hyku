@@ -51,12 +51,6 @@ module Hyku
 
       before { subject.add_members_by_id([known_user_name.id, known_user_email.id]) }
 
-      after do
-        User.find_by_id(known_user_name.id).destroy
-        User.find_by_id(known_user_email.id).destroy
-        described_class.find_by_id(subject.id).destroy
-      end
-
       it 'returns members based on name' do
         expect(subject.search_members(known_user_name.name).count).to eq(1)
       end
@@ -79,16 +73,12 @@ module Hyku
       let(:user) { FactoryGirl.create(:user) }
       before { subject.add_members_by_id(user.id) }
 
-      context 'single user id' do
-        it 'adds one user' do
-          expect(subject.members).to include(user)
-        end
+      it 'adds one user when passed a single user id' do
+        expect(subject.members).to include(user)
       end
 
       # This is tested in the setup of #search_members and #remove_members_by_id
-      context 'collection of user ids' do
-        it 'adds multiple users' do
-        end
+      it 'adds multiple users when passed a collection of user ids' do
       end
     end
 
