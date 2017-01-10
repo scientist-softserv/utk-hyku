@@ -11,7 +11,7 @@ module Admin
     end
 
     def create
-      new_group = Hyku::Group.new(new_group_params)
+      new_group = Hyku::Group.new(group_params)
       if new_group.save
         redirect_to admin_groups_path, notice: "#{new_group.name} created"
       elsif new_group.invalid?
@@ -26,13 +26,10 @@ module Admin
     end
 
     def update
-      if @group.save
+      if @group.update(group_params)
         redirect_to admin_groups_path, notice: "#{@group.name} updated"
-      elsif @group.invalid?
-        redirect_to edit_admin_group_path(@group), alert: "#{@group.name} is invalid and could not be updated."
       else
-        logger.error("Valid Hyku::Group id:#{@group.id} could not be updated")
-        redirect_to edit_admin_group_path(@group), flash: { error: "#{@group.name} could not be updated." }
+        redirect_to edit_admin_group_path(@group), alert: "#{@group.name} could not be updated."
       end
     end
 
@@ -54,7 +51,7 @@ module Admin
         @group = Hyku::Group.find_by_id(params[:id])
       end
 
-      def new_group_params
+      def group_params
         params.require(:hyku_group).permit(:name, :description)
       end
 
