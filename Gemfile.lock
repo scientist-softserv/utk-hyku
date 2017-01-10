@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 8594e08f25ef15424e8b0d26c82823417c1b369e
+  revision: 2f562de2cfa5c1a9ef11aa3cda10cd9a45b00a16
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -420,8 +420,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kaminari_route_prefix (0.0.1)
-      kaminari (>= 0.16, < 2)
+    kaminari_route_prefix (0.0.2)
+      kaminari (~> 0.16)
     ldp (0.6.2)
       deprecation
       faraday
