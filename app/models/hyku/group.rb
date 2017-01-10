@@ -6,7 +6,7 @@ module Hyku
     MEMBERSHIP_ROLE = :member
     DEFAULT_MEMBER_CLASS = User
 
-    validates_presence_of :name
+    validates :name, presence: true
 
     def self.search(query)
       if query.present?

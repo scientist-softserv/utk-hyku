@@ -49,6 +49,7 @@ module Admin
     end
 
     private
+
       def load_group
         @group = Hyku::Group.find_by_id(params[:id])
       end

@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     []
   end
 
-  def as_json(options=nil)
+  def as_json(*)
     {
       id: id,
       text: to_s
