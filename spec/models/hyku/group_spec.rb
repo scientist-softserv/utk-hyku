@@ -118,5 +118,19 @@ module Hyku
         end
       end
     end
+
+    context '#number_of_users' do
+      subject { FactoryGirl.create(:group) }
+      let(:user) { FactoryGirl.create(:user) }
+
+      it 'starts out with 0 users' do
+        expect(subject.number_of_users).to eq(0)
+      end
+
+      it 'increments when users are added' do
+        subject.add_members_by_id(user.id)
+        expect(subject.number_of_users).to eq(1)
+      end
+    end
   end
 end
