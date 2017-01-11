@@ -7,10 +7,10 @@
   <% end %>
   <div class="form-group list-scope">
     <%= label_tag :q, t('hyku.admin.groups.label.search') %>
-    <%= text_field_tag :q, params[:q], class: 'form-control list-scope--query' %>
+    <%= text_field_tag :q, params[:q], class: 'form-control list-scope__query' %>
     <% if params[:q].present? %>
-      <%= link_to content_tag(:span, '&times;'.html_safe, :'aria-hidden' => true),  @target, class: 'close list-scope--reset', :'aria-label' => t('hyku.admin.groups.action.search.clear') %>
+      <%= link_to content_tag(:span, '&times;'.html_safe, :'aria-hidden' => true),  @target, class: 'close list-scope__reset', :'aria-label' => t('hyku.admin.groups.action.search.clear') %>
     <% end %>
   </div>
-  <%= submit_tag t('hyku.admin.groups.action.search.submit'), class: 'btn btn-primary' %>
+  <%= submit_tag t('hyku.admin.groups.action.search.submit'), class: 'btn btn-primary list-scope__submit' %>
 <% end %>
