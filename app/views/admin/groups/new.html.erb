@@ -1,7 +1,7 @@
-<% content_for :page_title, "New Group // Administration // #{application_name}" %>
+<% content_for :page_title, [t('hyku.admin.groups.title.new'), t('hyku.admin.title'), application_name].join(' // ') %>
 <h1>
   <span class="fa fa-users"></span>
-  New Group
+  <%= t('hyku.admin.groups.title.new') %>
 </h1>
 <div class="panel-tab-wrapper">
   <ul class="nav nav-tabs">
