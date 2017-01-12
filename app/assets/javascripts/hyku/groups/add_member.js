@@ -3,7 +3,9 @@ $(document).on('turbolinks:load', function() {
   $('.js-group-user-search').on('submit', function(e){ e.preventDefault(); });
 
   var userQueryPath = function(query){
-    return $('.js-group-user-search').attr('action').split('?')[0] + '?uq=' + query;
+    return $('.js-group-user-search')
+             .attr('action')
+             .split('?')[0] + '?uq=' + query;
   };
 
   var userQuery = function(query, syncResults, asyncResults){
@@ -13,7 +15,6 @@ $(document).on('turbolinks:load', function() {
   };
 
   var resultTemplate = function(data){
-    console.log(data);
     return '<div class="js-typeahead__suggestion">' + data.text + '</div>';
   };
 
@@ -25,13 +26,18 @@ $(document).on('turbolinks:load', function() {
     display: 'text',
     source: userQuery,
     templates: {
-      empty: '<div class="js-typeahead__empty-message">No accounts match the current query.</div>',
+      empty: [
+        '<div class="js-typeahead__empty-message">',
+        '  No accounts match the current query.',
+        '</div>'
+      ].join('\n'),
       suggestion: resultTemplate
     }
   });
 
-  $('.js-group-user-search__query').bind('typeahead:select', function(ev, suggestion) {
-    $('.js-group-user-add__id').val(suggestion.id);
-    $('.js-group-user-add').submit();
-  });
+  $('.js-group-user-search__query')
+    .bind('typeahead:select', function(ev, suggestion) {
+      $('.js-group-user-add__id').val(suggestion.id);
+      $('.js-group-user-add').submit();
+    });
 });
