@@ -78,6 +78,7 @@ en:
           index: 'Manage Groups'
           list_members: 'Current Group Members'
           members: 'Group Members'
+          new: 'New Group'
     users:
       label:
         name: 'Name'
