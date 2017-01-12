@@ -17,14 +17,8 @@ RSpec.describe 'admin/groups/users', type: :view do
     before do
       allow(controller).to receive(:params).and_return(path_parameters)
       # Mocking methods required by UrlFor in order to pass in a :group_id
-      allow(controller).to receive_message_chain(:request, :params).and_return(path_parameters)
-      allow(controller).to receive_message_chain(:request, :path_parameters).and_return(path_parameters)
-      allow(controller).to receive_message_chain(:request, :protocol).and_return('http://')
-      allow(controller).to receive_message_chain(:request, :host).and_return('test.host')
-      allow(controller).to receive_message_chain(:request, :optional_port).and_return(nil)
-      allow(controller).to receive_message_chain(:request, :routes).and_return('')
-      allow(controller).to receive_message_chain(:request, :engine_script_name).and_return(nil)
-      allow(controller).to receive_message_chain(:request, :original_script_name).and_return(nil)
+      allow(controller.request).to receive(:params).and_return(path_parameters)
+      allow(controller.request).to receive(:path_parameters).and_return(path_parameters)
       # Mocking users collection to provide methods for kaminari
       allow(users).to receive(:each).and_yield(user_1).and_yield(user_2)
       allow(users).to receive(:total_pages).and_return(1)
@@ -45,11 +39,24 @@ RSpec.describe 'admin/groups/users', type: :view do
     end
 
     it 'has a user search control' do
+      expect(rendered).to have_selector('form', class: 'js-group-user-search')
+      expect(rendered).to have_selector('input', class: 'js-group-user-search__query')
+      expect(rendered).to have_selector('input', class: 'js-group-user-search__submit')
+    end
+
+    it 'has an add user form' do
+      expect(rendered).to have_selector('form', class: 'js-group-user-add')
+      expect(rendered).to have_selector('input', class: 'js-group-user-add__id')
+      expect(rendered).to have_selector('input', class: 'js-group-user-add__submit')
+    end
+
+    it 'has a member search control' do
       expect(rendered).to have_selector('input', class: 'list-scope__query')
       expect(rendered).to have_selector('input', class: 'list-scope__submit')
     end
 
     it 'has a pagination select control' do
+      expect(rendered).to have_selector('form', class: 'js-per-page')
       expect(rendered).to have_selector('select', class: 'js-per-page__select')
       expect(rendered).to have_selector('input', class: 'js-per-page__submit')
     end
