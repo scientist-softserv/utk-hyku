@@ -40,7 +40,7 @@
                     "notifications": [
                         {
                             "notification_type": "email",
-                            "name": "Hyrax::Workflow::CompleteNotification",
+                            "name": "Hyrax::Workflow::DepositedNotification",
                             "to": ["approving"]
                         }
                     ],
