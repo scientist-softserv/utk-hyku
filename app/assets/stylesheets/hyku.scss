@@ -134,17 +134,18 @@ footer.navbar {
   margin-top: -30px;
 }
 
-.group-listing,
-.group-user-listing {
-  .table td {
-    vertical-align: middle;
-  }
+.group-user-listing .table td {
+  vertical-align: middle;
 }
 
 .group-listing .table {
   margin-bottom: 0;
   margin-top: 1em;
   padding: 0 15px;
+
+  td {
+    vertical-align: middle;
+  }
 
   .panel-heading {
     line-height: 2.4em;
