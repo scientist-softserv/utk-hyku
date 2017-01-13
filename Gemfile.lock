@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 45281bc7e6eba3fc27800f7625956657f47ddd8f
+  revision: 4c48c024c853ef8759cf96cd5ff0570bffb0536e
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -507,7 +507,7 @@ GEM
       peek
     peek-performance_bar (1.2.1)
       peek (>= 0.1.0)
-    peek-pg (1.2.0)
+    peek-pg (1.3.0)
       concurrent-ruby
       concurrent-ruby-ext
       peek
