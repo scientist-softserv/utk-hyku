@@ -1,7 +1,8 @@
 module Hyku
   class Group < ApplicationRecord
     self.table_name = 'hyku_groups'
-    resourcify
+
+    resourcify # Declares Hyku::Group a resource model so rolify can manage membership
 
     MEMBERSHIP_ROLE = :member
     DEFAULT_MEMBER_CLASS = User
