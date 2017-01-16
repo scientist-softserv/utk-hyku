@@ -3,6 +3,5 @@ class SplashController < ApplicationController
 
   layout "multitenant"
 
-  def index
-  end
+  def index; end
 end
