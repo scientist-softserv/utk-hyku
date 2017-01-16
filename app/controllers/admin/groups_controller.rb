@@ -13,12 +13,12 @@ module Admin
     def create
       new_group = Hyku::Group.new(group_params)
       if new_group.save
-        redirect_to admin_groups_path, notice: "#{new_group.name} created"
+        redirect_to admin_groups_path, notice: t('hyku.admin.groups.flash.new.success', group: @group.name)
       elsif new_group.invalid?
-        redirect_to new_admin_group_path, alert: 'Groups must have a name'
+        redirect_to new_admin_group_path, alert: t('hyku.admin.groups.flash.new.invalid')
       else
         logger.error('Valid Hyku::Group could not be created')
-        redirect_to new_admin_group_path, flash: { error: 'Group could not be created.' }
+        redirect_to new_admin_group_path, flash: { error: t('hyku.admin.groups.flash.new.failure') }
       end
     end
 
@@ -27,9 +27,9 @@ module Admin
 
     def update
       if @group.update(group_params)
-        redirect_to admin_groups_path, notice: "#{@group.name} updated"
+        redirect_to admin_groups_path, notice: t('hyku.admin.groups.flash.update.success', group: @group.name)
       else
-        redirect_to edit_admin_group_path(@group), alert: "#{@group.name} could not be updated."
+        redirect_to edit_admin_group_path(@group), flash: { error: t('hyku.admin.groups.flash.update.failure', group: @group.name) }
       end
     end
 
@@ -38,10 +38,10 @@ module Admin
 
     def destroy
       if @group.destroy
-        redirect_to admin_groups_path, notice: "#{@group.name} destroyed"
+        redirect_to admin_groups_path, notice: t('hyku.admin.groups.flash.destroy.success', group: @group.name)
       else
         logger.error("Hyku::Group id:#{@group.id} could not be destroyed")
-        redirect_to admin_groups_path flash: { error: "#{@group.name} could not be destroyed" }
+        redirect_to admin_groups_path flash: { error: t('hyku.admin.groups.flash.destroy.failure', group: @group.name) }
       end
     end
 
