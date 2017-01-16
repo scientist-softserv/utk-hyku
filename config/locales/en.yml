@@ -36,6 +36,8 @@ en:
   hyku:
     admin:
       title: 'Administration'
+      flash:
+        access_denied: 'You are not authorized to view this page'
       groups:
         describe_quantity_html: "There are <b>%{number} groups</b> in this repository."
         describe_singular_quantity_html: "There is <b>1 group</b> in this repository."
@@ -54,6 +56,17 @@ en:
           search:
             clear: 'Reset'
             submit: 'Go'
+        flash:
+          create:
+            success: '%{group} created'
+            invalid: 'Groups must have a name'
+            failure: 'Group could not be created'
+          update:
+            success: '%{group} updated'
+            failure: '%{group} could not be updated updated'
+          destroy:
+            success: '%{group} destroyed'
+            failure: '%{group} could not be destroyed'
         hint:
           member_search: 'Name or username'
           user_ids: 'User ID'
