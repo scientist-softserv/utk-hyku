@@ -72,7 +72,7 @@ class Account < ActiveRecord::Base
       return unless name
 
       default_host = Settings.multitenancy.default_host
-      default_host % { tenant: name.parameterize }
+      format(default_host, tenant: name.parameterize)
     end
 
     def canonicalize_cname
