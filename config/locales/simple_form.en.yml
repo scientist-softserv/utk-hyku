@@ -15,6 +15,8 @@ en:
     labels:
       hyku_group:
         description: 'Description'
+      group_search:
+        q: 'Search'
     #   defaults:
     #     password: 'Password'
     #   user:
