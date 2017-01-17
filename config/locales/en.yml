@@ -37,6 +37,10 @@ en:
     submit:
       group_search:
         submit: 'Go'
+      user_search:
+        submit: 'Go'
+      add_user_to_group:
+        submit: 'Add'
   hyku:
     admin:
       title: 'Administration'
@@ -50,7 +54,6 @@ en:
           edit: 'Edit group & users'
           members:
             description: 'Group members assume all privlidges assigned to this group.'
-            submit: 'Add'
           per_page: 'Update'
           remove:
             confirmation: 'Are you sure you want to remove this group?'
@@ -70,15 +73,11 @@ en:
           destroy:
             success: '%{group} destroyed'
             failure: '%{group} could not be destroyed'
-        hint:
-          member_search: 'Name or username'
-          user_ids: 'User ID'
         label:
           actions: 'Actions'
           created_at: 'Date Created'
           members: 'Users'
           name: 'Name'
-          new_member_search: 'Search for User'
           per_page: 'per page'
           per_page_prefix: 'Show'
         nav:
