@@ -43,7 +43,7 @@ en:
         describe_singular_quantity_html: "There is <b>1 group</b> in this repository."
         action:
           create: 'Create New Group'
-          edit_html: 'Edit group &amp; users'
+          edit: 'Edit group & users'
           members:
             description: 'Group members assume all privlidges assigned to this group.'
             submit: 'Add'
