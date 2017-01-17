@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'i18n/debug' if ENV['I18N_DEBUG']
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
