@@ -57,7 +57,7 @@ en:
           create: 'Create New Group'
           edit: 'Edit group & users'
           members:
-            description: 'Group members assume all privlidges assigned to this group.'
+            description: 'Group members assume all privileges assigned to this group.'
           per_page: 'Update'
           remove:
             confirmation: 'Are you sure you want to remove this group?'
