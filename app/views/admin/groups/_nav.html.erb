@@ -2,14 +2,8 @@
 <div class="panel-tab-wrapper">
   <ul class="nav nav-tabs">
     <% navigation_presenter.tabs.each do |tab| %>
-      <% if navigation_presenter.controller == tab.controller && navigation_presenter.action == tab.action %>
-        <%= content_tag :li, role: 'presentation', class: 'active' do %>
-          <%= link_to tab.name, 'javascript:void(0);' %>
-        <% end %>
-      <% else %>
-        <%= content_tag :li, role: 'presentation' do %>
-          <%= link_to tab.name, tab.path %>
-        <% end %>
+      <%= content_tag :li, role: 'presentation', class: tab.css_class do %>
+        <%= link_to tab.name, tab.path %>
       <% end %>
     <% end %>
   </ul>
