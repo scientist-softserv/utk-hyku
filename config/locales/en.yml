@@ -41,6 +41,8 @@ en:
         submit: 'Go'
       add_user_to_group:
         submit: 'Add'
+      page_size:
+        submit: 'Update'
   hyku:
     admin:
       title: 'Administration'
@@ -79,7 +81,6 @@ en:
           members: 'Users'
           name: 'Name'
           per_page: 'per page'
-          per_page_prefix: 'Show'
         nav:
           attributes: 'Description'
           delete: 'Remove'

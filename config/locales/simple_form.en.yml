@@ -21,6 +21,8 @@ en:
         uq: 'Search for User'
       add_user_to_group:
         user_ids: 'User ID'
+      page_size:
+        per: 'Show'
     #   defaults:
     #     password: 'Password'
     #   user:

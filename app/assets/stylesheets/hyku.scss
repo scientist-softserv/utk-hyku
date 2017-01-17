@@ -197,6 +197,11 @@ footer.navbar {
   padding: 5px 15px;
 }
 
+.js-per-page label {
+  font-weight: normal;
+  padding-right: .3em;
+}
+
 .callout-danger {
   background-color: $well-bg;
   border-color: $brand-danger;
