@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'active-fedora', '>= 11.1.1'
+
 gem 'puma'
 
 # Use Capistrano for deployment
@@ -34,9 +36,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
 
@@ -48,6 +47,13 @@ group :development, :test do
 
   gem 'rubocop', '~> 0.47.0'
   gem 'rubocop-rspec', '~> 1.10.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'webmock'
 end
 
 group :development do
