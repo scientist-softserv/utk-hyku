@@ -15,17 +15,14 @@
         <h3 class="panel-title"><%= t('hyku.admin.groups.title.add_user') %></h3>
       </div>
       <div class="panel-body">
-        <%= form_tag hyrax.profiles_path, method: :get, class: 'form-inline pull-left js-group-user-search' do |f| %>
-          <div class="form-group">
-            <%= label_tag :uq, t('hyku.admin.groups.label.new_member_search'), class: 'control-label' %>
-            <%= text_field_tag :uq, params[:uq], placeholder: t('hyku.admin.groups.hint.member_search'), class: 'form-control js-group-user-search__query' %>
-          </div>
-          <%= submit_tag t('hyku.admin.groups.action.search.submit'), class: 'btn btn-default js-group-user-search__submit' %>
+        <%= simple_form_for :user_search, url: hyrax.profiles_path, method: :get, html: { class: 'form-inline pull-left js-group-user-search' } do |f| %>
+          <%= f.input :uq, name: :uq, required: false, input_html: { class: 'js-group-user-search__query', value: params[:uq] } %>
+          <%= f.submit class: 'btn btn-default js-group-user-search__submit' %>
         <% end %>
 
-        <%= form_tag add_admin_group_users_path(group_id: @group.to_param), class: 'form-inline pull-left js-group-user-add' do |f| %>
-          <%= text_field_tag :user_ids, nil, placeholder: t('hyku.admin.groups.hint.user_ids'), class: 'form-control js-group-user-add__id' %>
-          <%= submit_tag t('hyku.admin.groups.action.members.submit'), class: 'btn btn-primary js-group-user-add__submit' %>
+        <%= simple_form_for :add_user_to_group, url: add_admin_group_users_path(group_id: @group.to_param), html: { class: 'form-inline pull-left js-group-user-add' } do |f| %>
+          <%= f.input :user_ids, required: false, input_html: { class: 'js-group-user-add__id', name: :user_ids } %>
+          <%= f.submit class: 'btn btn-primary js-group-user-add__submit' %>
         <% end %>
       </div>
     </div>

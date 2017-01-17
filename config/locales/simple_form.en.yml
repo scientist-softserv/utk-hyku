@@ -17,6 +17,10 @@ en:
         description: 'Description'
       group_search:
         q: 'Search'
+      user_search:
+        uq: 'Search for User'
+      add_user_to_group:
+        user_ids: 'User ID'
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -36,3 +40,6 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+    placeholders:
+      user_search:
+        uq: 'Name or username'
