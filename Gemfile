@@ -34,20 +34,20 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  gem 'rspec'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec'
+  gem 'rspec-rails'
 
-  gem 'simplecov', require: false
   gem 'coveralls', require: false
+  gem 'simplecov', require: false
 
-  gem 'solr_wrapper', '~> 0.10'
   gem 'fcrepo_wrapper', '~> 0.4'
+  gem 'solr_wrapper', '~> 0.10'
 
-  gem 'rubocop', '~> 0.43.0'
-  gem 'rubocop-rspec', '~> 1.8.0'
+  gem 'rubocop', '~> 0.47.0'
+  gem 'rubocop-rspec', '~> 1.10.0'
 end
 
 group :development do
@@ -67,10 +67,10 @@ gem 'devise'
 gem 'devise-guests', '~> 0.3'
 gem 'devise-i18n'
 
-gem 'config', '~> 1.2', '>= 1.2.1'
 gem 'apartment'
-gem 'rolify'
+gem 'config', '~> 1.2', '>= 1.2.1'
 gem 'is_it_working'
+gem 'rolify'
 
 gem 'peek'
 gem 'peek-faraday'
@@ -84,8 +84,8 @@ gem 'lograge'
 
 gem 'zk'
 
-gem 'riiif', '~> 0.3'
 gem 'mods', '~> 2.1'
+gem 'riiif', '~> 0.3'
 
 gem 'iiif_manifest', '~> 0.1.2'
 
@@ -95,8 +95,8 @@ group :aws do
   gem 'fog-aws'
 end
 
-gem 'sidekiq'
 gem 'peek-sidekiq'
+gem 'sidekiq'
 
 gem 'secure_headers'
 

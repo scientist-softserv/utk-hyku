@@ -2,6 +2,11 @@
 require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
 
+# With the rubocop 0.47.0 and rubocop-rspec 1.8.0 the following stderr message was sent:
+#   An error occurred while RSpec/DescribedClass cop was inspecting path/to/file
+RSpec/DescribedClass:
+  Enabled: false
+
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.2
@@ -19,6 +24,10 @@ AllCops:
 
 Rails:
   Enabled: true
+
+Rails/DynamicFindBy:
+  Exclude:
+    - 'lib/importer/factory/object_factory.rb'
 
 Metrics/LineLength:
   Max: 120
@@ -61,6 +70,7 @@ RSpec/DescribeClass:
     - 'spec/requests/**/*'
     - 'spec/features/**/*'
     - 'spec/views/**/*'
+    - 'spec/routing/**/*'
 
 RSpec/FilePath:
   Exclude:
@@ -76,11 +86,22 @@ RSpec/VerifiedDoubles:
 RSpec/MessageExpectation:
   Enabled: false
 
+# By default RSpec/MessageSpies has the following:
+#   Prefer have_received for setting message expectations. Setup form as a spy using allow or instance_spy.
+RSpec/MessageSpies:
+  Enabled: true
+  EnforcedStyle: receive
+
 RSpec/ExampleLength:
   Max: 16
 
 RSpec/NestedGroups:
-  MaxNesting: 4
+  Max: 4
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'app/controllers/catalog_controller.rb'
