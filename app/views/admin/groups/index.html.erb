@@ -51,7 +51,7 @@
                 <%= group.number_of_users %>
               </td>
               <td>
-                <%= group.created_at.to_date.to_s(:db) %>
+                <%= group.created_at.to_date.to_formatted_s(:standard) %>
               </td>
               <td>
                 <%= link_to t('hyku.admin.groups.action.edit_html'), edit_admin_group_path(group), class: 'btn btn-default' %>

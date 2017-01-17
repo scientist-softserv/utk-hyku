@@ -67,10 +67,10 @@
                     <%= user.user_key %>
                   </td>
                   <td>
-                    <%= user.created_at.to_date.to_s(:db) %>
+                    <%= user.created_at.to_date.to_formatted_s(:standard) %>
                   </td>
                   <td>
-                    <%= user.updated_at.to_s(:db) %>
+                    <%= user.updated_at.to_date.to_formatted_s(:standard) %>
                   </td>
                   <td>
                     <%= form_tag remove_admin_group_users_path(group_id: @group.to_param), method: :delete, class: 'form' do |f| %>
