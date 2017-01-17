@@ -54,7 +54,7 @@
                 <%= group.created_at.to_date.to_formatted_s(:standard) %>
               </td>
               <td>
-                <%= link_to t('hyku.admin.groups.action.edit_html'), edit_admin_group_path(group), class: 'btn btn-default' %>
+                <%= link_to t('hyku.admin.groups.action.edit'), edit_admin_group_path(group), class: 'btn btn-default' %>
               </td>
             </tr>
           <% end %>
