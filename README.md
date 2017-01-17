@@ -23,6 +23,14 @@ DISABLE_REDIS_CLUSTER=true bundle exec rails server -b 0.0.0.0
 
 See the [Hyku Development Guide](https://github.com/projecthydra-labs/hyku/wiki/Hyku-Development-Guide) for how to run tests.
 
+### Working with Translations
+
+You can log all of the I18n lookups to the Rails logger by setting the I18N_DEBUG environment variable to true. This will add a lot of chatter to the Rails logger (but can be very helpful to zero in on what I18n key you should or could use).
+
+```console
+$ I18N_DEBUG=true bin/rails server
+```
+
 ### On AWS
 
 AWS CloudFormation templates for the Hyku stack are available in a separate repository:
