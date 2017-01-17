@@ -70,9 +70,9 @@
                     <%= user.updated_at.to_date.to_formatted_s(:standard) %>
                   </td>
                   <td>
-                    <%= form_tag remove_admin_group_users_path(group_id: @group.to_param), method: :delete, class: 'form' do |f| %>
-                      <%= hidden_field_tag :user_ids, user.id %>
-                      <%= submit_tag t('hyku.admin.groups.action.revoke_membership'), class: 'btn btn-danger' %>
+                    <%= simple_form_for :revoke_membership, url: remove_admin_group_users_path(group_id: @group.to_param), method: :delete, html: { class: 'form' } do |f| %>
+                      <%= f.input :user_ids, as: :hidden, input_html: { name: :user_ids, value: user.id } %>
+                      <%= f.submit class: 'btn btn-danger' %>
                     <% end %>
                   </td>
                 </tr>
