@@ -10,7 +10,12 @@ class AccountElevator < Apartment::Elevators::Generic
 
   def self.switch!(cname)
     account = Account.find_by(cname: Account.canonical_cname(cname))
-
-    Apartment::Tenant.switch!(account.tenant)
+    if account
+      Apartment::Tenant.switch!(account.tenant)
+    elsif Account.any?
+      raise "No tenant found for #{cname}"
+    else
+      logger.info "It looks like we're in single tenant mode. No tenant found for #{cname}"
+    end
   end
 end

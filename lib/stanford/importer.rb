@@ -2,7 +2,7 @@ module Stanford
   module Importer
     extend ActiveSupport::Autoload
     autoload :ModsParser
-    autoload :PurlImporter
     autoload :PurlParser
+    autoload :PurlRetriever
   end
 end

@@ -7,41 +7,58 @@ def validate_hostname!(hostname)
   exit(1)
 end
 
-def validate_druids!(druids)
-  return if druids
+def validate_druid_file!(druid_file)
+  return if druid_file && File.exist?(druid_file)
   usage
-  $stderr.puts 'Please provide a list of druids you want to import.'
+  $stderr.puts 'Please provide a file of druids you want to import.'
   exit(1)
 end
 
-def validate_imagepath!(imagepath)
-  return if imagepath
+def validate_username!(username)
+  user = User.find_by_user_key(username)
+  return user if user
   usage
-  $stderr.puts 'Image directory was left blank. No images will be ingested'
+  $stderr.puts 'username was left blank.'
   exit(1)
 end
 
-def load_rails
+def load_rails(hostname)
   puts 'Loading environment...'
   require File.expand_path('../../config/environment', __FILE__)
   require 'stanford'
-  puts 'Starting import...'
+  AccountElevator.switch!(hostname)
 end
 
-def main(hostname, imagepath, druids)
+def main(hostname, username, druid_file)
   validate_hostname!(hostname)
-  validate_druids!(druids)
-  validate_imagepath!(imagepath)
-  load_rails
+  validate_druid_file!(druid_file)
+  load_rails(hostname)
+  user = validate_username!(username)
 
-  AccountElevator.switch!(hostname)
-  size = Stanford::Importer::PurlImporter.new(imagepath, druids).import_all
+  count = druids(druid_file) do |druid|
+    log = Hyrax::Operation.create!(user: user, operation_type: "Import Purl Metadata")
+    ImportWorkFromPurlJob.perform_later(user, druid, log)
+  end
 
-  puts "Imported #{size} records."
+  puts "Enqueued #{count} import jobs."
+end
+
+def druids(druid_file)
+  count = 0
+  File.foreach(druid_file) do |line|
+    # Split in two parts on the first comma
+    (element, _) = line.split(/,/, 2)
+    # remove any namespacing
+    if md = /(druid:)?(.*)/.match(element)
+      yield(md[2])
+      count += 1
+    end
+  end
+  count
 end
 
 def usage
-  $stderr.puts "Usage: #{$PROGRAM_NAME} <hostname> <image directory> <druids to import>"
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <hostname> <username> <file of druids>"
 end
 
-main(ARGV[0], ARGV[1], ARGV.drop(2))
+main(ARGV[0], ARGV[1], ARGV[2])
