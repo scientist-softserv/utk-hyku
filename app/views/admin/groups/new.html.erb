@@ -1,4 +1,4 @@
-<% content_for :page_title, [t('hyku.admin.groups.title.new'), t('hyku.admin.title'), application_name].join(' // ') %>
+<% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.new'), t('hyku.admin.title')) %>
 <h1>
   <span class="fa fa-users"></span>
   <%= t('hyku.admin.groups.title.new') %>
