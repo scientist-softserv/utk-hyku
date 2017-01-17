@@ -33,6 +33,10 @@ en:
     service:
       ok: 'OK'
       down: 'Down'
+  helpers:
+    submit:
+      group_search:
+        submit: 'Go'
   hyku:
     admin:
       title: 'Administration'
@@ -55,7 +59,6 @@ en:
           revoke_membership: 'Remove'
           search:
             clear: 'Reset'
-            submit: 'Go'
         flash:
           create:
             success: '%{group} created'
@@ -78,7 +81,6 @@ en:
           new_member_search: 'Search for User'
           per_page: 'per page'
           per_page_prefix: 'Show'
-          search: 'Search'
         nav:
           attributes: 'Description'
           delete: 'Remove'

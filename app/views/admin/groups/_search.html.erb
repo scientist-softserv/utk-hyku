@@ -1,16 +1,15 @@
-<%= form_tag @target, method: :get, class: 'form-inline' do |f| %>
+<%= simple_form_for :group_search, method: :get, html: { class: 'form-inline list-scope' } do |f| %>
   <% if params[:per].present? %>
-    <%= hidden_field_tag :per, params[:per] %>
+    <%= f.input :per, as: :hidden, input_html: { name: :per, value: params[:per] } %>
   <% end %>
   <% if params[:page].present? %>
-    <%= hidden_field_tag :page, params[:page] %>
+    <%= f.input :page, as: :hidden, input_html: { name: :page, value: params[:page] } %>
   <% end %>
   <div class="form-group list-scope">
-    <%= label_tag :q, t('hyku.admin.groups.label.search') %>
-    <%= text_field_tag :q, params[:q], class: 'form-control list-scope__query' %>
+    <%= f.input :q, required: false, input_html: { class: 'list-scope__query', name: :q, value: params[:q] }, wrapper_html: { class: 'list-scope__query-wrapper'} %>
     <% if params[:q].present? %>
       <%= link_to content_tag(:span, '&times;'.html_safe, :'aria-hidden' => true),  @target, class: 'close list-scope__reset', :'aria-label' => t('hyku.admin.groups.action.search.clear') %>
     <% end %>
   </div>
-  <%= submit_tag t('hyku.admin.groups.action.search.submit'), class: 'btn btn-primary list-scope__submit' %>
+  <%= f.submit class: 'btn btn-primary list-scope__submit' %>
 <% end %>
