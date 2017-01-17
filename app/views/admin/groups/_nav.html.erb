@@ -1,33 +1,8 @@
-<%
-  # NOTE: The #new action does not use this navigation partial.
-  controller = params[:controller]
-  action = params[:action]
-  tabs = [
-    OpenStruct.new({
-      name: t('hyku.admin.groups.nav.attributes'),
-      controller: 'admin/groups',
-      action: 'edit',
-      path: edit_admin_group_path(@group)
-    }),
-    OpenStruct.new({
-      name: t('hyku.admin.groups.nav.members'),
-      controller: 'admin/group_users',
-      action: 'index',
-      path: admin_group_users_path(@group)
-    }),
-    OpenStruct.new({
-      name: t('hyku.admin.groups.nav.delete'),
-      controller: 'admin/groups',
-      action: 'remove',
-      path: remove_admin_group_path(@group)
-    })
-  ]
-%>
-
+<%# NOTE: The #new action does not use this navigation partial. %>
 <div class="panel-tab-wrapper">
   <ul class="nav nav-tabs">
-    <% tabs.each do |tab| %>
-      <% if controller == tab.controller && action == tab.action %>
+    <% navigation_presenter.tabs.each do |tab| %>
+      <% if navigation_presenter.controller == tab.controller && navigation_presenter.action == tab.action %>
         <%= content_tag :li, role: 'presentation', class: 'active' do %>
           <%= link_to tab.name, 'javascript:void(0);' %>
         <% end %>
