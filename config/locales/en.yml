@@ -35,14 +35,16 @@ en:
       down: 'Down'
   helpers:
     submit:
-      group_search:
-        submit: 'Go'
-      user_search:
-        submit: 'Go'
       add_user_to_group:
         submit: 'Add'
+      group_search:
+        submit: 'Go'
       page_size:
         submit: 'Update'
+      revoke_membership:
+        submit: 'Remove'
+      user_search:
+        submit: 'Go'
   hyku:
     admin:
       title: 'Administration'
@@ -61,7 +63,6 @@ en:
             confirmation: 'Are you sure you want to remove this group?'
             description: 'This action is irreversible. It will remove all privileges group members have been assigned through this group.'
             submit: 'Remove'
-          revoke_membership: 'Remove'
           search:
             clear: 'Reset'
         flash:
