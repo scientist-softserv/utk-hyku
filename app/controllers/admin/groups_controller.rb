@@ -47,11 +47,6 @@ module Admin
 
     private
 
-      def navigation_presenter
-        @navigation_presenter ||= Hyku::Admin::Group::NavigationPresenter.new(params: params)
-      end
-      helper_method :navigation_presenter
-
       def load_group
         @group = Hyku::Group.find_by_id(params[:id])
       end
