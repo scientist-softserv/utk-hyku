@@ -13,12 +13,12 @@ module Admin
     def create
       new_group = Hyku::Group.new(group_params)
       if new_group.save
-        redirect_to admin_groups_path, notice: t('hyku.admin.groups.flash.new.success', group: @group.name)
+        redirect_to admin_groups_path, notice: t('hyku.admin.groups.flash.create.success', group: new_group.name)
       elsif new_group.invalid?
-        redirect_to new_admin_group_path, alert: t('hyku.admin.groups.flash.new.invalid')
+        redirect_to new_admin_group_path, alert: t('hyku.admin.groups.flash.create.invalid')
       else
         logger.error('Valid Hyku::Group could not be created')
-        redirect_to new_admin_group_path, flash: { error: t('hyku.admin.groups.flash.new.failure') }
+        redirect_to new_admin_group_path, flash: { error: t('hyku.admin.groups.flash.create.failure') }
       end
     end
 
