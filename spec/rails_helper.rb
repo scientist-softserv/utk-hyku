@@ -72,6 +72,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Fixtures::FixtureFileUpload
   config.include FactoryGirl::Syntax::Methods
+  config.include ApplicationHelper, type: :view
 
   config.before :each do |example|
     ActiveFedora::Cleaner.clean! if example.metadata[:clean]
