@@ -44,7 +44,9 @@ module Hyku
           end
 
         class Tab
-          attr_reader :name, :path
+          ACTIVE_CSS_CLASS = 'active'
+
+          attr_reader :name, :path, :action
 
           def initialize(name:, controller:, action:, path:, context:)
             @name = name
@@ -55,13 +57,13 @@ module Hyku
           end
 
           def css_class
-            return 'active' if context.fetch(:controller) == controller && context.fetch(:action) == action
+            return ACTIVE_CSS_CLASS if context.fetch(:controller) == controller && context.fetch(:action) == action
             ''
           end
 
           private
 
-            attr_reader :controller, :action, :context
+            attr_reader :controller, :context
         end
       end
     end
