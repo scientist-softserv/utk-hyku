@@ -22,11 +22,11 @@ RSpec.describe 'admin/groups/index', type: :view do
     it 'renders a list of accounts' do
       expect(rendered).to have_selector('td', text: group_1.name)
       expect(rendered).to have_selector('td', text: group_1.number_of_users)
-      expect(rendered).to have_selector('td', text: group_1.created_at.to_date.to_s(:db))
+      expect(rendered).to have_selector('td', text: group_1.created_at.to_date.to_formatted_s(:standard))
 
       expect(rendered).to have_selector('td', text: group_2.name)
       expect(rendered).to have_selector('td', text: group_2.number_of_users)
-      expect(rendered).to have_selector('td', text: group_2.created_at.to_date.to_s(:db))
+      expect(rendered).to have_selector('td', text: group_2.created_at.to_date.to_formatted_s(:standard))
     end
 
     it 'has a button to create a new group' do
