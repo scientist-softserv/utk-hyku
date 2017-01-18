@@ -10,8 +10,7 @@ class CreateAccount
 
   def save
     account.save &&
-      create_external_resources &&
-      load_workflows
+      create_external_resources
   end
 
   def create_external_resources
@@ -27,6 +26,7 @@ class CreateAccount
   def create_tenant
     Apartment::Tenant.create(account.tenant) do
       initialize_account_data
+      Hyrax::Workflow::WorkflowImporter.load_workflows
     end
   end
 
@@ -40,12 +40,6 @@ class CreateAccount
 
   def create_redis_namespace
     CreateRedisNamespaceJob.perform_later(account)
-  end
-
-  # Ensure that some workflows have been loaded into the database
-  def load_workflows
-    return if Sipity::Workflow.any?
-    Hyrax::Workflow::WorkflowImporter.load_workflows
   end
 
   private
