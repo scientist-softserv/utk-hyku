@@ -17,7 +17,6 @@ module Admin
       elsif new_group.invalid?
         redirect_to new_admin_group_path, alert: t('hyku.admin.groups.flash.create.invalid')
       else
-        logger.error('Valid Hyku::Group could not be created')
         redirect_to new_admin_group_path, flash: { error: t('hyku.admin.groups.flash.create.failure') }
       end
     end
@@ -29,7 +28,9 @@ module Admin
       if @group.update(group_params)
         redirect_to admin_groups_path, notice: t('hyku.admin.groups.flash.update.success', group: @group.name)
       else
-        redirect_to edit_admin_group_path(@group), flash: { error: t('hyku.admin.groups.flash.update.failure', group: @group.name) }
+        redirect_to edit_admin_group_path(@group), flash: {
+          error: t('hyku.admin.groups.flash.update.failure', group: @group.name)
+        }
       end
     end
 
