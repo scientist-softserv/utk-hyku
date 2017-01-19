@@ -89,7 +89,7 @@ en:
           members: 'Users'
         title:
           add_user: 'Add User to Group'
-          delete: 'Remove Group'
+          delete: "Remove Group “%{group}”"
           edit: 'Edit Group'
           index: 'Manage Groups'
           list_members: 'Current Group Members'
