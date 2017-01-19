@@ -8,7 +8,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <blockquote class="callout callout-danger callout-with-action">
-      <h3><%= "#{t('hyku.admin.groups.title.delete')} “#{@group.name}”" %></h3>
+      <h3><%= t('hyku.admin.groups.title.delete', group: @group.name) %></h3>
       <p>
       <%= t('hyku.admin.groups.action.remove.description') %>
       </p>

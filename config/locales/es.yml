@@ -68,7 +68,7 @@ es:
           members: 'Usuarios'
         title:
           add_user: 'Añadir usuario a grupo'
-          delete: 'Eliminar grupo'
+          delete: "Eliminar grupo “%{group}”"
           edit: 'Editar grupo'
           index: 'Gestionar grupos'
           list_members: 'Miembros del grupo actual'
