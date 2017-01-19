@@ -5,11 +5,11 @@ RSpec.describe 'admin/groups/remove', type: :view do
     let(:group) { FactoryGirl.create(:group) }
 
     before do
-      allow(controller).to receive(:params).and_return({
+      allow(controller).to receive(:params).and_return(
         controller: 'admin/groups',
         action: 'remove',
         id: group.id
-      })
+      )
       assign(:group, group)
       render
     end
