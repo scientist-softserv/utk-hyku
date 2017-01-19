@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function() {
 
   var userQuery = function(query, syncResults, asyncResults){
     return $.getJSON(userQueryPath(query), function(data){
-      return asyncResults(data);
+      return asyncResults(data.users);
     });
   };
 
