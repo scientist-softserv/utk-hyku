@@ -42,16 +42,4 @@ RSpec.describe User, type: :model do
       expect(subject.site_roles.pluck(:name)).to be_empty
     end
   end
-
-  describe '.as_json' do
-    subject { FactoryGirl.create(:user) }
-
-    it 'containes the numerical user id' do
-      expect(subject.as_json.fetch(:id)).to eq(subject.id)
-    end
-
-    it 'containes a text key' do
-      expect(subject.as_json.fetch(:text)).to be_present
-    end
-  end
 end
