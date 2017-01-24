@@ -21,8 +21,7 @@ module Admin
       end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @group.update(group_params)
@@ -34,8 +33,7 @@ module Admin
       end
     end
 
-    def remove
-    end
+    def remove; end
 
     def destroy
       if @group.destroy
@@ -49,7 +47,7 @@ module Admin
     private
 
       def load_group
-        @group = Hyku::Group.find_by_id(params[:id])
+        @group = Hyku::Group.find_by(id: params[:id])
       end
 
       def group_params

@@ -40,7 +40,7 @@ RSpec.describe Admin::GroupsController do
       end
 
       describe 'PATCH #update' do
-        subject { Hyku::Group.find_by_id(group.id) }
+        subject { Hyku::Group.find_by(id: group.id) }
         before { patch :update, params: { id: group.id, hyku_group: new_attributes } }
 
         it 'updates attribtes' do
@@ -55,7 +55,7 @@ RSpec.describe Admin::GroupsController do
       end
 
       describe 'DELETE #destroy' do
-        subject { Hyku::Group.find_by_id(group.id) }
+        subject { Hyku::Group.find_by(id: group.id) }
         before { delete :destroy, params: { id: group.id } }
         it { is_expected.to be_nil }
       end
