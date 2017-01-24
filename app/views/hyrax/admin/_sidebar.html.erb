@@ -77,10 +77,6 @@
         <%= menu.nav_link(hyrax.admin_workflow_roles_path) do %>
           <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.workflow_roles') %>
         <% end %>
-
-        <%= menu.nav_link(hyrax.admin_workflows_path) do %>
-          <span class="fa fa-flag"></span> <%= t('hyrax.admin.sidebar.workflow_review') %>
-        <% end %>
       </ul>
     </li>
 
@@ -118,6 +114,9 @@
     <% end %>
 
     <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
+    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
+      <span class="fa fa-flag"></span> <%= t('hyrax.admin.sidebar.workflow_review') %>
+    <% end %>
     <%= menu.nav_link(hyrax.admin_stats_path) do %>
       <span class="fa fa-bar-chart"></span> <%= t('hyrax.admin.sidebar.statistics') %>
     <% end %>
