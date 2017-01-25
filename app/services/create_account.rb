@@ -17,8 +17,7 @@ class CreateAccount
     create_tenant &&
       create_solr_collection &&
       create_fcrepo_endpoint &&
-      create_redis_namespace &&
-      account.save
+      create_redis_namespace
   end
 
   ##
