@@ -49,6 +49,18 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: :index
+    resources :groups do
+      member do
+        get :remove
+      end
+
+      resources :users, only: [:index], controller: 'group_users' do
+        collection do
+          post :add
+          delete :remove
+        end
+      end
+    end
   end
 
   mount Peek::Railtie => '/peek'

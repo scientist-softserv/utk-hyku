@@ -1,0 +1,20 @@
+<% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.edit'), t('hyku.admin.title')) %>
+<h1>
+  <span class="fa fa-users"></span>
+  <%= t('hyku.admin.groups.title.edit') %>
+</h1>
+
+<%= render 'nav' %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <blockquote class="callout callout-danger callout-with-action">
+      <h3><%= t('hyku.admin.groups.title.delete', group: @group.name) %></h3>
+      <p>
+      <%= t('hyku.admin.groups.action.remove.description') %>
+      </p>
+      <div class="callout-action">
+        <%= link_to t('hyku.admin.groups.action.remove.submit'),  admin_group_path(@group), class: 'btn btn-danger action-delete', method: :delete, data: { confirm: t('hyku.admin.groups.action.remove.confirmation') } %>
+      </div>
+    </blockquote>
+  </div>
+</div>

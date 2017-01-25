@@ -1,0 +1,90 @@
+<% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.edit'), t('hyku.admin.title')) %>
+<h1>
+  <span class="fa fa-users"></span>
+  <%= t('hyku.admin.groups.title.edit') %>
+</h1>
+
+<%= render '/admin/groups/nav' %>
+<div class="panel panel-default group-user-listing">
+  <div class="panel-body">
+
+    <p class="lead"><%= t('hyku.admin.groups.action.members.description') %></p>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= t('hyku.admin.groups.title.add_user') %></h3>
+      </div>
+      <div class="panel-body">
+        <%= simple_form_for :user_search, url: hyrax.profiles_path, method: :get, html: { class: 'form-inline pull-left js-group-user-search' } do |f| %>
+          <%= f.input :uq, name: :uq, required: false, input_html: { class: 'js-group-user-search__query', value: params[:uq] } %>
+          <%= f.submit class: 'btn btn-default js-group-user-search__submit' %>
+        <% end %>
+
+        <%= simple_form_for :add_user_to_group, url: add_admin_group_users_path(group_id: @group.to_param), html: { class: 'form-inline pull-left js-group-user-add' } do |f| %>
+          <%= f.input :user_ids, required: false, input_html: { class: 'js-group-user-add__id', name: :user_ids } %>
+          <%= f.submit class: 'btn btn-primary js-group-user-add__submit' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= t('hyku.admin.groups.title.list_members') %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="container-fluid full-width-container">
+          <div class="row">
+            <div class="col-sm-6">
+              <%= render '/admin/groups/per_page', target: admin_group_users_path %>
+            </div>
+            <div class="col-sm-6 text-right">
+              <%= render '/admin/groups/search', target: admin_group_users_path %>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><%= t('hyku.users.label.name') %></th>
+                <th><%= t('hyku.users.label.user_key') %></th>
+                <th><%= t('hyku.users.label.date_joined') %></th>
+                <th><%= t('hyku.users.label.last_login') %></th>
+                <th><%= t('hyku.admin.groups.label.actions') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <%= user.name %>
+                  </td>
+                  <td>
+                    <%= user.user_key %>
+                  </td>
+                  <td>
+                    <%= user.created_at.to_date.to_formatted_s(:standard) %>
+                  </td>
+                  <td>
+                    <%= user.updated_at.to_date.to_formatted_s(:standard) %>
+                  </td>
+                  <td>
+                    <%= simple_form_for :revoke_membership, url: remove_admin_group_users_path(group_id: @group.to_param), method: :delete, html: { class: 'form' } do |f| %>
+                      <%= f.input :user_ids, as: :hidden, input_html: { name: :user_ids, value: user.id } %>
+                      <%= f.submit class: 'btn btn-danger' %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <nav class="pull-right">
+          <%= paginate @users %>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

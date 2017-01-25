@@ -1,0 +1,20 @@
+<% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.new'), t('hyku.admin.title')) %>
+<h1>
+  <span class="fa fa-users"></span>
+  <%= t('hyku.admin.groups.title.new') %>
+</h1>
+<div class="panel-tab-wrapper">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active">
+      <a href="javascript:void(0);"><%= t('hyku.admin.groups.nav.attributes') %></a>
+    </li>
+    <li role="presentation" class="disabled">
+      <a href="javascript:void(0);"><%= t('hyku.admin.groups.nav.members') %></a>
+    </li>
+    <li role="presentation" class="disabled">
+      <a href="javascript:void(0);"><%= t('hyku.admin.groups.nav.delete') %></a>
+    </li>
+  </ul>
+  <%= link_to t('hyku.admin.groups.nav.index'), admin_groups_path, class: 'pull-right nav-escape-link' %>
+</div>
+<%= render 'form' %>
