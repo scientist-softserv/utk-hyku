@@ -82,12 +82,39 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#save' do
-    subject { FactoryGirl.create(:account) }
+    subject { FactoryGirl.create(:sign_up_account) }
 
     it 'canonicalizes the account cname' do
       subject.update cname: 'example.com.'
-
       expect(subject.cname).to eq 'example.com'
+    end
+  end
+
+  describe '#create' do
+    it 'requires name when cname is absent' do
+      account1 = described_class.create(tenant: 'example')
+      expect(account1.errors).not_to be_empty
+      expect(account1.errors.messages).to match a_hash_including(:name, :cname)
+    end
+
+    it 'does not require name when cname is present' do
+      account1 = described_class.create(tenant: 'example', cname: 'example.com')
+      expect(account1.errors).to be_empty
+    end
+
+    it 'builds default cname from name' do
+      account1 = described_class.create(tenant: 'example', name: 'example')
+      expect(account1.errors).to be_empty
+      expect(account1.cname).to eq('example.dev')
+    end
+
+    it 'prevents duplicate cname and tenant values' do
+      account1 = described_class.create(name: 'example', tenant: 'example', cname: 'example.dev')
+      account2 = described_class.create(name: 'example', tenant: 'example', cname: 'example.dev')
+      expect(account1.errors).to be_empty
+      expect(account2.errors).not_to be_empty
+      expect(account2.errors.messages).to match a_hash_including(:tenant, :cname)
+      expect(account2.errors.messages).not_to include(:name)
     end
   end
 end

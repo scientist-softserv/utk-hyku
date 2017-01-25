@@ -1,7 +1,8 @@
 # Customer organization account
 class Account < ActiveRecord::Base
   attr_readonly :tenant
-  validates :name, presence: true
+  # name is unused after create, only used by sign_up form
+  validates :name, presence: true, on: :create, unless: 'cname.present?'
   validates :tenant, presence: true, uniqueness: true
   validates :cname, presence: true, uniqueness: true
 
@@ -37,12 +38,8 @@ class Account < ActiveRecord::Base
   # @param [String] host name
   # @return [String] canonicalized host name
   def self.canonical_cname(cname)
-    # DNS host names are case insensitive
-    cname &&= cname.downcase
-
-    # convert complete domain names to relative names
-    cname &&= cname.sub(/\.\Z/, '')
-
+    # DNS host names are case-insensitive. Convert complete domain names to relative names.
+    cname &&= cname.downcase.sub(/\.\Z/, '')
     cname
   end
 
@@ -70,7 +67,6 @@ class Account < ActiveRecord::Base
 
     def default_cname
       return unless name
-
       default_host = Settings.multitenancy.default_host
       format(default_host, tenant: name.parameterize)
     end

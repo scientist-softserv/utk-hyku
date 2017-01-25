@@ -10,11 +10,10 @@
           <% if @account.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
               <ul>
-              <% @account.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
+                <% @account.errors.messages.each do |key, messages| %>
+                  <li><%= key %> &quot;<%= @account.errors.details[key].first[:value] %>&quot; <%= messages.join(' and ') %></li>
+                <% end %>
               </ul>
             </div>
           <% end %>
@@ -23,7 +22,7 @@
             <%= f.label :tenant %><br>
             <%= f.text_field :tenant, class: 'form-control', readonly: @account.persisted? %>
           </div>
-          
+
           <div class="form-group">
             <%= f.label :cname %><br>
             <%= f.text_field :cname, class: 'form-control' %>

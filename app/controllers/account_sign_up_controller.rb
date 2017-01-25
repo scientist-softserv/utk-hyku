@@ -2,14 +2,14 @@ class AccountSignUpController < ApplicationController
   skip_before_action :require_active_account!
   load_and_authorize_resource instance_name: :account, class: 'Account'
 
-  # GET /accounts/new
+  # GET /account/sign_up
   def new
     add_breadcrumb t(:'hyrax.controls.home'), root_path
     add_breadcrumb 'New account', new_account_path
   end
 
-  # POST /accounts
-  # POST /accounts.json
+  # POST /account/sign_up
+  # POST /account/sign_up.json
   def create
     respond_to do |format|
       if CreateAccount.new(@account).save
