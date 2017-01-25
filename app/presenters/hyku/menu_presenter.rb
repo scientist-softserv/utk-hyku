@@ -29,7 +29,7 @@ module Hyku
       # we're using a case here because we need to differentiate UsersControllers
       # in different namespaces (Hyrax & Admin)
       case controller
-      when Admin::UsersController, RolesController
+      when ::Admin::UsersController, RolesController
         true
       else
         false

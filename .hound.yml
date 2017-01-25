@@ -1,2 +1,7 @@
 ruby:
+  enabled: true
   config_file: .rubocop.yml
+
+scss:
+  enabled: true
+  config_file: .scss-lint.yml

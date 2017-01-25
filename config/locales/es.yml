@@ -12,6 +12,74 @@ es:
     service:
       ok: 'Bueno'
       down: 'Inactivo'
+  helpers:
+    submit:
+      add_user_to_group:
+        submit: 'Añadir'
+      group_search:
+        submit: 'Ir'
+      page_size:
+        submit: 'Actualizar'
+      revoke_membership:
+        submit: 'Eliminar'
+      user_search:
+        submit: 'Ir'
+  hyku:
+    admin:
+      title: 'Administración'
+      flash:
+        access_denied: 'No está autorizado a ver esta página'
+      groups:
+        describe_quantity_html: "Hay <b>%{number} grupos</b> en este repositorio."
+        describe_singular_quantity_html: "Hay <b>1 grupo</b> en este repositorio."
+        action:
+          create: 'Crear nuevo grupo'
+          edit: 'Editar grupos y usuarios'
+          members:
+            description: 'Los miembros del grupo asumen todos los privilegios asignados a este grupo.'
+          per_page: 'Actualizar'
+          remove:
+            confirmation: '¿Seguro que quieres eliminar este grupo?'
+            description: 'Esta acción es irreversible. Eliminará todos los privilegios que se hayan asignado a los miembros del grupo a través de este grupo.'
+            submit: 'Eliminar'
+          search:
+            clear: 'Reiniciar'
+        flash:
+          create:
+            success: '%{group} creado'
+            invalid: 'Los grupos deben tener un nombre'
+            failure: 'No se pudo crear'
+          update:
+            success: '%{group} actualizado'
+            failure: 'No se pudo actualizar %{group} '
+          destroy:
+            success: '%{group} destruido'
+            failure: 'No pudo ser destruido %{group} '
+        label:
+          actions: 'Comportamiento'
+          created_at: 'Fecha de creacion'
+          members: 'Usuarios'
+          name: 'Nombre'
+          per_page: 'por página'
+        nav:
+          attributes: 'Descripción'
+          delete: 'Eliminar'
+          index: 'Volver a Administrar grupos'
+          members: 'Usuarios'
+        title:
+          add_user: 'Añadir usuario a grupo'
+          delete: "Eliminar grupo “%{group}”"
+          edit: 'Editar grupo'
+          index: 'Gestionar grupos'
+          list_members: 'Miembros del grupo actual'
+          members: 'Miembros del grupo'
+          new: 'Nuevo grupo'
+    users:
+      label:
+        name: 'Nombre'
+        user_key: 'Nombre de usuario'
+        date_joined: 'Se unió'
+        last_login: 'Ultimo acceso'
   hyrax:
     admin:
       sidebar:
@@ -29,6 +97,7 @@ es:
         technical:             'Técnico'
         roles_and_permissions: 'Roles y permisos'
         manage_roles_and_permissions: 'Defina roles y permisos'
+        manage_groups: 'Administrar grupos'
         manage_users: 'Administrar usuarios'
         accounts:              'Cuentas'
         tasks: 'Tareas'

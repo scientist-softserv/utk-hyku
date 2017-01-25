@@ -124,3 +124,94 @@ footer.navbar {
     padding: $nav-link-padding;
   }
 }
+
+.panel-tab-wrapper {
+  margin-top: 5em;
+  padding-bottom: 1px;
+}
+
+.nav-escape-link {
+  margin-top: -30px;
+}
+
+.group-user-listing .table td {
+  vertical-align: middle;
+}
+
+.group-listing .table {
+  margin-bottom: 0;
+  margin-top: 1em;
+  padding: 0 15px;
+
+  td {
+    vertical-align: middle;
+  }
+
+  .panel-heading {
+    line-height: 2.4em;
+  }
+
+  td:nth-child(2),
+  th:nth-child(2) {
+    text-align: right;
+    width: 5em;
+  }
+
+  td:nth-child(3),
+  th:nth-child(3) {
+    text-align: right;
+    width: 9em;
+  }
+
+  td:nth-child(4),
+  th:nth-child(4) {
+    text-align: center;
+    width: 13em;
+  }
+}
+
+.full-width-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.list-scope {
+  position: relative;
+
+  .list-scope__query {
+    padding-right: 1.8em;
+  }
+
+  .list-scope__query-wrapper .control-label {
+    padding-right: 0.3em;
+  }
+
+  .list-scope__reset {
+    bottom: 0.4em;
+    position: absolute;
+    right: 0.5em;
+  }
+}
+
+.js-typeahead__empty-message {
+  padding: 5px 15px;
+}
+
+.js-per-page label {
+  font-weight: normal;
+  padding-right: 0.3em;
+}
+
+.callout-danger {
+  background-color: $well-bg;
+  border-color: $brand-danger;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $brand-danger;
+  }
+}
