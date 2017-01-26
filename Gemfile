@@ -25,7 +25,10 @@ gem 'jbuilder', '~> 2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'active-fedora', '>= 11.1.2'
+# gem 'active-fedora', '>= 11.1.2'
+# Need to have https://github.com/projecthydra/active_fedora/pull/1194 in order to
+# investigate https://github.com/projecthydra-labs/hyku/issues/695
+gem 'active-fedora', git: 'https://github.com/projecthydra/active_fedora.git'
 
 gem 'puma'
 
