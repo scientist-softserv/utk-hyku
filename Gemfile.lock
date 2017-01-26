@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 2c11609aba1f8420edf09a7ca64aca1812493415
+  revision: 88a67fd52455c74662eb47e9fcb4fbaef6f0d165
   specs:
     hyrax (0.0.1.alpha)
       active_attr (~> 0.9.0)
@@ -54,6 +54,19 @@ GIT
       tinymce-rails-imageupload (~> 4.0.17.beta)
       yaml_db (~> 0.2)
 
+GIT
+  remote: https://github.com/projecthydra/active_fedora.git
+  revision: c49373d9b0e01618e371fb20918325958ec5324d
+  specs:
+    active-fedora (11.1.2)
+      active-triples (~> 0.11.0)
+      activemodel (>= 4.2, < 6)
+      activesupport (>= 4.2.4, < 6)
+      deprecation
+      ldp (~> 0.6.0)
+      rsolr (>= 1.1.2, < 3)
+      solrizer (~> 3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,14 +93,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-fedora (11.1.2)
-      active-triples (~> 0.11.0)
-      activemodel (>= 4.2, < 6)
-      activesupport (>= 4.2.4, < 6)
-      deprecation
-      ldp (~> 0.6.0)
-      rsolr (>= 1.1.2, < 3)
-      solrizer (~> 3.4)
     active-triples (0.11.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -767,7 +772,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active-fedora (>= 11.1.2)
+  active-fedora!
   active_elastic_job (~> 1.7)
   apartment
   blacklight (~> 6.7)
