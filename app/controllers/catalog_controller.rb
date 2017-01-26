@@ -2,7 +2,7 @@ class CatalogController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
-  # These before_filters apply the hydra access controls
+  # These before_action filters apply the hydra access controls
   before_action :enforce_show_permissions, only: :show
 
   def self.uploaded_field
