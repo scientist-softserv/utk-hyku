@@ -1,8 +1,9 @@
 class CleanupAccountJob < ActiveJob::Base
   def perform(account)
     account.switch do
-      solr_client.get '/solr/admin/collections', params: { action: 'DELETE', name: account.solr_endpoint.collection }
-      fcrepo_client.delete(account.fcrepo_endpoint.base_path)
+      solr_client.get '/solr/admin/collections',
+        params: { action: 'DELETE', name: account.solr_endpoint.collection } if account.solr_endpoint
+      fcrepo_client.delete(account.fcrepo_endpoint.base_path) if account.fcrepo_endpoint
     end
 
     Apartment::Tenant.drop(account.tenant)
