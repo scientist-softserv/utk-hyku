@@ -5,7 +5,7 @@ class AccountSignUpController < ApplicationController
   # GET /account/sign_up
   def new
     add_breadcrumb t(:'hyrax.controls.home'), root_path
-    add_breadcrumb 'New account', new_account_path
+    add_breadcrumb 'New account', new_sign_up_path
   end
 
   # POST /account/sign_up
