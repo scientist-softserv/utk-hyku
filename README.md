@@ -17,7 +17,7 @@ postgres -D ./db/postgres
 redis-server /usr/local/etc/redis.conf
 bin/setup
 DISABLE_REDIS_CLUSTER=true bundle exec sidekiq
-DISABLE_REDIS_CLUSTER=true bundle exec rails server
+DISABLE_REDIS_CLUSTER=true bundle exec rails server -b 0.0.0.0
 ```
 
 ### On AWS
