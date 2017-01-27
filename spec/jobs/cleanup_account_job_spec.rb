@@ -12,14 +12,13 @@ RSpec.describe CleanupAccountJob do
       block.call
     end
 
-    allow(Blacklight.default_index.connection).to receive(:get)
+    allow(RemoveSolrCollectionJob).to receive(:perform_later)
     allow(ActiveFedora.fedora.connection).to receive(:delete)
     allow(Apartment::Tenant).to receive(:drop).with(account.tenant)
   end
 
   it 'destroys the solr collection' do
-    expect(Blacklight.default_index.connection).to receive(:get).with('/solr/admin/collections',
-                                                                      params: { action: 'DELETE', name: 'x' })
+    expect(RemoveSolrCollectionJob).to receive(:perform_later).with('x', hash_including('url'))
     described_class.perform_now(account)
   end
 
