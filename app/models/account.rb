@@ -1,10 +1,19 @@
 # Customer organization account
 class Account < ActiveRecord::Base
+  # @param [String] piece the tenant piece of the canonical name
+  # @return [String] full canonical name
+  # @see Settings.multitenancy.default_host
+  def self.default_cname(piece)
+    return unless piece
+    default_host = Settings.multitenancy.default_host
+    format(default_host, tenant: piece.parameterize)
+  end
+
   attr_readonly :tenant
-  # name is unused after create, only used by sign_up form
-  validates :name, presence: true, on: :create, unless: 'cname.present?'
+  # name is unused after create, only used by sign_up/new forms
+  validates :name, presence: true, unless: 'cname.present? && cname != default_cname("")'
   validates :tenant, presence: true, uniqueness: true
-  validates :cname, presence: true, uniqueness: true
+  validates :cname, presence: true, uniqueness: true, exclusion: { in: [default_cname('')] }
 
   belongs_to :solr_endpoint, dependent: :delete
   belongs_to :fcrepo_endpoint, dependent: :delete
@@ -14,7 +23,7 @@ class Account < ActiveRecord::Base
 
   before_validation do
     self.tenant ||= SecureRandom.uuid
-    self.cname ||= default_cname
+    self.cname ||= self.class.default_cname(name)
   end
 
   before_save :canonicalize_cname
@@ -35,7 +44,7 @@ class Account < ActiveRecord::Base
 
   # Canonicalize the account cname or request host for comparison
   #
-  # @param [String] host name
+  # @param [String] cname distinct part of host name
   # @return [String] canonicalized host name
   def self.canonical_cname(cname)
     # DNS host names are case-insensitive. Convert complete domain names to relative names.
@@ -65,10 +74,8 @@ class Account < ActiveRecord::Base
 
   private
 
-    def default_cname
-      return unless name
-      default_host = Settings.multitenancy.default_host
-      format(default_host, tenant: name.parameterize)
+    def default_cname(piece = name)
+      self.class.default_cname(piece)
     end
 
     def canonicalize_cname
