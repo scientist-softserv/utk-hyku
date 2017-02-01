@@ -66,7 +66,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.7'
 
-  gem 'scss_lint'
+  gem 'scss_lint', require: false
 end
 
 gem 'blacklight', '~> 6.7'
