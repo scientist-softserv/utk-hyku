@@ -72,7 +72,7 @@ RSpec/DescribeClass:
     - 'spec/views/**/*'
     - 'spec/routing/**/*'
 
-RSpec/FilePath:
+Rails/FilePath:
   Exclude:
     - 'spec/routing/**/*'
 
