@@ -77,14 +77,10 @@
         <%= menu.nav_link(hyrax.admin_workflow_roles_path) do %>
           <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.workflow_roles') %>
         <% end %>
-
-        <%= menu.nav_link(hyrax.admin_workflows_path) do %>
-          <span class="fa fa-flag"></span> <%= t('hyrax.admin.sidebar.workflow_review') %>
-        <% end %>
       </ul>
     </li>
 
-    <% if can?(:manage, Role) || can?(:manage, User) %>
+    <% if can?(:manage, Role) || can?(:manage, User) || can?(:manage, Hyku::Group) %>
     <li>
       <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseRoles" aria-expanded="false" aria-controls="collapseRoles">
         <span class="fa fa-users"></span>
@@ -95,6 +91,12 @@
         <% if can? :manage, Role %>
           <%= menu.nav_link(main_app.site_roles_path) do %>
             <span class="fa fa-gavel"></span> <%= t('hyrax.admin.sidebar.manage_roles_and_permissions') %>
+          <% end %>
+        <% end %>
+
+        <% if can? :manage, Hyku::Group %>
+          <%= menu.nav_link(main_app.admin_groups_path) do %>
+            <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.manage_groups') %>
           <% end %>
         <% end %>
 
@@ -118,6 +120,9 @@
     <% end %>
 
     <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
+    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
+      <span class="fa fa-flag"></span> <%= t('hyrax.admin.sidebar.workflow_review') %>
+    <% end %>
     <%= menu.nav_link(hyrax.admin_stats_path) do %>
       <span class="fa fa-bar-chart"></span> <%= t('hyrax.admin.sidebar.statistics') %>
     <% end %>

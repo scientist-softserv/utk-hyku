@@ -2,7 +2,11 @@ class Ability
   include Hydra::Ability
   include Hyrax::Ability
 
-  self.ability_logic += [:everyone_can_create_curation_concerns, :superadmin_permissions]
+  self.ability_logic += [
+    :everyone_can_create_curation_concerns,
+    :group_permissions,
+    :superadmin_permissions
+  ]
 
   # Define any customized permissions here.
   def custom_permissions
@@ -15,6 +19,12 @@ class Ability
     can [:manage], [Site, Role, User]
 
     restrict_site_admin_permissions unless current_user.has_role? :superadmin
+  end
+
+  def group_permissions
+    return unless admin?
+
+    can :manage, Hyku::Group
   end
 
   def superadmin_permissions

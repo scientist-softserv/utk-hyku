@@ -33,6 +33,74 @@ en:
     service:
       ok: 'OK'
       down: 'Down'
+  helpers:
+    submit:
+      add_user_to_group:
+        submit: 'Add'
+      group_search:
+        submit: 'Go'
+      page_size:
+        submit: 'Update'
+      revoke_membership:
+        submit: 'Remove'
+      user_search:
+        submit: 'Go'
+  hyku:
+    admin:
+      title: 'Administration'
+      flash:
+        access_denied: 'You are not authorized to view this page'
+      groups:
+        describe_quantity_html: "There are <b>%{number} groups</b> in this repository."
+        describe_singular_quantity_html: "There is <b>1 group</b> in this repository."
+        action:
+          create: 'Create New Group'
+          edit: 'Edit group & users'
+          members:
+            description: 'Group members assume all privileges assigned to this group.'
+          per_page: 'Update'
+          remove:
+            confirmation: 'Are you sure you want to remove this group?'
+            description: 'This action is irreversible. It will remove all privileges group members have been assigned through this group.'
+            submit: 'Remove'
+          search:
+            clear: 'Reset'
+        flash:
+          create:
+            success: '%{group} created'
+            invalid: 'Groups must have a name'
+            failure: 'Group could not be created'
+          update:
+            success: '%{group} updated'
+            failure: '%{group} could not be updated updated'
+          destroy:
+            success: '%{group} destroyed'
+            failure: '%{group} could not be destroyed'
+        label:
+          actions: 'Actions'
+          created_at: 'Date Created'
+          members: 'Users'
+          name: 'Name'
+          per_page: 'per page'
+        nav:
+          attributes: 'Description'
+          delete: 'Remove'
+          index: 'return to Manage Groups'
+          members: 'Users'
+        title:
+          add_user: 'Add User to Group'
+          delete: "Remove Group “%{group}”"
+          edit: 'Edit Group'
+          index: 'Manage Groups'
+          list_members: 'Current Group Members'
+          members: 'Group Members'
+          new: 'New Group'
+    users:
+      label:
+        name: 'Name'
+        user_key: 'Username'
+        date_joined: 'Joined'
+        last_login: 'Last access'
   hyrax:
     admin:
       sidebar:
@@ -50,6 +118,7 @@ en:
         technical:             'Technical'
         roles_and_permissions: 'Roles and permissions'
         manage_roles_and_permissions: 'Define roles and permissions'
+        manage_groups: 'Manage groups'
         manage_users: 'Manage users'
         accounts:              'Accounts'
         tasks: 'Tasks'
