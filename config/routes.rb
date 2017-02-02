@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :accounts
 
-  get '/account/sign_up' => 'account_sign_up#new'
+  get '/account/sign_up' => 'account_sign_up#new', as: 'new_sign_up'
   post '/account/sign_up' => 'account_sign_up#create'
 
   root 'hyrax/homepage#index'

@@ -10,11 +10,10 @@
             <% if @account.errors.any? %>
               <div id="error_explanation" class="alert alert-danger">
                 <%= pluralize(@account.errors.count, "error") %> prohibited this repository from being saved:
-
                 <ul>
-                <% @account.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
+                  <% @account.errors.messages.each do |key, messages| %>
+                    <li><%= key %> &quot;<%= @account.errors.details[key].first[:value] %>&quot; <%= messages.join(' and ') %></li>
+                  <% end %>
                 </ul>
               </div>
             <% end %>
