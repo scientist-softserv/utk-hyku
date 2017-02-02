@@ -1,0 +1,69 @@
+<% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.index'), t('hyku.admin.title')) %>
+<h1>
+  <span class="fa fa-users"></span>
+  <%= t('hyku.admin.groups.title.index') %>
+</h1>
+
+<div class="panel panel-default group-listing">
+  <div class="panel-heading">
+    <% group_count = Hyku::Group.all.count %>
+    <% if group_count == 1 %>
+      <%= t('hyku.admin.groups.describe_singular_quantity_html') %>
+    <% else %>
+      <%= t('hyku.admin.groups.describe_quantity_html', number: group_count ) %>
+    <% end %>
+    <%= link_to t('hyku.admin.groups.action.create'), new_admin_group_path, class: 'btn btn-primary pull-right new-group' %>
+  </div>
+  <div class="panel-body">
+    <div class="container-fluid full-width-container">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= render 'per_page', target: admin_groups_path %>
+        </div>
+        <div class="col-sm-6 text-right">
+          <%= render 'search', target: admin_groups_path %>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= t('hyku.admin.groups.label.name') %></th>
+            <th><%= t('hyku.admin.groups.label.members') %></th>
+            <th><%= t('hyku.admin.groups.label.created_at') %></th>
+            <th><%= t('hyku.admin.groups.label.actions') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td>
+                <b><%= group.name %></b>
+                <% if group.description.present? %>
+                  <p class="help-block">
+                  <%= group.description %>
+                  </p>
+                <% end %>
+              </td>
+              <td>
+                <%= group.number_of_users %>
+              </td>
+              <td>
+                <%= group.created_at.to_date.to_formatted_s(:standard) %>
+              </td>
+              <td>
+                <%= link_to t('hyku.admin.groups.action.edit'), edit_admin_group_path(group), class: 'btn btn-default' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="pull-right">
+      <%= paginate @groups %>
+    </nav>
+  </div>
+</div>

@@ -136,6 +136,13 @@ ActiveRecord::Schema.define(version: 20170106175305) do
     t.index ["user_id"], name: "index_file_view_stats_on_user_id", using: :btree
   end
 
+  create_table "hyku_groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "hyrax_features", force: :cascade do |t|
     t.string   "key",                        null: false
     t.boolean  "enabled",    default: false, null: false

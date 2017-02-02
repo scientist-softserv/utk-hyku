@@ -10,6 +10,6 @@ RSpec.feature 'Creating a new Work' do
   it 'creates the work' do
     visit '/'
     click_link "Share Your Work"
-    expect(page).to have_content "Add New Work"
+    expect(page).to have_button "Create work"
   end
 end

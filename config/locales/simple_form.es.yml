@@ -2,8 +2,26 @@ es:
   simple_form:
     "yes": 'Sí'
     "no": 'No'
+    cancel: 'Cancelar'
     required:
       text: 'obligatorio'
       mark: '*'
     error_notification:
       default_message: "Repase los problemas abajo, por favor:"
+    labels:
+      hyku_group:
+        description: 'Descripción'
+      group_search:
+        q: 'Buscar'
+      user_search:
+        uq: 'Buscar usuario'
+      add_user_to_group:
+        user_ids: 'Identidad de usuario'
+      page_size:
+        per: 'Mostrar'
+    hints:
+      hyku_group:
+        description: 'Un breve resumen de la función del grupo'
+    placeholders:
+      user_search:
+        uq: 'Nombre o nombre de usuario'
