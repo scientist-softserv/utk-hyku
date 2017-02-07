@@ -14,11 +14,8 @@ RSpec.describe ImportWorkFromPurlJob do
     Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_name: 'default')
   end
   it "works" do
-    expect(ImportUrlJob).to receive(:perform_later).twice
-    expect do
-      described_class.perform_now(user, druid, log)
-    end.to change { GenericWork.count }.by(1)
-      .and change { FileSet.count }.by(2)
+    expect(CreateWorkJob).to receive(:perform_later)
+    described_class.perform_now(user, druid, log)
   end
 
   let(:purl_xml) do
