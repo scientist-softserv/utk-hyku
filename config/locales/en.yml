@@ -116,7 +116,7 @@ en:
         appearance:            'Appearance'
         content_blocks:        'Content Blocks'
         technical:             'Technical'
-        roles_and_permissions: 'Roles and permissions'
+        roles_and_permissions: 'Users and groups'
         manage_roles_and_permissions: 'Define roles and permissions'
         manage_groups: 'Manage groups'
         manage_users: 'Manage users'

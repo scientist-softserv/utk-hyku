@@ -20,7 +20,7 @@ RSpec.describe 'Admin Dashboard' do
         expect(page).to have_link('Content Blocks')
         expect(page).to have_link('Technical')
         expect(page).to have_link('Administrative Sets')
-        expect(page).to have_link('Define roles and permissions')
+        expect(page).to have_link('Manage groups')
         expect(page).to have_link('Manage users')
         expect(page).to have_link('Reports')
       end
