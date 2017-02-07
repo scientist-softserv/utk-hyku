@@ -95,7 +95,7 @@ es:
         appearance:            'Apariencia'
         content_blocks:        'Bloques de contenido'
         technical:             'Técnico'
-        roles_and_permissions: 'Roles y permisos'
+        roles_and_permissions: 'Usarios y grupos'
         manage_roles_and_permissions: 'Defina roles y permisos'
         manage_groups: 'Administrar grupos'
         manage_users: 'Administrar usuarios'
