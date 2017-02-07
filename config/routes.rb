@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'splash', to: 'splash#index'
   get 'status', to: 'status#index'
   devise_for :users
+  mount Qa::Engine => '/authorities'
 
   mount Blacklight::Engine => '/'
   mount Hyrax::Engine, at: '/'
