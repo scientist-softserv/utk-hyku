@@ -66,7 +66,15 @@ class ImportWorkFromPurlJob < ActiveJob::Base
 
       # Workaround for ActiveFedora #1186
       id = collection[:id]
-      Collection.create!(collection) unless Collection.exists?(id)
+      begin
+        retries ||= 0
+        Collection.create!(collection) unless Collection.exists?(id)
+      rescue Ldp::Conflict => e
+        ## Another process has likely beat us to the punch. Wait a bit and try again.
+        sleep(3)
+        retry if (retries += 1) < 3
+        raise e
+      end
       attributes[:member_of_collection_ids] = [id]
     end
 
