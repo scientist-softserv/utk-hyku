@@ -26,7 +26,7 @@ class ImportWorkFromPurlJob < ActiveJob::Base
     attributes = process_attributes(parser.attributes)
     model = model_to_create(attributes)
 
-    CreateWorkJob.perform_now(user, model, attributes, log)
+    CreateWorkJob.perform_later(user, model, attributes, log)
   end
 
   private
