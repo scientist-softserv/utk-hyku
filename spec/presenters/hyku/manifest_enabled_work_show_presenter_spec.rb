@@ -12,11 +12,6 @@ RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
     it { is_expected.to eq 'http://test.host/concern/generic_works/99/manifest' }
   end
 
-  describe "file_presenter_class" do
-    subject { described_class.file_presenter_class }
-    it { is_expected.to eq Hyku::FileSetPresenter }
-  end
-
   describe "representative_presenter" do
     subject do
       presenter.representative_presenter

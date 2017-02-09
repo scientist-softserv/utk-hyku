@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 8ccccb3048a8415d8a2f363db5b9dbd3dd3dfabe
+  revision: 4aff3e66264d12d7c496d60ade4e578869b9b9ba
   specs:
-    hyrax (0.0.1.alpha)
+    hyrax (1.0.0.alpha)
       active_attr (~> 0.9.0)
       active_fedora-noid (~> 2.0)
       almond-rails (~> 0.0.1)
@@ -54,19 +54,6 @@ GIT
       tinymce-rails-imageupload (~> 4.0.17.beta)
       yaml_db (~> 0.2)
 
-GIT
-  remote: https://github.com/projecthydra/active_fedora.git
-  revision: 2c507c057c0e2e4f09e70fa91f4662298b83520b
-  specs:
-    active-fedora (11.1.2)
-      active-triples (~> 0.11.0)
-      activemodel (>= 4.2, < 6)
-      activesupport (>= 4.2.4, < 6)
-      deprecation
-      ldp (~> 0.6.0)
-      rsolr (>= 1.1.2, < 3)
-      solrizer (~> 3.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -93,6 +80,14 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active-fedora (11.1.4)
+      active-triples (~> 0.11.0)
+      activemodel (>= 4.2, < 6)
+      activesupport (>= 4.2.4, < 6)
+      deprecation
+      ldp (~> 0.6.0)
+      rsolr (>= 1.1.2, < 3)
+      solrizer (>= 3.4, < 5)
     active-triples (0.11.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -117,7 +112,7 @@ GEM
       activemodel (= 5.0.1)
       activesupport (= 5.0.1)
       arel (~> 7.0)
-    activerecord-import (0.17.0)
+    activerecord-import (0.17.1)
       activerecord (>= 3.2)
     activesupport (5.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -138,13 +133,13 @@ GEM
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.7.3)
-      aws-sdk-resources (= 2.7.3)
-    aws-sdk-core (2.7.3)
+    aws-sdk (2.7.4)
+      aws-sdk-resources (= 2.7.4)
+    aws-sdk-core (2.7.4)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.7.3)
-      aws-sdk-core (= 2.7.3)
+    aws-sdk-resources (2.7.4)
+      aws-sdk-core (= 2.7.4)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -164,7 +159,7 @@ GEM
       blacklight (~> 6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
-    blacklight-gallery (0.7.0)
+    blacklight-gallery (0.8.0)
       blacklight (~> 6.3)
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
@@ -203,7 +198,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    clipboard-rails (1.5.16)
+    clipboard-rails (1.6.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -280,7 +275,7 @@ GEM
       rdf (~> 2.0)
       sxp (~> 1.0)
     erubis (2.7.0)
-    excon (0.54.0)
+    excon (0.55.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -315,7 +310,7 @@ GEM
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    google-api-client (0.9.26)
+    google-api-client (0.9.28)
       addressable (~> 2.3)
       googleauth (~> 0.5)
       httpclient (~> 2.7)
@@ -422,7 +417,7 @@ GEM
     json-ld (2.1.2)
       multi_json (~> 1.12)
       rdf (~> 2.1)
-    json-schema (2.7.0)
+    json-schema (2.8.0)
       addressable (>= 2.4)
     jwt (1.5.6)
     kaminari (0.17.0)
@@ -500,7 +495,7 @@ GEM
       rails (> 3.2.0)
     orm_adapter (0.5.0)
     os (0.9.6)
-    parser (2.3.3.1)
+    parser (2.4.0.0)
       ast (~> 2.2)
     peek (0.2.0)
       coffee-rails
@@ -654,7 +649,7 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.8.1)
-    rubyzip (1.2.0)
+    rubyzip (1.2.1)
     safe_yaml (1.0.4)
     sass (3.4.23)
     sass-rails (5.0.6)
@@ -724,8 +719,8 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.6)
-    tins (1.13.0)
-    tinymce-rails (4.5.2)
+    tins (1.13.2)
+    tinymce-rails (4.5.3)
       railties (>= 3.1.1)
     tinymce-rails-imageupload (4.0.17.beta)
       railties (>= 3.2, < 6)
@@ -772,7 +767,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active-fedora!
+  active-fedora (>= 11.1.4)
   active_elastic_job (~> 1.7)
   apartment
   blacklight (~> 6.7)
