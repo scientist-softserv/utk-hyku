@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  # Includes lib/rolify from the rolify gem
   rolify
   # Connects this user object to Hydra behaviors.
   include Hydra::User
