@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe RemoveSolrCollectionJob do
   let(:collection) { 'x' }
   let(:connection_options) { double }

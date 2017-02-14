@@ -1,6 +1,5 @@
 # Generated via
 #  `rails generate curation_concerns:work Image`
-require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.feature 'Create a Image' do

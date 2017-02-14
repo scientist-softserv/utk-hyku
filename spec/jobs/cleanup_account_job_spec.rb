@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CleanupAccountJob do
   let!(:account) do
     FactoryGirl.create(:account, solr_endpoint_attributes: { collection: 'x' },

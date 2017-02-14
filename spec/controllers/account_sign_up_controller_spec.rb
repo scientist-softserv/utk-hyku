@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe AccountSignUpController, type: :controller do
   let(:user) {}
 

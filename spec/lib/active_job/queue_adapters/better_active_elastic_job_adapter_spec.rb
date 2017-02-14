@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'active_job/queue_adapters/better_active_elastic_job_adapter'
 
 RSpec.describe ActiveJob::QueueAdapters::BetterActiveElasticJobAdapter do

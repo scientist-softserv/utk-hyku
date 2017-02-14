@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe AccountElevator do
   subject { described_class.new(nil) }
 

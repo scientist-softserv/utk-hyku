@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Account, type: :model do
   let(:account) { FactoryGirl.create(:account) }
 

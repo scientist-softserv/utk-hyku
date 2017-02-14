@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Home page', type: :request do
   context 'without a current tenant' do
     let(:conf) { double(enabled: true, host: 'localhost') }

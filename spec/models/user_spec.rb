@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe User, type: :model do
   context 'the first created user' do
     subject { FactoryGirl.create(:base_user) }

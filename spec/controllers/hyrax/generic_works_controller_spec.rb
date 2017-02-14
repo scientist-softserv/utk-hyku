@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Hyrax::GenericWorksController do
   let(:user) { FactoryGirl.create(:user) }
   let(:work) { FactoryGirl.create(:work_with_one_file, user: user) }
