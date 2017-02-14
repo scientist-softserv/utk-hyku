@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ContentBlockHelper, type: :helper do
   describe '#displayable_content_block' do
     it 'is defined' do

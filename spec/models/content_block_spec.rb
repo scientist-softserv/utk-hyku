@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ContentBlock, type: :model do
   before do
     create(:content_block,

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe RedisEndpoint do
   let(:namespace) { 'foobar' }
   describe '.options' do

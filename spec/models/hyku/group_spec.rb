@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 module Hyku
   RSpec.describe Group do
     describe 'group with no members' do

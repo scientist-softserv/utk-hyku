@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Hyku::MenuPresenter do
   let(:instance) { described_class.new(context) }
   let(:context) { double }

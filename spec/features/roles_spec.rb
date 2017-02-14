@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Site Roles' do
   context 'as an administrator' do
     let!(:user) { FactoryGirl.create(:admin) }

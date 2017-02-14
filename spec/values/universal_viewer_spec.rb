@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe UniversalViewer do
   subject { described_class.instance }
   describe "#viewer_version" do

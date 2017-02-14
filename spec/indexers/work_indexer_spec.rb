@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe WorkIndexer do
   describe 'thumbnail_path_service' do
     subject { described_class.thumbnail_path_service }

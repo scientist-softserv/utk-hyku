@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'iiif_manifest'
 RSpec.describe Hyku::FileSetPresenter do
   let(:file_set) { FactoryGirl.create(:file_set) }
