@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CreateAccount do
   let(:account) { FactoryGirl.build(:account) }
   subject { described_class.new(account) }

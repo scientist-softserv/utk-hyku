@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveJobTenant do
   before do
     allow(Apartment::Tenant).to receive(:current).and_return('x')

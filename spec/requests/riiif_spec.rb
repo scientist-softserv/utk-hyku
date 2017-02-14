@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'IIIF image API' do
   let(:user) { create(:user) }
   let(:work) { create(:work_with_one_file, user: user) }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe SolrEndpoint do
   subject { described_class.new url: 'http://example.com/solr/' }
 

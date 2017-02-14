@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe IIIFThumbnailPathService do
   let(:file_set) { FileSet.new }
   let(:file) do

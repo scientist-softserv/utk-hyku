@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
   let(:document) { { "has_model_ssim" => ['GenericWork'], 'id' => '99' } }
   let(:solr_document) { SolrDocument.new(document) }

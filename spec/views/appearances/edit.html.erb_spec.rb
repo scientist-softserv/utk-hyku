@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "appearances/edit", type: :view do
   let(:site) { Site.create!(application_name: "MyString", institution_name: "My Inst Name") }
 

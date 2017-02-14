@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe SolrConfigUploader do
   let(:config_dir) { Rails.root.join('solr', 'config') }
   subject { described_class.new('solr_config_uploader_test') }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CreateSolrCollectionJob do
   let(:account) { FactoryGirl.create(:account) }
   let(:client) { double }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe HyraxHelper, type: :helper do
   describe "#banner_image" do
     context "with uploaded banner image" do

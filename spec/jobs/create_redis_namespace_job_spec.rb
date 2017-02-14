@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CreateRedisNamespaceJob do
   let(:account) { FactoryGirl.create(:account) }
 

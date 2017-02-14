@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "pages/show", type: :view do
   let(:page) { FactoryGirl.create(:content_block, name: 'about_page', value: 'This is the page.') }
 

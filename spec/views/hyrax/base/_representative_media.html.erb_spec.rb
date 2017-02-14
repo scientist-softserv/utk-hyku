@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'hyrax/base/_representative_media.html.erb' do
   let(:solr_doc) { double(representative_id: file_set.id, hydra_model: GenericWork) }
   let(:pres) { Hyrax::WorkShowPresenter.new(solr_doc, nil) }

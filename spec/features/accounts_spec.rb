@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Accounts administration' do
   context 'as an superadmin' do
     let(:user) { FactoryGirl.create(:superadmin) }

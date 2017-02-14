@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe AdminStatsHelper do
   describe "#graph_tag" do
     let(:data) { [{ "label" => "foo", "data" => 7 }] }

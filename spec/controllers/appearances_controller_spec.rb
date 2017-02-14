@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe AppearancesController, type: :controller do
   before do
     sign_in user
