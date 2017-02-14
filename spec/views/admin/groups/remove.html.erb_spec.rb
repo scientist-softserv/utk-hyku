@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'admin/groups/remove', type: :view do
   context 'groups index page' do
     let(:group) { FactoryGirl.create(:group) }

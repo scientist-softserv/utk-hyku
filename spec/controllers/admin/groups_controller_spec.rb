@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Admin::GroupsController do
   context 'as an anonymous user' do
     describe 'GET #index' do

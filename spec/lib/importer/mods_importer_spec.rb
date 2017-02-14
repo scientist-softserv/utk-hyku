@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'importer'
 require 'importer/mods_parser'
 

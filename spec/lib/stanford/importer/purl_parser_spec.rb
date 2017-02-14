@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'stanford'
 
 RSpec.describe Stanford::Importer::PurlParser do

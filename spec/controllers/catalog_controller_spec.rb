@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CatalogController do
   describe "GET /show" do
     let(:file_set) { create(:file_set) }

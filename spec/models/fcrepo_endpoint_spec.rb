@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe FcrepoEndpoint do
   let(:base_path) { 'foobar' }
   describe '.options' do

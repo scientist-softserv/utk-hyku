@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe IIIFAuthorizationService do
   let(:user) { create(:user) }
   let(:ability) { Ability.new(user) }

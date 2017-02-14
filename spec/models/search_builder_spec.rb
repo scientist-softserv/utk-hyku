@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe SearchBuilder do
   describe ".default_processor_chain" do
     subject { described_class.default_processor_chain }

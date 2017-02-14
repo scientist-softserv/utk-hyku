@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Admin::GroupUsersController do
   let(:group) { FactoryGirl.create(:group) }
 

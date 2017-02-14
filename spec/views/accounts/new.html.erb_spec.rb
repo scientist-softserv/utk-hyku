@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "accounts/new", type: :view do
   before do
     assign(:account, Account.new(

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Admin::UsersController do
   context "with an admin user" do
     before do

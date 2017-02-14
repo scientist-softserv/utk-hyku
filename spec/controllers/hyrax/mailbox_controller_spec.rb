@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Hyrax::MailboxController do
   routes { Hyrax::Engine.routes }
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'admin/groups/index', type: :view do
   context 'groups index page' do
     let(:group_1) { FactoryGirl.create(:group) }

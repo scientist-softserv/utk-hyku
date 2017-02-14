@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Hyku::Admin::Group::NavigationPresenter do
   let(:active_css_class) { described_class::Tab::ACTIVE_CSS_CLASS }
   let(:base_params) do
