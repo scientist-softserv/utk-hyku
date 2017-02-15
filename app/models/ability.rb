@@ -15,10 +15,14 @@ class Ability
 
   def admin_permissions
     return unless admin?
+    return if superadmin?
+
     super
     can [:manage], [Site, Role, User]
 
-    restrict_site_admin_permissions unless current_user.has_role? :superadmin
+    can [:read, :update], Account do |account|
+      account == Site.account
+    end
   end
 
   def group_permissions
@@ -28,24 +32,13 @@ class Ability
   end
 
   def superadmin_permissions
-    return unless current_user.has_role? :superadmin
+    return unless superadmin?
 
     can :manage, :all
     can :peek, Hyku::Application
   end
 
-  def restrict_site_admin_permissions
-    # override curation_concerns admin roles to disable admin privileges on global models
-    cannot [:manage, :create, :discover, :show, :read, :edit, :update, :destroy], global_models
-
-    can [:read, :update], Account do |account|
-      account == Site.account
-    end
+  def superadmin?
+    current_user.has_role? :superadmin
   end
-
-  private
-
-    def global_models
-      [Account]
-    end
 end
