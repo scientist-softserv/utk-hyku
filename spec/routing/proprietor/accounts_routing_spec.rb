@@ -1,4 +1,4 @@
-RSpec.describe Proprietor::AccountsController, type: :routing do
+RSpec.describe Proprietor::AccountsController, type: :routing, multitenant: true do
   let(:admin_host) { Settings.multitenancy.admin_host }
   let(:admin_host_url) { "http://#{admin_host}" }
   describe "routing" do

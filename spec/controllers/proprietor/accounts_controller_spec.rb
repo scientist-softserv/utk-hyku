@@ -1,4 +1,4 @@
-RSpec.describe Proprietor::AccountsController, type: :controller do
+RSpec.describe Proprietor::AccountsController, type: :controller, multitenant: true do
   let(:user) {}
 
   before do

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  constraints host: Settings.multitenancy.admin_host do
-    get '/account/sign_up' => 'account_sign_up#new', as: 'new_sign_up'
-    post '/account/sign_up' => 'account_sign_up#create'
-    get 'splash', to: 'splash#index'
-    namespace :proprietor do
-      resources :accounts
+  if Settings.multitenancy.enabled
+    constraints host: Settings.multitenancy.admin_host do
+      get '/account/sign_up' => 'account_sign_up#new', as: 'new_sign_up'
+      post '/account/sign_up' => 'account_sign_up#create'
+      get '/', to: 'splash#index'
+      namespace :proprietor do
+        resources :accounts
+      end
     end
   end
 
