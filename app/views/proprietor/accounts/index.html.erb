@@ -1,7 +1,7 @@
 <% content_for :page_header do %>
   <h1><span class="fa fa-gears"></span> <%= t(:'hyrax.admin.sidebar.accounts') %></h1>
   <div class="pull-right">
-    <%= link_to new_account_path, class: 'btn btn-primary' do %>
+    <%= link_to new_proprietor_account_path, class: 'btn btn-primary' do %>
       <span class="fa fa-edit"></span> Create new account 
     <% end %>
   </div>
@@ -25,7 +25,7 @@
               <tr>
                 <td><%= account.tenant %></td>
                 <td><%= account.cname %></td>
-                <td class="col-md-1"><%= link_to 'Show', account %>&nbsp;<%= link_to 'Edit', edit_account_path(account) %>&nbsp;<%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td class="col-md-1"><%= link_to 'Show', [:proprietor, account] %>&nbsp;<%= link_to 'Edit', [:edit, :proprietor, account] %>&nbsp;<%= link_to 'Destroy', [:proprietor, account], method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
           </tbody>
@@ -34,4 +34,3 @@
     </div>
   </div>
 </div>
-

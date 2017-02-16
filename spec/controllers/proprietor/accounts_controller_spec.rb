@@ -1,4 +1,4 @@
-RSpec.describe AccountsController, type: :controller do
+RSpec.describe Proprietor::AccountsController, type: :controller do
   let(:user) {}
 
   before do
@@ -82,7 +82,7 @@ RSpec.describe AccountsController, type: :controller do
           account.reload
           expect(account.cname).to eq 'new.example.com'
           expect(account.fcrepo_endpoint.url).to eq 'http://127.0.0.1:8984/go'
-          expect(response).to redirect_to(account)
+          expect(response).to redirect_to([:proprietor, account])
         end
 
         it "assigns the requested account as @account" do
@@ -145,7 +145,7 @@ RSpec.describe AccountsController, type: :controller do
       it "assigns all accounts as @accounts" do
         get :index
         expect(assigns(:accounts)).to include account
-        expect(response).to render_template("layouts/admin")
+        expect(response).to render_template("layouts/proprietor")
       end
     end
 
@@ -166,7 +166,7 @@ RSpec.describe AccountsController, type: :controller do
       it "redirects to the accounts list" do
         expect(CleanupAccountJob).to receive(:perform_now).with(account)
         delete :destroy, params: { id: account.to_param }
-        expect(response).to redirect_to(accounts_url)
+        expect(response).to redirect_to(proprietor_accounts_url)
       end
     end
   end

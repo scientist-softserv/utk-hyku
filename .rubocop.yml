@@ -35,6 +35,7 @@ Metrics/LineLength:
     - 'app/controllers/catalog_controller.rb'
     - 'spec/controllers/curation_concerns/generic_works_controller_spec.rb'
     - 'spec/services/iiif_thumbnail_path_service_spec.rb'
+    - 'spec/routing/proprietor/accounts_routing_spec.rb'
 
 Style/IndentationConsistency:
   EnforcedStyle: rails

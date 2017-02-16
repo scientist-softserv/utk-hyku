@@ -104,12 +104,8 @@
     </li>
     <% end %>
 
-    <% if can? :manage, Account %>
-      <%= menu.nav_link(main_app.accounts_path) do %>
-        <span class="fa fa-gears"></span> <%= t('hyrax.admin.sidebar.accounts') %>
-      <% end %>
-    <% elsif Site.account && can?(:manage, Site.account) %>
-      <%= menu.nav_link(main_app.account_path(Site.account)) do %>
+    <% if Site.account && can?(:manage, Site.account) %>
+      <%= menu.nav_link(main_app.edit_admin_account_path) do %>
         Account
       <% end %>
     <% end %>

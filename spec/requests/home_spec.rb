@@ -1,6 +1,6 @@
 RSpec.describe 'Home page', type: :request do
   context 'without a current tenant' do
-    let(:conf) { double(enabled: true, host: 'localhost') }
+    let(:conf) { double(enabled: true, admin_host: 'localhost') }
     before do
       allow(Settings).to receive(:multitenancy).and_return(conf)
     end

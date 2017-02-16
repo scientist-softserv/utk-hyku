@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+
+  constraints host: Settings.multitenancy.admin_host do
+    get '/account/sign_up' => 'account_sign_up#new', as: 'new_sign_up'
+    post '/account/sign_up' => 'account_sign_up#create'
+    get 'splash', to: 'splash#index'
+    namespace :proprietor do
+      resources :accounts
+    end
+  end
+
+  get 'status', to: 'status#index'
+
   mount BrowseEverything::Engine => '/browse'
   resource :site, only: [] do
     resources :roles, only: [:index, :update]
@@ -7,15 +19,8 @@ Rails.application.routes.draw do
     resource :appearances, only: [:edit, :update]
   end
 
-  resources :accounts
-
-  get '/account/sign_up' => 'account_sign_up#new', as: 'new_sign_up'
-  post '/account/sign_up' => 'account_sign_up#create'
-
   root 'hyrax/homepage#index'
 
-  get 'splash', to: 'splash#index'
-  get 'status', to: 'status#index'
   devise_for :users
   mount Qa::Engine => '/authorities'
 
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: :index
+    resource :account, only: [:edit, :update]
     resources :groups do
       member do
         get :remove
