@@ -24,8 +24,7 @@ class ApplicationController < ActionController::Base
   before_action :add_honeybadger_context
 
   rescue_from Apartment::TenantNotFound do
-    raise ActionController::RoutingError, 'Not Found' unless worker? || admin_host?
-    redirect_to main_app.splash_path
+    raise ActionController::RoutingError, 'Not Found'
   end
 
   private
