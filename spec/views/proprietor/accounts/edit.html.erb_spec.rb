@@ -1,4 +1,4 @@
-RSpec.describe "accounts/edit", type: :view do
+RSpec.describe "proprietor/accounts/edit", type: :view do
   let(:account) { FactoryGirl.create(:account) }
 
   before do
@@ -8,7 +8,7 @@ RSpec.describe "accounts/edit", type: :view do
   it "renders the edit account form" do
     render
 
-    assert_select "form[action=?][method=?]", account_path(account), "post" do
+    assert_select "form[action=?][method=?]", proprietor_account_path(account), "post" do
       assert_select "input#account_tenant[name=?]", "account[tenant]"
 
       assert_select "input#account_cname[name=?]", "account[cname]"

@@ -6,7 +6,7 @@
 multitenancy:
   enabled: false
   default_host: "%{tenant}.dev"
-  host: localhost
+  admin_host: localhost
 
 ssl_configured: false
 

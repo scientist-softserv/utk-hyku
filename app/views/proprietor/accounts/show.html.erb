@@ -10,5 +10,5 @@
   <%= @account.cname %>
 </p>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Edit', [:edit, :proprietor, @account] %> |
+<%= link_to 'Back', proprietor_accounts_path %>
