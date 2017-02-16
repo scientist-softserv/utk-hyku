@@ -1,7 +1,3 @@
-class SplashController < ApplicationController
-  skip_before_action :require_active_account!
-
-  layout "proprietor"
-
+class SplashController < ProprietorController
   def index; end
 end

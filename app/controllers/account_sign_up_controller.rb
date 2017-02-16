@@ -1,5 +1,4 @@
-class AccountSignUpController < ApplicationController
-  skip_before_action :require_active_account!
+class AccountSignUpController < ProprietorController
   load_and_authorize_resource instance_name: :account, class: 'Account'
 
   # GET /account/sign_up
