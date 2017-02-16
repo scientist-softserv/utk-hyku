@@ -1,10 +1,8 @@
 module Proprietor
-  class AccountsController < ApplicationController
+  class AccountsController < ProprietorController
     before_action :ensure_admin!
-    skip_before_action :require_active_account!
 
     load_and_authorize_resource
-    layout 'proprietor'
 
     # GET /accounts
     # GET /accounts.json
