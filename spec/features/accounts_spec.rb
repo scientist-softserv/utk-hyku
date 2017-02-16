@@ -1,4 +1,4 @@
-RSpec.describe 'Accounts administration' do
+RSpec.describe 'Accounts administration', multitenant: true do
   context 'as an superadmin' do
     let(:user) { FactoryGirl.create(:superadmin) }
     let(:account) do
