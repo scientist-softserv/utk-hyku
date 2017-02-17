@@ -93,7 +93,7 @@ module Importer
               @object.apply_depositor_metadata(User.batch_user)
               @object.save!
             else
-              work_actor = Hyrax::CurationConcern.actor(@object, User.batch_user)
+              work_actor = Hyrax::CurationConcern.actor(@object, Ability.new(User.batch_user))
               work_actor.create(attrs)
             end
           end

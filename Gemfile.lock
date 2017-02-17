@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 7eed6a8326a021f8da15556d59c06922af883b07
+  revision: 9cf922a068b99475d9711fa2384d1fcf0d234e09
   specs:
     hyrax (1.0.0.alpha)
       active_attr (~> 0.9.0)
@@ -19,7 +19,7 @@ GIT
       blacklight-gallery (~> 0.7)
       breadcrumbs_on_rails (~> 3.0)
       browse-everything (>= 0.10.5)
-      carrierwave (~> 0.9)
+      carrierwave (~> 1.0)
       clipboard-rails (~> 1.5)
       daemons (~> 1.1)
       dry-equalizer (~> 0.2)
@@ -48,6 +48,7 @@ GIT
       rdf-rdfxml
       redis-namespace (~> 1.5.2)
       redlock (~> 0.1.2)
+      retriable (>= 2.9, < 4.0)
       select2-rails (~> 3.5.9)
       signet
       tinymce-rails (~> 4.1)
@@ -129,17 +130,17 @@ GEM
     arel (7.1.4)
     ast (2.3.0)
     atomic (1.1.99)
-    autoprefixer-rails (6.7.2)
+    autoprefixer-rails (6.7.3)
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.7.7)
-      aws-sdk-resources (= 2.7.7)
-    aws-sdk-core (2.7.7)
+    aws-sdk (2.7.10)
+      aws-sdk-resources (= 2.7.10)
+    aws-sdk-core (2.7.10)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.7.7)
-      aws-sdk-core (= 2.7.7)
+    aws-sdk-resources (2.7.10)
+      aws-sdk-core (= 2.7.10)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -192,12 +193,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
     clipboard-rails (1.6.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -602,7 +601,7 @@ GEM
     redic (1.5.0)
       hiredis
     redis (3.3.3)
-    redis-namespace (1.5.2)
+    redis-namespace (1.5.3)
       redis (~> 3.0, >= 3.0.4)
     redlock (0.1.8)
       redis (~> 3, >= 3.0.0)
