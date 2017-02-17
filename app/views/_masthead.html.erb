@@ -18,8 +18,13 @@
     </div>
 
     <div class="collapse navbar-collapse" id="top-navbar-collapse">
-      <%= render '/toolbar' unless admin_host?  %>
-      <%= render '/user_util_links' %>
+      <% if admin_host? %>
+        <%= render '/admin_toolbar'  %>
+        <%= render '/admin_util_links' %>
+      <% else %>
+        <%= render '/toolbar'  %>
+        <%= render '/user_util_links' %>
+      <% end %>
     </div>
   </div>
 </nav>
