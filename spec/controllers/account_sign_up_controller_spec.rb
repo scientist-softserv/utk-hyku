@@ -1,4 +1,4 @@
-RSpec.describe AccountSignUpController, type: :controller do
+RSpec.describe AccountSignUpController, type: :controller, multitenant: true do
   let(:user) {}
 
   before do
@@ -20,7 +20,7 @@ RSpec.describe AccountSignUpController, type: :controller do
     describe "GET #new" do
       it "assigns a new account as @account" do
         get :new
-        expect(response).to render_template("layouts/hyrax/1_column")
+        expect(response).to render_template("layouts/proprietor")
         expect(assigns(:account)).to be_a_new(Account)
       end
     end

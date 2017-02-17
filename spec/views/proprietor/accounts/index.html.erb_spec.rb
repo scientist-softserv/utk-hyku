@@ -1,4 +1,4 @@
-RSpec.describe "accounts/index", type: :view do
+RSpec.describe "proprietor/accounts/index", type: :view, multitenant: true do
   let(:account_a) { FactoryGirl.create(:account) }
   let(:account_b) { FactoryGirl.create(:account) }
 
