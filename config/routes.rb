@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       get '/account/sign_up' => 'account_sign_up#new', as: 'new_sign_up'
       post '/account/sign_up' => 'account_sign_up#create'
       get '/', to: 'splash#index'
+
+      # pending https://github.com/projecthydra-labs/hyrax/issues/376
+      get '/dashboard', to: redirect('/')
+
       namespace :proprietor do
         resources :accounts
       end
