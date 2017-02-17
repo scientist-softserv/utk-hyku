@@ -46,6 +46,9 @@ en:
       user_search:
         submit: 'Go'
   hyku:
+    proprietor:
+      accounts:
+        nav: 'Accounts'
     admin:
       title: 'Administration'
       flash:
