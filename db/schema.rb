@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106175305) do
+ActiveRecord::Schema.define(version: 20170217164907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,8 +239,9 @@ ActiveRecord::Schema.define(version: 20170106175305) do
     t.datetime "updated_at"
     t.date     "release_date"
     t.string   "release_period"
-    t.string   "workflow_name"
+    t.integer  "workflow_id"
     t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", using: :btree
+    t.index ["workflow_id"], name: "index_permission_templates_on_workflow_id", using: :btree
   end
 
   create_table "proxy_deposit_requests", force: :cascade do |t|
