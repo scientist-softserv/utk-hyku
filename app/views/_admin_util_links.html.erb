@@ -1,3 +1,6 @@
 <ul id="user_utility_links" class="nav navbar-nav navbar-right">
-    <%= render 'shared/locale_picker' if available_translations.size > 1 %>
+  <%= render 'shared/locale_picker' if available_translations.size > 1 %>
+  <% if user_signed_in? %>
+    <li><%= link_to t("hyrax.toolbar.profile.logout"), main_app.destroy_user_session_path %></li>
+  <% end %>
 </ul>
