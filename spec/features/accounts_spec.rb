@@ -11,12 +11,6 @@ RSpec.describe 'Accounts administration', multitenant: true do
       Capybara.default_host = "http://#{Settings.multitenancy.admin_host}"
     end
 
-    it 'has a navbar link to an account admin section' do
-      visit '/'
-      click_on 'Accounts'
-      expect(page).to have_link 'Create new account'
-    end
-
     it 'changes the associated cname' do
       visit edit_proprietor_account_path(account)
 
