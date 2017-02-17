@@ -2,6 +2,7 @@ require 'carrierwave'
 
 if Settings.s3.upload_bucket
   CarrierWave.configure do |config|
+    config.fog_provider = 'fog/aws'
     config.storage = :fog
     config.fog_credentials = {
       provider: 'AWS',
