@@ -2,6 +2,7 @@ RSpec.describe ImportWorkFromPurlJob do
   let(:user) { create(:user) }
   let(:log) { Hyrax::Operation.create!(user: user, operation_type: "Import Purl Metadata") }
   let(:druid) { 'bc390xk2647' }
+  let(:default_workflow_id) { Sipity::Workflow.default_workflow.id }
   before do
     stub_request(:get, "https://purl.stanford.edu/bc390xk2647.xml")
       .to_return(status: 200, body: purl_xml)
@@ -9,7 +10,7 @@ RSpec.describe ImportWorkFromPurlJob do
       ActiveFedora::Base.find(druid).destroy(eradicate: true)
     end
     Hyrax::Workflow::WorkflowImporter.load_workflows
-    Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_name: 'default')
+    Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_id: default_workflow_id)
   end
   it "works" do
     expect(CreateWorkJob).to receive(:perform_later)
