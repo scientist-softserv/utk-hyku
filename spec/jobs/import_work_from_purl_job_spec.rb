@@ -10,7 +10,7 @@ RSpec.describe ImportWorkFromPurlJob do
       ActiveFedora::Base.find(druid).destroy(eradicate: true)
     end
     Hyrax::Workflow::WorkflowImporter.load_workflows
-    Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_id: default_workflow_id)
+    Hyrax::PermissionTemplate.create!(admin_set_id: AdminSet::DEFAULT_ID, workflow_id: default_workflow_id)
   end
   it "works" do
     expect(CreateWorkJob).to receive(:perform_later)
