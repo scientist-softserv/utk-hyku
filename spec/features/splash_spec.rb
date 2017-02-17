@@ -6,5 +6,9 @@ RSpec.describe "The splash page", multitenant: true do
   it "shows the page" do
     visit '/'
     expect(page).to have_link 'Get Started', href: account_sign_up_path(locale: 'en')
+
+    within 'footer' do
+      expect(page).to have_link 'Administrator login'
+    end
   end
 end

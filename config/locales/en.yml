@@ -46,6 +46,8 @@ en:
       user_search:
         submit: 'Go'
   hyku:
+    footer:
+      admin_login: 'Administrator login'
     proprietor:
       accounts:
         nav: 'Accounts'
