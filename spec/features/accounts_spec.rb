@@ -1,4 +1,4 @@
-RSpec.describe 'Accounts administration' do
+RSpec.describe 'Accounts administration', multitenant: true do
   context 'as an superadmin' do
     let(:user) { FactoryGirl.create(:superadmin) }
     let(:account) do
@@ -8,10 +8,11 @@ RSpec.describe 'Accounts administration' do
 
     before do
       login_as(user, scope: :user)
+      Capybara.default_host = "http://#{Settings.multitenancy.admin_host}"
     end
 
     it 'changes the associated cname' do
-      visit edit_account_path(account)
+      visit edit_proprietor_account_path(account)
 
       fill_in 'Cname', with: 'example.com'
 
@@ -23,7 +24,7 @@ RSpec.describe 'Accounts administration' do
     end
 
     it 'changes the account service endpoints' do
-      visit edit_account_path(account)
+      visit edit_proprietor_account_path(account)
 
       fill_in 'account_solr_endpoint_attributes_url', with: 'http://example.com/solr/'
       fill_in 'account_fcrepo_endpoint_attributes_url', with: 'http://example.com/fcrepo'

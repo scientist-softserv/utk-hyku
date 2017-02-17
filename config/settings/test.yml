@@ -1,2 +1,5 @@
 zookeeper:
   connection_str: 'localhost:9985/configs'
+
+multitenancy:
+  enabled: false

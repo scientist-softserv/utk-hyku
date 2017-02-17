@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   include Hyrax::ThemedLayoutController
   with_themed_layout '1_column'
 
-  helper_method :peek_enabled?, :current_account
+  helper_method :peek_enabled?, :current_account, :admin_host?
 
   before_action :require_active_account!, if: :multitenant?
   before_action :set_account_specific_connections!
@@ -24,8 +24,7 @@ class ApplicationController < ActionController::Base
   before_action :add_honeybadger_context
 
   rescue_from Apartment::TenantNotFound do
-    raise ActionController::RoutingError, 'Not Found' unless worker? || base_host?
-    redirect_to main_app.splash_path
+    raise ActionController::RoutingError, 'Not Found'
   end
 
   private
@@ -35,6 +34,7 @@ class ApplicationController < ActionController::Base
     end
 
     def require_active_account!
+      return unless Settings.multitenancy.enabled
       return if devise_controller? || peek_controller?
 
       raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account.persisted?
@@ -53,8 +53,10 @@ class ApplicationController < ActionController::Base
       Settings.multitenancy.enabled
     end
 
-    def base_host?
-      Account.canonical_cname(request.host) == Account.canonical_cname(Settings.multitenancy.host)
+    def admin_host?
+      return false unless multitenant?
+
+      Account.canonical_cname(request.host) == Account.canonical_cname(Settings.multitenancy.admin_host)
     end
 
     def current_account
