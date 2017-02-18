@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     def admin_host?
       return false unless multitenant?
 
-      Account.canonical_cname(request.host) == Account.canonical_cname(Settings.multitenancy.admin_host)
+      Account.canonical_cname(request.host) == Account.admin_host
     end
 
     def current_account

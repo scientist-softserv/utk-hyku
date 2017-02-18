@@ -9,6 +9,13 @@ class Account < ActiveRecord::Base
     format(default_host, tenant: piece.parameterize)
   end
 
+  def self.admin_host
+    host = Settings.multitenancy.admin_host
+    host ||= ENV['HOST']
+    host ||= 'localhost'
+    canonical_cname(host)
+  end
+
   attr_readonly :tenant
   # name is unused after create, only used by sign_up/new forms
   validates :name, presence: true, unless: 'cname.present? && cname != default_cname("")'
