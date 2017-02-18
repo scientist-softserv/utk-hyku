@@ -15,6 +15,25 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.admin_host' do
+    it 'uses the configured setting' do
+      allow(Settings.multitenancy).to receive(:admin_host).and_return('admin-host')
+      expect(described_class.admin_host).to eq 'admin-host'
+    end
+
+    it 'falls back to the HOST environment variable' do
+      allow(Settings.multitenancy).to receive(:admin_host).and_return(nil)
+      allow(ENV).to receive(:[]).with('HOST').and_return('system-host')
+      expect(described_class.admin_host).to eq 'system-host'
+    end
+
+    it 'falls back to localhost' do
+      allow(Settings.multitenancy).to receive(:admin_host).and_return(nil)
+      allow(ENV).to receive(:[]).with('HOST').and_return(nil)
+      expect(described_class.admin_host).to eq 'localhost'
+    end
+  end
+
   describe '#switch!' do
     let!(:old_default_index) { Blacklight.default_index }
 
