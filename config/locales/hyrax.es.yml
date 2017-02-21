@@ -1,8 +1,12 @@
 es:
   hyrax:
-    product_name: 'Hyku'
+    product_name:           "Hyku"
     product_twitter_handle: "@HydraInABox"
-    institution_name:   'Hydra en una Caja'
-    account_name:       "Hydra-en-una-Caja Cuenta ID"
+    institution_name:       "Institución"
+    institution_name_full:  "El nombre de la institución"
+    account_name:           "Mi identificador de cuenta institucional"
     directory:
-      suffix:           "@hydrainabox.org"
+      suffix:               "@hydrainabox.org"
+    footer:
+      copyright_html: "<strong>Copyright &copy; 2017 Proyecto Hydra</strong> bajo licencia de Apache, Version 2.0"
+      service_html: Un servicio de <a href="http://projecthydra.org/" class="navbar-link" target="_blank">Proyecto Hydra</a>.
