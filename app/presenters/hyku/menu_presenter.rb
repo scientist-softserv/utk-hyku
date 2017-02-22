@@ -19,8 +19,7 @@ module Hyku
     # Returns true if the current controller happens to be one of the controllers that deals
     # with workflow.  This is used to keep the parent section on the sidebar open.
     def workflows_section?
-      %w(workflow_roles).include?(controller_name) ||
-        (controller_name == 'admin' && action_name == 'workflows')
+      %w(workflow_roles).include?(controller_name)
     end
 
     # Returns true if the current controller happens to be one of the controllers that deals
