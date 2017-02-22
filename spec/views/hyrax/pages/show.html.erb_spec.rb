@@ -1,5 +1,5 @@
-RSpec.describe "pages/show", type: :view do
-  let(:page) { FactoryGirl.create(:content_block, name: 'about_page', value: 'This is the page.') }
+RSpec.describe "hyrax/pages/show", type: :view do
+  let(:page) { create(:content_block, name: 'about_page', value: 'This is the page.') }
 
   before do
     assign(:page, page)
