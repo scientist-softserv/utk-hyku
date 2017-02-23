@@ -12,7 +12,7 @@ class Site < ActiveRecord::Base
 
   delegate :announcement_text, :marketing_text, :featured_researcher,
            :announcement_text=, :marketing_text=, :featured_researcher=,
-           :about_page, :about_page=,
+           :about_page, :about_page=, :help_page, :help_page=,
            to: :content_blocks
 
   class << self
@@ -20,7 +20,7 @@ class Site < ActiveRecord::Base
              :institution_name_full, :reload, :update, :announcement_text,
              :marketing_text, :featured_researcher, :announcement_text=,
              :marketing_text=, :featured_researcher=,
-             :about_page, :about_page=,
+             :about_page, :about_page=, :help_page, :help_page=,
              to: :instance
 
     def instance
