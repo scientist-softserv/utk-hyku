@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217164907) do
+ActiveRecord::Schema.define(version: 20170223001358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,9 +239,7 @@ ActiveRecord::Schema.define(version: 20170217164907) do
     t.datetime "updated_at"
     t.date     "release_date"
     t.string   "release_period"
-    t.integer  "workflow_id"
-    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", using: :btree
-    t.index ["workflow_id"], name: "index_permission_templates_on_workflow_id", using: :btree
+    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", unique: true, using: :btree
   end
 
   create_table "proxy_deposit_requests", force: :cascade do |t|
@@ -441,12 +439,14 @@ ActiveRecord::Schema.define(version: 20170217164907) do
   end
 
   create_table "sipity_workflows", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name",                   null: false
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "label"
-    t.index ["name"], name: "index_sipity_workflows_on_name", unique: true, using: :btree
+    t.integer  "permission_template_id"
+    t.boolean  "active"
+    t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true, using: :btree
   end
 
   create_table "sites", force: :cascade do |t|
