@@ -1,14 +1,6 @@
 GIT
-  remote: https://github.com/jcoyne/flipflop.git
-  revision: 0eecddade9890548c92b1e8aa681512f1db01469
-  branch: hydra
-  specs:
-    flipflop (2.2.1)
-      activesupport (>= 4.0)
-
-GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 22714f043af3c8b00d079c6b7b75e1b243abc417
+  revision: d3b98b19cf96e6b54a761f2e1005df318af43504
   specs:
     hyrax (1.0.0.alpha)
       active_attr (~> 0.9.0)
@@ -54,6 +46,14 @@ GIT
       tinymce-rails (~> 4.1)
       tinymce-rails-imageupload (~> 4.0.17.beta)
       yaml_db (~> 0.2)
+
+GIT
+  remote: https://github.com/voormedia/flipflop.git
+  revision: 590f2aed794327e0bc2c837cd029f47bc61715b4
+  ref: 590f2ae
+  specs:
+    flipflop (2.2.1)
+      activesupport (>= 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -134,13 +134,13 @@ GEM
       execjs
     awesome_nested_set (3.1.1)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.7.12)
-      aws-sdk-resources (= 2.7.12)
-    aws-sdk-core (2.7.12)
+    aws-sdk (2.7.13)
+      aws-sdk-resources (= 2.7.13)
+    aws-sdk-core (2.7.13)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.7.12)
-      aws-sdk-core (= 2.7.12)
+    aws-sdk-resources (2.7.13)
+      aws-sdk-core (= 2.7.13)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
