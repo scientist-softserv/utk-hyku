@@ -3,29 +3,16 @@ module Importer
     module WithAssociatedCollection
       extend ActiveSupport::Concern
 
-      included do
-        after_save :maybe_add_to_collection
-      end
-
+      # Strip out the :collection key, and add the member_of_collection_ids,
+      # which is used by Hyrax::Actors::AddAsMemberOfCollectionsActor
       def create_attributes
-        super.except(:collection)
+        super.except(:collection).merge(member_of_collection_ids: [collection.id])
       end
 
+      # Strip out the :collection key, and add the member_of_collection_ids,
+      # which is used by Hyrax::Actors::AddAsMemberOfCollectionsActor
       def update_attributes
-        super.except(:collection)
-      end
-
-      def maybe_add_to_collection
-        return unless attributes.key?(:collection)
-        add_to_collection(object, collection)
-
-        # Reindex the object with the collection label.
-        object.update_index
-      end
-
-      def add_to_collection(obj, collection)
-        collection.ordered_members << obj
-        collection.save!
+        super.except(:collection).merge(member_of_collection_ids: [collection.id])
       end
 
       private

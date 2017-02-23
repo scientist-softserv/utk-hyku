@@ -4,9 +4,8 @@ module Importer
     class ObjectFactory
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
-      after_save :attach_files
 
-      class_attribute :klass, :attach_files_service, :system_identifier_field
+      class_attribute :klass, :system_identifier_field
 
       attr_reader :attributes, :files_directory, :object, :files
 
@@ -39,9 +38,8 @@ module Importer
 
       def update
         raise "Object doesn't exist" unless object
-        object.attributes = update_attributes
         run_callbacks(:save) do
-          object.save!
+          work_actor.update(update_attributes)
         end
         log_updated(object)
       end
@@ -52,13 +50,6 @@ module Importer
 
       def update_attributes
         transform_attributes.except(:id)
-      end
-
-      def attach_files
-        return unless files_directory.present? && files.present?
-
-        attach_files_service.run(object, files_directory, files)
-        object.save! # Save the association with the attached files.
       end
 
       def find
@@ -78,7 +69,7 @@ module Importer
         klass.where(query).first
       end
 
-      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength
       def create
         attrs = create_attributes
 
@@ -93,7 +84,6 @@ module Importer
               @object.apply_depositor_metadata(User.batch_user)
               @object.save!
             else
-              work_actor = Hyrax::CurationConcern.actor(@object, Ability.new(User.batch_user))
               work_actor.create(attrs)
             end
           end
@@ -102,6 +92,10 @@ module Importer
         log_created(object)
       end
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+      def work_actor
+        Hyrax::CurationConcern.actor(@object, Ability.new(User.batch_user))
+      end
 
       def log_created(obj)
         Rails.logger.info(
@@ -121,6 +115,15 @@ module Importer
         # a way that is compatible with how the factory needs them.
         def transform_attributes
           StringLiteralProcessor.process(attributes.slice(*permitted_attributes))
+                                .merge(file_attributes)
+        end
+
+        def file_attributes
+          files_directory.present? && files.present? ? { files: file_paths } : {}
+        end
+
+        def file_paths
+          files.map { |file_name| File.join(files_directory, file_name) }
         end
 
         # Regardless of what the MODS Parser gives us, these are the properties
