@@ -33,6 +33,7 @@ class ContentBlocksController < ApplicationController
       params.require(:site).permit(:announcement_text,
                                    :marketing_text,
                                    :featured_researcher,
-                                   :about_page)
+                                   :about_page,
+                                   :help_page)
     end
 end
