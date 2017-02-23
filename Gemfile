@@ -87,7 +87,7 @@ gem 'peek-performance_bar'
 gem 'peek-pg'
 gem 'peek-redis'
 
-gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
+gem 'flipflop', git: 'https://github.com/voormedia/flipflop.git', ref: '590f2ae'
 gem 'lograge'
 
 gem 'zk'
