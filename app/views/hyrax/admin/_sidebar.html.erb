@@ -3,27 +3,24 @@
 <ul class="admin-sidebar nav nav-pills nav-stacked">
   <li class="h5"><%= t('hyrax.admin.sidebar.activity') %></li>
   <li>
-    <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseRepositoryActivity" aria-expanded="false" aria-controls="collapseRepositoryActivity">
-      <span class="fa fa-line-chart"></span>
-      <span><%= t('hyrax.admin.sidebar.repository_activity') %></span>
-    </a>
-    <% repo_activity_class = 'collapse ' unless menu.repository_activity_section? %>
-    <ul class="<%= repo_activity_class %>nav nav-pills nav-stacked" id="collapseRepositoryActivity">
+    <%= menu.collapsable_section t('hyrax.admin.sidebar.repository_activity'),
+                                 icon_class: "fa fa-line-chart",
+                                 id: 'collapseRepositoryActivity',
+                                 open: menu.repository_activity_section? do %>
       <%= menu.nav_link(hyrax.admin_path) do %>
         <span class="fa fa-dashboard"></span> <%= t('hyrax.admin.sidebar.activity_summary') %>
       <% end %>
       <%= menu.nav_link(main_app.status_path) do %>
         <span class="fa fa-flag"></span> <%= t('hyrax.admin.sidebar.system_status') %>
       <% end %>
-    </ul>
+    <% end %>
   </li>
+
   <li>
-    <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseUserActivity" aria-expanded="false" aria-controls="collapseUserActivity">
-      <span class="fa fa-line-chart"></span>
-      <span><%= t('hyrax.admin.sidebar.user_activity') %></span>
-    </a>
-    <% user_activity_class = 'collapse ' unless menu.user_activity_section? %>
-    <ul class="<%= user_activity_class %>nav nav-pills nav-stacked" id="collapseUserActivity">
+    <%= menu.collapsable_section t('hyrax.admin.sidebar.user_activity'),
+                                 icon_class: "fa fa-line-chart",
+                                 id: 'collapseUserActivity',
+                                 open: menu.user_activity_section? do %>
       <%= menu.nav_link(hyrax.profile_path(current_user)) do %>
         <span class="fa fa-user"></span> <%= t('hyrax.admin.sidebar.profile') %>
       <% end %>
@@ -34,17 +31,16 @@
       <%= menu.nav_link(hyrax.transfers_path) do %>
         <span class="fa fa-arrows-h"></span> <%= t('hyrax.admin.sidebar.transfers') %>
       <% end %>
-    </ul>
+    <% end %>
   </li>
 
     <li class="h5">Configuration</li>
     <li>
-      <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings">
-        <span class="fa fa-cog"></span>
-        <span><%= t('hyrax.admin.sidebar.settings') %></span>
-      </a>
-      <% configuration_class = 'collapse ' unless menu.settings_section? %>
-      <ul class="<%= configuration_class %>nav nav-pills nav-stacked" id="collapseSettings">
+      <%= menu.collapsable_section t('hyrax.admin.sidebar.settings'),
+                                   icon_class: "fa fa-cog",
+                                   id: 'collapseSettings',
+                                   open: menu.user_activity_section? do %>
+
         <% if can? :manage, Site %>
           <%= menu.nav_link(main_app.edit_site_labels_path) do %>
             <span class="fa fa-institution"></span> <%= t('hyrax.admin.sidebar.labels') %>
@@ -60,7 +56,7 @@
         <%= menu.nav_link(hyrax.admin_features_path) do %>
           <span class="fa fa-wrench"></span> Technical
         <% end %>
-      </ul>
+      <% end %>
     </li>
 
     <%= menu.nav_link(hyrax.admin_admin_sets_path) do %>
@@ -68,27 +64,23 @@
     <% end %>
 
     <li>
-      <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseWorkflows" aria-expanded="false" aria-controls="collapseWorkflows">
-        <span class="fa fa-code-fork"></span>
-        <span><%= t('hyrax.admin.sidebar.workflow') %></span>
-      </a>
-      <% workflows_class = 'collapse ' unless menu.workflows_section? %>
-      <ul class="<%= workflows_class %>nav nav-pills nav-stacked" id="collapseWorkflows">
+      <%= menu.collapsable_section t('hyrax.admin.sidebar.workflow'),
+                                   icon_class: "fa fa-code-fork",
+                                   id: 'collapseWorkflows',
+                                   open: menu.workflows_section? do %>
         <%= menu.nav_link(hyrax.admin_workflow_roles_path) do %>
           <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.workflow_roles') %>
         <% end %>
-      </ul>
+      <% end %>
     </li>
 
     <% if can?(:manage, User) || can?(:manage, Hyku::Group) %>
     <li>
-      <a role="button" class="collapsed collapse-toggle" data-toggle="collapse" href="#collapseRoles" aria-expanded="false" aria-controls="collapseRoles">
-        <span class="fa fa-users"></span>
-        <span><%= t('hyrax.admin.sidebar.roles_and_permissions') %></span>
-      </a>
-      <% roles_and_perms_class = 'collapse ' unless menu.roles_and_permissions_section? %>
-      <ul class="<%= roles_and_perms_class %>nav nav-pills nav-stacked" id="collapseRoles">
 
+      <%= menu.collapsable_section t('hyrax.admin.sidebar.roles_and_permissions'),
+                                   icon_class: "fa fa-users",
+                                   id: 'collapseRoles',
+                                   open: menu.roles_and_permissions_section? do %>
         <% if can? :manage, Hyku::Group %>
           <%= menu.nav_link(main_app.admin_groups_path) do %>
             <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.manage_groups') %>
@@ -100,7 +92,7 @@
             <span class="fa fa-user"></span> <%= t('hyrax.admin.sidebar.manage_users') %>
           <% end %>
         <% end %>
-      </ul>
+      <% end %>
     </li>
     <% end %>
 
