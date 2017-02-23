@@ -10,8 +10,13 @@ module Importer
         run(&:save!)
       end
 
-      def attach_files
-        # nop
+      def update
+        raise "Collection doesn't exist" unless object
+        object.attributes = update_attributes
+        run_callbacks(:save) do
+          object.save!
+        end
+        log_updated(object)
       end
     end
   end

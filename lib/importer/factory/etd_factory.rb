@@ -4,7 +4,6 @@ module Importer
       include WithAssociatedCollection
 
       self.klass = GenericWork
-      self.attach_files_service = Importer::AttachFiles
       # A way to identify objects that are not Hydra minted identifiers
       self.system_identifier_field = :identifier
 
