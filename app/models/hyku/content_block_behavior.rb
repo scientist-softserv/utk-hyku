@@ -3,6 +3,7 @@ module Hyku
     extend ActiveSupport::Concern
 
     ABOUT = 'about_page'.freeze
+    HELP = 'help_page'.freeze
 
     included do
       belongs_to :site
@@ -19,6 +20,14 @@ module Hyku
 
       def about_page=(value)
         about_page.update(value: value)
+      end
+
+      def help_page
+        find_or_create_by(name: HELP)
+      end
+
+      def help_page=(value)
+        help_page.update(value: value)
       end
     end
   end
