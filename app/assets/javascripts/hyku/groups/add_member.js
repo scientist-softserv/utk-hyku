@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+Blacklight.onLoad(function() {
   $('.js-group-user-search__submit, .js-group-user-add').hide();
   $('.js-group-user-search').on('submit', function(e){ e.preventDefault(); });
 
