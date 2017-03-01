@@ -56,6 +56,22 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.default_driver = :rack_test
 Capybara.javascript_driver = :poltergeist
 
+# Adding the below to deal with random Capybara-related timeouts in CI.
+# Found in this thread: https://github.com/teampoltergeist/poltergeist/issues/375
+poltergeist_options = {
+  js_errors: false,
+  timeout: 30,
+  logger: nil,
+  phantomjs_logger: StringIO.new,
+  phantomjs_options: [
+    '--load-images=no',
+    '--ignore-ssl-errors=yes'
+  ]
+}
+Capybara.register_driver(:poltergeist) do |app|
+  Capybara::Poltergeist::Driver.new(app, poltergeist_options)
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
