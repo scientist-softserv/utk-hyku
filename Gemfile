@@ -105,10 +105,13 @@ gem 'riiif', '~> 1.1'
 
 gem 'iiif_manifest', '~> 0.1.2'
 
+group :aws, :test do
+  gem 'carrierwave-aws'
+end
+
 group :aws do
   # TODO: Version 2.0 causes a failure in spec/lib/active_job/queue_adapters/better_active_elastic_job_adapter_spec.rb
   gem 'active_elastic_job', '~> 1.7'
-  gem 'fog-aws'
 end
 
 gem 'peek-sidekiq'
