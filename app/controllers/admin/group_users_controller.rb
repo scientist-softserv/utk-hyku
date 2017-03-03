@@ -28,11 +28,11 @@ module Admin
       end
 
       def page_number
-        params[:page].to_i || 1
+        params.fetch(:page, 1).to_i
       end
 
       def page_size
-        params[:per].to_i || 10
+        params.fetch(:per, 10).to_i
       end
   end
 end
