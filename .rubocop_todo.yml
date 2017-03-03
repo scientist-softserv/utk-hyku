@@ -8,6 +8,12 @@ require: rubocop-rspec
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
 Metrics/MethodLength:
   Exclude:
     - 'app/jobs/import_work_from_purl_job.rb'
