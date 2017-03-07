@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223001358) do
+ActiveRecord::Schema.define(version: 20170307000122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -263,6 +263,23 @@ ActiveRecord::Schema.define(version: 20170223001358) do
     t.datetime "updated_at", null: false
     t.index ["grantee_id"], name: "index_proxy_deposit_rights_on_grantee_id", using: :btree
     t.index ["grantor_id"], name: "index_proxy_deposit_rights_on_grantor_id", using: :btree
+  end
+
+  create_table "qa_local_authorities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_qa_local_authorities_on_name", unique: true, using: :btree
+  end
+
+  create_table "qa_local_authority_entries", force: :cascade do |t|
+    t.integer  "local_authority_id"
+    t.string   "label"
+    t.string   "uri"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["local_authority_id"], name: "index_qa_local_authority_entries_on_local_authority_id", using: :btree
+    t.index ["uri"], name: "index_qa_local_authority_entries_on_uri", unique: true, using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
@@ -575,5 +592,6 @@ ActiveRecord::Schema.define(version: 20170223001358) do
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "permission_template_accesses", "permission_templates"
+  add_foreign_key "qa_local_authority_entries", "local_authorities"
   add_foreign_key "uploaded_files", "users"
 end
