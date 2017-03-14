@@ -2,11 +2,19 @@ module Admin
   class GroupsController < AdminController
     before_action :load_group, only: [:edit, :update, :remove, :destroy]
 
+    # rubocop:disable Metrics/AbcSize
     def index
+      add_breadcrumb t(:'hyrax.controls.home'), root_path
+      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyku.admin.groups.title.index'), admin_groups_path
       @groups = Hyku::Group.search(params[:q]).page(page_number).per(page_size)
     end
+    # rubocop:enable Metrics/AbcSize
 
     def new
+      add_breadcrumb t(:'hyrax.controls.home'), root_path
+      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyku.admin.groups.title.new'), new_admin_group_path
       @group = Hyku::Group.new
     end
 
@@ -21,7 +29,11 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      add_breadcrumb t(:'hyrax.controls.home'), root_path
+      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyku.admin.groups.title.edit'), edit_admin_group_path
+    end
 
     def update
       if @group.update(group_params)
@@ -33,7 +45,12 @@ module Admin
       end
     end
 
-    def remove; end
+    def remove
+      add_breadcrumb t(:'hyrax.controls.home'), root_path
+      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyku.admin.groups.title.edit'), edit_admin_group_path
+      add_breadcrumb t(:'hyku.admin.groups.title.remove'), request.path
+    end
 
     def destroy
       if @group.destroy

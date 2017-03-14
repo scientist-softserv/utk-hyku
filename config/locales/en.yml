@@ -100,6 +100,7 @@ en:
           list_members: 'Current Group Members'
           members: 'Group Members'
           new: 'New Group'
+          remove: 'Remove Group'
     users:
       label:
         name: 'Name'
