@@ -74,6 +74,7 @@ es:
           list_members: 'Miembros del grupo actual'
           members: 'Miembros del grupo'
           new: 'Nuevo grupo'
+          remove: 'Eliminar grupo'
     users:
       label:
         name: 'Nombre'
