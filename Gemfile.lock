@@ -1,8 +1,9 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 413de6a79a9f9a5318bc3213288dcd38b4f2a19e
+  revision: 520491741976982b182678992324f1e052390e6c
   specs:
     hyrax (1.0.0.alpha)
+      active-fedora (>= 11.1.3)
       active_attr (~> 0.9.0)
       active_fedora-noid (~> 2.0, >= 2.0.2)
       almond-rails (~> 0.0.1)
@@ -178,7 +179,7 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.16.0)
-    capybara (2.12.1)
+    capybara (2.13.0)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -229,7 +230,7 @@ GEM
       warden (~> 1.2.3)
     devise-guests (0.5.0)
       devise
-    devise-i18n (1.1.1)
+    devise-i18n (1.1.2)
     diff-lcs (1.3)
     docile (1.1.5)
     dropbox-sdk (1.6.5)
@@ -479,7 +480,7 @@ GEM
       redic
     nio4r (2.0.0)
     noid (0.9.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     nom-xml (0.6.0)
       activesupport (>= 3.2.18)
@@ -531,7 +532,7 @@ GEM
       peek
       sidekiq
     pg (0.20.0)
-    poltergeist (1.13.0)
+    poltergeist (1.14.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
@@ -582,7 +583,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.1)
     rake (12.0.0)
-    rdf (2.2.4)
+    rdf (2.2.5)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.1.0)
@@ -677,7 +678,7 @@ GEM
       useragent
     select2-rails (3.5.10)
       thor (~> 0.14)
-    sidekiq (4.2.9)
+    sidekiq (4.2.10)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
@@ -730,7 +731,7 @@ GEM
       tins (~> 1.0)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.6)
+    tilt (2.0.7)
     tins (1.13.2)
     tinymce-rails (4.5.5)
       railties (>= 3.1.1)
@@ -747,7 +748,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (3.1.7)
+    uglifier (3.1.9)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.3)
     useragent (0.16.8)
