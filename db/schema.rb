@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320131133) do
+ActiveRecord::Schema.define(version: 20170320135902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -463,6 +463,7 @@ ActiveRecord::Schema.define(version: 20170320131133) do
     t.string   "label"
     t.integer  "permission_template_id"
     t.boolean  "active"
+    t.boolean  "allows_access_grant"
     t.index ["permission_template_id", "name"], name: "index_sipity_workflows_on_permission_template_and_name", unique: true, using: :btree
   end
 
