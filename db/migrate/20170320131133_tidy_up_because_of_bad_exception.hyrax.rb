@@ -8,7 +8,10 @@ class TidyUpBecauseOfBadException < ActiveRecord::Migration
         Sipity::Workflow.find(workflow_id).update(active: true)
       end
 
-      remove_column Hyrax::PermissionTemplate.table_name, :workflow_id
+      begin
+        remove_column Hyrax::PermissionTemplate.table_name, :workflow_id
+      rescue
+      end
     end
   end
 end
