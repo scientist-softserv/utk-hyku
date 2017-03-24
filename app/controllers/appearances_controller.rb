@@ -1,12 +1,12 @@
 class AppearancesController < ApplicationController
   before_action :set_site
   load_and_authorize_resource instance_variable: :site, class: 'Site'
-  layout 'admin'
+  layout 'dashboard'
 
   # GET /sites/appearances/edit
   def edit
     add_breadcrumb t(:'hyrax.controls.home'), root_path
-    add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
     add_breadcrumb t(:'hyrax.admin.sidebar.appearance'), edit_site_appearances_path
   end
 
