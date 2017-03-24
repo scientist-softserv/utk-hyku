@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work Image`
 include Warden::Test::Helpers
 
-RSpec.feature 'Create a Image' do
+RSpec.feature 'Create a Image', js: true do
   context 'a logged in user' do
     let(:user) { create(:user) }
 
@@ -11,11 +11,11 @@ RSpec.feature 'Create a Image' do
     end
 
     scenario do
-      visit '/'
+      visit '/dashboard'
       click_link "Works"
-      click_link "New Work"
-      expect(page).to have_field "Image"
-      expect(page).to have_button "Create work"
+      click_link "Add new work"
+      choose "payload_concern", option: "Image"
+      click_button "Create work"
     end
   end
 end

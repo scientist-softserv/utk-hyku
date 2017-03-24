@@ -1,3 +1,14 @@
+<% if user_signed_in? %>
+  <% if can? :manage, Account %>
+    <ul class="nav navbar-nav">
+      <li>
+        <%= link_to main_app.proprietor_accounts_path do %>
+          <span class="fa fa-gears"></span> <%= t("hyku.proprietor.accounts.nav") %>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
 <ul id="user_utility_links" class="nav navbar-nav navbar-right">
   <%= render 'shared/locale_picker' if available_translations.size > 1 %>
   <% if user_signed_in? %>

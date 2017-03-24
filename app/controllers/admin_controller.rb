@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_action :ensure_admin!
-  layout 'admin'
+  layout 'dashboard'
 
   private
 

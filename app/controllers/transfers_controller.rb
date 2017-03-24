@@ -1,5 +1,6 @@
 class TransfersController < ApplicationController
   include Hyrax::TransfersControllerBehavior
 
-  layout 'admin'
+  # TODO: this should probably happen in hyrax
+  layout 'dashboard'
 end

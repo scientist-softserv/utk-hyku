@@ -32,7 +32,7 @@ module Hyku
       # we're using a case here because we need to differentiate UsersControllers
       # in different namespaces (Hyrax & Admin)
       case controller
-      when Hyrax::UsersController, Hyrax::MailboxController, Hyrax::TransfersController
+      when Hyrax::UsersController, Hyrax::NotificationsController, Hyrax::TransfersController
         true
       else
         false
