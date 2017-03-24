@@ -5,7 +5,7 @@ module Admin
     # rubocop:disable Metrics/AbcSize
     def index
       add_breadcrumb t(:'hyrax.controls.home'), root_path
-      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb t(:'hyku.admin.groups.title.index'), admin_groups_path
       @groups = Hyku::Group.search(params[:q]).page(page_number).per(page_size)
     end
@@ -13,7 +13,7 @@ module Admin
 
     def new
       add_breadcrumb t(:'hyrax.controls.home'), root_path
-      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb t(:'hyku.admin.groups.title.new'), new_admin_group_path
       @group = Hyku::Group.new
     end
@@ -31,7 +31,7 @@ module Admin
 
     def edit
       add_breadcrumb t(:'hyrax.controls.home'), root_path
-      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb t(:'hyku.admin.groups.title.edit'), edit_admin_group_path
     end
 
@@ -47,7 +47,7 @@ module Admin
 
     def remove
       add_breadcrumb t(:'hyrax.controls.home'), root_path
-      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb t(:'hyku.admin.groups.title.edit'), edit_admin_group_path
       add_breadcrumb t(:'hyku.admin.groups.title.remove'), request.path
     end

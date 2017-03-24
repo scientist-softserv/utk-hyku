@@ -15,7 +15,7 @@
         <h3 class="panel-title"><%= t('hyku.admin.groups.title.add_user') %></h3>
       </div>
       <div class="panel-body">
-        <%= simple_form_for :user_search, url: hyrax.profiles_path, method: :get, html: { class: 'form-inline pull-left js-group-user-search' } do |f| %>
+        <%= simple_form_for :user_search, url: hyrax.users_path, method: :get, html: { class: 'form-inline pull-left js-group-user-search' } do |f| %>
           <%= f.input :uq, name: :uq, required: false, input_html: { class: 'js-group-user-search__query', value: params[:uq] } %>
           <%= f.submit class: 'btn btn-default js-group-user-search__submit' %>
         <% end %>

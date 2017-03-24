@@ -1,5 +1,5 @@
 class StatusController < ApplicationController
-  layout 'admin'
+  layout 'dashboard'
 
   before_action do
     authorize! :read, :admin_dashboard
@@ -7,7 +7,7 @@ class StatusController < ApplicationController
 
   def index
     add_breadcrumb t(:'hyrax.controls.home'), root_path
-    add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+    add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
     add_breadcrumb t(:'hyrax.admin.sidebar.system_status'), main_app.status_path
   end
 end

@@ -5,7 +5,7 @@ module Admin
     # rubocop:disable Metrics/AbcSize
     def index
       add_breadcrumb t(:'hyrax.controls.home'), root_path
-      add_breadcrumb t(:'hyrax.toolbar.admin.menu'), hyrax.admin_path
+      add_breadcrumb t(:'hyrax.dashboard.breadcrumbs.admin'), hyrax.dashboard_path
       add_breadcrumb t(:'hyku.admin.groups.title.edit'), edit_admin_group_path(@group)
       add_breadcrumb t(:'hyku.admin.groups.title.members'), request.path
       @users = @group.search_members(params[:q]).page(page_number).per(page_size)
