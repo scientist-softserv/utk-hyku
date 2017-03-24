@@ -1,6 +1,6 @@
 notifications:
   email: false
-
+dist: trusty # This will give us an up to date PhantomJS
 rvm:
   - 2.4.0
 
