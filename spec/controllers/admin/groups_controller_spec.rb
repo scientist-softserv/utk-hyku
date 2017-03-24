@@ -11,7 +11,7 @@ RSpec.describe Admin::GroupsController do
 
     describe 'GET #index' do
       subject { get :index }
-      it { is_expected.to render_template('layouts/admin') }
+      it { is_expected.to render_template('layouts/dashboard') }
       it { is_expected.to render_template('admin/groups/index') }
     end
 

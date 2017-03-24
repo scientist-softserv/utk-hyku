@@ -7,7 +7,7 @@ RSpec.describe Admin::UsersController do
     describe "#index" do
       it "uses the admin layout" do
         get :index
-        expect(response).to render_template('layouts/admin')
+        expect(response).to render_template('layouts/dashboard')
       end
     end
   end
