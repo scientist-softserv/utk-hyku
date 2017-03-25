@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: fb06480d137760914ea9b773d1082401bc5da259
+  revision: 25e39d77a76e3c64583eac3eed656542e80a8793
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.1.3)
@@ -771,7 +771,7 @@ GEM
     xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    yaml_db (0.4.2)
+    yaml_db (0.5.0)
       rails (>= 3.0, < 5.1)
       rake (>= 0.8.7)
     zk (1.9.6)
