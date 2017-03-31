@@ -38,9 +38,9 @@ Hyrax.config do |config|
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
   # config.enable_ffmpeg = true
 
-  # Hyrax uses NOIDs for files and collections instead of Fedora UUIDs
-  # where NOID = 10-character string and UUID = 32-character string w/ hyphens
-  # config.enable_noids = true
+  # Using the database noid minter was too slow when ingesting 1000s of objects (8s per transaction),
+  # so switching to UUIDs for the MVP.
+  config.enable_noids = false
 
   # Specify a different template for your repository's NOID IDs
   # config.noid_template = ".reeddeeddk"
