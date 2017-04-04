@@ -11,7 +11,7 @@
       </div>
     </div>
   </li>
-  
+
   <li class="h5"><%= t('hyrax.admin.sidebar.activity') %></li>
   <li>
     <%= menu.collapsable_section t('hyrax.admin.sidebar.repository_activity'),
@@ -37,7 +37,6 @@
       <% end %>
       <%= menu.nav_link(hyrax.notifications_path) do %>
         <span class="fa fa-bell"></span> <%= t('hyrax.admin.sidebar.user_notifications') %>
-         <%= render 'hyrax/users/notify_number' %>
       <% end %>
       <%= menu.nav_link(hyrax.transfers_path) do %>
         <span class="fa fa-arrows-h"></span> <%= t('hyrax.admin.sidebar.transfers') %>
