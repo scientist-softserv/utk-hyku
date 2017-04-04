@@ -36,7 +36,7 @@
         <span class="fa fa-user"></span> <%= t('hyrax.admin.sidebar.profile') %>
       <% end %>
       <%= menu.nav_link(hyrax.notifications_path) do %>
-        <span class="fa fa-bell"></span> <%= t('hyrax.admin.sidebar.user_notifications') %>
+        <span class="fa fa-bell"></span> <%= t('hyrax.admin.sidebar.notifications') %>
       <% end %>
       <%= menu.nav_link(hyrax.transfers_path) do %>
         <span class="fa fa-arrows-h"></span> <%= t('hyrax.admin.sidebar.transfers') %>
@@ -68,6 +68,29 @@
         <% end %>
       <% end %>
     </li>
+
+    <% if can?(:manage, User) || can?(:manage, Hyku::Group) %>
+    <li>
+
+      <%= menu.collapsable_section t('hyrax.admin.sidebar.roles_and_permissions'),
+                                   icon_class: "fa fa-users",
+                                   id: 'collapseRoles',
+                                   open: menu.roles_and_permissions_section? do %>
+        <% if can? :manage, Hyku::Group %>
+          <%= menu.nav_link(main_app.admin_groups_path) do %>
+            <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.manage_groups') %>
+          <% end %>
+        <% end %>
+
+        <% if can? :manage, User %>
+          <%= menu.nav_link(main_app.admin_users_path) do %>
+            <span class="fa fa-user"></span> <%= t('hyrax.admin.sidebar.manage_users') %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </li>
+    <% end %>
+
 
     <li class="h5"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
     <% if can? :create, AdminSet %>
@@ -104,35 +127,12 @@
       </li>
     <% end %>
 
-    <% if can?(:manage, User) || can?(:manage, Hyku::Group) %>
-    <li>
-
-      <%= menu.collapsable_section t('hyrax.admin.sidebar.roles_and_permissions'),
-                                   icon_class: "fa fa-users",
-                                   id: 'collapseRoles',
-                                   open: menu.roles_and_permissions_section? do %>
-        <% if can? :manage, Hyku::Group %>
-          <%= menu.nav_link(main_app.admin_groups_path) do %>
-            <span class="fa fa-users"></span> <%= t('hyrax.admin.sidebar.manage_groups') %>
-          <% end %>
-        <% end %>
-
-        <% if can? :manage, User %>
-          <%= menu.nav_link(main_app.admin_users_path) do %>
-            <span class="fa fa-user"></span> <%= t('hyrax.admin.sidebar.manage_users') %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </li>
-    <% end %>
-
     <% if Site.account && can?(:manage, Site.account) %>
       <%= menu.nav_link(main_app.edit_admin_account_path) do %>
         Account
       <% end %>
     <% end %>
 
-    <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
     <%= menu.nav_link(hyrax.admin_workflows_path) do %>
       <span class="fa fa-flag"></span> <%= t('hyrax.admin.sidebar.workflow_review') %>
     <% end %>
