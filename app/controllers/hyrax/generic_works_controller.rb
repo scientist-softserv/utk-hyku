@@ -1,6 +1,5 @@
 module Hyrax
   class GenericWorksController < ApplicationController
-    include Hyrax::CurationConcernController
     # Adds Hyrax behaviors to the controller.
     include Hyrax::WorksControllerBehavior
 
