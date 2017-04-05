@@ -2,11 +2,12 @@
 #  `rails generate curation_concerns:work Image`
 include Warden::Test::Helpers
 
-RSpec.feature 'Create a Image', js: true do
+RSpec.feature 'Create a Image', :clean, js: true do
   context 'a logged in user' do
     let(:user) { create(:user) }
 
     before do
+      AdminSet.find_or_create_default_admin_set_id
       login_as user, scope: :user
     end
 
