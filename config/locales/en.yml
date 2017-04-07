@@ -119,9 +119,9 @@ en:
         manage_users:                 'Manage users'
         repository_activity:          'Repository activity'
         roles_and_permissions:        'Users and groups'
-        statistics:                   'Reports'
+        statistics:                   'Reports' # TODO moved upstream
         system_status:                'System status'
-        transfers:                    'Transfers'
+        transfers:                    'Transfers' # TODO moved upstream
         technical:                    'Technical'
-        user_activity:                'Your activity'
-        workflow_roles:               'Workflow roles'
+        user_activity:                'Your activity' # TODO moved upstream
+        workflow_roles:               'Workflow roles' # TODO moved upstream
