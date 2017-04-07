@@ -93,9 +93,9 @@ es:
         manage_users:                 'Administrar usuarios'
         repository_activity:          'Actividad de repositorio'
         roles_and_permissions:        'Usarios y grupos'
-        statistics:                   'Informes'
+        statistics:                   'Informes' # TODO moved upstream
         system_status:                'Estado del sistema'
-        transfers:                    'Transferencias'
+        transfers:                    'Transferencias' # TODO moved upstream
         technical:                    'Técnico'
-        user_activity:                'Su actividad'
-        workflow_roles:               'Funciones del flujo de trabajo'
+        user_activity:                'Su actividad' # TODO moved upstream
+        workflow_roles:               'Funciones del flujo de trabajo' # TODO moved upstream
