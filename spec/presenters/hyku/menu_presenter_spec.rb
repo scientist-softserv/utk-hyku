@@ -18,6 +18,10 @@ RSpec.describe Hyku::MenuPresenter do
       let(:controller) { StatusController.new }
       it { is_expected.to be true }
     end
+    context "for the Hyrax::DashboardController" do
+      let(:controller) { Hyrax::DashboardController.new }
+      it { is_expected.to be true }
+    end
   end
 
   describe "#user_activity_section?" do
@@ -62,7 +66,6 @@ RSpec.describe Hyku::MenuPresenter do
     subject { instance.roles_and_permissions_section? }
     context "for the Hyrax::UsersController" do
       let(:controller) { Hyrax::UsersController.new }
-
       it { is_expected.to be false }
     end
     context "for the Admin::UsersController" do
