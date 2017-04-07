@@ -18,5 +18,10 @@ module Hyku
     # using tinymce-rails-imageupload, so revert to the :copy method
     # https://github.com/spohlenz/tinymce-rails/issues/183
     config.tinymce.install = :copy
+
+    # The locale is set by a query parameter, so if it's not found render 404
+    config.action_dispatch.rescue_responses.merge!(
+      "I18n::InvalidLocale" => :not_found
+    )
   end
 end
