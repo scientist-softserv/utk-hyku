@@ -49,8 +49,7 @@
     <%= menu.collapsable_section t('hyrax.admin.sidebar.settings'),
                                  icon_class: "fa fa-cog",
                                  id: 'collapseSettings',
-                                 open: menu.user_activity_section? do %>
-
+                                 open: menu.settings_section? do %>
       <% if can? :manage, Site %>
         <%= menu.nav_link(main_app.edit_site_labels_path) do %>
           <span class="fa fa-institution"></span> <%= t('hyrax.admin.sidebar.labels') %>
@@ -74,10 +73,8 @@
     <% end %>
   <% end %>
 
-
   <% if can?(:manage, User) || can?(:manage, Hyku::Group) %>
   <li>
-
     <%= menu.collapsable_section t('hyrax.admin.sidebar.roles_and_permissions'),
                                  icon_class: "fa fa-users",
                                  id: 'collapseRoles',
