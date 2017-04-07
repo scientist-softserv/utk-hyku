@@ -26,10 +26,12 @@ RSpec.describe Hyku::MenuPresenter do
       allow(context).to receive(:controller).and_return(controller)
     end
     subject { instance.user_activity_section? }
+    # TODO: This has been moved to Hyrax and can be removed in the next update
     context "for the Hyrax::UsersController" do
       let(:controller) { Hyrax::UsersController.new }
       it { is_expected.to be true }
     end
+    # NOTE: We want to keep this check, because Admin::UsersController is local to Hyku
     context "for the Admin::UsersController" do
       let(:controller) { Admin::UsersController.new }
       it { is_expected.to be false }

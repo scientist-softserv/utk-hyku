@@ -26,6 +26,7 @@ module Hyku
       %w(admin status).include?(controller_name)
     end
 
+    # TODO: This has been moved to Hyrax and can be removed in the next update
     # Returns true if the current controller happens to be one of the controllers that deals
     # with user activity  This is used to keep the parent section on the sidebar open.
     def user_activity_section?

@@ -1,4 +1,5 @@
 module Admin
+  # TODO: Do we need this now that Hyrax::Admin::UsersController exists?
   class UsersController < AdminController
     include Hyrax::UsersControllerBehavior
 
