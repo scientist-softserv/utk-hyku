@@ -23,7 +23,7 @@ module Hyku
     # Returns true if the current controller happens to be one of the controllers that deals
     # with repository activity  This is used to keep the parent section on the sidebar open.
     def repository_activity_section?
-      %w(admin status).include?(controller_name)
+      %w(admin dashboard status).include?(controller_name)
     end
 
     # TODO: This has been moved to Hyrax and can be removed in the next update
