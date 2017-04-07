@@ -13,6 +13,9 @@ module Hyku
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Gzip all responses.  We probably could do this in an upstream proxy, but
+    # configuring Nginx on Elastic Beanstalk is a pain.
+    config.middleware.use Rack::Deflater
 
     # The compile method (default in tinymce-rails 4.5.2) doesn't work when also
     # using tinymce-rails-imageupload, so revert to the :copy method
