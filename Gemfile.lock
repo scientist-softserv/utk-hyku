@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 7b8868bc58bff74dc6b03538625affd0eeb695eb
+  revision: 466af9e1bcfcbd7f98d2c1d46bf1d9e8eef5e729
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.1.3)
@@ -127,13 +127,13 @@ GEM
       execjs
     awesome_nested_set (3.1.2)
       activerecord (>= 4.0.0, < 5.1)
-    aws-sdk (2.9.5)
-      aws-sdk-resources (= 2.9.5)
-    aws-sdk-core (2.9.5)
+    aws-sdk (2.9.6)
+      aws-sdk-resources (= 2.9.6)
+    aws-sdk-core (2.9.6)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.5)
-      aws-sdk-core (= 2.9.5)
+    aws-sdk-resources (2.9.6)
+      aws-sdk-core (= 2.9.6)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
