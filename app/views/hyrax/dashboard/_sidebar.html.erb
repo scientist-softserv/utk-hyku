@@ -44,55 +44,57 @@
     <% end %>
   </li>
 
-  <li class="h5">Configuration</li>
-  <li>
-    <%= menu.collapsable_section t('hyrax.admin.sidebar.settings'),
-                                 icon_class: "fa fa-cog",
-                                 id: 'collapseSettings',
-                                 open: menu.settings_section? do %>
-      <% if can? :manage, Site %>
-        <%= menu.nav_link(main_app.edit_site_labels_path) do %>
-          <span class="fa fa-institution"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.labels') %></span>
-        <% end %>
-        <%= menu.nav_link(main_app.edit_site_appearances_path) do %>
-          <span class="fa fa-paint-brush"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.appearance') %></span>
-        <% end %>
-        <%= menu.nav_link(main_app.edit_site_content_blocks_path) do %>
-          <span class="fa fa-file-text-o"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.content_blocks') %></span>
-        <% end %>
-        <%= menu.nav_link(hyrax.admin_features_path) do %>
-          <span class="fa fa-wrench"></span> <span class="sidebar-action-text">Technical</span>
-        <% end %>
+  <% if menu.show_configuration? %>
+    <li class="h5"><%= t('hyrax.admin.sidebar.configuration') %></li>
+    <% if can? :manage, Site %>
+      <li>
+        <%= menu.collapsable_section t('hyrax.admin.sidebar.settings'),
+                                     icon_class: "fa fa-cog",
+                                     id: 'collapseSettings',
+                                     open: menu.settings_section? do %>
+          <%= menu.nav_link(main_app.edit_site_labels_path) do %>
+            <span class="fa fa-institution"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.labels') %></span>
+          <% end %>
+          <%= menu.nav_link(main_app.edit_site_appearances_path) do %>
+            <span class="fa fa-paint-brush"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.appearance') %></span>
+          <% end %>
+          <%= menu.nav_link(main_app.edit_site_content_blocks_path) do %>
+            <span class="fa fa-file-text-o"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.content_blocks') %></span>
+          <% end %>
+          <%= menu.nav_link(hyrax.admin_features_path) do %>
+            <span class="fa fa-wrench"></span> <span class="sidebar-action-text">Technical</span>
+          <% end %>
+        <% end # end settings section%>
+      </li>
+    <% end %>
+
+    <% if can? :create, Sipity::WorkflowResponsibility %>
+      <%= menu.nav_link(hyrax.admin_workflow_roles_path) do %>
+        <span class="fa fa-users"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_roles') %></span>
       <% end %>
     <% end %>
-  </li>
 
-  <% if can? :create, Sipity::WorkflowResponsibility %>
-    <%= menu.nav_link(hyrax.admin_workflow_roles_path) do %>
-      <span class="fa fa-users"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_roles') %></span>
-    <% end %>
-  <% end %>
+    <% if can?(:manage, User) || can?(:manage, Hyku::Group) %>
+    <li>
+      <%= menu.collapsable_section t('hyrax.admin.sidebar.roles_and_permissions'),
+                                   icon_class: "fa fa-users",
+                                   id: 'collapseRoles',
+                                   open: menu.roles_and_permissions_section? do %>
+        <% if can? :manage, Hyku::Group %>
+          <%= menu.nav_link(main_app.admin_groups_path) do %>
+            <span class="fa fa-users"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.manage_groups') %></span>
+          <% end %>
+        <% end %>
 
-  <% if can?(:manage, User) || can?(:manage, Hyku::Group) %>
-  <li>
-    <%= menu.collapsable_section t('hyrax.admin.sidebar.roles_and_permissions'),
-                                 icon_class: "fa fa-users",
-                                 id: 'collapseRoles',
-                                 open: menu.roles_and_permissions_section? do %>
-      <% if can? :manage, Hyku::Group %>
-        <%= menu.nav_link(main_app.admin_groups_path) do %>
-          <span class="fa fa-users"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.manage_groups') %></span>
+        <% if can? :manage, User %>
+          <%= menu.nav_link(main_app.admin_users_path) do %>
+            <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.manage_users') %></span>
+          <% end %>
         <% end %>
       <% end %>
-
-      <% if can? :manage, User %>
-        <%= menu.nav_link(main_app.admin_users_path) do %>
-          <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.manage_users') %></span>
-        <% end %>
-      <% end %>
+    </li>
     <% end %>
-  </li>
-  <% end %>
+  <% end # end of configuration block %>
 
 
   <li class="h5"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
