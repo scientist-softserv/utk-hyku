@@ -89,4 +89,22 @@ RSpec.describe Hyku::MenuPresenter do
       it { is_expected.to be true }
     end
   end
+
+  describe "#show_tasks?" do
+    subject { instance.show_tasks? }
+
+    context "for a regular user" do
+      before do
+        allow(instance.view_context).to receive(:can?).with(:read, :admin_dashboard).and_return(false)
+      end
+      it { is_expected.to be false }
+    end
+
+    context "for a user who can manage users" do
+      before do
+        allow(instance.view_context).to receive(:can?).with(:read, :admin_dashboard).and_return(true)
+      end
+      it { is_expected.to be true }
+    end
+  end
 end

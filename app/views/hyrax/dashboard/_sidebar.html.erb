@@ -114,20 +114,20 @@
     <span class="fa fa-file"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
   <% end %>
 
-  <% if can? :read, :admin_dashboard %>
+  <% if menu.show_tasks? %>
     <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
-  <% end %>
-
-  <% if Site.account && can?(:manage, Site.account) %>
-    <%= menu.nav_link(main_app.edit_admin_account_path) do %>
-      Account
+    <% if Site.account && can?(:manage, Site.account) %>
+      <%= menu.nav_link(main_app.edit_admin_account_path) do %>
+        Account
+      <% end %>
     <% end %>
-  <% end %>
 
-  <%= menu.nav_link(hyrax.admin_workflows_path) do %>
-    <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
-  <% end %>
-  <%= menu.nav_link(hyrax.admin_stats_path) do %>
-    <span class="fa fa-bar-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.statistics') %></span>
-  <% end %>
+    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
+      <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
+    <% end %>
+
+    <%= menu.nav_link(hyrax.admin_stats_path) do %>
+      <span class="fa fa-bar-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.statistics') %></span>
+    <% end %>
+  <% end  # end of tasks block %>
 </ul>

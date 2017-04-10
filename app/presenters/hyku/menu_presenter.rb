@@ -52,5 +52,10 @@ module Hyku
         can?(:manage, User) ||
         can?(:manage, Hyku::Group)
     end
+
+    # Returns true if we ought to show the user the 'Tasks' section of the menu
+    def show_tasks?
+      can?(:read, :admin_dashboard)
+    end
   end
 end
