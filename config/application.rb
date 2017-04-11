@@ -26,5 +26,11 @@ module Hyku
     config.action_dispatch.rescue_responses.merge!(
       "I18n::InvalidLocale" => :not_found
     )
+
+    # Temporarily remove the rescue for RecordNotFound
+    # so that we can debug https://github.com/projecthydra-labs/hyrax/issues/753
+    config.action_dispatch.rescue_responses.delete("ActiveRecord::RecordNotFound")
+    config.action_dispatch.rescue_responses.delete("ActiveFedora::ObjectNotFoundError")
+
   end
 end
