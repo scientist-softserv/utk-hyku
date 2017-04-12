@@ -24,20 +24,6 @@ RSpec.describe Hyku::MenuPresenter do
     end
   end
 
-  describe "#user_activity_section?" do
-    before do
-      allow(context).to receive(:controller_name).and_return(controller_name)
-      allow(context).to receive(:controller).and_return(controller)
-    end
-    subject { instance.user_activity_section? }
-
-    # Keep this test, because Admin::UsersController is local to Hyku
-    context "for the Admin::UsersController" do
-      let(:controller) { Admin::UsersController.new }
-      it { is_expected.to be false }
-    end
-  end
-
   describe "#settings_section?" do
     before do
       allow(context).to receive(:controller_name).and_return(controller_name)
@@ -48,8 +34,8 @@ RSpec.describe Hyku::MenuPresenter do
       let(:controller) { ContentBlocksController.new }
       it { is_expected.to be true }
     end
-    context "for the Admin::UsersController" do
-      let(:controller) { Admin::UsersController.new }
+    context "for the Admin::GroupsController" do
+      let(:controller) { Admin::GroupsController.new }
       it { is_expected.to be false }
     end
   end
@@ -64,8 +50,12 @@ RSpec.describe Hyku::MenuPresenter do
       let(:controller) { Hyrax::UsersController.new }
       it { is_expected.to be false }
     end
-    context "for the Admin::UsersController" do
-      let(:controller) { Admin::UsersController.new }
+    context "for the Hyrax::Admin::UsersController" do
+      let(:controller) { Hyrax::Admin::UsersController.new }
+      it { is_expected.to be true }
+    end
+    context "for the Admin::GroupsController" do
+      let(:controller) { Admin::GroupsController.new }
       it { is_expected.to be true }
     end
   end
