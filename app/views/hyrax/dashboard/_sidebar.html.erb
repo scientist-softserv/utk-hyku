@@ -44,6 +44,40 @@
     <% end %>
   </li>
 
+  <li class="h5"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
+  <% if can? :create, AdminSet %>
+    <%= menu.nav_link(hyrax.admin_admin_sets_path) do %>
+      <span class="fa fa-sitemap"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.admin_sets') %></span>
+    <% end %>
+  <% end %>
+
+  <%= menu.nav_link(hyrax.my_collections_path,
+                    also_active_for: hyrax.dashboard_collections_path) do %>
+    <span class="fa fa-folder-open"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.collections') %></span>
+  <% end %>
+
+  <%= menu.nav_link(hyrax.my_works_path,
+                    also_active_for: hyrax.dashboard_works_path) do %>
+    <span class="fa fa-file"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
+  <% end %>
+
+  <% if menu.show_tasks? %>
+    <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
+    <% if Site.account && can?(:manage, Site.account) %>
+      <%= menu.nav_link(main_app.edit_admin_account_path) do %>
+        Account
+      <% end %>
+    <% end %>
+
+    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
+      <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
+    <% end %>
+
+    <%= menu.nav_link(hyrax.admin_stats_path) do %>
+      <span class="fa fa-bar-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.statistics') %></span>
+    <% end %>
+  <% end  # end of tasks block %>
+  
   <% if menu.show_configuration? %>
     <li class="h5"><%= t('hyrax.admin.sidebar.configuration') %></li>
     <% if can? :manage, Site %>
@@ -95,39 +129,4 @@
     </li>
     <% end %>
   <% end # end of configuration block %>
-
-
-  <li class="h5"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
-  <% if can? :create, AdminSet %>
-    <%= menu.nav_link(hyrax.admin_admin_sets_path) do %>
-      <span class="fa fa-sitemap"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.admin_sets') %></span>
-    <% end %>
-  <% end %>
-
-  <%= menu.nav_link(hyrax.my_collections_path,
-                    also_active_for: hyrax.dashboard_collections_path) do %>
-    <span class="fa fa-folder-open"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.collections') %></span>
-  <% end %>
-
-  <%= menu.nav_link(hyrax.my_works_path,
-                    also_active_for: hyrax.dashboard_works_path) do %>
-    <span class="fa fa-file"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
-  <% end %>
-
-  <% if menu.show_tasks? %>
-    <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
-    <% if Site.account && can?(:manage, Site.account) %>
-      <%= menu.nav_link(main_app.edit_admin_account_path) do %>
-        Account
-      <% end %>
-    <% end %>
-
-    <%= menu.nav_link(hyrax.admin_workflows_path) do %>
-      <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.workflow_review') %></span>
-    <% end %>
-
-    <%= menu.nav_link(hyrax.admin_stats_path) do %>
-      <span class="fa fa-bar-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.statistics') %></span>
-    <% end %>
-  <% end  # end of tasks block %>
 </ul>
