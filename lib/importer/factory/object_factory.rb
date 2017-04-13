@@ -1,6 +1,7 @@
 require 'importer/log_subscriber'
 module Importer
   module Factory
+    # rubocop:disable Metrics/ClassLength
     class ObjectFactory
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
@@ -39,7 +40,7 @@ module Importer
       def update
         raise "Object doesn't exist" unless object
         run_callbacks(:save) do
-          work_actor.update(update_attributes)
+          work_actor.update(environment(update_attributes))
         end
         log_updated(object)
       end
@@ -80,11 +81,9 @@ module Importer
         run_callbacks :save do
           run_callbacks :create do
             if klass == Collection
-              @object.attributes = attrs
-              @object.apply_depositor_metadata(User.batch_user)
-              @object.save!
+              create_collection(attrs)
             else
-              work_actor.create(attrs)
+              work_actor.create(environment(attrs))
             end
           end
         end
@@ -92,10 +91,6 @@ module Importer
         log_created(object)
       end
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
-
-      def work_actor
-        Hyrax::CurationConcern.actor(@object, Ability.new(User.batch_user))
-      end
 
       def log_created(obj)
         Rails.logger.info(
@@ -110,6 +105,22 @@ module Importer
       end
 
       private
+
+        # @param [Hash] attrs the attributes to put in the environment
+        # @return [Hyrax::Actors::Environment]
+        def environment(attrs)
+          Hyrax::Actors::Environment.new(@object, Ability.new(User.batch_user), attrs)
+        end
+
+        def work_actor
+          Hyrax::CurationConcern.actor
+        end
+
+        def create_collection(attrs)
+          @object.attributes = attrs
+          @object.apply_depositor_metadata(User.batch_user)
+          @object.save!
+        end
 
         # Override if we need to map the attributes from the parser in
         # a way that is compatible with how the factory needs them.
@@ -133,5 +144,6 @@ module Importer
             [:id, :edit_users, :edit_groups, :read_groups, :visibility]
         end
     end
+    # rubocop:enable Metrics/ClassLength
   end
 end
