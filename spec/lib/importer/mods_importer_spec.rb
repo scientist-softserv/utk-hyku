@@ -4,7 +4,7 @@ require 'importer/mods_parser'
 RSpec.describe Importer::ModsImporter, :clean do
   let(:image_directory) { 'spec/fixtures/images' }
   let(:importer) { described_class.new(image_directory) }
-  let(:actor) { instance_double(Hyrax::Actors::ActorStack) }
+  let(:actor) { double }
   before do
     allow(Hyrax::CurationConcern).to receive(:actor).and_return(actor)
   end
@@ -13,11 +13,11 @@ RSpec.describe Importer::ModsImporter, :clean do
     let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
 
     it 'creates a new image and a collection' do
-      expect(actor).to receive(:create).with(
-        hash_including(:member_of_collection_ids,
-                       identifier: ['xv169dn4538'],
-                       visibility: 'open')
-      )
+      expect(actor).to receive(:create).with(Hyrax::Actors::Environment) do |k|
+        expect(k.attributes).to include(member_of_collection_ids: ['kx532cb7981'],
+                                        identifier: ['xv169dn4538'],
+                                        visibility: 'open')
+      end
       expect do
         importer.import(file)
       end.to change { Collection.count }.by(1)
@@ -29,11 +29,12 @@ RSpec.describe Importer::ModsImporter, :clean do
     end
 
     context 'when the collection already exists' do
-      before { create(:collection, id: 'kx532cb7981', title: ['Test Collection']) }
+      let!(:coll) { create(:collection, id: 'kx532cb7981', title: ['Test Collection']) }
 
       it 'it adds image to existing collection' do
-        expect(actor).to receive(:create).with(hash_including(:member_of_collection_ids))
-
+        expect(actor).to receive(:create).with(Hyrax::Actors::Environment) do |k|
+          expect(k.attributes).to include(member_of_collection_ids: [coll.id])
+        end
         expect do
           importer.import(file)
         end.to change { Collection.count }.by(0)
