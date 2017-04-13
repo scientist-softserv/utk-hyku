@@ -733,7 +733,7 @@ GEM
     tins (1.13.2)
     tinymce-rails (4.5.6)
       railties (>= 3.1.1)
-    tinymce-rails-imageupload (4.0.17.beta.2)
+    tinymce-rails-imageupload (4.0.17.beta)
       railties (>= 3.2, < 6)
       tinymce-rails (~> 4.0)
     turbolinks (5.0.1)
