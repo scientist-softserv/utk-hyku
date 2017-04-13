@@ -121,7 +121,7 @@
         <% end %>
 
         <% if can? :manage, User %>
-          <%= menu.nav_link(main_app.admin_users_path) do %>
+          <%= menu.nav_link(hyrax.admin_users_path) do %>
             <span class="fa fa-user"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.manage_users') %></span>
           <% end %>
         <% end %>
