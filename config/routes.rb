@@ -60,7 +60,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: :index
     resource :account, only: [:edit, :update]
     resources :groups do
       member do
