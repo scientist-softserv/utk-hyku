@@ -830,6 +830,7 @@ DEPENDENCIES
   simplecov
   solr_wrapper (~> 0.10)
   spring (~> 1.7)
+  tinymce-rails-imageupload (= 4.0.17.beta)
   turbolinks
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
