@@ -38,7 +38,7 @@ group :development, :test do
 
   gem 'i18n-debug', require: false
   gem 'rspec'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.6.0.beta2'
 
   gem 'coveralls', require: false
   gem 'simplecov', require: false
