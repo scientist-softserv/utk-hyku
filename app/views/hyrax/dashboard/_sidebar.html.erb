@@ -77,7 +77,7 @@
       <span class="fa fa-bar-chart"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.statistics') %></span>
     <% end %>
   <% end  # end of tasks block %>
-  
+
   <% if menu.show_configuration? %>
     <li class="h5"><%= t('hyrax.admin.sidebar.configuration') %></li>
     <% if can? :manage, Site %>
@@ -89,8 +89,10 @@
           <%= menu.nav_link(main_app.edit_site_labels_path) do %>
             <span class="fa fa-institution"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.labels') %></span>
           <% end %>
-          <%= menu.nav_link(main_app.edit_site_appearances_path) do %>
-            <span class="fa fa-paint-brush"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.appearance') %></span>
+           <% if can?(:update, :appearance) %>
+            <%= menu.nav_link(hyrax.admin_appearance_path) do %>
+              <span class="fa fa-paint-brush"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.appearance') %></span>
+            <% end %>
           <% end %>
           <%= menu.nav_link(main_app.edit_site_content_blocks_path) do %>
             <span class="fa fa-file-text-o"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.content_blocks') %></span>
@@ -98,7 +100,7 @@
           <%= menu.nav_link(hyrax.admin_features_path) do %>
             <span class="fa fa-wrench"></span> <span class="sidebar-action-text">Technical</span>
           <% end %>
-        <% end # end settings section%>
+        <% end # end settings section %>
       </li>
     <% end %>
 
