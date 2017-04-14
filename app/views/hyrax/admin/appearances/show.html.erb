@@ -1,0 +1,52 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-paint-brush"></span> <%= t('.header') %></h1>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default tabs" id="admin-set-controls">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+          <a href="#banner_image" role="tab" data-toggle="tab"><%= t('.tabs.banner_image') %></a>
+        </li>
+        <li>
+          <a href="#color" role="tab" data-toggle="tab"><%= t('.tabs.colors') %></a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="banner_image" class="tab-pane active">
+          <div class="panel panel-default labels">
+            <%= simple_form_for @form, url: admin_appearance_path do |f| %>
+              <div class="panel-body">
+                <%# Upload Banner Image %>
+                <%= f.input :banner_image, as: :file, wrapper: :vertical_file_input, hint: 'Upload an image (JPG, GIF or PNG) at least 2200 pixels wide for best results.'%>
+                <%= image_tag @form.banner_image.url, class: "img-responsive" if @form.banner_image? %>
+                <%= f.input :remove_banner_image, as: :boolean %>
+              </div>
+              <div class="panel-footer">
+                <%= f.button :submit, class: 'btn btn-primary pull-right' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div id="color" class="tab-pane">
+          <div class="panel panel-default labels">
+            <%= simple_form_for @form, url: admin_appearance_path do |f| %>
+              <div class="panel-body">
+                <%= f.input :header_background_color, required: false, input_html: { type: 'color' } %>
+                <%= f.input :header_text_color, required: false, input_html: { type: 'color' }  %>
+                <%= f.input :link_color, required: false, input_html: { type: 'color' }  %>
+                <%= f.input :footer_link_color, required: false, input_html: { type: 'color' }  %>
+                <%= f.input :primary_button_background_color, required: false, input_html: { type: 'color' }  %>
+              </div>
+              <div class="panel-footer">
+                <%= f.submit class: 'btn btn-primary pull-right' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
