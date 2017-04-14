@@ -21,7 +21,7 @@ RSpec.configure do |config|
   include ActiveFedora::Noid::RSpec
 
   config.before(:suite) do
-    WebMock.disable_net_connect!(allow_localhost: true)
+    WebMock.disable_net_connect!(allow_localhost: true, allow: 'hyku-carrierwave-test.s3.amazonaws.com')
     disable_production_minter!
   end
 
@@ -61,6 +61,9 @@ RSpec.configure do |config|
   # get run.
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
+
+  # only run aws tests from CI (or w/ `--tag aws`)
+  config.filter_run_excluding(aws: true) unless ENV['CI']
 
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options. We recommend
