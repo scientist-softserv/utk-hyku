@@ -17,6 +17,7 @@ Style/SafeNavigation:
 Metrics/MethodLength:
   Exclude:
     - 'app/jobs/import_work_from_purl_job.rb'
+    - 'spec/support/rake.rb'
 
 RSpec/SubjectStub:
   Exclude:
