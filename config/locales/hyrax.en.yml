@@ -10,3 +10,9 @@ en:
     footer:
       copyright_html: "<strong>Copyright &copy; 2017 Project Hydra</strong> Licensed under the Apache License, Version 2.0"
       service_html: A service of <a href="http://projecthydra.org/" class="navbar-link" target="_blank">Project Hydra</a>.
+  simple_form:
+    hints:
+      defaults:
+        extent: "The extent (size, duration, number, etc.) of the work."
+      labels:
+        extent: "Extent"
