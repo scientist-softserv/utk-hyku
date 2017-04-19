@@ -1,5 +1,5 @@
 # Monkey-patch around outdated Hyrax knowledge, assuming CarrierWave::Storage::Fog is present
-class AttachFilesToWorkJob
+class AttachFilesToWorkJob < ActiveJob::Base
   private
 
     # @param [Hyrax::Actors::FileSetActor] actor
