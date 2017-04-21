@@ -1,8 +1,10 @@
 <% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.index'), t('hyku.admin.title')) %>
-<h1>
-  <span class="fa fa-users"></span>
-  <%= t('hyku.admin.groups.title.index') %>
-</h1>
+<% content_for :page_header do %>
+  <h1>
+    <span class="fa fa-users"></span>
+    <%= t('hyku.admin.groups.title.index') %>
+  </h1>
+<% end %>
 
 <div class="panel panel-default group-listing">
   <div class="panel-heading">
