@@ -26,5 +26,12 @@ module Hyku
     config.action_dispatch.rescue_responses.merge!(
       "I18n::InvalidLocale" => :not_found
     )
+
+    config.to_prepare do
+      # Do dependency injection after the classes have been loaded.
+      # Before moving this here (from an initializer) Devise was raising invalid
+      # authenticity token errors.
+      Hyrax::Admin::AppearancesController.form_class = AppearanceForm
+    end
   end
 end
