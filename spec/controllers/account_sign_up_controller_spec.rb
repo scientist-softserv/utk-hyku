@@ -35,7 +35,7 @@ RSpec.describe AccountSignUpController, type: :controller, multitenant: true do
           expect do
             post :create, params: { account: valid_attributes }
           end.to change(Account, :count).by(1)
-          expect(assigns(:account).cname).to eq('x.dev')
+          expect(assigns(:account).cname).to eq('x.localhost')
           expect(assigns(:account).errors).to be_empty
 
           expect do # now repeat the same action
