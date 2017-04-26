@@ -40,11 +40,8 @@ RSpec.describe CreateAccount do
   end
 
   describe '#create_account_inline' do
-    it 'calls four jobs inline' do
-      expect(CreateSolrCollectionJob).to receive(:perform_now).with(account)
-      expect(CreateFcrepoEndpointJob).to receive(:perform_now).with(account)
-      expect(CreateRedisNamespaceJob).to receive(:perform_now).with(account)
-      expect(CreateDefaultAdminSetJob).to receive(:perform_now)
+    it 'queues a background job' do
+      expect(CreateAccountInlineJob).to receive(:perform_later).with(account)
       subject.create_account_inline
     end
   end
