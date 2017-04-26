@@ -8,9 +8,9 @@ class CreateAccount
     @account = account
   end
 
+  # @return [Boolean] true if save and jobs spawning were successful
   def save
-    account.save &&
-      create_external_resources
+    account.save && create_external_resources ? true : false
   end
 
   def create_external_resources

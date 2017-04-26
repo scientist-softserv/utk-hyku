@@ -5,8 +5,17 @@ class Account < ActiveRecord::Base
   # @see Settings.multitenancy.default_host
   def self.default_cname(piece)
     return unless piece
-    default_host = Settings.multitenancy.default_host
+    default_host = Settings.multitenancy.default_host || "%{tenant}.#{admin_host}"
     format(default_host, tenant: piece.parameterize)
+  end
+
+  # Canonicalize the account cname or request host for comparison
+  # @param [String] cname distinct part of host name
+  # @return [String] canonicalized host name
+  def self.canonical_cname(cname)
+    # DNS host names are case-insensitive. Convert complete domain names to relative names.
+    cname &&= cname.downcase.sub(/\.\Z/, '')
+    cname
   end
 
   def self.admin_host
@@ -47,16 +56,6 @@ class Account < ActiveRecord::Base
       a.build_fcrepo_endpoint
       a.build_redis_endpoint
     end
-  end
-
-  # Canonicalize the account cname or request host for comparison
-  #
-  # @param [String] cname distinct part of host name
-  # @return [String] canonicalized host name
-  def self.canonical_cname(cname)
-    # DNS host names are case-insensitive. Convert complete domain names to relative names.
-    cname &&= cname.downcase.sub(/\.\Z/, '')
-    cname
   end
 
   # Make all the account specific connections active

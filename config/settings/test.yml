@@ -3,3 +3,5 @@ zookeeper:
 
 multitenancy:
   enabled: false
+# admin_host: 'localhost'
+# default_host: "%{tenant}.localhost"
