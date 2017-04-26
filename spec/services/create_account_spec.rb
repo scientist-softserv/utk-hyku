@@ -39,6 +39,13 @@ RSpec.describe CreateAccount do
     end
   end
 
+  describe '#create_account_inline' do
+    it 'queues a background job' do
+      expect(CreateAccountInlineJob).to receive(:perform_later).with(account)
+      subject.create_account_inline
+    end
+  end
+
   describe '#save' do
     let(:resource1) { Account.new(name: 'example', title: 'First') }
     let(:resource2) { Account.new(name: 'example', title: 'Second') }
