@@ -44,7 +44,7 @@ group :development, :test do
   gem 'simplecov', require: false
 
   gem 'fcrepo_wrapper', '~> 0.4'
-  gem 'solr_wrapper', '~> 0.10'
+  gem 'solr_wrapper', '~> 1.0'
 
   gem 'rubocop', '~> 0.47.0'
   gem 'rubocop-rspec', '~> 1.10.0'
