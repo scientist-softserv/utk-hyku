@@ -682,7 +682,7 @@ GEM
       httparty (>= 0.11.0)
       oauth2 (>= 0.9.2)
     slop (4.4.1)
-    solr_wrapper (0.23.0)
+    solr_wrapper (1.0.0)
       faraday
       ruby-progressbar
       rubyzip
@@ -810,7 +810,7 @@ DEPENDENCIES
   secure_headers
   sidekiq
   simplecov
-  solr_wrapper (~> 0.10)
+  solr_wrapper (~> 1.0)
   spring (~> 1.7)
   tinymce-rails-imageupload (= 4.0.17.beta)
   turbolinks
