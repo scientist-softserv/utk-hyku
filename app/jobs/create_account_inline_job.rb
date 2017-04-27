@@ -3,6 +3,6 @@ class CreateAccountInlineJob < ActiveJob::Base
     CreateSolrCollectionJob.perform_now(account)
     CreateFcrepoEndpointJob.perform_now(account)
     CreateRedisNamespaceJob.perform_now(account)
-    CreateDefaultAdminSetJob.perform_now
+    CreateDefaultAdminSetJob.perform_now(account)
   end
 end
