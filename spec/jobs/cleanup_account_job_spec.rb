@@ -21,7 +21,7 @@ RSpec.describe CleanupAccountJob do
   end
 
   it 'destroys the fcrepo collection' do
-    expect(ActiveFedora.fedora.connection).to receive(:delete).with('/x')
+    expect(ActiveFedora.fedora.connection).to receive(:delete).with('x')
 
     described_class.perform_now(account)
   end
