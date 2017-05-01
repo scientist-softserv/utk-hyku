@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320135902) do
+ActiveRecord::Schema.define(version: 20170427003546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20170320135902) do
     t.integer  "redis_endpoint_id"
     t.string   "title"
     t.index ["cname", "tenant"], name: "index_accounts_on_cname_and_tenant", using: :btree
-    t.index ["fcrepo_endpoint_id"], name: "index_accounts_on_fcrepo_endpoint_id", using: :btree
-    t.index ["redis_endpoint_id"], name: "index_accounts_on_redis_endpoint_id", using: :btree
-    t.index ["solr_endpoint_id"], name: "index_accounts_on_solr_endpoint_id", using: :btree
+    t.index ["fcrepo_endpoint_id"], name: "index_accounts_on_fcrepo_endpoint_id", unique: true, using: :btree
+    t.index ["redis_endpoint_id"], name: "index_accounts_on_redis_endpoint_id", unique: true, using: :btree
+    t.index ["solr_endpoint_id"], name: "index_accounts_on_solr_endpoint_id", unique: true, using: :btree
   end
 
   create_table "bookmarks", force: :cascade do |t|
@@ -587,6 +587,9 @@ ActiveRecord::Schema.define(version: 20170320135902) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id", using: :btree
   end
 
+  add_foreign_key "accounts", "endpoints", column: "fcrepo_endpoint_id", on_delete: :nullify
+  add_foreign_key "accounts", "endpoints", column: "redis_endpoint_id", on_delete: :nullify
+  add_foreign_key "accounts", "endpoints", column: "solr_endpoint_id", on_delete: :nullify
   add_foreign_key "content_blocks", "sites"
   add_foreign_key "curation_concerns_operations", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
