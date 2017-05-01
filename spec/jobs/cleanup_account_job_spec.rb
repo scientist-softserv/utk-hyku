@@ -1,7 +1,8 @@
 RSpec.describe CleanupAccountJob do
   let!(:account) do
     FactoryGirl.create(:account, solr_endpoint_attributes: { collection: 'x' },
-                                 fcrepo_endpoint_attributes: { base_path: '/x' })
+                                 fcrepo_endpoint_attributes: { base_path: '/x' },
+                                 redis_endpoint_attributes: { namespace: 'x' })
   end
 
   before do
@@ -17,12 +18,25 @@ RSpec.describe CleanupAccountJob do
 
   it 'destroys the solr collection' do
     expect(RemoveSolrCollectionJob).to receive(:perform_later).with('x', hash_including('url'))
+    expect(account.solr_endpoint).to receive(:destroy)
     described_class.perform_now(account)
   end
 
   it 'destroys the fcrepo collection' do
     expect(ActiveFedora.fedora.connection).to receive(:delete).with('x')
+    expect(account.fcrepo_endpoint).to receive(:destroy)
+    described_class.perform_now(account)
+  end
 
+  it 'deletes all entries in the redis namespace' do
+    allow(Redis.current).to receive(:keys).and_return(["x:events:x1", "x:events:x2"])
+    allow(Hyrax::RedisEventStore).to receive(:instance).and_return(
+      Redis::Namespace.new(account.redis_endpoint.namespace, redis: Redis.current)
+    )
+    expect(Hyrax::RedisEventStore.instance.namespace).to eq('x')
+    expect(Hyrax::RedisEventStore.instance.keys).to eq(["events:x1", "events:x2"])
+    expect(Hyrax::RedisEventStore.instance).to receive(:del).with('events:x1', 'events:x2')
+    expect(account.redis_endpoint).to receive(:destroy)
     described_class.perform_now(account)
   end
 
