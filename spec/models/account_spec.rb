@@ -156,8 +156,8 @@ RSpec.describe Account, type: :model do
     end
 
     it 'prevents conflicting new object saves' do
-      described_class.create(name: 'example', title: 'Original Example')
-      account2 = described_class.new(name: 'example', title: 'Fancy Example')
+      described_class.create(name: 'example')
+      account2 = described_class.new(name: 'example')
       expect(account2.save).to be false
       expect(account2.errors).to match a_hash_including(:cname)
     end
