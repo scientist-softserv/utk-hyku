@@ -9,7 +9,6 @@ RSpec.describe "proprietor/accounts/new", type: :view, multitenant: true do
     render
 
     assert_select "form[action=?][method=?]", proprietor_accounts_path, "post" do
-      assert_select "input#account_title[name=?]", "account[title]"
       assert_select "input#account_name[name=?]", "account[name]"
     end
   end
