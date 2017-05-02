@@ -47,8 +47,8 @@ RSpec.describe CreateAccount do
   end
 
   describe '#save' do
-    let(:resource1) { Account.new(name: 'example', title: 'First') }
-    let(:resource2) { Account.new(name: 'example', title: 'Second') }
+    let(:resource1) { Account.new(name: 'example') }
+    let(:resource2) { Account.new(name: 'example') }
     let(:account1) { CreateAccount.new(resource1) }
     let(:account2) { CreateAccount.new(resource2) }
     before do
