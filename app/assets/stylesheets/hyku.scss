@@ -101,6 +101,12 @@ footer.navbar {
   .h5 {
     padding: $nav-link-padding;
   }
+
+  &.maximized {
+    .admin-sidebar ul > li a {
+      padding-left: 52px;
+    }
+  }
 }
 
 .panel-tab-wrapper {
