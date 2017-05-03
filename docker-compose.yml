@@ -90,7 +90,7 @@ services:
     volumes:
       - fcrepo:/data
     environment:
-      - JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.modeshape.configuration=\"classpath:/config/minimal-default/repository.json\""
+      - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/minimal-default/repository.json"
     networks:
       internal:
 
