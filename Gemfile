@@ -72,7 +72,7 @@ end
 gem 'blacklight', '~> 6.7'
 
 gem 'hyrax', git: 'https://github.com/projecthydra-labs/hyrax.git'
-gem 'rsolr', '~> 1.1.2'
+gem 'rsolr', '~> 1.0'
 
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
