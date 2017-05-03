@@ -72,7 +72,7 @@ end
 gem 'blacklight', '~> 6.7'
 
 gem 'hyrax', git: 'https://github.com/projecthydra-labs/hyrax.git'
-gem 'rsolr', '~> 1.0'
+gem 'rsolr', '~> 2.0'
 
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
@@ -103,7 +103,7 @@ gem 'zk'
 gem 'mods', '~> 2.1'
 gem 'riiif', '~> 1.1'
 
-gem 'iiif_manifest', '~> 0.1.2'
+gem 'iiif_manifest', '~> 0.2.0'
 
 group :aws, :test do
   gem 'carrierwave-aws'

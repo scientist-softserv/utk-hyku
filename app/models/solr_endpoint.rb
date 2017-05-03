@@ -1,12 +1,18 @@
+# frozen_string_literal: true
+
 class SolrEndpoint < Endpoint
   store :options, accessors: [:url, :collection]
 
   def connection
-    RSolr.connect(connection_options)
+    # We remove the adapter, otherwise RSolr 2 will try to use it as a Faraday middleware
+    RSolr.connect(connection_options.without('adapter'))
   end
 
+  # @return [Hash] options for the RSolr connection.
   def connection_options
-    options.reverse_merge(Blacklight.connection_config).reverse_merge(ActiveFedora::SolrService.instance.conn.options)
+    bl_defaults = Blacklight.connection_config
+    af_defaults = ActiveFedora::SolrService.instance.conn.options
+    options.reverse_merge(bl_defaults).reverse_merge(af_defaults)
   end
 
   def ping
