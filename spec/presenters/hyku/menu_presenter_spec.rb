@@ -76,8 +76,8 @@ RSpec.describe Hyku::MenuPresenter do
     end
   end
 
-  describe "#show_tasks?" do
-    subject { instance.show_tasks? }
+  describe "#show_admin_menu_items?" do
+    subject { instance.show_admin_menu_items? }
 
     context "for a regular user" do
       before do
