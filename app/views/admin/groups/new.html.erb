@@ -1,8 +1,10 @@
 <% content_for :page_title, construct_page_title(t('hyku.admin.groups.title.new'), t('hyku.admin.title')) %>
-<h1>
-  <span class="fa fa-users"></span>
-  <%= t('hyku.admin.groups.title.new') %>
-</h1>
+<% provide :page_header do %>
+  <h1>
+    <span class="fa fa-users"></span>
+    <%= t('hyku.admin.groups.title.new') %>
+  </h1>
+<% end %>
 <div class="panel-tab-wrapper">
   <ul class="nav nav-tabs">
     <li role="presentation" class="active">
