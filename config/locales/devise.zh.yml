@@ -1,0 +1,8 @@
+zh:
+  devise:
+    registrations:
+      new:
+        sign_up: 创建帐号
+        sign_up_header: 创建一个新账户
+      shared:
+        sign_up: 创建帐号
