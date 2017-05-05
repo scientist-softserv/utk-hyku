@@ -1,0 +1,47 @@
+zh:
+  simple_form:
+    "yes": '是'
+    "no": '没有'
+    cancel: '取消'
+    required:
+      text: '需要'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "请查看以下问题："
+    # Examples
+    labels:
+      hyku_group:
+        description: '描述'
+      group_search:
+        q: '搜索'
+      user_search:
+        uq: '搜索用户'
+      add_user_to_group:
+        user_ids: '用户名'
+      page_size:
+        per: '显示'
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    hints:
+      hyku_group:
+        description: '小组角色的简要总结'
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'
+    placeholders:
+      user_search:
+        uq: '名称或用户名'

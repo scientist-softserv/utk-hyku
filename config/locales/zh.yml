@@ -1,0 +1,122 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+zh:
+  application:
+    tagline: 下一代存储库解决方案
+  activerecord:
+    attributes:
+      site:
+        institution_name_full: 完整的机构名称
+  status:
+    index:
+      services: '服务'
+    service:
+      ok: '好'
+      down: '下'
+  helpers:
+    submit:
+      add_user_to_group:
+        submit: '加'
+      group_search:
+        submit: '走'
+      page_size:
+        submit: '更新'
+      revoke_membership:
+        submit: '去掉'
+      user_search:
+        submit: '走'
+  hyku:
+    footer:
+      admin_login: '管理员登录'
+    proprietor:
+      accounts:
+        nav: '帐号'
+    admin:
+      title: '行政'
+      flash:
+        access_denied: '您无权查看此页面'
+      groups:
+        describe_quantity_html: "此存储库中有<b>%{number}组</b>。"
+        describe_singular_quantity_html: "此存储库中有<b> 1组</b>。"
+        action:
+          create: '创建新组'
+          edit: '编辑组和用户'
+          members:
+            description: '组成员承担分配给此组的所有权限。'
+          per_page: '更新'
+          remove:
+            confirmation: '您确定要移除此群组吗？'
+            description: '这个行动是不可逆转的。 它将删除通过此组分配的组成员的所有权限。'
+            submit: '去掉'
+          search:
+            clear: '重启'
+        flash:
+          create:
+            success: '%{group}创建'
+            invalid: '组必须有一个名称'
+            failure: '无法创建组'
+          update:
+            success: '%{group}更新'
+            failure: '%{group}无法更新'
+          destroy:
+            success: '%{group}销毁'
+            failure: '%{group}不能被毁灭'
+        label:
+          actions: '操作'
+          created_at: '创建日期'
+          members: '用户'
+          name: '名称'
+          per_page: '每页'
+        nav:
+          attributes: '描述'
+          delete: '去掉'
+          index: '返回管理组'
+          members: '用户'
+        title:
+          add_user: '将用户添加到组'
+          delete: '删除组 "%{group}"'
+          edit: '编辑组'
+          index: '管理组'
+          list_members: '当前组成员'
+          members: '小组成员'
+          new: '新组'
+          remove: '删除组'
+    users:
+      label:
+        name: '名称'
+        user_key: '用户名'
+        date_joined: '加盟'
+        last_login: '最后访问'
+  hyrax:
+    admin:
+      sidebar:
+        accounts:                     '帐号'
+        activity_summary:             '活动摘要'
+        content_blocks:               '内容块'
+        labels:                       '标签'
+        manage_groups:                '管理组'
+        manage_roles_and_permissions: '定义角色和权限'
+        manage_users:                 '管理用户'
+        repository_activity:          '存储库活动'
+        roles_and_permissions:        '用户和组'
+        system_status:                '系统状态'
+        technical:                    '技术'
