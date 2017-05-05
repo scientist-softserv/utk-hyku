@@ -21,8 +21,10 @@
       <%= menu.nav_link(hyrax.dashboard_path) do %>
         <span class="fa fa-dashboard"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.activity_summary') %></span>
       <% end %>
-      <%= menu.nav_link(main_app.status_path) do %>
-        <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.system_status') %></span>
+      <% if menu.show_admin_menu_items? %>
+        <%= menu.nav_link(main_app.status_path) do %>
+          <span class="fa fa-flag"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.system_status') %></span>
+        <% end %>
       <% end %>
     <% end %>
   </li>
@@ -61,11 +63,11 @@
     <span class="fa fa-file"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.works') %></span>
   <% end %>
 
-  <% if menu.show_tasks? %>
+  <% if menu.show_admin_menu_items? %>
     <li class="h5"><%= t('hyrax.admin.sidebar.tasks') %></li>
     <% if Site.account && can?(:manage, Site.account) %>
       <%= menu.nav_link(main_app.edit_admin_account_path) do %>
-        Account
+          Account
       <% end %>
     <% end %>
 
