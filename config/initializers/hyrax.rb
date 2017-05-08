@@ -97,7 +97,9 @@ Hyrax.config do |config|
 
   # Temporary path to hold uploads before they are ingested into FCrepo.
   # This must be a lambda that returns a Pathname
-  #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
+  if Settings.multitenancy.enabled
+   config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' + Apartment::Tenant.current }
+  end
 
   # Location on local file system where derivatives will be stored.
   # If you use a multi-server architecture, this MUST be a shared volume.
