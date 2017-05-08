@@ -2,7 +2,7 @@ notifications:
   email: false
 dist: trusty
 rvm:
-  - 2.4.0
+  - 2.4.1
 
 # We provide AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY encrypted by travis here
 env:
