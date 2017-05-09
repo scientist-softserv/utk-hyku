@@ -84,13 +84,13 @@ services:
       internal:
 
   fcrepo:
-    image: cbeer/fcrepo4
+    image: cbeer/fcrepo4:4.7
     expose:
       - 8983
     volumes:
       - fcrepo:/data
     environment:
-      - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/minimal-default/repository.json"
+      - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
     networks:
       internal:
 
