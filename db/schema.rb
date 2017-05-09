@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502000659) do
+ActiveRecord::Schema.define(version: 20170509005132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170502000659) do
     t.string   "name"
     t.integer  "redis_endpoint_id"
     t.index ["cname", "tenant"], name: "index_accounts_on_cname_and_tenant", using: :btree
+    t.index ["cname"], name: "index_accounts_on_cname", unique: true, using: :btree
     t.index ["fcrepo_endpoint_id"], name: "index_accounts_on_fcrepo_endpoint_id", unique: true, using: :btree
     t.index ["redis_endpoint_id"], name: "index_accounts_on_redis_endpoint_id", unique: true, using: :btree
     t.index ["solr_endpoint_id"], name: "index_accounts_on_solr_endpoint_id", unique: true, using: :btree
