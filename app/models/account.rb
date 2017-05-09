@@ -2,19 +2,21 @@
 class Account < ActiveRecord::Base
   # @param [String] piece the tenant piece of the canonical name
   # @return [String] full canonical name
+  # @raise [ArgumentError] if piece contains a trailing dot
   # @see Settings.multitenancy.default_host
   def self.default_cname(piece)
     return unless piece
+    raise ArgumentError, "param '#{piece}' must not contain trailing dots" if piece =~ /\.\Z/
     default_host = Settings.multitenancy.default_host || "%{tenant}.#{admin_host}"
-    format(default_host, tenant: piece.parameterize)
+    canonical_cname(format(default_host, tenant: piece.parameterize))
   end
 
   # Canonicalize the account cname or request host for comparison
   # @param [String] cname distinct part of host name
   # @return [String] canonicalized host name
   def self.canonical_cname(cname)
-    # DNS host names are case-insensitive. Convert complete domain names to relative names.
-    cname &&= cname.downcase.sub(/\.\Z/, '')
+    # DNS host names are case-insensitive. Trim trailing dot(s).
+    cname &&= cname.downcase.sub(/\.*\Z/, '')
     cname
   end
 
