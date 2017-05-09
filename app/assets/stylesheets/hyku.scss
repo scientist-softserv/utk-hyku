@@ -1,16 +1,4 @@
 #masthead {
-  @media (min-width: $screen-sm-min) {
-    &.navbar {
-      min-height: 35px;
-    }
-
-    .navbar-nav > li > a,
-    .navbar-brand {
-      height: 35px;
-      padding-top: 7.5px;
-    }
-  }
-
   #logo {
     margin-left: 10px;
   }
