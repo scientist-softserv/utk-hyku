@@ -13,6 +13,28 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.default_cname' do
+    it 'chokes on trailing dots' do
+      expect { described_class.default_cname('foobar.') }.to raise_error ArgumentError
+      # Important because we otherwise allow cname collision by treating "foobar." and "foobar-" equivalently
+    end
+
+    it 'returns canonicalized value' do
+      allow(Settings.multitenancy).to receive(:default_host).and_return("%{tenant}.DEMO.hydrainabox.org.")
+      expect(described_class.default_cname('foobar')).to eq 'foobar.demo.hydrainabox.org'
+      expect(described_class.default_cname('fooBAR')).to eq 'foobar.demo.hydrainabox.org'
+      expect(described_class.default_cname('ONE.two.3')).to eq 'one-two-3.demo.hydrainabox.org'
+    end
+  end
+
+  describe '.canonical_cname' do
+    it 'lowercases and strips trailing dots' do
+      expect(described_class.canonical_cname('foobar')).to eq 'foobar'
+      expect(described_class.canonical_cname('fooBAR...')).to eq 'foobar'
+      expect(described_class.canonical_cname('ONE.two.3')).to eq 'one.two.3'
+    end
+  end
+
   describe '.admin_host' do
     it 'uses the configured setting' do
       allow(Settings.multitenancy).to receive(:admin_host).and_return('admin-host')
