@@ -98,6 +98,10 @@ RSpec.describe Account, type: :model do
       subject.switch!
     end
 
+    after do
+      subject.reset!
+    end
+
     it 'switches to the account-specific connection' do
       subject.switch do
         expect(ActiveFedora::SolrService.instance.conn.uri.to_s).to eq 'http://example.com/solr/'
@@ -111,10 +115,16 @@ RSpec.describe Account, type: :model do
       subject.switch do
         # no-op
       end
-
       expect(ActiveFedora::SolrService.instance.conn.uri.to_s).to eq 'http://127.0.0.1:8985/solr/hydra-test/'
       expect(ActiveFedora.fedora.host).to eq 'http://127.0.0.1:8986/rest'
       expect(Hyrax.config.redis_namespace).to eq previous_redis_namespace
+    end
+
+    context 'with missing endpoint' do
+      it 'throws exception on switch!' do
+        subject.solr_endpoint = nil
+        expect { subject.switch! }.to raise_error(RuntimeError)
+      end
     end
   end
 

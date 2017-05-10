@@ -6,7 +6,7 @@ class RedisEndpoint < Endpoint
   end
 
   # Reset the Redis namespace back to the default value
-  def reset!
+  def self.reset!
     Hyrax.config.redis_namespace = Settings.redis.default_namespace
   end
 
