@@ -38,7 +38,7 @@ group :development, :test do
 
   gem 'i18n-debug', require: false
   gem 'rspec'
-  gem 'rspec-rails', '>= 3.6.0.beta2'
+  gem 'rspec-rails', '>= 3.6.0'
 
   gem 'coveralls', require: false
   gem 'simplecov', require: false
@@ -110,8 +110,7 @@ group :aws, :test do
 end
 
 group :aws do
-  # TODO: Version 2.0 causes a failure in spec/lib/active_job/queue_adapters/better_active_elastic_job_adapter_spec.rb
-  gem 'active_elastic_job', '~> 1.7'
+  gem 'active_elastic_job', '~> 2.0'
 end
 
 gem 'peek-sidekiq'
@@ -119,4 +118,4 @@ gem 'sidekiq'
 
 gem 'secure_headers'
 
-gem 'honeybadger', '~> 2.0'
+gem 'honeybadger', '~> 3.0'
