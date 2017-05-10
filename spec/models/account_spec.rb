@@ -159,13 +159,21 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    it 'prevents duplicate cname and tenant values' do
-      account1 = described_class.create(name: 'example', tenant: 'example_tenant', cname: 'example.dev')
-      account2 = described_class.create(name: 'example', tenant: 'example_tenant', cname: 'example.dev')
-      expect(account1.errors).to be_empty
-      expect(account2.errors).not_to be_empty
-      expect(account2.errors.messages).to match a_hash_including(:tenant, :cname)
-      expect(account2.errors.messages).not_to include(:name)
+    describe 'prevents duplicate cname and tenant values' do
+      let!(:account1) { described_class.create(name: 'example', tenant: 'example_tenant', cname: 'example.dev') }
+      it 'on create' do
+        account2 = described_class.create(name: 'example', tenant: 'example_tenant', cname: 'example.dev')
+        expect(account1.errors).to be_empty
+        expect(account2.errors).not_to be_empty
+        expect(account2.errors.messages).to match a_hash_including(:tenant, :cname)
+        expect(account2.errors.messages).not_to include(:name)
+      end
+      it 'on save' do
+        account2 = described_class.new(tenant: 'other_tenant', cname: account1.cname)
+        expect(account2.save).to be_falsey
+        expect(account2.errors).not_to be_empty
+        expect(account2.errors.messages).to match a_hash_including(:cname)
+      end
     end
 
     it 'prevents duplicate cname from only name' do
@@ -190,6 +198,7 @@ RSpec.describe Account, type: :model do
       it 'solr_endpoint' do
         account2 = described_class.new(name: 'other', solr_endpoint: endpoint)
         expect { account2.save }.to raise_error(ActiveRecord::RecordNotUnique)
+        # Note: this is different than just populating account2.errors, because it is a FK
       end
     end
   end
