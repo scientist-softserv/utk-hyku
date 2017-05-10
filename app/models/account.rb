@@ -86,9 +86,9 @@ class Account < ActiveRecord::Base
 
     # @raise [RuntimeError] if missing any endpoint
     def confirm_endpoints!
-      raise "Account #{cname} is missing solr_endpoint, cannot switch!" unless solr_endpoint
-      raise "Account #{cname} is missing fcrepo_endpoint, cannot switch!" unless fcrepo_endpoint
-      raise "Account #{cname} is missing redis_endpoint, cannot switch!" unless redis_endpoint
+      raise MissingSolrException, "Account #{cname} is missing solr_endpoint, cannot switch!" unless solr_endpoint
+      raise MissingFcrepoException, "Account #{cname} is missing fcrepo_endpoint, cannot switch!" unless fcrepo_endpoint
+      raise MissingRedisException, "Account #{cname} is missing redis_endpoint, cannot switch!" unless redis_endpoint
     end
 
     def default_cname(piece = name)
@@ -99,3 +99,7 @@ class Account < ActiveRecord::Base
       self.cname &&= self.class.canonical_cname(cname)
     end
 end
+
+class MissingSolrException < RuntimeError; end
+class MissingFcrepoException < RuntimeError; end
+class MissingRedisException < RuntimeError; end
