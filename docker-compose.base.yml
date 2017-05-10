@@ -20,7 +20,7 @@ services:
     environment:
       - REDIS_HOST=redis_cluster
       - DATABASE_URL=postgresql://postgres@db/postgres
-      - FEDORA_URL=http://fcrepo:8080/fedora/rest
+      - FEDORA_URL=http://fcrepo:8080/fcrepo/rest
       - SOLR_URL=http://solr:8983/solr/
       - SETTINGS__ACTIVE_JOB__QUEUE_ADAPTER=sidekiq
       - SETTINGS__SOLR__URL=http://solr:8983/solr/
