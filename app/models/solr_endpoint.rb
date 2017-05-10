@@ -27,7 +27,7 @@ class SolrEndpoint < Endpoint
     Blacklight.default_index = nil
   end
 
-  def reset!
+  def self.reset!
     ActiveFedora::SolrService.reset!
     Blacklight.connection_config = nil
     Blacklight.default_index = nil
