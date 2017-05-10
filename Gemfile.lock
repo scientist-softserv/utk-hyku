@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 993b9d0d8e37669c7779204a1c08a93f2f1205e4
+  revision: 1d0bd8ff9149e496a5d52301fa1ca5aa8d33bcc4
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.1.3)
@@ -121,17 +121,17 @@ GEM
     arel (7.1.4)
     ast (2.3.0)
     atomic (1.1.99)
-    autoprefixer-rails (7.0.0)
+    autoprefixer-rails (7.0.1)
       execjs
     awesome_nested_set (3.1.3)
       activerecord (>= 4.0.0, < 5.2)
-    aws-sdk (2.9.15)
-      aws-sdk-resources (= 2.9.15)
-    aws-sdk-core (2.9.15)
+    aws-sdk (2.9.16)
+      aws-sdk-resources (= 2.9.16)
+    aws-sdk-core (2.9.16)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.15)
-      aws-sdk-core (= 2.9.15)
+    aws-sdk-resources (2.9.16)
+      aws-sdk-core (= 2.9.16)
     aws-sigv4 (1.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -161,7 +161,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     breadcrumbs_on_rails (3.0.1)
-    browse-everything (0.13.0)
+    browse-everything (0.13.1)
       addressable (~> 2.5)
       aws-sdk
       bootstrap-sass
@@ -451,7 +451,7 @@ GEM
     mimemagic (0.3.2)
     mini_magick (4.7.0)
     mini_portile2 (2.1.0)
-    minitest (5.10.1)
+    minitest (5.10.2)
     mods (2.1.0)
       iso-639
       nokogiri
@@ -463,7 +463,7 @@ GEM
       redic
     nio4r (2.0.0)
     noid (0.9.0)
-    nokogiri (1.7.1)
+    nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     nom-xml (0.6.0)
       activesupport (>= 3.2.18)
@@ -530,7 +530,7 @@ GEM
       nokogiri (~> 1.6)
       rails (>= 4.2.0, < 6.0)
       rdf
-    rack (2.0.1)
+    rack (2.0.2)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -551,9 +551,9 @@ GEM
       actionpack (~> 5.x)
       actionview (~> 5.x)
       activesupport (~> 5.x)
-    rails-dom-testing (2.0.2)
-      activesupport (>= 4.2.0, < 6.0)
-      nokogiri (~> 1.6)
+    rails-dom-testing (2.0.3)
+      activesupport (>= 4.2.0)
+      nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_autolink (1.1.6)
@@ -610,7 +610,7 @@ GEM
     riiif (1.4.0)
       railties (>= 4.2, < 6)
     rolify (5.1.0)
-    rsolr (2.0.0)
+    rsolr (2.0.1)
       builder (>= 2.1.2)
       faraday
     rspec (1.3.2)
