@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 1d0bd8ff9149e496a5d52301fa1ca5aa8d33bcc4
+  revision: a025f560ed7f32cf069799357cbf7771e34374d9
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.1.3)
@@ -88,7 +88,7 @@ GEM
     active_attr (0.9.0)
       activemodel (>= 3.0.2, < 5.1)
       activesupport (>= 3.0.2, < 5.1)
-    active_elastic_job (1.7.0)
+    active_elastic_job (2.0.1)
       aws-sdk (~> 2)
       rails (>= 4.2)
     active_fedora-noid (2.0.2)
@@ -217,7 +217,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     daemons (1.2.4)
-    database_cleaner (1.5.3)
+    database_cleaner (1.6.1)
     declarative (0.0.9)
     declarative-option (0.1.0)
     deep_merge (1.1.1)
@@ -318,7 +318,7 @@ GEM
       concurrent-ruby (~> 1.0)
     hashdiff (0.3.4)
     hiredis (0.6.1)
-    honeybadger (2.7.2)
+    honeybadger (3.1.2)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
@@ -379,9 +379,9 @@ GEM
     inflecto (0.0.2)
     is_it_working (1.1.0)
     iso-639 (0.2.8)
-    jbuilder (2.6.3)
-      activesupport (>= 3.0.0, < 5.2)
-      multi_json (~> 1.2)
+    jbuilder (2.6.4)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.2)
     jmespath (1.3.1)
     jquery-datatables-rails (3.4.0)
       actionpack (>= 3.1)
@@ -531,7 +531,7 @@ GEM
       rails (>= 4.2.0, < 6.0)
       rdf
     rack (2.0.2)
-    rack-protection (1.5.3)
+    rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -574,7 +574,7 @@ GEM
       rdf (~> 2.0)
     rdf-isomorphic (2.0.0)
       rdf (~> 2.0)
-    rdf-rdfa (2.2.0)
+    rdf-rdfa (2.2.1)
       haml (~> 4.0)
       htmlentities (~> 4.3)
       rdf (~> 2.2)
@@ -610,27 +610,30 @@ GEM
     riiif (1.4.0)
       railties (>= 4.2, < 6)
     rolify (5.1.0)
-    rsolr (2.0.1)
+    rsolr (2.0.2)
       builder (>= 2.1.2)
       faraday
-    rspec (1.3.2)
-    rspec-core (3.6.0.beta2)
-      rspec-support (= 3.6.0.beta2)
-    rspec-expectations (3.6.0.beta2)
+    rspec (3.6.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
+    rspec-core (3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-expectations (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.6.0.beta2)
-    rspec-mocks (3.6.0.beta2)
+      rspec-support (~> 3.6.0)
+    rspec-mocks (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.6.0.beta2)
-    rspec-rails (3.6.0.beta2)
+      rspec-support (~> 3.6.0)
+    rspec-rails (3.6.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (= 3.6.0.beta2)
-      rspec-expectations (= 3.6.0.beta2)
-      rspec-mocks (= 3.6.0.beta2)
-      rspec-support (= 3.6.0.beta2)
-    rspec-support (3.6.0.beta2)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-support (3.6.0)
     rubocop (0.47.1)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
@@ -657,7 +660,7 @@ GEM
     scss_lint (0.53.0)
       rake (>= 0.9, < 13)
       sass (~> 3.4.20)
-    secure_headers (3.6.3)
+    secure_headers (3.6.4)
       useragent
     select2-rails (3.5.10)
       thor (~> 0.14)
@@ -723,7 +726,7 @@ GEM
       tinymce-rails (~> 4.0)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
-    turbolinks-source (5.0.2)
+    turbolinks-source (5.0.3)
     twitter-typeahead-rails (0.11.1.pre.corejavascript)
       actionpack (>= 3.1)
       jquery-rails
@@ -761,7 +764,7 @@ PLATFORMS
 
 DEPENDENCIES
   active-fedora (>= 11.1.4)
-  active_elastic_job (~> 1.7)
+  active_elastic_job (~> 2.0)
   apartment
   blacklight (~> 6.7)
   byebug
@@ -777,7 +780,7 @@ DEPENDENCIES
   factory_girl_rails
   fcrepo_wrapper (~> 0.4)
   flipflop (~> 2.3)
-  honeybadger (~> 2.0)
+  honeybadger (~> 3.0)
   hyrax!
   i18n-debug
   iiif_manifest (~> 0.2.0)
@@ -802,7 +805,7 @@ DEPENDENCIES
   rolify
   rsolr (~> 2.0)
   rspec
-  rspec-rails (>= 3.6.0.beta2)
+  rspec-rails (>= 3.6.0)
   rubocop (~> 0.47.0)
   rubocop-rspec (~> 1.10.0)
   sass-rails (~> 5.0)

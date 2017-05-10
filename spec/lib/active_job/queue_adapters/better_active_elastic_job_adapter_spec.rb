@@ -8,6 +8,7 @@ RSpec.describe ActiveJob::QueueAdapters::BetterActiveElasticJobAdapter do
 
   before do
     allow(Settings.active_job_queue).to receive(:url).and_return(queue_url)
+    Rails.application.config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
     allow(described_class).to receive(:aws_sqs_client).and_return(aws_sqs_client)
   end
 
