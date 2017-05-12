@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 67f4ddfed0fa315ccaa9c4b109389d2957f5251a
+  revision: 0e6697f4095033d1f3650321b26dc26eb33c29e5
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.1.3)
@@ -330,7 +330,7 @@ GEM
       mimemagic
       multipart-post
     http_logger (0.5.1)
-    httparty (0.15.1)
+    httparty (0.15.2)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     hydra-access-controls (10.4.0)
