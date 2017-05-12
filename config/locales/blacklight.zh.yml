@@ -4,7 +4,7 @@ zh:
     search:
       fields:
         facet:
-          based_near_sim: 位置
+          based_near_label_sim: 位置
           creator_sim: 创造者
           file_format_sim: 文件格式
           generic_type_sim: 类型
@@ -13,13 +13,14 @@ zh:
           publisher_sim: 出版者
           subject_sim: 学科
         index:
-          based_near_tesim: 位置
+          based_near_label_tesim: 位置
           contributor_tesim: 贡献者
           creator_tesim: 创造者
           date_created_tesim: 创建日期
           date_modified_dtsi: 修改日期
           date_uploaded_dtsi: 日期上传
           description_tesim: 描述
+          extent_tesim: 范围
           file_format_tesim: 文件格式
           identifier_tesim: 识别码
           keyword_tesim: 关键词
@@ -28,13 +29,14 @@ zh:
           rights_tesim: 权
           subject_tesim: 学科
         show:
-          based_near_tesim: 位置
+          based_near_label_tesim: 位置
           contributor_tesim: 贡献者
           creator_tesim: 创造者
           date_created_tesim: 创建日期
           date_modified_dtsi: 修改日期
           date_uploaded_dtsi: 日期上传
           description_tesim: 描述
+          extent_tesim: 范围
           file_format_tesim: 文件格式
           identifier_tesim: 识别码
           keyword_tesim: 关键词
