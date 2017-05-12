@@ -41,7 +41,7 @@ RSpec.describe CreateAccount do
 
   describe '#create_account_inline' do
     it 'queues a background job' do
-      expect(CreateAccountInlineJob).to receive(:perform_later).with(account)
+      expect(CreateAccountInlineJob).to receive(:perform_now).with(account)
       subject.create_account_inline
     end
   end
