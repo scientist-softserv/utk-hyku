@@ -54,3 +54,6 @@ fits_path: "fits.sh"
 worker: false
 
 google_analytics_id:
+
+# Register here: http://www.geonames.org/manageaccount
+geonames_username: 'jcoyne'
