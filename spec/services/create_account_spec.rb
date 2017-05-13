@@ -31,7 +31,7 @@ RSpec.describe CreateAccount do
         redis_endpoint_attributes: { namespace: name },
         fcrepo_endpoint_attributes: { base_path: "/#{name}" }
       )
-      expect(subject.account).to receive(:switch).once # ONLY once
+      expect(subject.account).to receive(:switch).never # Switch is not called here
       subject.create_account_inline
     end
   end
