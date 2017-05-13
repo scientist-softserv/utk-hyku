@@ -1,5 +1,6 @@
 # Generated via
-#  `rails generate curation_concerns:work Image`
+#  `rails generate hyrax:work Image`
+
 RSpec.describe Hyrax::ImageForm do
   it "has tests" do
     skip "Add your tests here"
