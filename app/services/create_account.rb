@@ -10,19 +10,15 @@ class CreateAccount
 
   # @return [Boolean] true if save and jobs spawning were successful
   def save
-    account.save && create_external_resources ? true : false
+    account.save && create_resources ? true : false
   end
 
   # `Apartment::Tenant.create` calls the DB adapter's `switch`, which we have a hook into
   # via an initializer.  In our hook we do `account.switch!` and that requires a well-formed
   # Account (i.e. creation steps complete, endpoints populated).  THEREFORE, `create_tenant`
   # must be called *after* all external resources are provisioned.
-  def create_external_resources
+  def create_resources
     create_account_inline && create_tenant
-    # Temporarily disabled to allow synchronous account creation
-    #   create_solr_collection &&
-    #   create_fcrepo_endpoint &&
-    #   create_redis_namespace
   end
 
   ##
@@ -38,19 +34,15 @@ class CreateAccount
   # the dependency that exists between creating endpoints,
   # specifically Solr and Fedora, and creation of the default Admin Set.
   def create_account_inline
-    CreateAccountInlineJob.perform_now(account)
-  end
-
-  def create_solr_collection
-    CreateSolrCollectionJob.perform_later(account)
-  end
-
-  def create_fcrepo_endpoint
-    CreateFcrepoEndpointJob.perform_later(account)
-  end
-
-  def create_redis_namespace
-    CreateRedisNamespaceJob.perform_later(account)
+    name = account.tenant.parameterize
+    CreateSolrCollectionJob.perform_now(account)
+    account.update(
+      redis_endpoint_attributes: { namespace: name },
+      fcrepo_endpoint_attributes: { base_path: "/#{name}" }
+    )
+    account.switch do
+      AdminSet.find_or_create_default_admin_set_id
+    end
   end
 
   private
