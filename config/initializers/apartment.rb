@@ -45,21 +45,13 @@ Apartment.configure do |config|
 end
 
 Rails.application.config.after_initialize do
-  # proc recieves [String,nil] not guaranteed argument (see: global context)
+  # Callbacks from ActiveSupport::Callback: receives ZERO information about object/event.
+  # Instead receives an [Apartment::Adapters::PostgresqlSchemaAdapter]
+  # Therefore cannot be used as effectively as ActiveRecord hooks.
   Apartment::Tenant.adapter.class.set_callback :switch, :after, ->() do
     account = Account.find_by(tenant: current)
     account.switch! if account
   end if ActiveRecord::Base.connected?
-
-  # Tenant (DB schema) creation must be LAST, after all endpoints are up
-  # proc recieves [String] tenant_id
-  Apartment::Tenant.adapter.class.set_callback :create, :after, ->(tenant_id) do
-    account = Account.find_by(tenant: tenant_id)
-    raise RuntimeError, "In after-create callback, cannot find account for tenant #{tenant_id}" unless account
-    account.switch do
-      AdminSet.find_or_create_default_admin_set_id
-    end
-  end
 end
 
 Rails.application.config.middleware.use AccountElevator

@@ -1,6 +1,8 @@
 require 'active_job'
 require 'active_job_tenant'
 
-class ActiveJob::Base
+# Hyrax::ApplicationJob is switched into tenant context.
+# ActiveJob::Base is NOT!
+class Hyrax::ApplicationJob < ActiveJob::Base
   include ActiveJobTenant
 end

@@ -28,7 +28,7 @@ RSpec.describe AccountSignUpController, type: :controller do
     describe "POST #create" do
       context "with valid params" do
         before do
-          allow_any_instance_of(CreateAccount).to receive(:create_external_resources)
+          allow_any_instance_of(CreateAccount).to receive(:create_resources)
         end
 
         it "creates a new Account, but not a duplicate" do
