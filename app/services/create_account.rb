@@ -10,14 +10,14 @@ class CreateAccount
 
   # @return [Boolean] true if save and jobs spawning were successful
   def save
-    account.save && create_resources ? true : false
+    account.save && create_external_resources ? true : false
   end
 
   # `Apartment::Tenant.create` calls the DB adapter's `switch`, which we have a hook into
   # via an initializer.  In our hook we do `account.switch!` and that requires a well-formed
   # Account (i.e. creation steps complete, endpoints populated).  THEREFORE, `create_tenant`
   # must be called *after* all external resources are provisioned.
-  def create_resources
+  def create_external_resources
     create_account_inline && create_tenant
   end
 
@@ -35,12 +35,7 @@ class CreateAccount
   # the dependency that exists between creating endpoints,
   # specifically Solr and Fedora, and creation of the default Admin Set.
   def create_account_inline
-    name = account.tenant.parameterize
-    CreateSolrCollectionJob.perform_now(account)
-    account.update(
-      redis_endpoint_attributes: { namespace: name },
-      fcrepo_endpoint_attributes: { base_path: "/#{name}" }
-    )
+    CreateAccountInlineJob.perform_now(account)
   end
 
   private

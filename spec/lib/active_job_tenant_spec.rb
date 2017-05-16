@@ -7,10 +7,10 @@ RSpec.describe ActiveJobTenant do
     end
   end
 
-  let(:account) { FactoryGirl.build(:account, tenant: 'x') }
+  let(:account) { FactoryGirl.build(:account) }
 
   subject do
-    Class.new(Hyrax::ApplicationJob) do
+    Class.new(ActiveJob::Base) do
       def perform
         current_account
       end
@@ -31,7 +31,7 @@ RSpec.describe ActiveJobTenant do
 
   # mimics the `.perform_later` workflow
   describe '.deserialize' do
-    let(:serialized_job) { subject.new.serialize.merge('job_class' => 'Hyrax::ApplicationJob') }
+    let(:serialized_job) { subject.new.serialize.merge('job_class' => 'ActiveJob::Base') }
     let(:delayed_subject) { subject.deserialize(serialized_job) }
 
     it 'preserves the original tenant' do
