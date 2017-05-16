@@ -41,5 +41,16 @@ module Hyku
       # authenticity token errors.
       Hyrax::Admin::AppearancesController.form_class = AppearanceForm
     end
+
+    config.before_initialize do
+      if defined? ActiveElasticJob
+        Rails.application.configure do
+          config.active_elastic_job.process_jobs = Settings.worker == 'true'
+          config.active_elastic_job.aws_credentials = lambda { Aws::InstanceProfileCredentials.new }
+          config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
+        end
+      end
+    end
+
   end
 end
