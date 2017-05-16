@@ -110,10 +110,7 @@ group :aws, :test do
 end
 
 group :aws do
-  # TODO: Version 2.0 seems to cause jobs not to run.
-  # See https://github.com/projecthydra-labs/hyku/issues/1100
-  # gem 'active_elastic_job', '~> 2.0'
-  gem 'active_elastic_job', '~> 1.7'
+  gem 'active_elastic_job', '~> 2.0'
 end
 
 gem 'peek-sidekiq'
