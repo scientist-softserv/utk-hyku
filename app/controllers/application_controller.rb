@@ -44,11 +44,6 @@ class ApplicationController < ActionController::Base
       current_account.switch! if current_account
     end
 
-    def worker?
-      # Cast because although YAML supports boolean types, ENV variables don't
-      ActiveRecord::Type::Boolean.new.cast(Settings.worker)
-    end
-
     def multitenant?
       Settings.multitenancy.enabled
     end
