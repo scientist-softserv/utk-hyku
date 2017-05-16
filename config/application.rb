@@ -27,10 +27,6 @@ module Hyku
       "I18n::InvalidLocale" => :not_found
     )
 
-    # Rails handles ParseError by default, but it is occurring on SQS and I need more details about why,
-    # so turn it off.
-    ActionDispatch::ExceptionWrapper.rescue_responses.delete("ActionDispatch::ParamsParser::ParseError")
-
     if defined? ActiveElasticJob
       Rails.application.configure do
         config.active_elastic_job.process_jobs = Settings.worker == 'true'
