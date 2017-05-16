@@ -27,6 +27,10 @@ module Hyku
       "I18n::InvalidLocale" => :not_found
     )
 
+    # Rails handles ParseError by default, but it is occurring on SQS and I need more details about why,
+    # so turn it off.
+    ActionDispatch::ExceptionWrapper.rescue_responses.delete("ActionDispatch::ParamsParser::ParseError")
+
     config.to_prepare do
       # Do dependency injection after the classes have been loaded.
       # Before moving this here (from an initializer) Devise was raising invalid
