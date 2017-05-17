@@ -1,6 +1,6 @@
 # The for for the color picker and background setter
 class AppearanceForm < Hyrax::Forms::Admin::Appearance
-  delegate :banner_image, :banner_image?, :remove_banner_image, to: :site
+  delegate :banner_image, :banner_image?, to: :site
 
   # Whitelisted parameters
   def self.permitted_params
@@ -13,7 +13,11 @@ class AppearanceForm < Hyrax::Forms::Admin::Appearance
 
   # @return [Array<Symbol>] a list of fields that are related to the banner
   def self.banner_fields
-    [:banner_image, :remove_banner_image]
+    [:banner_image]
+  end
+
+  def site
+    @site ||= Site.instance
   end
 
   private
@@ -21,9 +25,5 @@ class AppearanceForm < Hyrax::Forms::Admin::Appearance
     # @return [Hash] attributes that are related to the banner
     def banner_attributes
       attributes.slice(*self.class.banner_fields)
-    end
-
-    def site
-      @site ||= Site.instance
     end
 end
