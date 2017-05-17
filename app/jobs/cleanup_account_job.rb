@@ -1,4 +1,6 @@
 class CleanupAccountJob < ActiveJob::Base
+  non_tenant_job
+
   def perform(account)
     # Solr endpoint pulls its connection info from account directly
     cleanup_solr(account)
