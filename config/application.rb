@@ -27,9 +27,13 @@ module Hyku
       "I18n::InvalidLocale" => :not_found
     )
 
-    # Rails handles ParseError by default, but it is occurring on SQS and I need more details about why,
-    # so turn it off.
-    ActionDispatch::ExceptionWrapper.rescue_responses.delete("ActionDispatch::ParamsParser::ParseError")
+    if defined? ActiveElasticJob
+      Rails.application.configure do
+        config.active_elastic_job.process_jobs = Settings.worker == 'true'
+        config.active_elastic_job.aws_credentials = lambda { Aws::InstanceProfileCredentials.new }
+        config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
+      end
+    end
 
     config.to_prepare do
       # Do dependency injection after the classes have been loaded.
@@ -37,5 +41,16 @@ module Hyku
       # authenticity token errors.
       Hyrax::Admin::AppearancesController.form_class = AppearanceForm
     end
+
+    config.before_initialize do
+      if defined? ActiveElasticJob
+        Rails.application.configure do
+          config.active_elastic_job.process_jobs = Settings.worker == 'true'
+          config.active_elastic_job.aws_credentials = lambda { Aws::InstanceProfileCredentials.new }
+          config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
+        end
+      end
+    end
+
   end
 end

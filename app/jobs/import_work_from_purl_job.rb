@@ -7,7 +7,7 @@ require 'stanford'
 #       ImportWorkFromPurlJob.perform_later(current_user,
 #                                           'abcd1234xxxx',
 #                                           log)
-class ImportWorkFromPurlJob < Hyrax::ApplicationJob
+class ImportWorkFromPurlJob < ActiveJob::Base
   queue_as :ingest
 
   before_enqueue do |job|
