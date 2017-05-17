@@ -53,21 +53,6 @@ RSpec.describe Hyrax::Admin::AppearancesController, type: :controller, singleten
         end
       end
 
-      context "site with existing banner image" do
-        before do
-          f = fixture_file_upload('/images/nypl-hydra-of-lerna.jpg', 'image/jpg')
-          Site.instance.update(banner_image: f)
-        end
-
-        it "deletes a banner image" do
-          expect(Site.instance.banner_image?).to be true
-          post :update, params: { id: Site.instance.id, admin_appearance: { remove_banner_image: 'true' } }
-          expect(response).to redirect_to(hyrax.admin_appearance_path(locale: 'en'))
-          expect(flash[:notice]).to include("The appearance was successfully updated")
-          expect(Site.instance.banner_image?).to be false
-        end
-      end
-
       context "with invalid params" do
         let(:invalid_attributes) do
           { banner_image: "" }
