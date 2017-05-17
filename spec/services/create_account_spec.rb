@@ -1,10 +1,5 @@
 RSpec.describe CreateAccount do
-  # There are several "phases" of Account model in play here.
-  # (1) The basic proto-account from the sign_up page: basically just name.  See #save below.
-  # (2) The account *after* save, that has tenant and cname. This is what most methods here will see.
-  # (3) A switch-read account that is what we hope to produce by the end.
-
-  let(:account) { FactoryGirl.build(:sign_up_account, tenant: 'fresh_tenant', cname: 'fresh.localhost') }
+  let(:account) { FactoryGirl.build(:sign_up_account) }
   subject { described_class.new(account) }
 
   describe '#create_tenant' do
@@ -24,14 +19,8 @@ RSpec.describe CreateAccount do
   end
 
   describe '#create_account_inline' do
-    it 'updates endpoints' do
-      name = account.tenant.parameterize
-      expect(CreateSolrCollectionJob).to receive(:perform_now).with(subject.account)
-      expect(account).to receive(:update).with(
-        redis_endpoint_attributes: { namespace: name },
-        fcrepo_endpoint_attributes: { base_path: "/#{name}" }
-      )
-      expect(subject.account).to receive(:switch).never # Switch is not called here
+    it 'runs account creation jobs' do
+      expect(CreateAccountInlineJob).to receive(:perform_now).with(account)
       subject.create_account_inline
     end
   end
@@ -42,8 +31,8 @@ RSpec.describe CreateAccount do
     let(:account1) { CreateAccount.new(resource1) }
     let(:account2) { CreateAccount.new(resource2) }
     before do
-      allow(account1).to receive(:create_resources).and_return true
-      allow(account2).to receive(:create_resources).and_return true
+      allow(account1).to receive(:create_external_resources).and_return true
+      allow(account2).to receive(:create_external_resources).and_return true
     end
     it 'prevents duplicate accounts' do
       expect(account1.save).to be true

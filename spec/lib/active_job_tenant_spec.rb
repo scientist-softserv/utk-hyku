@@ -7,10 +7,10 @@ RSpec.describe ActiveJobTenant do
     end
   end
 
-  let(:account) { FactoryGirl.build(:account, tenant: 'x') }
+  let(:account) { FactoryGirl.build(:account) }
 
   subject do
-    Class.new(Hyrax::ApplicationJob) do
+    Class.new(ActiveJob::Base) do
       def perform
         current_account
       end
@@ -18,12 +18,6 @@ RSpec.describe ActiveJobTenant do
   end
 
   describe 'tenant context' do
-    it 'switches to the tenant database' do
-      expect(Apartment::Tenant).to receive(:switch).with('x')
-
-      subject.perform_now
-    end
-
     it 'evaluates in the context of a tenant and account' do
       expect(subject.perform_now).to eq account
     end
@@ -31,11 +25,37 @@ RSpec.describe ActiveJobTenant do
 
   # mimics the `.perform_later` workflow
   describe '.deserialize' do
-    let(:serialized_job) { subject.new.serialize.merge('job_class' => 'Hyrax::ApplicationJob') }
+    let(:serialized_job) { subject.new.serialize.merge('job_class' => 'ActiveJob::Base') }
     let(:delayed_subject) { subject.deserialize(serialized_job) }
 
     it 'preserves the original tenant' do
       expect(delayed_subject.tenant).to eq 'x'
+    end
+  end
+
+  describe '#perform_now' do
+    context 'a non-tenant-job' do
+      subject do
+        Class.new(ActiveJob::Base) do
+          non_tenant_job
+
+          def perform; end
+        end
+      end
+
+      it 'runs the job in the public, non-tenant scope' do
+        expect(Apartment::Tenant).not_to receive(:switch).with('x')
+
+        subject.perform_now
+      end
+    end
+
+    context 'a normal job' do
+      it 'runs the job in the context of a tenant' do
+        expect(Apartment::Tenant).to receive(:switch).with('x')
+
+        subject.perform_now
+      end
     end
   end
 end

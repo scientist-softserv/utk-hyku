@@ -58,7 +58,6 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   require 'active_job/queue_adapters/better_active_elastic_job_adapter'
   config.active_job.queue_adapter     = Settings.active_job.queue_adapter
-  config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
   # config.active_job.queue_name_prefix = "hyku_#{Rails.env}"
 
   config.action_mailer.perform_caching = false

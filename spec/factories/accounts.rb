@@ -10,7 +10,6 @@ FactoryGirl.define do
   end
   factory :account do
     sequence(:cname) { |_n| srand }
-    sequence(:tenant) { |n| "fake_guid_tenant_id_#{n}" }
     solr_endpoint
     redis_endpoint
     fcrepo_endpoint
