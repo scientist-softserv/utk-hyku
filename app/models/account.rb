@@ -95,6 +95,29 @@ class Account < ActiveRecord::Base
     RedisEndpoint.reset!
   end
 
+  # Get list of all administrator emails associated with this account
+  def admin_emails
+    # Must ensure we are switched to proper tenant database
+    Apartment::Tenant.switch(tenant) do
+      # return (comma separated) list of email addresses of all users with admin role on this site
+      User.with_role(:admin, Site.instance).map(&:email).join(', ')
+    end
+  end
+
+  # Update administrator emails associated with this account
+  def admin_emails=(value)
+    emails = value.split(",").map(&:strip)
+    # Must ensure we are switched to proper tenant database
+    Apartment::Tenant.switch(tenant) do
+      existing_admin_emails = User.with_role(:admin, Site.instance).map(&:email)
+      new_admin_emails = emails - existing_admin_emails
+      removed_admin_emails = existing_admin_emails - emails
+
+      add_admins(new_admin_emails) if new_admin_emails
+      remove_admins(removed_admin_emails) if removed_admin_emails
+    end
+  end
+
   private
 
     def default_cname(piece = name)
@@ -107,5 +130,24 @@ class Account < ActiveRecord::Base
 
     def canonicalize_cname
       self.cname &&= self.class.canonical_cname(cname)
+    end
+
+    def add_admins(emails)
+      # For users that already have accounts, add to role immediately
+      existing_emails = User.where(email: emails).map do |u|
+        u.add_role :admin, Site.instance
+        u.email
+      end
+      # For new users, send invitation and add to role
+      (emails - existing_emails).each do |email|
+        u = User.invite!(email: email)
+        u.add_role :admin, Site.instance
+      end
+    end
+
+    def remove_admins(emails)
+      User.where(email: emails).find_each do |u|
+        u.remove_role :admin, Site.instance
+      end
     end
 end

@@ -28,6 +28,12 @@
             <%= f.text_field :cname, class: 'form-control' %>
           </div>
 
+          <div class="form-group">
+            <%= f.label :admin_emails %><br>
+            <%= f.text_field :admin_emails, class: 'form-control' %>
+            <p class="help-block">(comma-separated list of email addresses)</p>
+          </div>
+
           <%= f.fields_for :solr_endpoint do |s| %>
             <h3>Solr Endpoint</h3>
             <div class="form-group">
