@@ -6,12 +6,8 @@ RSpec.describe CleanupAccountJob do
   end
 
   before do
-    # stub switch so we don't need to worry about changing resource handles
-    allow(account).to receive(:switch) do |&block|
-      block.call
-    end
-
     allow(RemoveSolrCollectionJob).to receive(:perform_later)
+    allow(account.fcrepo_endpoint).to receive(:switch!)
     allow(ActiveFedora.fedora.connection).to receive(:delete)
     allow(Apartment::Tenant).to receive(:drop).with(account.tenant)
   end
