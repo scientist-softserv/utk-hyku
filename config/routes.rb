@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'status', to: 'status#index'
 
   mount BrowseEverything::Engine => '/browse'
-  resource :site, only: [] do
+  resource :site, only: [:update] do
     resources :roles, only: [:index, :update]
     resource :content_blocks, only: [:edit, :update]
     resource :labels, only: [:edit, :update]
