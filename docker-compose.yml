@@ -188,14 +188,20 @@ services:
       external:
 
   redis_primary:
-    extends: redis
+    image: redis:3
     command: redis-server
     volumes:
       - redis:/data
+    networks:
+      internal:
+        aliases:
+          - redis_cluster
 
   redis:
     image: redis:3
-    command: redis-server --slaveof redis_primary 6379
+    command: redis-server --slaveof primary 6379
+    links:
+      - redis_primary:primary
     networks:
       internal:
         aliases:
@@ -208,6 +214,7 @@ services:
       - MASTER_NAME=redis_cluster
     links:
       - redis_primary
+      - redis
     networks:
       internal:
 
