@@ -13,20 +13,12 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'active_fedora/noid/rspec'
 require 'webmock/rspec'
 require 'i18n/debug' if ENV['I18N_DEBUG']
 
 RSpec.configure do |config|
-  include ActiveFedora::Noid::RSpec
-
   config.before(:suite) do
     WebMock.disable_net_connect!(allow_localhost: true, allow: 'hyku-carrierwave-test.s3.amazonaws.com')
-    disable_production_minter!
-  end
-
-  config.after(:suite) do
-    enable_production_minter!
   end
 
   # rspec-expectations config goes here. You can use an alternate
