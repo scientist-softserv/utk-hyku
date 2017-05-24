@@ -1,5 +1,7 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Qa::LocalAuthorityEntry, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "belongs to a local authority" do
+    expect(described_class.reflections['local_authority'].macro).to eq :belongs_to
+  end
 end
