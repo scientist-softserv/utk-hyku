@@ -12,7 +12,7 @@ RSpec.describe CreateAccount do
       expect(Apartment::Tenant).to receive(:create).with(account.tenant) do |&block|
         block.call
       end
-      expect(Hyrax::Workflow::WorkflowImporter).to receive(:load_workflows)
+      expect(AdminSet).to receive(:find_or_create_default_admin_set_id)
       subject.create_tenant
       expect(Site.reload.account).to eq account
     end
