@@ -120,17 +120,28 @@ RSpec.describe Account, type: :model do
     end
 
     context 'with missing endpoint' do
-      it 'Solr, throws exception on switch!' do
+      it 'returns a NilSolrEndpoint' do
         subject.solr_endpoint = nil
-        expect { subject.switch! }.to raise_error(MissingSolrException)
+        expect(subject.solr_endpoint).to be_kind_of NilSolrEndpoint
+        subject.switch do
+          expect { ActiveFedora::SolrService.instance.conn.get 'foo' }.to raise_error RSolr::Error::ConnectionRefused
+        end
       end
-      it 'Fcrepo, throws exception on switch!' do
+
+      it 'returns a NilFcrepoEndpoint' do
         subject.fcrepo_endpoint = nil
-        expect { subject.switch! }.to raise_error(MissingFcrepoException)
+        expect(subject.fcrepo_endpoint).to be_kind_of NilFcrepoEndpoint
+        subject.switch do
+          expect { ActiveFedora::Fedora.instance.connection.get 'foo' }.to raise_error Faraday::ConnectionFailed
+        end
       end
-      it 'Redis, throws exception on switch!' do
+
+      it 'returns a NilRedisEndpoint' do
         subject.redis_endpoint = nil
-        expect { subject.switch! }.to raise_error(MissingRedisException)
+        expect(subject.redis_endpoint).to be_kind_of NilRedisEndpoint
+        subject.switch do
+          expect(Hyrax.config.redis_namespace).to eq 'nil_redis_endpoint'
+        end
       end
     end
   end

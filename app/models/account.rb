@@ -60,9 +60,20 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def solr_endpoint
+    super || NilSolrEndpoint.new
+  end
+
+  def fcrepo_endpoint
+    super || NilFcrepoEndpoint.new
+  end
+
+  def redis_endpoint
+    super || NilRedisEndpoint.new
+  end
+
   # Make all the account specific connections active
   def switch!
-    confirm_endpoints!
     solr_endpoint.switch!
     fcrepo_endpoint.switch!
     redis_endpoint.switch!
@@ -75,7 +86,6 @@ class Account < ActiveRecord::Base
     reset!
   end
 
-  # does not use confirm_endpoints! because we can still nil-ify settings
   def reset!
     SolrEndpoint.reset!
     FcrepoEndpoint.reset!
@@ -83,13 +93,6 @@ class Account < ActiveRecord::Base
   end
 
   private
-
-    # @raise [RuntimeError] if missing any endpoint
-    def confirm_endpoints!
-      raise MissingSolrException, "Account #{cname} is missing solr_endpoint, cannot switch!" unless solr_endpoint
-      raise MissingFcrepoException, "Account #{cname} is missing fcrepo_endpoint, cannot switch!" unless fcrepo_endpoint
-      raise MissingRedisException, "Account #{cname} is missing redis_endpoint, cannot switch!" unless redis_endpoint
-    end
 
     def default_cname(piece = name)
       self.class.default_cname(piece)
@@ -99,7 +102,3 @@ class Account < ActiveRecord::Base
       self.cname &&= self.class.canonical_cname(cname)
     end
 end
-
-class MissingSolrException < RuntimeError; end
-class MissingFcrepoException < RuntimeError; end
-class MissingRedisException < RuntimeError; end
