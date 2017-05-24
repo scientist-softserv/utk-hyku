@@ -3,7 +3,7 @@ en:
     product_name:           "Hyku"
     product_twitter_handle: "@HydraInABox"
     institution_name:       "Institution"
-    institution_name_full:  "El nombre de la institución"
+    institution_name_full:  "The Institution Name"
     account_name:           "Account Id"
     directory:
       suffix:               "@hydrainabox.org"
