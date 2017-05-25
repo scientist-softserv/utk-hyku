@@ -2,14 +2,9 @@ class CleanupAccountJob < ActiveJob::Base
   non_tenant_job
 
   def perform(account)
-    # Solr endpoint pulls its connection info from account directly
     cleanup_solr(account)
-    # Ensure Fedora endpoint's connection established to this account
-    # and ensure Redis::Namespace limited to this account's namespace
-    account.switch do
-      cleanup_fedora(account)
-      cleanup_redis(account)
-    end
+    cleanup_fedora(account)
+    cleanup_redis(account)
     Apartment::Tenant.drop(account.tenant)
     account.destroy
   end
@@ -19,22 +14,24 @@ class CleanupAccountJob < ActiveJob::Base
     def cleanup_fedora(account)
       # Return immediately if fcrepo_endpoint doesn't exist
       return unless account.fcrepo_endpoint
+      client = fcrepo_client(account)
       # Preceding slash must be removed from base_path when calling delete()
-      fcrepo_client.delete(account.fcrepo_endpoint.base_path.sub!(%r{^/}, ''))
+      client.delete(account.fcrepo_endpoint.base_path.sub!(%r{^/}, ''))
       account.fcrepo_endpoint.destroy
     end
 
     def cleanup_redis(account)
       # Return immediately if redis_endpoint doesn't exist
       return unless account.redis_endpoint
+      redis_ns = redis_namespace(account)
       # Redis::Namespace currently doesn't support flushall or flushdb.
       # See https://github.com/resque/redis-namespace/issues/56
       # So, instead we select all keys in current namespace and delete
-      keys = redis_namespace.keys '*'
+      keys = redis_ns.keys '*'
       return if keys.empty?
       # Delete in slices to avoid "stack level too deep" errors for large numbers of keys
       # See https://github.com/redis/redis-rb/issues/122
-      keys.each_slice(1000) { |key_slice| redis_namespace.del(*key_slice) }
+      keys.each_slice(1000) { |key_slice| redis_ns.del(*key_slice) }
       account.redis_endpoint.destroy
     end
 
@@ -46,12 +43,16 @@ class CleanupAccountJob < ActiveJob::Base
       account.solr_endpoint.destroy
     end
 
-    def fcrepo_client
+    def fcrepo_client(account)
+      # Ensure we are pointed at the account's Fedora endpoint and return connection
+      account.fcrepo_endpoint.switch!
       ActiveFedora.fedora.connection
     end
 
-    def redis_namespace
-      # This is a Redis::Namespace which is already limited to account's namespace
+    def redis_namespace(account)
+      # Ensure Redis is switched to account's namespace
+      account.redis_endpoint.switch!
+      # Return a Redis::Namespace which is already limited to account's namespace
       Hyrax::RedisEventStore.instance
     end
 end
