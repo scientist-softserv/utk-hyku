@@ -12,7 +12,7 @@ class CreateSolrCollectionJob < ActiveJob::Base
                                                                              name: name)
     end
 
-    account.update(solr_endpoint_attributes: { url: collection_url(name), collection: name })
+    account.create_solr_endpoint(url: collection_url(name), collection: name)
   end
 
   # Transform settings from nested, snaked-cased options to flattened, camel-cased options
