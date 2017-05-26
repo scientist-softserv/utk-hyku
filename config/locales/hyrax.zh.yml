@@ -8,8 +8,8 @@ zh:
     directory:
       suffix:               "@hydrainabox.org"
     footer:
-      copyright_html: "<strong>版权所有 &copy; 2017 Project Hydra</strong> 根据Apache许可证2.0版许可"
-      service_html: 的服务<a href="http://projecthydra.org/" class="navbar-link" target="_blank">Hydra项目</a>.
+      copyright_html: "<strong>版权所有 &copy; 2017 Samvera</strong> 根据Apache许可证2.0版许可"
+      service_html: 的服务<a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
   simple_form:
     hints:
       defaults:
