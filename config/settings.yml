@@ -1,5 +1,5 @@
 # These settings can also be provided as environment variables, in the form, e.g.:
-#    SETTING__ACTIVE_JOB_QUEUE__URL=http://...
+#    SETTINGS__ACTIVE_JOB_QUEUE__URL=http://...
 #
 # The mapping is described in `./config/initializers/config.rb`.
 #
@@ -54,3 +54,5 @@ google_analytics_id:
 
 # Register here: http://www.geonames.org/manageaccount
 geonames_username: 'jcoyne'
+
+contact_email: ""
