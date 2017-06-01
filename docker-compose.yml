@@ -140,6 +140,8 @@ services:
   workers:
     extends: app
     command: bundle exec sidekiq
+    environment:
+      - SETTINGS__FITS_PATH=/opt/fits-1.0.5/fits.sh
     depends_on:
       - db
       - solr
