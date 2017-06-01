@@ -117,7 +117,7 @@ services:
       - SECRET_KEY_BASE=asdf
       - RAILS_CACHE_STORE_URL=memcache
     volumes:
-      - app:/data/public/uploads
+      - app:/data/tmp/uploads
     networks:
       internal:
 
