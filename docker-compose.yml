@@ -104,8 +104,7 @@ services:
   app:
     build: .
     environment:
-      - REDIS_HOST=redis_cluster
-      - REDIS_SENTINEL_HOST=redis_sentinel
+      - REDIS_HOST=redis
       - DATABASE_URL=postgresql://postgres@db/postgres
       - FEDORA_URL=http://fcrepo:8080/fcrepo/rest
       - SOLR_URL=http://solr:8983/solr/
@@ -129,7 +128,7 @@ services:
       - db
       - solr
       - fcrepo
-      - redis_sentinel
+      - redis
       - zoo1
       - zoo2
       - zoo3
@@ -145,13 +144,13 @@ services:
       - db
       - solr
       - fcrepo
-      - redis_sentinel
+      - redis
       - zoo1
       - zoo2
       - zoo3
       - initialize_app
       - db_migrate
-  
+
   initialize_app:
     extends: app
     restart: on-failure
@@ -187,34 +186,11 @@ services:
       internal:
       external:
 
-  redis_primary:
+  redis:
     image: redis:3
     command: redis-server
     volumes:
       - redis:/data
-    networks:
-      internal:
-        aliases:
-          - redis_cluster
-
-  redis:
-    image: redis:3
-    command: redis-server --slaveof primary 6379
-    links:
-      - redis_primary:primary
-    networks:
-      internal:
-        aliases:
-          - redis_cluster
-
-  redis_sentinel:
-    image: s7anley/redis-sentinel-docker
-    environment:
-      - MASTER=redis_primary
-      - MASTER_NAME=redis_cluster
-    links:
-      - redis_primary
-      - redis
     networks:
       internal:
 
