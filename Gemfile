@@ -95,11 +95,6 @@ gem 'peek-redis'
 gem 'flipflop', '~> 2.3'
 gem 'lograge'
 
-# Pinned up tight until these are resolved:
-# https://github.com/PerfectlyNormal/tinymce-rails-imageupload/issues/86
-# https://github.com/PerfectlyNormal/tinymce-rails-imageupload/issues/87
-gem 'tinymce-rails-imageupload', '4.0.17.beta'
-
 gem 'zk'
 
 gem 'mods', '~> 2.1'
