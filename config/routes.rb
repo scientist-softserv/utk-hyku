@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   mount BrowseEverything::Engine => '/browse'
   resource :site, only: [:update] do
     resources :roles, only: [:index, :update]
-    resource :content_blocks, only: [:edit, :update]
     resource :labels, only: [:edit, :update]
   end
 
