@@ -7,6 +7,8 @@ RSpec.describe IIIFThumbnailPathService do
   before do
     allow(ActiveFedora::Base).to receive(:find).with('s1784k724').and_return(file_set)
     allow(file_set).to receive_messages(original_file: file, id: 's1784k724')
+    # https://github.com/projecthydra/active_fedora/issues/1251
+    allow(file_set).to receive(:persisted?).and_return(true)
   end
 
   context "on a work" do
