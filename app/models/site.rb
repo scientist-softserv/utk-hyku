@@ -7,20 +7,11 @@ class Site < ActiveRecord::Base
   mount_uploader :banner_image, BannerImageUploader
 
   belongs_to :account
-  has_many :content_blocks
   accepts_nested_attributes_for :account, update_only: true
-
-  delegate :announcement_text, :marketing_text, :featured_researcher,
-           :announcement_text=, :marketing_text=, :featured_researcher=,
-           :about_page, :about_page=, :help_page, :help_page=,
-           to: :content_blocks
 
   class << self
     delegate :account, :application_name, :institution_name,
-             :institution_name_full, :reload, :update, :announcement_text,
-             :marketing_text, :featured_researcher, :announcement_text=,
-             :marketing_text=, :featured_researcher=,
-             :about_page, :about_page=, :help_page, :help_page=,
+             :institution_name_full, :reload, :update,
              to: :instance
 
     def instance

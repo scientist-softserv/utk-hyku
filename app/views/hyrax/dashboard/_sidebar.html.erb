@@ -96,8 +96,11 @@
               <span class="fa fa-paint-brush"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.appearance') %></span>
             <% end %>
           <% end %>
-          <%= menu.nav_link(main_app.edit_site_content_blocks_path) do %>
-            <span class="fa fa-file-text-o"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.content_blocks') %></span>
+          <%= menu.nav_link(hyrax.edit_pages_path) do %>
+            <span class="fa fa-file-text-o"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.pages') %></span>
+          <% end %>
+          <%= menu.nav_link(hyrax.edit_content_blocks_path) do %>
+            <span class="fa fa-square-o"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.content_blocks') %></span>
           <% end %>
           <%= menu.nav_link(hyrax.admin_features_path) do %>
             <span class="fa fa-wrench"></span> <span class="sidebar-action-text">Technical</span>

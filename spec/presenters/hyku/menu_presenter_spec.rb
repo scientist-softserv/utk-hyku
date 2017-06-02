@@ -11,7 +11,7 @@ RSpec.describe Hyku::MenuPresenter do
     subject { instance.repository_activity_section? }
 
     context "for the ContentBlocksController" do
-      let(:controller) { ContentBlocksController.new }
+      let(:controller) { Hyrax::ContentBlocksController.new }
       it { is_expected.to be false }
     end
     context "for the StatusController" do
@@ -31,7 +31,7 @@ RSpec.describe Hyku::MenuPresenter do
     end
     subject { instance.settings_section? }
     context "for the ContentBlocksController" do
-      let(:controller) { ContentBlocksController.new }
+      let(:controller) { Hyrax::ContentBlocksController.new }
       it { is_expected.to be true }
     end
     context "for the Admin::GroupsController" do
