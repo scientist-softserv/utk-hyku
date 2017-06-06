@@ -121,3 +121,18 @@ en:
         roles_and_permissions:        'Users and groups'
         system_status:                'System status'
         technical:                    'Technical'
+  proprietor:
+    accounts:
+      index:
+        header: 'Accounts'
+        create_new: 'Create new account'
+        tenant: 'Tenant (UUID)'
+        cname: 'CNAME'
+        manage: 'Manage'
+        confirm_delete: 'Are you sure you wish to delete this repository?'
+      edit:
+        header: 'Editing Account'
+        solr_endpoint: 'Solr Endpoint'
+        fcrepo_endpoint: 'Fedora Endpoint'
+      new:
+        header: 'Create a new repository'
