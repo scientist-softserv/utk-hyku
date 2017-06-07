@@ -1,4 +1,5 @@
 # Customer organization account
+# rubocop:disable Metrics/ClassLength
 class Account < ActiveRecord::Base
   # @param [String] piece the tenant piece of the canonical name
   # @return [String] full canonical name
@@ -95,24 +96,23 @@ class Account < ActiveRecord::Base
     RedisEndpoint.reset!
   end
 
-  # Get list of all administrator emails associated with this account
+  # Get all administrator emails associated with this account
   def admin_emails
     # Must ensure we are switched to proper tenant database
     Apartment::Tenant.switch(tenant) do
-      # return (comma separated) list of email addresses of all users with admin role on this site
-      User.with_role(:admin, Site.instance).map(&:email).join(', ')
+      # return list of email addresses of all users with admin role on this site
+      User.with_role(:admin, Site.instance).map(&:email)
     end
   end
 
   # Update administrator emails associated with this account
-  def admin_emails=(value)
-    emails = value.split(",").map(&:strip)
+  # @param [Array<String>] Array of emails
+  def admin_emails=(emails)
     # Must ensure we are switched to proper tenant database
     Apartment::Tenant.switch(tenant) do
       existing_admin_emails = User.with_role(:admin, Site.instance).map(&:email)
       new_admin_emails = emails - existing_admin_emails
       removed_admin_emails = existing_admin_emails - emails
-
       add_admins(new_admin_emails) if new_admin_emails
       remove_admins(removed_admin_emails) if removed_admin_emails
     end
