@@ -1,14 +1,86 @@
-<p id="notice"><%= notice %></p>
+<% content_for :page_header do %>
+  <h1><span class="fa fa-gears"></span> <%= t('.header') %></h1>
+<% end %>
 
-<p>
-  <strong>Tenant:</strong>
-  <%= @account.tenant %>
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-10">
+            <h2><%= @account.cname %></h2>
+          </div>
+          <div class="col-sm-2">
+            <div class="pull-right">
+              <%= link_to edit_proprietor_account_path(@account), class: 'btn btn-primary' do %>
+                <span class="fa fa-edit"></span> <%= t('.edit') %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <%= simple_form_for @account, url: [:proprietor, @account], namespace: "add_form", html: { class: 'form' } do |f| %>
+          <div class="form-group">
+            <%= f.label :admin_emails, class: "control-label" %>
+            <%= f.hint :admin_emails %>
+            <%# Use input_field to support multiple :admin_emails fields that become an array of values %>
+            <%= f.input_field :admin_emails, multiple: true, class: "form-control", value: "" %>
+            <%# Add all existing admin emails as hidden inputs %>
+            <% @account.admin_emails.each do |email| %>
+                <%= f.input_field :admin_emails, multiple: true, hidden: true, value: email %>
+            <% end %>
+          </div>
+          <%= f.submit t('.add'), class: 'btn btn-primary' %>
+          <%= link_to t('simple_form.cancel'), proprietor_accounts_path, class: 'btn btn-link action-cancel' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Cname:</strong>
-  <%= @account.cname %>
-</p>
-
-<%= link_to 'Edit', [:edit, :proprietor, @account] %> |
-<%= link_to 'Back', proprietor_accounts_path %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title display-page"><%= t('.current_admins.header') %></h2>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <th><%= t('.current_admins.email') %></th>
+            <th><%= t('.current_admins.actions') %></th>
+          </thead>
+          <tbody>
+            <% if @account.admin_emails.empty? %>
+              <tr>
+                <td><%= t('.current_admins.no_admins') %></td>
+                <td></td>
+              </tr>
+            <% else %>
+              <% @account.admin_emails.each do |email| %>
+                <tr>
+                  <td><%= email %></td>
+                  <td>
+                    <%# For the remove button form, add all admin emails *except this one* as hidden inputs %>
+                    <%= simple_form_for @account, url: [:proprietor, @account], namespace: "remove_#{email}_form", html: { class: 'form' } do |f| %>
+                      <% keep_emails = @account.admin_emails - [ email ] %>
+                      <% if keep_emails.empty? %>
+                        <%= f.input_field :admin_emails, multiple: true, hidden: true, value: '' %>
+                      <% else %>
+                        <% keep_emails.each do |keep_email| %>
+                          <%= f.input_field :admin_emails, multiple: true, hidden: true, value: keep_email %>
+                        <% end %>
+                      <% end %>
+                      <%= f.submit t('.remove'), class: 'btn btn-danger' %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -134,5 +134,15 @@ en:
         header: 'Editing Account'
         solr_endpoint: 'Solr Endpoint'
         fcrepo_endpoint: 'Fedora Endpoint'
+      show:
+        header: 'Manage Account'
+        edit: 'Edit Account'
+        add: 'Add'
+        remove: 'Remove'
+        current_admins:
+          header: 'Current Account Administrators'
+          email: 'Email'
+          actions: 'Actions'
+          no_admins: 'No administrators exist'
       new:
         header: 'Create a new repository'
