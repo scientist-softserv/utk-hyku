@@ -86,7 +86,7 @@ class ImportWorkFromPurlJob < ActiveJob::Base
     # Override this method if you have a different rubric for choosing the model
     # @param [Hash] attributes
     # @return String the model to create
-    def model_to_create(attributes)
-      Hyrax.config.model_to_create.call(attributes)
+    def model_to_create(_attributes)
+      GenericWork.model_name.name
     end
 end
