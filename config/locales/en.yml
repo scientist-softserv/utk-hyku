@@ -51,6 +51,11 @@ en:
     proprietor:
       accounts:
         nav: 'Accounts'
+    toolbar:
+      profile:
+        edit_registration: 'Change password'
+    account:
+      signup_disabled: 'Account registration is disabled'
     admin:
       title: 'Administration'
       flash:
