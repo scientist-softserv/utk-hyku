@@ -56,3 +56,6 @@ google_analytics_id:
 geonames_username: 'jcoyne'
 
 contact_email: ""
+
+devise:
+  account_signup: true
