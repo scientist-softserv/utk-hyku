@@ -1,5 +1,4 @@
 # Customer organization account
-# rubocop:disable Metrics/ClassLength
 class Account < ActiveRecord::Base
   # @param [String] piece the tenant piece of the canonical name
   # @return [String] full canonical name
@@ -96,25 +95,20 @@ class Account < ActiveRecord::Base
     RedisEndpoint.reset!
   end
 
-  # Get all administrator emails associated with this account
+  # Get admin emails associated with this account/site
   def admin_emails
-    # Must ensure we are switched to proper tenant database
+    # Must run this against proper tenant database
     Apartment::Tenant.switch(tenant) do
-      # return list of email addresses of all users with admin role on this site
-      User.with_role(:admin, Site.instance).map(&:email)
+      Site.instance.admin_emails
     end
   end
 
-  # Update administrator emails associated with this account
-  # @param [Array<String>] Array of emails
+  # Set admin emails associated with this account/site
+  # @param [Array<String>] Array of user emails
   def admin_emails=(emails)
-    # Must ensure we are switched to proper tenant database
+    # Must run this against proper tenant database
     Apartment::Tenant.switch(tenant) do
-      existing_admin_emails = User.with_role(:admin, Site.instance).map(&:email)
-      new_admin_emails = emails - existing_admin_emails
-      removed_admin_emails = existing_admin_emails - emails
-      add_admins(new_admin_emails) if new_admin_emails
-      remove_admins(removed_admin_emails) if removed_admin_emails
+      Site.instance.admin_emails = emails
     end
   end
 
@@ -130,24 +124,5 @@ class Account < ActiveRecord::Base
 
     def canonicalize_cname
       self.cname &&= self.class.canonical_cname(cname)
-    end
-
-    def add_admins(emails)
-      # For users that already have accounts, add to role immediately
-      existing_emails = User.where(email: emails).map do |u|
-        u.add_role :admin, Site.instance
-        u.email
-      end
-      # For new users, send invitation and add to role
-      (emails - existing_emails).each do |email|
-        u = User.invite!(email: email)
-        u.add_role :admin, Site.instance
-      end
-    end
-
-    def remove_admins(emails)
-      User.where(email: emails).find_each do |u|
-        u.remove_role :admin, Site.instance
-      end
     end
 end
