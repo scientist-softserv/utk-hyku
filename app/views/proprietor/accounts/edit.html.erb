@@ -1,14 +1,14 @@
 <% content_for :page_header do %>
-  <h1><span class="fa fa-gears"></span> Editing Account</h1>
+  <h1><span class="fa fa-gears"></span> <%= t(".header") %></h1>
 <% end %>
 
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default account-form">
-      <%= form_for(@account, url: [:proprietor, @account], :html => { class: 'form' }) do |f| %>
+      <%= simple_form_for @account, url: [:proprietor, @account], html: { class: 'form' } do |f| %>
         <div class="panel-body">
           <% if @account.errors.any? %>
-            <div id="error_explanation">
+            <div id="error_explanation" class="alert alert-danger">
               <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
               <ul>
                 <% @account.errors.messages.each do |key, messages| %>
@@ -18,41 +18,22 @@
             </div>
           <% end %>
 
-          <div class="form-group">
-            <%= f.label :tenant %><br>
-            <%= f.text_field :tenant, class: 'form-control', readonly: @account.persisted? %>
-          </div>
+          <%= f.input :tenant, readonly: @account.persisted? %>
+          <%= f.input :cname %>
 
-          <div class="form-group">
-            <%= f.label :cname %><br>
-            <%= f.text_field :cname, class: 'form-control' %>
-          </div>
-
-          <%= f.fields_for :solr_endpoint do |s| %>
-            <h3>Solr Endpoint</h3>
-            <div class="form-group">
-              <%= s.label :url %><br>
-              <%= s.text_field :url, class: 'form-control' %>
-            </div>
+          <h3><%= t(".solr_endpoint") %></h3>
+          <%= f.simple_fields_for :solr_endpoint do |s| %>
+            <%= s.input :url %>
           <% end %>
 
+          <h3><%= t(".fcrepo_endpoint") %></h3>
           <%= f.fields_for :fcrepo_endpoint do |s| %>
-            <h3>Fcrepo Endpoint</h3>
-            <div class="form-group">
-              <%= s.label :url %><br>
-              <%= s.text_field :url, class: 'form-control' %>
-              <p class="help-block">(should not end with a slash)</p>
-            </div>
-            <div class="form-group">
-              <%= s.label :base_path %><br>
-              <%= s.text_field :base_path, class: 'form-control' %>
-              <p class="help-block">(should begin with a slash and not end with a slash)</p>
-            </div>
+            <%= s.input :url %>
+            <%= s.input :base_path %>
           <% end %>
 
-        </div>
-        <div class="panel-footer">
-          <%= f.submit class: 'btn btn-primary pull-right' %>
+          <%= f.submit class: 'btn btn-primary' %>
+          <%= link_to t('simple_form.cancel'), proprietor_accounts_path, class: 'btn btn-link action-cancel' %>
         </div>
       <% end %>
     </div>

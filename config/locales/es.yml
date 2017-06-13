@@ -100,3 +100,28 @@ es:
         roles_and_permissions:        'Usarios y grupos'
         system_status:                'Estado del sistema'
         technical:                    'Técnico'
+  proprietor:
+    accounts:
+      index:
+        header: 'Cuentas'
+        create_new: 'Crear una nueva cuenta'
+        tenant: 'Inquilino (UUID)'
+        cname: 'CNAME'
+        manage: 'Gestionar'
+        confirm_delete: '¿Está seguro de que desea eliminar este repositorio?'
+      edit:
+        header: 'Editar cuenta'
+        solr_endpoint: 'Solr punto final'
+        fcrepo_endpoint: 'Fedora punto final'
+      show:
+        header: 'Administrar cuenta'
+        edit: 'Editar cuenta'
+        add: 'Añadir'
+        remove: 'Retirar'
+        current_admins:
+          header: 'Administradores de cuentas actuales'
+          email: 'Dirección de correo electrónico'
+          actions: 'Acción'
+          no_admins: 'No existen administradores'
+      new:
+        header: 'Crear un nuevo repositorio'

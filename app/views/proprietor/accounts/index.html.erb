@@ -1,8 +1,8 @@
 <% content_for :page_header do %>
-  <h1><span class="fa fa-gears"></span> <%= t(:'hyrax.admin.sidebar.accounts') %></h1>
+  <h1><span class="fa fa-gears"></span> <%= t('.header') %></h1>
   <div class="pull-right">
     <%= link_to new_proprietor_account_path, class: 'btn btn-primary' do %>
-      <span class="fa fa-edit"></span> Create new account 
+      <span class="fa fa-edit"></span> <%= t('.create_new') %>
     <% end %>
   </div>
 <% end %>
@@ -14,9 +14,9 @@
         <table class="table table-striped datatable">
           <thead>
             <tr>
-              <th>Tenant</th>
-              <th>Cname</th>
-              <th>Actions</th>
+              <th><%= t('.tenant') %></th>
+              <th><%= t('.cname') %></th>
+              <th><%= t('.actions') %></th>
             </tr>
           </thead>
 
@@ -25,7 +25,7 @@
               <tr>
                 <td><%= account.tenant %></td>
                 <td><%= account.cname %></td>
-                <td class="col-md-1"><%= link_to 'Show', [:proprietor, account] %>&nbsp;<%= link_to 'Edit', [:edit, :proprietor, account] %>&nbsp;<%= link_to 'Destroy', [:proprietor, account], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td class="col-md-2"><%= link_to t('.manage'), [:proprietor, account] %>&nbsp;|&nbsp;<%= link_to t('helpers.action.edit'), [:edit, :proprietor, account] %>&nbsp;|&nbsp;<%= link_to t('helpers.action.delete'), [:proprietor, account], method: :delete, data: { confirm: t('.confirm_delete') } %></td>
               </tr>
             <% end %>
           </tbody>
