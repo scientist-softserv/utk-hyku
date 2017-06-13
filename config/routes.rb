@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   root 'hyrax/homepage#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'hyku/registrations' }
   mount Qa::Engine => '/authorities'
 
   mount Blacklight::Engine => '/'

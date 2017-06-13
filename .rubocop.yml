@@ -65,6 +65,10 @@ Rails/HasAndBelongsToMany:
 RSpec/AnyInstance:
   Enabled: false
 
+RSpec/InstanceVariable:
+  Exclude:
+    - 'spec/controllers/hyku/registrations_controller_spec.rb'
+
 RSpec/NamedSubject:
   Enabled: false
 

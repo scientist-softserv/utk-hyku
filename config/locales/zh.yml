@@ -50,6 +50,11 @@ zh:
     proprietor:
       accounts:
         nav: '帐号'
+    toolbar:
+      profile:
+        edit_registration: '更改密码'
+    account:
+      signup_disabled: '帐户注册被禁用'
     admin:
       title: '行政'
       flash:
