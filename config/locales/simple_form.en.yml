@@ -13,6 +13,16 @@ en:
       default_message: "Please review the problems below:"
     # Examples
     labels:
+      account:
+        name: 'Short name'
+        tenant: 'Tenant UUID'
+        cname: 'Tenant CNAME'
+        solr_endpoint:
+          url: 'URL'
+        fcrepo_endpoint:
+          url: 'URL'
+          base_path: 'Base Path'
+        admin_emails: 'Add or invite new administrator (via email)'
       hyku_group:
         description: 'Description'
       group_search:
@@ -31,6 +41,12 @@ en:
     #     edit:
     #       email: 'E-mail.'
     hints:
+      account:
+        name: 'A single or hyphenated name used for technical aspects of the repository (e.g., "acme" or "acme-library").'
+        fcrepo_endpoint:
+          url: 'Fedora URL should not end with a slash'
+          base_path: 'Fedora base path should begin with a slash AND not end with a slash'
+        admin_emails: 'Enter one email address at a time'
       hyku_group:
         description: 'A brief summary of the role of the group'
     #   defaults:

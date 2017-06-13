@@ -13,6 +13,16 @@ zh:
       default_message: "请查看以下问题："
     # Examples
     labels:
+      account:
+        name: '简称'
+        tenant: '承租人 UUID'
+        cname: '承租人 CNAME'
+        solr_endpoint:
+          url: '网址'
+        fcrepo_endpoint:
+          url: '网址'
+          base_path: '基本路径'
+        admin_emails: '添加或邀请新的管理员（通过电子邮件）'
       hyku_group:
         description: '描述'
       group_search:
@@ -31,6 +41,12 @@ zh:
     #     edit:
     #       email: 'E-mail.'
     hints:
+      account:
+        name: '用于存储库技术方面的单个或连字符名称（例如“acme”或“acme-library”）。'
+        fcrepo_endpoint:
+          url: 'Fedora 网址不应以斜线结尾'
+          base_path: 'Fedora 基本路径应以斜线开始，而不是以斜杠结尾'
+        admin_emails: '一次输入一个电子邮件地址'
       hyku_group:
         description: '小组角色的简要总结'
     #   defaults:

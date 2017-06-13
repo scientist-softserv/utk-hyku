@@ -230,4 +230,30 @@ RSpec.describe Account, type: :model do
       end
     end
   end
+
+  describe '#admin_emails' do
+    let!(:account) { FactoryGirl.create(:account, tenant: "mytenant") }
+    before do
+      Site.update(account: account)
+      Site.instance.admin_emails = ["test@test.com", "test@test.org"]
+    end
+    it 'switches to current tenant database and returns Site admin_emails' do
+      expect(Apartment::Tenant).to receive(:switch).with(account.tenant).and_yield
+      expect(account.admin_emails).to match_array(["test@test.com", "test@test.org"])
+    end
+  end
+
+  describe '#admin_emails=' do
+    let!(:account) { FactoryGirl.create(:account, tenant: "mytenant") }
+    before do
+      Site.update(account: account)
+      Site.instance.admin_emails = ["test@test.com", "test@test.org"]
+    end
+    it 'switches to current tenant database updates Site admin_emails' do
+      expect(Apartment::Tenant).to receive(:switch).with(account.tenant).exactly(3).times.and_yield
+      expect(account.admin_emails).to match_array(["test@test.com", "test@test.org"])
+      account.admin_emails = ["newadmin@here.org"]
+      expect(account.admin_emails).to match_array(["newadmin@here.org"])
+    end
+  end
 end

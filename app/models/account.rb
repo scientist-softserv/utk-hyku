@@ -95,6 +95,23 @@ class Account < ActiveRecord::Base
     RedisEndpoint.reset!
   end
 
+  # Get admin emails associated with this account/site
+  def admin_emails
+    # Must run this against proper tenant database
+    Apartment::Tenant.switch(tenant) do
+      Site.instance.admin_emails
+    end
+  end
+
+  # Set admin emails associated with this account/site
+  # @param [Array<String>] Array of user emails
+  def admin_emails=(emails)
+    # Must run this against proper tenant database
+    Apartment::Tenant.switch(tenant) do
+      Site.instance.admin_emails = emails
+    end
+  end
+
   private
 
     def default_cname(piece = name)

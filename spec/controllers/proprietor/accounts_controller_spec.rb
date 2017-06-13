@@ -74,14 +74,19 @@ RSpec.describe Proprietor::AccountsController, type: :controller, multitenant: t
       context "with valid params" do
         let(:new_attributes) do
           { cname: 'new.example.com',
-            fcrepo_endpoint_attributes: valid_fcrepo_endpoint_attributes }
+            fcrepo_endpoint_attributes: valid_fcrepo_endpoint_attributes,
+            admin_emails: ['test@test.com', 'me@myhouse.com'] }
         end
 
         it "updates the requested account" do
+          allow(Apartment::Tenant).to receive(:switch).with(account.tenant) do |&block|
+            block.call
+          end
           put :update, params: { id: account.to_param, account: new_attributes }
           account.reload
           expect(account.cname).to eq 'new.example.com'
           expect(account.fcrepo_endpoint.url).to eq 'http://127.0.0.1:8984/go'
+          expect(account.admin_emails).to match_array(['test@test.com', 'me@myhouse.com'])
           expect(response).to redirect_to([:proprietor, account])
         end
 
