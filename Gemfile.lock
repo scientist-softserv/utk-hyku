@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 0b82da5875b164e78bbecaf6fd377345824d14f2
+  revision: a27ed0615f6f9ec413a45ca77f144a6dcd04e69c
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.1.3)
@@ -804,7 +804,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.7)
     tins (1.14.0)
-    tinymce-rails (4.6.3)
+    tinymce-rails (4.6.4)
       railties (>= 3.1.1)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)

@@ -1,0 +1,9 @@
+---
+de:
+  devise:
+    registrations:
+      new:
+        sign_up: Benutzerkonto anlegen
+        sign_up_header: Ein neues Konto erstellen
+      shared:
+        sign_up: Benutzerkonto anlegen
