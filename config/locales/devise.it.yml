@@ -1,0 +1,9 @@
+---
+it:
+  devise:
+    registrations:
+      new:
+        sign_up: Creare un profilo
+        sign_up_header: Creare un nuovo account
+      shared:
+        sign_up: Creare un profilo

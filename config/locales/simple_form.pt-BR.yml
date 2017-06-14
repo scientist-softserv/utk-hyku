@@ -1,0 +1,28 @@
+---
+pt-BR:
+  simple_form:
+    cancel: Cancelar
+    error_notification:
+      default_message: 'Por favor, reveja os problemas abaixo:'
+    hints:
+      hyku_group:
+        description: Um breve resumo do papel do grupo
+    labels:
+      add_user_to_group:
+        user_ids: ID do usuário
+      group_search:
+        q: Pesquisa
+      hyku_group:
+        description: Descrição
+      page_size:
+        per: exposição
+      user_search:
+        uq: Pesquisar usuário
+    'no': Não
+    placeholders:
+      user_search:
+        uq: Nome ou nome de usuário
+    required:
+      mark: "*"
+      text: requeridos
+    'yes': sim

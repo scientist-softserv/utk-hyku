@@ -1,0 +1,19 @@
+---
+it:
+  hyrax:
+    account_name: Account ID
+    directory:
+      suffix: "@ hydrainabox.org"
+    footer:
+      copyright_html: "<strong>Copyright © 2017 Samvera</strong> Licenza sotto la licenza Apache, versione 2.0"
+      service_html: Un servizio di <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a> .
+    institution_name: Istituzione
+    institution_name_full: Nome dell'Istituzione
+    product_name: Hyku
+    product_twitter_handle: "@HydraInABox"
+  simple_form:
+    hints:
+      defaults:
+        extent: La dimensione (dimensione, durata, numero, ecc.) Del lavoro.
+      labels:
+        extent: Estensione

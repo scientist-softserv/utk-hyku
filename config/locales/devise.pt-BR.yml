@@ -1,0 +1,9 @@
+---
+pt-BR:
+  devise:
+    registrations:
+      new:
+        sign_up: Criar Conta em portugues-Brasil
+        sign_up_header: Criar uma nova conta
+      shared:
+        sign_up: Criar Conta em portugues-Brasil
