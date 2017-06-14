@@ -1,0 +1,48 @@
+---
+de:
+  blacklight:
+    application_name: Hyku
+    search:
+      fields:
+        facet:
+          based_near_label_sim: Ort
+          creator_sim: Schöpfer
+          file_format_sim: Format
+          generic_type_sim: Art
+          keyword_sim: Stichwort
+          language_sim: Sprache
+          publisher_sim: Herausgeber
+          subject_sim: Fach
+        index:
+          based_near_label_tesim: Ort
+          contributor_tesim: Mitwirkender
+          creator_tesim: Schöpfer
+          date_created_tesim: Datum erstellt
+          date_modified_dtsi: Datum geändert
+          date_uploaded_dtsi: Datum hochgeladen
+          description_tesim: Beschreibung
+          extent_tesim: Umfang
+          file_format_tesim: Datei Format
+          identifier_tesim: Identifikator
+          keyword_tesim: Stichwort
+          language_tesim: Sprache
+          publisher_tesim: Herausgeber
+          rights_tesim: Rechte
+          subject_tesim: Fach
+        show:
+          based_near_label_tesim: Ort
+          contributor_tesim: Mitwirkender
+          creator_tesim: Schöpfer
+          date_created_tesim: Datum erstellt
+          date_modified_dtsi: Datum geändert
+          date_uploaded_dtsi: Datum hochgeladen
+          description_tesim: Beschreibung
+          extent_tesim: Umfang
+          file_format_tesim: Datei Format
+          identifier_tesim: Identifikator
+          keyword_tesim: Stichwort
+          language_tesim: Sprache
+          publisher_tesim: Herausgeber
+          rights_tesim: Rechte
+          subject_tesim: Fach
+          title_tesim: Titel
