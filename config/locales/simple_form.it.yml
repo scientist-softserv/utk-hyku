@@ -1,0 +1,28 @@
+---
+it:
+  simple_form:
+    cancel: Annulla
+    error_notification:
+      default_message: 'Leggi i seguenti problemi:'
+    hints:
+      hyku_group:
+        description: Un breve riepilogo del ruolo del gruppo
+    labels:
+      add_user_to_group:
+        user_ids: ID utente
+      group_search:
+        q: Ricerca
+      hyku_group:
+        description: Descrizione
+      page_size:
+        per: Mostrare
+      user_search:
+        uq: Cerca Utente
+    'no': 'No'
+    placeholders:
+      user_search:
+        uq: Nome o nome utente
+    required:
+      mark: "*"
+      text: necessario
+    'yes': sì
