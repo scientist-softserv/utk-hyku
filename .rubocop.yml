@@ -112,4 +112,5 @@ RSpec/MultipleExpectations:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+    - 'lib/tasks/*.rake'
     - 'app/controllers/catalog_controller.rb'
