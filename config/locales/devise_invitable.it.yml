@@ -1,0 +1,34 @@
+---
+it:
+  devise:
+    failure:
+      invited: Hai un invito in sospeso, accettalo per completare la creazione dell'account.
+    invitations:
+      edit:
+        header: Imposta la tua password
+        submit_button: Imposta la mia password
+      invitation_removed: L'invito è stato rimosso.
+      invitation_token_invalid: Il token di invito fornito non è valido!
+      new:
+        header: Spedire un invito
+        submit_button: Invia un invito
+      no_invitations_remaining: Nessun invito rimanente
+      send_instructions: Un email di invito è stato inviato a %{email}.
+      updated: La password è stata impostata correttamente. Ora sei connesso.
+      updated_not_active: La password è stata impostata correttamente.
+    mailer:
+      invitation_instructions:
+        accept: Accetta l'invito
+        accept_until: Questo invito sarà dovuto in %{due_date}.
+        hello: Ciao %{email}
+        ignore: |-
+          Se non desideri accettare l'invito, ignora questa email. <br />
+          Il tuo account non verrà creato finché non accedi al link precedente e imposta la tua password.
+        someone_invited_you: Qualcuno ti ha invitato a %{url}, puoi accettarlo tramite il link qui sotto.
+        subject: Istruzioni di invito
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "% B% d,% Y% I:% M% p"
