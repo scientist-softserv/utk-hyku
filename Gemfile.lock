@@ -271,12 +271,17 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.9, >= 0.9.0)
+    easy_translate (0.5.0)
+      json
+      thread
+      thread_safe
     ebnf (1.1.0)
       rdf (~> 2.0)
       sxp (~> 1.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.6.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -323,6 +328,7 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hashdiff (0.3.4)
+    highline (1.7.8)
     hiredis (0.6.1)
     honeybadger (3.1.2)
     htmlentities (4.3.4)
@@ -374,6 +380,16 @@ GEM
     i18n (0.8.4)
     i18n-debug (1.1.0)
       i18n (< 1)
+    i18n-tasks (0.9.15)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      easy_translate (>= 0.5.0)
+      erubis
+      highline (>= 1.7.3)
+      i18n
+      parser (>= 2.2.3.0)
+      rainbow (~> 2.2)
+      terminal-table (>= 1.5.1)
     ice_nine (0.11.2)
     iiif-presentation (0.2.0)
       activesupport (>= 3.2.18)
@@ -800,7 +816,10 @@ GEM
     temple (0.8.0)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.19.4)
+    thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.7)
     tins (1.14.0)
@@ -866,6 +885,7 @@ DEPENDENCIES
   honeybadger (~> 3.0)
   hyrax!
   i18n-debug
+  i18n-tasks
   iiif_manifest (~> 0.2.0)
   is_it_working
   jbuilder (~> 2.5)
