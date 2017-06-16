@@ -1,0 +1,139 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      site:
+        institution_name_full: Nome completo da instituição
+  application:
+    tagline: A solução de repositório de próxima geração
+  helpers:
+    submit:
+      add_user_to_group:
+        submit: Adicionar
+      group_search:
+        submit: Ir
+      page_size:
+        submit: Atualizar
+      revoke_membership:
+        submit: Remover
+      user_search:
+        submit: Ir
+  hyku:
+    account:
+      signup_disabled: O registro da conta está desativado
+    admin:
+      flash:
+        access_denied: Você não está autorizado a visualizar esta página
+      groups:
+        action:
+          create: Criar novo grupo
+          edit: Editar grupo e usuários
+          members:
+            description: Os membros do grupo assumem todos os privilégios atribuídos a este grupo.
+          per_page: Atualizar
+          remove:
+            confirmation: Tem certeza de que deseja remover esse grupo?
+            description: Esta ação é irreversível. Ele irá remover todos os privilégios que os membros do grupo foram atribuídos por esse grupo.
+            submit: Remover
+          search:
+            clear: Restabelecer
+        describe_quantity_html: Existem <b>grupos</b> %{number} neste repositório.
+        describe_singular_quantity_html: Há <b>um grupo</b> neste repositório.
+        flash:
+          create:
+            failure: O grupo não pôde ser criado
+            invalid: Grupos devem ter um nome
+            success: "%{group} criado"
+          destroy:
+            failure: "%{group} não pôde ser destruído"
+            success: "%{group} destruído"
+          update:
+            failure: "%{group} não pôde ser atualizado"
+            success: "%{group} atualizado"
+        label:
+          actions: Ações
+          created_at: Data Criada
+          members: Comercial
+          name: Nome
+          per_page: por página
+        nav:
+          attributes: Descrição
+          delete: Remover
+          index: Retornar para gerenciar grupos
+          members: Comercial
+        title:
+          add_user: Adicionar usuário ao grupo
+          delete: Remove Group "%{group}"
+          edit: Editar Grupo
+          index: Gerenciar Grupos
+          list_members: Membros atuais do grupo
+          members: Membros do grupo
+          new: Novo grupo
+          remove: Remover grupo
+      title: Administração
+    footer:
+      admin_login: Login do administrador
+    proprietor:
+      accounts:
+        nav: Contas
+    toolbar:
+      profile:
+        edit_registration: Mudar senha
+    users:
+      label:
+        date_joined: Ingressou
+        last_login: Último acesso
+        name: Nome
+        user_key: Nome de usuário
+  hyrax:
+    admin:
+      appearances:
+        show:
+          hints:
+            banner_image: Para usar uma imagem como um fundo de masthead, você deve usar uma imagem (JPG, GIF ou PNG) com pelo menos 120 pixels de altura e 1200 pixels de largura. Para obter melhores resultados, use uma imagem de pelo menos 1800 pixels de largura.
+          tabs:
+            banner_image: Imagem do banner
+            colors: Cores
+      sidebar:
+        accounts: Contas
+        activity_summary: Resumo da atividade
+        content_blocks: Blocos de conteúdo
+        labels: Etiquetas
+        manage_groups: Gerenciar grupos
+        manage_roles_and_permissions: Definir funções e permissões
+        manage_users: Gerenciar usuários
+        repository_activity: Atividade do depósito
+        roles_and_permissions: Usuários e grupos
+        system_status: Status do sistema
+        technical: Técnico
+  proprietor:
+    accounts:
+      edit:
+        fcrepo_endpoint: Fedora Endpoint
+        header: Editando conta
+        solr_endpoint: Solr Endpoint
+      index:
+        cname: CNAME
+        confirm_delete: Tem certeza de que deseja excluir esse repositório?
+        create_new: Criar nova conta
+        header: Contas
+        manage: Gerir
+        tenant: Inquilino (UUID)
+      new:
+        header: Crie um novo repositório
+      show:
+        add: Adicionar
+        current_admins:
+          actions: Açao
+          email: Endereço de e-mail
+          header: Administradores de contas atuais
+          no_admins: Nenhum administrador existe
+        edit: Editar conta
+        header: Gerenciar Conta
+        remove: Remover
+  status:
+    index:
+      services: Serviços
+    service:
+      down: Baixa
+      ok: Está bem
