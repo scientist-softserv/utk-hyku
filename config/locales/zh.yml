@@ -113,6 +113,13 @@ zh:
         last_login: '最后访问'
   hyrax:
     admin:
+      appearances:
+        show:
+          hints:
+            banner_image: '要使用图像作为标头背景，您应该使用至少120像素高和1200像素宽的图像（JPG，GIF或PNG）。 为获得最佳效果，请使用至少1800像素宽的图像。'
+          tabs:
+            banner_image: '横幅图像'
+            colors: '颜色'
       sidebar:
         accounts:                     '帐号'
         activity_summary:             '活动摘要'
