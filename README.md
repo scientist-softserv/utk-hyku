@@ -2,9 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/projecthydra-labs/hyku/badge.svg?branch=master&service=github)](https://coveralls.io/github/projecthydra-labs/hyku?branch=master)
 [![Stories in Ready](https://badge.waffle.io/projecthydra-labs/hyku.png?label=ready&title=Ready)](https://waffle.io/projecthydra-labs/hyku)
 
-# Hydra-in-a-Box Repository App
-
-Codename: Hyku
+# Hyku, the Hydra-in-a-Box Repository Application
 
 ## Running the stack
 
@@ -44,6 +42,10 @@ We distribute a `docker-compose.yml` configuration for running the Hyku stack an
 ```bash
 docker-compose up -d
 ```
+
+### With Vagrant
+
+The [samvera-vagrant project](https://github.com/samvera-labs/samvera-vagrant) provides another simple way to get started "kicking the tires" of Hyku (and [Hyrax](http://hyr.ax/), making it easy and quick to spin up Hyku. (Note that this is not for production or production-like installations.) It requires VirtualBox and Vagrant.
 
 ## Switching accounts
 
