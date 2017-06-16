@@ -1,0 +1,139 @@
+---
+it:
+  activerecord:
+    attributes:
+      site:
+        institution_name_full: Nome dell'istituto completo
+  application:
+    tagline: La soluzione di repository di nuova generazione
+  helpers:
+    submit:
+      add_user_to_group:
+        submit: Inserisci
+      group_search:
+        submit: Partire
+      page_size:
+        submit: Aggiornare
+      revoke_membership:
+        submit: Rimuovere
+      user_search:
+        submit: Partire
+  hyku:
+    account:
+      signup_disabled: La registrazione dell'account è disattivata
+    admin:
+      flash:
+        access_denied: Non sei autorizzato a visualizzare questa pagina
+      groups:
+        action:
+          create: Crea nuovo gruppo
+          edit: Modifica gruppo e utenti
+          members:
+            description: I membri del gruppo assumono tutti i privilegi assegnati a questo gruppo.
+          per_page: Aggiornare
+          remove:
+            confirmation: Sei sicuro di voler rimuovere questo gruppo?
+            description: Questa azione è irreversibile. Rimuoverà tutti i privilegi che i membri del gruppo sono stati assegnati tramite questo gruppo.
+            submit: Rimuovere
+          search:
+            clear: Reset
+        describe_quantity_html: Ci sono <b>gruppi %{number}</b> in questo repository.
+        describe_singular_quantity_html: In questo repository c'è <b>un gruppo</b> .
+        flash:
+          create:
+            failure: Impossibile creare il gruppo
+            invalid: I gruppi devono avere un nome
+            success: "%{group} creato"
+          destroy:
+            failure: "%{group} non poteva essere distrutto"
+            success: "%{group} distrutto"
+          update:
+            failure: Non è stato possibile aggiornare %{group}
+            success: "%{group} aggiornato"
+        label:
+          actions: Azioni
+          created_at: data di creazione
+          members: utenti
+          name: Nome
+          per_page: per pagina
+        nav:
+          attributes: Descrizione
+          delete: Rimuovere
+          index: Torna a Gestisci Gruppi
+          members: utenti
+        title:
+          add_user: Aggiungi utente a gruppo
+          delete: Rimuovi gruppo "%{group}"
+          edit: Modifica gruppo
+          index: Gestisci Gruppi
+          list_members: Membri del gruppo attuale
+          members: Membri del gruppo
+          new: Nuovo gruppo
+          remove: Rimuovi gruppo
+      title: Amministrazione
+    footer:
+      admin_login: Accesso amministratore
+    proprietor:
+      accounts:
+        nav: conti
+    toolbar:
+      profile:
+        edit_registration: Cambia la password
+    users:
+      label:
+        date_joined: congiunto
+        last_login: Ultimo accesso
+        name: Nome
+        user_key: Nome utente
+  hyrax:
+    admin:
+      appearances:
+        show:
+          hints:
+            banner_image: Per utilizzare un'immagine come sfondo di masthead, è consigliabile utilizzare un'immagine (JPG, GIF o PNG) di almeno 120 pixel di altezza e 1200 pixel di larghezza. Per ottenere risultati ottimali, utilizzare un'immagine di larghezza almeno 1800 pixel.
+          tabs:
+            banner_image: Immagine banner
+            colors: Colori
+      sidebar:
+        accounts: conti
+        activity_summary: Riepilogo attività
+        content_blocks: Blocchi di contenuti
+        labels: etichette
+        manage_groups: Gestisci gruppi
+        manage_roles_and_permissions: Definire ruoli e autorizzazioni
+        manage_users: Gestire gli utenti
+        repository_activity: Attività di repository
+        roles_and_permissions: Utenti e gruppi
+        system_status: Stato del sistema
+        technical: Tecnico
+  proprietor:
+    accounts:
+      edit:
+        fcrepo_endpoint: Fedora Endpoint
+        header: Modifica dell'account
+        solr_endpoint: Solr Endpoint
+      index:
+        cname: CNAME
+        confirm_delete: Sei sicuro di voler eliminare questo repository?
+        create_new: Crea un nuovo account
+        header: conti
+        manage: Gestire
+        tenant: Tenente (UUID)
+      new:
+        header: Crea un nuovo repository
+      show:
+        add: Inserisci
+        current_admins:
+          actions: Azione
+          email: Indirizzo email
+          header: Amministratori dell'account corrente
+          no_admins: Nessun amministratore esiste
+        edit: Modifica account
+        header: Gestisci profilo
+        remove: Rimuovere
+  status:
+    index:
+      services: Servizi
+    service:
+      down: Giù
+      ok: ok
