@@ -129,6 +129,9 @@ module Importer
                                 .merge(file_attributes)
         end
 
+        # NOTE: This approach is probably broken since the actor that handled
+        # the `:files` attribute no longer exists:
+        # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
           files_directory.present? && files.present? ? { files: file_paths } : {}
         end
