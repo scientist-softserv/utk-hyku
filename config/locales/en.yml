@@ -114,6 +114,13 @@ en:
         last_login: 'Last access'
   hyrax:
     admin:
+      appearances:
+        show:
+          hints:
+            banner_image: 'To use an image as a masthead background, you should use an image (JPG, GIF or PNG) that is at least 120 pixels tall and 1200 pixels wide. For best results, use an image at least 1800 pixels wide.'
+          tabs:
+            banner_image: 'Banner Image'
+            colors: 'Colors'
       sidebar:
         accounts:                     'Accounts'
         activity_summary:             'Activity summary'

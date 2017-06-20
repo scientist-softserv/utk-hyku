@@ -1,0 +1,139 @@
+---
+fr:
+  activerecord:
+    attributes:
+      site:
+        institution_name_full: Nom complet de l'établissement
+  application:
+    tagline: La solution de dépôt de nouvelle génération
+  helpers:
+    submit:
+      add_user_to_group:
+        submit: Ajouter
+      group_search:
+        submit: Aller
+      page_size:
+        submit: Mettre à jour
+      revoke_membership:
+        submit: Retirer
+      user_search:
+        submit: Aller
+  hyku:
+    account:
+      signup_disabled: L'enregistrement du compte est désactivé
+    admin:
+      flash:
+        access_denied: Vous n'êtes pas autorisé à afficher cette page
+      groups:
+        action:
+          create: Créer un nouveau groupe
+          edit: Modifier le groupe et les utilisateurs
+          members:
+            description: Les membres du groupe assument tous les privilèges attribués à ce groupe.
+          per_page: Mettre à jour
+          remove:
+            confirmation: Êtes-vous sûr de vouloir supprimer ce groupe?
+            description: Cette action est irréversible. Il supprimera tous les privilèges auxquels les membres du groupe ont été affectés par ce groupe.
+            submit: Retirer
+          search:
+            clear: Réinitialiser
+        describe_quantity_html: Il existe des <b>groupes %{number}</b> dans ce dépôt.
+        describe_singular_quantity_html: Il y a <b>1 groupe</b> dans ce dépôt.
+        flash:
+          create:
+            failure: Le groupe n'a pas pu être créé
+            invalid: Les groupes doivent avoir un nom
+            success: Créé %{group}
+          destroy:
+            failure: "%{group} n'a pas pu être détruit"
+            success: "%{group} détruit"
+          update:
+            failure: "%{group} n'a pas pu être mis à jour"
+            success: "%{group} a mis à jour"
+        label:
+          actions: actes
+          created_at: date créée
+          members: Utilisateurs
+          name: prénom
+          per_page: par page
+        nav:
+          attributes: La description
+          delete: Retirer
+          index: Retourner à Gérer les groupes
+          members: Utilisateurs
+        title:
+          add_user: Ajouter l'utilisateur au groupe
+          delete: Supprimer le groupe "%{group}"
+          edit: Modifier le groupe
+          index: Gérer les groupes
+          list_members: Membres actuels du groupe
+          members: Les membres du groupe
+          new: Nouveau groupe
+          remove: Supprimer le groupe
+      title: Administration
+    footer:
+      admin_login: Connexion Administrateur
+    proprietor:
+      accounts:
+        nav: Comptes
+    toolbar:
+      profile:
+        edit_registration: Changer le mot de passe
+    users:
+      label:
+        date_joined: Inscrit
+        last_login: Dernier accès
+        name: prénom
+        user_key: Nom d'utilisateur
+  hyrax:
+    admin:
+      appearances:
+        show:
+          hints:
+            banner_image: Pour utiliser une image en tant que fond de masthead, vous devez utiliser une image (JPG, GIF ou PNG) d'au moins 120 pixels de hauteur et 1200 pixels de largeur. Pour de meilleurs résultats, utilisez une image d'au moins 1800 pixels de largeur.
+          tabs:
+            banner_image: Image de la bannière
+            colors: Couleurs
+      sidebar:
+        accounts: Comptes
+        activity_summary: Résumé de l'activité
+        content_blocks: Blocs de contenu
+        labels: Étiquettes
+        manage_groups: Gérer les groupes
+        manage_roles_and_permissions: Définir les rôles et les autorisations
+        manage_users: Gérer les utilisateurs
+        repository_activity: Activité de dépôt
+        roles_and_permissions: Utilisateurs et groupes
+        system_status: État du système
+        technical: Technique
+  proprietor:
+    accounts:
+      edit:
+        fcrepo_endpoint: Fedora Endpoint
+        header: Modification du compte
+        solr_endpoint: Solr Endpoint
+      index:
+        cname: CNAME
+        confirm_delete: Êtes-vous sûr de vouloir supprimer ce dépôt?
+        create_new: Créer un nouveau compte
+        header: Comptes
+        manage: Gérer
+        tenant: Locataire (UUID)
+      new:
+        header: Créer un nouveau référentiel
+      show:
+        add: Ajouter
+        current_admins:
+          actions: action
+          email: Adresse e-mail
+          header: Administrateurs de compte actuels
+          no_admins: Aucun administrateur n'existe
+        edit: Modifier le compte
+        header: Gérer son compte
+        remove: Retirer
+  status:
+    index:
+      services: Prestations de service
+    service:
+      down: Vers le bas
+      ok: D'accord
