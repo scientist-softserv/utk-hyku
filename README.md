@@ -45,7 +45,7 @@ docker-compose up -d
 
 ### With Vagrant
 
-The [samvera-vagrant project](https://github.com/samvera-labs/samvera-vagrant) provides another simple way to get started "kicking the tires" of Hyku (and [Hyrax](http://hyr.ax/), making it easy and quick to spin up Hyku. (Note that this is not for production or production-like installations.) It requires VirtualBox and Vagrant.
+The [samvera-vagrant project](https://github.com/samvera-labs/samvera-vagrant) provides another simple way to get started "kicking the tires" of Hyku (and [Hyrax](http://hyr.ax/)), making it easy and quick to spin up Hyku. (Note that this is not for production or production-like installations.) It requires [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
 ## Switching accounts
 
