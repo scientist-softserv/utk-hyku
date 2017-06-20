@@ -88,6 +88,13 @@ es:
         last_login: 'Ultimo acceso'
   hyrax:
     admin:
+      appearances:
+        show:
+          hints:
+            banner_image: 'Para utilizar una imagen como fondo de masthead, debe utilizar una imagen (JPG, GIF o PNG) que tenga al menos 120 píxeles de alto y 1200 píxeles de ancho. Para obtener mejores resultados, utilice una imagen de al menos 1800 píxeles de ancho.'
+          tabs:
+            banner_image: 'Imagen de la Bandera'
+            colors: 'Colores'
       sidebar:
         accounts:                     'Cuentas'
         activity_summary:             'Resumen de la actividad'

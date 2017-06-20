@@ -19,7 +19,7 @@
             <%= simple_form_for @form, url: admin_appearance_path do |f| %>
               <div class="panel-body">
                 <%# Upload Banner Image %>
-                <%= f.input :banner_image, as: :file, wrapper: :vertical_file_input, hint: 'Upload an image (JPG, GIF or PNG) at least 2200 pixels wide for best results.' %>
+                <%= f.input :banner_image, as: :file, wrapper: :vertical_file_input, hint: t('.hints.banner_image') %>
                 <%= image_tag @form.banner_image.url, class: "img-responsive" if @form.banner_image? %>
               </div>
               <div class="panel-footer">
