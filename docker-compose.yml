@@ -177,13 +177,12 @@ services:
       - DOCKER_TLS_VERIFY
       - DOCKER_HOST
       - DOCKER_CERT_PATH
-    volumes:
-      - $DOCKER_CERT_PATH:$DOCKER_CERT_PATH
     ports:
       - 8080:80
       - 8443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - $DOCKER_CERT_PATH:$DOCKER_CERT_PATH
     networks:
       internal:
       external:
