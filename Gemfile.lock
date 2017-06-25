@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: aa55308dca554ed3d4a99d56a42563d9834f20fa
+  revision: ed30d8f3a60db8768dd6c510bc402edb8ca0402b
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.3.1)
@@ -686,7 +686,7 @@ GEM
       rdf (~> 2.2)
     rdf-vocab (2.2.2)
       rdf (~> 2.2)
-    rdf-xsd (2.1.0)
+    rdf-xsd (2.2.0)
       rdf (~> 2.1)
     redic (1.5.0)
       hiredis
