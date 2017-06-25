@@ -1,4 +1,4 @@
-RSpec.describe IIIFThumbnailPathService do
+RSpec.describe IIIFWorkThumbnailPathService do
   let(:file_set) { FileSet.new }
   let(:file) do
     double(id: 's1/78/4k/72/s1784k724/files/6185235a-79b2-4c29-8c24-4d6ad9b11470',
