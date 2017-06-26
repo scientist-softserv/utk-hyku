@@ -20,9 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  application:
-    tagline: The next-generation repository solution
-
   activerecord:
     attributes:
       site:
@@ -46,6 +43,15 @@ en:
       user_search:
         submit: 'Go'
   hyku:
+    splash:
+      account_signup: Get Started
+      left_heading: Easy
+      left_text: Works for institutions large and small, from museums to university libraries. Get started in minutes.
+      center_heading: Feature-Rich
+      center_text: "All the features you'd expect from a mature repository system. Supports a range of content types and use cases."
+      right_heading: Flexible
+      right_text: "Customize the user interface to match your institution's brand identity. Tailor workflows to match how your staff likes to work."
+    tagline: The next-generation repository solution
     footer:
       admin_login: 'Administrator login'
     proprietor:
