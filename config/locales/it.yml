@@ -76,6 +76,15 @@ it:
     proprietor:
       accounts:
         nav: conti
+    splash:
+      account_signup: Iniziare
+      center_heading: Ricco di funzioni
+      center_text: Tutte le caratteristiche che ti aspetteresti da un sistema di archiviazione maturo. Supporta una gamma di tipi di contenuto e casi di utilizzo.
+      left_heading: Facile
+      left_text: Lavori per istituzioni grandi e piccole, dai musei alle biblioteche universitarie. Avviare in pochi minuti.
+      right_heading: Flessibile
+      right_text: Personalizza l'interfaccia utente in modo che corrisponda all'identità del marchio dell'istituto. Flussi di lavoro personalizzati per adattarsi al modo in cui il tuo personale ti piace lavorare.
+    tagline: La soluzione di repository di nuova generazione
     toolbar:
       profile:
         edit_registration: Cambia la password

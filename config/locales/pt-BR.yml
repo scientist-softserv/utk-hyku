@@ -76,6 +76,15 @@ pt-BR:
     proprietor:
       accounts:
         nav: Contas
+    splash:
+      account_signup: Iniciar
+      center_heading: Feature-Rich
+      center_text: Todos os recursos que você esperaria de um sistema de repositório maduro. Suporta uma variedade de tipos de conteúdo e casos de uso.
+      left_heading: Fácil
+      left_text: Trabalha para instituições grandes e pequenas, de museus a bibliotecas universitárias. Comece em minutos.
+      right_heading: Flexível
+      right_text: Personalize a interface do usuário para combinar a identidade da marca da sua instituição. Ajude os fluxos de trabalho a combinar a maneira como sua equipe gosta de trabalhar.
+    tagline: A solução de repositório de próxima geração
     toolbar:
       profile:
         edit_registration: Mudar senha
