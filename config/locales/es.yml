@@ -1,134 +1,148 @@
+---
 es:
-  application:
-    tagline: La solución de repositorio de próxima generación
-
   activerecord:
     attributes:
       site:
         institution_name_full: El nombre de la institución
-  status:
-    index:
-      services: 'Servicios'
-    service:
-      ok: 'Bueno'
-      down: 'Inactivo'
+  application:
+    tagline: La solución de repositorio de próxima generación
   helpers:
     submit:
       add_user_to_group:
-        submit: 'Añadir'
+        submit: Añadir
       group_search:
-        submit: 'Ir'
+        submit: Ir
       page_size:
-        submit: 'Actualizar'
+        submit: Actualizar
       revoke_membership:
-        submit: 'Eliminar'
+        submit: Eliminar
       user_search:
-        submit: 'Ir'
+        submit: Ir
   hyku:
-    toolbar:
-      profile:
-        edit_registration: 'Cambia la contraseña'
     account:
-      signup_disabled: 'El registro de la cuenta está deshabilitado'
+      signup_disabled: El registro de la cuenta está deshabilitado
     admin:
-      title: 'Administración'
       flash:
-        access_denied: 'No está autorizado a ver esta página'
+        access_denied: No está autorizado a ver esta página
       groups:
-        describe_quantity_html: "Hay <b>%{number} grupos</b> en este repositorio."
-        describe_singular_quantity_html: "Hay <b>1 grupo</b> en este repositorio."
         action:
-          create: 'Crear nuevo grupo'
-          edit: 'Editar grupos y usuarios'
+          create: Crear nuevo grupo
+          edit: Editar grupos y usuarios
           members:
-            description: 'Los miembros del grupo asumen todos los privilegios asignados a este grupo.'
-          per_page: 'Actualizar'
+            description: Los miembros del grupo asumen todos los privilegios asignados a este grupo.
+          per_page: Actualizar
           remove:
-            confirmation: '¿Seguro que quieres eliminar este grupo?'
-            description: 'Esta acción es irreversible. Eliminará todos los privilegios que se hayan asignado a los miembros del grupo a través de este grupo.'
-            submit: 'Eliminar'
+            confirmation: "¿Seguro que quieres eliminar este grupo?"
+            description: Esta acción es irreversible. Eliminará todos los privilegios que se hayan asignado a los miembros del grupo a través de este grupo.
+            submit: Eliminar
           search:
-            clear: 'Reiniciar'
+            clear: Reiniciar
+        describe_quantity_html: Hay <b>%{number} grupos</b> en este repositorio.
+        describe_singular_quantity_html: Hay <b>1 grupo</b> en este repositorio.
         flash:
           create:
-            success: '%{group} creado'
-            invalid: 'Los grupos deben tener un nombre'
-            failure: 'No se pudo crear'
-          update:
-            success: '%{group} actualizado'
-            failure: 'No se pudo actualizar %{group} '
+            failure: No se pudo crear
+            invalid: Los grupos deben tener un nombre
+            success: "%{group} creado"
           destroy:
-            success: '%{group} destruido'
             failure: 'No pudo ser destruido %{group} '
+            success: "%{group} destruido"
+          update:
+            failure: 'No se pudo actualizar %{group} '
+            success: "%{group} actualizado"
         label:
-          actions: 'Comportamiento'
-          created_at: 'Fecha de creacion'
-          members: 'Usuarios'
-          name: 'Nombre'
-          per_page: 'por página'
+          actions: Comportamiento
+          created_at: Fecha de creacion
+          members: Usuarios
+          name: Nombre
+          per_page: por página
         nav:
-          attributes: 'Descripción'
-          delete: 'Eliminar'
-          index: 'Volver a Administrar grupos'
-          members: 'Usuarios'
+          attributes: Descripción
+          delete: Eliminar
+          index: Volver a Administrar grupos
+          members: Usuarios
         title:
-          add_user: 'Añadir usuario a grupo'
-          delete: "Eliminar grupo “%{group}”"
-          edit: 'Editar grupo'
-          index: 'Gestionar grupos'
-          list_members: 'Miembros del grupo actual'
-          members: 'Miembros del grupo'
-          new: 'Nuevo grupo'
-          remove: 'Eliminar grupo'
+          add_user: Añadir usuario a grupo
+          delete: Eliminar grupo “%{group}”
+          edit: Editar grupo
+          index: Gestionar grupos
+          list_members: Miembros del grupo actual
+          members: Miembros del grupo
+          new: Nuevo grupo
+          remove: Eliminar grupo
+      title: Administración
+    footer:
+      admin_login: Acceso del administrador
+    proprietor:
+      accounts:
+        nav: Cuentas
+    splash:
+      account_signup: Empezar
+      center_heading: Rico en funciones
+      center_text: Todas las características que usted esperaría de un sistema de repositorio maduro. Soporta una variedad de tipos de contenido y casos de uso.
+      left_heading: Fácil
+      left_text: Trabaja para instituciones grandes y pequeñas, desde museos hasta bibliotecas universitarias. Empiece en cuestión de minutos.
+      right_heading: Flexible
+      right_text: Personalice la interfaz de usuario para que coincida con la identidad de marca de su institución. Adapte los flujos de trabajo para que coincidan con lo que le gusta a su personal trabajar.
+    tagline: La solución de repositorio de próxima generación
+    toolbar:
+      profile:
+        edit_registration: Cambia la contraseña
     users:
       label:
-        name: 'Nombre'
-        user_key: 'Nombre de usuario'
-        date_joined: 'Se unió'
-        last_login: 'Ultimo acceso'
+        date_joined: Se unió
+        last_login: Ultimo acceso
+        name: Nombre
+        user_key: Nombre de usuario
   hyrax:
     admin:
       appearances:
         show:
           hints:
-            banner_image: 'Para utilizar una imagen como fondo de masthead, debe utilizar una imagen (JPG, GIF o PNG) que tenga al menos 120 píxeles de alto y 1200 píxeles de ancho. Para obtener mejores resultados, utilice una imagen de al menos 1800 píxeles de ancho.'
+            banner_image: Para utilizar una imagen como fondo de masthead, debe utilizar una imagen (JPG, GIF o PNG) que tenga al menos 120 píxeles de alto y 1200 píxeles de ancho. Para obtener mejores resultados, utilice una imagen de al menos 1800 píxeles de ancho.
           tabs:
-            banner_image: 'Imagen de la Bandera'
-            colors: 'Colores'
+            banner_image: Imagen de la Bandera
+            colors: Colores
       sidebar:
-        accounts:                     'Cuentas'
-        activity_summary:             'Resumen de la actividad'
-        content_blocks:               'Bloques de contenido'
-        labels:                       'Etiquetas'
-        manage_groups:                'Administrar grupos'
-        manage_roles_and_permissions: 'Defina roles y permisos'
-        manage_users:                 'Administrar usuarios'
-        repository_activity:          'Actividad de repositorio'
-        roles_and_permissions:        'Usarios y grupos'
-        system_status:                'Estado del sistema'
-        technical:                    'Técnico'
+        accounts: Cuentas
+        activity_summary: Resumen de la actividad
+        content_blocks: Bloques de contenido
+        labels: Etiquetas
+        manage_groups: Administrar grupos
+        manage_roles_and_permissions: Defina roles y permisos
+        manage_users: Administrar usuarios
+        repository_activity: Actividad de repositorio
+        roles_and_permissions: Usarios y grupos
+        system_status: Estado del sistema
+        technical: Técnico
   proprietor:
     accounts:
-      index:
-        header: 'Cuentas'
-        create_new: 'Crear una nueva cuenta'
-        tenant: 'Inquilino (UUID)'
-        cname: 'CNAME'
-        manage: 'Gestionar'
-        confirm_delete: '¿Está seguro de que desea eliminar este repositorio?'
       edit:
-        header: 'Editar cuenta'
-        solr_endpoint: 'Solr punto final'
-        fcrepo_endpoint: 'Fedora punto final'
-      show:
-        header: 'Administrar cuenta'
-        edit: 'Editar cuenta'
-        add: 'Añadir'
-        remove: 'Retirar'
-        current_admins:
-          header: 'Administradores de cuentas actuales'
-          email: 'Dirección de correo electrónico'
-          actions: 'Acción'
-          no_admins: 'No existen administradores'
+        fcrepo_endpoint: Fedora punto final
+        header: Editar cuenta
+        solr_endpoint: Solr punto final
+      index:
+        cname: CNAME
+        confirm_delete: "¿Está seguro de que desea eliminar este repositorio?"
+        create_new: Crear una nueva cuenta
+        header: Cuentas
+        manage: Gestionar
+        tenant: Inquilino (UUID)
       new:
-        header: 'Crear un nuevo repositorio'
+        header: Crear un nuevo repositorio
+      show:
+        add: Añadir
+        current_admins:
+          actions: Acción
+          email: Dirección de correo electrónico
+          header: Administradores de cuentas actuales
+          no_admins: No existen administradores
+        edit: Editar cuenta
+        header: Administrar cuenta
+        remove: Retirar
+  status:
+    index:
+      services: Servicios
+    service:
+      down: Inactivo
+      ok: Bueno
