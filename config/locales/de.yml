@@ -76,6 +76,15 @@ de:
     proprietor:
       accounts:
         nav: Konten
+    splash:
+      account_signup: Sich aufmachen
+      center_heading: Feature-Rich
+      center_text: Alle Features, die Sie von einem reifen Repository-System erwarten würden. Unterstützt eine Reihe von Inhaltstypen und Anwendungsfälle.
+      left_heading: Einfach
+      left_text: Arbeiten für Institutionen, die groß und klein sind, von Museen bis hin zu Universitätsbibliotheken. Beginne in Minuten.
+      right_heading: Flexibel
+      right_text: Passen Sie die Benutzeroberfläche an, um die Markenidentität Ihrer Institution zu erfüllen. Maßgeschneiderte Arbeitsabläufe passen zu, wie Ihre Mitarbeiter gerne arbeiten.
+    tagline: Die nächste Generation der Repository-Lösung
     toolbar:
       profile:
         edit_registration: Passwort ändern
