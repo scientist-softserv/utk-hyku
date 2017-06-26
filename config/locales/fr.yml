@@ -76,6 +76,15 @@ fr:
     proprietor:
       accounts:
         nav: Comptes
+    splash:
+      account_signup: Commencer
+      center_heading: Riche en fonctionnalités
+      center_text: Toutes les fonctionnalités que vous attendez d'un système de dépôt mature. Prend en charge une gamme de types de contenu et de cas d'utilisation.
+      left_heading: Facile
+      left_text: Travaille pour les établissements grands et petits, des musées aux bibliothèques universitaires. Commencez en quelques minutes.
+      right_heading: Flexible
+      right_text: Personnalisez l'interface utilisateur pour correspondre à l'identité de marque de votre institution. Adaptez les flux de travail pour faire correspondre la façon dont votre personnel aime travailler.
+    tagline: La solution de dépôt de nouvelle génération
     toolbar:
       profile:
         edit_registration: Changer le mot de passe
