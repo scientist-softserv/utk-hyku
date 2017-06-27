@@ -24,6 +24,8 @@ en:
     attributes:
       site:
         institution_name_full: Full institution name
+  application:
+    tagline: The next-generation repository solution
   status:
     index:
       services: 'Services'
@@ -51,7 +53,6 @@ en:
       center_text: "All the features you'd expect from a mature repository system. Supports a range of content types and use cases."
       right_heading: Flexible
       right_text: "Customize the user interface to match your institution's brand identity. Tailor workflows to match how your staff likes to work."
-    tagline: The next-generation repository solution
     footer:
       admin_login: 'Administrator login'
     proprietor:
