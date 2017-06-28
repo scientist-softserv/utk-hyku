@@ -11,8 +11,17 @@ RSpec.describe SolrEndpoint do
   describe '#connection' do
     subject { instance.connection }
     let(:result) { double }
+    let(:af_options) do
+      { read_timeout: 120,
+        open_timeout: 120,
+        url: "http://127.0.0.1:8985/solr/hydra-test" }
+    end
 
     before do
+      # Stubbing conn, because it could trigger RSolr.connect if it hadn't alredy
+      # been called. This caused an error prior to stubbing for certain test seeds.
+      allow(ActiveFedora::SolrService.instance).to receive(:conn)
+        .and_return(double(options: af_options))
       allow(RSolr).to receive(:connect)
         .with("read_timeout" => 120,
               "open_timeout" => 120,
