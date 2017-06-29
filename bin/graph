@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+
+# This script creates png images to visualize a Hyrax workflow
+# Usage: bin/graph <workflow_name>
+#
+# Example: bin/graph one_step_mediated_deposit
+#
+# This script requires that you have Graphviz installed and the 
+# ruby-graphviz gem.
+# 
+# gem install 'ruby-graphviz'
+#
+#
+
+require 'graphviz'
+
+puts 'Loading environment...'
+require File.expand_path('../../config/environment', __FILE__)
+
+workflow_name = ARGV[0]
+
+unless workflow_name
+  puts "You must provide a workflow_name as an argument"
+  exit(1)
+end
+
+workflow = Sipity::Workflow.find_by(name: workflow_name)
+
+unless workflow
+  puts "Workflow not found"
+  exit(1)
+end
+
+
+class GraphWriter
+
+  attr_reader :workflow, :nodes, :initial_state
+
+  def initialize(workflow)
+    @workflow = workflow
+  end
+
+  # Create a new graph
+  def graph
+    @g ||= GraphViz.new(:G, :type => :digraph)
+  end
+
+  def attach_nodes
+    @nodes = workflow.workflow_states.each_with_object({}) do |state, h|
+      h[state.id] = graph.add_nodes(state.name)
+    end
+    @initial_state = workflow.initial_workflow_state
+    @nodes[initial_state.id] = graph.add_nodes(@initial_state.name)
+  end
+
+  def write_edge(initial, terminal, label)
+    graph.add_edges( nodes[initial], nodes[terminal], label: label)
+  end
+
+  def attach_edges
+    # Create edges
+    workflow.workflow_actions.each do |wa|
+      terminal = wa.resulting_workflow_state_id
+      if wa.workflow_state_actions.count == 0 
+        # Initial action
+        write_edge(initial_state.id, terminal, wa.name)
+      end
+      wa.workflow_state_actions.each do |wsa|
+        initial = wsa.originating_workflow_state_id
+        if terminal.nil?
+          write_edge(initial, initial, wa.name)
+        else
+          write_edge(initial, terminal, wa.name)
+        end
+      end
+    end
+  end
+
+  def write
+    attach_nodes
+    attach_edges
+    # Generate output image
+    filename = "#{workflow.name}.png"
+    graph.output(png: filename)
+
+    puts "Created: #{filename}"
+  end
+end
+
+GraphWriter.new(workflow).write
+
