@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 90f7a9f0593e7c44bfbbe4a4cf4f446f9636a5f7
-  ref: 90f7a9f0593e7c44bfbbe4a4cf4f446f9636a5f7
+  revision: b3238a032c98b4d1ce292579701cb91f1c0ebab3
+  ref: b3238a032c98b4d1ce292579701cb91f1c0ebab3
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.3.1)
@@ -653,13 +653,13 @@ GEM
       rdf (~> 2.0)
     rdf-normalize (0.3.2)
       rdf (~> 2.0)
-    rdf-rdfa (2.2.2)
+    rdf-rdfa (2.2.3)
       haml (~> 5.0)
       htmlentities (~> 4.3)
       rdf (~> 2.2)
       rdf-aggregate-repo (~> 2.2)
       rdf-xsd (~> 2.1)
-    rdf-rdfxml (2.0.0)
+    rdf-rdfxml (2.2.0)
       htmlentities (~> 4.3)
       rdf (~> 2.0)
       rdf-rdfa (~> 2.0)
