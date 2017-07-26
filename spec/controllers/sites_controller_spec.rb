@@ -17,11 +17,12 @@ RSpec.describe SitesController, type: :controller, singletenant: true do
 
     context "site with existing banner image" do
       before do
+        expect(BannerImageUploader).to receive(:storage).and_return(CarrierWave::Storage::File).at_least(3).times
         f = fixture_file_upload('/images/nypl-hydra-of-lerna.jpg', 'image/jpg')
         Site.instance.update(banner_image: f)
       end
 
-      it "deletes a banner image" do
+      it "#update with remove_banner_image deletes a banner image" do
         expect(Site.instance.banner_image?).to be true
         post :update, params: { id: Site.instance.id, remove_banner_image: 'Remove banner image' }
         expect(response).to redirect_to('/admin/appearance?locale=en')
