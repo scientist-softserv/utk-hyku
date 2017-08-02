@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 911fa7458be56f93d1168f1717af1eaf05fbb106
-  ref: 911fa7458be56f93d1168f1717af1eaf05fbb106
+  revision: 2ea73d240cca7200e7e2d5d8b8fcab0b0acec864
+  ref: 2ea73d240cca7200e7e2d5d8b8fcab0b0acec864
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.3.1)
@@ -329,7 +329,7 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
-    haml (5.0.1)
+    haml (5.0.2)
       temple (>= 0.8.0)
       tilt
     hamster (3.0.0)
