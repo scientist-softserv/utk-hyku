@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/projecthydra-labs/hyrax.git
-  revision: 2ea73d240cca7200e7e2d5d8b8fcab0b0acec864
-  ref: 2ea73d240cca7200e7e2d5d8b8fcab0b0acec864
+  revision: 72c1cb5772733e9143023a4e1d94633684b88a57
+  ref: 72c1cb5772733e9143023a4e1d94633684b88a57
   specs:
     hyrax (2.0.0.alpha)
       active-fedora (>= 11.3.1)
@@ -42,6 +42,7 @@ GIT
       rdf-rdfxml
       redis-namespace (~> 1.5.2)
       redlock (>= 0.1.2)
+      retriable (>= 2.9, < 4.0)
       select2-rails (~> 3.5.9)
       signet
       tinymce-rails (~> 4.1)
@@ -835,7 +836,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     tins (1.14.0)
-    tinymce-rails (4.6.4)
+    tinymce-rails (4.6.5)
       railties (>= 3.1.1)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
