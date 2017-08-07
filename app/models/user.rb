@@ -51,6 +51,6 @@ class User < ActiveRecord::Base
   private
 
     def add_default_roles
-      add_role :admin, Site.instance unless self.class.any?
+      add_role :admin, Site.instance unless self.class.any? || Account.global_tenant?
     end
 end
