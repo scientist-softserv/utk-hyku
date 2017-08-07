@@ -15,6 +15,7 @@ class Site < ActiveRecord::Base
              to: :instance
 
     def instance
+      return NilSite.instance if Account.global_tenant?
       first_or_create
     end
   end

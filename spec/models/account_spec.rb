@@ -277,4 +277,26 @@ RSpec.describe Account, type: :model do
       expect(account.admin_emails).to match_array(["newadmin@here.org"])
     end
   end
+
+  describe '#global_tenant?' do
+    subject { described_class.global_tenant? }
+    context 'default setting for test environment' do
+      it { is_expected.to be false }
+    end
+    context 'single tenant in production environment' do
+      before do
+        allow(Settings.multitenancy).to receive(:enabled).and_return false
+        allow(Rails.env).to receive(:test?).and_return false
+      end
+      it { is_expected.to be false }
+    end
+    context 'default tenant in a multitenant production environment' do
+      before do
+        allow(Settings.multitenancy).to receive(:enabled).and_return true
+        allow(Rails.env).to receive(:test?).and_return false
+        allow(Apartment::Tenant).to receive(:current_tenant).and_return Apartment::Tenant.default_tenant
+      end
+      it { is_expected.to be true }
+    end
+  end
 end
