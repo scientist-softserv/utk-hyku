@@ -27,6 +27,11 @@ class Account < ActiveRecord::Base
     canonical_cname(host)
   end
 
+  def self.tenants(tenant_list)
+    return Account.all if tenant_list.blank?
+    where(cname: tenant_list)
+  end
+
   attr_readonly :tenant
   # name is unused after create, only used by sign_up/new forms
   validates :name,

@@ -1,16 +1,11 @@
 require 'rake'
 
 module RakeHelper
-  def load_rake_environment(files)
-    @rake = Rake::Application.new
-    Rake.application = @rake
+  def run_task(task_name, *args)
     Rake::Task.define_task(:environment)
-    files.each { |file| load file }
-  end
-
-  def run_task(task, *args)
     capture_stdout_stderr do
-      @rake[task].invoke(*args)
+      Rake.application[task_name].reenable
+      Rake.application[task_name].invoke(*args)
     end
   end
 
