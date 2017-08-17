@@ -1,4 +1,25 @@
 RSpec.describe Account, type: :model do
+  describe '.tenants' do
+    context 'when tenant_list param is nil' do
+      it 'calls Account.all' do
+        expect(Account).to receive(:all)
+        described_class.tenants(nil)
+      end
+    end
+    context 'when tenant_list param is empty' do
+      it 'calls Account.all' do
+        expect(Account).to receive(:all)
+        described_class.tenants([])
+      end
+    end
+    context 'when tenant_list param is a string' do
+      it 'calls Account.where' do
+        expect(Account).to receive(:where).with(cname: 'foo bar baz')
+        described_class.tenants('foo bar baz')
+      end
+    end
+  end
+
   describe '.from_request' do
     let(:request) { double(host: 'example.com') }
     let(:noncanonical_request) { double(host: 'example.com.') }
