@@ -5,9 +5,16 @@ RSpec.describe Importer::CSVImporter do
 
   context 'when the model is passed' do
     let(:csv_file) { "#{fixture_path}/csv/gse_metadata.csv" }
-    let(:importer) { described_class.new(csv_file, image_directory, GenericWork) }
+    let(:importer) { described_class.new(csv_file, image_directory, fallback_class) }
+    let(:fallback_class) { Class.new { def initialize(_x, _y); end } }
+    let(:factory) { double(run: true) }
+
+    # note: 2 rows do not specify type, 17 do
     it 'creates new works' do
-      expect(importer).to receive(:create_fedora_objects).exactly(19).times
+      expect(fallback_class).to receive(:new)
+        .with(any_args).and_return(factory).exactly(2).times
+      expect(Importer::Factory::ETDFactory).to receive(:new)
+        .with(any_args).and_return(factory).exactly(17).times
       importer.import_all
     end
   end
