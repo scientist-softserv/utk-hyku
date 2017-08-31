@@ -1,41 +1,29 @@
 require 'importer/log_subscriber'
 module Importer
   module Factory
-    # rubocop:disable Metrics/ClassLength
     class ObjectFactory
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
-
       class_attribute :klass, :system_identifier_field
-
       attr_reader :attributes, :files_directory, :object, :files
 
       def initialize(attributes, files_dir = nil, files = [])
+        @attributes = attributes
         @files_directory = files_dir
         @files = files
-        @attributes = attributes
       end
 
-      # rubocop:disable Metrics/MethodLength
       def run
-        # rubocop:disable Lint/AssignmentInCondition
-        if @object = find
-          ActiveSupport::Notifications.instrument('import.importer',
-                                                  id: attributes[:id], name: 'UPDATE', klass: klass) do
-            update
-          end
+        arg_hash = { id: attributes[:id], name: 'UPDATE', klass: klass }
+        @object = find
+        if @object
+          ActiveSupport::Notifications.instrument('import.importer', arg_hash) { update }
         else
-          ActiveSupport::Notifications.instrument('import.importer',
-                                                  id: attributes[:id], name: 'CREATE', klass: klass) do
-            create
-          end
+          ActiveSupport::Notifications.instrument('import.importer', arg_hash.merge(name: 'CREATE')) { create }
         end
-        # rubocop:enable Lint/AssignmentInCondition
-
         yield(object) if block_given?
         object
       end
-      # rubocop:enable Metrics/MethodLength
 
       def update
         raise "Object doesn't exist" unless object
@@ -70,38 +58,28 @@ module Importer
         klass.where(query).first
       end
 
-      # rubocop:disable Metrics/MethodLength
+      # An ActiveFedora bug when there are many habtm <-> has_many associations means they won't all get saved.
+      # https://github.com/projecthydra/active_fedora/issues/874
+      # 2+ years later, still open!
       def create
         attrs = create_attributes
-
-        # There's a bug in ActiveFedora when there are many
-        # habtm <-> has_many associations, where they won't all get saved.
-        # https://github.com/projecthydra/active_fedora/issues/874
         @object = klass.new
         run_callbacks :save do
           run_callbacks :create do
-            if klass == Collection
-              create_collection(attrs)
-            else
-              work_actor.create(environment(attrs))
-            end
+            klass == Collection ? create_collection(attrs) : work_actor.create(environment(attrs))
           end
         end
-
         log_created(object)
       end
-      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
       def log_created(obj)
-        Rails.logger.info(
-          "Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
-        )
+        msg = "Created #{klass.model_name.human} #{obj.id}"
+        Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
       end
 
       def log_updated(obj)
-        Rails.logger.info(
-          "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
-        )
+        msg = "Updated #{klass.model_name.human} #{obj.id}"
+        Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
       end
 
       private
@@ -129,8 +107,7 @@ module Importer
                                 .merge(file_attributes)
         end
 
-        # NOTE: This approach is probably broken since the actor that handled
-        # the `:files` attribute no longer exists:
+        # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
         # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
           files_directory.present? && files.present? ? { files: file_paths } : {}
@@ -140,13 +117,10 @@ module Importer
           files.map { |file_name| File.join(files_directory, file_name) }
         end
 
-        # Regardless of what the MODS Parser gives us, these are the properties
-        # we are prepared to accept.
+        # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
         def permitted_attributes
-          klass.properties.keys.map(&:to_sym) +
-            [:id, :edit_users, :edit_groups, :read_groups, :visibility]
+          klass.properties.keys.map(&:to_sym) + [:id, :edit_users, :edit_groups, :read_groups, :visibility]
         end
     end
-    # rubocop:enable Metrics/ClassLength
   end
 end

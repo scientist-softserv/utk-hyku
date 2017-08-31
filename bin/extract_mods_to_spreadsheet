@@ -25,17 +25,14 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'importer'
 puts 'Starting import...'
 
+# Assumption: filename will contain the druid.  Example:
+#   hyku-metadata/GSE/druid_wg827ks1643/data/metadata/descMetadata.xml
 data = Dir.glob("#{base_path}/**/descMetadata.xml").map do |filename|
-         # Assumption: filename will contain the druid
-         # example:
-         #   "hyku-metadata/GSE/druid_wg827ks1643/data/metadata/descMetadata.xml"
          id = filename.gsub(%r{.*/druid_(\w+)/.*}, '\1')
-         {id: [id], type: ['ETD']}
-           .merge(Importer::ModsParser.new(filename).attributes)
+         {id: [id], type: ['ETD']}.merge(Importer::ModsParser.new(filename).attributes)
        end
 
-# Process the contributor into a flat field and drop 'notes_attributes'
-# and 'collection'
+# Process the contributor into a flat field and drop 'notes_attributes' and 'collection'
 data.each do |record|
   record[:contributor] = record[:contributor].flat_map { |c| c[:name] }
   record[:date_created] = record.delete(:created_attributes).flat_map { |c| c[:start] }
