@@ -46,6 +46,8 @@ en:
         submit: 'Go'
   hyku:
     splash:
+      account_denied: You are not authorized to create tenants
+      account_login: Login to get started
       account_signup: Get Started
       left_heading: Easy
       left_text: Works for institutions large and small, from museums to university libraries. Get started in minutes.
