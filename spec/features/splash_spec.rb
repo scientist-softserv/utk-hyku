@@ -5,7 +5,7 @@ RSpec.describe "The splash page", multitenant: true do
 
   it "shows the page, displaying the Hyku version" do
     visit '/'
-    expect(page).to have_link 'Get Started', href: account_sign_up_path(locale: 'en')
+    expect(page).to have_link 'Login to get started', href: main_app.new_user_session_path(locale: 'en')
 
     within 'footer' do
       expect(page).to have_link 'Administrator login'
