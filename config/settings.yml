@@ -7,6 +7,7 @@ multitenancy:
   enabled: false
   default_host: # "%{tenant}.dev"
   admin_host:
+  admin_only_tenant_creation: true
 
 ssl_configured: false
 

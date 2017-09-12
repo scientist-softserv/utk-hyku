@@ -16,7 +16,10 @@ RSpec.describe AccountSignUpController, type: :controller do
     { tenant: 'missing-names', cname: '' }
   end
 
-  context 'as an anonymous user' do
+  context 'with access' do
+    before do
+      allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(false)
+    end
     describe "GET #new" do
       it "assigns a new account as @account" do
         get :new
@@ -57,6 +60,50 @@ RSpec.describe AccountSignUpController, type: :controller do
           post :create, params: { account: invalid_attributes }
           expect(response).to render_template("new")
         end
+      end
+    end
+  end
+
+  context 'without access' do
+    before do
+      allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(true)
+    end
+    describe "GET #new" do
+      it "redirects to sign in" do
+        get :new
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+    describe "POST #create" do
+      it "redirects to sign in" do
+        post :create, params: { account: valid_attributes }
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
+
+  context 'as admin with restricted access' do
+    let(:user) { FactoryGirl.create(:admin) }
+    before do
+      allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(true)
+    end
+    describe "GET #new" do
+      it "assigns a new account as @account" do
+        get :new
+        expect(response).to render_template("layouts/proprietor")
+        expect(assigns(:account)).to be_a_new(Account)
+      end
+    end
+    describe "POST #create" do
+      before do
+        allow_any_instance_of(CreateAccount).to receive(:create_external_resources)
+      end
+      it "creates a new Account" do
+        expect do
+          post :create, params: { account: valid_attributes }
+        end.to change(Account, :count).by(1)
+        expect(assigns(:account).cname).to eq('x.localhost')
+        expect(assigns(:account).errors).to be_empty
       end
     end
   end
