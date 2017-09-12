@@ -68,6 +68,14 @@ class Account < ActiveRecord::Base
     end
   end
 
+  # @return [Boolean] whether this Account is the global tenant in a multitenant environment
+  def self.global_tenant?
+    # Global tenant only exists when multitenancy is enabled and NOT in test environment
+    # (In test environment tenant switching is currently not possible)
+    return false unless Settings.multitenancy.enabled && !Rails.env.test?
+    Apartment::Tenant.default_tenant == Apartment::Tenant.current
+  end
+
   def solr_endpoint
     super || NilSolrEndpoint.new
   end

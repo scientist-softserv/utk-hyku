@@ -1,5 +1,15 @@
 RSpec.describe User, type: :model do
-  context 'the first created user' do
+  context 'the first created user in global tenant' do
+    subject { FactoryGirl.create(:base_user) }
+    before do
+      allow(Account).to receive(:global_tenant?).and_return true
+    end
+    it 'does not get the admin role' do
+      expect(subject).not_to have_role :admin
+    end
+  end
+
+  context 'the first created user on a tenant' do
     subject { FactoryGirl.create(:base_user) }
     it 'is given the admin role' do
       expect(subject).to have_role :admin, Site.instance
