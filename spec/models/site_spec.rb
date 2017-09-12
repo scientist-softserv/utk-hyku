@@ -4,8 +4,18 @@ RSpec.describe Site, type: :model do
   let(:admin3) { FactoryGirl.create(:user, email: 'i@was_here.net') }
 
   describe ".instance" do
-    it "is a singleton site" do
-      expect(described_class.instance).to eq(described_class.instance)
+    context "on global tenant" do
+      before do
+        allow(Account).to receive(:global_tenant?).and_return true
+      end
+      it "is a NilSite" do
+        expect(described_class.instance).to eq(NilSite.instance)
+      end
+    end
+    context "on a specific tenant" do
+      it "is a singleton site" do
+        expect(described_class.instance).to eq(described_class.instance)
+      end
     end
   end
 
