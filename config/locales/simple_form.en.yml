@@ -33,6 +33,8 @@ en:
         user_ids: 'User ID'
       page_size:
         per: 'Show'
+      user:
+        email: 'Email address'
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -49,6 +51,8 @@ en:
         admin_emails: 'Enter one email address at a time'
       hyku_group:
         description: 'A brief summary of the role of the group'
+      user:
+        email: 'Enter one email address at a time. You may also resend an invitation via this form.'
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
