@@ -15,5 +15,9 @@ FactoryGirl.define do
     factory :superadmin do
       after(:create) { |user| user.add_role(:superadmin) }
     end
+
+    factory :invited_user do
+      after(:create, &:invite!)
+    end
   end
 end
