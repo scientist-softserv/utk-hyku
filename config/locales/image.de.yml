@@ -1,7 +1,7 @@
 de:
   hyrax:
     icons:
-      image:     'fa fa-file-text-o'
+      image:     'fa fa-picture-o'
     select_type:
       image:
         name:               "Bild"
