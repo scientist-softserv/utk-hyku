@@ -1,0 +1,71 @@
+<% provide :page_header do %>
+  <h1><span class="fa fa-user"></span> <%= t('hyrax.admin.users.index.title') %></h1>
+<% end %>
+
+<div class="panel panel-default users-invite">
+  <div class="panel-heading">
+      <%= t('.invite_users') %>
+  </div>
+  <div class="panel-body">
+      <%# user_invitation_path is provided by devise_invitable %>
+      <%= simple_form_for :user,  url: main_app.user_invitation_path, html: { class: 'form-inline pull-left' } do |f| %>
+        <div class="form-group">
+          <%= f.hint :email %>
+          <%= f.label :email, class: "control-label", required: false %>
+          <%= f.input_field :email, class: "form-control", value: "" %>
+          <%= f.submit t('.add'), class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default users-listing">
+  <div class="panel-heading">
+      <%= t('hyrax.admin.users.index.describe_users_html', count: @presenter.user_count) %>
+  </div>
+
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped datatable">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= t('.id_label') %></th>
+            <th><%= t('.role_label') %></th>
+            <th><%= t('.access_label') %></th>
+            <th><%= t('.status_label') %></th>
+            <th><%= t('.action_label') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @presenter.users.each do |user| %>
+            <tr>
+              <td><%= link_to hyrax.user_path(user) do %>
+                    <%= image_tag(user.avatar.url(:thumb), width: 30) if user.avatar.file %>
+                  <% end %>
+              </td>
+              <td><%= link_to user.email, hyrax.user_path(user) %></td>
+              <td><% roles = @presenter.user_roles(user) %>
+                  <ul><% roles.each do |role| %>
+                    <li><%= role %></li>
+                    <% end %>
+                  </ul>
+              </td>
+              <td>
+                <%# in the case that a user is created who never signs in, this is necessary %>
+                <relative-time datetime="<%= @presenter.last_accessed(user).getutc.iso8601 %>" title="<%= @presenter.last_accessed(user).to_formatted_s(:standard) %>">
+                  <%= @presenter.last_accessed(user).to_formatted_s(:long_ordinal) %>
+                </relative-time>
+              </td>
+              <%# If user accepted invite or was a self-signup, they are active. Otherwise pending %>
+              <td><%= user.accepted_or_not_invited? ? t('.status.active') : t('.status.pending') %></td>
+              <td>
+                <%= link_to t('.delete'),  main_app.admin_user_path(user), class: 'btn btn-danger btn-sm action-delete', method: :delete, data: { confirm: t('hyrax.admin.users.destroy.confirmation', user: user.email) } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -142,6 +142,20 @@ en:
         roles_and_permissions:        'Users and groups'
         system_status:                'System status'
         technical:                    'Technical'
+      users:
+        index:
+          action_label: Action
+          add: Invite user
+          delete: Delete
+          invite_users: 'Add or Invite user via email'
+          status_label: Status
+          status:
+            active: Active
+            pending: Pending
+        destroy:
+          confirmation: 'Are you sure you wish to delete the user "%{user}"? This action is irreversible.'
+          success: 'User "%{user}" has been successfully deleted.'
+          failure: 'User "%{user}" could not be deleted.'
   proprietor:
     accounts:
       index:
