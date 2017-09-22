@@ -8,7 +8,9 @@ RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
 
   describe "#manifest_url" do
     subject { presenter.manifest_url }
+
     let(:document) { { "has_model_ssim" => ['GenericWork'], 'id' => '99' } }
+
     it { is_expected.to eq 'http://test.host/concern/generic_works/99/manifest' }
   end
 
@@ -25,9 +27,9 @@ RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
     end
   end
 
-  describe "manifest_extras" do
+  describe "#sequence rendering" do
     subject do
-      presenter.manifest_extras
+      presenter.sequence_rendering
     end
 
     before do
@@ -37,7 +39,22 @@ RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
 
     it "returns a hash containing the rendering information" do
       work.rendering_ids = [work.file_sets.first.id]
-      expect(subject).to include(:sequence_rendering)
+      expect(subject).to be_an Array
+    end
+  end
+
+  describe "#manifest metadata" do
+    subject do
+      presenter.manifest_metadata
+    end
+
+    before do
+      work.title = ['Test title', 'Another test title']
+    end
+
+    it "returns an array of metadata values" do
+      expect(subject[0]['label']).to eq('Title')
+      expect(subject[0]['value']).to include('Test title', 'Another test title')
     end
   end
 end
