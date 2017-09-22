@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   root 'hyrax/homepage#index'
 
-  devise_for :users, controllers: { registrations: 'hyku/registrations' }
+  devise_for :users, controllers: { invitations: 'hyku/invitations', registrations: 'hyku/registrations' }
   mount Qa::Engine => '/authorities'
 
   mount Blacklight::Engine => '/'
@@ -58,6 +58,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :account, only: [:edit, :update]
+    resources :users, only: [:destroy]
     resources :groups do
       member do
         get :remove
@@ -74,5 +75,4 @@ Rails.application.routes.draw do
 
   mount Peek::Railtie => '/peek'
   mount Riiif::Engine => '/images', as: 'riiif'
-
 end
