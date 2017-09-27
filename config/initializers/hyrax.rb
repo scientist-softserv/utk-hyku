@@ -58,6 +58,14 @@ Hyrax.config do |config|
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"
 
+  # Stream realtime notifications to users in the browser
+  # config.realtime_notifications = true
+
+  # Which RDF term should be used to relate objects to an admin set?
+  # If this is a new repository, you may want to set a custom predicate term here to
+  # avoid clashes if you plan to use the default (dct:isPartOf) for other relations.
+  # config.admin_set_predicate = ::RDF::DC.isPartOf
+
   # Specify how many seconds back from the current time that we should show by default of the user's activity on the user's dashboard
   # config.activity_to_show_default_seconds_since_now = 24*60*60
 
