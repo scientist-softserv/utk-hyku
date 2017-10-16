@@ -13,7 +13,7 @@ Hyrax.config do |config|
   # config.max_notifications_for_dashboard = 5
 
   # How frequently should a file be audited.
-  # config.max_days_between_audits = 7
+  # config.max_days_between_fixity_checks = 7
 
   # Enable displaying usage statistics in the UI
   # Defaults to FALSE
@@ -93,7 +93,7 @@ Hyrax.config do |config|
   # config.work_requires_files = true
 
   # Should a button with "Share my work" show on the front page to all users (even those not logged in)?
-  # config.always_display_share_button = true
+  # config.display_share_button_when_not_logged_in = true
 
   # The user who runs batch jobs. Update this if you aren't using emails
   # config.batch_user_key = 'batchuser@example.com'
@@ -135,16 +135,20 @@ Hyrax.config do |config|
   # Specify whether the media display partial should render a download link
   # config.display_media_download_link = true
 
+  # Options to control the file uploader
+  # config.uploader = {
+  #   limitConcurrentUploads: 6,
+  #   maxNumberOfFiles: 100,
+  #   maxFileSize: 500.megabytes
+  # }
+
   # Fedora import/export tool
   #
   # Path to the Fedora import export tool jar file
   # config.import_export_jar_file_path = "tmp/fcrepo-import-export.jar"
   #
-  # Location where descriptive rdf should be exported
-  # config.descriptions_directory = "tmp/descriptions"
-  #
-  # Location where binaries are exported
-  # config.binaries_directory = "tmp/binaries"
+  # Location where Fedora object bags should be exported
+  # config.bagit_directory = "tmp/exports"
 
   # If browse-everything has been configured, load the configs.  Otherwise, set to nil.
   # TODO: Re-enable this when work on BE has been prioritized
