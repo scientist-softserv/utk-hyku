@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/mjgiarlo/config.git
-  revision: d89ed7c5cb01c3b9968566156a0041c0d5f6997f
-  branch: parse_boolean_env_values
-  specs:
-    config (1.5.0)
-      activesupport (>= 3.0)
-      deep_merge (~> 1.1.1)
-      dry-validation (~> 0.10.4)
-
-GIT
   remote: https://github.com/samvera/hyrax.git
   revision: 521cf92b7172cf84d2413cf5cc1afd94be1f634d
   specs:
@@ -219,6 +209,10 @@ GEM
     concurrent-ruby (1.0.5)
     concurrent-ruby-ext (1.0.5)
       concurrent-ruby (= 1.0.5)
+    config (1.5.1)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.1.1)
+      dry-validation (~> 0.10.4)
     connection_pool (2.2.1)
     coveralls (0.8.21)
       json (>= 1.8, < 3)
@@ -908,7 +902,7 @@ DEPENDENCIES
   capybara
   carrierwave-aws
   coffee-rails (~> 4.2)
-  config!
+  config (~> 1.5, >= 1.5.1)
   coveralls
   database_cleaner
   devise
