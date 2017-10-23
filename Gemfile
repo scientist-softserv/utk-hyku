@@ -83,10 +83,7 @@ gem 'devise-i18n'
 gem 'devise_invitable', '~> 1.6'
 
 gem 'apartment'
-# Until 'config' fixes issues with parsing boolean environment variables,
-# we have to use a patched branch. See https://github.com/railsconfig/config/pull/180
-gem 'config', github: 'mjgiarlo/config', branch: 'parse_boolean_env_values'
-# gem 'config', '~> 1.2', '>= 1.2.1'
+gem 'config', '~> 1.5', '>= 1.5.1'
 gem 'is_it_working'
 gem 'rolify'
 
