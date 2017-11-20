@@ -109,6 +109,7 @@ services:
       - FEDORA_URL=http://fcrepo:8080/fcrepo/rest
       - SOLR_URL=http://solr:8983/solr/
       - SETTINGS__ACTIVE_JOB__QUEUE_ADAPTER=sidekiq
+      - SETTINGS__MULTITENANCY__ADMIN_ONLY_TENANT_CREATION=false
       - SETTINGS__SOLR__URL=http://solr:8983/solr/
       - SETTINGS__ZOOKEEPER__CONNECTION_STR=zookeeper_cluster:2181/configs
       - RAILS_ENV=production
