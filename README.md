@@ -4,6 +4,8 @@
 
 # Hyku, the Hydra-in-a-Box Repository Application
 
+Product Owner: Hydra-in-a-Box Project (DPLA, DuraSpace, and Stanford University)
+
 ## Running the stack
 
 ### For development
