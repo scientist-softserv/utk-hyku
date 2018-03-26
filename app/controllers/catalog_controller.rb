@@ -51,14 +51,17 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
+    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
     config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
     config.add_facet_field solr_name("creator", :facetable), limit: 5
-    config.add_facet_field solr_name("tag", :facetable), limit: 5
+    config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
+    config.add_facet_field solr_name("keyword", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable),  limit: 5
     config.add_facet_field solr_name("language", :facetable), limit: 5
     config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
     config.add_facet_field solr_name("publisher", :facetable), limit: 5
     config.add_facet_field solr_name("file_format", :facetable), limit: 5
+    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -67,12 +70,13 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name'
+    config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
     config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description'
-    config.add_index_field solr_name("tag", :stored_searchable), itemprop: 'keywords'
+    config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords'
     config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about'
     config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator'
     config.add_index_field solr_name("contributor", :stored_searchable), itemprop: 'contributor'
+    config.add_index_field solr_name("depositor"), label: "Owner", helper_method: :link_to_profile
     config.add_index_field solr_name("publisher", :stored_searchable), itemprop: 'publisher'
     config.add_index_field solr_name("based_near_label", :stored_searchable), itemprop: 'contentLocation'
     config.add_index_field solr_name("language", :stored_searchable), itemprop: 'inLanguage'
@@ -90,7 +94,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_show_field solr_name("title", :stored_searchable)
     config.add_show_field solr_name("description", :stored_searchable)
-    config.add_show_field solr_name("tag", :stored_searchable)
+    config.add_show_field solr_name("keyword", :stored_searchable)
     config.add_show_field solr_name("subject", :stored_searchable)
     config.add_show_field solr_name("creator", :stored_searchable)
     config.add_show_field solr_name("contributor", :stored_searchable)
@@ -276,11 +280,11 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('tag') do |field|
+    config.add_search_field('keyword') do |field|
       field.solr_parameters = {
-        "spellcheck.dictionary": "tag"
+        "spellcheck.dictionary": "keyword"
       }
-      solr_name = solr_name("tag", :stored_searchable)
+      solr_name = solr_name("keyword", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
