@@ -53,10 +53,11 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'poltergeist'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
   gem 'webmock'
 end
 
