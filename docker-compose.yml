@@ -117,6 +117,8 @@ services:
       - RAILS_LOG_TO_STDOUT=true
       - SECRET_KEY_BASE=asdf
       - RAILS_CACHE_STORE_URL=memcache
+# version and location of fits are set in Dockerfile:
+      - LD_LIBRARY_PATH=/opt/fits-1.0.5/tools/mediainfo/linux
     volumes:
       - app:/data/tmp/uploads
     networks:
