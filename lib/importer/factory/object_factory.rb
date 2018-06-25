@@ -1,4 +1,5 @@
 require 'importer/log_subscriber'
+require 'importer/attach_files_to_work'
 module Importer
   module Factory
     class ObjectFactory
@@ -25,12 +26,13 @@ module Importer
         object
       end
 
+      ## FOR CONSIDERATION: handle a row (i.e. Work) with more than one file:
+      ## currently the file_set is replaced on update
       def update
         raise "Object doesn't exist" unless object
-        run_callbacks(:save) do
-          work_actor.update(environment(update_attributes))
-        end
-        log_updated(object)
+        work_actor.update(environment(update_attributes))
+        destroy_existing_file_set if object.file_sets.present?
+        attach_file_to_work
       end
 
       def create_attributes
@@ -64,23 +66,21 @@ module Importer
       def create
         attrs = create_attributes
         @object = klass.new
-        run_callbacks :save do
-          run_callbacks :create do
-            klass == Collection ? create_collection(attrs) : work_actor.create(environment(attrs))
-          end
-        end
-        log_created(object)
+        klass == Collection ? create_collection(attrs) : work_actor.create(environment(attrs))
+        attach_file_to_work
       end
 
-      def log_created(obj)
-        msg = "Created #{klass.model_name.human} #{obj.id}"
-        Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
-      end
-
-      def log_updated(obj)
-        msg = "Updated #{klass.model_name.human} #{obj.id}"
-        Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
-      end
+      ## below methods are commented out to pass rubocop inspection ("Class has too many line");
+      ## the logs already mention the CREATE and UPDATE actions once done
+      # def log_created(obj)
+      #   msg = "Created #{klass.model_name.human} #{obj.id}"
+      #   Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
+      # end
+      #
+      # def log_updated(obj)
+      #   msg = "Updated #{klass.model_name.human} #{obj.id}"
+      #   Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
+      # end
 
       private
 
@@ -92,6 +92,10 @@ module Importer
 
         def work_actor
           Hyrax::CurationConcern.actor
+        end
+
+        def file_set_actor(w)
+          Hyrax::Actors::FileSetActor.new(FileSet.create, w.user)
         end
 
         def create_collection(attrs)
@@ -107,14 +111,33 @@ module Importer
                                 .merge(file_attributes)
         end
 
-        # NOTE: This approach is probably broken since the actor that handled `:files` attribute was removed:
-        # https://github.com/samvera/hyrax/commit/3f1b58195d4381c51fde8b9149016c5b09f0c9b4
         def file_attributes
           files_directory.present? && files.present? ? { files: file_paths } : {}
         end
 
         def file_paths
-          files.map { |file_name| File.join(files_directory, file_name) }
+          attributes[:file].map { |file_name| File.join(files_directory, file_name) } if attributes[:file]
+        end
+
+        def import_file(path)
+          u = Hyrax::UploadedFile.new
+          u.user_id = User.find_by_user_key(User.batch_user_key).id if User.find_by_user_key(User.batch_user_key)
+          u.file = CarrierWave::SanitizedFile.new(path)
+          u.save
+          u
+        end
+
+        ## If no file name is provided in the CSV file, `attach_file_to_work` is not performed
+        ## TO DO: handle invalid file in CSV
+        ## currently the importer stops if no file corresponding to a given file_name is found
+        def attach_file_to_work
+          imported_file = import_file(file_paths.first) if file_paths
+          AttachFilesToWork.new.perform(object, imported_file, file_set_actor(imported_file)) if imported_file
+        end
+
+        def destroy_existing_file_set
+          f = object.file_sets.first
+          f.destroy if attributes[:file] != f.title
         end
 
         # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
