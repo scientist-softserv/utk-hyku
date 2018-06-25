@@ -16,7 +16,7 @@ module Importer
         run_callbacks(:save) do
           object.save!
         end
-        log_updated(object)
+        # log_updated(object)
       end
     end
   end
