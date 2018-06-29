@@ -35,7 +35,32 @@ module Hyku
       metadata
     end
 
+    # assumes there can only be one doi
+    def doi
+      doi_regex = %r{10.\d{4,9}\/[-._;()\/:A-Z0-9]+}i
+      doi = extract_from_identifier(doi_regex)
+      doi.join if doi
+    end
+
+    # unlike doi, there can be multiple isbns
+    def isbns
+      isbn_regex = /(?:ISBN[- ]*13|ISBN[- ]*10|)\s*(
+                    ((?:(?:9[\s-]*7[\s-]*[89])?[ -]?((?:[0-9][ -]*){9})(?!$|[xX0-9]))[ -]*(?:[0-9xX]))|
+                    ((?:[0-9][ -]*){13}))/x
+      isbns = extract_from_identifier(isbn_regex)
+      isbns.flatten if isbns
+    end
+
     private
+
+      def extract_from_identifier(rgx)
+        if solr_document['identifier_tesim'].present?
+          ref = solr_document['identifier_tesim'].map do |str|
+            str.scan(rgx)
+          end
+        end
+        ref
+      end
 
       def manifest_helper
         @manifest_helper ||= ManifestHelper.new(request.base_url)
