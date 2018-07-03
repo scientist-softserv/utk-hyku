@@ -69,8 +69,8 @@ RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
     describe "#isbns" do
       it "extracts ISBNs from the identifiers" do
         expect(presenter.isbns)
-          .to include('978-83-7659-303-6', '978-3-540-49698-4', '9790879392788',
-                      '3-921099-34-X', '3-540-49698-x', '0-19-852663-6')
+          .to match_array(%w[978-83-7659-303-6 978-3-540-49698-4 9790879392788
+                             3-921099-34-X 3-540-49698-x 0-19-852663-6])
       end
     end
   end
