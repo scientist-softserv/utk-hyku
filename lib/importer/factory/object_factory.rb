@@ -1,5 +1,4 @@
 require 'importer/log_subscriber'
-require 'importer/attach_files_to_work'
 module Importer
   module Factory
     class ObjectFactory
@@ -30,9 +29,11 @@ module Importer
       ## currently the file_set is replaced on update
       def update
         raise "Object doesn't exist" unless object
-        work_actor.update(environment(update_attributes))
+        @attr = update_attributes
+        work_actor.update(environment(@attr))
         destroy_existing_file_set if object.file_sets.present?
         attach_file_to_work
+        log_updated(object)
       end
 
       def create_attributes
@@ -64,23 +65,22 @@ module Importer
       # https://github.com/projecthydra/active_fedora/issues/874
       # 2+ years later, still open!
       def create
-        attrs = create_attributes
+        @attr = create_attributes
         @object = klass.new
-        klass == Collection ? create_collection(attrs) : work_actor.create(environment(attrs))
+        klass == Collection ? create_collection(@attr) : work_actor.create(environment(@attr))
         attach_file_to_work
+        log_created(object)
       end
 
-      ## below methods are commented out to pass rubocop inspection ("Class has too many line");
-      ## the logs already mention the CREATE and UPDATE actions once done
-      # def log_created(obj)
-      #   msg = "Created #{klass.model_name.human} #{obj.id}"
-      #   Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
-      # end
-      #
-      # def log_updated(obj)
-      #   msg = "Updated #{klass.model_name.human} #{obj.id}"
-      #   Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
-      # end
+      def log_created(obj)
+        msg = "Created #{klass.model_name.human} #{obj.id}"
+        Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
+      end
+
+      def log_updated(obj)
+        msg = "Updated #{klass.model_name.human} #{obj.id}"
+        Rails.logger.info("#{msg} (#{Array(attributes[system_identifier_field]).first})")
+      end
 
       private
 
@@ -92,10 +92,6 @@ module Importer
 
         def work_actor
           Hyrax::CurationConcern.actor
-        end
-
-        def file_set_actor(w)
-          Hyrax::Actors::FileSetActor.new(FileSet.create, w.user)
         end
 
         def create_collection(attrs)
@@ -131,8 +127,8 @@ module Importer
         ## TO DO: handle invalid file in CSV
         ## currently the importer stops if no file corresponding to a given file_name is found
         def attach_file_to_work
-          imported_file = import_file(file_paths.first) if file_paths
-          AttachFilesToWork.new.perform(object, imported_file, file_set_actor(imported_file)) if imported_file
+          imported_file = [import_file(file_paths.first)] if file_paths
+          AttachFilesToWorkJob.new.perform(object, imported_file, @attr) if imported_file
         end
 
         def destroy_existing_file_set
