@@ -30,7 +30,9 @@ module Importer
       def update
         raise "Object doesn't exist" unless object
         @attr = update_attributes
-        work_actor.update(environment(@attr))
+        run_callbacks(:save) do
+          work_actor.update(environment(@attr))
+        end
         destroy_existing_file_set if object.file_sets.present?
         attach_file_to_work
         log_updated(object)
@@ -67,7 +69,11 @@ module Importer
       def create
         @attr = create_attributes
         @object = klass.new
-        klass == Collection ? create_collection(@attr) : work_actor.create(environment(@attr))
+        run_callbacks :save do
+          run_callbacks :create do
+            klass == Collection ? create_collection(@attr) : work_actor.create(environment(@attr))
+          end
+        end
         attach_file_to_work
         log_created(object)
       end
