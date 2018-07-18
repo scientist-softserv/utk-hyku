@@ -5,12 +5,11 @@ module Importer
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
       class_attribute :klass, :system_identifier_field
-      attr_reader :attributes, :files_directory, :object, :files
+      attr_reader :attributes, :files_directory, :object
 
-      def initialize(attributes, files_dir = nil, files = [])
+      def initialize(attributes, files_dir = nil)
         @attributes = attributes
         @files_directory = files_dir
-        @files = files
       end
 
       def run
@@ -26,15 +25,14 @@ module Importer
       end
 
       ## FOR CONSIDERATION: handle a row (i.e. Work) with more than one file:
-      ## currently the file_set is replaced on update
       def update
         raise "Object doesn't exist" unless object
         @attr = update_attributes
         run_callbacks(:save) do
           work_actor.update(environment(@attr))
         end
-        destroy_existing_file_set if object.file_sets.present?
-        attach_file_to_work
+        replace_existing_file_set if object.file_sets.present?
+        # attach_file_to_work
         log_updated(object)
       end
 
@@ -74,7 +72,7 @@ module Importer
             klass == Collection ? create_collection(@attr) : work_actor.create(environment(@attr))
           end
         end
-        attach_file_to_work
+        # attach_file_to_work
         log_created(object)
       end
 
@@ -113,8 +111,19 @@ module Importer
                                 .merge(file_attributes)
         end
 
+        def upload_id
+          return [] if object.blank?
+          Hyrax::UploadedFile.where(file_set_uri: "#{object.file_sets.first.uri}").ids
+        end
+
         def file_attributes
-          files_directory.present? && files.present? ? { files: file_paths } : {}
+          hash = {}
+          if files_directory.present? && attributes[:file].present?
+            imported_file = [import_file(file_paths.first)]
+            hash[:files] = imported_file
+            hash[:uploaded_files] = upload_id
+          end
+          hash
         end
 
         def file_paths
@@ -132,12 +141,12 @@ module Importer
         ## If no file name is provided in the CSV file, `attach_file_to_work` is not performed
         ## TO DO: handle invalid file in CSV
         ## currently the importer stops if no file corresponding to a given file_name is found
-        def attach_file_to_work
-          imported_file = [import_file(file_paths.first)] if file_paths
-          AttachFilesToWorkJob.new.perform(object, imported_file, @attr) if imported_file
-        end
+        # def attach_file_to_work
+        #   imported_file = [import_file(file_paths.first)] if file_paths
+        #   AttachFilesToWorkJob.new.perform(object, imported_file, @attr) if imported_file
+        # end
 
-        def destroy_existing_file_set
+        def replace_existing_file_set
           f = object.file_sets.first
           f.destroy if attributes[:file] != f.title
         end
