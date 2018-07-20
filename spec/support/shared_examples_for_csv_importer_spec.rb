@@ -15,36 +15,23 @@ RSpec.shared_examples "csv_importer" do
       it "uploads the content of the file" do
         expect(Hyrax::UploadedFile.last[:file]).to eq("world.png")
       end
-
-      it "attaches the uploaded file to a work" do
-        expect(Hyrax::UploadedFile.last[:file_set_uri]).to eq(work.find("123").file_sets.first.uri)
-      end
     end
 
-    # describe "when a work with the same id already exists" do
-    #   let(:new_attr) do
-    #     {
-    #       id: "123",
-    #       title: ["Squid tofu banjo"],
-    #       file: ["nypl-hydra-of-lerna.jpg"]
-    #     }
-    #   end
-    #
-    #   # Ldp::NotFound Error for the update method in 2 tests below - how to stub??
-    #
-    #   it "updates metadata" do
-    #     new_factory = described_class.new(new_attr, 'spec/fixtures/images')
-    #     new_factory.run
-    #     expect(work.last.title).to eq(["Squid tofu banjo"])
-    #   end
-    #
-    #   # current behavior - may want to handle this differently?
-    #   it "replaces its file_set" do
-    #     new_factory = described_class.new(new_attr, 'spec/fixtures/images')
-    #     new_factory.run
-    #     expect(Hyrax::UploadedFile.last[:file]).to eq("nypl-hydra-of-lerna.jpg")
-    #   end
-    # end
+    describe "when a work with the same id already exists" do
+      let(:new_attr) do
+        {
+          id: "123",
+          title: ["Squid tofu banjo"],
+          file: ["nypl-hydra-of-lerna.jpg"]
+        }
+      end
+
+      it "updates metadata" do
+        new_factory = described_class.new(new_attr, 'spec/fixtures/images')
+        new_factory.run
+        expect(work.last.title).to eq(["Squid tofu banjo"])
+      end
+    end
   end
 
   context "without a file" do
