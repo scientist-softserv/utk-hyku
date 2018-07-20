@@ -5,11 +5,12 @@ module Importer
       extend ActiveModel::Callbacks
       define_model_callbacks :save, :create
       class_attribute :klass, :system_identifier_field
-      attr_reader :attributes, :files_directory, :object
+      attr_reader :attributes, :files_directory, :object, :files
 
-      def initialize(attributes, files_dir = nil)
+      def initialize(attributes, files_dir = nil, files = [])
         @attributes = attributes
         @files_directory = files_dir
+        @files = files
       end
 
       def run
@@ -24,15 +25,11 @@ module Importer
         object
       end
 
-      ## FOR CONSIDERATION: handle a row (i.e. Work) with more than one file:
       def update
         raise "Object doesn't exist" unless object
-        @attr = update_attributes
         run_callbacks(:save) do
-          work_actor.update(environment(@attr))
+          work_actor.update(environment(update_attributes))
         end
-        replace_existing_file_set if object.file_sets.present?
-        # attach_file_to_work
         log_updated(object)
       end
 
@@ -65,14 +62,13 @@ module Importer
       # https://github.com/projecthydra/active_fedora/issues/874
       # 2+ years later, still open!
       def create
-        @attr = create_attributes
+        attrs = create_attributes
         @object = klass.new
         run_callbacks :save do
           run_callbacks :create do
-            klass == Collection ? create_collection(@attr) : work_actor.create(environment(@attr))
+            klass == Collection ? create_collection(attrs) : work_actor.create(environment(attrs))
           end
         end
-        # attach_file_to_work
         log_created(object)
       end
 
@@ -111,18 +107,19 @@ module Importer
                                 .merge(file_attributes)
         end
 
-        def upload_id
-          return [] if object.blank?
-          Hyrax::UploadedFile.where(file_set_uri: "#{object.file_sets.first.uri}").ids
+        # Find existing file or upload new file. This assumes a Work will have unique file titles;
+        # could filter by URIs instead (slower).
+        # When an uploaded_file already exists we do not want to pass its id in `file_attributes`
+        # otherwise it gets reuploaded by `work_actor`.
+        def upload_ids
+          work_files_titles = object.file_sets.map(&:title) if object.present? && object.file_sets.present?
+          work_files_titles && work_files_titles.include?(attributes[:file]) ? [] : [import_file(file_paths.first)]
         end
 
         def file_attributes
           hash = {}
-          if files_directory.present? && attributes[:file].present?
-            imported_file = [import_file(file_paths.first)]
-            hash[:files] = imported_file
-            hash[:uploaded_files] = upload_id
-          end
+          hash[:uploaded_files] = upload_ids if files_directory.present? && attributes[:file].present?
+          hash[:remote_files] = attributes[:remote_files] if attributes[:remote_files].present?
           hash
         end
 
@@ -135,21 +132,11 @@ module Importer
           u.user_id = User.find_by_user_key(User.batch_user_key).id if User.find_by_user_key(User.batch_user_key)
           u.file = CarrierWave::SanitizedFile.new(path)
           u.save
-          u
+          u.id
         end
 
-        ## If no file name is provided in the CSV file, `attach_file_to_work` is not performed
         ## TO DO: handle invalid file in CSV
         ## currently the importer stops if no file corresponding to a given file_name is found
-        # def attach_file_to_work
-        #   imported_file = [import_file(file_paths.first)] if file_paths
-        #   AttachFilesToWorkJob.new.perform(object, imported_file, @attr) if imported_file
-        # end
-
-        def replace_existing_file_set
-          f = object.file_sets.first
-          f.destroy if attributes[:file] != f.title
-        end
 
         # Regardless of what the MODS Parser gives us, these are the properties we are prepared to accept.
         def permitted_attributes
