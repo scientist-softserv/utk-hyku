@@ -108,15 +108,9 @@ de:
       sidebar:
         accounts: Konten
         activity_summary: Aktivitätsübersicht
-        content_blocks: Inhaltsblöcke
         labels: Etiketten
-        manage_groups: Gruppen verwalten
-        manage_roles_and_permissions: Rollen und Berechtigungen definieren
-        manage_users: Benutzer verwalten
-        repository_activity: Repository-Aktivität
-        roles_and_permissions: Benutzer und Gruppen
+        manage_groups: Gruppen Verwalten
         system_status: Systemstatus
-        technical: Technisch
       users:
         destroy:
           confirmation: Möchten Sie den Benutzer "%{user}" wirklich löschen? Diese Aktion ist irreversibel.
