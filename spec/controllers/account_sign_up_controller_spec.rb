@@ -83,7 +83,7 @@ RSpec.describe AccountSignUpController, type: :controller do
   end
 
   context 'as admin with restricted access' do
-    let(:user) { FactoryGirl.create(:admin) }
+    let(:user) { FactoryBot.create(:admin) }
 
     before do
       allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(true)

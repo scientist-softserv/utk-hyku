@@ -1,5 +1,5 @@
 RSpec.describe "proprietor/accounts/show", type: :view do
-  let(:account) { FactoryGirl.create(:account) }
+  let(:account) { FactoryBot.create(:account) }
   let(:admin1) { build(:user) }
   let(:admin2) { build(:user) }
 

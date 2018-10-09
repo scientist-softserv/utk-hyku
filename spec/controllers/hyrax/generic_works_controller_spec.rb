@@ -1,6 +1,6 @@
 RSpec.describe Hyrax::GenericWorksController do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:work) { FactoryGirl.create(:work_with_one_file, user: user) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:work) { FactoryBot.create(:work_with_one_file, user: user) }
   let(:file_set) { work.ordered_members.to_a.first }
 
   before do
@@ -25,7 +25,7 @@ RSpec.describe Hyrax::GenericWorksController do
   end
 
   describe "#presenter" do
-    let(:solr_document) { SolrDocument.new(FactoryGirl.create(:generic_work).to_solr) }
+    let(:solr_document) { SolrDocument.new(FactoryBot.create(:generic_work).to_solr) }
 
     before do
       allow(controller).to receive(:curation_concern_from_search_results).and_return(solr_document)

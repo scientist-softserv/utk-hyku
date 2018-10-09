@@ -99,7 +99,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Fixtures::FixtureFileUpload
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include ApplicationHelper, type: :view
   config.include Warden::Test::Helpers, type: :feature
 

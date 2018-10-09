@@ -19,8 +19,8 @@ RSpec.describe "Rake tasks" do
   end
 
   describe "superadmin:grant" do
-    let!(:user1) { FactoryGirl.create(:user) }
-    let!(:user2) { FactoryGirl.create(:user) }
+    let!(:user1) { FactoryBot.create(:user) }
+    let!(:user2) { FactoryBot.create(:user) }
 
     before do
       user1.remove_role :superadmin
