@@ -1,5 +1,5 @@
 RSpec.describe CreateAccount do
-  let(:account) { FactoryGirl.build(:sign_up_account) }
+  let(:account) { FactoryBot.build(:sign_up_account) }
 
   subject { described_class.new(account) }
 

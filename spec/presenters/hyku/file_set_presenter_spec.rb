@@ -1,6 +1,6 @@
 require 'iiif_manifest'
 RSpec.describe Hyku::FileSetPresenter do
-  let(:file_set) { FactoryGirl.create(:file_set) }
+  let(:file_set) { FactoryBot.create(:file_set) }
   let(:solr_document) { SolrDocument.new(file_set.to_solr) }
   let(:request) { double(base_url: 'http://test.host') }
   let(:presenter) { described_class.new(solr_document, nil, request) }

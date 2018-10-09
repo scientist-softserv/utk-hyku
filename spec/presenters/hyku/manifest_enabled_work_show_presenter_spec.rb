@@ -1,5 +1,5 @@
 RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
-  let(:work) { FactoryGirl.create(:work_with_one_file) }
+  let(:work) { FactoryBot.create(:work_with_one_file) }
   let(:document) { work.to_solr }
   let(:solr_document) { SolrDocument.new(document) }
   let(:request) { double(base_url: 'http://test.host', host: 'http://test.host') }

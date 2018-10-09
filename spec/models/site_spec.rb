@@ -1,7 +1,7 @@
 RSpec.describe Site, type: :model do
-  let(:admin1) { FactoryGirl.create(:user, email: 'bob@was_here.net') }
-  let(:admin2) { FactoryGirl.create(:user, email: 'jane@was_here.net') }
-  let(:admin3) { FactoryGirl.create(:user, email: 'i@was_here.net') }
+  let(:admin1) { FactoryBot.create(:user, email: 'bob@was_here.net') }
+  let(:admin2) { FactoryBot.create(:user, email: 'jane@was_here.net') }
+  let(:admin3) { FactoryBot.create(:user, email: 'i@was_here.net') }
 
   describe ".instance" do
     context "on global tenant" do

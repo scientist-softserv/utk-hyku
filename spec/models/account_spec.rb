@@ -168,7 +168,7 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#save' do
-    subject { FactoryGirl.create(:sign_up_account) }
+    subject { FactoryBot.create(:sign_up_account) }
 
     it 'canonicalizes the account cname' do
       subject.update cname: 'example.com.'
@@ -255,7 +255,7 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#admin_emails' do
-    let!(:account) { FactoryGirl.create(:account, tenant: "mytenant") }
+    let!(:account) { FactoryBot.create(:account, tenant: "mytenant") }
 
     before do
       Site.update(account: account)
@@ -268,7 +268,7 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#admin_emails=' do
-    let!(:account) { FactoryGirl.create(:account, tenant: "mytenant") }
+    let!(:account) { FactoryBot.create(:account, tenant: "mytenant") }
 
     before do
       Site.update(account: account)
