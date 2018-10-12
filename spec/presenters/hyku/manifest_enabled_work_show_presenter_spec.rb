@@ -22,6 +22,7 @@ RSpec.describe Hyku::ManifestEnabledWorkShowPresenter do
     before do
       work.representative_id = work.file_sets.first.id
     end
+
     it "returns a presenter" do
       expect(subject).to be_kind_of Hyku::FileSetPresenter
     end

@@ -62,6 +62,7 @@ RSpec.describe Admin::GroupsController, singletenant: true do
         subject { Hyku::Group.find_by(id: group.id) }
 
         before { delete :destroy, params: { id: group.id } }
+
         it { is_expected.to be_nil }
       end
     end

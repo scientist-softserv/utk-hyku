@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
     before do
       allow(Account).to receive(:global_tenant?).and_return true
     end
+
     it 'does not get the admin role' do
       expect(subject).not_to have_role :admin
     end

@@ -3,7 +3,7 @@ RSpec.describe 'Accounts administration', multitenant: true do
     let(:user) { FactoryBot.create(:superadmin) }
     let(:account) do
       FactoryBot.create(:account, solr_endpoint_attributes: { url: 'http://localhost:8080/solr' },
-                                   fcrepo_endpoint_attributes: { url: 'http://localhost:8080/fcrepo' })
+                                  fcrepo_endpoint_attributes: { url: 'http://localhost:8080/fcrepo' })
     end
 
     before do

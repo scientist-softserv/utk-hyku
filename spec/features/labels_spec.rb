@@ -30,6 +30,7 @@ RSpec.describe 'Site labels configuration' do
           institution_name_full: 'fullname'
         )
       end
+
       it 'updates the institution name in the agreement text' do
         visit edit_site_labels_path
         fill_in 'Institution name', with: 'Custom Inst Name'
@@ -47,6 +48,7 @@ RSpec.describe 'Site labels configuration' do
           institution_name: 'name'
         )
       end
+
       it 'updates the full institution name in the agreement text' do
         visit edit_site_labels_path
         fill_in 'Full institution name', with: 'Custom Full Inst Name'
