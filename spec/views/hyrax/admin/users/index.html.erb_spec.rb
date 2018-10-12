@@ -6,11 +6,13 @@ RSpec.describe 'hyrax/admin/users/index.html.erb', type: :view do
   before do
     # Create four normal user accounts
     (1..4).each do |i|
-      users << FactoryBot.create(:user,
-                                  display_name: "user#{i}",
-                                  email: "email#{i}@example.com",
-                                  last_sign_in_at: Time.zone.now - 15.minutes,
-                                  created_at: Time.zone.now - 3.days)
+      users << FactoryBot.create(
+        :user,
+        display_name: "user#{i}",
+        email: "email#{i}@example.com",
+        last_sign_in_at: Time.zone.now - 15.minutes,
+        created_at: Time.zone.now - 3.days
+      )
     end
     allow(presenter).to receive(:users).and_return(users)
     assign(:presenter, presenter)
@@ -47,10 +49,10 @@ RSpec.describe 'hyrax/admin/users/index.html.erb', type: :view do
       # Create two admin acccounts
       (5..6).each do |i|
         users << FactoryBot.create(:admin,
-                                    display_name: "admin-user#{i}",
-                                    email: "admin#{i}@example.com",
-                                    last_sign_in_at: Time.zone.now - 15.minutes,
-                                    created_at: Time.zone.now - 3.days)
+                                   display_name: "admin-user#{i}",
+                                   email: "admin#{i}@example.com",
+                                   last_sign_in_at: Time.zone.now - 15.minutes,
+                                   created_at: Time.zone.now - 3.days)
       end
       render
     end
@@ -68,10 +70,10 @@ RSpec.describe 'hyrax/admin/users/index.html.erb', type: :view do
       # Create one invited (pending) user
       (7..7).each do |i|
         users << FactoryBot.create(:invited_user,
-                                    display_name: "invitee#{i}",
-                                    email: "invitee#{i}@example.com",
-                                    last_sign_in_at: Time.zone.now - 15.minutes,
-                                    created_at: Time.zone.now - 3.days)
+                                   display_name: "invitee#{i}",
+                                   email: "invitee#{i}@example.com",
+                                   last_sign_in_at: Time.zone.now - 15.minutes,
+                                   created_at: Time.zone.now - 3.days)
       end
       render
     end

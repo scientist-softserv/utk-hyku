@@ -8,6 +8,7 @@ RSpec.describe Hyrax::GenericWorksController do
                                         fixture_file('images/world.png'),
                                         :original_file)
   end
+
   describe '#manifest' do
     let(:manifest_factory) { double(to_h: { test: 'manifest' }) }
 
@@ -30,6 +31,7 @@ RSpec.describe Hyrax::GenericWorksController do
     before do
       allow(controller).to receive(:curation_concern_from_search_results).and_return(solr_document)
     end
+
     subject { controller.send :presenter }
 
     it "initializes a presenter" do
