@@ -77,6 +77,8 @@ de:
       accounts:
         nav: Konten
     splash:
+      account_denied: Sie sind nicht berechtigt, Mandanten zu erstellen
+      account_login: Logge dich ein, um loszulegen
       account_signup: Sich aufmachen
       center_heading: Feature-Rich
       center_text: Alle Features, die Sie von einem reifen Repository-System erwarten würden. Unterstützt eine Reihe von Inhaltstypen und Anwendungsfälle.
@@ -115,6 +117,20 @@ de:
         roles_and_permissions: Benutzer und Gruppen
         system_status: Systemstatus
         technical: Technisch
+      users:
+        destroy:
+          confirmation: Möchten Sie den Benutzer "%{user}" wirklich löschen? Diese Aktion ist irreversibel.
+          failure: Benutzer "%{user}" konnte nicht gelöscht werden.
+          success: Der Benutzer "%{user}" wurde erfolgreich gelöscht.
+        index:
+          action_label: Aktion
+          add: Nutzer einladen
+          delete: Löschen
+          invite_users: Benutzer per E-Mail hinzufügen oder einladen
+          status:
+            active: Aktiv
+            pending: steht aus
+          status_label: Status
   proprietor:
     accounts:
       edit:
