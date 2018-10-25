@@ -244,10 +244,10 @@ GEM
     erubi (1.7.1)
     erubis (2.7.0)
     execjs (2.7.0)
-    factory_girl (4.8.0)
+    factory_bot (4.11.1)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.8.0)
-      factory_girl (~> 4.8.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -912,7 +912,7 @@ DEPENDENCIES
   devise-guests (~> 0.3)
   devise-i18n
   devise_invitable (~> 1.6)
-  factory_girl_rails
+  factory_bot_rails
   fcrepo_wrapper (~> 0.4)
   flipflop (~> 2.3)
   honeybadger (~> 3.0)
@@ -961,4 +961,4 @@ DEPENDENCIES
   zk
 
 BUNDLED WITH
-   1.16.3
+   1.16.6
