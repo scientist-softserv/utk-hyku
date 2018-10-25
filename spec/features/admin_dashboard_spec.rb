@@ -1,7 +1,7 @@
 RSpec.describe 'Admin Dashboard', type: :feature do
   context 'as an administrator' do
-    let(:user) { FactoryGirl.create(:admin) }
-    let(:group) { FactoryGirl.create(:group) }
+    let(:user) { FactoryBot.create(:admin) }
+    let(:group) { FactoryBot.create(:group) }
 
     before do
       login_as(user, scope: :user)
