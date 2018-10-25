@@ -18,14 +18,14 @@ de:
     labels:
       account:
         admin_emails: Neuen Administrator hinzufügen oder einladen (per E-Mail)
-        cname: Mieter CNAME
+        cname: Mandanten CNAME
         fcrepo_endpoint:
           base_path: Basispfad
           url: URL
         name: Kurzer Name
         solr_endpoint:
           url: URL
-        tenant: Mieter UUID
+        tenant: Mandanten UUID
       add_user_to_group:
         user_ids: Benutzeridentifikation
       group_search:
