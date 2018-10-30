@@ -108,15 +108,9 @@ es:
       sidebar:
         accounts: Cuentas
         activity_summary: Resumen de la actividad
-        content_blocks: Bloques de contenido
         labels: Etiquetas
-        manage_groups: Administrar grupos
-        manage_roles_and_permissions: Defina roles y permisos
-        manage_users: Administrar usuarios
-        repository_activity: Actividad de repositorio
-        roles_and_permissions: Usarios y grupos
+        manage_groups: Administrar Grupos
         system_status: Estado del sistema
-        technical: Técnico
       users:
         destroy:
           confirmation: ¿Estás seguro de que deseas eliminar el usuario "%{user}"? Esta acción es irreversible.
