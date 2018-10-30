@@ -108,15 +108,9 @@ zh:
       sidebar:
         accounts: 帐号
         activity_summary: 活动摘要
-        content_blocks: 内容块
         labels: 标签
         manage_groups: 管理组
-        manage_roles_and_permissions: 定义角色和权限
-        manage_users: 管理用户
-        repository_activity: 存储库活动
-        roles_and_permissions: 用户和组
         system_status: 系统状态
-        technical: 技术
       users:
         destroy:
           confirmation: 您确定要删除用户“%{user}”吗？这一行动是不可逆转的。
