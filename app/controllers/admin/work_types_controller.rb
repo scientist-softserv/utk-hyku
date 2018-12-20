@@ -1,6 +1,6 @@
 module Admin
   class WorkTypesController < ApplicationController
-    layout 'dashboard'
+    layout 'hyrax/dashboard'
 
     before_action do
       authorize! :manage, Hyrax::Feature
