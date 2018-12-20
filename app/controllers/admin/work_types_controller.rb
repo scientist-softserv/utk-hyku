@@ -17,13 +17,13 @@ module Admin
       else
         flash[:error] = "Work types were not updated"
       end
-      render :action => "edit"
+      render action: "edit"
     end
 
     private
 
-    def site
-      @site ||= Site.first
-    end
+      def site
+        @site ||= Site.first
+      end
   end
 end
