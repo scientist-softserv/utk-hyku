@@ -15,10 +15,11 @@ module Hyrax
     # Declare the e-mail headers. It accepts anything the mail method
     # in ActionMailer accepts.
     def headers
+      # hyrax send the mail 'from' the submitter, which doesnt work on most smtp transports
       {
-        subject: "#{Hyrax.config.subject_prefix} #{subject}",
+        subject: "#{Hyrax.config.subject_prefix} #{email} #{subject}",
         to: Hyrax.config.contact_email,
-        from: email
+        from: Settings.contact_email
       }
     end
 
