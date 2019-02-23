@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   include Hyrax::ThemedLayoutController
   with_themed_layout '1_column'
 
-  helper_method :peek_enabled?, :current_account, :admin_host?
+  helper_method :current_account, :admin_host?
 
   before_action :require_active_account!, if: :multitenant?
   before_action :set_account_specific_connections!
@@ -30,13 +30,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def peek_enabled?
-      can? :peek, Hyku::Application
-    end
-
     def require_active_account!
       return unless Settings.multitenancy.enabled
-      return if devise_controller? || peek_controller?
+      return if devise_controller?
 
       raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account.persisted?
     end
@@ -74,9 +70,5 @@ class ApplicationController < ActionController::Base
 
     def ssl_configured?
       ActiveRecord::Type::Boolean.new.cast(Settings.ssl_configured)
-    end
-
-    def peek_controller?
-      is_a? Peek::ResultsController
     end
 end
