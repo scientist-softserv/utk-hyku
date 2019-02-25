@@ -96,9 +96,6 @@ gem 'lograge'
 gem 'zk'
 
 gem 'mods', '~> 2.4'
-gem 'riiif', '~> 1.1'
-
-gem 'iiif_manifest', '~> 0.5.0'
 
 group :aws, :test do
   gem 'carrierwave-aws'
@@ -113,3 +110,5 @@ gem 'sidekiq'
 gem 'secure_headers'
 
 gem 'honeybadger', '~> 3.0'
+
+gem 'riiif', '~> 1.1'
