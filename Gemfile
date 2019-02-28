@@ -90,19 +90,12 @@ gem 'config', '~> 1.5', '>= 1.5.1'
 gem 'is_it_working'
 gem 'rolify'
 
-gem 'peek'
-gem 'peek-faraday'
-gem 'peek-git'
-gem 'peek-performance_bar'
-gem 'peek-pg'
-gem 'peek-redis'
-
 gem 'flipflop', '~> 2.3'
 gem 'lograge'
 
 gem 'zk'
 
-gem 'mods', '~> 2.1'
+gem 'mods', '~> 2.4'
 gem 'riiif', '~> 1.1'
 
 gem 'iiif_manifest', '~> 0.5.0'
@@ -115,7 +108,6 @@ group :aws do
   gem 'active_elastic_job', '~> 2.0'
 end
 
-gem 'peek-sidekiq'
 gem 'sidekiq'
 
 gem 'secure_headers'
