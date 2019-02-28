@@ -3,7 +3,7 @@
 Code: 
 [![Build Status](https://travis-ci.org/samvera/hyku.svg)](https://travis-ci.org/samvera/hyku)
 [![Coverage Status](https://coveralls.io/repos/samvera/hyku/badge.svg?branch=master&service=github)](https://coveralls.io/github/samvera/hyku?branch=master)
-[![Stories in Ready](https://img.shields.io/waffle/label/samvera-labs/hyku/ready.svg)](https://waffle.io/samvera-labs/hyku)
+[![Stories in Ready](https://img.shields.io/waffle/label/samvera/hyku/ready.svg)](https://waffle.io/samvera/hyku)
 
 Docs: 
 [![Documentation](http://img.shields.io/badge/DOCUMENTATION-wiki-blue.svg)](https://github.com/samvera/hyku/wiki)
