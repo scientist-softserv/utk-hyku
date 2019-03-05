@@ -49,7 +49,7 @@ DISABLE_REDIS_CLUSTER=true bundle exec rails server -b 0.0.0.0
 ```
 ### For testing
 
-See the [Hyku Development Guide](https://github.com/samvera-labs/hyku/wiki/Hyku-Development-Guide) for how to run tests.
+See the [Hyku Development Guide](https://github.com/samvera/hyku/wiki/Hyku-Development-Guide) for how to run tests.
 
 ### Working with Translations
 
