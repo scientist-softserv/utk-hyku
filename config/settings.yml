@@ -59,6 +59,7 @@ geonames_username: 'jcoyne'
 
 # The address to which the contact form is submitted
 contact_email: ""
+contact_email_to: ""
 
 devise:
   account_signup: true
