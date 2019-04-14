@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
+
+gem 'activerecord-nulldb-adapter'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -76,6 +78,7 @@ group :development do
 end
 
 gem 'blacklight', '~> 6.7'
+gem 'blacklight_oai_provider', '~> 6.0'
 
 gem 'hyrax', '~>2.3.0'
 gem 'rsolr', '~> 2.0'
@@ -96,9 +99,6 @@ gem 'lograge'
 gem 'zk'
 
 gem 'mods', '~> 2.4'
-gem 'riiif', '~> 1.1'
-
-gem 'iiif_manifest', '~> 0.5.0'
 
 group :aws, :test do
   gem 'carrierwave-aws'
@@ -113,3 +113,4 @@ gem 'sidekiq'
 gem 'secure_headers'
 
 gem 'honeybadger', '~> 3.0'
+gem 'riiif', '~> 1.1'

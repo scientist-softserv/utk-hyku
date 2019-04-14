@@ -1,9 +1,9 @@
 # Generated via
-#  `rails generate hyrax:work Image`
+#  `rails generate hyrax:work GenericWork`
 require 'rails_helper'
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.describe 'Create a Image', js: true do
+RSpec.describe 'Create a GenericWork', js: true do
   include Warden::Test::Helpers
   context 'a logged in user' do
     let(:user_attributes) do
@@ -18,7 +18,8 @@ RSpec.describe 'Create a Image', js: true do
       Sipity::Workflow.create!(
         active: true,
         name: 'test-workflow',
-        permission_template: permission_template
+        permission_template:
+        permission_template
       )
     end
 
@@ -43,10 +44,10 @@ RSpec.describe 'Create a Image', js: true do
       click_link "Add new work"
 
       # If you generate more than one work uncomment these lines
-      choose "payload_concern", option: "Image"
+      choose "payload_concern", option: "GenericWork"
       click_button "Create work"
 
-      expect(page).to have_content "Add New Image"
+      expect(page).to have_content "Add New Work"
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
@@ -64,7 +65,7 @@ RSpec.describe 'Create a Image', js: true do
       # select box. Click outside the box so the next line can't find
       # its element
       find('body').click
-      choose('image_visibility_open')
+      choose('generic_work_visibility_open')
       # rubocop:disable Metrics/LineLength
       expect(page).to have_content('Please note, making something visible to the world (i.e. marking this as Public) may be viewed as publishing which could impact your ability to')
       # rubocop:enable Metrics/LineLength
