@@ -56,6 +56,8 @@ GEM
       arel (~> 8.0)
     activerecord-import (0.25.0)
       activerecord (>= 3.2)
+    activerecord-nulldb-adapter (0.3.9)
+      activerecord (>= 2.0.0)
     activesupport (5.1.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -68,11 +70,11 @@ GEM
     apartment (1.2.0)
       activerecord (>= 3.1.2, < 6.0)
       rack (>= 1.3.6)
-    archive-zip (0.11.0)
+    archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (8.6.4)
+    autoprefixer-rails (9.4.10)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -111,9 +113,13 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
-    bootstrap-sass (3.3.7)
+    blacklight_oai_provider (6.0.0)
+      blacklight (~> 6.0)
+      oai (~> 0.4)
+      rails (>= 4.2, < 6)
+    bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+      sassc (>= 2.0.0)
     breadcrumbs_on_rails (3.0.1)
     browse-everything (0.14.2)
       addressable (~> 2.5)
@@ -148,7 +154,7 @@ GEM
       carrierwave (>= 0.7, < 2.0)
     childprocess (0.7.0)
       ffi (~> 1.0, >= 1.0.11)
-    chromedriver-helper (1.2.0)
+    chromedriver-helper (2.1.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     clipboard-rails (1.7.1)
@@ -181,7 +187,7 @@ GEM
     deep_merge (1.1.1)
     deprecation (1.0.0)
       activesupport
-    devise (4.5.0)
+    devise (4.6.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -252,6 +258,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
       faraday
+    faraday_middleware (0.13.1)
+      faraday (>= 0.7.4, < 1.0)
     fcrepo_wrapper (0.9.0)
       ruby-progressbar
     ffi (1.9.25)
@@ -540,6 +548,10 @@ GEM
       activesupport (>= 3.2.18)
       i18n
       nokogiri
+    oai (0.4.0)
+      builder (>= 3.1.0)
+      faraday
+      faraday_middleware
     oauth (0.5.4)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
@@ -677,11 +689,12 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
-    responders (2.4.0)
-      actionpack (>= 4.2.0, < 5.3)
-      railties (>= 4.2.0, < 5.3)
+    responders (2.4.1)
+      actionpack (>= 4.2.0, < 6.0)
+      railties (>= 4.2.0, < 6.0)
     retriable (3.1.2)
-    riiif (1.4.4)
+    riiif (1.7.1)
+      deprecation (>= 1.0.0)
       railties (>= 4.2, < 6)
     rolify (5.1.0)
     rsolr (2.2.1)
@@ -735,6 +748,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.0.1)
+      ffi (~> 1.9)
+      rake
     scss_lint (0.54.0)
       rake (>= 0.9, < 13)
       sass (~> 3.4.20)
@@ -843,8 +859,8 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.3.0)
     useragent (0.16.8)
-    warden (1.2.7)
-      rack (>= 1.0)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -870,8 +886,10 @@ PLATFORMS
 DEPENDENCIES
   active-fedora (>= 11.1.4)
   active_elastic_job (~> 2.0)
+  activerecord-nulldb-adapter
   apartment
   blacklight (~> 6.7)
+  blacklight_oai_provider (~> 6.0)
   byebug
   capybara
   carrierwave-aws
@@ -891,7 +909,6 @@ DEPENDENCIES
   hyrax (~> 2.3.0)
   i18n-debug
   i18n-tasks
-  iiif_manifest (~> 0.5.0)
   is_it_working
   jbuilder (~> 2.5)
   jquery-rails
