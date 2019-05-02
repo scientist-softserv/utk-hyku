@@ -123,6 +123,8 @@ services:
       - db_migrate
     expose:
       - 80
+    #ports:
+      # 3000:80 # uncomment this if you dont use dory or another proxy
 
   workers:
     extends:

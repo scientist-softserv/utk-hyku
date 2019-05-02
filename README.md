@@ -36,6 +36,33 @@ Jump In: [![Slack Status](http://slack.samvera.org/badge.svg)](http://slack.samv
 
 ## Running the stack
 
+### For development / testing with Docker
+
+#### Dory
+
+On OS X or Linux we recommend running [Dory](https://github.com/FreedomBen/dory). It acts as a proxy allowing you to access domains locally such as hyku.docker or tenant.hyku.docker, making multitenant development more straightforward and prevents the need to bind ports locally.  You can still run in development via docker with out Dory, but to do so please uncomment the ports section in docker-compose.yml and then find the running application at localhost:3000
+
+```bash
+gem install dory
+dory up
+```
+
+#### Basic steps
+
+```bash
+docker-compose up web # web here means you can start and stop Rails w/o starting or stopping other services. `docker-compose stop` when done shuts everything else down.
+```
+
+Once that starts (you'll see the line `Passenger core running in multi-application mode.` to indicate a successful boot), you can view your app in a web browser with at either hyku.docker or localhost:3000 (see above)
+
+#### Tests in Docker
+
+The full spec suite can be run in docker locally. There are several ways to do this, but one way is to run the following:
+
+```bash
+docker-compose exec web rake
+```
+
 ### For development
 
 ```bash
@@ -67,7 +94,7 @@ https://github.com/hybox/aws
 
 ### With Docker
 
-We distribute a `docker-compose.yml` configuration for running the Hyku stack and application using docker. Once you have [docker](https://docker.com) installed and running, launch the stack using e.g.:
+We distribute two `docker-compose.yml` configuration files.  The first is set up for development / running the specs. The other, `docker-compose.production.yml` is for running the Hyku stack in a production setting. . Once you have [docker](https://docker.com) installed and running, launch the stack using e.g.:
 
 ```bash
 docker-compose up -d
