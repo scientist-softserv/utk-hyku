@@ -59,6 +59,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :account, only: [:edit, :update]
+    resource :work_types, only: [:edit, :update]
     resources :users, only: [:destroy]
     resources :groups do
       member do
