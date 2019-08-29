@@ -62,7 +62,7 @@ RSpec.configure do |config|
 
   # only run aws tests from CI (or w/ `--tag aws`) and only run it on the main repo, since that
   # is where the valid aws keys live. TRAVIS_PULL_REQUEST_SLUG is "" when the job is a push job
-  unless ENV['CI'] &&
+  unless ENV['TRAVIS'] &&
          (ENV['TRAVIS_PULL_REQUEST_SLUG'].match('samvera-labs/hyku') || ENV['TRAVIS_PULL_REQUEST_SLUG'].blank?)
     config.filter_run_excluding(aws: true)
   end
