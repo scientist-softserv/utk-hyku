@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'active-fedora', '>= 11.1.4'
-
+gem 'flutie'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -114,4 +114,10 @@ gem 'sidekiq'
 gem 'secure_headers'
 
 gem 'honeybadger', '~> 3.0'
+
+gem 'codemirror-rails'
 gem 'riiif', '~> 1.1'
+
+gem 'bootstrap-datepicker-rails'
+gem 'parser', '~> 2.5.3'
+gem 'tether-rails'
