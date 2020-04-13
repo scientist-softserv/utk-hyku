@@ -1,3 +1,4 @@
+# Copied from hyrax 2.5.1 to override the mail to
 module Hyrax
   class ContactForm
     include ActiveModel::Model
@@ -14,11 +15,16 @@ module Hyrax
 
     # Declare the e-mail headers. It accepts anything the mail method
     # in ActionMailer accepts.
+    ###### OVERRODE the to: field to add the Tenant's email, first
+    def contact_email
+      Site.contact_email.present? ?  Site.contact_email : Settings.contact_email_to
+    end
+
     def headers
-      # hyrax send the mail 'from' the submitter, which doesnt work on most smtp transports
+      ## override hyrax 2.5.1 send the mail 'from' the submitter, which doesnt work on most smtp transports
       {
         subject: "#{Hyrax.config.subject_prefix} #{email} #{subject}",
-        to: Settings.contact_email_to,
+        to: self.contact_email,
         from: Settings.contact_email
       }
     end
