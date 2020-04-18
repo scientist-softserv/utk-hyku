@@ -25,7 +25,8 @@ module Hyrax
       {
         subject: "#{Hyrax.config.subject_prefix} #{email} #{subject}",
         to: self.contact_email,
-        from: Settings.contact_email
+        from: Settings.contact_email,
+        reply_to: email
       }
     end
 
