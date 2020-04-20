@@ -15,7 +15,6 @@ RSpec.describe 'Site contact configuration' do
         expect(page).to have_current_path(edit_site_contact_path)
         expect(page).to have_field('Contact email')
       end
-
     end
   end
 end
