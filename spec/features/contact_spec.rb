@@ -11,8 +11,7 @@ RSpec.describe 'Site contact configuration' do
         visit edit_site_contact_path
         fill_in 'Contact email', with: 'contact@email.com'
         click_on 'Save'
-        # TODO(@dlim87): this is another test where capybara is getting logged out after an action
-        expect(page).to have_current_path(edit_site_contact_path)
+        expect(page).to have_current_path(edit_site_contact_path(locale: 'en'))
         expect(page).to have_field('Contact email')
       end
 
