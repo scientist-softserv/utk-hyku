@@ -6,7 +6,7 @@ class AppearanceForm < Hyrax::Forms::Admin::Appearance
   delegate :default_collection_image, :default_collection_image?, to: :site
   delegate :default_work_image, :default_work_image?, to: :site
 
-  # Whitelisted parameters
+  # Permitted parameters
   def self.permitted_params
     super + banner_fields + logo_fields + directory_fields + default_image_fields
   end
