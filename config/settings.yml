@@ -58,7 +58,8 @@ google_analytics_id:
 geonames_username: 'jcoyne'
 
 # The address to which the contact form is submitted
-contact_email: ""
+contact_email: "hykuup@notch8.com"
+contact_email_to: ""
 
 devise:
   account_signup: true

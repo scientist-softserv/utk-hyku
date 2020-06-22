@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resource :site, only: [:update] do
     resources :roles, only: [:index, :update]
     resource :labels, only: [:edit, :update]
+    resource :contact, only: [:edit, :update]
   end
 
   root 'hyrax/homepage#index'
