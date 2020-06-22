@@ -79,7 +79,7 @@ module Proprietor
         authorize! :read, :admin_dashboard
       end
 
-      # Never trust parameters from the scary internet, only allow the white list through.
+      # Never trust parameters from the scary internet, only allow the permitted parameters through.
       def account_params
         params.require(:account).permit(:name, :cname, :title,
                                         admin_emails: [],
