@@ -6,7 +6,7 @@ RSpec.describe Stanford::Importer::ModsParser do
   let(:attributes) { parser.attributes }
 
   describe '#collection_attributes' do
-    let(:file) { 'spec/fixtures/mods/shpc/kx532cb7981.mods' }
+    let(:file) { File.join(fixture_path, 'mods', 'shpc', 'kx532cb7981.mods') }
 
     subject { parser.collection_attributes }
 
@@ -16,7 +16,7 @@ RSpec.describe Stanford::Importer::ModsParser do
   end
 
   describe '#record_attributes' do
-    let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+    let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
     subject { parser.record_attributes }
 

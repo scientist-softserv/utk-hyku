@@ -7,7 +7,7 @@ RSpec.shared_examples "csv_importer" do
         file: ["world.png"]
       }
     end
-    let(:factory) { described_class.new(attributes, 'spec/fixtures/images') }
+    let(:factory) { described_class.new(attributes, File.join(fixture_path, 'images')) }
 
     before { factory.run }
 
@@ -27,7 +27,7 @@ RSpec.shared_examples "csv_importer" do
       end
 
       it "updates metadata" do
-        new_factory = described_class.new(new_attr, 'spec/fixtures/images')
+        new_factory = described_class.new(new_attr, File.join(fixture_path, 'images'))
         new_factory.run
         expect(work.last.title).to eq(["Squid tofu banjo"])
       end

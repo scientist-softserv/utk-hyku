@@ -6,7 +6,7 @@ RSpec.describe Importer::ModsParser do
 
   describe 'Determine which kind of record it is:' do
     describe 'for a collection:' do
-      let(:file) { 'spec/fixtures/mods/shpc/kx532cb7981.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'kx532cb7981.mods') }
 
       it 'knows it is a Collection' do
         expect(parser.collection?).to eq true
@@ -16,7 +16,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     describe 'for an image:' do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'knows it is an Image' do
         expect(parser.image?).to eq true
@@ -28,7 +28,7 @@ RSpec.describe Importer::ModsParser do
 
   describe '#attributes for an Image record' do
     let(:ns_decl) { "xmlns='#{Mods::MODS_NS}'" }
-    let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+    let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
     it 'finds metadata for the image' do
       expect(attributes[:description]).to eq []
@@ -50,7 +50,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has a general (untyped) note' do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'imports notes' do
         expect(attributes[:notes_attributes].first[:value]).to start_with(
@@ -60,7 +60,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has a publisher', skip: "need a record with originInfo" do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'imports publisher' do
         expect(attributes[:publisher]).to eq ['[Cross & Dimmit Pictures]']
@@ -68,7 +68,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has a photographer', skip: "we're not doing relators beyond contributor" do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'imports photographer' do
         expect(attributes[:photographer]).to eq ['http://id.loc.gov/authorities/names/n97003180']
@@ -94,7 +94,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has coordinates', skip: 'Need metadata with geo data' do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'imports coordinates' do
         expect(attributes[:latitude]).to eq ['34.442982']
@@ -134,7 +134,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has a range of dateIssued', skip: "no dates on this record" do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'imports issued' do
         expect(attributes[:issued_attributes]).to eq [
@@ -148,7 +148,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has a single dateIssued', skip: "no dates on this record" do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'imports issued' do
         expect(attributes[:issued_attributes]).to eq [
@@ -200,7 +200,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has an alternative title', skip: "Need a record with alt title" do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'distinguishes between title and alternative title' do
         expect(attributes[:title]).to eq ['Stanford residences -- Sacramento -- Muybridge']
@@ -209,7 +209,7 @@ RSpec.describe Importer::ModsParser do
     end
 
     context 'with a file that has placeTerm', skip: 'file has no originInfo' do
-      let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+      let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
       it 'reads the place' do
         expect(attributes[:place_of_publication]). to eq ['Santa Barbara, California']
@@ -218,7 +218,7 @@ RSpec.describe Importer::ModsParser do
   end
 
   describe '#attributes for a Collection record' do
-    let(:file) { 'spec/fixtures/mods/shpc/kx532cb7981.mods' }
+    let(:file) { File.join(fixture_path, 'mods', 'shpc', 'kx532cb7981.mods') }
 
     it 'finds the metadata' do
       expect(attributes[:title]).to eq ['Stanford historical photograph collection, 1887-circa 1996 (inclusive)']
