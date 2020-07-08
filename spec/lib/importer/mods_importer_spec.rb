@@ -2,7 +2,7 @@ require 'importer'
 require 'importer/mods_parser'
 
 RSpec.describe Importer::ModsImporter, :clean do
-  let(:image_directory) { 'spec/fixtures/images' }
+  let(:image_directory) { File.join(fixture_path, 'images') }
   let(:importer) { described_class.new(image_directory) }
   let(:actor) { double }
 
@@ -11,7 +11,7 @@ RSpec.describe Importer::ModsImporter, :clean do
   end
 
   describe '#import an image' do
-    let(:file) { 'spec/fixtures/mods/shpc/druid_xv169dn4538.mods' }
+    let(:file) { File.join(fixture_path, 'mods', 'shpc', 'druid_xv169dn4538.mods') }
 
     it 'creates a new image and a collection' do
       expect(actor).to receive(:create).with(Hyrax::Actors::Environment) do |k|
@@ -44,7 +44,7 @@ RSpec.describe Importer::ModsImporter, :clean do
   end
 
   describe '#import a Collection' do
-    let(:file) { 'spec/fixtures/mods/shpc/kx532cb7981.mods' }
+    let(:file) { File.join(fixture_path, 'mods', 'shpc', 'kx532cb7981.mods') }
 
     it 'creates a collection' do
       coll = nil
