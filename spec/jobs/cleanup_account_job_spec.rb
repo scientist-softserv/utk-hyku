@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe CleanupAccountJob do
   let!(:account) do
     FactoryBot.create(:account).tap do |acc|
