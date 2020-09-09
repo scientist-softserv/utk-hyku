@@ -6,16 +6,18 @@
   <div class="panel-heading">
       <%= t('.invite_users') %>
   </div>
+
   <div class="panel-body">
-      <%# user_invitation_path is provided by devise_invitable %>
-      <%= simple_form_for :user,  url: main_app.user_invitation_path, html: { class: 'form-inline pull-left' } do |f| %>
-        <div class="form-group">
-          <%= f.hint :email %>
-          <%= f.label :email, class: "control-label", required: false %>
-          <%= f.input_field :email, class: "form-control", value: "" %>
-          <%= f.submit t('.add'), class: 'btn btn-primary' %>
-        </div>
-      <% end %>
+    <%# user_invitation_path is provided by devise_invitable %>
+    <%= simple_form_for :user,  url: main_app.user_invitation_path, html: { class: 'form-inline pull-left' } do |f| %>
+      <div class="form-group">
+        <%= f.hint :email %>
+        <%= f.label :email, class: "control-label", required: false %>
+        <%= f.input_field :email, class: "form-control", value: "" %>
+        <%= f.input :roles, required: false %>'
+        <%= f.submit t('.add'), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
 </div>
 

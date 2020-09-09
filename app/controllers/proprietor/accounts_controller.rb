@@ -40,7 +40,8 @@ module Proprietor
     # POST /accounts.json
     def create
       respond_to do |format|
-        if CreateAccount.new(@account).save
+        create_account = CreateAccount.new(@account, super_and_current_users)
+        if create_account.save
           format.html { redirect_to [:proprietor, @account], notice: 'Account was successfully created.' }
           format.json { render :show, status: :created, location: @account.cname }
         else
