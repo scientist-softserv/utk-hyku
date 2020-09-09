@@ -19,10 +19,30 @@ class User < ApplicationRecord
 
   before_create :add_default_roles
 
+  scope :for_repository, -> {
+    joins(:roles)
+  }
+
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier.
   def to_s
     email
+  end
+
+  def is_superadmin
+    has_role? :superadmin
+  end
+
+  # This comes from a checkbox in the proprietor interface
+  # Rails checkboxes are often nil or "0" so we handle that
+  # case directly
+  def is_superadmin=(value)
+    value = ActiveModel::Type::Boolean.new.cast(value)
+    if value
+      add_role :superadmin
+    else
+      remove_role :superadmin
+    end
   end
 
   def site_roles
@@ -50,9 +70,10 @@ class User < ApplicationRecord
     []
   end
 
-  private
-
-    def add_default_roles
-      add_role :admin, Site.instance unless self.class.any? || Account.global_tenant?
-    end
+  # If this user is the first user on the tenant, they become its admin
+  # unless we are in the global tenant
+  def add_default_roles
+    add_role :admin, Site.instance unless
+      self.class.joins(:roles).where("roles.name = ?", "admin").any? || Account.global_tenant?
+  end
 end
