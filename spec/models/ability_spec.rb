@@ -17,6 +17,40 @@ RSpec.describe Ability do
     let(:user) { FactoryBot.create(:user) }
 
     it { is_expected.not_to be_able_to(:manage, :all) }
+
+    describe "#user_groups" do
+      subject { ability.user_groups }
+
+      it "does not have the registered group" do
+        expect(subject).to_not include 'registered'
+      end
+
+      it "does not have the admin group" do
+        expect(subject).to_not include 'admin'
+      end
+    end
+  end
+
+  describe 'an ordinary user with a role on this tenant' do
+    let(:user) do
+      u = FactoryBot.create(:user)
+      u.add_role(:depositor)
+      u
+    end
+
+    it { is_expected.not_to be_able_to(:manage, :all) }
+
+    describe "#user_groups" do
+      subject { ability.user_groups }
+
+      it "does have the registered group" do
+        expect(subject).to include 'registered'
+      end
+
+      it "does not have the admin group" do
+        expect(subject).to_not include 'admin'
+      end
+    end
   end
 
   describe 'an administrative user' do
