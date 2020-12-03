@@ -49,7 +49,7 @@ class Ability
 
     @user_groups = default_user_groups
     @user_groups |= current_user.groups if current_user.respond_to? :groups
-    @user_groups |= ['registered'] if (!current_user.new_record? && current_user.roles.count > 0)
+    @user_groups |= ['registered'] if !current_user.new_record? && current_user.roles.count.positive?
     @user_groups
   end
 end

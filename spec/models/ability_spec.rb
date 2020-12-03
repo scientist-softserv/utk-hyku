@@ -22,11 +22,11 @@ RSpec.describe Ability do
       subject { ability.user_groups }
 
       it "does not have the registered group" do
-        expect(subject).to_not include 'registered'
+        expect(subject).not_to include 'registered'
       end
 
       it "does not have the admin group" do
-        expect(subject).to_not include 'admin'
+        expect(subject).not_to include 'admin'
       end
     end
   end
@@ -48,7 +48,7 @@ RSpec.describe Ability do
       end
 
       it "does not have the admin group" do
-        expect(subject).to_not include 'admin'
+        expect(subject).not_to include 'admin'
       end
     end
   end
