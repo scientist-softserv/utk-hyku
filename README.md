@@ -138,7 +138,8 @@ Hyku supports multitenancy using the `apartment` gem. `apartment` works best wit
 ## Importing
 ### enable Bulkrax:
 
-Set bulkrax -> enabled to true in settings (via file or env variable)
+- Set bulkrax -> enabled to true in settings (via file or env variable)
+- Add `  require bulkrax/application` to app/assets/javascripts/application.js and app/assets/stylesheets/application.css files.
 
 (in a `docker-compose exec web bash` if you're doing docker otherwise in your terminal)
 ```bash
