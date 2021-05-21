@@ -1,5 +1,24 @@
 version: '3.8'
 
+x-app: &app
+  build:
+    context: .
+    target: hyku-base
+    args:
+      - EXTRA_APK_PACKAGES=less vim bash # TODO: this doesn't install vim, why?
+  image: registry.gitlab.com/notch8/britishlibrary:${TAG:-latest}
+  env_file:
+    - .env
+  # NOTE: all common env variables moved to .env
+  volumes:
+    - uploads:/app/samvera/hyrax-webapp/tmp/uploads
+    - assets:/app/samvera/hyrax-webapp/public/assets
+    - cache:/app/samvera/hyrax-webapp/tmp/cache
+    - .:/app/samvera/hyrax-webapp
+  networks:
+    internal:
+
+
 volumes:
   fcrepo:
   solr:
@@ -42,7 +61,7 @@ services:
       - SOLR_ADMIN_USERNAME=admin
       - SOLR_ADMIN_PASSWORD=admin
       - SOLR_COLLECTION=hydra-development
-      - SOLR_CLOUD_BOOTSTRAP=yes
+      - SOLR_CLOUD_BOOTSTRAP=no
       - SOLR_ENABLE_CLOUD_MODE=yes
       - SOLR_ENABLE_AUTHENTICATION=yes
       - SOLR_PORT_NUMBER=8983
@@ -86,24 +105,6 @@ services:
     networks:
       internal:
 
-  x-app: &app
-    build:
-      context: .
-      target: hyku-base
-      # args:
-      #   - EXTRA_APK_PACKAGES="less vim bash" # TODO: this doesn't install vim, why?
-    image: ghcr.io/samvera/hyku:latest
-    env_file:
-      - .env
-    # NOTE: all common env variables moved to .env
-    volumes:
-      - uploads:/app/samvera/hyrax-webapp/tmp/uploads
-      - assets:/app/samvera/hyrax-webapp/public/assets
-      - cache:/app/samvera/hyrax-webapp/tmp/cache
-      - .:/app/samvera/hyrax-webapp
-    networks:
-      internal:
-
   web:
     <<: *app
     environment:
@@ -141,19 +142,17 @@ services:
       - db_migrate
 
 
-  check_volumes:
+  # Do not recurse through all of tmp. derivitives will make booting
+  # very slow and eventually just time out as data grows
+ check_volumes:
     <<: *app
     user: root
-    entrypoint: ["sh", "-c"]
+    entrypoint: ["sh", "-x", "-c"]
     command:
       - >
-        # Do not recurse through all of tmp. derivitives will make booting
-        # very slow and eventually just time out as data grows
-        chown -f app:app /app/samvera/hyrax-webapp/tmp
-        chown -fR app:app /app/samvera/hyrax-webapp/tmp/pids
-        chown -fR app:app /app/samvera/hyrax-webapp/tmp/uploads
-        chown -fR app:app /app/samvera/hyrax-webapp/public/assets
-        chown -fR app:app /app/samvera/hyrax-webapp/tmp/cache
+        chown -R app:app /app/samvera/hyrax-webapp/public/uploads &&
+        chown -R app:app /app/samvera/hyrax-webapp/public/assets &&
+        chown -R app:app /app/samvera/hyrax-webapp/tmp/cache
 
   initialize_app:
     <<: *app
