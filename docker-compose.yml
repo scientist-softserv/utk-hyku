@@ -11,7 +11,7 @@ x-app: &app
     - .env
   # NOTE: all common env variables moved to .env
   volumes:
-    - uploads:/app/samvera/hyrax-webapp/tmp/uploads
+    - uploads:/app/samvera/hyrax-webapp/public/uploads
     - assets:/app/samvera/hyrax-webapp/public/assets
     - cache:/app/samvera/hyrax-webapp/tmp/cache
     - .:/app/samvera/hyrax-webapp
