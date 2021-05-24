@@ -6,7 +6,7 @@ x-app: &app
     target: hyku-base
     args:
       - EXTRA_APK_PACKAGES=less vim bash # TODO: this doesn't install vim, why?
-  image: registry.gitlab.com/notch8/britishlibrary:${TAG:-latest}
+  image: ghcr.io/samvera/hyku:latest
   env_file:
     - .env
   # NOTE: all common env variables moved to .env
