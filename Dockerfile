@@ -2,9 +2,13 @@ ARG HYRAX_IMAGE_VERSION=3.0.1
 FROM ghcr.io/samvera/hyrax/hyrax-base:$HYRAX_IMAGE_VERSION as hyku-base
 
 USER root
+
+ARG EXTRA_APK_PACKAGES="openjdk11-jre"
 RUN apk --no-cache upgrade && \
-  apk --no-cache add libxml2-dev \
-  openjdk11-jre
+  apk --no-cache add \
+    libxml2-dev \
+    $EXTRA_APK_PACKAGES
+
 USER app
 
 COPY --chown=1001:101 $APP_PATH /app/samvera/hyrax-webapp
@@ -15,10 +19,13 @@ FROM hyku-base as hyku-worker
 ENV MALLOC_ARENA_MAX=2
 
 USER root
-RUN apk --no-cache add bash \
-  ffmpeg \
+
+ARG EXTRA_WORKER_APK_PACKAGES="ffmpeg"
+RUN apk --no-cache add \
   mediainfo \
-  perl
+  perl \
+  $EXTRA_WORKER_APK_PACKAGES
+
 USER app
 
 RUN mkdir -p /app/fits && \
