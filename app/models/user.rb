@@ -23,6 +23,11 @@ class User < ApplicationRecord
     joins(:roles)
   }
 
+  # set default scope to exclude guest users
+  def self.default_scope
+    where(guest: false)
+  end
+
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier.
   def to_s
