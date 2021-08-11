@@ -252,6 +252,7 @@ hyku.staging.stop:
 
 hyku.production:
   stage: staging
+  extends:
     - .deploy
   environment:
     name: hyku.production
