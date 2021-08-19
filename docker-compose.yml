@@ -72,7 +72,6 @@ services:
     expose:
       - 8983
     volumes:
-      - .:/app
       - solr:/bitnami
     networks:
       internal:
@@ -144,7 +143,7 @@ services:
       context: .
       target: hyku-worker
       args:
-        - EXTRA_WORKER_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
+        - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
     command: bundle exec sidekiq
     depends_on:
       check_volumes:

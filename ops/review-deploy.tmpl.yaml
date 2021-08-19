@@ -205,8 +205,8 @@ embargoRelease:
 leaseRelease:
   enabled: false
 
-imagePullSecrets:
-  - name: gitlab-registry
+# imagePullSecrets:
+#  - name: gitlab-registry
 
 fcrepo:
   enabled: true
