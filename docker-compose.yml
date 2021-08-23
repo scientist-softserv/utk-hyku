@@ -183,10 +183,13 @@ services:
     entrypoint: ["sh", "-c"]
     command:
       - >
-        solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
-        solrcloud-assign-configset.sh &&
-        SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
-        db-migrate-seed.sh
+        if [ ! -f "/app/samvera/hyrax-webapp/solr_db_initialized" ]; then
+          solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
+          solrcloud-assign-configset.sh &&
+          SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
+          db-migrate-seed.sh
+          touch /app/samvera/hyrax-webapp/solr_db_initialized
+        fi
     depends_on:
       - db
       - solr
