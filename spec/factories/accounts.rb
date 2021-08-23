@@ -26,7 +26,7 @@ FactoryBot.define do
     end
 
     trait(:public_schema) do
-      tenant  { 'public' }
+      tenant { 'public' }
     end
 
     factory :account_with_public_schema, traits: [:public_schema]
