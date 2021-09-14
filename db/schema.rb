@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_105649) do
   end
 
   create_table "featured_works", id: :serial, force: :cascade do |t|
-    t.integer "order", default: 5
+    t.integer "order", default: 6
     t.string "work_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -550,6 +550,9 @@ ActiveRecord::Schema.define(version: 2021_07_29_105649) do
     t.text "available_works", default: [], array: true
     t.string "directory_image"
     t.string "contact_email"
+    t.string "home_theme"
+    t.string "show_theme"
+    t.string "search_theme"
   end
 
   create_table "subject_local_authority_entries", id: :serial, force: :cascade do |t|
