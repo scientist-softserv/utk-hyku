@@ -27,11 +27,14 @@
   // allows full width if tabs are turned off with feature flipper
   .home-content {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
   }
 
   .home-tabs-left {
     min-width: 50%;
+  }
+  .home-tabs-right, .home-tabs-left {
+    margin: 0 10px;
   }
 }
 
