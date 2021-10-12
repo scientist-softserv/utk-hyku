@@ -46,11 +46,21 @@
     margin-left: auto;
   }
 
-  .work-show-items.col-sm-12 table {
-    overflow: scroll;
+  @media (max-width: 575px) {
+    .col-sm-12.work-show-items table.table-striped.related-files {
+      overflow-x: scroll;
+      display: block;
+      width: 100vw;
+      height: auto;
+    }
   }
 }
 
 .work-show ul.tabular li {
   word-wrap: break-word;
+}
+
+.navbar.navbar-default.navbar-static-top .container-fluid .row {
+  margin-left: 0px;
+  margin-right: 0px;
 }
