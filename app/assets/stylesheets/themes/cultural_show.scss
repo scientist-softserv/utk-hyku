@@ -4,7 +4,7 @@
     border-bottom: 1px solid #ddd;
 
     .tabular {
-      border-bottom: none;
+      border-bottom: 0;
     }
   }
 
@@ -24,10 +24,10 @@
     .relationships-box {
  
       .work-show {
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
         margin-top: 20px;
         padding: 8px;
-        border: 1px solid #ddd;
-        background-color: #f8f8f8;
  
         h4 {
           border-bottom: 2px solid #ddd;
@@ -62,8 +62,8 @@
   }
 
   .centered-media img.representative-media {
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
   }
 
   @media (max-width: 767px) {
@@ -74,10 +74,10 @@
 
   @media (max-width: 575px) {
     .col-sm-12.work-show-items table.table-striped.related-files {
-      overflow-x: scroll;
       display: block;
-      width: 100vw;
       height: auto;
+      overflow-x: scroll;
+      width: 100vw;
     }
   }
 }
