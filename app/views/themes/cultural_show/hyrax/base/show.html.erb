@@ -29,9 +29,6 @@
           <div class="col-xs-12 relationships-container">
             <div class='relationships-box'>
               <%= render 'relationships', presenter: @presenter %>
-              <% if @presenter.class == Hyrax::OerPresenter %>
-                <%= render 'related_items', presenter: @presenter %>
-              <% end %>
             </div>
           </div>
           <div class="col-sm-12 work-show-items">
