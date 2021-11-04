@@ -183,7 +183,7 @@ RSpec.describe Account, type: :model do
         expect(ActiveFedora.fedora.host).to eq 'http://example.com/fedora'
         expect(ActiveFedora.fedora.base_path).to eq '/dev'
         expect(Hyrax.config.redis_namespace).to eq 'foobaz'
-        expect(Hyrax::DOI::DataCiteRegistrar.mode).to eq 'test'
+        expect(Hyrax::DOI::DataCiteRegistrar.mode).to eq 'nil'
         expect(Hyrax::DOI::DataCiteRegistrar.prefix).to eq '10.1234'
         expect(Hyrax::DOI::DataCiteRegistrar.username).to eq 'user123'
         expect(Hyrax::DOI::DataCiteRegistrar.password).to eq 'pass123'
