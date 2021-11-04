@@ -1,12 +1,16 @@
 .cultural_show {
+
   dl.work-show dd {
     border-bottom: 1px solid #ddd;
+
     .tabular {
       border-bottom: none;
     }
   }
+
   dl.work-show {
     font-weight: 700;
+
     .tabular {
       border-bottom: 1px solid #ddd;
       font-size: 18px;
@@ -16,19 +20,24 @@
 
   .relationships-container {
     margin-bottom: 60px;
+
     .relationships-box {
+ 
       .work-show {
         margin-top: 20px;
         padding: 8px;
         border: 1px solid #ddd;
         background-color: #f8f8f8;
+ 
         h4 {
           border-bottom: 2px solid #ddd;
         }
+
         .table-responsive td {
           border-top: 0;
         }
       }
+
       ul.tabular > li > a {
         word-break: break-word;
       }
