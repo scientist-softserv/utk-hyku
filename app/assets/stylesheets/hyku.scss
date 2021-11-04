@@ -299,21 +299,21 @@ footer.navbar {
   padding: 0;
 }
 
-.hyc-bl-sort > form.per_page.form-horizontal {
-  margin-right: 0px;
-  margin-left: 0px;
+.hyc-bl-sort > .per_page.form-horizontal {
   border-bottom: 1px solid #ddd;
   margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
   padding-bottom: 1em;
 }
 
-.hyc-bl-sort > form.per_page.form-horizontal:before,
-.hyc-bl-sort > form.per_page.form-horizontal:after {
+.hyc-bl-sort > .per_page.form-horizontal::before,
+.hyc-bl-sort > .per_page.form-horizontal::after {
   display: table;
   content: " ";
 }
 
-.hyc-bl-sort > form.per_page.form-horizontal:after {
+.hyc-bl-sort > .per_page.form-horizontal::after {
   clear: both;
 }
 
@@ -324,7 +324,7 @@ footer.navbar {
 
 #users > .panel {
   .panel-body {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   ul,
@@ -342,10 +342,10 @@ footer.navbar {
 
 .defaultable-fonts div[class$="_font"] {
   margin-bottom: 0;
-}
-
-.defaultable-fonts div[class$="_font"] label {
-  display: block;
+  
+  label {
+    display: block;
+  }
 }
 
 .defaultable-fonts div.font-select {
@@ -406,6 +406,7 @@ a.restore-default-color {
 nav.navbar.navbar-default.navbar-static-top .container-fluid .row {
   margin-left: 0;
   margin-right: 0;
+  
   nav.navbar-nav.col-sm-5 {
     padding-right: 0;
   }
