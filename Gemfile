@@ -105,7 +105,6 @@ gem 'devise-i18n'
 gem 'devise_invitable', '~> 1.6'
 
 gem 'apartment'
-gem 'config', '>= 2.2.1', '< 4.0'
 gem 'is_it_working'
 gem 'rolify'
 
@@ -124,8 +123,10 @@ group :aws do
 end
 
 gem 'bootstrap-datepicker-rails'
+gem "cocoon"
 gem 'codemirror-rails'
 gem 'parser', '~> 2.5.3'
+gem 'rdf', '~> 3.1.15' # rdf 3.2.0 removed SerializedTransaction which ldp requires
 gem 'riiif', '~> 1.1'
 gem 'secure_headers'
 gem 'sidekiq'

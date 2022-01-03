@@ -7,7 +7,7 @@ class PerTenantSmtpInterceptor
 
   def self.delivering_email(message)
     Account.find_by(tenant: Apartment::Tenant.current)&.switch!
-    return if (mailer_settings = Settings.smtp_settings).blank?
+    return if (mailer_settings = Site.instance.account.smtp_settings).blank?
 
     if (from = mailer_settings.from).present?
       message.from = from

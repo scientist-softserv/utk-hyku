@@ -31,7 +31,7 @@ RSpec.describe 'Hyrax::UploadedFile' do # rubocop:disable RSpec/DescribeClass
   end
 
   describe CarrierWave::Storage::File do # default in dev/test
-    before { expect(Hyrax::UploadedFileUploader).to receive(:storage).and_return(described_class) }
+    before { expect(Hyrax::UploadedFileUploader).to receive(:storage).and_return(described_class).at_least(:once) }
 
     it_behaves_like 'Regular upload'
     it 'returns a SanitizedFile' do

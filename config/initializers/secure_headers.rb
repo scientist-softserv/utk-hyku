@@ -1,6 +1,6 @@
 SecureHeaders::Configuration.default do |config|
   config.cookies = {
-    secure: ActiveRecord::Type::Boolean.new.cast(Settings.ssl_configured) || SecureHeaders::OPT_OUT,
+    secure: ActiveRecord::Type::Boolean.new.cast(ENV.fetch('HYKU_SSL_CONFIGURED', false)) || SecureHeaders::OPT_OUT,
     httponly: true, # mark all cookies as "HttpOnly"
     samesite: {
       strict: true # mark all cookies as SameSite=Strict

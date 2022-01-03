@@ -2,7 +2,7 @@
 
 RSpec.describe Hyku::RegistrationsController, type: :controller do
   before do
-    allow(Settings.devise).to receive(:account_signup).and_return(account_signup_enabled)
+    allow_any_instance_of(Account).to receive(:allow_signup).and_return(account_signup_enabled)
     # Recommended by Devise: https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29
     @request.env['devise.mapping'] = Devise.mappings[:user]
   end

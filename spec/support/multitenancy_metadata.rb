@@ -1,15 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.configure do |config|
-  # The before and after blocks must run instantaneously, because Capybara
+  # The around blocks must run instantaneously, because Capybara
   # might not actually be used in all examples where it's included.
-  config.after do
-    example = RSpec.current_example
-    if example.metadata[:multitenant] || example.metadata[:singletenant]
-      allow(Settings.multitenancy).to receive(:enabled).and_call_original
-      Rails.application.reload_routes!
-    end
-  end
 
   # There are 3 optional flags available to a test block.  Only ONE will be active
   # at any given time.  They are (with areas of likely use):
@@ -23,26 +16,44 @@ RSpec.configure do |config|
   #   :controller - default to :faketenant, since most resource controllers can be tested
   #                 without routing as long as they get some account.
 
-  config.before do
-    example = RSpec.current_example
+  config.before do |example|
+    if !example.metadata[:multitenant] && !example.metadata[:singletenant]
+      if example.metadata[:faketenant] || example.metadata[:type] == :controller
+        example.metadata[:faketenant] = true if example.metadata[:type] == :controller # flag for cleanup later
+        acct = FactoryBot.build(:account, tenant: 'FakeTenant', cname: 'tenant1')
+        allow(acct).to receive(:persisted?).and_return true # nevertheless
+        allow(Account).to receive(:from_request).and_return(acct)
+      end
+    end
+  end
+
+  config.around do |example|
+    @multitenat = ENV['HYKU_MULTITENANT']
+    @admin_host = ENV['HYKU_ADMIN_HOST']
+    @default_host = ENV['HYKU_DEFAULT_HOST']
+
     if example.metadata[:multitenant]
-      allow(Settings.multitenancy).to receive(:enabled).and_return(true)
+      ENV['HYKU_MULTITENANT'] = "true"
       if ENV['WEB_HOST']
-        Settings.multitenancy.admin_host = ENV['WEB_HOST']
+        ENV['HYKU_ADMIN_HOST'] = ENV['WEB_HOST']
         # rubocop:disable Style/FormatStringToken
-        Settings.multitenancy.default_host = "%{tenant}.#{ENV['WEB_HOST']}"
+        ENV['HYKU_DEFAULT_HOST'] = "%{tenant}.#{ENV['WEB_HOST']}"
         # rubocop:enable Style/FormatStringToken
       end
       Rails.application.reload_routes!
     elsif example.metadata[:singletenant] || example.metadata[:type] == :feature
       example.metadata[:singletenant] = true if example.metadata[:type] == :feature # flag for cleanup later
-      allow(Settings.multitenancy).to receive(:enabled).and_return(false)
+      ENV['HYKU_MULTITENANT'] = "false"
       Rails.application.reload_routes!
-    elsif example.metadata[:faketenant] || example.metadata[:type] == :controller
-      example.metadata[:faketenant] = true if example.metadata[:type] == :controller # flag for cleanup later
-      acct = FactoryBot.build(:account, tenant: 'FakeTenant', cname: 'tenant1')
-      allow(acct).to receive(:persisted?).and_return true # nevertheless
-      allow(Account).to receive(:from_request).and_return(acct)
+    end
+
+    example.run
+
+    if example.metadata[:multitenant] || example.metadata[:singletenant]
+      ENV['HYKU_MULTITENANT'] = @multitenat
+      ENV['HYKU_ADMIN_HOST'] = @admin_host
+      ENV['HYKU_DEFAULT_HOST'] = @default_host
+      Rails.application.reload_routes!
     end
   end
 end

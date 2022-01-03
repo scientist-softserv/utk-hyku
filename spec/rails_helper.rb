@@ -5,10 +5,11 @@ ENV['RAILS_ENV'] ||= 'test'
 
 # In test most, unset some variables that can cause trouble
 # before booting up Rails
-ENV['SETTINGS__MULTITENANCY__ADMIN_HOST'] = nil
-ENV['SETTINGS__MULTITENANCY__ADMIN_ONLY_TENANT_CREATION'] = nil
-ENV['SETTINGS__MULTITENANCY__DEFAULT_HOST'] = nil
-ENV['SETTINGS__MULTITENANCY__ENABLED'] = nil
+ENV['HYKU_ADMIN_HOST'] = 'test.host'
+ENV['HYKU_ROOT_HOST'] = 'test.host'
+ENV['HYKU_ADMIN_ONLY_TENANT_CREATION'] = nil
+ENV['HYKU_DEFAULT_HOST'] = nil
+ENV['HYKU_MULTITENANT'] = 'true'
 
 require 'simplecov'
 SimpleCov.start('rails')
@@ -58,6 +59,8 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.default_max_wait_time = 8
 Capybara.default_driver = :rack_test
 
+ENV['WEB_HOST'] ||= `hostname -s`.strip
+
 if ENV['CHROME_HOSTNAME'].present?
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: {
@@ -79,11 +82,6 @@ if ENV['CHROME_HOSTNAME'].present?
   end
   Capybara.server_host = '0.0.0.0'
   Capybara.server_port = 3001
-  ENV['WEB_HOST'] ||= if ENV['IN_DOCKER']
-                        'web'
-                      else
-                        `hostname -s`.strip
-                      end
   Capybara.app_host = "http://#{ENV['WEB_HOST']}:#{Capybara.server_port}"
 else
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
@@ -143,6 +141,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
     Account.destroy_all
     CreateSolrCollectionJob.new.without_account('hydra-test') if ENV['IN_DOCKER']
+    CreateSolrCollectionJob.new.without_account('hydra-sample')
+    CreateSolrCollectionJob.new.without_account('hydra-cross-search-tenant', 'hydra-test, hydra-sample')
   end
 
   config.before do |example|

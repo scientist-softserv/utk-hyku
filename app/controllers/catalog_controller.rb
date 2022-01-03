@@ -339,21 +339,23 @@ class CatalogController < ApplicationController
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
 
+    # OAI Config fields
     config.oai = {
       provider: {
-        repository_name: Settings.oai.name,
-        repository_url: Settings.oai.url,
-        record_prefix: Settings.oai.prefix,
-        admin_email: Settings.oai.email,
-        sample_id: Settings.oai.sample_id
+        repository_name: ->(controller) { controller.send(:current_account)&.name.presence },
+        # repository_url:  ->(controller) { controller.oai_catalog_url },
+        record_prefix: ->(controller) { controller.send(:current_account).oai_prefix },
+        admin_email:   ->(controller) { controller.send(:current_account).oai_admin_email },
+        sample_id:     ->(controller) { controller.send(:current_account).oai_sample_identifier }
       },
       document: {
-        limit: 25, # number of records returned with each request, default: 15
+        limit: 100, # number of records returned with each request, default: 15
         set_fields: [ # ability to define ListSets, optional, default: nil
           { label: 'collection', solr_field: 'isPartOf_ssim' }
         ]
       }
     }
+
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5

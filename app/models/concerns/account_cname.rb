@@ -10,12 +10,11 @@ module AccountCname
     # @param [String] piece the tenant piece of the canonical name
     # @return [String] full canonical name
     # @raise [ArgumentError] if piece contains a trailing dot
-    # @see Settings.multitenancy.default_host
     def default_cname(piece)
       return unless piece
       raise ArgumentError, "param '#{piece}' must not contain trailing dots" if piece =~ /\.\Z/
       # rubocop:disable Style/FormatStringToken
-      default_host = Settings.multitenancy.default_host || "%{tenant}.#{admin_host}"
+      default_host = ENV.fetch('HYKU_DEFAULT_HOST', "%{tenant}.#{admin_host}")
       # rubocop:enable Style/FormatStringToken
       canonical_cname(format(default_host, tenant: piece.parameterize))
     end

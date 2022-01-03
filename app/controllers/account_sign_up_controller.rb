@@ -33,7 +33,7 @@ class AccountSignUpController < ProprietorController
     end
 
     def admin_only_tenant_creation?
-      Settings.multitenancy.admin_only_tenant_creation
+      ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_ADMIN_ONLY_TENANT_CREATION', false))
     end
 
     def first_user_registration_url

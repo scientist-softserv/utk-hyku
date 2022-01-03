@@ -5,7 +5,7 @@
     <h1><%= application_name %></h1>
     <p><%= t('application.tagline') %></p>
     <p>
-      <% if !Settings.multitenancy.admin_only_tenant_creation || can?(:manage, Account) %>
+      <% if !admin_only_tenant_creation? || can?(:manage, Account) %>
         <%= link_to t('hyku.splash.account_signup'), account_sign_up_path, class: 'btn btn-lg btn-sign-up' %>
       <% elsif !user_signed_in? %>
         <%= link_to t('hyku.splash.account_login'), main_app.new_user_session_path, class: 'btn btn-lg btn-sign-up' %>
