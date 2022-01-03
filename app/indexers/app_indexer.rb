@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WorkIndexer < Hyrax::WorkIndexer
+class AppIndexer < Hyrax::WorkIndexer
   # This indexes the default metadata. You can remove it if you want to
   # provide your own metadata and indexing.
   include Hyrax::IndexesBasicMetadata
@@ -10,9 +10,9 @@ class WorkIndexer < Hyrax::WorkIndexer
   include Hyrax::IndexesLinkedMetadata
 
   # Uncomment this block if you want to add custom indexing behavior:
-  # def generate_solr_document
-  #  super.tap do |solr_doc|
-  #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
-  #  end
-  # end
+  def generate_solr_document
+    super.tap do |solr_doc|
+      solr_doc[Solrizer.solr_name('account_cname')] = Site.instance&.account&.cname
+    end
+  end
 end
