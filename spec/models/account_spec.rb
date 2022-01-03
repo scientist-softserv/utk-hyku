@@ -53,7 +53,8 @@ RSpec.describe Account, type: :model do
     end
 
     it 'returns canonicalized value' do
-      allow(Settings.multitenancy).to receive(:default_host).and_return("%{tenant}.DEMO.hydrainabox.org.")
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_DEFAULT_HOST', anything).and_return("%{tenant}.DEMO.hydrainabox.org.")
       expect(described_class.default_cname('foobar')).to eq 'foobar.demo.hydrainabox.org'
       expect(described_class.default_cname('fooBAR')).to eq 'foobar.demo.hydrainabox.org'
       expect(described_class.default_cname('ONE.two.3')).to eq 'one-two-3.demo.hydrainabox.org'
@@ -70,18 +71,23 @@ RSpec.describe Account, type: :model do
 
   describe '.admin_host' do
     it 'uses the configured setting' do
-      allow(Settings.multitenancy).to receive(:admin_host).and_return('admin-host')
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_ADMIN_HOST', anything).and_return('admin-host')
       expect(described_class.admin_host).to eq 'admin-host'
     end
 
     it 'falls back to the HOST environment variable' do
-      allow(Settings.multitenancy).to receive(:admin_host).and_return(nil)
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_ADMIN_HOST', anything).and_return(nil)
+      allow(ENV).to receive(:[]).and_call_original
       allow(ENV).to receive(:[]).with('HOST').and_return('system-host')
       expect(described_class.admin_host).to eq 'system-host'
     end
 
     it 'falls back to localhost' do
-      allow(Settings.multitenancy).to receive(:admin_host).and_return(nil)
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_ADMIN_HOST', anything).and_return(nil)
+      allow(ENV).to receive(:[]).and_call_original
       allow(ENV).to receive(:[]).with('HOST').and_return(nil)
       expect(described_class.admin_host).to eq 'localhost'
     end
@@ -124,7 +130,7 @@ RSpec.describe Account, type: :model do
       it "reverts to using file store when cache is off" do
         account.settings[:cache_api] = false
         account.switch!
-        expect(Rails.application.config.cache_store).to eq([:file_store, nil])
+        expect(Rails.application.config.cache_store).to eq([:file_store, "/app/samvera/file_cache"])
       end
     end
 
@@ -134,7 +140,7 @@ RSpec.describe Account, type: :model do
       it "uses the file store" do
         expect(Rails.application.config.action_controller.perform_caching).to be_falsey
         expect(ActionController::Base.perform_caching).to be_falsey
-        expect(Rails.application.config.cache_store).to eq([:file_store, nil])
+        expect(Rails.application.config.cache_store).to eq([:file_store, "/app/samvera/file_cache"])
       end
     end
 
@@ -158,7 +164,7 @@ RSpec.describe Account, type: :model do
 
   describe '#switch' do
     let!(:previous_solr_url) { ActiveFedora::SolrService.instance.conn.uri.to_s }
-    let!(:previous_redis_namespace) { 'hyku' }
+    let!(:previous_redis_namespace) { 'hyrax' }
     let!(:previous_fedora_host) { ActiveFedora.fedora.host }
     let!(:previous_data_cite_mode) { Hyrax::DOI::DataCiteRegistrar.mode }
     let!(:previous_data_cite_prefix) { Hyrax::DOI::DataCiteRegistrar.prefix }
@@ -267,20 +273,25 @@ RSpec.describe Account, type: :model do
 
       context 'is set' do
         it 'builds default cname from name and default_host' do
-          allow(Settings.multitenancy).to receive(:default_host).and_return "%{tenant}.dev"
+          allow(ENV).to receive(:fetch).and_call_original
+          allow(ENV).to receive(:fetch).with('HYKU_DEFAULT_HOST', anything).and_return("%{tenant}.dev")
           expect(account1.errors).to be_empty
           expect(account1.domain_names.first.cname).to eq('example.dev')
         end
       end
 
       context 'is unset' do
+        around do |example|
+          default = ENV['HYKU_DEFAULT_TENANT']
+          example.run
+          ENV['HYKU_DEFAULT_TENANT'] = default
+        end
+
         it 'builds default cname from name and admin_host' do
-          original = Settings.multitenancy.default_host
-          Settings.multitenancy.default_host = nil
-          allow(Settings.multitenancy).to receive(:admin_host).and_return('admin-host')
+          allow(ENV).to receive(:fetch).and_call_original
+          allow(ENV).to receive(:fetch).with('HYKU_ADMIN_HOST', anything).and_return('admin-host')
           expect(account1.errors).to be_empty
           expect(account1.domain_names.first.cname).to eq('example.admin-host')
-          Settings.multitenancy.default_host = original
         end
       end
     end
@@ -372,7 +383,8 @@ RSpec.describe Account, type: :model do
 
     context 'single tenant in production environment' do
       before do
-        allow(Settings.multitenancy).to receive(:enabled).and_return false
+        allow(ENV).to receive(:fetch).and_call_original
+        allow(ENV).to receive(:fetch).with('HYKU_MULTITENANT', anything).and_return(false)
         allow(Rails.env).to receive(:test?).and_return false
       end
 
@@ -381,7 +393,8 @@ RSpec.describe Account, type: :model do
 
     context 'default tenant in a multitenant production environment' do
       before do
-        allow(Settings.multitenancy).to receive(:enabled).and_return true
+        allow(ENV).to receive(:fetch).and_call_original
+        allow(ENV).to receive(:fetch).with('HYKU_MULTITENANT', anything).and_return(true)
         allow(Rails.env).to receive(:test?).and_return false
         allow(Apartment::Tenant).to receive(:current_tenant).and_return Apartment::Tenant.default_tenant
       end
@@ -527,6 +540,43 @@ RSpec.describe Account, type: :model do
         PerTenantSmtpInterceptor.available_smtp_fields.each do |setting_name|
           expect(settings).to have_key(setting_name)
         end
+      end
+    end
+  end
+
+  describe 'cross tenant shared search' do
+    context 'settings keys' do
+      it 'has default value for #shared_search' do
+        expect(account.search_only).to eq false
+      end
+    end
+
+    context 'boolean method checks' do
+      it '#shared_search_tenant? defaults to false' do
+        expect(account).not_to be_search_only
+      end
+    end
+
+    context 'can add and remove Full Account from shared search' do
+      let(:normal_account) { create(:account) }
+      let(:cross_search_solr) { create(:solr_endpoint, url: "http://solr:8983/solr/hydra-cross-search-tenant") }
+
+      let(:shared_search_account) do
+        create(:account,
+               search_only: true,
+               full_account_ids: [normal_account.id],
+               solr_endpoint: cross_search_solr,
+               fcrepo_endpoint: nil)
+      end
+
+      it 'contains full_account' do
+        expect(shared_search_account.full_accounts).to be_truthy
+        expect(shared_search_account.full_accounts.size).to eq 1
+      end
+
+      it 'removes full_account' do
+        shared_search_account.full_account_ids = []
+        expect(shared_search_account.full_accounts.size).to eq 0
       end
     end
   end

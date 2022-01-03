@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
   private
 
     def require_active_account!
-      return unless Settings.multitenancy.enabled
+      return if singletenant?
       return if devise_controller?
       raise Apartment::TenantNotFound, "No tenant for #{request.host}" unless current_account.persisted?
     end
@@ -78,11 +78,11 @@ class ApplicationController < ActionController::Base
     end
 
     def multitenant?
-      Settings.multitenancy.enabled
+      @multitenant ||= ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
     end
 
     def singletenant?
-      !Settings.multitenancy.enabled
+      !multitenant?
     end
 
     def elevate_single_tenant!
@@ -94,13 +94,13 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_host?
-      return false unless multitenant?
+      return false if singletenant?
       Account.canonical_cname(request.host) == Account.admin_host
     end
 
     def current_account
       @current_account ||= Account.from_request(request)
-      @current_account ||= if Settings.multitenancy.enabled
+      @current_account ||= if multitenant?
                              Account.new do |a|
                                a.build_solr_endpoint
                                a.build_fcrepo_endpoint
@@ -133,6 +133,6 @@ class ApplicationController < ActionController::Base
     end
 
     def ssl_configured?
-      ActiveRecord::Type::Boolean.new.cast(Settings.ssl_configured)
+      ActiveRecord::Type::Boolean.new.cast(current_account.ssl_configured)
     end
 end

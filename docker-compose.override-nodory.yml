@@ -12,8 +12,8 @@ services:
       - "5432:5432"
   web:
     environment:
-      - SETTINGS__MULTITENANCY__ADMIN_HOST=lvh.me
-      - SETTINGS__MULTITENANCY__DEFAULT_HOST=%{tenant}.lvh.me
-      - SETTINGS__MULTITENANCY__ROOT_HOST=lvh.me
+      - HYKU_ADMIN_HOST=lvh.me
+      - HYKU_DEFAULT_HOST=%{tenant}.lvh.me
+      - HYKU_ROOT_HOST=lvh.me
     ports:
       - "3000:3000"

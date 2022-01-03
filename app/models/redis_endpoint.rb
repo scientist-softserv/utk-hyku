@@ -9,7 +9,7 @@ class RedisEndpoint < Endpoint
 
   # Reset the Redis namespace back to the default value
   def self.reset!
-    Hyrax.config.redis_namespace = Settings.redis.default_namespace
+    Hyrax.config.redis_namespace = ENV.fetch('HYRAX_REDIS_NAMESPACE', 'hyrax')
   end
 
   def ping

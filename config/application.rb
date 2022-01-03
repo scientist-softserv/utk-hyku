@@ -6,7 +6,7 @@ require 'i18n/debug' if ENV['I18N_DEBUG']
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 groups = Rails.groups
-groups += ['bulkrax'] if ENV['SETTINGS__BULKRAX__ENABLED'] == 'true' # Settings obj is not available yet
+groups += ['bulkrax'] if ENV['HYKU_BULKRAX_ENABLED'] == 'true' # Settings obj is not available yet
 Bundler.require(*groups)
 
 module Hyku
@@ -24,9 +24,10 @@ module Hyku
       "I18n::InvalidLocale" => :not_found
     )
 
-    if defined? ActiveElasticJob
+    if defined?(ActiveElasticJob) && ENV.fetch('HYRAX_ACTIVE_JOB_QUEUE', '') == 'elastic'
       Rails.application.configure do
-        config.active_elastic_job.process_jobs = Settings.worker == 'true'
+        process_jobs = ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_ELASTIC_JOBS', false))
+        config.active_elastic_job.process_jobs = process_jobs
         config.active_elastic_job.aws_credentials = lambda { Aws::InstanceProfileCredentials.new }
         config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
       end
@@ -36,9 +37,10 @@ module Hyku
     config.paths.add 'app/helpers', eager_load: true
 
     config.before_initialize do
-      if defined? ActiveElasticJob
+      if defined?(ActiveElasticJob) && ENV.fetch('HYRAX_ACTIVE_JOB_QUEUE', '') == 'elastic'
         Rails.application.configure do
-          config.active_elastic_job.process_jobs = Settings.worker == 'true'
+          process_jobs = ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_ELASTIC_JOBS', false))
+          config.active_elastic_job.process_jobs = process_jobs
           config.active_elastic_job.aws_credentials = lambda { Aws::InstanceProfileCredentials.new }
           config.active_elastic_job.secret_key_base = Rails.application.secrets[:secret_key_base]
         end
@@ -46,7 +48,7 @@ module Hyku
 
       Object.include(AccountSwitch)
 
-      if Settings.bulkrax.enabled
+      if ENV.fetch('HYKU_BULKRAX_ENABLED', false)
         Bundler.require('bulkrax')
       end
     end

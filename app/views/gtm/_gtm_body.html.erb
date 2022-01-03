@@ -1,0 +1,12 @@
+<% content_for :precontainer_content do %>
+  <% tenant_gtm_id = current_account.settings['gtm_id'] %>
+  <% return '' if tenant_gtm_id.blank? %>
+
+  <<-HTML.strip_heredoc.html_safe
+   <!-- Google Tag Manager (noscript) -->
+
+  <noscript><iframe src='https://www.googletagmanager.com/ns.html?id="#{tenant_gtm_id}"'
+                height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- End Google Tag Manager (noscript) -->
+<% end %>

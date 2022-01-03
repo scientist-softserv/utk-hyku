@@ -5,7 +5,7 @@
 #       solr & fedora for the tenant has been created so we keep
 #       Apartment.seed_after_create = false (the default value)
 
-unless Settings.multitenancy.enabled
+unless ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
   puts "\n== Creating single tenant resources"
   begin
     single_tenant_default = Account.find_by(cname: 'single.tenant.default')

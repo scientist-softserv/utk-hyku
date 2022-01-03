@@ -9,10 +9,26 @@ class Account < ApplicationRecord
 
   has_many :sites, dependent: :destroy
   has_many :domain_names, dependent: :destroy
+  has_many :full_account_cross_searches,
+           class_name: 'AccountCrossSearch',
+           dependent: :destroy,
+           foreign_key: 'search_account_id',
+           inverse_of: :search_account
+  has_many :full_accounts, class_name: 'Account', through: :full_account_cross_searches
+  has_many :search_account_cross_searches,
+           class_name: 'AccountCrossSearch',
+           dependent: :destroy,
+           foreign_key: 'full_account_id',
+           inverse_of: :full_account
+  has_many :search_accounts, class_name: 'Account', through: :search_account_cross_searches
+
   accepts_nested_attributes_for :domain_names, allow_destroy: true
+  accepts_nested_attributes_for :full_accounts
+  accepts_nested_attributes_for :full_account_cross_searches, allow_destroy: true
 
   scope :is_public, -> { where(is_public: true) }
   scope :sorted_by_name, -> { order("name ASC") }
+  scope :full_accounts, -> { where(search_only: false) }
 
   before_validation do
     self.tenant ||= SecureRandom.uuid
@@ -26,14 +42,14 @@ class Account < ApplicationRecord
                      unless: proc { |a| a.tenant == 'public' }
 
   def self.admin_host
-    host = Settings.multitenancy.admin_host
+    host = ENV.fetch('HYKU_ADMIN_HOST', nil)
     host ||= ENV['HOST']
     host ||= 'localhost'
     canonical_cname(host)
   end
 
   def self.root_host
-    host = Settings.multitenancy.root_host
+    host = ENV.fetch('HYKU_ROOT_HOST', nil)
     host ||= ENV['HOST']
     host ||= 'localhost'
     canonical_cname(host)
@@ -59,7 +75,7 @@ class Account < ApplicationRecord
   def self.global_tenant?
     # Global tenant only exists when multitenancy is enabled and NOT in test environment
     # (In test environment tenant switching is currently not possible)
-    return false unless Settings.multitenancy.enabled && !Rails.env.test?
+    return false unless ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false)) && !Rails.env.test?
     Apartment::Tenant.default_tenant == Apartment::Tenant.current
   end
 
@@ -69,9 +85,8 @@ class Account < ApplicationRecord
     fcrepo_endpoint.switch!
     redis_endpoint.switch!
     data_cite_endpoint.switch!
-    # TOOD Settings.switch!(name: locale_name, settings: settings)
     switch_host!(cname)
-    setup_tenant_cache(cache_api?)
+    setup_tenant_cache(cache_api?) if self.class.column_names.include?('settings')
   end
 
   def switch
@@ -82,12 +97,11 @@ class Account < ApplicationRecord
   end
 
   def reset!
-    setup_tenant_cache(cache_api?)
+    setup_tenant_cache(cache_api?) if self.class.column_names.include?('settings')
     SolrEndpoint.reset!
     FcrepoEndpoint.reset!
     RedisEndpoint.reset!
     DataCiteEndpoint.reset!
-    # TODO: Settings.switch!
     switch_host!(nil)
   end
 
@@ -103,7 +117,7 @@ class Account < ApplicationRecord
     if is_enabled
       Rails.application.config.cache_store = :redis_cache_store, { url: Redis.current.id }
     else
-      Rails.application.config.cache_store = :file_store, Settings.cache_filesystem_root
+      Rails.application.config.cache_store = :file_store, ENV.fetch('HYKU_CACHE_ROOT', '/app/samvera/file_cache')
     end
     # rubocop:enable Style/ConditionalAssignment
     Rails.cache = ActiveSupport::Cache.lookup_store(Rails.application.config.cache_store)

@@ -11,7 +11,9 @@ RSpec.shared_examples "csv_importer" do
     end
     let(:factory) { described_class.new(attributes, File.join(fixture_path, 'images')) }
 
-    before { factory.run }
+    before do
+      factory.run
+    end
 
     describe "#run" do
       it "uploads the content of the file" do

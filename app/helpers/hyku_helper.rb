@@ -2,7 +2,7 @@
 
 module HykuHelper
   def multitenant?
-    Settings.multitenancy.enabled
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
   end
 
   def current_account
@@ -14,5 +14,9 @@ module HykuHelper
     return false unless multitenant?
 
     Account.canonical_cname(request.host) == Account.admin_host
+  end
+
+  def admin_only_tenant_creation?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_ADMIN_ONLY_TENANT_CREATION', false))
   end
 end

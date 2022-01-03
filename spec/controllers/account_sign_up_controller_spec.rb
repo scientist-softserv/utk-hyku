@@ -7,6 +7,19 @@ RSpec.describe AccountSignUpController, type: :controller do
     sign_in user if user
   end
 
+  # rubocop:disable RSpec/BeforeAfterAll
+  before(:all) do
+    @multitenant = ENV['HYKU_MULTITENANT']
+    ENV['HYKU_MULTITENANT'] = 'true'
+    Rails.application.reload_routes!
+  end
+
+  after(:all) do
+    ENV['HYKU_MUTLITENANT'] = @multitenant # rubocop:disable RSpec/InstanceVariable
+    Rails.application.reload_routes!
+  end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   # This should return the minimal set of attributes required to create a valid
   # Account. As you add validations to Account, be sure to
   # adjust the attributes here as well.
@@ -20,7 +33,8 @@ RSpec.describe AccountSignUpController, type: :controller do
 
   context 'with access' do
     before do
-      allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(false)
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_ADMIN_ONLY_TENANT_CREATION', false).and_return(false)
     end
 
     describe "GET #new" do
@@ -41,7 +55,7 @@ RSpec.describe AccountSignUpController, type: :controller do
           expect do
             post :create, params: { account: valid_attributes }
           end.to change(Account, :count).by(1)
-          expect(assigns(:account).cname).to be_cname('x')
+          expect(assigns(:account).cname).to eq('x.test.host')
           expect(assigns(:account).errors).to be_empty
 
           expect do # now repeat the same action
@@ -69,7 +83,8 @@ RSpec.describe AccountSignUpController, type: :controller do
 
   context 'without access' do
     before do
-      allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(true)
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_ADMIN_ONLY_TENANT_CREATION', false).and_return(true)
     end
 
     describe "GET #new" do
@@ -91,7 +106,8 @@ RSpec.describe AccountSignUpController, type: :controller do
     let(:user) { FactoryBot.create(:admin) }
 
     before do
-      allow(Settings.multitenancy).to receive(:admin_only_tenant_creation).and_return(true)
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('HYKU_ADMIN_ONLY_TENANT_CREATION', false).and_return(true)
     end
 
     describe "GET #new" do
@@ -112,7 +128,7 @@ RSpec.describe AccountSignUpController, type: :controller do
           post :create, params: { account: valid_attributes }
         end.to change(Account, :count).by(1)
 
-        expect(assigns(:account).cname).to be_cname('x')
+        expect(assigns(:account).cname).to eq('x.test.host')
         expect(assigns(:account).errors).to be_empty
       end
     end
