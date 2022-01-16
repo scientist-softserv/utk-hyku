@@ -51,6 +51,7 @@ services:
       test: ["CMD-SHELL", "echo 'ruok' | nc -w 2 -q 2 localhost 2181 | grep imok || exit 1"]
       interval: "10s"
       timeout: "8s"
+
   solr:
     image: bitnami/solr:8
     environment:
@@ -140,7 +141,10 @@ services:
       target: hyku-worker
       args:
         - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
-    command: bundle exec sidekiq
+      cache_from:
+        - registry.gitlab.com/notch8/utk-hyku:${TAG:-latest}
+        - registry.gitlab.com/notch8/utk-hyku/worker:${TAG:-latest}
+    image: registry.gitlab.com/notch8/utk-hyku/worker:${TAG:-latest}
     depends_on:
       check_volumes:
         condition: service_completed_successfully
