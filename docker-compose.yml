@@ -5,7 +5,7 @@ x-app: &app
     context: .
     target: hyku-base
     args:
-      - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
+      - HYKU_BULKRAX_ENABLED=true
   image: registry.gitlab.com/notch8/utk-hyku:${TAG:-latest}
   env_file:
     - .env
@@ -140,7 +140,7 @@ services:
       context: .
       target: hyku-worker
       args:
-        - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
+        - HYKU_BULKRAX_ENABLED=true
       cache_from:
         - registry.gitlab.com/notch8/utk-hyku:${TAG:-latest}
         - registry.gitlab.com/notch8/utk-hyku/worker:${TAG:-latest}
@@ -193,6 +193,7 @@ services:
       - db
       - solr
       - fcrepo
+      - redis
 
   redis:
     image: redis:5

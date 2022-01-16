@@ -19,10 +19,6 @@ hyku.build:
     - docker-compose build worker
     - docker-compose push web
     - docker-compose push worker
-  only:
-    refs:
-      - merge_requests
-      - main
   tags:
     - local
 
@@ -69,6 +65,7 @@ test:
     POSTGRESQL_PASSWORD: postgres
     REDIS_HOST: redis
     SETTINGS__SOLR__URL: http://admin:admin@solr:8983/solr/
+    HYKU_BULKRAX_ENABLED: "true"
     SOLR_ADMIN_PASSWORD: admin
     SOLR_ADMIN_USER: admin
     SOLR_ADMIN_USERNAME: admin
@@ -127,7 +124,7 @@ test:
 #     - .deploy
 #   environment:
 #     name: hyku.review/$CI_MERGE_REQUEST_ID
-#     url: http://utk-hyku-$CI_MERGE_REQUEST_ID.$KUBE_INGRESS_BASE_DOMAIN
+#     url: http://adl-hyku-$CI_MERGE_REQUEST_ID.$KUBE_INGRESS_BASE_DOMAIN
 #     on_stop: hyku.review.stop
 #     auto_stop_in: 1 day
 #   only:
@@ -141,9 +138,9 @@ test:
 #     HELM_EXTRA_ARGS: >
 #       --values ops/review-deploy.yaml
 #   script:
-#     - export KUBECONFIG=$KUBECONFIG
+#     - export KUBECONFIG=$KUBECONFIG_R2
 #     - envsubst < ops/review-deploy.tmpl.yaml > ops/review-deploy.yaml
-#     - ./bin/helm_deploy hyku-$CI_MERGE_REQUEST_ID utk-hyku-review
+#     - ./bin/helm_deploy hyku-$CI_MERGE_REQUEST_ID adl-review
 #   tags:
 #     - kubernetes
 
@@ -158,8 +155,8 @@ test:
 #   when: manual
 #   allow_failure: true
 #   script:
-#     - export KUBECONFIG=$KUBECONFIG
-#     - .//bin/helm_delete hyku-$CI_MERGE_REQUEST_ID utk-hyku-review
+#     - export KUBECONFIG=$KUBECONFIG_R2
+#     - .//bin/helm_delete hyku-$CI_MERGE_REQUEST_ID adl-review
 #   only:
 #     refs:
 #       - merge_requests
@@ -182,7 +179,7 @@ hyku.staging:
       --values ops/staging-deploy.yaml
   script:
     - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
-    - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
+    - ./bin/helm_deploy lv-hyku-staging lv-hyku-staging
   tags:
     - docker
 
