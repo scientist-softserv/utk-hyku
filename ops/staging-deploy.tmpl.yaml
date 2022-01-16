@@ -43,8 +43,14 @@ ingress:
         - path: /
 
 extraEnvVars:
+  - name: HYKU_ADMIN_HOST
+    value: utk-hyku.test
+  - name: HYKU_ADMIN_ONLY_TENANT_CREATION
+    value: "false"
+  - name: HYKU_DEFAULT_HOST
+    value: "%{tenant}.utk-hyku.test"
   - name: HYKU_ROOT_HOST
-    value: utk-hyku-staging.notch8.cloud
+    value: utk-hyku.test
   - name: HYKU_MULTITENANT
     value: "true"
   - name: CONFDIR
@@ -170,10 +176,16 @@ worker:
       mountPath: /app/samvera/hyrax-webapp/tmp/network_files
       subPath: network-files
   extraEnvVars:
-    - name: HYKU_ROOT_HOST
-      value: utk-hyku-staging.notch8.cloud
-    - name: HYKU_MULTITENANT
+    - name: HYKU_ADMIN_HOST
+      value: utk-hyku.test
+    - name: HYKU_ADMIN_ONLY_TENANT_CREATION
       value: "false"
+    - name: HYKU_DEFAULT_HOST
+      value: "%{tenant}.utk-hyku.test"
+    - name: HYKU_ROOT_HOST
+      value: utk-hyku.test
+    - name: HYKU_MULTITENANT
+      value: "true"
     - name: CONFDIR
       value: "/app/samvera/hyrax-webapp/solr/config"
     - name: INITIAL_ADMIN_EMAIL
@@ -240,10 +252,6 @@ worker:
       value: support@notch8.com
     - name: HYRAX_FITS_PATH
       value: /app/fits/fits.sh
-    - name: HYKU_ADMIN_ONLY_TENANT_CREATION
-      value: "true"
-    - name: HYKU_DEFAULT_HOST
-      value: "%{tenant}.utk-hyku-staging.notch8.cloud"
     - name: HYKU_ENABLED
       value: "true"
     - name: HYKU_BULKRAX_ENABLED
