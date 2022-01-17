@@ -44,13 +44,13 @@ ingress:
 
 extraEnvVars:
   - name: HYKU_ADMIN_HOST
-    value: utk-hyku.test
+    value: utk-hyku-staging.notch8.cloud
   - name: HYKU_ADMIN_ONLY_TENANT_CREATION
     value: "false"
   - name: HYKU_DEFAULT_HOST
-    value: "%{tenant}.utk-hyku.test"
+    value: "%{tenant}.utk-hyku-staging.notch8.cloud"
   - name: HYKU_ROOT_HOST
-    value: utk-hyku.test
+    value: utk-hyku-staging.notch8.cloud
   - name: HYKU_MULTITENANT
     value: "true"
   - name: CONFDIR
@@ -177,13 +177,13 @@ worker:
       subPath: network-files
   extraEnvVars:
     - name: HYKU_ADMIN_HOST
-      value: utk-hyku.test
+      value: utk-hyku-staging.notch8.cloud
     - name: HYKU_ADMIN_ONLY_TENANT_CREATION
       value: "false"
     - name: HYKU_DEFAULT_HOST
-      value: "%{tenant}.utk-hyku.test"
+      value: "%{tenant}.utk-hyku-staging.notch8.cloud"
     - name: HYKU_ROOT_HOST
-      value: utk-hyku.test
+      value: utk-hyku-staging.notch8.cloud
     - name: HYKU_MULTITENANT
       value: "true"
     - name: CONFDIR
