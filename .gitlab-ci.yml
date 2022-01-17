@@ -38,7 +38,7 @@ lint:
     refs:
       - merge_requests
   tags:
-    - kubernetes
+    - docker
 
 test:
   stage: test
@@ -120,7 +120,7 @@ test:
     reports:
       junit: rspec.xml
   tags:
-    - kubernetes
+    - docker
 
 hyku.staging:
   stage: staging
@@ -140,7 +140,7 @@ hyku.staging:
     - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
     - ./bin/helm_deploy utk-hyku-staging staging
   tags:
-    - kubernetes
+    - docker
 
 # hyku.staging.stop:
 #   stage: staging
@@ -155,7 +155,7 @@ hyku.staging:
 #   script:
 #     - .//bin/helm_delete hyku-staging staging
 #   tags:
-#     - kubernetes
+#     - docker
 
 # hyku.production:
 #   stage: staging
@@ -180,7 +180,7 @@ hyku.staging:
 #     - envsubst < ops/production-deploy.tmpl.yaml > ops/production-deploy.yaml
 #     - ./bin/helm_deploy hyku-production production
 #   tags:
-#     - kubernetes
+#     - docker
 
 # hyku.production.stop:
 #   stage: staging
@@ -195,7 +195,7 @@ hyku.staging:
 #   script:
 #     - .//bin/helm_delete hyku-production production
 #   tags:
-#     - kubernetes
+#     - docker
 
 .deploy:
   image: dtzar/helm-kubectl:3.5.3
