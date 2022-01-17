@@ -1,9 +1,9 @@
 ---
 stages:
   - build
-  - go
-  - stop
+  - test
   - review
+  - staging
 
 before_script:
   - export TAG=${CI_COMMIT_SHORT_SHA}
@@ -19,27 +19,29 @@ hyku.build:
     - docker-compose build worker
     - docker-compose push web
     - docker-compose push worker
+  only:
+    refs:
+      - merge_requests
+      - main
   tags:
     - local
 
 lint:
-  stage: go
+  stage: test
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-  variables:
-    PRONTO_GITLAB_API_ENDPOINT: "https://gitlab.com/api/v4"
-  before_script:
-    - export PRONTO_GITLAB_API_PRIVATE_TOKEN=$GITLAB_API_TOKEN
-  allow_failure: false
+  allow_failure: true
   script:
-    - git fetch && git checkout main && git checkout ${CI_COMMIT_SHORT_SHA}
+    - cd /app/samvera/hyrax-webapp
     - bundle check || bundle
-    - bundle exec pronto run -f gitlab -c origin/main
-    - cd /app/samvera/hyrax-webapp && bundle exec rubocop -P
+    - bundle exec rubocop
+  only:
+    refs:
+      - merge_requests
   tags:
-    - docker
+    - kubernetes
 
 test:
-  stage: go
+  stage: test
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   allow_failure: true
   variables:
@@ -106,6 +108,10 @@ test:
   after_script:
     - test -e /home/app/webapp/tmp/capybara && cp -r /home/app/webapp/tmp/capybara $CI_PROJECT_DIR/capybara
     - test -e /home/app/webapp/rspec.xml && cp /home/app/webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
+  only:
+    refs:
+      - merge_requests
+      - main
   artifacts:
     when: always
     paths:
@@ -114,12 +120,16 @@ test:
     reports:
       junit: rspec.xml
   tags:
-    - docker
+    - kubernetes
 
 hyku.staging:
-  stage: go
+  stage: staging
   extends:
     - .deploy
+  environment:
+    name: hyku.staging
+    url: http://utk-hyku-staging.notch8.cloud
+    on_stop: hyku.staging.stop
   only:
     refs:
       - main
@@ -132,9 +142,64 @@ hyku.staging:
       --values ops/staging-deploy.yaml
   script:
     - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
-    - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
+    - ./bin/helm_deploy utk-hyku-staging staging
   tags:
-    - docker
+    - kubernetes
 
-.deploy:
-  image: dtzar/helm-kubectl:3.5.3
+# hyku.staging.stop:
+#   stage: staging
+#   extends:
+#     - .deploy
+#   environment:
+#     name: hyku.staging
+#     url: http://hyku-staging.$KUBE_INGRESS_BASE_DOMAIN
+#     action: stop
+#   when: manual
+#   allow_failure: true
+#   script:
+#     - .//bin/helm_delete hyku-staging staging
+#   tags:
+#     - kubernetes
+
+# hyku.production:
+#   stage: staging
+#   extends:
+#     - .deploy
+#   environment:
+#     name: hyku.production
+#     url: http://hyku-production.example.com
+#     on_stop: hyku.production.stop
+#   only:
+#     refs:
+#       - main
+#   when: manual
+#   variables:
+#     DEPLOY_IMAGE: $CI_REGISTRY_IMAGE
+#     DEPLOY_TAG: $CI_COMMIT_SHORT_SHA
+#     WORKER_IMAGE: $CI_REGISTRY_IMAGE/worker
+#     HELM_EXPERIMENTAL_OCI: 1
+#     HELM_EXTRA_ARGS: >
+#       --values ops/production-deploy.yaml
+#   script:
+#     - envsubst < ops/production-deploy.tmpl.yaml > ops/production-deploy.yaml
+#     - ./bin/helm_deploy hyku-production production
+#   tags:
+#     - kubernetes
+
+# hyku.production.stop:
+#   stage: staging
+#   extends:
+#     - .deploy
+#   environment:
+#     name: hyku.production
+#     url: http://hyku-production.example.com
+#     action: stop
+#   when: manual
+#   allow_failure: true
+#   script:
+#     - .//bin/helm_delete hyku-production production
+#   tags:
+#     - kubernetes
+
+# .deploy:
+#   image: dtzar/helm-kubectl:3.5.3
