@@ -126,10 +126,6 @@ hyku.staging:
   stage: staging
   extends:
     - .deploy
-  environment:
-    name: hyku.staging
-    url: http://utk-hyku-staging.notch8.cloud
-    on_stop: hyku.staging.stop
   only:
     refs:
       - main
@@ -201,5 +197,5 @@ hyku.staging:
 #   tags:
 #     - kubernetes
 
-# .deploy:
-#   image: dtzar/helm-kubectl:3.5.3
+.deploy:
+  image: dtzar/helm-kubectl:3.5.3
