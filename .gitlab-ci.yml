@@ -2,7 +2,6 @@
 stages:
   - build
   - test
-  - review
   - staging
 
 before_script:
@@ -26,21 +25,21 @@ hyku.build:
   tags:
     - local
 
-# lint:
-#   stage: go
-#   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-#   variables:
-#     PRONTO_GITLAB_API_ENDPOINT: "https://gitlab.com/api/v4"
-#   before_script:
-#     - export PRONTO_GITLAB_API_PRIVATE_TOKEN=$GITLAB_API_TOKEN
-#   allow_failure: false
-#   script:
-#     - git fetch && git checkout main && git checkout ${CI_COMMIT_SHORT_SHA}
-#     - bundle check || bundle
-#     - bundle exec pronto run -f gitlab -c origin/main
-#     - cd /app/samvera/hyrax-webapp && bundle exec rubocop -P
-#   tags:
-#     - docker
+lint:
+  stage: test
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  variables:
+    PRONTO_GITLAB_API_ENDPOINT: "https://gitlab.com/api/v4"
+  before_script:
+    - export PRONTO_GITLAB_API_PRIVATE_TOKEN=$GITLAB_API_TOKEN
+  allow_failure: false
+  script:
+    - git fetch && git checkout main && git checkout ${CI_COMMIT_SHORT_SHA}
+    - bundle check || bundle
+    - bundle exec pronto run -f gitlab -c origin/main
+    - cd /app/samvera/hyrax-webapp && bundle exec rubocop -P
+  tags:
+    - docker
 
 test:
   stage: test
