@@ -137,7 +137,7 @@ hyku.staging:
       --values ops/staging-deploy.yaml
   script:
     - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
-    - ./bin/helm_deploy utk-hyku-staging staging
+    - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
   tags:
     - docker
 
