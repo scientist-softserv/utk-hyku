@@ -144,7 +144,7 @@ services:
         - HYKU_BULKRAX_ENABLED=true
       cache_from:
         - registry.gitlab.com/notch8/utk-hyku:${TAG:-latest}
-        - registry.gitlab.com/notch8utk-hyku/worker:${TAG:-latest}
+        - registry.gitlab.com/notch8/utk-hyku/worker:${TAG:-latest}
     image: registry.gitlab.com/notch8/utk-hyku/worker:${TAG:-latest}
     command: bundle exec sidekiq
     depends_on:
