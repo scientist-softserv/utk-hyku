@@ -51,11 +51,9 @@ if ENV['INITIAL_ADMIN_EMAIL'] && ENV['INITIAL_ADMIN_PASSWORD']
     u.password = ENV['INITIAL_ADMIN_PASSWORD']
   end
   u.add_role(:superadmin)
-  Account.find_each do |account|
-    Apartment::Tenant.switch!(account.tenant)
-  end
   puts "\n== Finished seeding the default superadmin user"
 end
+
 
 if ENV['SUPPORT_EMAIL'] && ENV['SUPPORT_PASSWORD']
   u = User.find_or_create_by(email: ENV['SUPPORT_EMAIL']) do |u|
@@ -86,4 +84,3 @@ if ENV['TEST_USER_EMAIL'] && ENV['TEST_USER_PASSWORD']
   end
   puts "\n== Finished seeding the default notch8 registered user"
 end
-
