@@ -39,12 +39,12 @@ unless ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
   puts "\n== Finished creating single tenant resources"
 end
 
-Account.find_each do |account|
-  Apartment::Tenant.switch!(account.tenant)
-  next if Site.instance.available_works.present?
-  Site.instance.available_works = Hyrax.config.registered_curation_concern_types
-  Site.instance.save
-end
+# Account.find_each do |account|
+#   Apartment::Tenant.switch!(account.tenant)
+#   next if Site.instance.available_works.present?
+#   Site.instance.available_works = Hyrax.config.registered_curation_concern_types
+#   Site.instance.save
+# end
 
 if ENV['INITIAL_ADMIN_EMAIL'] && ENV['INITIAL_ADMIN_PASSWORD']
   u = User.find_or_create_by(email: ENV['INITIAL_ADMIN_EMAIL']) do |u|
