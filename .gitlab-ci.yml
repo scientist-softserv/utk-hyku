@@ -2,8 +2,6 @@
 stages:
   - build
   - go
-  - stop
-  - review
 
 before_script:
   - export TAG=${CI_COMMIT_SHORT_SHA}
@@ -19,6 +17,10 @@ hyku.build:
     - docker-compose build worker
     - docker-compose push web
     - docker-compose push worker
+  only:
+    refs:
+      - merge_requests
+      - main
   tags:
     - local
 
@@ -35,6 +37,9 @@ lint:
     - bundle check || bundle
     - bundle exec pronto run -f gitlab -c origin/main
     - cd /app/samvera/hyrax-webapp && bundle exec rubocop -P
+  only:
+    refs:
+      - merge_requests
   tags:
     - docker
 
@@ -79,6 +84,8 @@ test:
     SOLR_ZK_HOSTS: zk:2181
     ZOO_HEAP_SIZE: 128
     ZOO_PORT_NUMBER: 2181
+    TB_RSPEC_OPTIONS: --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+    TB_RSPEC_FORMATTER: progress
   services:
     - name: bitnami/postgresql:12.6.0
       alias: db
@@ -101,11 +108,16 @@ test:
     - rm -f /home/app/webapp/tmp/capybara/*
     - rm -rf $CI_PROJECT_DIR/capybara
     - cd /app/samvera/hyrax-webapp
+    # debugging tip: un-comment the sleep below in order to use k8's or docker to log into the actual running container
     # - sleep 30m
-    - rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+    # - rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
   after_script:
     - test -e /home/app/webapp/tmp/capybara && cp -r /home/app/webapp/tmp/capybara $CI_PROJECT_DIR/capybara
     - test -e /home/app/webapp/rspec.xml && cp /home/app/webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
+  only:
+    refs:
+      - merge_requests
+      - main
   artifacts:
     when: always
     paths:
@@ -115,52 +127,7 @@ test:
       junit: rspec.xml
   tags:
     - docker
-
-#  hyku.review:
-#   stage: review
-#   needs: ["hyku.build"]
-#   extends:
-#     - .deploy
-#   environment:
-#     name: hyku.review/$CI_MERGE_REQUEST_ID
-#     url: http://adl-hyku-$CI_MERGE_REQUEST_ID.$KUBE_INGRESS_BASE_DOMAIN
-#     on_stop: hyku.review.stop
-#     auto_stop_in: 1 day
-#   only:
-#     refs:
-#       - merge_requests
-#   variables:
-#     DEPLOY_IMAGE: $CI_REGISTRY_IMAGE
-#     DEPLOY_TAG: $CI_COMMIT_SHORT_SHA
-#     WORKER_IMAGE: $CI_REGISTRY_IMAGE/worker
-#     HELM_EXPERIMENTAL_OCI: 1
-#     HELM_EXTRA_ARGS: >
-#       --values ops/review-deploy.yaml
-#   script:
-#     - export KUBECONFIG=$KUBECONFIG_R2
-#     - envsubst < ops/review-deploy.tmpl.yaml > ops/review-deploy.yaml
-#     - ./bin/helm_deploy hyku-$CI_MERGE_REQUEST_ID adl-review
-#   tags:
-#     - kubernetes
-
-# hyku.review.stop:
-#   stage: review
-#   extends:
-#     - .deploy
-#   environment:
-#     name: hyku.review/$CI_MERGE_REQUEST_ID
-#     url: http://hyku-$CI_MERGE_REQUEST_ID.$KUBE_INGRESS_BASE_DOMAIN
-#     action: stop
-#   when: manual
-#   allow_failure: true
-#   script:
-#     - export KUBECONFIG=$KUBECONFIG_R2
-#     - .//bin/helm_delete hyku-$CI_MERGE_REQUEST_ID adl-review
-#   only:
-#     refs:
-#       - merge_requests
-#   tags:
-#     - kubernetes
+  parallel: 6
 
 hyku.staging:
   stage: go
