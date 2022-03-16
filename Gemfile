@@ -45,6 +45,14 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails', '>= 3.6.0'
 
+  # Pronto adds comments to MRs in gitlab when rubocop offenses are made.
+  gem 'pronto'
+  gem 'pronto-brakeman', require: false
+  gem 'pronto-flay', require: false
+  gem 'pronto-rails_best_practices', require: false
+  gem 'pronto-rails_schema', require: false
+  gem 'pronto-rubocop', require: false
+
   gem 'simplecov', require: false
 
   gem 'fcrepo_wrapper', '~> 0.4'
