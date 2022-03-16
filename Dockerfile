@@ -9,6 +9,7 @@ RUN apk --no-cache upgrade && \
     libxml2-dev \
     mediainfo \
     perl \
+    cmake \
     $EXTRA_APK_PACKAGES
 
 USER app
