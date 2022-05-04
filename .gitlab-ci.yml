@@ -14,8 +14,11 @@ hyku.build:
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose build web
+    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose build worker
+    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose push web
+    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose push worker
   only:
     refs:
@@ -133,9 +136,6 @@ hyku.staging:
   stage: go
   extends:
     - .deploy
-  only:
-    refs:
-      - main
   variables:
     DEPLOY_IMAGE: $CI_REGISTRY_IMAGE
     DEPLOY_TAG: $CI_COMMIT_SHORT_SHA
@@ -146,6 +146,10 @@ hyku.staging:
   script:
     - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
     - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH != "main" && $CI_COMMIT_BRANCH
+      when: manual
   tags:
     - docker
 
