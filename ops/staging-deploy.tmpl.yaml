@@ -35,14 +35,18 @@ ingress:
     - host: utk-hyku-staging.notch8.cloud
       paths:
         - path: /
+    - host: "*.utk-hyku-staging.notch8.cloud"
+      paths:
+        - path: /
   annotations: {
     kubernetes.io/ingress.class: "nginx",
     nginx.ingress.kubernetes.io/proxy-body-size: "0",
     cert-manager.io/cluster-issuer: letsencrypt-prod
   }
   tls:
-    - hosts: 
+    - hosts:
         - utk-hyku-staging.notch8.cloud
+        - "*.utk-hyku-staging.notch8.cloud"
       secretName: notch8cloud
 
 extraEnvVars: &envVars
@@ -164,7 +168,7 @@ worker:
     fsGroupChangePolicy: "OnRootMismatch"
   extraVolumeMounts: *volMounts
   extraEnvVars: *envVars
-  
+
 podSecurityContext:
   runAsUser: 1001
   runAsGroup: 101
