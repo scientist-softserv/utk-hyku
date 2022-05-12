@@ -46,7 +46,6 @@ ingress:
   tls:
     - hosts:
         - utk-hyku-staging.notch8.cloud
-        - "*.utk-hyku-staging.notch8.cloud"
       secretName: notch8cloud
 
 extraEnvVars: &envVars
