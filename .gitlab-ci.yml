@@ -20,10 +20,6 @@ hyku.build:
     - docker-compose push web
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose push worker
-  only:
-    refs:
-      - merge_requests
-      - main
   tags:
     - local
 
