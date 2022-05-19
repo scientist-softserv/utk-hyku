@@ -20,6 +20,9 @@ hyku.build:
     - docker-compose push web
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose push worker
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   tags:
     - local
 
@@ -36,9 +39,8 @@ lint:
     - bundle check || bundle
     - bundle exec pronto run -f gitlab -c origin/main
     - cd /app/samvera/hyrax-webapp && bundle exec rubocop -P
-  only:
-    refs:
-      - merge_requests
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   tags:
     - docker
 
@@ -113,10 +115,9 @@ test:
   after_script:
     - test -e /home/app/webapp/tmp/capybara && cp -r /home/app/webapp/tmp/capybara $CI_PROJECT_DIR/capybara
     - test -e /home/app/webapp/rspec.xml && cp /home/app/webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
-  only:
-    refs:
-      - merge_requests
-      - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   artifacts:
     when: always
     paths:
@@ -144,35 +145,11 @@ hyku.staging:
     - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_COMMIT_BRANCH != "main" && $CI_COMMIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
+  allow_failure: true
   tags:
     - docker
-
-# hyku.production:
-#   stage: go
-#   extends:
-#     - .deploy
-#   environment:
-#     name: hyku.production
-#     url: http://hyku-production.example.com
-#     on_stop: hyku.production.stop
-#   only:
-#     refs:
-#       - main
-#   when: manual
-#   variables:
-#     DEPLOY_IMAGE: $CI_REGISTRY_IMAGE
-#     DEPLOY_TAG: $CI_COMMIT_SHORT_SHA
-#     WORKER_IMAGE: $CI_REGISTRY_IMAGE/worker
-#     HELM_EXPERIMENTAL_OCI: 1
-#     HELM_EXTRA_ARGS: >
-#       --values ops/production-deploy.yaml
-#   script:
-#     - envsubst < ops/production-deploy.tmpl.yaml > ops/production-deploy.yaml
-#     - ./bin/helm_deploy hyku-production production
-#   tags:
-#     - docker
 
 .deploy:
   image: dtzar/helm-kubectl:3.5.3
