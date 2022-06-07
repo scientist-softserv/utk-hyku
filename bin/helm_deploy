@@ -27,6 +27,9 @@ WORKER_TAG="${WORKER_TAG:-$DEPLOY_TAG}"
 
 helm pull oci://ghcr.io/samvera/charts/hyrax --version 1.3.0 --untar --untardir charts
 
+envsubst < ops/gitlab-token.tmpl.yaml > ops/gitlab-token.yaml
+kubectl apply -f ops/gitlab-token.yaml
+
 helm repo update
 
 helm upgrade \
