@@ -4,6 +4,13 @@
 class Collection < ActiveFedora::Base
   include ::Hyrax::CollectionBehavior
   # You can replace these metadata if they're not suitable
+
+  property :bulkrax_identifier,
+           predicate: ::RDF::URI("https://hykucommons.org/terms/bulkrax_identifier"),
+           multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+
   include Hyrax::BasicMetadata
   self.indexer = CollectionIndexer
 end
