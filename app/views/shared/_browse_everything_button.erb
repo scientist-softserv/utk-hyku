@@ -1,0 +1,36 @@
+<%#
+    Fixes a bug where the BrowseEverything modal never closes, breaking the page.
+    Add BrowseEverything "Upload Cloud Files" button inspired by Hyrax's:
+    https://github.com/samvera/hyrax/blob/v2.9.6/app/views/hyrax/base/_form_files.html.erb#L28-L33
+    Also, includes a jQuery script to ensure modal closes properly.
+  %>
+<%# Bulkrax and Hyrax have different ID selectors %>
+<% btn_id = "#{model_param == 'importer' ? 'browse' : 'browse-btn' }" %>
+<%= button_tag(type: 'button', class: 'btn btn-success', id: btn_id) do %>
+  <span class='glyphicon glyphicon-plus'></span>
+  <%= t('hyrax.upload.browse_everything.browse_files_button') %>
+<% end %>
+<script>
+  ;(function() {
+    $(document).ready(function() {
+        $("button#<%= btn_id %>").browseEverything({
+         route: "<%= browse_everything_engine.root_path %>",
+         target: "<%= obj_id.present? ? "#edit_#{model_param}_#{obj_id}" : "#new_#{model_param}" %>"
+       }).done(function(data) {
+         $('.ev-browser.show').removeClass('show')
+            if($('#fileupload').length > 0){ 
+              var evt = { isDefaultPrevented: function() { return false; } };
+              var files = $.map(data, function(d) { return { name: d.file_name, size: d.file_size, id: d.url } });
+              $.blueimp.fileupload.prototype.options.done.call($('#fileupload').fileupload(), evt, { result: { files: files }});
+            }
+         // User has submitted files; data contains an array of URLs and their options
+       }).cancel(function() {
+         $('.ev-browser.show').removeClass('show')
+         // User cancelled the browse operation
+       }).fail(function(status, error, text) {
+         $('.ev-browser.show').removeClass('show')
+         // URL retrieval experienced a technical failure
+       });
+    })
+  })();
+</script>
