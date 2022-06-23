@@ -1,10 +1,10 @@
 #
 # To make browse-everything aware of a provider, uncomment the info for that provider and add your API key information.
 # The file_system provider can be a path to any directory on the server where your application is running.
-#
+# TODO(shanalmoore): get details from client
 ---
 file_system:
-  :home: <%= ENV['HOME'] %>/downloads
+  :home: /app/samvera/hyrax-webapp/tmp/imports/
 # dropbox:
 #   :app_key: YOUR_DROPBOX_APP_KEY
 #   :app_secret: YOUR_DROPBOX_APP_SECRET

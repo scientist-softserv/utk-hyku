@@ -50,5 +50,6 @@ config/environments/*.local.yml
 
 # Avatars and such
 public/uploads
+public/assets/*
 .env.*
 docker-compose.override.yml
