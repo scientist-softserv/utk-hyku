@@ -35,6 +35,7 @@ gem 'active-fedora', '>= 11.1.4'
 gem 'flutie'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'browse-everything'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -91,6 +92,7 @@ group :development do
   gem 'scss_lint', require: false
   gem 'spring', '~> 1.7'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # gem 'xray-rails' # when using this gem, know that sidekiq will not work
 end
 
 # Bulkrax
