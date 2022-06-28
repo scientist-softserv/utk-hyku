@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 5746a750cf240561d9d61d7136d08e877584f4a2
+  revision: 0a644637260378ac25fd9e3d4b2e68addb2b3ade
   branch: main
   specs:
-    bulkrax (3.4.0)
+    bulkrax (3.5.1)
       bagit (~> 0.4)
       coderay
       iso8601 (~> 0.9.0)
