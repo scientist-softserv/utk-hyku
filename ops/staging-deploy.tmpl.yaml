@@ -184,6 +184,13 @@ imagePullSecrets:
   - name: gitlab-registry
 
 fcrepo:
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "2"
+    requests:
+      memory: "2Gi"
+      cpu: "1"
   enabled: false
 postgresql:
   enabled: false
