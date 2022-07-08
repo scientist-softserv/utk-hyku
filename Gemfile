@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -35,7 +35,6 @@ gem 'active-fedora', '>= 11.1.4'
 gem 'flutie'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'browse-everything'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
