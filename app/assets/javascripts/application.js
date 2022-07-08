@@ -19,6 +19,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require stat_slider
+//= require turbolinks
 //= require cocoon
 
 //= require tether
@@ -48,4 +49,4 @@
 //= require flot_graph
 //= require statistics_tab_manager
 //= require blacklight_gallery/default
-//= require browse_everything
+//= require browse_everything_hack
