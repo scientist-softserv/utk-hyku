@@ -8,6 +8,7 @@ class SolrDocument
 
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
+  include AllinsonFlex::DynamicSolrDocument
 
   # self.unique_key = 'id'
 

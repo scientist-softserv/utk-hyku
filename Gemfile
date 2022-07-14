@@ -100,6 +100,7 @@ group :bulkrax do
   gem 'willow_sword', git: 'https://github.com/notch8/willow_sword.git'
 end
 
+gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git', branch: 'utk-implementation'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
@@ -141,3 +142,6 @@ gem 'secure_headers'
 gem "sentry-raven" # Notch8 Sentry Error Reporting
 gem 'sidekiq'
 gem 'tether-rails'
+
+gem 'react-rails'
+gem 'webpacker'

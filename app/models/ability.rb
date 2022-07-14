@@ -3,6 +3,7 @@
 class Ability
   include Hydra::Ability
   include Hyrax::Ability
+  include AllinsonFlex::Ability
 
   self.ability_logic += %i[
     everyone_can_create_curation_concerns
