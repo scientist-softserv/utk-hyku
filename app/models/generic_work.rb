@@ -9,6 +9,7 @@ class GenericWork < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  include AllinsonFlex::DynamicMetadataBehavior
   include ::Hyrax::BasicMetadata
 
   validates :title, presence: { message: 'Your work must have a title.' }
