@@ -8,5 +8,6 @@ module Hyrax
     self.model_class = ::GenericWork
     include HydraEditor::Form::Permissions
     self.terms += %i[resource_type]
+    include AllinsonFlex::DynamicFormBehavior
   end
 end

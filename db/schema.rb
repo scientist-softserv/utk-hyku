@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_13_180915) do
+ActiveRecord::Schema.define(version: 2022_06_09_001128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,104 @@ ActiveRecord::Schema.define(version: 2022_04_13_180915) do
     t.index ["redis_endpoint_id"], name: "index_accounts_on_redis_endpoint_id", unique: true
     t.index ["settings"], name: "index_accounts_on_settings", using: :gin
     t.index ["solr_endpoint_id"], name: "index_accounts_on_solr_endpoint_id", unique: true
+  end
+
+  create_table "allinson_flex_contexts", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "admin_set_ids"
+    t.string "m3_context_name"
+    t.integer "profile_id"
+    t.integer "profile_context_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_context_id"], name: "index_allinson_flex_contexts_on_profile_context_id"
+    t.index ["profile_id"], name: "index_allinson_flex_contexts_on_profile_id"
+  end
+
+  create_table "allinson_flex_dynamic_schemas", id: :serial, force: :cascade do |t|
+    t.string "allinson_flex_class"
+    t.integer "context_id"
+    t.integer "profile_id"
+    t.text "schema"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["context_id"], name: "index_allinson_flex_dynamic_schemas_on_context_id"
+    t.index ["profile_id"], name: "index_allinson_flex_dynamic_schemas_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_available_properties", id: :serial, force: :cascade do |t|
+    t.integer "profile_property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "available_on_type"
+    t.bigint "available_on_id"
+    t.index ["available_on_type", "available_on_id"], name: "index_allinson_flex_profile_properties_available_on"
+    t.index ["profile_property_id"], name: "index_available_properties_on_property_id"
+  end
+
+  create_table "allinson_flex_profile_classes", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "display_label"
+    t.string "schema_uri"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_allinson_flex_profile_classes_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_classes_contexts", id: :serial, force: :cascade do |t|
+    t.bigint "profile_context_id"
+    t.bigint "profile_class_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_class_id"], name: "index_profile_classes_contexts_on_profile_class_id"
+    t.index ["profile_context_id"], name: "index_profile_classes_contexts_on_profile_context_id"
+  end
+
+  create_table "allinson_flex_profile_contexts", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "display_label"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_allinson_flex_profile_contexts_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_properties", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "property_uri"
+    t.integer "cardinality_minimum", default: 0
+    t.integer "cardinality_maximum", default: 100
+    t.string "indexing"
+    t.integer "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_properties_on_profile_id"
+  end
+
+  create_table "allinson_flex_profile_texts", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.integer "profile_property_id"
+    t.string "textable_type"
+    t.bigint "textable_id"
+    t.index ["profile_property_id"], name: "index_profile_texts_on_profile_property_id"
+    t.index ["textable_type", "textable_id"], name: "index_profile_texts_on_type_and_id"
+  end
+
+  create_table "allinson_flex_profiles", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.float "profile_version"
+    t.string "m3_version"
+    t.string "responsibility"
+    t.string "responsibility_statement"
+    t.string "date_modified"
+    t.string "profile_type"
+    t.text "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "locked_at"
+    t.integer "locked_by_id"
   end
 
   create_table "bookmarks", id: :serial, force: :cascade do |t|
@@ -146,13 +244,13 @@ ActiveRecord::Schema.define(version: 2022_04_13_180915) do
   end
 
   create_table "bulkrax_pending_relationships", force: :cascade do |t|
-    t.bigint "bulkrax_importer_run_id", null: false
+    t.bigint "importer_run_id", null: false
     t.string "parent_id", null: false
     t.string "child_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order", default: 0
-    t.index ["bulkrax_importer_run_id"], name: "index_bulkrax_pending_relationships_on_bulkrax_importer_run_id"
+    t.index ["importer_run_id"], name: "index_bulkrax_pending_relationships_on_importer_run_id"
   end
 
   create_table "bulkrax_statuses", force: :cascade do |t|
@@ -806,7 +904,7 @@ ActiveRecord::Schema.define(version: 2022_04_13_180915) do
   add_foreign_key "accounts", "endpoints", column: "solr_endpoint_id", on_delete: :nullify
   add_foreign_key "bulkrax_exporter_runs", "bulkrax_exporters", column: "exporter_id"
   add_foreign_key "bulkrax_importer_runs", "bulkrax_importers", column: "importer_id"
-  add_foreign_key "bulkrax_pending_relationships", "bulkrax_importer_runs"
+  add_foreign_key "bulkrax_pending_relationships", "bulkrax_importer_runs", column: "importer_run_id"
   add_foreign_key "collection_type_participants", "hyrax_collection_types"
   add_foreign_key "content_blocks", "sites"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

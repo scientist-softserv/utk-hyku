@@ -4,6 +4,7 @@ module HyraxHelper
   include ::BlacklightHelper
   include Hyrax::BlacklightOverride
   include Hyrax::HyraxHelperBehavior
+  include AllinsonFlex::AllinsonFlexHelper
 
   def application_name
     Site.application_name || super

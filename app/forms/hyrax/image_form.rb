@@ -7,5 +7,6 @@ module Hyrax
     include Hyrax::FormTerms
     self.model_class = ::Image
     self.terms += %i[resource_type extent]
+    include AllinsonFlex::DynamicFormBehavior
   end
 end
