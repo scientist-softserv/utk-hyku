@@ -53,3 +53,15 @@ public/uploads
 public/assets/*
 .env.*
 docker-compose.override.yml
+/public/packs
+/public/packs-test
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require allinson_flex/application
 //= require codemirror
 //= require codemirror-autorefresh
 //= require codemirror/modes/css

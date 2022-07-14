@@ -17,6 +17,8 @@ class Image < ActiveFedora::Base
 
   # This must come after the properties because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
+
+  include AllinsonFlex::DynamicMetadataBehavior
   include ::Hyrax::BasicMetadata
 
   self.indexer = ImageIndexer
