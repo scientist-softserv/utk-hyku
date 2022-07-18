@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require allinson_flex/application
 //= require codemirror
 //= require codemirror-autorefresh
 //= require codemirror/modes/css
@@ -51,3 +50,4 @@
 //= require statistics_tab_manager
 //= require blacklight_gallery/default
 //= require browse_everything_hack
+//= require allinson_flex/application
