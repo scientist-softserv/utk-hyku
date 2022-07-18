@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: 57b8a9e05b1c89f118a2887466fbb9abbeb0db7a
+  revision: 05f80b98ee8d590885a7be89059b70705e562926
   branch: utk-implementation
   specs:
     allinson_flex (0.1.0)
