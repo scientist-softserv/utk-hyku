@@ -1,14 +1,15 @@
 <% # OVERRIDE: Hyrax 2.9 template to remove the gradient overlay span, removed /controls partial, and added the share your work button for themeing %>
 <% content_for(:navbar) do %>
   <div class="image-masthead">
-    <div class="background-container" style="background-image: url('<%= banner_image %>')"></div>
+  <!-- institutional repository homepage -->
+    <div class="background-container" style="background-image: url('<%= banner_image %>')" title="<%= block_for(name: 'banner_image_text') %>"></div>
 
     <div class="container site-title-container">
       <div class="site-title h1" style="text-align: center;">
         <%= render "hyrax/homepage/marketing" if controller_name == 'homepage' || controller_name == 'hyrax_contact_form' || controller_name == 'pages' %>
       </div>
       <div class="share-your-work-button">
-        <% if @presenter.display_share_button? %>
+        <% if @presenter&.display_share_button? %>
           <div class="institutional-repository home_share_work row">
             <div class="col-sm-12 text-center">
               <% if signed_in? %>
@@ -35,7 +36,7 @@
           </div>
         <% end %>
 
-        <%= render '/shared/select_work_type_modal', create_work_presenter: @presenter.create_work_presenter if @presenter.draw_select_work_modal? %>
+        <%= render '/shared/select_work_type_modal', create_work_presenter: @presenter&.create_work_presenter if @presenter&.draw_select_work_modal? %>
       </div>
     </div>
   </div>

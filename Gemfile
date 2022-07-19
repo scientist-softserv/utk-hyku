@@ -12,8 +12,6 @@ gem 'pg'
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -94,19 +92,17 @@ group :development do
   # gem 'xray-rails' # when using this gem, know that sidekiq will not work
 end
 
-# Bulkrax
-group :bulkrax do
-  gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', branch: :main
-  gem 'willow_sword', git: 'https://github.com/notch8/willow_sword.git'
-end
+gem 'bulkrax', '~> 3.5.0'
 
 gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git', branch: 'utk-implementation'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
-gem 'hyrax', '~> 2.9', '>= 2.9.1'
+gem 'hyrax', '~> 3.4.0'
 
-gem 'hyrax-doi'
+gem 'bolognese', '>= 1.9.10'
+gem 'hyrax-doi', git: 'https://github.com/samvera-labs/hyrax-doi.git', branch: 'hyrax_upgrade'
+gem 'postrank-uri', '>= 1.0.24'
 gem 'rsolr', '~> 2.0'
 
 gem 'devise'
@@ -135,12 +131,14 @@ end
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'codemirror-rails'
+gem 'okcomputer'
 gem 'parser', '~> 2.5.3'
 gem 'rdf', '~> 3.1.15' # rdf 3.2.0 removed SerializedTransaction which ldp requires
 gem 'riiif', '~> 1.1'
 gem 'secure_headers'
 gem "sentry-raven" # Notch8 Sentry Error Reporting
 gem 'sidekiq'
+gem 'terser' # to support the Safe Navigation / Optional Chaining operator (?.) and avoid uglifier precompile issue
 gem 'tether-rails'
 
 gem 'react-rails'
