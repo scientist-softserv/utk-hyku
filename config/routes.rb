@@ -1,5 +1,6 @@
+# OVERRIDE Hyrax 2.9.0 to add featured collection routes
+
 require 'sidekiq/web'
-Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
 mount AllinsonFlex::Engine, at: '/'
@@ -42,7 +43,7 @@ mount AllinsonFlex::Engine, at: '/'
 
   mount Blacklight::Engine => '/'
   mount Hyrax::Engine, at: '/'
-  if ENV.fetch('HYKU_BULKRAX_ENABLED', false)
+  if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
     mount Bulkrax::Engine, at: '/'
   end
 
@@ -87,5 +88,20 @@ mount AllinsonFlex::Engine, at: '/'
     end
   end
 
+  # OVERRIDE here to add featured collection routes
+  scope module: 'hyrax' do
+    # Generic collection routes
+    resources :collections, only: [] do
+      member do
+        resource :featured_collection, only: [:create, :destroy]
+      end
+    end
+    resources :featured_collection_lists, path: 'featured_collections', only: :create
+  end
+
   get 'all_collections' => 'hyrax/homepage#all_collections', as: :all_collections
+
+  # Upload a collection thumbnail
+  post "/dashboard/collections/:id/delete_uploaded_thumbnail", to: "hyrax/dashboard/collections#delete_uploaded_thumbnail", as: :delete_uploaded_thumbnail
+
 end
