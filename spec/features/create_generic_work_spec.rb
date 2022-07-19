@@ -42,7 +42,7 @@ RSpec.describe 'Create a GenericWork', js: true do
     it do # rubocop:disable RSpec/ExampleLength
       visit '/dashboard'
       click_link "Works"
-      click_link "Add new work"
+      click_link "Add New Work"
 
       # If you generate more than one work uncomment these lines
       choose "payload_concern", option: "GenericWork"
@@ -52,13 +52,14 @@ RSpec.describe 'Create a GenericWork', js: true do
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
-      within('span#addfiles') do
+      within('div#add-files') do
         attach_file("files[]", File.join(fixture_path, 'hyrax', 'image.jp2'), visible: false)
         attach_file("files[]", File.join(fixture_path, 'hyrax', 'jp2_fits.xml'), visible: false)
       end
       click_link "Descriptions" # switch tab
       fill_in('Title', with: 'My Test Work')
       fill_in('Creator', with: 'Doe, Jane')
+      click_on('Additional fields')
       fill_in('Keyword', with: 'testing')
       select('In Copyright', from: 'Rights statement')
 

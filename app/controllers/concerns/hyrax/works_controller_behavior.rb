@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-# COPIED FROM HYRAX 2.9.0 to add inject_show_theme_views - Hyku theming
+# OVERRIDE Hyrax 3.4.0 to add inject_show_theme_views - Hyku theming and correct hostname of manifests
 require 'iiif_manifest'
 
+# rubocop:disable Metrics/ModuleLength
+# rubocop:disable Metrics/LineLength
 module Hyrax
-  module WorksControllerBehavior # rubocop:disable Metrics/ModuleLength
+  module WorksControllerBehavior
     extend ActiveSupport::Concern
     include Blacklight::Base
     include Blacklight::AccessControls::Catalog
@@ -13,12 +15,9 @@ module Hyrax
       with_themed_layout :decide_layout
       copy_blacklight_config_from(::CatalogController)
 
-      class_attribute :_curation_concern_type,
-                      :show_presenter,
-                      :work_form_service,
-                      :search_builder_class,
-                      :iiif_manifest_builder
-      self.show_presenter = Hyrax::WorkShowPresenter
+      class_attribute :_curation_concern_type, :show_presenter, :work_form_service, :search_builder_class
+      class_attribute :iiif_manifest_builder, instance_accessor: false
+      self.show_presenter = Hyku::WorkShowPresenter
       self.work_form_service = Hyrax::WorkFormService
       self.search_builder_class = WorkSearchBuilder
       self.iiif_manifest_builder = (
@@ -58,6 +57,7 @@ module Hyrax
     end
 
     def new
+      @admin_set_options = available_admin_sets
       # TODO: move these lines to the work form builder in Hyrax
       curation_concern.depositor = current_user.user_key
       curation_concern.admin_set_id = admin_set_id_for_new
@@ -65,21 +65,12 @@ module Hyrax
     end
 
     def create
-      if actor.create(actor_environment)
-        after_create_response
+      case curation_concern
+      when ActiveFedora::Base
+        original_input_params_for_form = params[hash_key_for_curation_concern].deep_dup
+        actor.create(actor_environment) ? after_create_response : after_create_error(curation_concern.errors, original_input_params_for_form)
       else
-        respond_to do |wants|
-          wants.html do
-            build_form
-            render 'new', status: :unprocessable_entity
-          end
-          wants.json do
-            render_json_response(
-              response_type: :unprocessable_entity,
-              options: { errors: curation_concern.errors }
-            )
-          end
-        end
+        create_valkyrie_work
       end
     end
 
@@ -91,52 +82,49 @@ module Hyrax
       respond_to do |wants|
         wants.html { presenter && parent_presenter }
         wants.json do
-          # load and authorize @curation_concern manually because it's skipped for html
-          @curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
-          authorize! :show, @curation_concern
+          # load @curation_concern manually because it's skipped for html
+          @curation_concern = Hyrax.query_service.find_by(alternate_identifier: params[:id])
+          curation_concern # This is here for authorization checks (we could add authorize! but let's use the same method for CanCanCan)
           render :show, status: :ok
         end
         additional_response_formats(wants)
-        wants.ttl do
-          render body: presenter.export_as_ttl, content_type: 'text/turtle'
-        end
-        wants.jsonld do
-          render body: presenter.export_as_jsonld, content_type: 'application/ld+json'
-        end
-        wants.nt do
-          render body: presenter.export_as_nt, content_type: 'application/n-triples'
-        end
+        wants.ttl { render body: presenter.export_as_ttl, mime_type: Mime[:ttl] }
+        wants.jsonld { render body: presenter.export_as_jsonld, mime_type: Mime[:jsonld] }
+        wants.nt { render body: presenter.export_as_nt, mime_type: Mime[:nt] }
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
     def edit
+      @admin_set_options = available_admin_sets
       build_form
     end
 
     def update
-      if actor.update(actor_environment)
-        after_update_response
+      case curation_concern
+      when ActiveFedora::Base
+        actor.update(actor_environment) ? after_update_response : after_update_error(curation_concern.errors)
       else
-        respond_to do |wants|
-          wants.html do
-            build_form
-            render 'edit', status: :unprocessable_entity
-          end
-          wants.json do
-            render_json_response(
-              response_type: :unprocessable_entity,
-              options: { errors: curation_concern.errors }
-            )
-          end
-        end
+        update_valkyrie_work
       end
     end
 
     def destroy
-      title = curation_concern.to_s
-      env = Actors::Environment.new(curation_concern, current_ability, {})
-      return unless actor.destroy(env)
-      Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user)
+      case curation_concern
+      when ActiveFedora::Base
+        title = curation_concern.to_s
+        env = Actors::Environment.new(curation_concern, current_ability, {})
+        return unless actor.destroy(env)
+        Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user, warn: false)
+      else
+        transactions['work_resource.destroy']
+          .with_step_args('work_resource.delete' => { user: current_user })
+          .call(curation_concern)
+          .value!
+
+        title = Array(curation_concern.title).first
+      end
+
       after_destroy_response(title)
     end
 
@@ -167,7 +155,7 @@ module Hyrax
       end
 
       def iiif_manifest_presenter
-        IiifManifestPresenter.new(curation_concern_from_search_results).tap do |p|
+        IiifManifestPresenter.new(search_result_document(id: params[:id])).tap do |p|
           p.hostname = request.hostname
           p.ability = current_ability
         end
@@ -182,13 +170,7 @@ module Hyrax
       end
 
       def admin_set_id_for_new
-        # admin_set_id is required on the client, otherwise simple_form renders a blank option.
-        # however it isn't a required field for someone to submit via json.
-        # Set the default admin set if it exists; otherwise, set to first admin_set they have access to.
-        admin_sets = Hyrax::AdminSetService.new(self).search_results(:deposit)
-        return nil if admin_sets.blank? # shouldn't happen
-        return AdminSet::DEFAULT_ID if admin_sets.map(&:id).include?(AdminSet::DEFAULT_ID)
-        admin_sets.first.id
+        Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id.to_s
       end
 
       def build_form
@@ -199,8 +181,51 @@ module Hyrax
         @actor ||= Hyrax::CurationConcern.actor
       end
 
+      ##
+      # @return [#errors]
+      def create_valkyrie_work
+        form = build_form
+        return after_create_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
+
+        result =
+          transactions['change_set.create_work']
+          .with_step_args(
+            'work_resource.add_to_parent' => { parent_id: params[:parent_id], user: current_user },
+            'work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: params[hash_key_for_curation_concern][:file_set] },
+            'change_set.set_user_as_depositor' => { user: current_user },
+            'work_resource.change_depositor' => { user: ::User.find_by_user_key(form.on_behalf_of) }
+          )
+          .call(form)
+        @curation_concern = result.value_or { return after_create_error(transaction_err_msg(result)) }
+        after_create_response
+      end
+
+      def update_valkyrie_work
+        form = build_form
+        return after_update_error(form_err_msg(form)) unless form.validate(params[hash_key_for_curation_concern])
+        result =
+          transactions['change_set.update_work']
+          .with_step_args('work_resource.add_file_sets' => { uploaded_files: uploaded_files, file_set_params: params[hash_key_for_curation_concern][:file_set] },
+                          'work_resource.update_work_members' => { work_members_attributes: work_members_attributes })
+          .call(form)
+        @curation_concern = result.value_or { return after_update_error(transaction_err_msg(result)) }
+        after_update_response
+      end
+
+      def work_members_attributes
+        params[hash_key_for_curation_concern][:work_members_attributes]&.permit!&.to_h
+      end
+
+      def form_err_msg(form)
+        form.errors.messages.values.flatten.to_sentence
+      end
+
+      def transaction_err_msg(result)
+        result.failure.first
+      end
+
       def presenter
-        @presenter ||= show_presenter.new(curation_concern_from_search_results, current_ability, request)
+        @presenter ||= show_presenter.new(search_result_document(id: params[:id]), current_ability, request)
       end
 
       def parent_presenter
@@ -228,13 +253,46 @@ module Hyrax
         ::Hyrax::ContextualPath.new(presenter, parent_presenter).show
       end
 
+      # @deprecated
       def curation_concern_from_search_results
-        search_params = params
+        Deprecation.warn("'##{__method__}' will be removed in Hyrax 4.0.  " \
+          "Instead, use '#search_result_document'.")
+        search_params = params.deep_dup
         search_params.delete :page
         search_result_document(search_params)
       end
 
+      ##
       # Only returns unsuppressed documents the user has read access to
+      #
+      # @api public
+      #
+      # @param search_params [ActionController::Parameters] this should
+      #   include an :id key, but based on implementation and use of the
+      #   WorkSearchBuilder, it need not.
+      #
+      # @return [SolrDocument]
+      #
+      # @raise [WorkflowAuthorizationException] when the object is not
+      #   found via the search builder's search logic BUT the object is
+      #   suppressed AND the user can read it (Yeah, it's confusing but
+      #   after a lot of debugging that's the logic)
+      #
+      # @raise [CanCan::AccessDenied] when the object is not found via
+      #   the search builder's search logic BUT the object is not
+      #   supressed OR not readable by the user (Yeah.)
+      #
+      # @note This is Jeremy, I have suspicions about the first line of
+      #   this comment (eg, "Only return unsuppressed...").  The
+      #   reason is that I've encounter situations in the specs
+      #   where the document_list is empty but if I then query Solr
+      #   for the object by ID, I get a document that is NOT
+      #   suppressed AND can be read.  In other words, I believe
+      #   there is more going on in the search_results method
+      #   (e.g. a filter is being applied that is beyond what the
+      #   comment indicates)
+      #
+      # @see #document_not_found!
       def search_result_document(search_params)
         _, document_list = search_results(search_params)
         return document_list.first unless document_list.empty?
@@ -255,19 +313,11 @@ module Hyrax
             flash[:notice] = message
             render 'unavailable', status: :unauthorized
           end
-          wants.json do
-            render plain: message, status: :unauthorized
-          end
+          wants.json { render plain: message, status: :unauthorized }
           additional_response_formats(wants)
-          wants.ttl do
-            render plain: message, status: :unauthorized
-          end
-          wants.jsonld do
-            render plain: message, status: :unauthorized
-          end
-          wants.nt do
-            render plain: message, status: :unauthorized
-          end
+          wants.ttl { render plain: message, status: :unauthorized }
+          wants.jsonld { render plain: message, status: :unauthorized }
+          wants.nt { render plain: message, status: :unauthorized }
         end
       end
 
@@ -285,6 +335,10 @@ module Hyrax
         File.join(theme, layout)
       end
 
+      ##
+      # @todo should the controller know so much about browse_everything?
+      #   hopefully this can be refactored to be more reusable.
+      #
       # Add uploaded_files to the parameters received by the actor.
       def attributes_for_actor
         raw_params = params[hash_key_for_curation_concern]
@@ -318,35 +372,57 @@ module Hyrax
         respond_to do |wants|
           wants.html do
             # Calling `#t` in a controller context does not mark _html keys as html_safe
-            flash[:notice] = view_context.t(
-              'hyrax.works.create.after_create_html',
-              application_name: view_context.application_name
-            )
+            flash[:notice] = view_context.t('hyrax.works.create.after_create_html', application_name: view_context.application_name)
+
             redirect_to [main_app, curation_concern]
           end
           wants.json { render :show, status: :created, location: polymorphic_path([main_app, curation_concern]) }
         end
       end
 
-      def after_update_response
-        if curation_concern.file_sets.present?
-          return redirect_to hyrax.confirm_access_permission_path(curation_concern) if permissions_changed?
-          if curation_concern.visibility_changed?
-            return redirect_to main_app.confirm_hyrax_permission_path(curation_concern)
-          end
-        end
+      def after_create_error(errors, original_input_params_for_form = nil)
         respond_to do |wants|
           wants.html do
-            redirect_to [main_app, curation_concern],
-                        notice: "Work \"#{curation_concern}\" successfully updated."
+            flash[:error] = errors.to_s
+            rebuild_form(original_input_params_for_form) if original_input_params_for_form.present?
+            render 'new', status: :unprocessable_entity
           end
+          wants.json { render_json_response(response_type: :unprocessable_entity, options: { errors: errors }) }
+        end
+      end
+
+      # Creating a form object that can re-render most of the submitted parameters.
+      # Required for ActiveFedora::Base objects only.
+      def rebuild_form(original_input_params_for_form)
+        build_form
+        @form = Hyrax::Forms::FailedSubmissionFormWrapper
+                .new(form: @form,
+                     input_params: original_input_params_for_form)
+      end
+
+      def after_update_response
+        return redirect_to hyrax.confirm_access_permission_path(curation_concern) if permissions_changed? && concern_has_file_sets?
+
+        respond_to do |wants|
+          wants.html { redirect_to [main_app, curation_concern], notice: "Work \"#{curation_concern}\" successfully updated." }
           wants.json { render :show, status: :ok, location: polymorphic_path([main_app, curation_concern]) }
+        end
+      end
+
+      def after_update_error(errors)
+        respond_to do |wants|
+          wants.html do
+            flash[:error] = errors.to_s
+            build_form unless @form.is_a? Hyrax::ChangeSet
+            render 'edit', status: :unprocessable_entity
+          end
+          wants.json { render_json_response(response_type: :unprocessable_entity, options: { errors: errors }) }
         end
       end
 
       def after_destroy_response(title)
         respond_to do |wants|
-          wants.html { redirect_to my_works_path, notice: "Deleted #{title}" }
+          wants.html { redirect_to hyrax.my_works_path, notice: "Deleted #{title}" }
           wants.json { render_json_response(response_type: :deleted, message: "Deleted #{curation_concern.id}") }
         end
       end
@@ -360,11 +436,56 @@ module Hyrax
       end
 
       def save_permissions
-        @saved_permissions = curation_concern.permissions.map(&:to_hash)
+        @saved_permissions =
+          case curation_concern
+          when ActiveFedora::Base
+            curation_concern.permissions.map(&:to_hash)
+          else
+            Hyrax::AccessControl.for(resource: curation_concern).permissions
+          end
       end
 
       def permissions_changed?
-        @saved_permissions != curation_concern.permissions.map(&:to_hash)
+        @saved_permissions !=
+          case curation_concern
+          when ActiveFedora::Base
+            curation_concern.permissions.map(&:to_hash)
+          else
+            Hyrax::AccessControl.for(resource: curation_concern).permissions
+          end
+      end
+
+      def concern_has_file_sets?
+        case curation_concern
+        when ActiveFedora::Common
+          curation_concern.file_sets.present?
+        else
+          Hyrax.custom_queries.find_child_file_set_ids(resource: curation_concern).any?
+        end
+      end
+
+      def uploaded_files
+        UploadedFile.find(params.fetch(:uploaded_files, []))
+      end
+
+      def available_admin_sets
+        # only returns admin sets in which the user can deposit
+        admin_set_results = Hyrax::AdminSetService.new(self).search_results(:deposit)
+
+        # get all the templates at once, reducing query load
+        templates = PermissionTemplate.where(source_id: admin_set_results.map(&:id)).to_a
+
+        admin_sets = admin_set_results.map do |admin_set_doc|
+          template = templates.find { |temp| temp.source_id == admin_set_doc.id.to_s }
+
+          # determine if sharing tab should be visible
+          sharing = can?(:manage, template) || !!template&.active_workflow&.allows_access_grant? # rubocop:disable Style/DoubleNegation
+
+          AdminSetSelectionPresenter::OptionsEntry
+            .new(admin_set: admin_set_doc, permission_template: template, permit_sharing: sharing)
+        end
+
+        AdminSetSelectionPresenter.new(admin_sets: admin_sets)
       end
 
       # added to prepend the show theme views into the view_paths
@@ -374,8 +495,7 @@ module Hyrax
           show_theme_view_path = Rails.root.join('app', 'views', "themes", show_page_theme.to_s)
           prepend_view_path(show_theme_view_path)
           yield
-          # rubocop:disable Lint/UselessAssignment, Layout/SpaceAroundOperators, Style/RedundantParentheses
-          view_paths=(original_paths)
+          view_paths = original_paths # rubocop:disable Lint/UselessAssignment
           # rubocop:enable Lint/UselessAssignment, Layout/SpaceAroundOperators, Style/RedundantParentheses
         else
           yield
@@ -383,3 +503,5 @@ module Hyrax
       end
   end
 end
+# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/LineLength

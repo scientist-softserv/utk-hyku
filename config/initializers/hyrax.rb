@@ -168,7 +168,7 @@ Hyrax.config do |config|
 
   config.iiif_image_server = true
 
-  config.iiif_image_url_builder = lambda do |file_id, base_url, size|
+  config.iiif_image_url_builder = lambda do |file_id, base_url, size, format|
     Riiif::Engine.routes.url_helpers.image_url(file_id, host: base_url, size: size)
   end
 
@@ -186,6 +186,13 @@ Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Loca
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
 
 # set bulkrax default work type to first curation_concern if it isn't already set
-if ENV.fetch('HYKU_BULKRAX_ENABLED', false) && Bulkrax.default_work_type.blank?
+if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true' && Bulkrax.default_work_type.blank?
   Bulkrax.default_work_type = Hyrax.config.curation_concerns.first.to_s
+end
+
+# Stop solr deprecation until ActiveFedora 13.2.8 comes out
+ActiveFedora::SolrService.class_eval do
+  def initialize(options = {})
+    @options = { timeout: 120, open_timeout: 120, url: 'http://localhost:8080/solr' }.merge(options)
+  end
 end

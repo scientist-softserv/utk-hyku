@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# OVERRIDE Hyrax 3.4.0 ot add custom theming
+
 # rubocop:disable Metrics/ClassLength
 module Hyrax
   module Forms
@@ -75,6 +77,31 @@ module Hyrax
         # Required to back a form (for route determination)
         def persisted?
           true
+        end
+
+        # The alt text for the logo image
+        def logo_image_text
+          block_for('logo_image_text')
+        end
+
+        # The alt text for the banner image
+        def banner_image_text
+          block_for('banner_image_text')
+        end
+
+        # The alt text for the directory image
+        def directory_image_text
+          block_for('directory_image_text')
+        end
+
+        # The alt text for the default_collection image
+        def default_collection_image_text
+          block_for('default_collection_image_text')
+        end
+
+        # The alt text for the default_work image
+        def default_work_image_text
+          block_for('default_work_image_text')
         end
 
         # The font for the body copy
@@ -285,20 +312,33 @@ module Hyrax
 
         # @return [Array<Symbol>] a list of fields that are related to the banner
         def self.banner_fields
-          [:banner_image]
+          %i[
+            banner_image banner_label
+          ]
         end
 
-        # @return [Array<Symbol>] a list of fields that are related to the banner
+        # @return [Array<Symbol>] a list of fields that are related to the logo
         def self.logo_fields
-          [:logo_image]
+          %i[
+            logo_image logo_label
+          ]
         end
 
+        # @return [Array<Symbol>] a list of fields that are related to the directory
         def self.directory_fields
-          [:directory_image]
+          %i[
+            directory_image directory_image_label
+          ]
         end
 
+        # @return [Array<Symbol>] a list of fields that are related to default works & collections
         def self.default_image_fields
-          %i[default_collection_image default_work_image]
+          %i[
+            default_collection_image
+            default_work_image
+            default_collection_label
+            default_work_label
+          ]
         end
 
         # Persist the form values
@@ -335,6 +375,11 @@ module Hyrax
             searchbar_text_color
             searchbar_text_hover_color
             custom_css_block
+            logo_image_text
+            banner_image_text
+            directory_image_text
+            default_collection_image_text
+            default_work_image_text
           ]
         end
 
