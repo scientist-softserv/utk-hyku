@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Flipflop.configure do
   feature :show_featured_researcher,
           default: true,
