@@ -1,13 +1,12 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: ea70cba4d3387c4439313ef1f72b4e5620c5a795
+  revision: c05e75aa07f51fb60b79a0fc0a704948ccb9162f
   branch: utk-implementation
   specs:
     allinson_flex (0.1.0)
       json_schemer
       rails (>= 5.1.6)
       react-rails
-      solrizer
       webpacker
 
 GIT
@@ -1107,10 +1106,6 @@ GEM
       retriable
       ruby-progressbar
       rubyzip
-    solrizer (4.1.0)
-      activesupport
-      nokogiri
-      xml-simple
     sparql (3.1.8)
       builder (~> 3.2)
       ebnf (~> 2.1)
@@ -1210,8 +1205,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    xml-simple (1.1.9)
-      rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
