@@ -12,7 +12,6 @@ RUN apk --no-cache upgrade && \
     postgresql-client \
     cmake \
     $EXTRA_APK_PACKAGES
-
 USER app
 
 RUN mkdir -p /app/fits && \
