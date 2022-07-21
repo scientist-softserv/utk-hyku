@@ -28,8 +28,6 @@ extraVolumeMounts: &volMounts
   - name: uploads
     mountPath: /app/samvera/hyrax-webapp/tmp/network_files
     subPath: network-files
-  - name: branding
-    mountPath: /app/samvera/branding
 
 ingress:
   enabled: true
@@ -52,8 +50,6 @@ ingress:
       secretName: notch8cloud
 
 extraEnvVars: &envVars
-  - name: HYRAX_BRANDING_PATH
-    value: "/app/samvera/branding"
   - name: HYKU_ADMIN_HOST
     value: utk-hyku-staging.notch8.cloud
   - name: HYKU_ADMIN_ONLY_TENANT_CREATION
