@@ -65,7 +65,7 @@ test:
     DB_PORT: 5432
     FCREPO_HOST: fcrepo
     FCREPO_PORT: 8081
-    FEDORA_URL: http://fcrepo:8081/rest
+    FCREPO_URL: http://fcrepo:8081/rest
     FF_NETWORK_PER_BUILD: 1
     GIT_STRATEGY: none
     JAVA_OPTIONS: -Djetty.port=8081
