@@ -1,4 +1,6 @@
-<%# override from bulkrax to make bulkrax a feature flipper %>
+<%# OVERRIDE from bulkrax to make bulkrax a feature flipper %>
+<%# OVERRIDE from allinson_flex 1.0 to override check for priviledges %>
+
 <li class="h5"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
 
 <%= menu.nav_link(hyrax.my_collections_path,
@@ -20,6 +22,12 @@
 
   <%= menu.nav_link(bulkrax.exporters_path) do %>
     <span class="fa fa-cloud-download" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('bulkrax.admin.sidebar.exporters') %></span>
+  <% end %>
+<% end %>
+
+<% if current_ability.admin? %>
+  <%= menu.nav_link(allinson_flex.profiles_path) do %>
+    <span class="fa fa-table" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('allinson_flex.admin.sidebar.profiles') %></span>
   <% end %>
 <% end %>
 
