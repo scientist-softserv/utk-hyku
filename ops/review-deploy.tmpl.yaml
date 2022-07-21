@@ -28,8 +28,6 @@ extraVolumeMounts: &volMounts
   - name: uploads
     mountPath: /app/samvera/hyrax-webapp/tmp/network_files
     subPath: network-files
-  - name: branding
-    mountPath: /app/samvera/branding
 
 ingress:
   enabled: true
@@ -42,8 +40,6 @@ ingress:
         - path: /
 
 extraEnvVars: &envVars
-  - name: HYRAX_BRANDING_PATH
-    value: "/app/samvera/branding"
   - name: HYKU_ADMIN_HOST
     value: hyku-$CI_MERGE_REQUEST_ID.example.com
   - name: HYKU_ROOT_HOST
