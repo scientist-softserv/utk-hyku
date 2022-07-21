@@ -93,7 +93,7 @@ group :development do
   # gem 'xray-rails' # when using this gem, know that sidekiq will not work
 end
 
-gem 'bulkrax', '~> 3.5.0'
+gem 'bulkrax'
 
 gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git', branch: 'utk-implementation'
 gem 'blacklight', '~> 6.7'
