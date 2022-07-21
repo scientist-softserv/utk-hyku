@@ -10,7 +10,7 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
       { name: "XML", class_name: "Bulkrax::XmlParser", partial: "xml_fields" },
       { name: "Bagit", class_name: "Bulkrax::BagitParser", partial: "bagit_fields" }
     ]
-  
+
 
     # Field to use during import to identify if the Work or Collection already exists.
     # Default is 'source'.
@@ -55,7 +55,7 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
     'admin_set_id' => { from: ['admin_set_id'], generated: true },
     'based_near' => { from: ['based_near'], split: '\|' },
     'bibliographic_citation' => { from: ['bibliographic_citation'], split: '\|', generated: true },
-    'bulkrax_identifier' => { from: ['bulkrax_identifier', 'source_identifier'], source_identifier: true, generated: true },
+    'bulkrax_identifier' => { from: ['source_identifier'], source_identifier: true, generated: true },
     'children' => { from: ['children'], split: /\s*[;|]\s*/, related_children_field_mapping: true },
     'contributor' => { from: ['contributor'], split: '\|' },
     'creator' => { from: ['creator'], split: '\|' },
@@ -80,7 +80,7 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
     }
 
     config.field_mappings['Bulkrax::CsvParser'] = parser_mapping
-    
+
     # Create a completely new set of mappings by replacing the whole set as follows
     #   config.field_mappings = {
     #     "Bulkrax::OaiDcParser" => { **individual field mappings go here*** }
