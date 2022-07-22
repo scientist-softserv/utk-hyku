@@ -98,6 +98,8 @@ extraEnvVars: &envVars
     value: /rest
   - name: FCREPO_URL
     value: http://fcrepo.staging-fcrepo.svc.cluster.local:8080/rest
+  - name: HYKU_FILE_ACL
+    value: "true"
   - name: IN_DOCKER
     value: "true"
   - name: LD_LIBRARY_PATH
