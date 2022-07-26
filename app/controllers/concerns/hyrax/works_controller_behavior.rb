@@ -490,7 +490,9 @@ module Hyrax
 
       # added to prepend the show theme views into the view_paths
       def inject_show_theme_views
-        if show_page_theme && show_page_theme != 'default_show'
+        if AllinsonFlex::Profile.none?
+          redirect_to '/profiles', alert: 'Import metadata profile to create a work.'
+        elsif show_page_theme && show_page_theme != 'default_show'
           original_paths = view_paths
           show_theme_view_path = Rails.root.join('app', 'views', "themes", show_page_theme.to_s)
           prepend_view_path(show_theme_view_path)
