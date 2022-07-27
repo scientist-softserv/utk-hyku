@@ -1,0 +1,24 @@
+<%# OVERRIDE Hyrax 3.4.1 to change behovior of #depositor %>
+<li class="recent-item">
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="sr-only"><%= t('hyrax.homepage.recently_uploaded.document.title_label') %></span>
+        <h3>
+          <%= link_to [main_app, recent_document] do %>
+            <%= render_thumbnail_tag(recent_document, {width: 90, alt: "#{recent_document} #{ t('hyrax.homepage.admin_sets.thumbnail')}" }, {suppress_link: true}) %><%= recent_document %>
+          <% end %>
+        </h3>
+        <p class="recent-field">
+          <span class="recent-label"><%= t('hyrax.homepage.recently_uploaded.document.depositor_label') %>:</span>
+          <%# OVERRIDE BEGIN %>
+          <%# Allinson Flex changed where #deposit was coming from, now it does not take an argrument %>
+          <% document_depositor = recent_document.try(:depositor) %>
+          <%= link_to_profile document_depositor.blank? ? t('hyrax.homepage.recently_uploaded.document.despositor_missing') : document_depositor %>
+          <%# OVERRIDE END %>
+        </p>
+        <p class="recent-field">
+          <span class="recent-label"><%= t('hyrax.homepage.recently_uploaded.document.keyword_label') %>:</span> <%= link_to_facet_list(recent_document.keyword, 'keyword', t('hyrax.homepage.recently_uploaded.document.keyword_missing')).html_safe %>
+        </p>
+      </div>
+    </div>
+</li>
