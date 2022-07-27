@@ -82,13 +82,13 @@ extraEnvVars: &envVars
     value: user@notch8.com
   - name: TEST_USER_PASSWORD
     value: testing123
-  - name: DATABASE_ADAPTER
+  - name: DB_ADAPTER
     value: postgresql
-  - name: DATABASE_HOST
+  - name: DB_HOST
     value: pg-postgresql.staging-postgres.svc.cluster.local
-  - name: DATABASE_NAME
+  - name: DB_NAME
     value: utk-hyku
-  - name: DATABASE_USER
+  - name: DB_USER
     value: postgres
   - name: FCREPO_BASE_PATH
     value: /utk-hyku
