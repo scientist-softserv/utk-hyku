@@ -1,4 +1,4 @@
-<%# OVERRIDE allinson_flex 1.0 to remove create and edit options %>
+<%# OVERRIDE allinson_flex 1.0 to restrict access to create and edit options %>
 
 <% provide :page_title, t(:'allinson_flex.dashboard.profiles') %>
 
@@ -9,6 +9,11 @@
       <span class="fa fa-upload" aria-hidden="true"></span>
       <%= t(:'helpers.action.allinson_flex_profile.import_profile') %>
     </button>
+    <% if @profiles.blank? && ENV['DISPLAY_ALLINSON_FLEX_UI'] == 'true' %>
+      <%= link_to allinson_flex.new_profile_path, class: 'btn btn-primary' do %>
+        <span aria-hidden="true"></span> <%= t(:'helpers.action.allinson_flex_profile.create') %>
+      <% end %>
+    <% end %>
   </div>
 <% end %>
 
@@ -41,8 +46,11 @@
                     </th>
 
                   <% else %>
+                    <% if ENV['DISPLAY_ALLINSON_FLEX_UI'] == 'true'%>
+                      <th><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), allinson_flex.edit_profile_path(allinson_flex_profile), data: { turbolinks: false } %></th>
+                    <% end %>
                     <th><%= link_to raw('<span class="glyphicon glyphicon-download-alt"></span>'), allinson_flex.profile_export_path(allinson_flex_profile), tagert: "_blank" %></th>
-                    <th><%= link_to raw('<span class="glyphicon glyphicon-remove"></span>'), allinson_flex.profile_path(allinson_flex_profile), method: :delete, data: { confirm: 'Are you sure?' } %></th>
+                    <th><%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), allinson_flex.profile_path(allinson_flex_profile), method: :delete, data: { confirm: 'Are you sure?' } %></th>
                   <% end %>
                 <% else %>
                   <td></td>
