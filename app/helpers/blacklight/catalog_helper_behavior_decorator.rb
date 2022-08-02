@@ -34,4 +34,4 @@ module Blacklight
   end
 end
 
-Blacklight::CatalogHelperBehavior.prepend(Blacklight::CatalogHelperBehaviorDecorator)
+# included directly in hyrax_helper.rb to overcome load order problem
