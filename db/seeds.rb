@@ -36,6 +36,9 @@ unless ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
     Hyrax::AdminSetCreateService.new(admin_set: admin_set, creating_user: nil).create
   end
 
+  # Import a flexible metadata profile
+  AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'hyrax.yaml').to_s) unless AllinsonFlex::Profile.any?
+
   puts "\n== Finished creating single tenant resources"
 end
 
