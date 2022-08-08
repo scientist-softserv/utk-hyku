@@ -4,6 +4,7 @@ module HyraxHelper
   include ::BlacklightHelper
   include Hyrax::BlacklightOverride
   include Hyrax::HyraxHelperBehavior
+  include AllinsonFlex::AllinsonFlexHelper
   include Hyrax::WorkFormHelperDecorator
   include Blacklight::CatalogHelperBehaviorDecorator
   include AdminSetDecorator
