@@ -37,6 +37,7 @@ unless ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
   end
 
   # Import a flexible metadata profile
+  puts "\n== Setting up metadata profile"
   AllinsonFlex::Importer.load_profile_from_path(path: Rails.root.join('config', 'metadata_profile', 'hyrax.yaml').to_s) unless AllinsonFlex::Profile.any?
 
   puts "\n== Finished creating single tenant resources"
