@@ -13,4 +13,10 @@ cultural_show:
 scholarly_show:
   name: Scholarly Show Page
   notes: This text based show page is recommended for institutional repositories.
+dc_show:
+  name: DC Show Page
+  notes: Placeholder for custom DC theme for UTK
+trace_show:
+  name: Trace Show Page
+  notes: Placeholder for custom Trace theme for UTK
   
