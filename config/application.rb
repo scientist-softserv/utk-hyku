@@ -10,7 +10,7 @@ Bundler.require(*groups)
 module Hyku
   class Application < Rails::Application
     config.to_prepare do
-      Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/allinson_flex/extensions.rb')) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/allinson_flex/*')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
