@@ -10,7 +10,7 @@ Bundler.require(*groups)
 module Hyku
   class Application < Rails::Application
     config.to_prepare do
-      Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/allinson_flex/*')) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/allinson_flex/extensions.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
@@ -18,8 +18,8 @@ module Hyku
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-  # config.autoload_paths += %W(#{config.root}/extensions/allinson_flex)
-  # config.autoload_paths += Dir["#{config.root}/lib/extensions/allinson_flex/"]
+    config.autoload_paths += [Rails.root.join('lib', 'extensions')]
+    config.eager_load_paths += [Rails.root.join('lib', 'extensions')]
     # Gzip all responses.  We probably could do this in an upstream proxy, but
     # configuring Nginx on Elastic Beanstalk is a pain.
     config.middleware.use Rack::Deflater
