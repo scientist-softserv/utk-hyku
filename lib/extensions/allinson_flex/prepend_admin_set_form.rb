@@ -8,5 +8,3 @@ module AllinsonFlex
     end
   end
 end
-
-Hyrax::Forms::AdminSetForm.prepend AllinsonFlex::PrependAdminSetForm

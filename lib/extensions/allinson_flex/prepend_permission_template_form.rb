@@ -76,5 +76,3 @@ module AllinsonFlex
       end
   end
 end
-
-Hyrax::Forms::PermissionTemplateForm.prepend AllinsonFlex::PrependPermissionTemplateForm
