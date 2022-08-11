@@ -32,5 +32,3 @@ module AllinsonFlex
     end
   end
 end
-
-Hyrax::Admin::PermissionTemplatesController.prepend AllinsonFlex::PrependPermissionTemplatesController
