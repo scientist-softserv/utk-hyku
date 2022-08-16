@@ -3,7 +3,10 @@
 # OVERRIDE blacklight 6 to allow full url for show links for shared search thumbnail
 module Blacklight
   module CatalogHelperBehaviorDecorator
-    def render_thumbnail_tag(document, image_options = {}, url_options = {})
+    def render_thumbnail_tag(doc, image_options = {}, url_options = {})
+      # pull solr_document from input if we don't already have a solr_document
+      document = doc&.try(:solr_document) || doc
+
       value = if blacklight_config.view_config(document_index_view_type).thumbnail_method
                 send(blacklight_config.view_config(document_index_view_type).thumbnail_method, document, image_options)
               elsif blacklight_config.view_config(document_index_view_type).thumbnail_field
@@ -22,7 +25,7 @@ module Blacklight
         if url_options[:suppress_link]
           value
         elsif url_options[:full_url]
-          link_to generate_work_url(document.to_h, request) do
+          link_to generate_work_url(document, request) do
             value
           end
         else
