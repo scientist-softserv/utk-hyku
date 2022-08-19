@@ -5,12 +5,21 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Github Container Login
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Pull from cache to speed up build
         run: TAG=main docker-compose pull web || true
       - name: Build web
@@ -19,8 +28,13 @@ jobs:
         run: TAG=${GITHUB_SHA::8} docker-compose build worker
       - name: Push to registry
         run: >-
-          docker-compose push web;
-          docker-compose push worker
+          TAG=#{GITHUB_SHA::8} docker-compose push web;
+          TAG=#{GITHUB_SHA::8} docker-compose push worker
+      - name: Update main tag
+        # if: github.ref == 'refs/heads/main'
+        run: >-
+          TAG=main docker-compose push web;
+          TAG=main docker-compose push worker
 
   lint:
     needs: build
@@ -28,6 +42,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Github Container Login
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Pronto
         run: TAG=${GITHUB_SHA::8} docker-compose run bundle exec pronto run -f github -c origin/main
 
@@ -77,6 +97,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Github Container Login
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Start containers
         run: TAG=${GITHUB_SHA::8} docker-compose up -d web
       - name: Setup solr
