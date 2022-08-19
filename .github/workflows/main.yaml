@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      name: Check tag
-      run: echo ${TAG} is cool
+      - name: Check tag
+        run: echo ${TAG} is cool
   #     - name: Checkout code
   #       uses: actions/checkout@v3
   #     - name: Github Container Login
