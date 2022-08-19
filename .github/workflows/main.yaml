@@ -28,8 +28,8 @@ jobs:
         run: TAG=${GITHUB_SHA::8} docker-compose build worker
       - name: Push to registry
         run: >-
-          TAG=#{GITHUB_SHA::8} docker-compose push web;
-          TAG=#{GITHUB_SHA::8} docker-compose push worker
+          TAG=${GITHUB_SHA::8} docker-compose push web;
+          TAG=${GITHUB_SHA::8} docker-compose push worker
       - name: Update main tag
         # if: github.ref == 'refs/heads/main'
         run: >-
