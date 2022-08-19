@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Pull from cache to speed up build
-        run: TAG=main docker-compose pull web
+        run: TAG=main docker-compose pull web || true
       - name: Build web
         run: docker-compose build web
       - name: Build Worker
