@@ -1,0 +1,95 @@
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+env:
+  TAG: ${GITHUB_SHA::8}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Pull from cache to speed up build
+        run: TAG=main docker-compose pull web
+      - name: Build web
+        run: docker-compose build web
+      - name: Build Worker
+        run: docker-compose build worker
+      - name: Push to registry
+        run: >-
+          docker-compose push web;
+          docker-compose push worker
+
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run Pronto
+        run: docker-compose run bundle exec pronto run -f github -c origin/main
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      CONFDIR: "/app/samvera/hyrax-webapp/solr/config"
+      CHROME_HOSTNAME: chrome
+      DB_ADAPTER: postgresql
+      DB_CLEANER_ALLOW_REMOTE_DB_URL: "true"
+      DB_HOST: db
+      DB_NAME: hyku
+      DB_URL: postgres://postgres:postgres@db/hyku
+      DB_USER: postgres
+      DB_PORT: 5432
+      FCREPO_HOST: fcrepo
+      FCREPO_PORT: 8081
+      FCREPO_URL: http://fcrepo:8081/rest
+      FF_NETWORK_PER_BUILD: 1
+      GIT_STRATEGY: none
+      JAVA_OPTIONS: -Djetty.port=8081
+      IN_DOCKER: "true"
+      POSTGRESQL_DATABASE: hyku
+      POSTGRESQL_PASSWORD: postgres
+      REDIS_HOST: redis
+      SETTINGS__SOLR__URL: http://admin:admin@solr:8983/solr/
+      HYKU_BULKRAX_ENABLED: "true"
+      SOLR_ADMIN_PASSWORD: admin
+      SOLR_ADMIN_USER: admin
+      SOLR_ADMIN_USERNAME: admin
+      SOLR_CLOUD_BOOTSTRAP: "yes"
+      SOLR_COLLECTION_NAME: hyku-test
+      SOLR_CONFIGSET_NAME: hyku
+      SOLR_ENABLE_AUTHENTICATION: "yes"
+      SOLR_ENABLE_CLOUD_MODE: "yes"
+      SOLR_HOST: solr
+      SOLR_PORT: 8983
+      SOLR_URL: http://admin:admin@solr:8983/solr/
+      SOLR_ZK_HOSTS: zk:2181
+      ZOO_HEAP_SIZE: 128
+      ZOO_PORT_NUMBER: 2181
+      TB_RSPEC_OPTIONS: --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+      TB_RSPEC_FORMATTER: progress
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Start containers
+        run: docker-compose up -d web
+      - name: Setup solr
+        run: >-
+          solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
+          SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
+          solrcloud-assign-configset.sh
+      - name: Run Specs
+        run: docker-compose exec bundle exec rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: 'rspec*.xml'
