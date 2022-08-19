@@ -31,8 +31,10 @@ jobs:
           TAG=${GITHUB_SHA::8} docker-compose push web;
           TAG=${GITHUB_SHA::8} docker-compose push worker
       - name: Update main tag
-        # if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         run: >-
+          docker tag ghcr.io/notch8/utk-hyku:${GITHUB_SHA::8} ghcr.io/notch8/utk-hyku:main;
+          docker tag ghcr.io/notch8/utk-hyku/worker:${GITHUB_SHA::8} ghcr.io/notch8/utk-hyku/worker:main;
           TAG=main docker-compose push web;
           TAG=main docker-compose push worker
 
