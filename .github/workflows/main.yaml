@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
 
-# jobs:
+jobs:
 #   build:
 #     runs-on: ubuntu-latest
 #     steps:
@@ -105,7 +105,7 @@ env:
       - name: Set env
         # run: echo "TAG=${GITHUB_SHA::8}" >> $GITHUB_ENV
         run: echo "TAG=f9867d90" >> $GITHUB_ENV
-     - name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
       - name: Github Container Login
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
