@@ -7,6 +7,9 @@ x-app: &app
     args:
       - HYKU_BULKRAX_ENABLED=true
       - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
+    cache_from:
+        - ghcr.io/notch8/utk-hyku:main
+        - ghcr.io/notch8/utk-hyku:${TAG:-latest}
   image: ghcr.io/notch8/utk-hyku:${TAG:-latest}
   env_file:
     - .env
@@ -160,6 +163,7 @@ services:
         - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
         - HYKU_BULKRAX_ENABLED=true
       cache_from:
+        - ghcr.io/notch8/utk-hyku/worker:main
         - ghcr.io/notch8/utk-hyku/worker:${TAG:-latest}
         - ghcr.io/notch8/utk-hyku:${TAG:-latest}
     image: ghcr.io/notch8/utk-hyku/worker:${TAG:-latest}
