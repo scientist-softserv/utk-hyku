@@ -55,6 +55,10 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull from cache to speed up build
+        run: >-
+          docker-compose pull web;
+          docker-compose pull worker
       - name: Run Rubocop
         run: docker-compose run web bundle exec rubocop --parallel
 
@@ -121,7 +125,7 @@ jobs:
         run: docker-compose up -d web
       - name: Setup solr
         run: >-
-          docker-compose exec web bash -l -c
+          docker-compose exec -T web bash -c
           "solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
           SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
           solrcloud-assign-configset.sh"
