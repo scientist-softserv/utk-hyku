@@ -50,10 +50,10 @@ jobs:
             EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
           cache_from: |
             ghcr.io/notch8/utk-hyku:main
-            ghcr.io/notch8/utk-hyku:${GITHUB_SHA::8}
+            ghcr.io/notch8/utk-hyku:${TAG}
           push: true
           tags: |
-            ghcr.io/notch8/utk-hyku:${GITHUB_SHA::8}
+            ghcr.io/notch8/utk-hyku:${TAG}
       - name: Build and push worker
         uses: docker/build-push-action@v3
         with:
@@ -65,10 +65,10 @@ jobs:
             EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
           cache_from: |
             ghcr.io/notch8/utk-hyku:main
-            ghcr.io/notch8/utk-hyku:${GITHUB_SHA::8}
+            ghcr.io/notch8/utk-hyku:${TAG}
           push: true
           tags: |
-            ghcr.io/notch8/utk-hyku/worker:${GITHUB_SHA::8}
+            ghcr.io/notch8/utk-hyku/worker:${TAG}
 
       # - name: Build web
       #   run: docker-compose build web
