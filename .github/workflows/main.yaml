@@ -48,7 +48,7 @@ jobs:
           build-args: |
             HYKU_BULKRAX_ENABLED=true
             EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
-          cache_from: |
+          cache-from: |
             ghcr.io/notch8/utk-hyku:main
             ghcr.io/notch8/utk-hyku:${TAG}
           push: true
@@ -63,7 +63,7 @@ jobs:
           build-args: |
             HYKU_BULKRAX_ENABLED=true
             EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
-          cache_from: |
+          cache-from: |
             ghcr.io/notch8/utk-hyku:main
             ghcr.io/notch8/utk-hyku:${TAG}
           push: true
