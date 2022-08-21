@@ -4,6 +4,13 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
 
 env:
   REGISTRY: ghcr.io
@@ -93,6 +100,12 @@ jobs:
           "solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
           SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
           solrcloud-assign-configset.sh"
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 15
+        # if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+        with:
+          limit-access-to-actor: true
       - name: Run Specs
         run: docker-compose exec -T web bundle exec rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
       - name: Publish Test Report
