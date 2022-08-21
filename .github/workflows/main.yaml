@@ -1,3 +1,7 @@
+# TODO build x for multiple images
+# TODO parallelize rubocop and rspec
+# TODO helm deployment
+
 name: "Ruby on Rails CI"
 on:
   push:
@@ -67,7 +71,12 @@ jobs:
           docker-compose pull web;
           docker-compose pull worker
       - name: Run Rubocop
-        run: docker-compose run web bundle exec rubocop --parallel
+        run: docker-compose run web bundle exec rubocop --parallel --format junit --out rubocop.xml
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: 'rubocop*.xml'
 
   test:
     # needs: build
@@ -102,8 +111,7 @@ jobs:
           solrcloud-assign-configset.sh"
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 15
-        # if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
         with:
           limit-access-to-actor: true
       - name: Run Specs
