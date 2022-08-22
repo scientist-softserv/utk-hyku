@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin can select home page theme', type: :feature, :js, :clean, :allinson_flex_admin_set  do
+RSpec.describe 'Admin can select home page theme', type: :feature, js: true, clean: true, allinson_flex_admin_set: true  do
   let(:account) { create(:account) }
   let(:admin) { create(:admin, email: 'admin@example.com', display_name: 'Adam Admin') }
   let(:user) { create :user }

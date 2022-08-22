@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Copied from Hyrax v2.9.0 to add home_text content block to the index method - Adding themes
-RSpec.describe Hyrax::HomepageController, type: :controller, :clean, :allinson_flex_admin_set do
+RSpec.describe Hyrax::HomepageController, type: :controller, clean: true, allinson_flex_admin_set: true do
   let(:routes) { Hyrax::Engine.routes }
 
   describe "#index" do
