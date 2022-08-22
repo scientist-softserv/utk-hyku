@@ -4,7 +4,7 @@
 require 'iiif_manifest'
 
 # rubocop:disable Metrics/ModuleLength
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 module Hyrax
   module WorksControllerBehavior
     extend ActiveSupport::Concern
@@ -506,4 +506,4 @@ module Hyrax
   end
 end
 # rubocop:enable Metrics/ModuleLength
-# rubocop:enable Metrics/LineLength
+# rubocop:enable Layout/LineLength

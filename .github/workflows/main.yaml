@@ -106,7 +106,7 @@ jobs:
           docker-compose pull web;
           docker-compose pull worker
       - name: Run Rubocop
-        run: docker-compose run web bundle exec rubocop --parallel --format junit --out rubocop.xml
+        run: docker-compose run web bundle exec rubocop --parallel --format progress --format junit --out rubocop.xml --display-only-failed
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v3
         if: always() # always run even if the previous step fails
