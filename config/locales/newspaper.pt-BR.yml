@@ -1,0 +1,8 @@
+pt-BR:
+  hyrax:
+    icons:
+      newspaper:     'fa fa-file-text-o'
+    select_type:
+      newspaper:
+        description:        "Newspaper obras"
+        name:               "Newspaper"

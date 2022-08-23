@@ -1,0 +1,8 @@
+de:
+  hyrax:
+    icons:
+      newspaper:     'fa fa-file-text-o'
+    select_type:
+      newspaper:
+        description:        "Newspaper Werke"
+        name:               "Newspaper"

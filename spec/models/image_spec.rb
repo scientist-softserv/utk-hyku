@@ -2,6 +2,7 @@
 
 # Generated via
 #  `rails generate hyrax:work Image`
+require 'rails_helper'
 
 RSpec.describe Image do
   describe 'indexer' do

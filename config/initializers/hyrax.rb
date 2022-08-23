@@ -1,7 +1,20 @@
 Hyrax.config do |config|
+  # Injected via `rails g hyrax:work GenericWork`
   config.register_curation_concern :generic_work
   # Injected via `rails g hyrax:work Image`
   config.register_curation_concern :image
+  # Injected via `rails g hyrax:work Audio`
+  config.register_curation_concern :audio
+  # Injected via `rails g hyrax:work Book`
+  config.register_curation_concern :book
+  # Injected via `rails g hyrax:work CompoundObject`
+  config.register_curation_concern :compound_object
+  # Injected via `rails g hyrax:work Newspaper`
+  config.register_curation_concern :newspaper
+  # Injected via `rails g hyrax:work Pdf`
+  config.register_curation_concern :pdf
+  # Injected via `rails g hyrax:work Video`
+  config.register_curation_concern :video
 
   # Email recipient of messages sent via the contact form
   # This is set by account settings

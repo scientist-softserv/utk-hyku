@@ -54,7 +54,53 @@ sc up
   - When loading a tenant you may need to login through the browser: un: samvera pw: hyku
 
 ### Metadata Profiles
-In order to create or import any models, a metadata profile must be uploaded.
+In order to create or import any models, a metadata profile must be uploaded. The name of any new model(s) must be included in the "classes" block of the yml file:
+  - Dashboard >> Metadata Profiles >> Import Profile
+  - Bash into the container and run:
+    ``` bash
+    rails generate allinson_flex:works --include_module BulkraxMetadata
+    ```
+  - Restart the server
+  - Dashboard >> Settings >> Available work types >> checkmark the newly added classes and save the changes
+  - Bash into the container again and run:
+    ``` bash
+    rails allinson_flex:run_additional_configurations
+    ```
+  - Go into your newly created model file and add the title validation:
+    ``` bash
+      # app/models/my_new_model.rb
+      validates :title,
+                presence: { message: 'Your work must have a title.' },
+                length: { maximum: 1, message: 'Your work can only have one title.' }
+    ```
+  - Go into your newly created form file and update the base_terms:
+    ``` bash
+      # app/forms/hyrax/my_new_model_form.rb
+      include UtkBaseTerms
+    ```
+
+``` bash
+# example yml file
+# the "title" property will be added as a required field to all models even if it isn't set in this file
+# due to existing model validations
+...
+classes:
+  Audio:
+    display_label: "Audio"
+  GenericWork:
+    display_label: "Generic Work"
+properties:
+  creator:
+    display_label:
+      default: "Creator"
+    available_on:
+      class:
+        - Audio
+        - GenericWork
+...
+```
+
+
   - Dashboard >> Metadata Profiles >> Import Profile
 
 
