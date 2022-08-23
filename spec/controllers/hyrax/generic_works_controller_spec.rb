@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Generated via
+#  `rails generate hyrax:work GenericWork`
+require 'rails_helper'
 RSpec.describe Hyrax::GenericWorksController do
   let(:user) { FactoryBot.create(:user) }
   let(:work) { FactoryBot.create(:work_with_one_file, user: user) }

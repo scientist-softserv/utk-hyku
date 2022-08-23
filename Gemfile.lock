@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: be43c1fc752337523765254c3be6000ca1f1f85a
+  revision: 5d3a0478ad66a94937b80c067966f501a49eaca1
   branch: utk-implementation
   specs:
     allinson_flex (0.1.0)
@@ -11,9 +11,9 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax
-  revision: 5410612d62a1cb834d2388962b6f5148e662a56e
+  revision: 2069ed3791ca5c7ee680c3f4a802698a6ba2552e
   specs:
-    bulkrax (4.2.1)
+    bulkrax (4.3.0)
       bagit (~> 0.4)
       coderay
       iso8601 (~> 0.9.0)

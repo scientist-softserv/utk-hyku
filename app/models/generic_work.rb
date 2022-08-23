@@ -1,18 +1,23 @@
 # frozen_string_literal: true
 
+# Generated via
+#  `rails generate hyrax:work GenericWork`
 class GenericWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
+  include BulkraxMetadata
 
-  property :bulkrax_identifier,
-           predicate: ::RDF::URI("https://hykucommons.org/terms/bulkrax_identifier"),
-           multiple: false do |index|
-    index.as :stored_searchable, :facetable
-  end
+  self.indexer = GenericWorkIndexer
+
+  # Change this to restrict which works can be added as a child.
+  # self.valid_child_concerns = []
+
+  validates :title,
+            presence: { message: 'Your work must have a title.' },
+            length: { maximum: 1, message: 'Your work can only have one title.' }
+
+  # This must be included at the end, because it finalizes the metadata
+  # schema (by adding accepts_nested_attributes)
 
   include AllinsonFlex::DynamicMetadataBehavior
   include ::Hyrax::BasicMetadata
-
-  validates :title, presence: { message: 'Your work must have a title.' }
-
-  self.indexer = GenericWorkIndexer
 end

@@ -2,7 +2,6 @@
 
 # Generated via
 #  `rails generate hyrax:work Image`
-# and copied liberally from the generic work spec
 require 'rails_helper'
 
 RSpec.describe Hyrax::ImagesController do

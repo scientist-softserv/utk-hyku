@@ -1,0 +1,8 @@
+de:
+  hyrax:
+    icons:
+      compound_object:     'fa fa-file-text-o'
+    select_type:
+      compound_object:
+        description:        "Compound object Werke"
+        name:               "Compound Object"
