@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # OVERRIDE allinson_flex 1.0 to redirect the user with a warning if
-# they manually visit the new or edit url paths
+# they manually visit the new, edit or delete url paths
 
 module AllinsonFlex
   module ProfilesControllerDecorator
@@ -32,6 +32,18 @@ module AllinsonFlex
         @allinson_flex_profile.update(locked_by_id: current_user.id, locked_at: Time.zone.now)
       else
         redirect_to profiles_path, alert: 'Edit a Profile by uploading a new one'
+      end
+    end
+
+    # DELETE /allinson_flex_profiles/1
+    def destroy
+      if ENV['DISPLAY_ALLINSON_FLEX_UI'] == 'true'
+        @allinson_flex_profile.destroy
+        message = 'AllinsonFlexProfile was successfully destroyed.'
+        message = @allinson_flex_profile.errors[:base] if @allinson_flex_profile.errors[:base]
+        redirect_to profiles_path, notice: message
+      else
+        redirect_to profiles_path, alert: 'You are unable to delete this profile'
       end
     end
   end
