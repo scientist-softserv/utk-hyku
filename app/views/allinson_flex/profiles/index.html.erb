@@ -1,4 +1,4 @@
-<%# OVERRIDE allinson_flex 1.0 to restrict access to create and edit options %>
+<%# OVERRIDE allinson_flex 1.0 to restrict access to create, edit and delete options %>
 
 <% provide :page_title, t(:'allinson_flex.dashboard.profiles') %>
 
@@ -44,13 +44,16 @@
                     <th colspan=3 ><%= link_to raw("<span title='click to force unlock' class='glyphicon glyphicon-lock'></span>"), allinson_flex.unlock_profile_path(allinson_flex_profile), method: :post, data: { confirm: 'Are you sure that no other user is editing the profile right now?' } %>
                       <%= allinson_flex_profile.lock_statement %>
                     </th>
-
                   <% else %>
                     <% if ENV['DISPLAY_ALLINSON_FLEX_UI'] == 'true'%>
                       <th><%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), allinson_flex.edit_profile_path(allinson_flex_profile), data: { turbolinks: false } %></th>
+                      <th><%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), allinson_flex.profile_path(allinson_flex_profile), method: :delete, data: { confirm: 'Are you sure?' } %></th>
+                      <th><%= link_to raw('<span class="glyphicon glyphicon-download-alt"></span>'), allinson_flex.profile_export_path(allinson_flex_profile), target: "_blank" %></th>
+                    <% else %>
+                      <td></td>
+                      <td></td>
+                      <th><%= link_to raw('<span class="glyphicon glyphicon-download-alt"></span>'), allinson_flex.profile_export_path(allinson_flex_profile), target: "_blank" %></th>
                     <% end %>
-                    <th><%= link_to raw('<span class="glyphicon glyphicon-download-alt"></span>'), allinson_flex.profile_export_path(allinson_flex_profile), tagert: "_blank" %></th>
-                    <th><%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), allinson_flex.profile_path(allinson_flex_profile), method: :delete, data: { confirm: 'Are you sure?' } %></th>
                   <% end %>
                 <% else %>
                   <td></td>
