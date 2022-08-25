@@ -95,7 +95,7 @@ end
 
 gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax'
 
-gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git', branch: 'utk-implementation'
+gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
