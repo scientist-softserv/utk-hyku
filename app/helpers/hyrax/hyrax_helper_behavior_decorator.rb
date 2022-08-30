@@ -17,7 +17,7 @@ module Hyrax
     # @see https://ruby-doc.org/core-3.0.1/Time.html#method-i-strftime
     # @note OVERRIDE for Hyrax 3.4.1
     def cast_to_date_time_format(value, format:)
-      return value.strftime(format) if value.respond_to(:strftime)
+      return value.strftime(format) if value.respond_to?(:strftime)
 
       Time.zone.parse(value).strftime(format)
     rescue ArgumentError, TypeError
