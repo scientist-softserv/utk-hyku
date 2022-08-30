@@ -2,7 +2,9 @@
 
 module ApplicationHelper
   include ::HyraxHelper
-  include Hyrax::OverrideHelperBehavior
   include GroupNavigationHelper
   include SharedSearchHelper
+
+  # OVERRIDE
+  include Hyrax::HyraxHelperBehaviorDecorator
 end
