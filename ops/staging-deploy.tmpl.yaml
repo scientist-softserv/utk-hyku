@@ -159,7 +159,7 @@ extraEnvVars: &envVars
   - name: SMTP_TYPE
     value: cram_md5
   - name: SENTRY_DSN
-    value: https://5db02a1f22554cc4b21f4f6e5ec7bd35:f3a9b5a0fd704e9bb1e22d3687ef90c4@sentry.notch8.com/75
+    value: https://ab7f8b39ca414630bd07f6657f57f641@o1008683.ingest.sentry.io/6745049
 
 worker:
   replicaCount: 1
