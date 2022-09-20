@@ -70,3 +70,4 @@ yarn-debug.log*
 .yarn-integrity
 *~undo-tree~
 .DS_Store
+fits.log
