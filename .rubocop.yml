@@ -23,6 +23,7 @@ AllCops:
     - 'lib/tasks/rubocop.rake'
     # disabling collections controller as most of the rubocop errors are in hyrax
     - 'app/controllers/hyrax/dashboard/collections_controller.rb'
+    - 'ImageMagick-*/**/*'
 
 Rails:
   Enabled: true
