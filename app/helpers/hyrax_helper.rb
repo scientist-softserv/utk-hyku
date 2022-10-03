@@ -6,7 +6,6 @@ module HyraxHelper
   include Hyrax::HyraxHelperBehavior
   include AllinsonFlex::AllinsonFlexHelper
   include Hyrax::WorkFormHelperDecorator
-  include Blacklight::CatalogHelperBehaviorDecorator
 
   def application_name
     Site.application_name || super
