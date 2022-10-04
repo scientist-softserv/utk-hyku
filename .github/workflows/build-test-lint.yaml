@@ -66,7 +66,7 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}/worker:${{ env.TAG }}
 
-lint:
+  lint:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -135,7 +135,7 @@ lint:
       - name: Setup solr
         run: >-
           docker-compose exec -T web bash -c
-          "solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/conf &&
+          "solrcloud-upload-configset.sh ${{ env.CONFDIR }} &&
           SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
           solrcloud-assign-configset.sh"
       - name: Setup db
