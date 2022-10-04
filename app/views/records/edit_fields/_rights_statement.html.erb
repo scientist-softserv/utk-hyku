@@ -1,0 +1,15 @@
+ <%#  OVERRIDE: Hyrax 3.4.1 to use select2 on rights statement selection, as basic hyrax did not work with allinson flex due to to single vs multi-value shenanigans %> 
+
+<% rights_statements = Hyrax.config.rights_statement_service_class.new %>
+<%= f.input :rights_statement,
+    collection: rights_statements.select_active_options,
+    include_blank: true,
+    item_helper: rights_statements.method(:include_current_value),
+    input_html: { class: 'select2-multiple form-control', multiple: true } %>
+
+<%# Javascript was not loading in application.js, so I had to keep it here. %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".select2-multiple").select2();
+  });
+</script>

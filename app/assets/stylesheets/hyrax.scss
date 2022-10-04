@@ -20,3 +20,15 @@
 @import "blacklight_gallery/osd_viewer";
 
 @import "themes/*";
+
+.form-control.select2-container-multi {
+  height: auto;
+  width: 80%;
+}
+
+.select2-container-multi {
+  .select2-choices {
+    border: 0;
+    margin: 0;
+  }
+}
