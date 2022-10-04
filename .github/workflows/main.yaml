@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ALLOW_ANONYMOUS_LOGIN: "yes"
-      CONFDIR: "/app/samvera/hyrax-webapp/solr/config"
+      CONFDIR: "/app/samvera/hyrax-webapp/solr/conf"
       DB_CLEANER_ALLOW_REMOTE_DB_URL: "true"
     steps:
       - name: Set env
@@ -124,7 +124,7 @@ jobs:
       - name: Setup solr
         run: >-
           docker-compose exec -T web bash -c
-          "solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
+          "solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/conf &&
           SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
           solrcloud-assign-configset.sh"
       - name: Setup tmate session
