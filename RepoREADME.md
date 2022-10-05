@@ -69,9 +69,7 @@ In order to create or import any models, a metadata profile must be uploaded. Th
   - Go into your newly created model file and add the title validation:
     ``` bash
       # app/models/my_new_model.rb
-      validates :title,
-                presence: { message: 'Your work must have a title.' },
-                length: { maximum: 1, message: 'Your work can only have one title.' }
+      include Validations
     ```
   - Go into your newly created form file and update the base_terms:
     ``` bash
