@@ -3,7 +3,7 @@
 # Generated via
 #  `rails generate hyrax:work CompoundObject`
 class CompoundObject < ActiveFedora::Base
-  include CommonValidations
+  include SharedWorkBehavior
 
   self.indexer = CompoundObjectIndexer
 
