@@ -10,4 +10,7 @@ RSpec.describe Image do
 
     it { is_expected.to eq ImageIndexer }
   end
+
+  include_examples "SharedWorkBehavior"
+  it_behaves_like 'title validation', 'image'
 end

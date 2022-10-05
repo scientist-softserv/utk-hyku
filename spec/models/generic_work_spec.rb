@@ -5,7 +5,12 @@
 require 'rails_helper'
 
 RSpec.describe GenericWork do
-  it "has tests" do
-    skip "Add your tests here"
+  describe 'indexer' do
+    subject { described_class.indexer }
+
+    it { is_expected.to eq GenericWorkIndexer }
   end
+
+  include_examples "SharedWorkBehavior"
+  it_behaves_like 'title validation', 'generic_work'
 end

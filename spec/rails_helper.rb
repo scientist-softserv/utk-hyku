@@ -143,6 +143,10 @@ RSpec.configure do |config|
     CreateSolrCollectionJob.new.without_account('hydra-test') if ENV['IN_DOCKER']
     CreateSolrCollectionJob.new.without_account('hydra-sample')
     CreateSolrCollectionJob.new.without_account('hydra-cross-search-tenant', 'hydra-test, hydra-sample')
+    AdminSet.find_or_create_default_admin_set_id
+    profile_path = Rails.root.join('spec', 'fixtures', 'allinson_flex', 'yaml_example.yml')
+    allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: profile_path.to_s)
+    allinson_flex_profile.save
   end
 
   config.before do |example|

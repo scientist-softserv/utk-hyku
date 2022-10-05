@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :image do
+  factory :audio do
     title { ["Test title"] }
     visibility { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
     state { "complete" }
@@ -14,7 +14,7 @@ FactoryBot.define do
       work.apply_depositor_metadata(evaluator.user.user_key)
     end
 
-    factory :image_with_one_file do
+    factory :audio_with_one_file do
       after(:build) do |work, evaluator|
         work.ordered_members << file_set = FactoryBot.create(
           :file_set,

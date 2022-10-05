@@ -5,7 +5,12 @@
 require 'rails_helper'
 
 RSpec.describe Video do
-  it "has tests" do
-    skip "Add your tests here"
+  describe 'indexer' do
+    subject { described_class.indexer }
+
+    it { is_expected.to eq VideoIndexer }
   end
+
+  include_examples "SharedWorkBehavior"
+  it_behaves_like 'title validation', 'video'
 end
