@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: 8de15876da87157b91e0d868cf1fc04aeb21e908
+  revision: b1388e6981d8da7493085fa21fd8689fb16995bc
   branch: 154-add-multi-value-property
   specs:
     allinson_flex (0.1.0)
