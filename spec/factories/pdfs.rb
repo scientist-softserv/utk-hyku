@@ -18,8 +18,8 @@ FactoryBot.define do
       after(:build) do |work, evaluator|
         work.ordered_members << file_set = FactoryBot.create(
           :file_set,
+          :image,
           user: evaluator.user,
-          content: File.open(RSpec.configuration.fixture_path + '/world.png'),
           title: ['A Contained FileSet'],
           label: 'world.png'
         )
