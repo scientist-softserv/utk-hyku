@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: b1388e6981d8da7493085fa21fd8689fb16995bc
-  branch: 154-add-multi-value-property
+  revision: 9e597f577cde3c201baa43b76ed6cdeb4553b5a5
   specs:
     allinson_flex (0.1.0)
       json_schemer
