@@ -31,6 +31,7 @@ Rails:
 Rails/DynamicFindBy:
   Whitelist:
     - find_by_user_key
+    - find_by_sql
   Exclude:
     - 'lib/importer/factory/object_factory.rb'
 
