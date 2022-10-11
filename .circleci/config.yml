@@ -64,7 +64,6 @@ jobs:
       SOLR_HOST: localhost
       SOLR_PORT: 8985
       SOLR_URL: http://admin:admin@localhost:8985/solr/
-      SETTINGS__SOLR__URL: http://admin:admin@localhost:8985/solr/
       RAILS_ENV: test
       RACK_ENV: test
       FCREPO_TEST_PORT: 8080/fcrepo
