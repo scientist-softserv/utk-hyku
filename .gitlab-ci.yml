@@ -53,27 +53,28 @@ test:
   allow_failure: true
   variables:
     ALLOW_ANONYMOUS_LOGIN: "yes"
-    CONFDIR: "/app/samvera/hyrax-webapp/solr/conf"
     CHROME_HOSTNAME: chrome
+    CONFDIR: "/app/samvera/hyrax-webapp/solr/conf"
+    DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: "true"
+    DATABASE_URL: postgres://postgres:postgres@db/hyku
     DB_ADAPTER: postgresql
-    DB_CLEANER_ALLOW_REMOTE_DB_URL: "true"
     DB_HOST: db
     DB_NAME: hyku
-    DB_URL: postgres://postgres:postgres@db/hyku
-    DB_USER: postgres
+    DB_PASSWORD: postgres
     DB_PORT: 5432
+    DB_TEST_NAME: hyku_test
+    DB_USER: postgres
     FCREPO_HOST: fcrepo
     FCREPO_PORT: 8081
     FCREPO_URL: http://fcrepo:8081/rest
     FF_NETWORK_PER_BUILD: 1
     GIT_STRATEGY: none
-    JAVA_OPTIONS: -Djetty.port=8081
+    HYKU_BULKRAX_ENABLED: "true"
     IN_DOCKER: "true"
+    JAVA_OPTIONS: -Djetty.port=8081
     POSTGRESQL_DATABASE: hyku
     POSTGRESQL_PASSWORD: postgres
     REDIS_HOST: redis
-    SETTINGS__SOLR__URL: http://admin:admin@solr:8983/solr/
-    HYKU_BULKRAX_ENABLED: "true"
     SOLR_ADMIN_PASSWORD: admin
     SOLR_ADMIN_USER: admin
     SOLR_ADMIN_USERNAME: admin
@@ -86,10 +87,10 @@ test:
     SOLR_PORT: 8983
     SOLR_URL: http://admin:admin@solr:8983/solr/
     SOLR_ZK_HOSTS: zk:2181
-    ZOO_HEAP_SIZE: 128
-    ZOO_PORT_NUMBER: 2181
     TB_RSPEC_OPTIONS: --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
     TB_RSPEC_FORMATTER: progress
+    ZOO_HEAP_SIZE: 128
+    ZOO_PORT_NUMBER: 2181
   services:
     - name: bitnami/postgresql:12.6.0
       alias: db
@@ -109,15 +110,17 @@ test:
       SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
       solrcloud-assign-configset.sh
   script:
-    - rm -f /home/app/webapp/tmp/capybara/*
+    - rm -f /app/samvera/hyrax-webapp/tmp/capybara/*
     - rm -rf $CI_PROJECT_DIR/capybara
+    - gem install semaphore_test_boosters
     - cd /app/samvera/hyrax-webapp
     # debugging tip: un-comment the sleep below in order to use k8's or docker to log into the actual running container
     # - sleep 30m
-    # - rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+    - rspec_booster --job $CI_NODE_INDEX/$CI_NODE_TOTAL
+    - rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
   after_script:
-    - test -e /home/app/webapp/tmp/capybara && cp -r /home/app/webapp/tmp/capybara $CI_PROJECT_DIR/capybara
-    - test -e /home/app/webapp/rspec.xml && cp /home/app/webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
+    - test -e /app/samvera/hyrax-webapp/tmp/capybara && cp -r /app/samvera/hyrax-webapp/tmp/capybara $CI_PROJECT_DIR/capybara
+    - test -e /app/samvera/hyrax-webapp/rspec.xml && cp /app/samvera/hyrax-webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
