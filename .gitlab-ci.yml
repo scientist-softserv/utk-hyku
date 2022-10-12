@@ -20,6 +20,7 @@ hyku.build:
     - docker-compose push web
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
     - docker-compose push worker
+    # - sleep 30m
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
