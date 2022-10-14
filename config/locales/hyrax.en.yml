@@ -50,6 +50,9 @@ en:
             participants: Participants
             visibility: Release and Visibility
             workflow: Workflow
+        form_metadata_context:
+          no_metadata_context: No metadata contexts available
+          page_description: Metadata context for the admin set
         form_participant_table:
           admin_users: Repository Administrators
           allow_all_registered: Allow all registered users to deposit

@@ -25,6 +25,7 @@ RSpec.describe User, type: :model do
     it 'is given the admin role' do
       expect(subject.persisted?).to eq true
       expect(subject).to have_role :admin, Site.instance
+      expect(subject.admin?).to eq true
     end
   end
 
@@ -35,6 +36,7 @@ RSpec.describe User, type: :model do
     it 'does not get the admin role' do
       expect(next_user.persisted?).to eq true
       expect(next_user).not_to have_role :admin
+      expect(subject.admin?).to eq false
     end
   end
 

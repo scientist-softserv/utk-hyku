@@ -40,6 +40,16 @@ class User < ApplicationRecord
     has_role? :superadmin
   end
 
+  # Modified method from hydra-role-management Hydra::RoleManagement::UserRoles
+  def is_admin
+    has_role?(:admin, Site.instance)
+  end
+  # rubocop:disable Style/Alias
+  alias_method :is_admin?, :is_admin
+  alias_method :admin?, :is_admin
+
+  # rubocop:enable Style/Alias
+
   # This comes from a checkbox in the proprietor interface
   # Rails checkboxes are often nil or "0" so we handle that
   # case directly
