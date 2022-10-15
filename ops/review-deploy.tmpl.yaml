@@ -121,7 +121,7 @@ leaseRelease:
   enabled: false
 
 # imagePullSecrets:
-#  - name: gitlab-registry
+#  - name: github-registry
 
 fcrepo:
   enabled: true

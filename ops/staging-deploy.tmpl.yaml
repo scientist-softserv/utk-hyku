@@ -88,6 +88,8 @@ extraEnvVars: &envVars
     value: pg-postgresql.staging-postgres.svc.cluster.local
   - name: DB_NAME
     value: utk-hyku
+  - name: DB_PASSWORD
+    value: $STAGING_DB_PASSWORD
   - name: DB_USER
     value: postgres
   - name: FCREPO_BASE_PATH
@@ -134,6 +136,8 @@ extraEnvVars: &envVars
     value: "true"
   - name: SOLR_ADMIN_USER
     value: admin
+  - name: SOLR_ADMIN_PASSWORD
+    value: $STAGING_SOLR_ADMIN_PASSWORD
   - name: SOLR_COLLECTION_NAME
     value: utk-hyku
   - name: SOLR_CONFIGSET_NAME
@@ -183,7 +187,7 @@ leaseRelease:
   enabled: false
 
 imagePullSecrets:
-  - name: gitlab-registry
+  - name: github-registry
 
 fcrepo:
   resources:
