@@ -2,4 +2,4 @@ name: "Build Test Lint"
 on: [ push, pull_request]
 jobs: 
   call-workflow:
-    uses: scientist-softserv/build-lint-test-action/.github/workflows/build-test-lint.yaml@add-build-test-lint-action
+    uses: scientist-softserv/build-lint-test-action/.github/workflows/build-test-lint.yaml@main
