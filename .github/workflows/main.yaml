@@ -1,5 +1,3 @@
-# TODO parallelize rubocop and rspec
-
 name: "Retag on merge"
 on:
   push:
@@ -9,6 +7,7 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
+  needs: build
   retag:
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +20,6 @@ jobs:
           name: ${{ github.repository }}
           old_tag: ${{ env.TAG }}
           new_tag: latest
-          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Retag worker to latest
@@ -31,6 +29,5 @@ jobs:
           name: ${{ github.repository }}/worker
           old_tag: ${{ env.TAG }}
           new_tag: latest
-          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
