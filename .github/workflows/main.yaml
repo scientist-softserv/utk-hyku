@@ -1,10 +1,7 @@
 name: "Retag on merge"
 
 on:
-  workflow_run:
-    workflows: [build]
-    types: [completed]
-    branches: [main]
+  workflow_dispatch: {}
 
 env:
   REGISTRY: ghcr.io
