@@ -1,158 +1,158 @@
----
-stages:
-  - build
-  - go
+# ---
+# stages:
+#   - build
+#   - go
 
-before_script:
-  - export TAG=${CI_COMMIT_SHORT_SHA}
-  - export BRANCH=${CI_COMMIT_REF_NAME}
-  - export REGISTRY_HOST=${CI_REGISTRY}
-  - export REGISTRY_URI="/${CI_PROJECT_PATH}"
+# before_script:
+#   - export TAG=${CI_COMMIT_SHORT_SHA}
+#   - export BRANCH=${CI_COMMIT_REF_NAME}
+#   - export REGISTRY_HOST=${CI_REGISTRY}
+#   - export REGISTRY_URI="/${CI_PROJECT_PATH}"
 
-hyku.build:
-  stage: build
-  script:
-    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker-compose build web
-    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker-compose build worker
-    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker-compose push web
-    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker-compose push worker
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-  tags:
-    - local
+# hyku.build:
+#   stage: build
+#   script:
+#     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+#     - docker-compose build web
+#     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+#     - docker-compose build worker
+#     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+#     - docker-compose push web
+#     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+#     - docker-compose push worker
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == "main"
+#     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+#   tags:
+#     - local
 
-lint:
-  stage: go
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-  variables:
-    PRONTO_GITLAB_API_ENDPOINT: "https://gitlab.com/api/v4"
-  before_script:
-    - export PRONTO_GITLAB_API_PRIVATE_TOKEN=$GITLAB_API_TOKEN
-  allow_failure: false
-  script:
-    - git fetch && git checkout main && git checkout ${CI_COMMIT_SHORT_SHA}
-    - cd /app/samvera/hyrax-webapp
-    - bundle check || bundle
-    # debugging tip: un-comment the sleep below in order to use k8's or docker to log into the actual running container
-    # - sleep 30m
-    - bundle exec pronto run -f gitlab -c origin/main
-    - bundle exec rubocop -P
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-  tags:
-    - docker
+# lint:
+#   stage: go
+#   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+#   variables:
+#     PRONTO_GITLAB_API_ENDPOINT: "https://gitlab.com/api/v4"
+#   before_script:
+#     - export PRONTO_GITLAB_API_PRIVATE_TOKEN=$GITLAB_API_TOKEN
+#   allow_failure: false
+#   script:
+#     - git fetch && git checkout main && git checkout ${CI_COMMIT_SHORT_SHA}
+#     - cd /app/samvera/hyrax-webapp
+#     - bundle check || bundle
+#     # debugging tip: un-comment the sleep below in order to use k8's or docker to log into the actual running container
+#     # - sleep 30m
+#     - bundle exec pronto run -f gitlab -c origin/main
+#     - bundle exec rubocop -P
+#   rules:
+#     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+#   tags:
+#     - docker
 
-test:
-  stage: go
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-  allow_failure: true
-  variables:
-    ALLOW_ANONYMOUS_LOGIN: "yes"
-    CONFDIR: "/app/samvera/hyrax-webapp/solr/config"
-    CHROME_HOSTNAME: chrome
-    DB_ADAPTER: postgresql
-    DB_CLEANER_ALLOW_REMOTE_DB_URL: "true"
-    DB_HOST: db
-    DB_NAME: hyku
-    DB_URL: postgres://postgres:postgres@db/hyku
-    DB_USER: postgres
-    DB_PORT: 5432
-    FCREPO_HOST: fcrepo
-    FCREPO_PORT: 8081
-    FCREPO_URL: http://fcrepo:8081/rest
-    FF_NETWORK_PER_BUILD: 1
-    GIT_STRATEGY: none
-    JAVA_OPTIONS: -Djetty.port=8081
-    IN_DOCKER: "true"
-    POSTGRESQL_DATABASE: hyku
-    POSTGRESQL_PASSWORD: postgres
-    REDIS_HOST: redis
-    SETTINGS__SOLR__URL: http://admin:admin@solr:8983/solr/
-    HYKU_BULKRAX_ENABLED: "true"
-    SOLR_ADMIN_PASSWORD: admin
-    SOLR_ADMIN_USER: admin
-    SOLR_ADMIN_USERNAME: admin
-    SOLR_CLOUD_BOOTSTRAP: "yes"
-    SOLR_COLLECTION_NAME: hyku-test
-    SOLR_CONFIGSET_NAME: hyku
-    SOLR_ENABLE_AUTHENTICATION: "yes"
-    SOLR_ENABLE_CLOUD_MODE: "yes"
-    SOLR_HOST: solr
-    SOLR_PORT: 8983
-    SOLR_URL: http://admin:admin@solr:8983/solr/
-    SOLR_ZK_HOSTS: zk:2181
-    ZOO_HEAP_SIZE: 128
-    ZOO_PORT_NUMBER: 2181
-    TB_RSPEC_OPTIONS: --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
-    TB_RSPEC_FORMATTER: progress
-  services:
-    - name: bitnami/postgresql:12.6.0
-      alias: db
-    - name: samvera/fcrepo4:4.7.5
-      alias: fcrepo
-    - name: redis:5-alpine
-      alias: redis
-    - name: bitnami/zookeeper:3
-      alias: zk
-    - name: bitnami/solr:8
-      alias: solr
-    - name: selenium/standalone-chrome:3.141
-      alias: chrome
-  before_script:
-    - >-
-      solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
-      SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
-      solrcloud-assign-configset.sh
-  script:
-    - rm -f /home/app/webapp/tmp/capybara/*
-    - rm -rf $CI_PROJECT_DIR/capybara
-    - cd /app/samvera/hyrax-webapp
-    # debugging tip: un-comment the sleep below in order to use k8's or docker to log into the actual running container
-    # - sleep 30m
-    # - rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
-  after_script:
-    - test -e /home/app/webapp/tmp/capybara && cp -r /home/app/webapp/tmp/capybara $CI_PROJECT_DIR/capybara
-    - test -e /home/app/webapp/rspec.xml && cp /home/app/webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-  artifacts:
-    when: always
-    paths:
-      - capybara/*.html
-      - rspec.xml
-    reports:
-      junit: rspec.xml
-  tags:
-    - docker
-  parallel: 6
+# test:
+#   stage: go
+#   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+#   allow_failure: true
+#   variables:
+#     ALLOW_ANONYMOUS_LOGIN: "yes"
+#     CONFDIR: "/app/samvera/hyrax-webapp/solr/conf"
+#     CHROME_HOSTNAME: chrome
+#     DB_ADAPTER: postgresql
+#     DB_CLEANER_ALLOW_REMOTE_DB_URL: "true"
+#     DB_HOST: db
+#     DB_NAME: hyku
+#     DB_URL: postgres://postgres:postgres@db/hyku
+#     DB_USER: postgres
+#     DB_PORT: 5432
+#     FCREPO_HOST: fcrepo
+#     FCREPO_PORT: 8081
+#     FCREPO_URL: http://fcrepo:8081/rest
+#     FF_NETWORK_PER_BUILD: 1
+#     GIT_STRATEGY: none
+#     JAVA_OPTIONS: -Djetty.port=8081
+#     IN_DOCKER: "true"
+#     POSTGRESQL_DATABASE: hyku
+#     POSTGRESQL_PASSWORD: postgres
+#     REDIS_HOST: redis
+#     SETTINGS__SOLR__URL: http://admin:admin@solr:8983/solr/
+#     HYKU_BULKRAX_ENABLED: "true"
+#     SOLR_ADMIN_PASSWORD: admin
+#     SOLR_ADMIN_USER: admin
+#     SOLR_ADMIN_USERNAME: admin
+#     SOLR_CLOUD_BOOTSTRAP: "yes"
+#     SOLR_COLLECTION_NAME: hyku-test
+#     SOLR_CONFIGSET_NAME: hyku
+#     SOLR_ENABLE_AUTHENTICATION: "yes"
+#     SOLR_ENABLE_CLOUD_MODE: "yes"
+#     SOLR_HOST: solr
+#     SOLR_PORT: 8983
+#     SOLR_URL: http://admin:admin@solr:8983/solr/
+#     SOLR_ZK_HOSTS: zk:2181
+#     ZOO_HEAP_SIZE: 128
+#     ZOO_PORT_NUMBER: 2181
+#     TB_RSPEC_OPTIONS: --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+#     TB_RSPEC_FORMATTER: progress
+#   services:
+#     - name: bitnami/postgresql:12.6.0
+#       alias: db
+#     - name: samvera/fcrepo4:4.7.5
+#       alias: fcrepo
+#     - name: redis:5-alpine
+#       alias: redis
+#     - name: bitnami/zookeeper:3
+#       alias: zk
+#     - name: bitnami/solr:8
+#       alias: solr
+#     - name: selenium/standalone-chrome:3.141
+#       alias: chrome
+#   before_script:
+#     - >-
+#       solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/config &&
+#       SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
+#       solrcloud-assign-configset.sh
+#   script:
+#     - rm -f /home/app/webapp/tmp/capybara/*
+#     - rm -rf $CI_PROJECT_DIR/capybara
+#     - cd /app/samvera/hyrax-webapp
+#     # debugging tip: un-comment the sleep below in order to use k8's or docker to log into the actual running container
+#     # - sleep 30m
+#     # - rspec --format progress --tag ~speed:slow --format RspecJunitFormatter --out rspec.xml
+#   after_script:
+#     - test -e /home/app/webapp/tmp/capybara && cp -r /home/app/webapp/tmp/capybara $CI_PROJECT_DIR/capybara
+#     - test -e /home/app/webapp/rspec.xml && cp /home/app/webapp/rspec.xml $CI_PROJECT_DIR/rspec.xml
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == "main"
+#     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+#   artifacts:
+#     when: always
+#     paths:
+#       - capybara/*.html
+#       - rspec.xml
+#     reports:
+#       junit: rspec.xml
+#   tags:
+#     - docker
+#   parallel: 6
 
-hyku.staging:
-  stage: go
-  extends:
-    - .deploy
-  variables:
-    DEPLOY_IMAGE: $CI_REGISTRY_IMAGE
-    DEPLOY_TAG: $CI_COMMIT_SHORT_SHA
-    WORKER_IMAGE: $CI_REGISTRY_IMAGE/worker
-    HELM_EXPERIMENTAL_OCI: 1
-    HELM_EXTRA_ARGS: >
-      --values ops/staging-deploy.yaml
-  script:
-    - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
-    - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      when: manual
-  allow_failure: true
-  tags:
-    - docker
+# hyku.staging:
+#   stage: go
+#   extends:
+#     - .deploy
+#   variables:
+#     DEPLOY_IMAGE: $CI_REGISTRY_IMAGE
+#     DEPLOY_TAG: $CI_COMMIT_SHORT_SHA
+#     WORKER_IMAGE: $CI_REGISTRY_IMAGE/worker
+#     HELM_EXPERIMENTAL_OCI: 1
+#     HELM_EXTRA_ARGS: >
+#       --values ops/staging-deploy.yaml
+#   script:
+#     - envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml
+#     - ./bin/helm_deploy utk-hyku-staging utk-hyku-staging
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == "main"
+#     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+#       when: manual
+#   allow_failure: true
+#   tags:
+#     - docker
 
-.deploy:
-  image: dtzar/helm-kubectl:3.8.0
+# .deploy:
+#   image: dtzar/helm-kubectl:3.8.0
