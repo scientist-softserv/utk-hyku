@@ -2,7 +2,7 @@ name: "Retag on merge"
 
 on:
   workflow_run:
-    workflows: ["Ruby on Rails CI"]
+    workflows: [build]
     types: [completed]
     branches: [main]
 
