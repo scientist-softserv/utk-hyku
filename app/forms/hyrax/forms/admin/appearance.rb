@@ -22,16 +22,16 @@ module Hyrax
         }.freeze
 
         DEFAULT_COLORS = {
-          'header_background_color'          => '#3c3c3c',
-          'header_text_color'                => '#dcdcdc',
+          'header_background_color'          => '#ffffff',
+          'header_text_color'                => '#58595b',
           'searchbar_background_color'       => '#000000',
           'searchbar_background_hover_color' => '#ffffff',
           'searchbar_text_color'             => '#eeeeee',
           'searchbar_text_hover_color'       => '#eeeeee',
-          'link_color'                       => '#2e74b2',
-          'link_hover_color'                 => '#215480',
-          'footer_link_color'                => '#ffebcd',
-          'footer_link_hover_color'          => '#ffffff',
+          'link_color'                       => '#006c93',
+          'link_hover_color'                 => '#8d2048',
+          'footer_link_color'                => '#006c93',
+          'footer_link_hover_color'          => '#8d2048',
           'primary_button_background_color'  => '#286090',
           'default_button_background_color'  => '#ffffff',
           'default_button_border_color'      => '#cccccc',

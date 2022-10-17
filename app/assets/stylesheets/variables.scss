@@ -1,6 +1,46 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
+// TYPOGRAPHY
 
-$primary-font-family: "Lato", Helvetica, sans-serif;
+$primary_font_family: "Gotham", "Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI,
+	Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+	sans-sans;
+
+$serif: "clarendon-text-pro", Georgia, Times, "Times New Roman", serif;
+
+// COLORS
+
+// PRIMARY
+$orange: #ff8200;
+$white: #fff;
+$smokey: #58595b;
+
+// SECONDARY
+$valley: #00746f;
+$torch: #e65933;
+$globe: #006c93;
+$limestone: #f0ede3;
+$river: #517c96;
+$leconte: #8d2048;
+$regalia: #754a7e;
+$sunsphere: #fed535;
+$rock: #a7a9ac;
+$legacy: #579584;
+$summitt: #b9e1e2;
+$energy: #ee3e80;
+$switchgrass: #abc178;
+$fountain: #2197a9;
+$eureka: #ebea64;
+
+// ALT GRAYS
+$smokeyx: #333;
+$gray-0: #f6f6f6;
+$gray-1: #e0e0e0;
+$gray-2: #cacaca;
+$gray-3: #b6b6b6;
+
+// BRAND
+$action: $globe;
+$secondary: $smokey;
+$accent: $orange;
 
 $jumbotron-heading-font-size: 2.5em;
 $jumbotron-heading-color: #30373b;
