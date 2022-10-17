@@ -1,7 +1,17 @@
-name: "Deploy Staging"
+name: "Deploy"
 on:
-  workflow_dispatch: {}
-
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deploy to Environment'
+        require: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - demo
+          - production
+        
 env:
   REGISTRY: ghcr.io
 
@@ -13,14 +23,14 @@ jobs:
       DEPLOY_IMAGE: ghcr.io/${{ github.repository }}
       WORKER_IMAGE: ghcr.io/${{ github.repository }}/worker
       HELM_EXPERIMENTAL_OCI: 1
-      HELM_RELEASE_NAME: utk-hyku-staging
-      KUBE_NAMESPACE: utk-hyku-staging
+      HELM_RELEASE_NAME: utk-hyku-${{ inputs.environment }}
+      KUBE_NAMESPACE: utk-hyku-${{ inputs.environment }}
       HELM_EXTRA_ARGS: >
-        --values ops/staging-deploy.yaml
-      KUBECONFIG_FILE: ${{ secrets.STAGING_KUBECONFIG_FILE }}
+        --values ops/${{ inputs.environment }}-deploy.yaml
+      KUBECONFIG_FILE: ${{ secrets.${{ inputs.environment }}_KUBECONFIG_FILE }}
       KUBECONFIG: ./kubeconfig.yml
-      STAGING_SOLR_ADMIN_PASSWORD: ${{ secrets.STAGING_SOLR_ADMIN_PASSWORD }}
-      STAGING_DB_PASSWORD: ${{ secrets.STAGING_DB_PASSWORD }}
+      SOLR_ADMIN_PASSWORD: ${{ secrets.${{ inputs.environment }}_SOLR_ADMIN_PASSWORD }}
+      DB_PASSWORD: ${{ secrets.${{ inputs.environment }}_DB_PASSWORD }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
     steps:
       - name: Set env
@@ -32,6 +42,6 @@ jobs:
       - name: Do deploy
         run: >-
           echo $KUBECONFIG_FILE | base64 -d > $KUBECONFIG;
-          DOLLAR=$ envsubst < ops/staging-deploy.tmpl.yaml > ops/staging-deploy.yaml;
-          cat ops/staging-deploy.yaml;
-          ./bin/helm_deploy utk-staging utk-staging
+          DOLLAR=$ envsubst < ops/${{ inputs.environment }}-deploy.tmpl.yaml > ops/${{ inputs.environment }}-deploy.yaml;
+          cat ops/${{ inputs.environment }}-deploy.yaml;
+          ./bin/helm_deploy utk-${{ inputs.environment }} utk-${{ inputs.environment }}
