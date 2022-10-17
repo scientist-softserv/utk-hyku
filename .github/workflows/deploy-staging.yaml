@@ -17,10 +17,10 @@ jobs:
       KUBE_NAMESPACE: utk-hyku-staging
       HELM_EXTRA_ARGS: >
         --values ops/staging-deploy.yaml
-      KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE_STAGING }}
+      KUBECONFIG_FILE: ${{ secrets.STAGING_KUBECONFIG_FILE }}
       KUBECONFIG: ./kubeconfig.yml
-      SOLR_ADMIN_PASSWORD: ${{ secrets.SOLR_ADMIN_PASSWORD }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      STAGING_SOLR_ADMIN_PASSWORD: ${{ secrets.STAGING_SOLR_ADMIN_PASSWORD }}
+      STAGING_DB_PASSWORD: ${{ secrets.STAGING_DB_PASSWORD }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
     steps:
       - name: Set env
