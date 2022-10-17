@@ -47,9 +47,9 @@ RSpec.describe Hyrax::IiifManifestPresenter do
     let(:solr_doc) { SolrDocument.new(file_set.to_solr) }
     let(:file_set) { create(:file_set, :image) }
 
-    describe '#display_image' do
+    describe '#display_content' do
       it 'gives a IIIFManifest::DisplayImage' do
-        expect(presenter.display_image.to_json)
+        expect(presenter.display_content.to_json)
           .to include 'fcr:versions%2Fversion1/full'
       end
 
@@ -57,7 +57,7 @@ RSpec.describe Hyrax::IiifManifestPresenter do
         let(:file_set) { create(:file_set) }
 
         it 'returns nil' do
-          expect(presenter.display_image).to be_nil
+          expect(presenter.display_content).to be_nil
         end
       end
 
@@ -70,7 +70,7 @@ RSpec.describe Hyrax::IiifManifestPresenter do
         end
 
         it 'can still resolve the image' do
-          expect(presenter.display_image.to_json)
+          expect(presenter.display_content.to_json)
             .to include 'fcr:versions%2Fversion1/full'
         end
       end
