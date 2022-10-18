@@ -41,7 +41,7 @@ jobs:
       - name: Set env
         run: >-
           echo TAG=b2d8d1ca >> $GITHUB_ENV;
-          echo "DEPLOY_TAG=${GITHUB_SHA::8}" >> $GITHUB_ENV;
+          echo DEPLOY_TAG=b2d8d1ca >> $GITHUB_ENV;
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Do deploy
