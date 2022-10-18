@@ -27,10 +27,10 @@ jobs:
       KUBE_NAMESPACE: utk-hyku-${{ inputs.environment }}
       HELM_EXTRA_ARGS: >
         --values ops/${{ inputs.environment }}-deploy.yaml
-      KUBECONFIG_FILE: ${{ secrets.${{ inputs.environment }}_KUBECONFIG_FILE }}
+      KUBECONFIG_FILE: ${{ secrets.KUBECONFIG_FILE }}
       KUBECONFIG: ./kubeconfig.yml
-      SOLR_ADMIN_PASSWORD: ${{ secrets.${{ inputs.environment }}_SOLR_ADMIN_PASSWORD }}
-      DB_PASSWORD: ${{ secrets.${{ inputs.environment }}_DB_PASSWORD }}
+      SOLR_ADMIN_PASSWORD: ${{ secrets.SOLR_ADMIN_PASSWORD }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
     steps:
       - name: Set env
