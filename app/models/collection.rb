@@ -62,25 +62,25 @@ class Collection < ActiveFedora::Base
   property :form,
            predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'),
            multiple: true do |index|
-    index.as :displayable, :stored_searchable, :facetable
+    index.as :displayable, :stored_searchable
   end
 
   property :spatial,
            predicate: ::RDF::URI('http://purl.org/dc/terms/spatial'),
            multiple: true do |index|
-    index.as :displayable, :stored_searchable, :facetable
+    index.as :displayable, :stored_searchable
   end
 
   property :date_created_d,
            predicate: ::RDF::URI('https://dbpedia.org/ontology/completionDate'),
            multiple: false do |index|
-    index.as :stored_searchable
+    index.as :displayable, :stored_searchable
   end
 
   property :date_issued_d,
            predicate: ::RDF::URI('https://dbpedia.org/ontology/publicationDate'),
            multiple: false do |index|
-    index.as :stored_searchable
+    index.as :displayable, :stored_searchable
   end
 
   include Hyrax::BasicMetadata
