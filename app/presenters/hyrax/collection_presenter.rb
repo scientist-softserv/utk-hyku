@@ -21,7 +21,17 @@ Hyrax::CollectionPresenter.class_eval do
         subject language
         identifier
         based_near
-        related_url]
+        related_url
+        date_created_d
+        date_issued
+        date_issued_d
+        extent
+        form
+        publication_place
+        repository
+        spatial
+        utk_contributor
+        utk_creator utk_publisher ]
   end
 
   def [](key)
