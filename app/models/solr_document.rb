@@ -32,6 +32,50 @@ class SolrDocument
   attribute :rendering_ids, Solr::Array, 'hasFormat_ssim'
   attribute :account_cname, Solr::Array, 'account_cname_tesim'
 
+  def date_created_d
+    self['date_created_d_tesim']
+  end
+
+  def date_issued
+    self['date_issued_tesim']
+  end
+
+  def date_issued_d
+    self['date_issued_d_tesim']
+  end
+
+  def extent
+    self['extent_tesim']
+  end
+
+  def form
+    self['form_tesim']
+  end
+
+  def publication_place
+    self['publication_place_tesim']
+  end
+
+  def repository
+    self['repository_tesim']
+  end
+
+  def spatial
+    self['spatial_tesim']
+  end
+
+  def utk_contributor
+    self['utk_contributor_tesim']
+  end
+
+  def utk_creator
+    self['utk_creator_tesim']
+  end
+
+  def utk_publisher
+    self['utk_publisher_tesim']
+  end
+
   field_semantics.merge!(
     contributor: 'contributor_tesim',
     creator: 'creator_tesim',

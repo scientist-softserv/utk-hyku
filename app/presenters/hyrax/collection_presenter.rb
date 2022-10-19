@@ -5,8 +5,12 @@
 # Terms is the list of fields displayed by app/views/collections/_show_descriptions.html.erb
 # rubocop:disable Metrics/BlockLength
 require_dependency Hyrax::Engine.root.join('app', 'presenters', 'hyrax', 'collection_presenter').to_s
+
 Hyrax::CollectionPresenter.class_eval do
   # OVERRIDE Hyrax - removed size
+  delegate :date_created_d, :date_issued, :date_issued_d, :extent, :form, :publication_place,
+           :repository, :spatial, :utk_contributor, :utk_creator, :utk_publisher, to: :solr_document
+
   def self.terms
     %i[ total_items
         resource_type
@@ -17,7 +21,17 @@ Hyrax::CollectionPresenter.class_eval do
         subject language
         identifier
         based_near
-        related_url]
+        related_url
+        date_created_d
+        date_issued
+        date_issued_d
+        extent
+        form
+        publication_place
+        repository
+        spatial
+        utk_contributor
+        utk_creator utk_publisher ]
   end
 
   def [](key)
