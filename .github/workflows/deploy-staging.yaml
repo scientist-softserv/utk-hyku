@@ -11,7 +11,13 @@ on:
           - staging
           - demo
           - production
-        
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
+
+
 env:
   REGISTRY: ghcr.io
 
@@ -40,10 +46,15 @@ jobs:
       #     echo "DEPLOY_TAG=${GITHUB_SHA::8}" >> $GITHUB_ENV;
       - name: Set env
         run: >-
-          echo TAG=b2d8d1ca >> $GITHUB_ENV;
-          echo "DEPLOY_TAG=${GITHUB_SHA::8}" >> $GITHUB_ENV;
+          echo "TAG=b2d8d1ca" >> $GITHUB_ENV;
+          echo "DEPLOY_TAG=b2d8d1ca" >> $GITHUB_ENV;
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+        with:
+          limit-access-to-actor: true
       - name: Do deploy
         run: >-
           echo $KUBECONFIG_FILE | base64 -d > $KUBECONFIG;
