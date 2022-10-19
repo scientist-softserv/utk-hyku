@@ -4,9 +4,11 @@ profile:
         date_modified: '2022-09-05'
         responsibility: https://www.lib.utk.edu
         responsibility_statement: University of Tennessee Libraries
-        type: w multivalue true
+        type: remove rdf property uri
         version: 1.0
 classes:
+        Attachment:
+                display_label: Attachment
         Audio:
                 display_label: Audio
         Book:
@@ -22,7 +24,7 @@ classes:
         Newspaper:
                 display_label: Newspaper
         Pdf:
-                display_label: PDF
+                display_label: Pdf
         Video:
                 display_label: Video
 contexts:
@@ -48,11 +50,11 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
-                        - FileSet
+                        - Attachment
                 cardinality:
                         minimum: 0
                 controlled_values:
@@ -89,7 +91,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -159,7 +161,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -232,7 +234,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -268,7 +270,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -346,7 +348,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -388,7 +390,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -433,7 +435,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -476,7 +478,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -522,7 +524,7 @@ properties:
                         - Book
                         - Compound Object
                         - Image
-                        - PDF
+                        - Pdf
                 cardinality:
                         minimum: 0
                 controlled_values:
@@ -558,7 +560,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -749,7 +751,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -788,7 +790,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -830,7 +832,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -872,7 +874,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -913,7 +915,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -957,7 +959,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1003,7 +1005,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1042,7 +1044,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1084,7 +1086,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1126,7 +1128,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1163,7 +1165,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1197,7 +1199,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1232,7 +1234,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1271,7 +1273,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1312,7 +1314,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1353,7 +1355,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1393,7 +1395,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1430,7 +1432,7 @@ properties:
                         class:
                         - Audio
                         - Video
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -1465,7 +1467,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1506,7 +1508,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1550,7 +1552,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1591,7 +1593,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1654,7 +1656,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1691,7 +1693,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1732,7 +1734,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1773,7 +1775,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1815,7 +1817,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1858,7 +1860,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -1927,7 +1929,7 @@ properties:
                 available_on:
                         class:
                         - Book
-                        - PDF
+                        - Pdf
                 cardinality:
                         minimum: 0
                 controlled_values:
@@ -1960,7 +1962,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2001,7 +2003,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2045,7 +2047,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2086,7 +2088,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2122,7 +2124,7 @@ properties:
                 available_on:
                         class:
                         - Book
-                        - PDF
+                        - Pdf
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -2155,7 +2157,7 @@ properties:
                         class:
                         - Book
                         - Newspaper
-                        - PDF
+                        - Pdf
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -2191,7 +2193,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2255,7 +2257,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2293,7 +2295,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2335,7 +2337,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2375,7 +2377,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2416,7 +2418,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2456,7 +2458,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2498,7 +2500,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2535,7 +2537,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2570,7 +2572,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2607,7 +2609,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2647,7 +2649,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2690,7 +2692,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2726,7 +2728,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2767,7 +2769,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2810,7 +2812,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2851,7 +2853,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2893,7 +2895,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2933,7 +2935,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -2977,7 +2979,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3046,7 +3048,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3080,7 +3082,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3120,7 +3122,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3153,7 +3155,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3192,7 +3194,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3226,6 +3228,39 @@ properties:
                 sample_values:
                 - Browder, Boyd
                 - http://id.loc.gov/authorities/names/n2017180154
+        license:
+                display_label:
+                        default: License
+                definition:
+                        default: A legal document giving official permission to do
+                                something with the resource.
+                usage_guidelines:
+                        default: Values provided from drop-down menu controlled through
+                                "https://github.com/samvera/hyrax/blob/master/lib/generators/hyrax/templates/config/authorities/licenses.yml"
+                requirement: recommended
+                controlled_values:
+                        format: http://www.w3.org/2001/XMLSchema#anyURI
+                        sources: http://creativecommons.org/
+                sample_value:
+                - http://creativecommons.org/licenses/by-nc-nd/3.0/
+                property_uri: http://purl.org/dc/terms/license
+                indexing:
+                - displayable
+                available_on:
+                        class:
+                        - GenericWork
+                        - Image
+                        - Collection
+                        - Video
+                        - Audio
+                        - Pdf
+                        - Book
+                        - CompoundObject
+                        - Newspaper
+                data_type: http://www.w3.org/2001/XMLSchema#anyURI
+                cardinality:
+                        minimum: 0
+                index_documentation: License should be indexed as a facetable field.
         rights_statement:
                 available_on:
                         class:
@@ -3234,7 +3269,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3244,7 +3279,6 @@ properties:
                         format: http://www.w3.org/2001/XMLSchema#anyURI
                         sources:
                         - http://rightsstatements.org/
-                        - http://creativecommons.org/
                 definition:
                         default: Enter the rights statement and/or license that applies
                                 to the resource. Every resource needs a rights statement.
@@ -3254,6 +3288,7 @@ properties:
                         default: Rights Statement
                 index_documentation: displayable, searchable, rights facet
                 indexing:
+                - admin_only
                 - displayable
                 - stored_searchable
                 - facetable
@@ -3272,7 +3307,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3316,7 +3351,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3346,7 +3381,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3387,7 +3422,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3425,7 +3460,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3465,7 +3500,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3506,7 +3541,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3548,7 +3583,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3588,7 +3623,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3631,7 +3666,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3706,7 +3741,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3741,7 +3776,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3781,7 +3816,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3902,7 +3937,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3936,7 +3971,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -3970,7 +4005,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4004,7 +4039,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4036,7 +4071,7 @@ properties:
                         - Book
                         - Compound Object
                         - Image
-                        - PDF
+                        - Pdf
                 cardinality:
                         minimum: 0
                 controlled_values:
@@ -4169,7 +4204,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4202,7 +4237,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4235,7 +4270,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4269,7 +4304,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4302,7 +4337,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4335,7 +4370,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4369,7 +4404,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4402,7 +4437,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4436,7 +4471,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4470,7 +4505,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4503,7 +4538,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4536,7 +4571,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4570,7 +4605,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4603,7 +4638,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4636,7 +4671,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4669,7 +4704,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4703,7 +4738,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4737,7 +4772,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4768,7 +4803,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4801,7 +4836,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4832,7 +4867,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4863,7 +4898,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4893,7 +4928,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4919,7 +4954,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4945,7 +4980,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4971,7 +5006,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -4997,7 +5032,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5023,7 +5058,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5049,7 +5084,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5075,7 +5110,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5101,7 +5136,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5127,7 +5162,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5153,7 +5188,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5179,7 +5214,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5205,7 +5240,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5236,7 +5271,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5269,7 +5304,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5303,7 +5338,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5336,7 +5371,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5370,7 +5405,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5403,7 +5438,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5436,7 +5471,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5470,7 +5505,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5503,7 +5538,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5536,7 +5571,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5570,7 +5605,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5604,7 +5639,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5638,7 +5673,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5671,7 +5706,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5704,7 +5739,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5738,7 +5773,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5771,7 +5806,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5815,7 +5850,7 @@ properties:
                         - Video
                         - Collection
                         - Audio
-                        - PDF
+                        - Pdf
                         - Book
                         - CompoundObject
                         - Newspaper
@@ -5849,7 +5884,7 @@ properties:
         behavior:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         minimum: 0
                 controlled_values:
@@ -5870,7 +5905,7 @@ properties:
         bits_per_sample:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -5896,7 +5931,7 @@ properties:
         capture_software:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -5920,7 +5955,7 @@ properties:
         color_profile:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -5943,7 +5978,7 @@ properties:
         color_space:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -5968,7 +6003,7 @@ properties:
         compression_scheme:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -5993,7 +6028,7 @@ properties:
         file_language:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 1
@@ -6018,7 +6053,7 @@ properties:
         file_size:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -6040,7 +6075,7 @@ properties:
         format_name:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -6062,7 +6097,7 @@ properties:
         frame_height:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 1
@@ -6087,7 +6122,7 @@ properties:
         frame_width:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 1
@@ -6112,7 +6147,7 @@ properties:
         hash_value:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0
@@ -6134,7 +6169,7 @@ properties:
         rdf_type:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         minimum: 0
                 controlled_values:
@@ -6152,7 +6187,6 @@ properties:
                 indexing:
                 - displayable
                 mappings: {}
-                property_uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
                 range: http://www.w3.org/2001/XMLSchema#anyURI
                 requirement: optional
                 sample_values:
@@ -6161,7 +6195,7 @@ properties:
         xresolution:
                 available_on:
                         class:
-                        - FileSet
+                        - Attachment
                 cardinality:
                         maximum: 1
                         minimum: 0

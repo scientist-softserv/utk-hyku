@@ -9,4 +9,22 @@ class FileSet < ActiveFedora::Base
   end
 
   include ::Hyrax::FileSetBehavior
+  # @return [String] the Attachment's rdf type for the given FileSet
+  # @return [NilClass] when there is no rdf_type for the parent work (Attachment).
+  #
+  # @note We're making an assumption that there is only one rdf_type for this FileSet.
+  def rdf_type
+    # In Ruby, referencing an instance_variable that is not set/defined will return `nil`.
+    #
+    # The logic that sets @memoized_rdf_type is potentially expensive, and it might return nil.
+    # I want to avoid repeating an expensive call, hence the memoization.
+    #
+    # I'm using defined?(@memoized_rdf_type) because it will check if that instance variable has been
+    # previously set (either to a value or to nil).
+    return @memoized_rdf_type if defined?(@memoized_rdf_type)
+
+    @memoized_rdf_type = parent_works.detect do |work|
+      work.respond_to?(:rdf_type) && work.rdf_type.present?
+    end&.rdf_type&.first
+  end
 end
