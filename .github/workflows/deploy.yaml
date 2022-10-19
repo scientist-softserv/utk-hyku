@@ -1,0 +1,9 @@
+name: "Deploy"
+on: [workflow_dispatch]
+
+env:
+  PROJECT_NAME: utk-hyku
+
+jobs:
+  call-workflow:
+    uses: scientist-softserv/deploy-action/.github/workflows/deploy.yaml@main
