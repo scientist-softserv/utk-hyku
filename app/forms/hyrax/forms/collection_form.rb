@@ -24,10 +24,36 @@ module Hyrax
 
       delegate :blacklight_config, to: Hyrax::CollectionsController
 
-      self.terms = %i[alternative_title resource_type title creator contributor description
-                      keyword license publisher date_created subject language
-                      representative_id thumbnail_id identifier based_near
-                      related_url visibility collection_type_gid]
+      self.terms = %i[alternative_title
+                      resource_type
+                      title
+                      creator
+                      keyword
+                      contributor
+                      description
+                      license
+                      publisher
+                      date_created
+                      subject
+                      language
+                      representative_id
+                      thumbnail_id
+                      identifier
+                      based_near
+                      related_url
+                      visibility
+                      collection_type_gid]
+
+      self.terms += %i[date_created_d
+                       date_issued
+                       date_issued_d
+                       extent
+                       form
+                       publication_place
+                       repository
+                       spatial
+                       utk_contributor
+                       utk_creator utk_publisher]
 
       self.required_fields = [:title]
 
@@ -59,7 +85,8 @@ module Hyrax
 
       # Terms that appear above the accordion
       def primary_terms
-        %i[title description]
+        %i[title
+           description]
       end
 
       # Terms that appear within the accordion
@@ -76,7 +103,18 @@ module Hyrax
            identifier
            based_near
            related_url
-           resource_type]
+           resource_type
+           date_created_d
+           date_issued
+           date_issued_d
+           extent
+           form
+           publication_place
+           repository
+           spatial
+           utk_contributor
+           utk_creator
+           utk_publisher]
       end
 
       def banner_info
