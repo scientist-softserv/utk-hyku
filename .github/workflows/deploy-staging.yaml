@@ -17,7 +17,6 @@ on:
         required: false
         default: false
 
-
 env:
   REGISTRY: ghcr.io
 
@@ -50,14 +49,13 @@ jobs:
           echo "DEPLOY_TAG=b2d8d1ca" >> $GITHUB_ENV;
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
-        with:
-          limit-access-to-actor: true
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      #   if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+      #   with:
+      #     limit-access-to-actor: true
       - name: Do deploy
         run: >-
           echo $KUBECONFIG_FILE | base64 -d > $KUBECONFIG;
           DOLLAR=$ envsubst < ops/${{ inputs.environment }}-deploy.tmpl.yaml > ops/${{ inputs.environment }}-deploy.yaml;
-          cat ops/${{ inputs.environment }}-deploy.yaml;
           ./bin/helm_deploy utk-hyku-${{ inputs.environment }} utk-hyku-${{ inputs.environment }}

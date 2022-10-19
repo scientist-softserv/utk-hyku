@@ -213,7 +213,7 @@ externalPostgresql:
   username: postgres
   password: $DB_PASSWORD
 
-solrExistingSecret: $SOLR_ADMIN_PASSWORD
+externalSolrPassword: $SOLR_ADMIN_PASSWORD
 externalSolrHost: solr.staging-solr.svc.cluster.local
 externalSolrUser: admin
 externalSolrCollection: "utk-hyku"
