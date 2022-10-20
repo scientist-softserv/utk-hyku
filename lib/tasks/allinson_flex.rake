@@ -9,6 +9,7 @@ namespace :allinson_flex do
 
       puts "=============== configuring #{account.name} ============"
       work_types = AllinsonFlex::DynamicSchema.all.map(&:allinson_flex_class).uniq
+      work_types -= ["FileSet"] if work_types.include?("FileSet")
       update_indexers(work_types: work_types)
       update_presenters(work_types: work_types)
       puts "=============== finished configuring #{account.name} ============"
