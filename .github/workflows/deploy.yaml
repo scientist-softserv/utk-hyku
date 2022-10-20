@@ -17,9 +17,6 @@ on:
         required: false
         default: false
 
-env:
-  PROJECT_NAME: utk-hyku
-
 jobs:
   call-workflow:
     uses: scientist-softserv/deploy-action/.github/workflows/deploy.yaml@main
