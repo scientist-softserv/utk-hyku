@@ -3,7 +3,7 @@
 # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
 module Hyrax
   module CreateDerivativesJobDecorator
-    PRESERVATION_FILE = "PreservationFile"
+    PRESERVATION_FILE = "pcdm-muse:PreservationFile"
 
     # @param [FileSet] file_set
     # @param [String] file_id identifier for a Hydra::PCDM::File
