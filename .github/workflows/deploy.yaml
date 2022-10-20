@@ -20,3 +20,4 @@ on:
 jobs:
   call-workflow:
     uses: scientist-softserv/deploy-action/.github/workflows/deploy.yaml@main
+    secrets: inherit
