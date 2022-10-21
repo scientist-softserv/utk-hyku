@@ -29,12 +29,6 @@ class Collection < ActiveFedora::Base
     index.as :displayable, :stored_searchable
   end
 
-  property :publication_place,
-           predicate: ::RDF::URI('https://id.loc.gov/vocabulary/relators/pup'),
-           multiple: false do |index|
-    index.as :displayable, :stored_searchable
-  end
-
   property :repository,
            predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/rps'),
            multiple: true do |index|

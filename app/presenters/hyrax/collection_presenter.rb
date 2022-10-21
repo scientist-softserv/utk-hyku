@@ -31,7 +31,8 @@ Hyrax::CollectionPresenter.class_eval do
         repository
         spatial
         utk_contributor
-        utk_creator utk_publisher ]
+        utk_creator
+        utk_publisher ]
   end
 
   def [](key)
