@@ -20,4 +20,7 @@ on:
 jobs:
   call-workflow:
     uses: scientist-softserv/deploy-action/.github/workflows/deploy.yaml@flexible-names
+    with:
+      k8s-release-name: fake
+      k8s-namespace: ${{ format('{0}-{1}', inputs.environment, github.event.repository.name) }}
     secrets: inherit
