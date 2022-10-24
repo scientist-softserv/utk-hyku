@@ -97,6 +97,9 @@
 // CUSTOM STYLES
 
 // GENERAL
+// * {
+//   border: 2px red solid;
+// }
 .utk-logo-wrapper {
   z-index: 998;
   padding: 0;
@@ -108,6 +111,37 @@
 a#library-link,
 a#utk-lib-menu {
   display: none;
+}
+
+.image-masthead {
+  width: 100%;
+  height: 61.8vw;
+  min-height: 500px;
+  max-height: calc(90vh - 82px);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: #58595b;
+  margin: 0 !important;
+
+  .image-masthead-container {
+    align-self: flex-end;
+    position: absolute;
+    width: inherit;
+    height: 81px;
+    padding: 0 47px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: $globe;
+  }
+
+  .controls .navbar {
+    border: none;
+    height: inherit;
+    background-color: $globe !important;
+    align-self: center;
+  }
 }
 
 // PUBLIC FACING
@@ -160,6 +194,17 @@ body.public-facing.utk-public-facing {
   p {
     color: $smokeyx;
     font-size: 15px;
+  }
+
+  .btn {
+    &.btn-primary,
+    &.btn-danger {
+      color: #fff;
+    }
+
+    &.btn-primary {
+      background-color: $globe;
+    }
   }
 
   #sort-dropdown .dropdown-toggle,
@@ -223,6 +268,93 @@ body.public-facing.utk-public-facing {
     }
   }
 
+  .image-masthead {
+    .navbar,
+    .controls,
+    .container-fluid,
+    .row {
+      height: inherit;
+    }
+
+    #search-form-header {
+      margin: 0;
+      .form-group,
+      .input-group,
+      .input-group-btn .btn {
+        height: $golden-ratio-4;
+      }
+      .input-group-btn .btn {
+        background: none;
+        background-color: $white;
+        min-width: 76px;
+        padding: 0;
+        border: none;
+        color: $smokey;
+        font-size: $type-2;
+        font-weight: 700;
+        padding: 0 $golden-ratio-2;
+        border-radius: $golden-ratio-2;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
+      .input-group-btn .dropdown-toggle {
+        border-radius: 0;
+        position: relative;
+        z-index: 3;
+        padding: 0 !important;
+        min-height: auto;
+        border: none;
+        border-left: 2px solid #f6f6f6;
+        border-right: 2px solid #f6f6f6;
+        min-width: 76px;
+        font-weight: 400;
+        .fa {
+          font-weight: 400;
+          color: $rock;
+          padding-left: $golden-ratio-0;
+        }
+      }
+    }
+
+    #search-submit-header {
+      .glyphicon-search {
+        padding-right: $golden-ratio-0;
+      }
+    }
+
+    #search-field-header {
+      height: inherit;
+      border: none;
+      border-radius: $golden-ratio-2;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      color: $smokeyx;
+      font-size: $type-2;
+      font-weight: 400;
+      padding-left: $golden-ratio-3;
+    }
+
+    .search-form .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .navbar-nav li {
+      background-color: $globe !important;
+    }
+
+    .navbar .navbar-nav a {
+      font-size: $type-3;
+      font-weight: 400;
+      text-transform: none;
+    }
+  }
+
   // DROPDOWN NAVBAR
   .navbar-inverse .navbar-link {
     color: $smokey !important;
@@ -235,12 +367,12 @@ body.public-facing.utk-public-facing {
   .navbar-inverse .navbar-nav > li > a,
   .navbar-inverse .navbar-brand {
     color: $smokey !important;
-    font-size: 18px !important;
+    font-size: $type-3 !important;
   }
 
   .navbar-inverse .navbar-nav .fa {
     color: $rock !important;
-    font-size: 18px !important;
+    font-size: $type-3 !important;
     margin: 0 0.2rem;
   }
 
@@ -342,7 +474,8 @@ body.public-facing.utk-public-facing {
 
   @media (min-width: 1200px) {
     #masthead {
-      .container-fluid {
+      .container-fluid,
+      .image-masthead-container {
         max-width: 1280px;
       }
     }
