@@ -7,4 +7,7 @@ module SharedWorkBehavior
   include CommonValidations
   include BulkraxMetadata
   include AllinsonFlex::DynamicMetadataBehavior
+  # This must be included at the end, because it finalizes the metadata
+  # schema (by adding accepts_nested_attributes)
+  include AllinsonFlex::FoundationalMetadata
 end
