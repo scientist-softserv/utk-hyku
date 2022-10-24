@@ -1,3 +1,5 @@
+<% # OVERRIDE: Hyrax v3.4.1 - add div for custom styles %>
+
 <% content_for(:navbar) do %>
   <div class="image-masthead">
 <!-- default repository homepage -->
@@ -9,8 +11,12 @@
         <%= render "hyrax/homepage/marketing" if controller_name == 'homepage' %>
       </div>
     </div>
-
-    <%= render '/controls' %>
+    <% # OVERRIDE: Hyrax v3.4.1 - add divs for custom styles %>
+    <div class='image-masthead-container'>
+      <div class='controls'>
+        <%= render '/controls' %>
+      </div>
+    </div>
   </div>
 <% end %>
 
