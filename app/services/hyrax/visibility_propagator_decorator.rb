@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ## OVERRIDE HYRAX 3.4.1 to correct method spelling that causes sidekiq errors.
+require_dependency Hyrax::Engine.root.join('app', 'services', 'hyrax', 'visibility_propagator').to_s
 
 Hyrax::VisibilityPropagator::NullVisibilityPropogator.class_eval do
   ## OVERRIDE HYRAX 3.4.1 to correct method spelling that causes sidekiq errors.
