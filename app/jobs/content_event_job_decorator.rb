@@ -1,5 +1,5 @@
 # frozen_string_literal: true
- 
+
 # OVERRIDE HYRAX 3.4.1 to handle nil case and casue of sidekiq sentry error
 # TODO: why is depositor coming across as nil?
 module ContentEventJobDecorator
