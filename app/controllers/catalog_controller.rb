@@ -96,6 +96,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'lease_expiration_date_dtsi', label: "Lease expiration date", helper_method: :human_readable_date
 
     # collection metadata
+    config.add_index_field 'collection_link', label: 'Publication Place'
     config.add_index_field 'date_created_d_tesim', label: 'Machine Readable Creation Date'
     config.add_index_field 'date_issued_tesim', label: 'Date Issued'
     config.add_index_field 'date_issued_d_tesim', label: 'Machine Readable Publication Date'

@@ -11,11 +11,13 @@ module Bulkrax
 
     # Don't assign rights statement if nothing is defined
     def add_rights_statement
+      # rubocop:disable Style/RedundantSelf
       return unless parser.parser_fields['rights_statement'].present? && (
-        override_rights_statement || parsed_metadata['rights_statement'].blank?
+        override_rights_statement || self.parsed_metadata['rights_statement'].blank?
       )
 
-      parsed_metadata['rights_statement'] = [parser.parser_fields['rights_statement']]
+      self.parsed_metadata['rights_statement'] = [parser.parser_fields['rights_statement']]
+      # rubocop:enable Style/RedundantSelf
     end
   end
 end
