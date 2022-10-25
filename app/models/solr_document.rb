@@ -32,6 +32,10 @@ class SolrDocument
   attribute :rendering_ids, Solr::Array, 'hasFormat_ssim'
   attribute :account_cname, Solr::Array, 'account_cname_tesim'
 
+  def collection_link
+    self['collection_link_tesim']
+  end
+
   def date_created_d
     self['date_created_d_tesim']
   end
