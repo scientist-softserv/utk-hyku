@@ -4,7 +4,7 @@ profile:
         date_modified: '2022-09-05'
         responsibility: https://www.lib.utk.edu
         responsibility_statement: University of Tennessee Libraries
-        type: remove rdf property uri
+        type: 1.0.beta2
         version: 1.0
 classes:
         Attachment:
@@ -15,8 +15,6 @@ classes:
                 display_label: Book
         CompoundObject:
                 display_label: Compound Object
-        FileSet:
-                display_label: File Set
         GenericWork:
                 display_label: Generic Work
         Image:
@@ -5898,6 +5896,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: https://ontology.lib.utk.edu/works#hasBehavior
                 range: http://www.w3.org/2001/XMLSchema#anyURI
@@ -5924,6 +5923,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.w3.org/2003/12/exif/ns#bitsPerSample
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -5948,6 +5948,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.w3.org/2003/12/exif/ns#software
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -5971,6 +5972,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://projecthydra.org/ns/mix/colorProfileName
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -5996,6 +5998,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.w3.org/2003/12/exif/ns#colorSpace
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -6021,6 +6024,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.w3.org/2003/12/exif/ns#compression
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -6043,6 +6047,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://purl.org/dc/terms/language
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -6068,6 +6073,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#fileSize
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -6090,6 +6096,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.loc.gov/premis/rdf/v1#hasFormatName
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -6115,6 +6122,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#height
                 range: http://www.w3.org/2001/XMLSchema#integer
@@ -6140,6 +6148,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#width
                 range: http://www.w3.org/2001/XMLSchema#integer
@@ -6162,6 +6171,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#hashValue
                 range: http://www.w3.org/2001/XMLSchema#string
@@ -6186,6 +6196,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 range: http://www.w3.org/2001/XMLSchema#anyURI
                 requirement: optional
@@ -6212,6 +6223,7 @@ properties:
                 index_documentation: displayable
                 indexing:
                 - displayable
+                - stored_searchable
                 mappings: {}
                 property_uri: http://www.w3.org/2003/12/exif/ns#xResolution
                 range: http://www.w3.org/2001/XMLSchema#integer

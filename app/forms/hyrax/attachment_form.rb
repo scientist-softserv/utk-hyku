@@ -8,5 +8,6 @@ module Hyrax
     self.model_class = ::Attachment
     self.terms += [:resource_type]
     include AllinsonFlex::DynamicFormBehavior
+    include UtkBaseTerms
   end
 end
