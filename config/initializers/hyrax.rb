@@ -15,6 +15,8 @@ Hyrax.config do |config|
   config.register_curation_concern :pdf
   # Injected via `rails g hyrax:work Video`
   config.register_curation_concern :video
+  # Injected via `rails g hyrax:work Attachment`
+  config.register_curation_concern :attachment
 
   # Email recipient of messages sent via the contact form
   # This is set by account settings

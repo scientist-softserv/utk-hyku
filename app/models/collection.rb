@@ -6,9 +6,81 @@ class Collection < ActiveFedora::Base
   # You can replace these metadata if they're not suitable
 
   property :bulkrax_identifier,
-           predicate: ::RDF::URI("https://hykucommons.org/terms/bulkrax_identifier"),
+           predicate: ::RDF::URI('https://hykucommons.org/terms/bulkrax_identifier'),
            multiple: false do |index|
     index.as :stored_searchable, :facetable
+  end
+
+  property :collection_link,
+           predicate: ::RDF::URI('http://purl.org/ontology/bibo/Collection'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :date_created_d,
+           predicate: ::RDF::URI('https://dbpedia.org/ontology/completionDate'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :date_issued,
+           predicate: ::RDF::URI('http://purl.org/dc/terms/issued'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :date_issued_d,
+           predicate: ::RDF::URI('https://dbpedia.org/ontology/publicationDate'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :extent,
+           predicate: ::RDF::URI('http://rdaregistry.info/Elements/u/P60550'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :form,
+           predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'),
+           multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :publication_place,
+           predicate: ::RDF::URI('https://id.loc.gov/vocabulary/relators/pup'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :repository,
+           predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/rps'),
+           multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :spatial,
+           predicate: ::RDF::URI('http://purl.org/dc/terms/spatial'),
+           multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :utk_contributor,
+           predicate: ::RDF::URI('https://ontology.lib.utk.edu/roles#ctb'),
+           multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :utk_creator,
+           predicate: ::RDF::URI('https://ontology.lib.utk.edu/roles#cre'),
+           multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :utk_publisher,
+           predicate: ::RDF::URI('https://ontology.lib.utk.edu/roles#pbl'),
+           multiple: false do |index|
+    index.as :displayable, :stored_searchable
   end
 
   include Hyrax::BasicMetadata

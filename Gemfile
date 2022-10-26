@@ -44,14 +44,6 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails', '>= 3.6.0'
 
-  # Pronto adds comments to MRs in gitlab when rubocop offenses are made.
-  gem 'pronto'
-  gem 'pronto-brakeman', require: false
-  gem 'pronto-flay', require: false
-  gem 'pronto-rails_best_practices', require: false
-  gem 'pronto-rails_schema', require: false
-  gem 'pronto-rubocop', require: false
-
   gem 'simplecov', require: false
 
   gem 'fcrepo_wrapper', '~> 0.4'
@@ -100,7 +92,8 @@ gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
 gem 'hyrax', '~> 3.4.0'
-gem 'iiif_manifest', git: 'https://github.com/samvera/iiif_manifest'
+# switch back to samvera/iiif_manifest main once https://github.com/samvera/iiif_manifest/pull/79 is approved
+gem 'iiif_manifest', git: 'https://github.com/notch8/iiif_manifest.git', branch: 'add-thumbnail-property'
 
 gem 'bolognese', '>= 1.9.10'
 gem 'hyrax-doi', git: 'https://github.com/samvera-labs/hyrax-doi.git'
@@ -145,3 +138,11 @@ gem 'tether-rails'
 
 gem 'react-rails'
 gem 'webpacker'
+
+# Pronto adds comments to MRs in gitlab when rubocop offenses are made.
+gem 'pronto'
+gem 'pronto-brakeman', require: false
+gem 'pronto-flay', require: false
+gem 'pronto-rails_best_practices', require: false
+gem 'pronto-rails_schema', require: false
+gem 'pronto-rubocop', require: false

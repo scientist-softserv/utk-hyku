@@ -1,0 +1,5 @@
+<%= f.input :utk_contributor,
+    label: 'Local Contributor',
+    as: :multi_value,
+    required: f.object.required?(key),
+    input_html: { class: 'form-control', multiple: true } %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_14_233711) do
+ActiveRecord::Schema.define(version: 2022_10_18_202557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 2022_06_14_233711) do
     t.integer "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "multi_value", default: false
+    t.string "requirement", default: "optional", null: false
     t.index ["profile_id"], name: "index_profile_properties_on_profile_id"
   end
 

@@ -1,6 +1,14 @@
 GIT
+  remote: https://github.com/notch8/iiif_manifest.git
+  revision: cbdc220390bd9d862906a5e1d9a5d0ebc5a9d503
+  branch: add-thumbnail-property
+  specs:
+    iiif_manifest (1.1.1)
+      activesupport (>= 4)
+
+GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: 9e597f577cde3c201baa43b76ed6cdeb4553b5a5
+  revision: 2c930adc0e4c88a6c5a44c4f43e5b9a6f41666fe
   specs:
     allinson_flex (0.1.0)
       json_schemer
@@ -36,13 +44,6 @@ GIT
       flipflop (~> 2.3)
       hyrax (>= 2.9, < 4.0)
       rails (~> 5.2.4, >= 5.2.4.3)
-
-GIT
-  remote: https://github.com/samvera/iiif_manifest
-  revision: eadc2392bb0ca59085d238068549dfb77c6e5930
-  specs:
-    iiif_manifest (1.1.1)
-      activesupport (>= 4)
 
 GIT
   remote: https://github.com/tawan/active-elastic-job.git

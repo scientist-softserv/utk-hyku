@@ -9,6 +9,6 @@ AllinsonFlex.setup do |config|
   # Use a different version (eg. commit hash)
   # Default:
   #
-  # config.m3_schema_version_tag = 'f753864727a0ba743cb5ec47e88797435a0a596a'
+  # config.m3_schema_version_tag = 'main'
 end
 Hyrax::CurationConcern.actor_factory.insert_before Hyrax::Actors::ModelActor, AllinsonFlex::DynamicSchemaActor
