@@ -122,6 +122,8 @@ extraEnvVars: &envVars
     value: "true"
   - name: REDIS_HOST
     value: utk-hyku-staging-redis-master
+  - name: REDIS_PASSWORD
+    value: $REDIS_PASSWORD
   - name: REDIS_URL
     value: redis://:$REDIS_PASSWORD@utk-hyku-staging-redis-master:6379/utk-hyku
   - name: HYKU_ACTIVE_JOB_QUEUE_URL
