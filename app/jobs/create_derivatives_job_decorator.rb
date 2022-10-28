@@ -11,7 +11,16 @@ module Hyrax
     def perform(file_set, file_id, filepath = nil)
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
       # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
-      return if file_set.rdf_type.downcase.include? PRESERVATION_FILE
+      @remaining_retries ||= 2
+      if file_set.parent_works.blank?
+        raise 'FileSet is missing its parent' if @remaining_retries.zero?
+
+        reschedule(file_set, file_id, filepath)
+        @remaining_retries -= 1
+        return false
+      end
+
+      return if file_set.rdf_type.present? && file_set.rdf_type.downcase.include?(PRESERVATION_FILE)
 
       # Ensure a fresh copy of the repo file's latest version is being worked on, if no filepath is directly provided
       unless filepath && File.exist?(filepath)
@@ -27,6 +36,14 @@ module Hyrax
       file_set.update_index
       file_set.parent.update_index if parent_needs_reindex?(file_set)
     end
+
+    private
+
+      def reschedule(file_set, file_id, filepath = nil)
+        CreateDerivativesJob.set(wait: 10.minutes).perform_later(
+          file_set, file_id, filepath
+        )
+      end
   end
 end
 
