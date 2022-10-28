@@ -15,7 +15,7 @@ module Hyrax
       if file_set.parent_works.blank?
         reschedule(file_set, file_id, filepath)
         @remaining_retries -= 1
-        raise 'FileSet is missing its parent' if remaining_retries.zero?
+        raise 'FileSet is missing its parent' if @remaining_retries.zero?
         return false
       end
 
