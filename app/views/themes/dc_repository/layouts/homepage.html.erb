@@ -1,0 +1,35 @@
+<% # OVERRIDE: Hyrax v3.4.1 - remove background-container-gradient div, remove site-title-container, add divs and classes for custom styles for dc_repository %>
+
+<% content_for(:navbar) do %>
+  <div class="image-masthead">
+<!-- default repository homepage -->
+    <div class="background-container"  title="<%= block_for(name: 'banner_image_text') %>" style="background-image: url('<%= banner_image %>')"></div>
+    <% # OVERRIDE: Hyrax v3.4.1 - remove background-container-gradient %>
+    <% # OVERRIDE: Hyrax v3.4.1 - remove site-title-container %>
+    <% # OVERRIDE: Hyrax v3.4.1 - add divs and classes for custom styles %>
+    <div class='circle-container'>
+      <div class="circle">
+        <div class='circle-text'>New text Here</div>
+      </div>
+    </div>
+    <div class='utk-digital-search-container'>
+      <div class='container-fluid'>
+        <div class='utk-digital-search-heading'>
+          <span class="utk-heading-1" role="heading" aria-level="1">Digital Collections</span>
+          <span class="utk-description" role="subheading"><span>Explore Items digitized from our collections.</span></span>
+        </div>
+      </div>
+    </div>
+    <div class='image-masthead-container'> 
+      <div class='controls'>
+        <%= render '/controls' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for(:precontainer_content) do %>
+  <%= render 'hyrax/homepage/announcement' if controller_name == 'homepage' %>
+<% end %>
+
+<%= render template: 'layouts/hyrax' %>
