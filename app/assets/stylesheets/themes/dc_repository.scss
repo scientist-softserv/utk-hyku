@@ -1,0 +1,208 @@
+.dc_repository {
+  .image-masthead {
+    width: 100%;
+    height: 61.8vw;
+    min-height: 500px;
+    max-height: calc(90vh - 82px);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    margin: 0 !important;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .navbar,
+    .controls,
+    .container-fluid,
+    .row {
+      height: inherit;
+    }
+
+    .circle-container {
+      position: absolute;
+      bottom: 95px;
+      right: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+
+      .circle {
+        background: $valley;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 17vw;
+        height: 17vw;
+        box-shadow: $box-shadow-float;
+
+        // .circle::before {
+        //   content: '';
+        //   display: block;
+        //   padding-bottom: 100%;
+        // }
+
+        .circle-text {
+          color: $white;
+          font-size: $type-3;
+          font-family: "Gotham";
+          font-weight: 400;
+        }
+      }
+    }
+
+    .utk-digital-search-container {
+      display: flex;
+      height: $golden-ratio-6;
+      width: inherit;
+      background-color: $globe;
+      opacity: 65%;
+      padding: 0 47px;
+
+      .container-fluid {
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        align-items: center;
+
+        .utk-digital-search-heading {
+          display: flex;
+          flex-direction: column;
+          padding-left: 15px;
+          color: $white;
+
+          .utk-heading-1 {
+            font-size: $type-6;
+            font-family: "Gotham";
+            font-weight: 700;
+            line-height: normal;
+            display: block;
+          }
+
+          .utk-description {
+            font-size: 18px;
+            color: $white;
+            font-family: "Gotham";
+            font-weight: 400;
+            line-height: 1.5;
+            display: block;
+          }
+        }
+      }
+    }
+
+    .image-masthead-container {
+      height: $golden-ratio-5;
+      background-color: $globe;
+
+      .controls .navbar {
+        border: none;
+        height: inherit;
+        background-color: $globe !important;
+        align-self: center;
+      }
+    }
+
+    #search-form-header {
+      margin: 0;
+      .form-group,
+      .input-group,
+      .input-group-btn .btn {
+        height: $golden-ratio-4;
+      }
+      .input-group-btn .btn {
+        background: none;
+        background-color: $white;
+        min-width: 76px;
+        padding: 0;
+        border: none;
+        color: $smokey;
+        font-size: $type-2;
+        font-weight: 700;
+        padding: 0 $golden-ratio-2;
+        border-radius: $golden-ratio-2;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
+      .input-group-btn .dropdown-toggle {
+        border-radius: 0;
+        position: relative;
+        z-index: 3;
+        padding: 0 !important;
+        min-height: auto;
+        border: none;
+        border-left: 2px solid #f6f6f6;
+        border-right: 2px solid #f6f6f6;
+        min-width: 76px;
+        font-weight: 400;
+        .fa {
+          font-weight: 400;
+          color: $rock;
+          padding-left: $golden-ratio-0;
+        }
+      }
+    }
+
+    #search-submit-header {
+      .glyphicon-search {
+        padding-right: $golden-ratio-0;
+      }
+    }
+
+    #search-field-header {
+      height: inherit;
+      border: none;
+      border-radius: $golden-ratio-2;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      color: $smokeyx;
+      font-size: $type-2;
+      font-weight: 400;
+      padding-left: $golden-ratio-3;
+    }
+
+    .search-form .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      padding: 0 47px;
+    }
+
+    .navbar .navbar-nav li,
+    .navbar .navbar-nav li:hover,
+    .navbar .navbar-nav li:focus,
+    .navbar .navbar-nav a:hover,
+    .navbar .navbar-nav a:focus {
+      background-color: transparent !important;
+      color: $white;
+    }
+
+    .navbar .navbar-nav a,
+    .navbar .navbar-nav a:hover,
+    .navbar .navbar-nav a:focus {
+      font-size: $type-3;
+      font-weight: 400;
+      text-transform: none;
+      color: $white;
+    }
+
+    // Unsure of desired behavior of state
+    // .navbar .navbar-nav a:hover,
+    // .navbar .navbar-nav a:focus {
+    //   color: $rock !important;
+    //   font-weight: 500;
+    // }
+
+    // Unsure of desired behavior of active state
+    .navbar .navbar-nav > .active > a {
+      background-color: transparent !important;
+      color: $white !important;
+      font-weight: 400;
+    }
+  }
+}
