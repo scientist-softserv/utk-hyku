@@ -1,5 +1,3 @@
-<% # OVERRIDE: Hyrax v3.4.1 - add divs and classes for custom styles %>
-
 <% content_for(:navbar) do %>
   <div class="image-masthead">
 <!-- default repository homepage -->
@@ -11,20 +9,8 @@
         <%= render "hyrax/homepage/marketing" if controller_name == 'homepage' %>
       </div>
     </div>
-    <% # OVERRIDE: Hyrax v3.4.1 - add divs and classes for custom styles %>
-    <div class='utk-digital-search-container'>
-      <div class='container-fluid'>
-        <div class='utk-digital-search-heading'>
-          <span class="utk-heading-1" role="heading" aria-level="1">Digital Collections</span>
-          <span class="utk-description" role="subheading"><span>Explore Items digitized from our collections.</span></span>
-        </div>
-      </div>
-    </div>
-    <div class='image-masthead-container'> 
-      <div class='controls'>
-        <%= render '/controls' %>
-      </div>
-    </div>
+
+    <%= render '/controls' %>
   </div>
 <% end %>
 
