@@ -4,17 +4,6 @@
 // CUSTOM STYLES
 
 // GENERAL
-// * {
-//   border: 2px red solid;
-// }
-// .utk-logo-wrapper {
-//   z-index: 998;
-//   padding: 0;
-//   width: auto;
-//   height: 100%;
-//   position: absolute;
-// }
-
 a#library-link,
 a#utk-lib-menu {
   display: none;
@@ -83,14 +72,6 @@ body.public-facing.utk-public-facing {
     }
   }
 
-  .utk-logo-wrapper {
-    z-index: 998;
-    padding: 0;
-    width: auto;
-    height: 100%;
-    position: absolute;
-  }
-
   #sort-dropdown .dropdown-toggle,
   #per_page-dropdown .dropdown-toggle {
     color: $smokey !important;
@@ -149,176 +130,6 @@ body.public-facing.utk-public-facing {
       color: $smokey !important;
       letter-spacing: -0.03em;
       text-decoration: none;
-    }
-  }
-
-  .image-masthead {
-    width: 100%;
-    height: 61.8vw;
-    min-height: 500px;
-    max-height: calc(90vh - 82px);
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-    background-color: #58595b;
-    margin: 0 !important;
-
-    .navbar,
-    .controls,
-    .container-fluid,
-    .row {
-      height: inherit;
-    }
-
-    .utk-digital-search-container {
-      position: absolute;
-      bottom: 76px;
-      height: $golden-ratio-6;
-      width: inherit;
-      background-color: $globe;
-      opacity: 65%;
-      z-index: 1;
-      padding: 0 47px;
-
-      .utk-digital-search-heading {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        bottom: 40px;
-        padding-left: 15px;
-        color: $white;
-
-        .utk-heading-1 {
-          font-size: $type-6;
-          font-family: "Gotham";
-          font-weight: 700;
-          line-height: normal;
-          display: block;
-        }
-
-        .utk-description {
-          font-size: 18px;
-          color: $white;
-          font-family: "Gotham";
-          font-weight: 400;
-          line-height: 1.5;
-          display: block;
-        }
-      }
-    }
-
-    .image-masthead-container {
-      position: absolute;
-      align-self: flex-end;
-      width: inherit;
-      height: $golden-ratio-5;
-      padding: 0 47px;
-      margin-right: auto;
-      margin-left: auto;
-      background-color: $globe;
-
-      .controls .navbar {
-        border: none;
-        height: inherit;
-        background-color: $globe !important;
-        align-self: center;
-      }
-    }
-
-    #search-form-header {
-      margin: 0;
-      .form-group,
-      .input-group,
-      .input-group-btn .btn {
-        height: $golden-ratio-4;
-      }
-      .input-group-btn .btn {
-        background: none;
-        background-color: $white;
-        min-width: 76px;
-        padding: 0;
-        border: none;
-        color: $smokey;
-        font-size: $type-2;
-        font-weight: 700;
-        padding: 0 $golden-ratio-2;
-        border-radius: $golden-ratio-2;
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
-      }
-      .input-group-btn .dropdown-toggle {
-        border-radius: 0;
-        position: relative;
-        z-index: 3;
-        padding: 0 !important;
-        min-height: auto;
-        border: none;
-        border-left: 2px solid #f6f6f6;
-        border-right: 2px solid #f6f6f6;
-        min-width: 76px;
-        font-weight: 400;
-        .fa {
-          font-weight: 400;
-          color: $rock;
-          padding-left: $golden-ratio-0;
-        }
-      }
-    }
-
-    #search-submit-header {
-      .glyphicon-search {
-        padding-right: $golden-ratio-0;
-      }
-    }
-
-    #search-field-header {
-      height: inherit;
-      border: none;
-      border-radius: $golden-ratio-2;
-      border-top-right-radius: 0 !important;
-      border-bottom-right-radius: 0 !important;
-      color: $smokeyx;
-      font-size: $type-2;
-      font-weight: 400;
-      padding-left: $golden-ratio-3;
-    }
-
-    .search-form .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .row {
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar .navbar-nav li,
-    .navbar .navbar-nav li:hover,
-    .navbar .navbar-nav li:focus,
-    .navbar .navbar-nav a:hover,
-    .navbar .navbar-nav a:focus {
-      background-color: transparent !important;
-      color: $white;
-    }
-
-    .navbar .navbar-nav a {
-      font-size: $type-3;
-      font-weight: 400;
-      text-transform: none;
-    }
-
-    .navbar .navbar-nav a:hover,
-    .navbar .navbar-nav a:focus {
-      color: $rock !important;
-      font-weight: 500;
-    }
-
-    .navbar .navbar-nav > .active > a {
-      background-color: transparent !important;
-      color: $white !important;
-      font-weight: 500;
     }
   }
 
