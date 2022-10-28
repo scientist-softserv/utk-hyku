@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe CreateDerivativesJob do
   around do |example|
     ffmpeg_enabled = Hyrax.config.enable_ffmpeg
@@ -6,10 +7,10 @@ RSpec.describe CreateDerivativesJob do
     example.run
     Hyrax.config.enable_ffmpeg = ffmpeg_enabled
   end
-  
+
   let(:parent) { create(:attachment, rdf_type: ['']) }
 
-  before do 
+  before do
     allow(file_set).to receive(:parent_works).and_return([parent])
   end
 
@@ -70,12 +71,12 @@ RSpec.describe CreateDerivativesJob do
       context "when the parent's rdf_type is PreservationFile" do
         let(:parent) { create(:attachment, rdf_type: ['http://pcdm.org/use#PreservationFile']) }
 
-        before do 
+        before do
           allow(file_set).to receive(:parent_works).and_return([parent])
         end
 
         it "does not call #create_derivatives on the file set" do
-          expect(file_set).not_to have_received(:create_derivatives)
+          expect(file_set).not_to receive(:create_derivatives)
           described_class.perform_now(file_set, file.id)
         end
       end

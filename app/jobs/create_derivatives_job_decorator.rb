@@ -12,7 +12,7 @@ module Hyrax
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
       # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
       if file_set.parent_works.blank?
-        reschedule(file_set, file_id, filepath) 
+        reschedule(file_set, file_id, filepath)
         return false
       end
 
@@ -33,13 +33,13 @@ module Hyrax
       file_set.parent.update_index if parent_needs_reindex?(file_set)
     end
 
-    private 
+    private
 
-    def reschedule(file_set, file_id, filepath = nil)
-      CreateDerivativesJob.set(wait: 10.minutes).perform_later(
-        file_set, file_id, filepath
-      )
-    end
+      def reschedule(file_set, file_id, filepath = nil)
+        CreateDerivativesJob.set(wait: 10.minutes).perform_later(
+          file_set, file_id, filepath
+        )
+      end
   end
 end
 
