@@ -99,7 +99,7 @@ RSpec.describe CreateDerivativesJob do
       file_set.save!
     end
 
-    # this spec was pulled over from hyrax.
+    # this spec was pulled over from hyrax 3.4.1.
     # After spending time, I'm commenting it out for now since it fails
     #        +     :size=>"676x986",
     # Diff:
