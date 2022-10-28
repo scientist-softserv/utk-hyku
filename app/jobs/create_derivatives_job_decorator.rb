@@ -20,7 +20,7 @@ module Hyrax
         return false
       end
 
-      return if file_set.rdf_type.downcase.include?(PRESERVATION_FILE)
+      return if file_set.rdf_type.present? && file_set.rdf_type.downcase.include?(PRESERVATION_FILE)
 
       # Ensure a fresh copy of the repo file's latest version is being worked on, if no filepath is directly provided
       unless filepath && File.exist?(filepath)
