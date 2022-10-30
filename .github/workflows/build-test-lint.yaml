@@ -9,5 +9,4 @@ on:
 
 jobs:
   call-workflow:
-    runs-on: [self-hosted, linux, ARM64]
     uses: scientist-softserv/build-lint-test-action/.github/workflows/build-test-lint.yaml@main
