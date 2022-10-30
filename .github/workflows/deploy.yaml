@@ -17,5 +17,6 @@ on:
 
 jobs:
   call-workflow:
+    runs-on: [self-hosted, linux, ARM64]
     uses: scientist-softserv/deploy-action/.github/workflows/deploy.yaml@main
     secrets: inherit
