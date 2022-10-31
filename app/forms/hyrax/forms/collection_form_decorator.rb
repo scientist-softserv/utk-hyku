@@ -5,7 +5,7 @@ module Hyrax
     module CollectionFormDecorator
       # Terms that appear above the accordion
       def primary_terms
-        [:title, :abstract]
+        %i[title abstract]
       end
 
       def secondary_terms

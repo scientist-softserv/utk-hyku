@@ -8,12 +8,13 @@ require_dependency Hyrax::Engine.root.join('app', 'presenters', 'hyrax', 'collec
 
 Hyrax::CollectionPresenter.class_eval do
   # OVERRIDE Hyrax - removed size
-  delegate :collection_link, :date_created_d, :date_issued, :date_issued_d,
+  delegate :abstract, :collection_link, :date_created_d, :date_issued, :date_issued_d,
            :extent, :form, :publication_place, :repository, :rights_notes, :spatial,
            :utk_contributor, :utk_creator, :utk_publisher, to: :solr_document
 
   def self.terms
     %i[ total_items
+        abstract
         based_near
         collection_link
         creator contributor
