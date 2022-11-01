@@ -8,7 +8,7 @@ module Hyrax
     # @param [FileSet] file_set
     # @param [String] file_id identifier for a Hydra::PCDM::File
     # @param [String, NilClass] filepath the cached file within the Hyrax.config.working_path
-    def perform(file_set, file_id, filepath = nil)
+    def perform(file_set, file_id, filepath = nil, time_to_live = 2)
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
       # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
       if file_set.parent_works.blank?
@@ -31,6 +31,21 @@ module Hyrax
       file_set.reload
       file_set.update_index
       file_set.parent.update_index if parent_needs_reindex?(file_set)
+    rescue StandardError => e
+      if time_to_live.positive?
+        # It's possible we can recover from this, so we'll give it another go.
+        logger.warning(
+          "WARNING: FileSet ID=\"#{file_set_id}\" error for #{self.class}: #{e}. " \
+          "Retries remaining #{time_to_live - 1}."
+        )
+        CreateDerivativesJob.perform_later(file_set, file_id, filepath, time_to_live - 1)
+      else
+        logger.error(
+          "ERROR: FileSet ID=\"#{file_set_id}\" error for #{self.class}: #{e}. " \
+          "No retries remaining.  Backtrace: #{e.backtrace}"
+        )
+      end
+      return false
     end
 
     private
