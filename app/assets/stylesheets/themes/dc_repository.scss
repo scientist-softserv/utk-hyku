@@ -10,12 +10,19 @@
     margin: 0 !important;
     flex-direction: column;
     justify-content: flex-end;
+    z-index: 0;
 
     .navbar,
     .controls,
     .container-fluid,
     .row {
       height: inherit;
+    }
+
+    .background-container {
+      height: 90%;
+      z-index: 0;
+      align-self: flex-end;
     }
 
     .circle-container {
@@ -32,22 +39,26 @@
         border-radius: 50%;
         display: flex;
         align-items: center;
+        text-align: center;
         justify-content: center;
         width: 17vw;
         height: 17vw;
         box-shadow: $box-shadow-float;
+        transition: $transition-all-load;
 
-        // .circle::before {
-        //   content: '';
-        //   display: block;
-        //   padding-bottom: 100%;
-        // }
+        &::after {
+          content: "";
+          display: block;
+          padding-bottom: 100%;
+        }
 
         .circle-text {
           color: $white;
           font-size: $type-3;
+          font-size: 1.75vw;
           font-family: "Gotham";
-          font-weight: 400;
+          font-weight: 500;
+          padding: 1.5em;
         }
       }
     }
@@ -56,45 +67,44 @@
       display: flex;
       height: $golden-ratio-6;
       width: inherit;
-      background-color: $globe;
-      opacity: 65%;
+      background-color: rgba(0, 108, 148, 0.65);
       padding: 0 47px;
+      z-index: 10;
 
-      .container-fluid {
-        margin-left: 0;
-        margin-right: 0;
+      .utk-digital-search-heading {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-self: center;
+        padding-left: 15px;
+        color: $white;
 
-        .utk-digital-search-heading {
-          display: flex;
-          flex-direction: column;
-          padding-left: 15px;
+        .utk-heading-1 {
+          font-size: $type-6;
+          font-family: "Gotham";
+          font-weight: 700;
+          line-height: normal;
+          display: block;
+        }
+
+        .utk-description {
+          font-size: 18px;
           color: $white;
-
-          .utk-heading-1 {
-            font-size: $type-6;
-            font-family: "Gotham";
-            font-weight: 700;
-            line-height: normal;
-            display: block;
-          }
-
-          .utk-description {
-            font-size: 18px;
-            color: $white;
-            font-family: "Gotham";
-            font-weight: 400;
-            line-height: 1.5;
-            display: block;
-          }
+          font-family: "Gotham";
+          font-weight: 400;
+          line-height: 1.5;
+          display: block;
         }
       }
     }
 
-    .image-masthead-container {
+    .controls-container {
       height: $golden-ratio-5;
       background-color: $globe;
+
+      .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+      }
 
       .controls .navbar {
         border: none;
@@ -191,13 +201,6 @@
       color: $white;
     }
 
-    // Unsure of desired behavior of state
-    // .navbar .navbar-nav a:hover,
-    // .navbar .navbar-nav a:focus {
-    //   color: $rock !important;
-    //   font-weight: 500;
-    // }
-
     // Unsure of desired behavior of active state
     .navbar .navbar-nav > .active > a {
       background-color: transparent !important;
@@ -205,4 +208,68 @@
       font-weight: 400;
     }
   }
+
+  // RESPONSIVE STYLES
+
+  @media (min-width: 1500px) {
+     .circle-container {
+      right: 215px !important;
+      
+      .circle {
+        width: 265px !important;
+        height: 265px !important;
+
+        .circle-text {
+          font-size: $type-3 !important;
+          padding: 1.2em;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    // .utk-digital-search-container,
+    .controls-container {
+      .container-fluid {
+        max-width: 1280px;
+      }
+    }
+
+    .circle-container {
+      .circle {
+        width: 255px !important;
+        height: 255px !important;
+
+        .circle-text {
+          font-size: $type-4 !important;
+          padding: 1.2em !important;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .circle-container {
+      visibility: hidden;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    .image-masthead {
+      .background-container {
+        filter: blur(11px);
+        transition: $transition-all-load;
+      }
+    }
+  }
+
+  // @media (max-width: 767px) {
+
+  // }
+
+  // @media (max-width: 575px) {
+
+  // }
 }

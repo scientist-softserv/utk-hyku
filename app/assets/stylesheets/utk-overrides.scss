@@ -252,9 +252,7 @@ body.public-facing.utk-public-facing {
 
   @media (min-width: 1200px) {
     #masthead {
-      .container-fluid,
-      .image-masthead-container,
-      .utk-digital-search-heading {
+      .container-fluid {
         max-width: 1280px;
       }
     }

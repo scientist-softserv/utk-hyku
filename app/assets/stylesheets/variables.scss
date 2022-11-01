@@ -79,12 +79,12 @@ $transition-all-fast: all 110ms ease-in-out;
 $transition-all-load: all 470ms ease-in-out;
 
 //  BOX-SHADOWS
-$box-shadow: 0 2px 5px rgba($smokeyx, 0.15);
-$box-shadow-left: 5px 0 5px rgba($smokeyx, 0.11);
-$box-shadow-right: -5px 0 5px rgba($smokeyx, 0.11);
-$box-shadow-inset: inset 0 2px 5px rgba($smokeyx, 0.15);
-$box-shadow-float: 0 2px 5px rgba($smokeyx, 0.29);
-$box-shadow-float-reverse: 0 -2px 5px rgba($smokeyx, 0.15);
+$box-shadow: 0 4px 4px rgba($smokeyx, 0.15);
+$box-shadow-left: 4px 0 4px rgba($smokeyx, 0.11);
+$box-shadow-right: -4px 0 4px rgba($smokeyx, 0.11);
+$box-shadow-inset: inset 0 4px 4px rgba($smokeyx, 0.15);
+$box-shadow-float: 0 4px 4px rgba($smokeyx, 0.29);
+$box-shadow-float-reverse: 0 -4px 4px rgba($smokeyx, 0.15);
 $box-shadow-float-submenu: 0 0 29px rgba($smokeyx, 0.47);
 
 $jumbotron-heading-font-size: 2.5em;
