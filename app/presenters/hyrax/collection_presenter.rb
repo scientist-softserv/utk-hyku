@@ -25,7 +25,8 @@ Hyrax::CollectionPresenter.class_eval do
         extent
         form
         identifier
-        keyword license
+        keyword
+        license
         publication_place
         publisher
         related_url
