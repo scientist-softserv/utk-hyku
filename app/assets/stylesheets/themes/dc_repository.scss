@@ -25,11 +25,10 @@
     }
 
     .circle-container {
-      position: absolute;
-      bottom: 95px;
-      right: 100px;
       justify-content: center;
-      align-items: center;
+      align-self: center;
+      margin-left: auto;
+      padding-right: $golden-ratio-2;
       z-index: 100;
 
       .circle {
@@ -41,7 +40,6 @@
         width: 17vw;
         height: 17vw;
         box-shadow: $box-shadow-float;
-        transition: $transition-all-load;
 
         &::after {
           content: "";
@@ -60,17 +58,29 @@
       }
     }
 
-    .utk-digital-search-container {
+    .utk-digital-elements-wrapper {
       height: $golden-ratio-6;
       width: inherit;
       background-color: rgba(0, 108, 148, 0.65);
-      padding: 0 47px;
       z-index: 10;
+
+      .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+
+        .row {
+          padding-left: 50px;
+        }
+      }
+
+      .utk-digital-search-container {
+        align-items: center;
+        padding-right: 47px;
+      }
 
       .utk-digital-search-heading {
         flex-direction: column;
-        align-self: center;
-        padding-left: 15px;
+        padding-left: 25px;
         color: $white;
 
         .utk-heading-1 {
@@ -206,17 +216,17 @@
 
   // RESPONSIVE STYLES
 
-  @media (min-width: 1500px) {
+  @media (min-width: 992px) and (max-width: 1200px) {
     .circle-container {
-      right: 215px !important;
+      margin-top: -150px;
 
       .circle {
-        width: 265px !important;
-        height: 265px !important;
+        width: 240px !important;
+        height: 240px !important;
 
         .circle-text {
-          font-size: $type-3 !important;
-          padding: 1.2em;
+          font-size: $type-4 !important;
+          padding: 1.2em !important;
           line-height: 1.5;
         }
       }
@@ -224,18 +234,16 @@
   }
 
   @media (min-width: 1200px) {
-    // .utk-digital-search-container,
+    .utk-digital-elements-wrapper,
     .controls-container {
       .container-fluid {
         max-width: 1280px;
       }
     }
 
-    // .utk-digital-search-container {
-    //   max-width: 1280px;
-    // }
-
     .circle-container {
+      margin-top: -150px;
+
       .circle {
         width: 255px !important;
         height: 255px !important;
@@ -249,18 +257,16 @@
     }
   }
 
-  @media (max-width: 992px) {
-    .circle-container {
-      visibility: hidden;
-    }
-  }
-
   @media (min-width: 768px) and (max-width: 991px) {
     .image-masthead {
       .background-container {
         filter: blur(11px);
         transition: $transition-all-load;
       }
+    }
+
+    .circle-container {
+      visibility: hidden;
     }
   }
 
