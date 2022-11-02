@@ -18,7 +18,12 @@
           </div>
           <div class='circle-container d-flex'>
             <div class="circle d-flex">
-              <div class='circle-text'>11.4K Collections 15.4K Works and more.</div>
+              <div class='circle-text'>
+                <%# Dynamically show number of collections and works %>
+                <%= number_to_human(Collection.count, units: {thousand: "K"}) %> Collections
+                <% work_count = GenericWork.count + Image.count + Audio.count + Book.count + CompoundObject.count + Newspaper.count + Pdf.count + Video.count %>
+                <%= number_to_human(work_count, units: {thousand: "K"}) %> works and more.
+              </div>
             </div>
           </div>
         </div>
