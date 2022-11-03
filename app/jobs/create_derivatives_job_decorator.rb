@@ -37,7 +37,7 @@ module Hyrax
 
     private
 
-      def reschedule(file_set, file_id, filepath = nil, time_to_live = 2)
+      def reschedule(file_set, file_id, filepath = nil, _time_to_live = 2)
         CreateDerivativesJob.set(wait: 10.minutes).perform_later(
           file_set, file_id, filepath, time_to_live - 1
         )
