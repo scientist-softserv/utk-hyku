@@ -17,19 +17,6 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
       'bulkrax_identifier' => { from: ['source_identifier'], source_identifier: true },
       'children' => { from: ['children'], split: /\s*[;|]\s*/, related_children_field_mapping: true },
       'parents' => { from: ['parents'], split: /\s*[;|]\s*/, related_parents_field_mapping: true }
-      # # TODO: figure out why this is needed, it should be set automatically
-      # 'date_issued' => { from: ['date_issued'], split: /\s*[;|]\s*/ },
-      # 'extent' => { from: ['extent'], split: /\s*[;|]\s*/ },
-      # 'publication_place' => { from: ['publication_place'], split: /\s*[;|]\s*/ },
-      # 'repository' => { from: ['repository'], split: /\s*[;|]\s*/ },
-      # 'utk_contributor' => { from: ['utk_contributor'], split: /\s*[;|]\s*/ },
-      # 'utk_creator' => { from: ['utk_creator'], split: /\s*[;|]\s*/ },
-      # 'utk_publisher' => { from: ['utk_publisher'], split: /\s*[;|]\s*/ },
-      # 'form' => { from: ['form'], split: /\s*[;|]\s*/ },
-      # 'spatial' => { from: ['spatial'], split: /\s*[;|]\s*/ },
-      # # 'subject' => { from: ['subject'], split: /\s*[;|]\s*/ },
-      # 'date_created_d' => { from: ['date_created_d'], split: /\s*[;|]\s*/ },
-      # 'date_issued_d' => { from: ['date_issued_d'], split: /\s*[;|]\s*/ }
     }
 
     # OVERRIDE Bulkrax v4.3.0: change the default "split" behavior
