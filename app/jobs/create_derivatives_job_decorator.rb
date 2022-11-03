@@ -8,6 +8,7 @@ module Hyrax
     # @param [FileSet] file_set
     # @param [String] file_id identifier for a Hydra::PCDM::File
     # @param [String, NilClass] filepath the cached file within the Hyrax.config.working_path
+    # @param [String] time_to_live counter to limit the amount of retries
     def perform(file_set, file_id, filepath = nil, _time_to_live = 2)
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
       # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
