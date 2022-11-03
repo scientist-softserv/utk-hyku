@@ -12,7 +12,7 @@ module Hyrax
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
       # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
       if file_set.parent_works.blank?
-        raise 'CreateDerivatesJob Failed: FileSet is missing its parent' if @remaining_retries.zero?
+        raise 'CreateDerivatesJob Failed: FileSet is missing its parent' if time_to_live.zero?
 
         reschedule(file_set, file_id, filepath)
         return false
