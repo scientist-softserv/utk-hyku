@@ -19,12 +19,12 @@ module Hyrax
           extent
           form
           keyword
+          note
           publication_place
           publisher
           related_url
           repository
           resource_type
-          rights_notes
           spatial
           subject
           utk_contributor
@@ -44,9 +44,9 @@ Hyrax::Forms::CollectionForm.terms += %i[
   date_issued_d
   extent
   form
+  note
   publication_place
   repository
-  rights_notes
   spatial
   utk_contributor
   utk_creator utk_publisher
