@@ -1129,7 +1129,7 @@ en:
       collection:
         size: Size
         total_items: Total items
-        collection_link: Collection Link
+        resource_link: Collection Link
         date_created_d: Machine Readable Creation Date
         date_issued: 'Date Issued'
         date_issued_d: 'Machine Readable Publication Date'

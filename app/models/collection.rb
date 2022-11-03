@@ -11,7 +11,7 @@ class Collection < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :collection_link,
+  property :resource_link,
            predicate: ::RDF::URI('http://purl.org/ontology/bibo/Collection'),
            multiple: false do |index|
     index.as :displayable, :stored_searchable

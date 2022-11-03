@@ -31,7 +31,7 @@ RSpec.describe Collection do
       is_expected.to have_property(:bulkrax_identifier)
         .with_predicate('https://hykucommons.org/terms/bulkrax_identifier')
     }
-    it { is_expected.to have_property(:collection_link).with_predicate('http://purl.org/ontology/bibo/Collection') }
+    it { is_expected.to have_property(:resource_link).with_predicate('http://purl.org/ontology/bibo/Collection') }
     it { is_expected.to have_property(:creator) }
     it { is_expected.to have_property(:date_created) }
     it { is_expected.to have_property(:date_created_d).with_predicate('https://dbpedia.org/ontology/completionDate') }
