@@ -13,6 +13,7 @@ jobs:
     with:
       target: hyku-base
   build-worker:
+    needs: build
     uses: scientist-softserv/actions/.github/workflows/build-worker.yaml@main
     with:
       target: hyku-worker
