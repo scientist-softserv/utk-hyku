@@ -1137,6 +1137,7 @@ en:
         form: 'Form'
         publication_place: 'Publication Place'
         repository: 'Repository'
+        rights_notes: 'Rights Notes'
         spatial: 'Spatial Coverage'
         utk_contributor: 'Local Contributor'
         utk_creator: 'Local Creator'

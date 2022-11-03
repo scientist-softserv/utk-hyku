@@ -38,13 +38,14 @@ RSpec.describe Collection do
     it { is_expected.to have_property(:date_issued).with_predicate('http://purl.org/dc/terms/issued') }
     it { is_expected.to have_property(:date_issued_d).with_predicate('https://dbpedia.org/ontology/publicationDate') }
     it { is_expected.to have_property(:extent).with_predicate('http://rdaregistry.info/Elements/u/P60550') }
-    it { is_expected.to have_property(:form).with_predicate('http://www.europeana.eu/schemas/edm/hasType') }
+    it { is_expected.to have_property(:form).with_predicate('http://purl.org/dc/terms/format') }
     it { is_expected.to have_property(:keyword) }
     it { is_expected.to have_property(:license) }
     it { is_expected.to have_property(:publication_place).with_predicate('https://id.loc.gov/vocabulary/relators/pup') }
     it { is_expected.to have_property(:publisher) }
     it { is_expected.to have_property(:repository).with_predicate('http://id.loc.gov/vocabulary/relators/rps') }
     it { is_expected.to have_property(:resource_type) }
+    it { is_expected.to have_property(:rights_notes) }
     it { is_expected.to have_property(:rights_statement) }
     it { is_expected.to have_property(:spatial).with_predicate('http://purl.org/dc/terms/spatial') }
     it { is_expected.to have_property(:subject) }

@@ -42,7 +42,7 @@ class Collection < ActiveFedora::Base
   end
 
   property :form,
-           predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'),
+           predicate: ::RDF::URI('http://purl.org/dc/terms/format'),
            multiple: true do |index|
     index.as :displayable, :stored_searchable
   end
