@@ -19,7 +19,7 @@ module Hyrax
           extent
           form
           keyword
-          notes
+          note
           publication_place
           publisher
           related_url
@@ -44,7 +44,7 @@ Hyrax::Forms::CollectionForm.terms += %i[
   date_issued_d
   extent
   form
-  notes
+  note
   publication_place
   repository
   spatial

@@ -1135,7 +1135,7 @@ en:
         date_issued_d: 'Machine Readable Publication Date'
         extent: 'Extent'
         form: 'Form'
-        notes: 'Notes'
+        note: 'Notes'
         publication_place: 'Publication Place'
         repository: 'Repository'
         rights_notes: 'Rights Notes'
