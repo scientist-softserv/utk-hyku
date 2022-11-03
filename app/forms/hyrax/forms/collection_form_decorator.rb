@@ -10,7 +10,6 @@ module Hyrax
 
       def secondary_terms
         %i[
-          based_near
           contributor
           creator
           date_created
@@ -19,9 +18,7 @@ module Hyrax
           date_issued_d
           extent
           form
-          identifier
           keyword
-          language
           publication_place
           publisher
           related_url
