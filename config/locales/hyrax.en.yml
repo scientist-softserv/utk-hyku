@@ -1129,12 +1129,13 @@ en:
       collection:
         size: Size
         total_items: Total items
-        collection_link: Collection Link
+        resource_link: Resource Link
         date_created_d: Machine Readable Creation Date
         date_issued: 'Date Issued'
         date_issued_d: 'Machine Readable Publication Date'
         extent: 'Extent'
         form: 'Form'
+        note: 'Note'
         publication_place: 'Publication Place'
         repository: 'Repository'
         rights_notes: 'Rights Notes'
