@@ -8,5 +8,11 @@ on:
       - main
 
 jobs:
-  call-workflow:
-    uses: scientist-softserv/build-lint-test-action/.github/workflows/build-test-lint.yaml@main
+  build:
+    uses: scientist-softserv/actions/.github/workflows/build.yaml@main
+  test:
+    needs: build
+    uses: scientist-softserv/actions/.github/workflows/test.yaml@main
+  lint:
+    needs: build
+    uses: scientist-softserv/actions/.github/workflows/lint.yaml@main
