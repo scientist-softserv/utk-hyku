@@ -10,6 +10,12 @@ on:
 jobs:
   build:
     uses: scientist-softserv/actions/.github/workflows/build.yaml@main
+    with:
+      target: hyku-base
+  build-worker:
+    uses: scientist-softserv/actions/.github/workflows/build-worker.yaml@main
+    with:
+      target: hyku-worker
   test:
     needs: build
     uses: scientist-softserv/actions/.github/workflows/test.yaml@main
