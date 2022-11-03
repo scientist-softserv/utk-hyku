@@ -11,12 +11,6 @@ class Collection < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :resource_link,
-           predicate: ::RDF::URI('http://purl.org/ontology/bibo/Collection'),
-           multiple: false do |index|
-    index.as :displayable, :stored_searchable
-  end
-
   property :date_created_d,
            predicate: ::RDF::URI('https://dbpedia.org/ontology/completionDate'),
            multiple: false do |index|
@@ -56,6 +50,12 @@ class Collection < ActiveFedora::Base
   property :repository,
            predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/rps'),
            multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :resource_link,
+           predicate: ::RDF::URI('http://purl.org/dc/terms/identifier'),
+           multiple: false do |index|
     index.as :displayable, :stored_searchable
   end
 

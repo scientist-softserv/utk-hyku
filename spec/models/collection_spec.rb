@@ -31,7 +31,6 @@ RSpec.describe Collection do
       is_expected.to have_property(:bulkrax_identifier)
         .with_predicate('https://hykucommons.org/terms/bulkrax_identifier')
     }
-    it { is_expected.to have_property(:resource_link).with_predicate('http://purl.org/ontology/bibo/Collection') }
     it { is_expected.to have_property(:creator) }
     it { is_expected.to have_property(:date_created) }
     it { is_expected.to have_property(:date_created_d).with_predicate('https://dbpedia.org/ontology/completionDate') }
@@ -41,11 +40,12 @@ RSpec.describe Collection do
     it { is_expected.to have_property(:form).with_predicate('http://purl.org/dc/terms/format') }
     it { is_expected.to have_property(:keyword) }
     it { is_expected.to have_property(:license) }
+    it { is_expected.to have_property(:notes) }
     it { is_expected.to have_property(:publication_place).with_predicate('https://id.loc.gov/vocabulary/relators/pup') }
     it { is_expected.to have_property(:publisher) }
     it { is_expected.to have_property(:repository).with_predicate('http://id.loc.gov/vocabulary/relators/rps') }
+    it { is_expected.to have_property(:resource_link).with_predicate('http://purl.org/ontology/bibo/Collection') }
     it { is_expected.to have_property(:resource_type) }
-    it { is_expected.to have_property(:rights_notes) }
     it { is_expected.to have_property(:rights_statement) }
     it { is_expected.to have_property(:spatial).with_predicate('http://purl.org/dc/terms/spatial') }
     it { is_expected.to have_property(:subject) }

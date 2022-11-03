@@ -15,26 +15,23 @@ Hyrax::CollectionPresenter.class_eval do
   def self.terms
     %i[ total_items
         abstract
-        based_near
-        resource_link
-        creator contributor
+        contributor
+        creator
         date_created
         date_created_d
         date_issued
         date_issued_d
         extent
         form
-        identifier
         keyword
-        license
+        notes
         publication_place
         publisher
-        related_url
         repository
+        resource_link
         resource_type
-        rights_notes
         spatial
-        subject language
+        subject
         utk_contributor
         utk_creator
         utk_publisher ]
