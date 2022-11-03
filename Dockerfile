@@ -30,10 +30,10 @@ RUN apk --no-cache upgrade && \
     vim
 
 RUN wget http://old.notch8.com/ImageMagick.tar.gz && \
-    tar xf ImageMagick.tar.gz
+    && tar xf ImageMagick.tar.gz \
     && apk --no-cache add \
       libjpeg-turbo openjpeg libpng tiff librsvg libgsf libimagequant poppler-qt5-dev \
-    && cd ImageMagick-* \
+    && cd ImageMagick* \
     && ./configure \
     && make install
 
