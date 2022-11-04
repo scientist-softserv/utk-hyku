@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    uses: scientist-softserv/actions/.github/workflows/build.yaml@main
+    uses: scientist-softserv/actions/.github/workflows/build.yaml@v0.0.1
     with:
       target: hyku-base
       worker: true
@@ -24,13 +24,18 @@ jobs:
       # tag: deca90d9
   test:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/test.yaml@main
+    uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.1
     with:
       worker: true
       # tag: deca90d9
   lint:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/lint.yaml@main
+    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.1
     with:
       worker: true
       # tag: deca90d9
+  retag:
+    needs: build
+    uses: scientist-softserv/actions/.github/workflows/retag.yaml@v0.0.1
+    with:
+      worker: true
