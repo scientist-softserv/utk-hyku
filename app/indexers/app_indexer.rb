@@ -7,7 +7,7 @@ class AppIndexer < Hyrax::WorkIndexer
 
   # Fetch remote labels for objects with controlled properties (i.e. :based_near)
   # You can remove this if you don't want this behavior
-  include Hyrax::IndexesLinkedMetadata
+  # include Hyrax::IndexesLinkedMetadata # this causes issues with allinson flex
 
   # Uncomment this block if you want to add custom indexing behavior:
   def generate_solr_document
