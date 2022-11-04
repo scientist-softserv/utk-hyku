@@ -15,7 +15,7 @@ module Hyrax
       if file_set.parent_works.blank?
         raise 'CreateDerivatesJob Failed: FileSet is missing its parent' if time_to_live.zero?
 
-        reschedule(file_set, file_id, filepath)
+        reschedule(file_set, file_id, filepath, time_to_live - 1)
         return false
       end
 
