@@ -23,13 +23,13 @@ jobs:
       workerTarget: hyku-worker
       # tag: deca90d9
   test:
-    needs: build-worker
+    needs: build
     uses: scientist-softserv/actions/.github/workflows/test.yaml@main
     with:
       worker: true
       # tag: deca90d9
   lint:
-    needs: build-worker
+    needs: build
     uses: scientist-softserv/actions/.github/workflows/lint.yaml@main
     with:
       worker: true
