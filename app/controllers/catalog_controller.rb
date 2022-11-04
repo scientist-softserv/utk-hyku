@@ -96,7 +96,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'lease_expiration_date_dtsi', label: "Lease expiration date", helper_method: :human_readable_date
 
     # collection metadata
-    config.add_index_field 'collection_link', label: 'Collection Link'
+    config.add_index_field 'resource_link', label: 'Resource Link'
     config.add_index_field 'date_created_d_tesim', label: 'Machine Readable Creation Date'
     config.add_index_field 'date_issued_tesim', label: 'Date Issued'
     config.add_index_field 'date_issued_d_tesim', label: 'Machine Readable Publication Date'
@@ -104,7 +104,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'form_tesim', label: 'Form'
     config.add_index_field 'publication_place_tesim', label: 'Publication Place'
     config.add_index_field 'repository_tesim', label: 'Repository'
-    config.add_index_field 'rights_notes_tesim', label: 'Rights Notes'
+    config.add_index_field 'note_tesim', label: 'Note'
     config.add_index_field 'spatial_tesim', label: 'Spatial Coverage'
     config.add_index_field 'utk_contributor_tesim', label: 'Local Contributor'
     config.add_index_field 'utk_creator_tesim', label: 'Local Creator'
@@ -132,14 +132,14 @@ class CatalogController < ApplicationController
     config.add_show_field 'extent_tesim'
 
     # add collection show fields
-    config.add_show_field 'collection_link', label: 'Collection Link'
+    config.add_show_field 'resource_link', label: 'Resource Link'
     config.add_show_field 'date_created_d_tesim', label: 'Machine Readable Creation Date'
     config.add_show_field 'date_issued_tesim', label: 'Date Issued'
     config.add_show_field 'date_issued_d_tesim', label: 'Machine Readable Publication Date'
     config.add_show_field 'form_tesim', label: 'Form'
     config.add_show_field 'publication_place_tesim', label: 'Publication Place'
     config.add_show_field 'repository_tesim', label: 'Repository'
-    config.add_show_field 'rights_notes_tesim', label: 'Rights Notes'
+    config.add_show_field 'note_tesim', label: 'Note'
     config.add_show_field 'spatial_tesim', label: 'Spatial Coverage'
     config.add_show_field 'utk_contributor_tesim', label: 'Local Contributor'
     config.add_show_field 'utk_creator_tesim', label: 'Local Creator'
