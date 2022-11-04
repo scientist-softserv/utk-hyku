@@ -25,8 +25,12 @@ jobs:
     with:
       target: hyku-worker
   test:
-    needs: build
+    needs: build-worker
     uses: scientist-softserv/actions/.github/workflows/test.yaml@main
+    with:
+      worker: true
   lint:
-    needs: build
+    needs: build-worker
     uses: scientist-softserv/actions/.github/workflows/lint.yaml@main
+    with:
+      worker: true
