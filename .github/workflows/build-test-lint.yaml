@@ -24,7 +24,7 @@ jobs:
       # tag: deca90d9
   test:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/lint.yaml@self-hosted-runner
+    uses: scientist-softserv/actions/.github/workflows/test.yaml@self-hosted-runner
     with:
       worker: true
       # tag: deca90d9
