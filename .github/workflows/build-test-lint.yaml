@@ -27,6 +27,7 @@ jobs:
     uses: scientist-softserv/actions/.github/workflows/test.yaml@self-hosted-runner
     with:
       worker: true
+      confdir: /app/samvera/hyrax-webapp/solr/conf
       # tag: deca90d9
   lint:
     needs: build
