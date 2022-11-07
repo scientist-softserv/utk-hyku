@@ -5,7 +5,6 @@ class AppIndexer < Hyrax::WorkIndexer
   # provide your own metadata and indexing.
   # include Hyrax::IndexesBasicMetadata
 
-
   # Fetch remote labels for objects with controlled properties (i.e. :based_near)
   # You can remove this if you don't want this behavior
   include Hyrax::IndexesLinkedMetadata
