@@ -32,10 +32,6 @@ class SolrDocument
   attribute :rendering_ids, Solr::Array, 'hasFormat_ssim'
   attribute :account_cname, Solr::Array, 'account_cname_tesim'
 
-  def resource_link
-    self['resource_link_tesim']
-  end
-
   def date_created_d
     self['date_created_d_tesim']
   end
@@ -64,6 +60,10 @@ class SolrDocument
     self['repository_tesim']
   end
 
+  def resource_link
+    self['resource_link_tesim']
+  end
+
   def spatial
     self['spatial_tesim']
   end
@@ -84,9 +84,6 @@ class SolrDocument
     contributor: 'contributor_tesim',
     creator: 'creator_tesim',
     date: 'date_created_tesim',
-    description: 'description_tesim',
-    identifier: 'identifier_tesim',
-    language: 'language_tesim',
     publisher: 'publisher_tesim',
     relation: 'nesting_collection__pathnames_ssim',
     rights: 'rights_statement_tesim',

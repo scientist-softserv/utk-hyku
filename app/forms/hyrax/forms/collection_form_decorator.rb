@@ -22,7 +22,6 @@ module Hyrax
           note
           publication_place
           publisher
-          related_url
           repository
           resource_type
           spatial
@@ -49,7 +48,8 @@ Hyrax::Forms::CollectionForm.terms += %i[
   repository
   spatial
   utk_contributor
-  utk_creator utk_publisher
+  utk_creator
+  utk_publisher
 ]
 
 Hyrax::Forms::CollectionForm.prepend(Hyrax::Forms::CollectionFormDecorator)
