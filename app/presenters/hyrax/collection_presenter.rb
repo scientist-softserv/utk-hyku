@@ -64,11 +64,11 @@ Hyrax::CollectionPresenter.class_eval do
     user_can_feature_collection? && solr_document.public?
   end
 
-  def display_feature_resource_link?
+  def display_feature_collection_link?
     collection_featurable? && FeaturedCollection.can_create_another? && !collection_featured?
   end
 
-  def display_unfeature_resource_link?
+  def display_unfeature_collection_link?
     collection_featurable? && collection_featured?
   end
 
