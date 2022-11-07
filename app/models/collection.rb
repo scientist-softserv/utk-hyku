@@ -126,7 +126,6 @@ class Collection < ActiveFedora::Base
     index.as :displayable, :stored_searchable
   end
 
-  # include Hyrax::CoreMetadata
   self.indexer = CollectionIndexer
   after_update :remove_featured, if: proc { |collection| collection.private? }
   after_destroy :remove_featured
