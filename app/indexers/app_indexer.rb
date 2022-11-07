@@ -6,8 +6,8 @@ class AppIndexer < Hyrax::WorkIndexer
   # include Hyrax::IndexesBasicMetadata
 
   # Fetch remote labels for objects with controlled properties (i.e. :based_near)
-  # You can remove this if you don't want this behavior
-  include Hyrax::IndexesLinkedMetadata
+  # Utk does not include based_near and does not need deep indexing.
+  # include Hyrax::IndexesLinkedMetadata
 
   # Uncomment this block if you want to add custom indexing behavior:
   def generate_solr_document
