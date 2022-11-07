@@ -8,15 +8,14 @@ module Hyrax
     # @param [FileSet] file_set
     # @param [String] file_id identifier for a Hydra::PCDM::File
     # @param [String, NilClass] filepath the cached file within the Hyrax.config.working_path
-    def perform(file_set, file_id, filepath = nil)
+    # @param [Integer] time_to_live counter to limit the amount of retries
+    def perform(file_set, file_id, filepath = nil, time_to_live = 2)
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
       # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
-      @remaining_retries ||= 2
       if file_set.parent_works.blank?
-        raise 'FileSet is missing its parent' if @remaining_retries.zero?
+        raise 'CreateDerivatesJob Failed: FileSet is missing its parent' if time_to_live.zero?
 
-        reschedule(file_set, file_id, filepath)
-        @remaining_retries -= 1
+        reschedule(file_set, file_id, filepath, time_to_live - 1)
         return false
       end
 
@@ -39,9 +38,9 @@ module Hyrax
 
     private
 
-      def reschedule(file_set, file_id, filepath = nil)
+      def reschedule(file_set, file_id, filepath = nil, time_to_live = 2)
         CreateDerivativesJob.set(wait: 10.minutes).perform_later(
-          file_set, file_id, filepath
+          file_set, file_id, filepath, time_to_live
         )
       end
   end
