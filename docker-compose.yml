@@ -62,7 +62,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - OOM=script
-      - SOLR_ADMIN_USERNAME=solr
+      - SOLR_ADMIN_USER=solr
       - SOLR_ADMIN_PASSWORD=SolrRocks
       - SOLR_COLLECTION=hydra-development
       - SOLR_CLOUD_BOOTSTRAP=yes
@@ -83,7 +83,7 @@ services:
     networks:
       internal:
     healthcheck:
-      test: curl -sf http://$$SOLR_ADMIN_USERNAME:$$SOLR_ADMIN_PASSWORD@localhost:8983/solr/admin/cores?action=STATUS || exit 1
+      test: curl -sf http://$$SOLR_ADMIN_USER:$$SOLR_ADMIN_PASSWORD@localhost:8983/solr/admin/cores?action=STATUS || exit 1
       start_period: 30s
       interval: 20s
       timeout: 5s
