@@ -3,29 +3,30 @@
 module Hyrax
   module Forms
     module CollectionFormDecorator
+      # Terms that appear above the accordion
+      def primary_terms
+        %i[title abstract]
+      end
+
       def secondary_terms
         %i[
-          alternative_title
-          creator
           contributor
-          keyword
-          license
-          publisher
+          creator
           date_created
-          subject
-          language
-          identifier
-          based_near
-          related_url
-          resource_type
           date_created_d
           date_issued
           date_issued_d
           extent
           form
+          keyword
+          note
           publication_place
+          publisher
+          related_url
           repository
+          resource_type
           spatial
+          subject
           utk_contributor
           utk_creator
           utk_publisher
@@ -37,11 +38,13 @@ end
 
 # adds custom terms to `self.terms`
 Hyrax::Forms::CollectionForm.terms += %i[
+  abstract
   date_created_d
   date_issued
   date_issued_d
   extent
   form
+  note
   publication_place
   repository
   spatial

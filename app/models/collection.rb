@@ -11,12 +11,6 @@ class Collection < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :collection_link,
-           predicate: ::RDF::URI('http://purl.org/ontology/bibo/Collection'),
-           multiple: false do |index|
-    index.as :displayable, :stored_searchable
-  end
-
   property :date_created_d,
            predicate: ::RDF::URI('https://dbpedia.org/ontology/completionDate'),
            multiple: false do |index|
@@ -42,8 +36,14 @@ class Collection < ActiveFedora::Base
   end
 
   property :form,
-           predicate: ::RDF::URI('http://www.europeana.eu/schemas/edm/hasType'),
+           predicate: ::RDF::URI('http://purl.org/dc/terms/format'),
            multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :note,
+           predicate: ::RDF::URI('http://www.w3.org/2004/02/skos/core#note'),
+           multiple: false do |index|
     index.as :displayable, :stored_searchable
   end
 
@@ -56,6 +56,12 @@ class Collection < ActiveFedora::Base
   property :repository,
            predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/rps'),
            multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :resource_link,
+           predicate: ::RDF::URI('http://purl.org/dc/terms/identifier'),
+           multiple: false do |index|
     index.as :displayable, :stored_searchable
   end
 
@@ -84,6 +90,43 @@ class Collection < ActiveFedora::Base
   end
 
   include Hyrax::BasicMetadata
+  # redefined Hyrax::BasicMetadata, but leaving the module
+  # as it's the default hyrax behavior and removing it may cause breaking changes
+  property :abstract, predicate: ::RDF::Vocab::DC.abstract,
+                      multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :contributor, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/ctb'),
+                         multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :creator, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/cre'),
+                     multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :keyword, predicate: ::RDF::URI('https://w3id.org/idsa/core/keyword'),
+                     multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :publisher, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/pbl'),
+                       multiple: false do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :resource_type, predicate: ::RDF::Vocab::DC.type,
+                           multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
+  property :subject, predicate: ::RDF::URI('http://purl.org/dc/terms/subject'),
+                     multiple: true do |index|
+    index.as :displayable, :stored_searchable
+  end
+
   self.indexer = CollectionIndexer
   after_update :remove_featured, if: proc { |collection| collection.private? }
   after_destroy :remove_featured
