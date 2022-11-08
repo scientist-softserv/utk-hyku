@@ -36,6 +36,7 @@ jobs:
           SOLR_ENABLE_CLOUD_MODE: "yes"
           SOLR_ENABLE_AUTHENTICATION: "yes"
           SOLR_COLLECTION: hydra-test
+          SOLR_ADMIN_USER: admin
           SOLR_ADMIN_PASSWORD: admin
           SOLR_ZK_HOSTS: localhost
       - image: bitnami/zookeeper
