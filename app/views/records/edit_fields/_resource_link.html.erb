@@ -1,0 +1,5 @@
+<%= f.input :resource_link, 
+    readonly: true, 
+    label: 'Resource Link',
+    required: f.object.required?(key),
+    input_html: { class: 'form-control', multiple: false } %>

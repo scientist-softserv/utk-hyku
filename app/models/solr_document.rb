@@ -32,10 +32,6 @@ class SolrDocument
   attribute :rendering_ids, Solr::Array, 'hasFormat_ssim'
   attribute :account_cname, Solr::Array, 'account_cname_tesim'
 
-  def resource_link
-    self['resource_link_tesim']
-  end
-
   def date_created_d
     self['date_created_d_tesim']
   end
@@ -62,6 +58,10 @@ class SolrDocument
 
   def repository
     self['repository_tesim']
+  end
+
+  def resource_link
+    self['resource_link_tesim']
   end
 
   def spatial

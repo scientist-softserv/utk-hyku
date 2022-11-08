@@ -1129,7 +1129,6 @@ en:
       collection:
         size: Size
         total_items: Total items
-        resource_link: Resource Link
         date_created_d: Machine Readable Creation Date
         date_issued: 'Date Issued'
         date_issued_d: 'Machine Readable Publication Date'
@@ -1138,6 +1137,7 @@ en:
         note: 'Note'
         publication_place: 'Publication Place'
         repository: 'Repository'
+        resource_link: Resource Link
         rights_notes: 'Rights Notes'
         spatial: 'Spatial Coverage'
         utk_contributor: 'Local Contributor'
