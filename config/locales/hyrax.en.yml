@@ -926,7 +926,7 @@ en:
     passive_consent_to_agreement: By saving this work I agree to the
     search:
       button:
-        html: <span class="glyphicon glyphicon-search"></span> Go
+        html: <span class="glyphicon glyphicon-search"></span> Search
         text: Search
       form:
         option:
@@ -944,7 +944,7 @@ en:
             label_short: My Works
         q:
           label: Search %{application_name}
-          placeholder: Enter search terms
+          placeholder: Search Digital Collections
     select_type:
       description: General purpose worktype
       name: Work

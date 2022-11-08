@@ -1,11 +1,11 @@
-  <%# OVERRIDE: Hyku v4.1.0 Change logo image for small screens and add image tag for small logo %>
+  <%# OVERRIDE: Hyrax v3.4.1 Change logo image for small screens and add image tag for small logo %>
   
   <% if logo_image %>
     <a id="logo" class="navbar-brand d-flex" href="<%= hyrax.root_path %>" data-no-turbolink="true">
       <span class="glyphicon glyphicon-globe" role="img" aria-label="<%= application_name %>" aria-hidden="true"></span>
-      <%# OVERRIDE: Hyku v4.1.0 Change logo image for small screens %>
+      <%# OVERRIDE: Hyrax v3.4.1 Change logo image for small screens %>
       <%= image_tag logo_image, alt_text: block_for(name: 'logo_image_text'), class: "visible-md-lg-xl hidden-sm hidden-xs" %>
-      <%# OVERRIDE: Hyku v4.1.0 add image tag for small logo %>
+      <%# OVERRIDE: Hyrax v3.4.1 add image tag for small logo %>
       <%= image_tag "ut-square", alt_text: block_for(name: 'logo_image_text'), class: "visible-xs-sm hidden-md hidden-lg hidden-xl" %>
     </a>
   <% else %>
