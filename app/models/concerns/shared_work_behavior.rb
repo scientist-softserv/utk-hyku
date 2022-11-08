@@ -7,4 +7,5 @@ module SharedWorkBehavior
   include CommonValidations
   include BulkraxMetadata
   include AllinsonFlex::DynamicMetadataBehavior
+  include DestroyAttachments
 end

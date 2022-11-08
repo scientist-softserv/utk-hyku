@@ -126,7 +126,6 @@ module Hyrax
         title = Array(curation_concern.title).first
       end
 
-      DestroyAttachmentJob.perform_later(member_ids) unless member_ids.empty?
       after_destroy_response(title)
     end
 
