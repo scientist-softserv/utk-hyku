@@ -20,9 +20,11 @@
             <div class="circle d-flex">
               <div class='circle-text'>
                 <%# Dynamically show number of collections and works %>
-                <%= number_to_human(Collection.count, units: {thousand: "K"}) %> Collections
+                <% collection_count = number_to_human(Collection.count, units: {thousand: "K"}) %> 
+                <%= collection_count.gsub(/\s+/, "") %> Collections
                 <% work_count = GenericWork.count + Image.count + Audio.count + Book.count + CompoundObject.count + Newspaper.count + Pdf.count + Video.count %>
-                <%= number_to_human(work_count, units: {thousand: "K"}) %> Works and more.
+                <% work_count_converted = number_to_human(work_count, units: {thousand: "K"}) %> 
+                <%= work_count_converted.gsub(/\s+/, "") %> Works and more.
               </div>
             </div>
           </div>
