@@ -5,7 +5,6 @@
     min-height: 500px;
     max-height: calc(90vh - 82px);
     position: relative;
-    overflow: hidden;
     margin: 0 !important;
     flex-direction: column;
     justify-content: flex-end;
@@ -69,13 +68,13 @@
         padding-left: 0;
 
         .row {
-          padding-left: 50px;
+          padding: 0 50px;
         }
       }
 
       .utk-digital-search-container {
         align-items: center;
-        padding-right: 47px;
+        padding-right: 50px;
       }
 
       .utk-digital-search-heading {
@@ -126,6 +125,7 @@
       .input-group-btn .btn {
         height: $golden-ratio-4;
       }
+
       .input-group-btn .btn {
         background: none;
         background-color: $white;
@@ -140,8 +140,9 @@
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
       }
+
       .input-group-btn .dropdown-toggle {
-        border-radius: 0;
+        border-radius: 0 !important;
         position: relative;
         z-index: 3;
         padding: 0 !important;
@@ -151,11 +152,26 @@
         border-right: 2px solid #f6f6f6;
         min-width: 76px;
         font-weight: 400;
+
         .fa {
           font-weight: 400;
           color: $rock;
           padding-left: $golden-ratio-0;
         }
+      }
+
+      .btn:active,
+      .btn:focus {
+        outline: none;
+      }
+
+      .dropdown-menu > li > a {
+        color: $smokey;
+        padding: $golden-ratio-1 $golden-ratio-2;
+      }
+
+      .dropdown-menu > li > a:hover {
+        color: $globe;
       }
     }
 
@@ -217,6 +233,14 @@
   // RESPONSIVE STYLES
 
   @media (min-width: 992px) and (max-width: 1200px) {
+    .utk-digital-elements-wrapper,
+    .controls-container {
+      .container-fluid {
+        .row {
+          width: 100%;
+        }
+      }
+    }
     .circle-container {
       margin-top: -150px;
 
@@ -238,6 +262,10 @@
     .controls-container {
       .container-fluid {
         max-width: 1280px;
+
+        .row {
+          width: 100%;
+        }
       }
     }
 
@@ -257,24 +285,66 @@
     }
   }
 
-  @media (min-width: 768px) and (max-width: 991px) {
-    .image-masthead {
-      .background-container {
-        filter: blur(11px);
-        transition: $transition-all-load;
+  @media (max-width: 991px) {
+    .utk-digital-elements-wrapper {
+      height: $golden-ratio-5 !important;
+
+      .container-fluid {
+        justify-content: center;
+      }
+
+      .row {
+        margin: 0;
+
+        .utk-digital-search-container {
+          padding: 0;
+          text-align: center;
+
+          .utk-digital-search-heading {
+            padding: 0;
+
+            .utk-heading-1 {
+              font-size: $type-5;
+            }
+
+            .utk-description {
+              font-size: $type-3;
+            }
+          }
+        }
       }
     }
 
     .circle-container {
       visibility: hidden;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .controls-container {
+      height: $golden-ratio-5 !important;
+
+      .controls {
+        justify-content: center;
+
+        .navbar-nav {
+          visibility: hidden;
+          height: 0;
+          width: 0;
+          margin: 0;
+          padding: 0;
+        }
+
+        .row {
+          justify-content: center;
+        }
+
+        .searchbar-right {
+          width: 90%;
+        }
+      }
     }
   }
-
-  // @media (max-width: 767px) {
-
-  // }
-
-  // @media (max-width: 575px) {
-
-  // }
 }
