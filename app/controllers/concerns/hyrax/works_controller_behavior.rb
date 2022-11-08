@@ -110,6 +110,7 @@ module Hyrax
     end
 
     def destroy
+      member_ids = curation_concern.member_ids
       case curation_concern
       when ActiveFedora::Base
         title = curation_concern.to_s
@@ -125,8 +126,7 @@ module Hyrax
         title = Array(curation_concern.title).first
       end
 
-      attachments = curation_concern.members.select { |member| member.is_a? Attachment }
-      DestroyAttachmentJob.perform_later(attachments) unless attachments.empty?
+      DestroyAttachmentJob.perform_later(member_ids) unless member_ids.empty?
       after_destroy_response(title)
     end
 
