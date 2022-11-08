@@ -93,7 +93,7 @@ class Collection < ActiveFedora::Base
   # redefined Hyrax::BasicMetadata, but leaving the module
   # as it's the default hyrax behavior and removing it may cause breaking changes
   property :abstract, predicate: ::RDF::Vocab::DC.abstract,
-                      multiple: false do |index|
+                      multiple: true do |index|
     index.as :displayable, :stored_searchable
   end
 
@@ -113,7 +113,7 @@ class Collection < ActiveFedora::Base
   end
 
   property :publisher, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/pbl'),
-                       multiple: false do |index|
+                       multiple: true do |index|
     index.as :displayable, :stored_searchable
   end
 

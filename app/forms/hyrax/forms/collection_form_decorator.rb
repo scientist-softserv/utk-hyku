@@ -22,7 +22,6 @@ module Hyrax
           note
           publication_place
           publisher
-          related_url
           repository
           resource_type
           spatial
