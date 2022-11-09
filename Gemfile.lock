@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/notch8/iiif_manifest.git
-  revision: cbdc220390bd9d862906a5e1d9a5d0ebc5a9d503
-  branch: add-thumbnail-property
-  specs:
-    iiif_manifest (1.1.1)
-      activesupport (>= 4)
-
-GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
   revision: 96b7c48da97698c4d09c63f9b8b1fcbe1f763b49
   specs:
@@ -44,6 +36,17 @@ GIT
       flipflop (~> 2.3)
       hyrax (>= 2.9, < 4.0)
       rails (~> 5.2.4, >= 5.2.4.3)
+
+GIT
+  remote: https://github.com/samvera-labs/hyrax-iiif_av.git
+  revision: 100e6180283cde232513680f11bb3edadbb95dd6
+  branch: utk-hyku-with-hyrax-3
+  specs:
+    hyrax-iiif_av (0.2.0)
+      blacklight
+      hyrax (>= 2.9, < 4.0)
+      iiif_manifest (> 0.5)
+      rails (~> 5.1)
 
 GIT
   remote: https://github.com/tawan/active-elastic-job.git
@@ -604,6 +607,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     ice_nine (0.11.2)
+    iiif_manifest (1.2.0)
+      activesupport (>= 4)
     is_it_working (1.1.0)
     iso-639 (0.3.5)
     iso8601 (0.9.1)
@@ -771,6 +776,8 @@ GEM
     noid-rails (3.0.3)
       actionpack (>= 5.0.0, < 7)
       noid (~> 0.9)
+    nokogiri (1.13.6-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.13.6-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.6-x86_64-darwin)
@@ -1235,6 +1242,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  aarch64-linux-musl
   arm64-darwin-21
   x86_64-darwin-20
   x86_64-linux-musl
@@ -1273,7 +1281,7 @@ DEPENDENCIES
   hyrax-iiif_av!
   i18n-debug
   i18n-tasks
-  iiif_manifest!
+  iiif_manifest
   is_it_working
   jbuilder (~> 2.5)
   jquery-rails

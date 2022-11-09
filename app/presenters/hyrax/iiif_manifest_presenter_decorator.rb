@@ -74,21 +74,9 @@ module Hyrax
     end
 
     module DisplayImagePresenterDecorator
-      # overriding to bypass IIIFManifest::V3::ManifestBuilder::CanvasBuilder#display_image
-      # def display_image; end
-
-      # def display_content
-      #   return nil unless model.image?
-      #   return nil unless latest_file_id
-
-      #   IIIFManifest::V3::DisplayContent
-      #     .new(display_image_url(hostname),
-      #          format: object.mime_type,
-      #          width: width,
-      #          height: height,
-      #          type: 'Image',
-      #          iiif_endpoint: iiif_endpoint(latest_file_id, base_url: hostname))
-      # end
+      # overriding to include #display_content from the hyrax-iiif_av gem
+      def display_image; end
+      include Hyrax::IiifAv::DisplaysContent
     end
 
     private

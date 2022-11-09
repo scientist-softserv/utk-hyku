@@ -92,9 +92,8 @@ gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
 gem 'hyrax', '~> 3.4.0'
-# switch back to samvera/iiif_manifest main once https://github.com/samvera/iiif_manifest/pull/79 is approved
-gem 'iiif_manifest', git: 'https://github.com/notch8/iiif_manifest.git', branch: 'add-thumbnail-property'
-gem 'hyrax-iiif_av', path: 'vendor/engines/hyrax-iiif_av'
+gem 'hyrax-iiif_av', git: 'https://github.com/samvera-labs/hyrax-iiif_av.git', branch: 'utk-hyku-with-hyrax-3'
+gem 'iiif_manifest'
 
 gem 'bolognese', '>= 1.9.10'
 gem 'hyrax-doi', git: 'https://github.com/samvera-labs/hyrax-doi.git'
