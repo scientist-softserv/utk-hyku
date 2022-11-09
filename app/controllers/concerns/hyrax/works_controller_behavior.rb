@@ -110,7 +110,6 @@ module Hyrax
     end
 
     def destroy
-      member_ids = curation_concern.member_ids
       case curation_concern
       when ActiveFedora::Base
         title = curation_concern.to_s
