@@ -4,6 +4,10 @@
 # overriding #display_image to get correct format:
 module Hyrax
   module IiifManifestPresenterDecorator
+    def iiif_version
+      3
+    end
+
     def search_service
       url = Rails.application.routes.url_helpers.solr_document_url(id, host: hostname)
       Site.account.ssl_configured ? url.sub(/\Ahttp:/, 'https:') : url
@@ -71,20 +75,20 @@ module Hyrax
 
     module DisplayImagePresenterDecorator
       # overriding to bypass IIIFManifest::V3::ManifestBuilder::CanvasBuilder#display_image
-      def display_image; end
+      # def display_image; end
 
-      def display_content
-        return nil unless model.image?
-        return nil unless latest_file_id
+      # def display_content
+      #   return nil unless model.image?
+      #   return nil unless latest_file_id
 
-        IIIFManifest::V3::DisplayContent
-          .new(display_image_url(hostname),
-               format: object.mime_type,
-               width: width,
-               height: height,
-               type: 'Image',
-               iiif_endpoint: iiif_endpoint(latest_file_id, base_url: hostname))
-      end
+      #   IIIFManifest::V3::DisplayContent
+      #     .new(display_image_url(hostname),
+      #          format: object.mime_type,
+      #          width: width,
+      #          height: height,
+      #          type: 'Image',
+      #          iiif_endpoint: iiif_endpoint(latest_file_id, base_url: hostname))
+      # end
     end
 
     private

@@ -4,7 +4,9 @@
 
 module Hyku
   class WorkShowPresenter < Hyrax::WorkShowPresenter
-    Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::FileSetPresenter
+    # Adds behaviors for hyrax-iiif_av plugin.
+    include Hyrax::IiifAv::DisplaysIiifAv
+    Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::IiifAv::IiifFileSetPresenter
 
     delegate :title_or_label, :extent, to: :solr_document
 
@@ -52,6 +54,25 @@ module Hyku
       current_ability.can?(:create, FeaturedCollection)
     end
     # End Featured Collections Methods
+
+    # @return [Boolean] render a IIIF viewer
+    def iiif_viewer?
+      representative_id.present? &&
+        representative_presenter.present? &&
+        iiif_media? &&
+        Hyrax.config.iiif_image_server? &&
+        members_include_viewable?
+    end
+
+    def iiif_media?
+      representative_presenter.image? ||
+        representative_presenter.video? ||
+        representative_presenter.audio?
+    end
+
+    def members_include_viewable?
+      file_set_presenters.any? { |presenter| (presenter.image? || presenter.video? || presenter.audio?) && current_ability.can?(:read, presenter.id) }
+    end
 
     private
 
