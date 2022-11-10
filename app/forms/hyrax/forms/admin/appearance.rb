@@ -32,7 +32,7 @@ module Hyrax
           'link_hover_color'                 => '#8d2048',
           'footer_link_color'                => '#006c93',
           'footer_link_hover_color'          => '#8d2048',
-          'primary_button_background_color'  => '#286090',
+          'primary_button_background_color'  => '#006c93',
           'default_button_background_color'  => '#ffffff',
           'default_button_border_color'      => '#cccccc',
           'default_button_text_color'        => '#333333',

@@ -60,7 +60,7 @@ class Collection < ActiveFedora::Base
   end
 
   property :resource_link,
-           predicate: ::RDF::URI('http://purl.org/dc/terms/identifier'),
+           predicate: ::RDF::Vocab::EDM.isShownAt,
            multiple: false do |index|
     index.as :displayable, :stored_searchable
   end
@@ -90,13 +90,8 @@ class Collection < ActiveFedora::Base
   end
 
   include Hyrax::BasicMetadata
-  # redefined Hyrax::BasicMetadata, but leaving the module
-  # as it's the default hyrax behavior and removing it may cause breaking changes
-  property :abstract, predicate: ::RDF::Vocab::DC.abstract,
-                      multiple: false do |index|
-    index.as :displayable, :stored_searchable
-  end
-
+  # The properties below redefine Hyrax::BasicMetadata to specify
+  # different property uris. Removing the module causes breaking changes
   property :contributor, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/ctb'),
                          multiple: true do |index|
     index.as :displayable, :stored_searchable
@@ -113,12 +108,7 @@ class Collection < ActiveFedora::Base
   end
 
   property :publisher, predicate: ::RDF::URI('http://id.loc.gov/vocabulary/relators/pbl'),
-                       multiple: false do |index|
-    index.as :displayable, :stored_searchable
-  end
-
-  property :resource_type, predicate: ::RDF::Vocab::DC.type,
-                           multiple: true do |index|
+                       multiple: true do |index|
     index.as :displayable, :stored_searchable
   end
 

@@ -1,8 +1,8 @@
 // TYPOGRAPHY
 
-$primary_font_family: "Gotham", "Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI,
-	Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-	sans-sans;
+$primary_font_family: "Gotham", "Montserrat", -apple-system, BlinkMacSystemFont,
+  Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  Helvetica Neue, sans-sans;
 
 $serif: "clarendon-text-pro", Georgia, Times, "Times New Roman", serif;
 
@@ -41,6 +41,51 @@ $gray-3: #b6b6b6;
 $action: $globe;
 $secondary: $smokey;
 $accent: $orange;
+
+// RELATIVE SIZING
+$gr: 1.6180339887;
+$gr-long: calc(100% / #{$gr});
+$gr-short: calc(100% - (100% / #{$gr}));
+
+//  FONT-SIZE FOR TYPOGRAPHY
+$type-0: 11px; // extra extra small
+$type-1: 13px; // extra small
+$type-2: 15px; // small
+$type-3: 18px; // standard
+$type-4: 23px; // medium
+$type-5: 29px; // large
+$type-6: 39px; // extra large
+$type-7: 47px; // extra extra large
+
+//  INCREMENTAL SPACERS BY GOLDEN RATIO
+$golden-ratio-0: 6px;
+$golden-ratio-1: 11px;
+$golden-ratio-2: 18px;
+$golden-ratio-3: 29px;
+$golden-ratio-4: 47px; // everything is based upon this.
+$golden-ratio-5: 76px;
+$golden-ratio-6: 123px;
+$golden-ratio-7: 199px;
+$golden-ratio-8: 322px;
+$golden-ratio-9: 521px;
+
+//  TRANSITIONS
+$transition-padding: padding 290ms ease-in-out;
+$transition-all: all 290ms ease-in-out;
+$transition-top: top 290ms ease-in-out;
+$transition-opacity: opacity 60ms ease-in-out;
+$transition-opacity-load: opacity 180ms ease-in-out;
+$transition-all-fast: all 110ms ease-in-out;
+$transition-all-load: all 470ms ease-in-out;
+
+//  BOX-SHADOWS
+$box-shadow: 0 4px 4px rgba($smokeyx, 0.15);
+$box-shadow-left: 4px 0 4px rgba($smokeyx, 0.11);
+$box-shadow-right: -4px 0 4px rgba($smokeyx, 0.11);
+$box-shadow-inset: inset 0 4px 4px rgba($smokeyx, 0.15);
+$box-shadow-float: 0 4px 4px rgba($smokeyx, 0.29);
+$box-shadow-float-reverse: 0 -4px 4px rgba($smokeyx, 0.15);
+$box-shadow-float-submenu: 0 0 29px rgba($smokeyx, 0.47);
 
 $jumbotron-heading-font-size: 2.5em;
 $jumbotron-heading-color: #30373b;
