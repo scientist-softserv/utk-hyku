@@ -54,27 +54,21 @@ services:
       test: ["CMD-SHELL", "echo 'ruok' | nc -w 2 -q 2 localhost 2181 | grep imok || exit 1"]
       interval: "10s"
       timeout: "8s"
-
   solr:
     image: hyku/solr:8
     build:
       context: solr
       dockerfile: Dockerfile
+    env_file:
+      - .env
     environment:
       - OOM=script
-      - SOLR_ADMIN_USER=solr
-      - SOLR_ADMIN_PASSWORD=SolrRocks
-      - SOLR_COLLECTION=hydra-development
-      - SOLR_CLOUD_BOOTSTRAP=yes
-      - SOLR_ENABLE_CLOUD_MODE=yes
-      - SOLR_ENABLE_AUTHENTICATION=yes
-      - ZK_HOST=zoo:2181
       - VIRTUAL_PORT=8983
       - VIRTUAL_HOST=solr.hyku.test
     user: root
     command: bash -c "
       chown -R 8983:8983 /var/solr
-      && ./bin/solr zk cp file:/var/solr/data/security.json zk:/security.json
+      && ./bin/solr zk cp file:/var/security.json zk:/security.json
       && runuser -u solr -- solr-foreground"
     expose:
       - 8983
@@ -83,11 +77,11 @@ services:
     networks:
       internal:
     healthcheck:
-      test: curl -sf http://$$SOLR_ADMIN_USER:$$SOLR_ADMIN_PASSWORD@localhost:8983/solr/admin/cores?action=STATUS || exit 1
+      test: curl -sf http://$$SOLR_ADMIN_USER:$$SOLR_ADMIN_PASSWORD@solr:8983/solr/admin/cores?action=STATUS || exit 1
       start_period: 30s
       interval: 20s
       timeout: 5s
-      retries: 3
+      retries: 6
     depends_on:
       zoo:
         condition: service_healthy
@@ -163,10 +157,6 @@ services:
         - ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
     image: ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
     depends_on:
-      check_volumes:
-        condition: service_completed_successfully
-      initialize_app:
-        condition: service_completed_successfully
       db:
         condition: service_started
       solr:
@@ -177,6 +167,12 @@ services:
         condition: service_started
       zoo:
         condition: service_started
+      check_volumes:
+        condition: service_completed_successfully
+      initialize_app:
+        condition: service_completed_successfully
+
+
 
   # Do not recurse through all of tmp. derivitives will make booting
   # very slow and eventually just time out as data grows
@@ -233,3 +229,5 @@ services:
       - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
       - VIRTUAL_PORT=7900
       - VIRTUAL_HOST=chrome.hyku.test
+    networks:
+      internal:
