@@ -231,5 +231,3 @@ services:
       - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
       - VIRTUAL_PORT=7900
       - VIRTUAL_HOST=chrome.hyku.test
-    networks:
-      internal:
