@@ -192,6 +192,7 @@ services:
     <<: *app
     environment:
       - CONFDIR=/app/samvera/hyrax-webapp/solr/conf
+    user: root
     entrypoint: ["sh", "-c"]
     command:
       - >
