@@ -35,8 +35,3 @@ jobs:
     with:
       worker: true
       # tag: deca90d9
-  retag:
-    needs: build
-    uses: scientist-softserv/actions/.github/workflows/retag.yaml@self-hosted-runner
-    with:
-      worker: true
