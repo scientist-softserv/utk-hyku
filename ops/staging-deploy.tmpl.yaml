@@ -164,6 +164,8 @@ extraEnvVars: &envVars
     value: cram_md5
   - name: SENTRY_DSN
     value: https://ab7f8b39ca414630bd07f6657f57f641@o1008683.ingest.sentry.io/6745049
+  - name: SENTRY_ENVIRONMENT
+    value: staging
 
 worker:
   replicaCount: 1
