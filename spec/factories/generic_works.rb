@@ -28,5 +28,44 @@ FactoryBot.define do
         work.save
       end
     end
+
+    factory :generic_work_with_one_attachment do
+      after(:build) do |work|
+        work.ordered_members << attachment = FactoryBot.create(
+          :attachment_with_one_file
+        )
+        work.representative = attachment if work.representative_id.blank?
+        work.thumbnail = attachment if work.thumbnail_id.blank?
+        work.save
+      end
+    end
+
+    factory :generic_work_with_two_attachments do
+      after(:build) do |work|
+        work.ordered_members << attachment = FactoryBot.create(
+          :attachment_with_one_file
+        )
+        work.ordered_members << FactoryBot.create(
+          :attachment_with_one_file
+        )
+        work.representative = attachment if work.representative_id.blank?
+        work.thumbnail = attachment if work.thumbnail_id.blank?
+        work.save
+      end
+    end
+
+    factory :generic_work_with_one_attachment_and_one_image do
+      after(:build) do |work|
+        work.ordered_members << attachment = FactoryBot.create(
+          :attachment_with_one_file
+        )
+        work.ordered_members << FactoryBot.create(
+          :image
+        )
+        work.representative = attachment if work.representative_id.blank?
+        work.thumbnail = attachment if work.thumbnail_id.blank?
+        work.save
+      end
+    end
   end
 end
