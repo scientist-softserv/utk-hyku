@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Override Hyrax 3.4.1 to delete Attachments like FileSets
 module Hyrax
   module Actors
     module CleanupFileSetsActorDecorator
