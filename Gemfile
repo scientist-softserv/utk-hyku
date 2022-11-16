@@ -91,7 +91,8 @@ gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
-gem 'hyrax', '~> 3.4.0'
+# gem 'hyrax', '~> 3.4.0'
+gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'nested-graph-backport'
 # switch back to samvera/iiif_manifest main once https://github.com/samvera/iiif_manifest/pull/79 is approved
 gem 'iiif_manifest', git: 'https://github.com/notch8/iiif_manifest.git', branch: 'add-thumbnail-property'
 
@@ -122,7 +123,7 @@ group :aws do
   gem 'active_elastic_job', git: 'https://github.com/tawan/active-elastic-job.git'
   gem 'aws-sdk-sqs'
 end
-
+gem 'tinymce-rails', '~> 5.10'
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'codemirror-rails'
