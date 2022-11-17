@@ -34,9 +34,3 @@ jobs:
     secrets: inherit
     with:
       worker: true
-  retag:
-    needs: build
-    uses: scientist-softserv/actions/.github/workflows/retag.yaml@v0.0.4
-    secrets: inherit
-    with:
-      worker: true
