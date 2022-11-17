@@ -129,6 +129,7 @@ gem 'codemirror-rails'
 gem 'okcomputer'
 gem 'parser', '~> 2.5.3'
 gem 'rdf', '~> 3.1.15' # rdf 3.2.0 removed SerializedTransaction which ldp requires
+gem 'react-rails'
 gem 'riiif', '~> 1.1'
 gem 'secure_headers'
 gem "sentry-raven" # Notch8 Sentry Error Reporting
@@ -136,7 +137,6 @@ gem 'sidekiq'
 gem 'terser' # to support the Safe Navigation / Optional Chaining operator (?.) and avoid uglifier precompile issue
 gem 'tether-rails'
 gem 'tinymce-rails', '~> 5.10' # lock gem to version new Hyrax version will require
-gem 'react-rails'
 gem 'webpacker'
 
 # Pronto adds comments to MRs in gitlab when rubocop offenses are made.
