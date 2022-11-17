@@ -123,7 +123,6 @@ group :aws do
   gem 'active_elastic_job', git: 'https://github.com/tawan/active-elastic-job.git'
   gem 'aws-sdk-sqs'
 end
-gem 'tinymce-rails', '~> 5.10'
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'codemirror-rails'
@@ -136,7 +135,7 @@ gem "sentry-raven" # Notch8 Sentry Error Reporting
 gem 'sidekiq'
 gem 'terser' # to support the Safe Navigation / Optional Chaining operator (?.) and avoid uglifier precompile issue
 gem 'tether-rails'
-
+gem 'tinymce-rails', '~> 5.10' # lock gem to version new Hyrax version will require
 gem 'react-rails'
 gem 'webpacker'
 
