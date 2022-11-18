@@ -9,7 +9,7 @@ require_dependency Hyrax::Engine.root.join('app', 'presenters', 'hyrax', 'collec
 Hyrax::CollectionPresenter.class_eval do
   # OVERRIDE Hyrax - removed size
   delegate :abstract, :date_created_d, :date_issued, :date_issued_d,
-           :extent, :form, :resource_link, :publication_place, :repository,
+           :extent, :form, :publication_place, :repository, :resource_link,
            :note, :spatial, :utk_contributor, :utk_creator, :utk_publisher,
            to: :solr_document
 

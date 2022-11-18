@@ -163,7 +163,6 @@ services:
         - ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
         - ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
     image: ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
-    command: bundle exec sidekiq
     depends_on:
       check_volumes:
         condition: service_completed_successfully
