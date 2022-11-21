@@ -47,8 +47,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: 9f9d01d3c7bbd0cebcf0d6e65fc35152ea86a7d8
-  branch: nested-graph-backport
+  revision: 298075bf3b20a54dca5246ee65fd2f525dc23072
+  ref: 298075bf3b20a54dca5246ee65fd2f525dc23072
   specs:
     hyrax (3.4.2)
       active-fedora (~> 13.1, >= 13.1.2)
