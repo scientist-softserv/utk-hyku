@@ -12,3 +12,5 @@ AllinsonFlex.setup do |config|
   # config.m3_schema_version_tag = 'main'
 end
 Hyrax::CurationConcern.actor_factory.insert_before Hyrax::Actors::ModelActor, AllinsonFlex::DynamicSchemaActor
+
+Hyrax::DashboardController.sidebar_partials[:repository_content] << "hyrax/dashboard/sidebar/allinson_flex_sidebar_additions" if Object.const_defined?(:Hyrax) && ::Hyrax::DashboardController&.respond_to?(:sidebar_partials)
