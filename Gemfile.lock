@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-iiif_av.git
-  revision: 100e6180283cde232513680f11bb3edadbb95dd6
+  revision: 663106777368ec472c23b4b23670ae4de1f902cd
   branch: utk-hyku-with-hyrax-3
   specs:
     hyrax-iiif_av (0.2.0)
