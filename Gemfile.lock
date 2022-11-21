@@ -47,8 +47,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: 298075bf3b20a54dca5246ee65fd2f525dc23072
-  ref: 298075bf3b20a54dca5246ee65fd2f525dc23072
+  revision: ce06c3adb50b17bebe0efd403c81999a23265d8e
+  branch: additional-backport-graph-indexer-fixes
   specs:
     hyrax (3.4.2)
       active-fedora (~> 13.1, >= 13.1.2)
