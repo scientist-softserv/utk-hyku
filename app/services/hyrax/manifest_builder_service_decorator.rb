@@ -10,10 +10,6 @@ module Hyrax
       end
     end
 
-    # def self.prepended(mod)
-    #   mod.singleton_class.prepend(ClassMethods)
-    # end
-
     def initialize(iiif_manifest_factory: ::IIIFManifest::V3::ManifestFactory)
       @manifest_factory = iiif_manifest_factory
     end
