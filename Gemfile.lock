@@ -56,15 +56,6 @@ GIT
       aws-sdk-sqs (~> 1)
       rails (>= 5.2.6, < 7.1)
 
-PATH
-  remote: vendor/engines/hyrax-iiif_av
-  specs:
-    hyrax-iiif_av (0.2.0)
-      blacklight
-      hyrax (>= 2.9, < 4.0)
-      iiif_manifest (> 0.5)
-      rails (~> 5.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
