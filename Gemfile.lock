@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: 96b7c48da97698c4d09c63f9b8b1fcbe1f763b49
+  revision: c1dfe12e5386f8f4325b3a19dde949ecef1fede3
   specs:
     allinson_flex (0.1.0)
       json_schemer
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax
-  revision: d45a8846002af2c89dc722acc0c06401b0d16ba8
+  revision: a2525f7e14de7b99d1b48fa17221fe9fee2c6f8d
   specs:
     bulkrax (4.3.0)
       bagit (~> 0.4)
@@ -762,6 +762,8 @@ GEM
     noid-rails (3.0.3)
       actionpack (>= 5.0.0, < 7)
       noid (~> 0.9)
+    nokogiri (1.13.6-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.13.6-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.6-x86_64-darwin)
@@ -1226,6 +1228,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  aarch64-linux-musl
   arm64-darwin-21
   x86_64-darwin-20
   x86_64-linux-musl

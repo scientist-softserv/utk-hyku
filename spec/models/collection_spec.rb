@@ -44,7 +44,7 @@ RSpec.describe Collection do
     it { is_expected.to have_property(:publication_place).with_predicate('https://id.loc.gov/vocabulary/relators/pup') }
     it { is_expected.to have_property(:publisher).with_predicate('http://id.loc.gov/vocabulary/relators/pbl') }
     it { is_expected.to have_property(:repository).with_predicate('http://id.loc.gov/vocabulary/relators/rps') }
-    it { is_expected.to have_property(:resource_link).with_predicate('http://purl.org/dc/terms/identifier') }
+    it { is_expected.to have_property(:resource_link).with_predicate('http://www.europeana.eu/schemas/edm/isShownAt') }
     it { is_expected.to have_property(:resource_type).with_predicate('http://purl.org/dc/terms/type') }
     it { is_expected.to have_property(:spatial).with_predicate('http://purl.org/dc/terms/spatial') }
     it { is_expected.to have_property(:subject).with_predicate('http://purl.org/dc/terms/subject') }
