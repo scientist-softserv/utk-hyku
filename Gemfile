@@ -91,7 +91,9 @@ gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
-gem 'hyrax', '~> 3.4.0'
+# gem 'hyrax', '~> 3.4.0'
+# lock to graph indexing update commit
+gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'additional-backport-graph-indexer-fixes'
 # switch back to samvera/iiif_manifest main once https://github.com/samvera/iiif_manifest/pull/79 is approved
 gem 'iiif_manifest', git: 'https://github.com/notch8/iiif_manifest.git', branch: 'add-thumbnail-property'
 
@@ -122,21 +124,20 @@ group :aws do
   gem 'active_elastic_job', git: 'https://github.com/tawan/active-elastic-job.git'
   gem 'aws-sdk-sqs'
 end
-
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'codemirror-rails'
 gem 'okcomputer'
 gem 'parser', '~> 2.5.3'
 gem 'rdf', '~> 3.1.15' # rdf 3.2.0 removed SerializedTransaction which ldp requires
+gem 'react-rails'
 gem 'riiif', '~> 1.1'
 gem 'secure_headers'
 gem "sentry-raven" # Notch8 Sentry Error Reporting
 gem 'sidekiq'
 gem 'terser' # to support the Safe Navigation / Optional Chaining operator (?.) and avoid uglifier precompile issue
 gem 'tether-rails'
-
-gem 'react-rails'
+gem 'tinymce-rails', '~> 5.10' # lock gem to version new Hyrax version will require
 gem 'webpacker'
 
 # Pronto adds comments to MRs in gitlab when rubocop offenses are made.

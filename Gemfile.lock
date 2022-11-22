@@ -46,6 +46,70 @@ GIT
       rails (~> 5.2.4, >= 5.2.4.3)
 
 GIT
+  remote: https://github.com/samvera/hyrax.git
+  revision: 3492abbb62dc2b647729a51a83611a041799972a
+  branch: additional-backport-graph-indexer-fixes
+  specs:
+    hyrax (3.4.2)
+      active-fedora (~> 13.1, >= 13.1.2)
+      almond-rails (~> 0.1)
+      awesome_nested_set (~> 3.1)
+      blacklight (~> 6.14)
+      blacklight-gallery (~> 0.7)
+      breadcrumbs_on_rails (~> 3.0)
+      browse-everything (>= 0.16, < 2.0)
+      carrierwave (~> 1.0)
+      clipboard-rails (~> 1.5)
+      draper (~> 4.0)
+      dry-equalizer (~> 0.2)
+      dry-events (~> 0.2.0)
+      dry-monads (< 1.5)
+      dry-struct (~> 1.0)
+      dry-transaction (~> 0.11)
+      dry-validation (~> 1.3)
+      flipflop (~> 2.3)
+      flot-rails (~> 0.0.6)
+      font-awesome-rails (~> 4.2)
+      hydra-derivatives (~> 3.3)
+      hydra-editor (~> 5.0, >= 5.0.4)
+      hydra-file_characterization (~> 1.1.2)
+      hydra-head (~> 11.0, >= 11.0.1)
+      hydra-works (>= 0.16)
+      iiif_manifest (>= 0.3, < 2.0)
+      jquery-datatables-rails (~> 3.4)
+      jquery-ui-rails (~> 6.0)
+      json-ld (< 3.2)
+      json-schema
+      kaminari_route_prefix (~> 0.1.1)
+      legato (~> 0.3)
+      linkeddata
+      mailboxer (~> 0.12)
+      nest (~> 3.1)
+      noid-rails (~> 3.0.0)
+      oauth
+      oauth2 (~> 1.2)
+      posix-spawn
+      power_converter (~> 0.1, >= 0.1.2)
+      psych (~> 3.3)
+      qa (~> 5.5, >= 5.5.1)
+      rails (~> 5.0)
+      rails_autolink (~> 1.1)
+      rdf-rdfxml
+      rdf-vocab (~> 3.0)
+      redis (~> 4.0)
+      redis-namespace (~> 1.5)
+      redlock (>= 0.1.2)
+      reform (~> 2.3)
+      reform-rails (~> 0.2.0)
+      retriable (>= 2.9, < 4.0)
+      samvera-nesting_indexer (~> 2.0)
+      sass-rails (~> 5.0)
+      select2-rails (~> 3.5)
+      signet
+      tinymce-rails (~> 5.10)
+      valkyrie (~> 2, >= 2.1.1)
+
+GIT
   remote: https://github.com/tawan/active-elastic-job.git
   revision: 092a8102cd38cffd7203d408fa03998cdff9dc03
   specs:
@@ -525,60 +589,6 @@ GEM
       hydra-derivatives (~> 3.6)
       hydra-file_characterization (~> 1.0)
       hydra-pcdm (>= 0.9)
-    hyrax (3.4.1)
-      active-fedora (~> 13.1, >= 13.1.2)
-      almond-rails (~> 0.1)
-      awesome_nested_set (~> 3.1)
-      blacklight (~> 6.14)
-      blacklight-gallery (~> 0.7)
-      breadcrumbs_on_rails (~> 3.0)
-      browse-everything (>= 0.16, < 2.0)
-      carrierwave (~> 1.0)
-      clipboard-rails (~> 1.5)
-      draper (~> 4.0)
-      dry-equalizer (~> 0.2)
-      dry-events (~> 0.2.0)
-      dry-struct (~> 1.0)
-      dry-transaction (~> 0.11)
-      dry-validation (~> 1.3)
-      flipflop (~> 2.3)
-      flot-rails (~> 0.0.6)
-      font-awesome-rails (~> 4.2)
-      hydra-derivatives (~> 3.3)
-      hydra-editor (~> 5.0, >= 5.0.4)
-      hydra-file_characterization (~> 1.1.2)
-      hydra-head (~> 11.0, >= 11.0.1)
-      hydra-works (>= 0.16)
-      iiif_manifest (>= 0.3, < 2.0)
-      jquery-datatables-rails (~> 3.4)
-      jquery-ui-rails (~> 6.0)
-      json-schema
-      kaminari_route_prefix (~> 0.1.1)
-      legato (~> 0.3)
-      linkeddata
-      mailboxer (~> 0.12)
-      nest (~> 3.1)
-      noid-rails (~> 3.0.0)
-      oauth
-      oauth2 (~> 1.2)
-      posix-spawn
-      power_converter (~> 0.1, >= 0.1.2)
-      qa (~> 5.5, >= 5.5.1)
-      rails (~> 5.0)
-      rails_autolink (~> 1.1)
-      rdf-rdfxml
-      rdf-vocab (~> 3.0)
-      redis-namespace (~> 1.5)
-      redlock (>= 0.1.2)
-      reform (~> 2.3)
-      reform-rails (~> 0.2.0)
-      retriable (>= 2.9, < 4.0)
-      samvera-nesting_indexer (~> 2.0)
-      sass-rails (~> 5.0)
-      select2-rails (~> 3.5)
-      signet
-      tinymce-rails
-      valkyrie (~> 2, >= 2.1.1)
     i18n (1.11.0)
       concurrent-ruby (~> 1.0)
     i18n-debug (1.2.0)
@@ -836,6 +846,7 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
+    psych (3.3.4)
     public_suffix (2.0.5)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -1166,7 +1177,7 @@ GEM
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tinymce-rails (6.1.0)
+    tinymce-rails (5.10.6)
       railties (>= 3.1.1)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -1262,7 +1273,7 @@ DEPENDENCIES
   fcrepo_wrapper (~> 0.4)
   flipflop (~> 2.3)
   flutie
-  hyrax (~> 3.4.0)
+  hyrax!
   hyrax-doi!
   i18n-debug
   i18n-tasks
@@ -1315,6 +1326,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   terser
   tether-rails
+  tinymce-rails (~> 5.10)
   turbolinks (~> 5)
   web-console (>= 3.3.0)
   webdrivers (~> 4.0)
