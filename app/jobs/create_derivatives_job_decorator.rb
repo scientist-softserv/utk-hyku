@@ -19,7 +19,7 @@ module Hyrax
         return false
       end
 
-      return if file_set.rdf_type.select{ |file| file&.downcase&.include?(INTERMEDIATE_FILE) }.nil?
+      return unless file_set.rdf_type.join&.downcase&.include?(INTERMEDIATE_FILE)
 
       # Ensure a fresh copy of the repo file's latest version is being worked on, if no filepath is directly provided
       unless filepath && File.exist?(filepath)
