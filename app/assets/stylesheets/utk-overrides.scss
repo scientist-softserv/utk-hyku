@@ -441,6 +441,9 @@ body.public-facing.utk-public-facing {
         }
 
         .footer-university--more {
+          height: fit-content;
+          align-self: center;
+
           .footer-university--menu {
             flex-grow: 1;
             justify-content: space-between;
@@ -487,10 +490,10 @@ body.public-facing.utk-public-facing {
           max-width: 100%;
         }
       }
-      
-      .footer-university--inner {
-        flex-direction: column;
-      }
+
+      // .footer-university--inner {
+      //   flex-direction: column;
+      // }
     }
   }
 
@@ -550,8 +553,9 @@ body.public-facing.utk-public-facing {
             }
           }
         }
-
-        // University footer
+      }
+      // University footer
+      .footer-university {
         .footer-university--inner {
           flex-direction: column;
 
@@ -560,6 +564,8 @@ body.public-facing.utk-public-facing {
           }
 
           .footer-university--more {
+            align-self: auto;
+
             .utk-resources-menu--col {
               width: 50%;
               margin-right: 0;
@@ -669,7 +675,7 @@ body.public-facing.utk-public-facing {
                   a:visited {
                     font-size: $type-2;
                   }
-                  
+
                   a:hover,
                   a:focus {
                     color: $leconte;
@@ -697,6 +703,8 @@ body.public-facing.utk-public-facing {
           }
 
           .footer-university--more {
+            align-self: auto;
+            
             .footer-university--menu {
               flex-wrap: wrap;
 
