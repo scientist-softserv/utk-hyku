@@ -4,8 +4,10 @@
 # overriding #display_image to get correct format:
 module Hyrax
   module IiifManifestPresenterDecorator
+    attr_writer :iiif_version
+
     def iiif_version
-      3
+      @iiif_version || 3
     end
 
     def search_service

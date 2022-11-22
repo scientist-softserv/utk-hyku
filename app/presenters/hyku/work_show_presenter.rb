@@ -57,23 +57,20 @@ module Hyku
 
     # @return [Boolean] render a IIIF viewer
     def iiif_viewer?
-      representative_id.present? &&
+      Hyrax.config.iiif_image_server? &&
+        representative_id.present? &&
         representative_presenter.present? &&
         iiif_media? &&
-        Hyrax.config.iiif_image_server? &&
         members_include_viewable?
     end
 
-    def iiif_media?
-      representative_presenter.image? ||
-        representative_presenter.video? ||
-        representative_presenter.audio?
+    def iiif_media?(presenter: representative_presenter)
+      presenter.image? || presenter.video? || presenter.audio?
     end
 
     def members_include_viewable?
       file_set_presenters.any? do |presenter|
-        (presenter.image? || presenter.video? || presenter.audio?) &&
-          current_ability.can?(:read, presenter.id)
+        iiif_media?(presenter: presenter) && current_ability.can?(:read, presenter.id)
       end
     end
 
