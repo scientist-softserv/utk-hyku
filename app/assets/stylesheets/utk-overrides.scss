@@ -368,6 +368,14 @@ body.public-facing.utk-public-facing {
       padding: 47px 0;
       background-color: $gray-0;
 
+      .container {
+        width: 100%;
+        padding-right: $golden-ratio-4;
+        padding-left: $golden-ratio-4;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
       .footer-university--inner {
         justify-content: space-between;
 
@@ -470,14 +478,15 @@ body.public-facing.utk-public-facing {
     // Header
     #masthead {
       .container-fluid {
-        max-width: 1280px;
+        max-width: 1280px !important;
       }
     }
 
     #utk-lib-footer {
-      .footer-libraries {
+      .footer-libraries,
+      .footer-university {
         .container {
-          max-width: 1280px;
+          max-width: 1280px !important;
         }
       }
     }
@@ -490,10 +499,6 @@ body.public-facing.utk-public-facing {
           max-width: 100%;
         }
       }
-
-      // .footer-university--inner {
-      //   flex-direction: column;
-      // }
     }
   }
 
@@ -704,7 +709,7 @@ body.public-facing.utk-public-facing {
 
           .footer-university--more {
             align-self: auto;
-            
+
             .footer-university--menu {
               flex-wrap: wrap;
 
