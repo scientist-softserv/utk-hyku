@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    uses: scientist-softserv/actions/.github/workflows/build.yaml@v0.0.4
+    uses: scientist-softserv/actions/.github/workflows/build.yaml@v0.0.5
     secrets: inherit
     with:
       target: hyku-base
@@ -24,13 +24,13 @@ jobs:
       workerTarget: hyku-worker
   test:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.3
+    uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
     secrets: inherit
     with:
       worker: true
   lint:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.4
+    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.5
     secrets: inherit
     with:
       worker: true
