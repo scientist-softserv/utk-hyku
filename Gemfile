@@ -92,8 +92,8 @@ gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
 # gem 'hyrax', '~> 3.4.0'
-# lock to graph indexing update commit
-gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'additional-backport-graph-indexer-fixes'
+# pull in graph indexing work until a new version is released
+gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
 # switch back to samvera/iiif_manifest main once https://github.com/samvera/iiif_manifest/pull/79 is approved
 gem 'iiif_manifest', git: 'https://github.com/notch8/iiif_manifest.git', branch: 'add-thumbnail-property'
 
