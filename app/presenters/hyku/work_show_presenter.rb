@@ -71,7 +71,10 @@ module Hyku
     end
 
     def members_include_viewable?
-      file_set_presenters.any? { |presenter| (presenter.image? || presenter.video? || presenter.audio?) && current_ability.can?(:read, presenter.id) }
+      file_set_presenters.any? do |presenter|
+        (presenter.image? || presenter.video? || presenter.audio?) &&
+          current_ability.can?(:read, presenter.id)
+      end
     end
 
     private
