@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: ce06c3adb50b17bebe0efd403c81999a23265d8e
+  revision: 3492abbb62dc2b647729a51a83611a041799972a
   branch: additional-backport-graph-indexer-fixes
   specs:
     hyrax (3.4.2)
