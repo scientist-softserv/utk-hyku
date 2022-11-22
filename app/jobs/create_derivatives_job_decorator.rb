@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
+# OVERRIDE HYRAX 3.4.1 to skip derivative job unless rdf_type is "pcdm-muse:IntermediateFile"
 module Hyrax
   module CreateDerivativesJobDecorator
-    PRESERVATION_FILE = "PreservationFile".downcase
+    INTERMEDIATE_FILE = "IntermediateFile".downcase
 
     # @param [FileSet] file_set
     # @param [String] file_id identifier for a Hydra::PCDM::File
@@ -11,7 +11,7 @@ module Hyrax
     # @param [Integer] time_to_live counter to limit the amount of retries
     def perform(file_set, file_id, filepath = nil, time_to_live = 2)
       return if file_set.video? && !Hyrax.config.enable_ffmpeg
-      # OVERRIDE HYRAX 3.4.1 to skip derivative job if rdf_type is "pcdm-muse:PreservationFile"
+      # OVERRIDE HYRAX 3.4.1 to skip derivative job unless rdf_type is "pcdm-muse:IntermediateFile"
       if file_set.parent_works.blank?
         raise 'CreateDerivatesJob Failed: FileSet is missing its parent' if time_to_live.zero?
 
@@ -19,7 +19,7 @@ module Hyrax
         return false
       end
 
-      return if file_set.rdf_type.present? && file_set.rdf_type.downcase.include?(PRESERVATION_FILE)
+      return unless file_set.rdf_type&.downcase&.include?(INTERMEDIATE_FILE)
 
       # Ensure a fresh copy of the repo file's latest version is being worked on, if no filepath is directly provided
       unless filepath && File.exist?(filepath)

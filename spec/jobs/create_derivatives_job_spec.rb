@@ -30,6 +30,7 @@ RSpec.describe CreateDerivativesJob do
       allow(FileSet).to receive(:find).with(id).and_return(file_set)
       allow(file_set).to receive(:id).and_return(id)
       allow(file_set).to receive(:mime_type).and_return('audio/x-wav')
+      allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#IntermediateFile')
     end
 
     context "with a file name" do
@@ -73,12 +74,40 @@ RSpec.describe CreateDerivativesJob do
 
         before do
           allow(file_set).to receive(:parent_works).and_return([parent])
+          allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#PreservationFile')
         end
 
         it "does not call #create_derivatives on the file set" do
           expect(file_set).not_to receive(:create_derivatives)
           described_class.perform_now(file_set, file.id)
         end
+      end
+
+      context "when the parent's rdf_type is OriginalFile" do
+        let(:parent) { create(:attachment, rdf_type: ['http://pcdm.org/use#OriginalFile']) }
+
+        before do
+          allow(file_set).to receive(:parent_works).and_return([parent])
+          allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#OriginalFile')
+        end
+
+        it "does not call #create_derivatives on the file set" do
+          expect(file_set).not_to receive(:create_derivatives)
+          described_class.perform_now(file_set, file.id)
+        end
+      end
+    end
+
+    context 'with both IntermediateFile and PreservationFile' do
+      before do
+        allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#PreservationFile | http://pcdm.org/use#IntermediateFile')
+      end
+
+      it 'calls create_derivatives and save on a file set' do
+        expect(Hydra::Derivatives::AudioDerivatives).to receive(:create)
+        expect(file_set).to receive(:reload)
+        expect(file_set).to receive(:update_index)
+        described_class.perform_now(file_set, file.id)
       end
     end
   end
@@ -95,35 +124,17 @@ RSpec.describe CreateDerivativesJob do
     end
 
     before do
+      allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#IntermediateFile')
       file_set.original_file = file
       file_set.save!
     end
 
-    # this spec was pulled over from hyrax 3.4.1.
-    # After spending time, I'm commenting it out for now since it fails
-    #        +     :size=>"676x986",
-    # Diff:
-    # rubocop:disable Metrics/LineLength
-    # expected: (/test\.pdf/, {:outputs=>[{:format=>"jpg", :label=>:thumbnail, :layer=>0, :size=>"338x493", :url=>String}]})
-    # got: (
-    # "/app/samvera/hyrax-webapp/tmp/uploads/26/f6/4c/b6/26f64cb6-25df-409d-be5a-27bfe473ebe9/test.pdf",
-    # {
-    #   :outputs=>[{
-    #     :format=>"jpg",
-    #     :label=>:thumbnail,
-    #     :layer=>0,
-    #     :size=>"676x986",
-    #     :url=>
-    #     "file:///app/samv...yrax-webapp/tmp/derivatives/26/f6/4c/b6/-2/5d/f-/40/9d/-b/e5/a-/27/bf/e4/73/eb/e9-thumbnail.jpeg"
-    #     }]
-    #     }
-    #   )
-    # rubocop:enable Metrics/LineLength
-    xit "runs a full text extract" do
+    it "runs a full text extract" do
+      # the size is different than in Hyrax because of file_set_derivatives_overrides.rb
       expect(Hydra::Derivatives::PdfDerivatives).to receive(:create)
         .with(/test\.pdf/, outputs: [{ label: :thumbnail,
                                        format: 'jpg',
-                                       size: '338x493',
+                                       size: '676x986',
                                        url: String,
                                        layer: 0 }])
       expect(Hydra::Derivatives::FullTextExtract).to receive(:create)
