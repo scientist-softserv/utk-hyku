@@ -1,0 +1,24 @@
+<%# OVERRIDE: Hyrax v3.4.1 Remove hamburger menu and remove dropdown menu classes %>
+
+<%# OVERRIDE: Hyrax v3.4.1 Remove hamburger menu %>
+<nav id="masthead" class="navbar navbar-inverse navbar-fixed-top" role="navigation" aria-label="masthead">
+  <div class="container-fluid top-nav-container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header utk-logo-flex"> 
+      <div class='utk-logo-wrapper'>
+        <%= render '/logo' %>
+        <a id="library-link" class="navbar-library-link" href="https://www.lib.utk.edu" data-no-turbolink="true">Libraries</a>
+        </a>
+      </div>
+    </div>
+
+    <%# OVERRIDE: Hyrax v3.4.1 Removed dropdown menu classes %>
+    <div class="header-actions">
+      <% if admin_host? %>
+        <%= render '/admin_util_links' %>
+      <% else %>
+        <%= render '/user_util_links' %>
+      <% end %>
+    </div>
+  </div>
+</nav>
