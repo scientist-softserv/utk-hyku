@@ -25,6 +25,6 @@ class FileSet < ActiveFedora::Base
 
     @memoized_rdf_type = parent_works.detect do |work|
       work.respond_to?(:rdf_type) && work.rdf_type.present?
-    end&.rdf_type&.first
+    end&.rdf_type
   end
 end
