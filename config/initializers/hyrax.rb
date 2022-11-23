@@ -116,7 +116,7 @@ Hyrax.config do |config|
   # config.display_share_button_when_not_logged_in = true
 
   # The user who runs batch jobs. Update this if you aren't using emails
-  # config.batch_user_key = 'batchuser@example.com'
+  config.batch_user_key = 'kirk.wang@scientist.com' # TODO: CHANGE BEFORE PRODUCTION
 
   # The user who runs audit jobs. Update this if you aren't using emails
   # config.audit_user_key = 'audituser@example.com'
