@@ -16,6 +16,7 @@ body.public-facing.utk-public-facing {
   font-size: $type-4;
   color: $smokey !important;
   line-height: 35px;
+  height: 100vh;
 
   // TEXT STYLES
   h1,
@@ -95,7 +96,7 @@ body.public-facing.utk-public-facing {
   .navbar.navbar-inverse.navbar-fixed-top {
     border-top: 6px solid $orange;
     border-bottom: none;
-    height: 76px;
+    height: $golden-ratio-5;
     color: $smokey !important;
   }
 
@@ -105,7 +106,7 @@ body.public-facing.utk-public-facing {
       justify-content: space-between;
       height: inherit;
       max-width: 100%;
-      padding: 0 29px;
+      padding: 0 $golden-ratio-3;
     }
 
     .utk-logo-flex {
@@ -126,7 +127,7 @@ body.public-facing.utk-public-facing {
       height: 100%;
 
       img {
-        height: 47px;
+        height: $golden-ratio-4;
         margin: 0;
         align-self: center;
       }
@@ -136,10 +137,10 @@ body.public-facing.utk-public-facing {
       position: absolute;
       display: block;
       height: 100%;
-      line-height: 76px;
-      font-size: 28px !important;
+      line-height: $golden-ratio-5;
+      font-size: $type-5 !important;
       font-weight: 700;
-      padding: 0px 29px;
+      padding: 0px $golden-ratio-3;
       left: 100%;
       color: $smokey !important;
       letter-spacing: -0.03em;
@@ -251,7 +252,7 @@ body.public-facing.utk-public-facing {
         margin-left: auto;
 
         .footer-libraries--inner {
-          flex-wrap: wrap;
+          justify-content: space-between;
 
           .footer-libraries--anchor {
             width: calc(100% - (100% / 1.61803));
@@ -259,7 +260,6 @@ body.public-facing.utk-public-facing {
 
             .footer-libraries--identity {
               width: auto;
-              // min-width: calc(100% - (100% / 1.61803));
 
               p {
                 font-size: $type-3;
@@ -314,7 +314,7 @@ body.public-facing.utk-public-facing {
               flex-direction: column;
               flex-grow: 1;
               font-size: $type-3;
-              margin-right: 47px;
+              margin-right: $golden-ratio-4;
 
               .utk-resources-menu--col a,
               .utk-resources-menu--col a:visited,
@@ -328,8 +328,8 @@ body.public-facing.utk-public-facing {
               }
 
               .utk-resources-menu--section {
-                margin-top: 29px;
-                margin-bottom: 11px;
+                margin-top: $golden-ratio-3;
+                margin-bottom: $golden-ratio-1;
                 width: 100%;
 
                 .utk-resources-menu--section:last-child {
@@ -337,7 +337,7 @@ body.public-facing.utk-public-facing {
                 }
 
                 h2.utk-resources-menu--trigger {
-                  margin: 0 0 6px;
+                  margin: 0 0 $golden-ratio-0;
                   padding: 0;
                   font-weight: 700 !important;
                   font-size: $type-3 !important;
@@ -356,6 +356,11 @@ body.public-facing.utk-public-facing {
 
                 .utk-resources-menu--submenu {
                   flex-direction: column;
+
+                  a:hover,
+                  a:focus {
+                    color: $leconte;
+                  }
                 }
               }
             }
@@ -365,7 +370,7 @@ body.public-facing.utk-public-facing {
     }
 
     .footer-university {
-      padding: 47px 0;
+      padding: $golden-ratio-4 0;
       background-color: $gray-0;
 
       .container {
@@ -399,11 +404,11 @@ body.public-facing.utk-public-facing {
 
         .footer-university--title {
           display: block;
-          margin-bottom: 11px;
+          margin-bottom: $golden-ratio-1;
         }
 
         .footer-university--search {
-          margin-bottom: 29px;
+          margin-bottom: $golden-ratio-3;
 
           .form-group {
             margin-bottom: 15px;
@@ -418,7 +423,7 @@ body.public-facing.utk-public-facing {
               height: $golden-ratio-4;
               font-size: $type-3;
               color: $smokeyx;
-              text-indent: 18px;
+              text-indent: $golden-ratio-2;
               width: 100%;
               border: 1px solid $gray-2;
               border-right: none;
@@ -427,11 +432,11 @@ body.public-facing.utk-public-facing {
                 display: inline-flex;
                 width: auto;
                 flex-shrink: 1;
-                font-size: 15px;
+                font-size: $type-2;
                 background-color: #e0e0e0;
                 line-height: 1.29em;
-                padding: 11px 18px;
-                height: 47px;
+                padding: $golden-ratio-1 $golden-ratio-2;
+                height: $golden-ratio-4;
                 font-weight: 700;
               }
             }
@@ -459,7 +464,7 @@ body.public-facing.utk-public-facing {
             .utk-resources-menu--col {
               flex-direction: column;
               flex-grow: 1;
-              margin-right: 47px;
+              margin-right: $golden-ratio-4;
             }
             .utk-resources-menu--col a {
               color: #333333;
@@ -506,13 +511,13 @@ body.public-facing.utk-public-facing {
     // Header
     #masthead {
       .container-fluid {
-        padding: 0 29px !important;
+        padding: 0 $golden-ratio-3 !important;
         max-width: 100%;
       }
 
       a#library-link.navbar-library-link {
-        font-size: 28.7px !important;
-        padding: 0px 11px !important;
+        font-size: $type-5 !important;
+        padding: 0px $golden-ratio-1 !important;
       }
     }
 
@@ -531,8 +536,8 @@ body.public-facing.utk-public-facing {
               width: 100% !important;
               max-width: 100%;
               flex-direction: row !important;
-              padding-bottom: 18px;
-              margin-bottom: 18px;
+              padding-bottom: $golden-ratio-2;
+              margin-bottom: $golden-ratio-2;
 
               p {
                 font-size: $type-3;
@@ -541,7 +546,7 @@ body.public-facing.utk-public-facing {
               .footer-libraries--identity {
                 min-width: 33.333333%;
                 flex-shrink: 1;
-                padding-right: 29px;
+                padding-right: $golden-ratio-3;
 
                 .footer-libraries--identity--brand--unit {
                   font-size: $type-3;
@@ -587,7 +592,7 @@ body.public-facing.utk-public-facing {
     // Header
     #masthead {
       .container-fluid {
-        padding: 0 18px !important;
+        padding: 0 $golden-ratio-2 !important;
       }
 
       .navbar-header {
@@ -596,8 +601,8 @@ body.public-facing.utk-public-facing {
       }
 
       #library-link {
-        padding: 0 11px !important;
-        font-size: 22.5px !important;
+        padding: 0 $golden-ratio-1 !important;
+        font-size: $type-4 !important;
       }
 
       a#utk-lib-menu {
@@ -654,7 +659,7 @@ body.public-facing.utk-public-facing {
 
                 .utk-resources-menu--submenu {
                   a {
-                    font-size: $type-2;
+                    font-size: 16px;
                   }
                 }
               }
@@ -678,7 +683,7 @@ body.public-facing.utk-public-facing {
 
                   a,
                   a:visited {
-                    font-size: $type-2;
+                    font-size: 16px;
                   }
 
                   a:hover,
@@ -692,7 +697,7 @@ body.public-facing.utk-public-facing {
         }
       }
       .footer-university {
-        padding: 47px 0;
+        padding: $golden-ratio-4 0;
 
         .container {
           max-width: 100%;
@@ -718,6 +723,11 @@ body.public-facing.utk-public-facing {
                 margin-right: 0;
                 flex-grow: 0;
                 flex-direction: column;
+
+                a,
+                a:visited {
+                  font-size: 16px;
+                }
               }
             }
           }
@@ -728,7 +738,7 @@ body.public-facing.utk-public-facing {
     @media (max-width: 575px) {
       #masthead {
         .container-fluid {
-          padding: 0 15px !important;
+          padding: 0 $golden-ratio-2 !important;
         }
       }
     }
