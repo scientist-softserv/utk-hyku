@@ -1,4 +1,228 @@
-.dc_repository {
+body.dc_repository {
+  background-color: $white;
+  font-size: $type-4;
+  color: $smokey !important;
+  line-height: 35px;
+  height: 100vh;
+
+  // TEXT STYLES
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Gotham" !important;
+    color: $smokey !important;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  h6 {
+    font-family: "Gotham" !important;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: $smokeyx !important;
+    letter-spacing: 1pt;
+  }
+
+  a,
+  a:visited {
+    cursor: pointer;
+    color: $smokey;
+    text-decoration: none;
+  }
+
+  p {
+    color: $smokeyx;
+    font-size: $type-3;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  .btn {
+    &.btn-primary,
+    &.btn-danger {
+      color: #fff;
+    }
+
+    &.btn-primary {
+      background-color: $globe;
+    }
+  }
+
+  #sort-dropdown .dropdown-toggle,
+  #per_page-dropdown .dropdown-toggle {
+    color: $smokey !important;
+  }
+
+  // MAIN NAV
+  .navbar.navbar-inverse.navbar-fixed-top {
+    border-top: 6px solid $orange;
+    border-bottom: none;
+    height: $golden-ratio-5;
+    color: $smokey !important;
+  }
+
+  // Header
+  #masthead {
+    .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      height: inherit;
+      max-width: 100%;
+      padding: 0 $golden-ratio-3;
+    }
+
+    .utk-logo-flex {
+      flex-grow: 1;
+    }
+
+    .utk-logo-wrapper {
+      z-index: 998;
+      padding: 0;
+      width: auto;
+      height: 100%;
+      position: absolute;
+    }
+
+    #logo {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+
+      img {
+        height: $golden-ratio-4;
+        margin: 0;
+        align-self: center;
+      }
+    }
+
+    #library-link {
+      position: absolute;
+      display: block;
+      height: 100%;
+      line-height: $golden-ratio-5;
+      font-size: $type-5 !important;
+      font-weight: 700;
+      padding: 0px $golden-ratio-3;
+      left: 100%;
+      color: $smokey !important;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+  }
+
+  // DROPDOWN NAVBAR
+  .navbar-inverse .navbar-link {
+    color: $smokey !important;
+  }
+
+  .navbar-inverse .navbar-nav > li > a,
+  .navbar-inverse .navbar-brand {
+    color: $smokey !important;
+    font-size: $type-3 !important;
+  }
+
+  .navbar-inverse .navbar-nav .fa {
+    color: $rock !important;
+    font-size: $type-3 !important;
+    margin: 0 0.2rem;
+  }
+
+  .navbar-inverse .navbar-text {
+    color: $smokey !important;
+    font-weight: 600;
+  }
+
+  li.nav-item.dropdown:focus,
+  a.nav-link.dropdown-toggle,
+  ul#user_utility_links {
+    outline: $smokey !important;
+  }
+
+  .navbar-inverse .navbar-nav > .open > a,
+  .navbar-inverse .navbar-nav > .open > a:hover,
+  .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: $white !important;
+  }
+
+  .navbar-inverse .navbar-nav > li > a,
+  .navbar-inverse .navbar-text,
+  .navbar-inverse .navbar-brand {
+    color: $gray-3;
+  }
+
+  .header-actions {
+    display: flex !important;
+    flex-direction: row;
+    width: auto;
+    height: 70px;
+    align-items: center;
+    flex-shrink: 1;
+  }
+
+  #user_utility_links {
+    display: flex;
+
+    li.dropdown.header-actions-item {
+      flex-grow: 0;
+      flex-shrink: 1;
+      display: block;
+      width: auto;
+      height: auto;
+      margin: auto;
+      font-weight: 400;
+      line-height: 1rem;
+      font-size: 0.8333rem;
+    }
+
+    li.dropdown.header-actions-item > a {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      padding: 0 calc(29px / 2);
+      margin-top: 2px;
+    }
+
+    li:nth-child(4) > a > em,
+    #utk-lib-menu > em {
+      font-style: normal;
+    }
+
+    li.nav-item.dropdown > a > b {
+      align-self: center;
+      color: $rock !important;
+    }
+
+    a#utk-lib-menu {
+      display: block;
+    }
+  }
+
   // Hero
   .image-masthead {
     width: 100%;
@@ -262,6 +486,11 @@
                 font-weight: 400;
               }
 
+              a,
+              a:visited {
+                color: $smokey !important;
+              }
+
               .footer-libraries--identity--brand {
                 .footer-libraries--identity--brand--unit {
                   display: block;
@@ -403,6 +632,11 @@
           margin-bottom: $golden-ratio-1;
         }
 
+        a,
+        a:visited {
+          color: $smokey !important;
+        }
+
         .footer-university--search {
           margin-bottom: $golden-ratio-3;
 
@@ -476,6 +710,13 @@
   // RESPONSIVE STYLES
 
   @media (min-width: 1200px) {
+    // Header
+    #masthead {
+      .container-fluid {
+        max-width: 1280px !important;
+      }
+    }
+
     // Footers
     #utk-lib-footer {
       .footer-libraries,
@@ -525,6 +766,19 @@
   }
 
   @media (min-width: 768px) and (max-width: 991px) {
+    // Header
+    #masthead {
+      .container-fluid {
+        padding: 0 $golden-ratio-3 !important;
+        max-width: 100%;
+      }
+
+      a#library-link.navbar-library-link {
+        font-size: $type-5 !important;
+        padding: 0px $golden-ratio-1 !important;
+      }
+    }
+
     // Footers
     #utk-lib-footer {
       // Libraries footer
@@ -688,6 +942,33 @@
   }
 
   @media (max-width: 767px) {
+    // Header
+    #masthead {
+      .container-fluid {
+        padding: 0 $golden-ratio-2 !important;
+      }
+
+      .navbar-header {
+        float: none;
+        margin-left: 0px;
+      }
+
+      #library-link {
+        padding: 0 $golden-ratio-1 !important;
+        font-size: $type-4 !important;
+      }
+
+      a#utk-lib-menu {
+        padding-right: 0;
+      }
+
+      #logo {
+        img {
+          height: 29.85px !important;
+        }
+      }
+    }
+
     // Footers
     // Library footer
     #utk-lib-footer {
@@ -807,6 +1088,15 @@
             }
           }
         }
+      }
+    }
+  }
+
+  @media (max-width: 575px) {
+    // Header
+    #masthead {
+      .container-fluid {
+        padding: 0 $golden-ratio-2 !important;
       }
     }
   }
