@@ -1,4 +1,5 @@
 .dc_repository {
+  // Hero
   .image-masthead {
     width: 100%;
     height: 61.8vw;
@@ -222,7 +223,6 @@
       color: $white;
     }
 
-    // Unsure of desired behavior of active state
     .navbar .navbar-nav > .active > a {
       background-color: transparent !important;
       color: $white !important;
@@ -230,9 +230,276 @@
     }
   }
 
+  // Footers
+  #utk-lib-footer {
+    // Library footer
+    .footer-libraries {
+      padding: $golden-ratio-4 0;
+      background-color: $white;
+      color: $smokeyx;
+      border-top: 6px solid $orange;
+
+      .container {
+        width: 100%;
+        padding-right: $golden-ratio-4;
+        padding-left: $golden-ratio-4;
+        margin-right: auto;
+        margin-left: auto;
+
+        .footer-libraries--inner {
+          justify-content: space-between;
+
+          .footer-libraries--anchor {
+            width: calc(100% - (100% / 1.61803));
+            flex-direction: column;
+
+            .footer-libraries--identity {
+              width: auto;
+
+              p {
+                font-size: $type-3;
+                line-height: 25px;
+                font-weight: 400;
+              }
+
+              .footer-libraries--identity--brand {
+                .footer-libraries--identity--brand--unit {
+                  display: block;
+                  font-size: $type-4;
+                  font-weight: 700;
+                }
+              }
+            }
+
+            .footer-libraries--menu-extras {
+              .utk-resources-menu--submenu {
+                padding: 0;
+                margin: 0;
+
+                li {
+                  padding: 0;
+                  margin: 0;
+                  list-style: none;
+                  line-height: 35px;
+                }
+
+                a,
+                a:visited {
+                  font-size: $type-3;
+                  color: $globe;
+                }
+
+                a:hover,
+                a:focus {
+                  color: $leconte;
+                }
+              }
+            }
+          }
+
+          .footer-libraries--menu {
+            flex-grow: 1;
+            justify-content: space-between;
+
+            .utk-resources-menu--section {
+              margin-top: 0 !important;
+            }
+
+            .utk-resources-menu--col {
+              flex-direction: column;
+              flex-grow: 1;
+              font-size: $type-3;
+              margin-right: $golden-ratio-4;
+
+              .utk-resources-menu--col a,
+              .utk-resources-menu--col a:visited,
+              .utk-resources-menu--col a:focus,
+              .utk-resources-menu--col a:hover {
+                color: #333333;
+                white-space: nowrap;
+              }
+              .utk-resources-menu--col:last-child {
+                margin-right: 0;
+              }
+
+              .utk-resources-menu--section {
+                margin-top: $golden-ratio-3;
+                margin-bottom: $golden-ratio-1;
+                width: 100%;
+
+                .utk-resources-menu--section:last-child {
+                  margin-bottom: 0;
+                }
+
+                h2.utk-resources-menu--trigger {
+                  margin: 0 0 $golden-ratio-0;
+                  padding: 0;
+                  font-weight: 700 !important;
+                  font-size: $type-3 !important;
+                  line-height: 35px;
+                  color: $smokey !important;
+                  letter-spacing: -0.018em;
+                }
+
+                a,
+                a:visited {
+                  color: $globe;
+                  display: block;
+                  font-size: $type-3;
+                  line-height: 35px;
+                }
+
+                .utk-resources-menu--submenu {
+                  flex-direction: column;
+
+                  a:hover,
+                  a:focus {
+                    color: $leconte;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // University footer
+    .footer-university {
+      padding: $golden-ratio-4 0;
+      background-color: $gray-0;
+
+      .container {
+        width: 100%;
+        padding-right: $golden-ratio-4;
+        padding-left: $golden-ratio-4;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .footer-university--inner {
+        justify-content: space-between;
+
+        .footer-university--anchor {
+          margin-right: $golden-ratio-5;
+          position: relative;
+          z-index: 0;
+          font-size: $type-3;
+        }
+
+        .footer-university--anchor p {
+          font-size: inherit;
+          line-height: 1.58em;
+        }
+
+        .footer-university--identity--brand {
+          .footer-university--identity--brand--logo {
+            display: block;
+          }
+        }
+
+        .footer-university--title {
+          display: block;
+          margin-bottom: $golden-ratio-1;
+        }
+
+        .footer-university--search {
+          margin-bottom: $golden-ratio-3;
+
+          .form-group {
+            margin-bottom: 15px;
+          }
+
+          .footer-university--search--form {
+            .form-group {
+              flex-grow: 1;
+            }
+
+            input {
+              height: $golden-ratio-4;
+              font-size: $type-3;
+              color: $smokeyx;
+              text-indent: $golden-ratio-2;
+              width: 100%;
+              border: 1px solid $gray-2;
+              border-right: none;
+
+              #utk_seek .search-btn {
+                display: inline-flex;
+                width: auto;
+                flex-shrink: 1;
+                font-size: $type-2;
+                background-color: #e0e0e0;
+                line-height: 1.29em;
+                padding: $golden-ratio-1 $golden-ratio-2;
+                height: $golden-ratio-4;
+                font-weight: 700;
+              }
+            }
+
+            input[type="submit"] {
+              border: none;
+            }
+          }
+        }
+
+        .footer-university--menu {
+          flex-grow: 1;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .footer-university--more {
+          height: fit-content;
+          align-self: center;
+
+          .footer-university--menu {
+            flex-grow: 1;
+            justify-content: space-between;
+
+            .utk-resources-menu--col {
+              flex-direction: column;
+              flex-grow: 1;
+              margin-right: $golden-ratio-4;
+            }
+            .utk-resources-menu--col a {
+              color: #333333;
+              white-space: nowrap;
+              font-size: $type-3;
+            }
+          }
+        }
+      }
+    }
+  }
+
   // RESPONSIVE STYLES
 
+  @media (min-width: 1200px) {
+    // Footers
+    #utk-lib-footer {
+      .footer-libraries,
+      .footer-university {
+        .container {
+          max-width: 1280px !important;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    // Footers
+    #utk-lib-footer {
+      .footer-libraries {
+        .container {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
   @media (min-width: 992px) and (max-width: 1200px) {
+    // Hero
     .utk-digital-elements-wrapper,
     .controls-container {
       .container-fluid {
@@ -257,7 +524,78 @@
     }
   }
 
+  @media (min-width: 768px) and (max-width: 991px) {
+    // Footers
+    #utk-lib-footer {
+      // Libraries footer
+      .footer-libraries {
+        .container {
+          max-width: 100%;
+
+          .footer-libraries--inner {
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+
+            .footer-libraries--anchor {
+              width: 100% !important;
+              max-width: 100%;
+              flex-direction: row !important;
+              padding-bottom: $golden-ratio-2;
+              margin-bottom: $golden-ratio-2;
+
+              p {
+                font-size: $type-3;
+              }
+
+              .footer-libraries--identity {
+                min-width: 33.333333%;
+                flex-shrink: 1;
+                padding-right: $golden-ratio-3;
+
+                .footer-libraries--identity--brand--unit {
+                  font-size: $type-3;
+                }
+              }
+
+              .footer-libraries--menu-extras {
+                flex-grow: 1;
+              }
+            }
+
+            .footer-libraries--menu {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      // University footer
+      .footer-university {
+        .footer-university--inner {
+          flex-direction: column;
+
+          .footer-university--anchor {
+            margin-right: 0;
+          }
+
+          .footer-university--more {
+            align-self: auto;
+
+            .utk-resources-menu--col {
+              width: 50%;
+              margin-right: 0;
+              flex-grow: 0;
+              flex-direction: column;
+            }
+          }
+        }
+      }
+    }
+  }
+
   @media (min-width: 1200px) {
+    // Hero
     .utk-digital-elements-wrapper,
     .controls-container {
       .container-fluid {
@@ -286,6 +624,7 @@
   }
 
   @media (max-width: 991px) {
+    // Hero
     .utk-digital-elements-wrapper {
       height: $golden-ratio-5 !important;
 
@@ -343,6 +682,142 @@
 
         .searchbar-right {
           width: 90%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    // Footers
+    // Library footer
+    #utk-lib-footer {
+      .footer-libraries {
+        padding: $golden-ratio-3 0;
+
+        .container {
+          max-width: 100%;
+          padding-right: $golden-ratio-2;
+          padding-left: $golden-ratio-2;
+
+          .footer-libraries--inner {
+            flex-direction: column;
+            align-items: flex-start;
+            align-content: center;
+
+            .footer-libraries--anchor {
+              padding-bottom: $golden-ratio-2;
+              margin-bottom: $golden-ratio-2;
+              width: 100%;
+              max-width: 100%;
+              flex-direction: row;
+
+              .footer-libraries--identity {
+                min-width: 33.333333%;
+                flex-shrink: 1;
+                padding-right: $golden-ratio-3;
+
+                p {
+                  font-size: $type-2;
+                }
+
+                .footer-libraries--identity--brand {
+                  .footer-libraries--identity--brand--unit {
+                    font-size: $type-3;
+                  }
+                }
+              }
+
+              .footer-libraries--menu-extras {
+                flex-grow: 1;
+
+                .utk-resources-menu--submenu {
+                  a {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+
+          .footer-libraries--menu {
+            flex-direction: column;
+
+            .utk-resources-menu--col {
+              width: 100%;
+
+              .utk-resources-menu--section {
+                a {
+                  width: 50%;
+                }
+
+                .utk-resources-menu--submenu {
+                  flex-direction: row !important;
+                  flex-wrap: wrap;
+
+                  a,
+                  a:visited {
+                    font-size: 16px;
+                  }
+
+                  a:hover,
+                  a:focus {
+                    color: $leconte;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // University footer
+      .footer-university {
+        padding: $golden-ratio-4 0;
+
+        .container {
+          max-width: 100%;
+          padding-right: $golden-ratio-2;
+          padding-left: $golden-ratio-2;
+        }
+
+        .footer-university--inner {
+          flex-direction: column;
+
+          .footer-university--anchor {
+            margin-right: 0;
+          }
+
+          .footer-university--more {
+            align-self: auto;
+
+            .footer-university--menu {
+              flex-wrap: wrap;
+
+              .utk-resources-menu--col {
+                width: 50%;
+                margin-right: 0;
+                flex-grow: 0;
+                flex-direction: column;
+
+                a,
+                a:visited {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 575px) {
+    // Footers
+    #utk-lib-footer {
+      .footer-libraries,
+      .footer-university {
+        .container {
+          max-width: 100%;
         }
       }
     }
