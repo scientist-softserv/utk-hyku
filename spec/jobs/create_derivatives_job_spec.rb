@@ -30,11 +30,11 @@ RSpec.describe CreateDerivativesJob do
       allow(FileSet).to receive(:find).with(id).and_return(file_set)
       allow(file_set).to receive(:id).and_return(id)
       allow(file_set).to receive(:mime_type).and_return('audio/x-wav')
-      allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#IntermediateFile')
     end
 
     context "with a file name" do
       it 'calls create_derivatives and save on a file set' do
+        allow(file_set).to receive(:rdf_type).and_return(['http://pcdm.org/use#IntermediateFile'])
         expect(Hydra::Derivatives::AudioDerivatives).to receive(:create)
         expect(file_set).to receive(:reload)
         expect(file_set).to receive(:update_index)
@@ -53,6 +53,7 @@ RSpec.describe CreateDerivativesJob do
         let(:parent) { GenericWork.new(thumbnail_id: id) }
 
         it 'updates the index of the parent object' do
+          allow(file_set).to receive(:rdf_type).and_return(['http://pcdm.org/use#IntermediateFile'])
           expect(file_set).to receive(:reload)
           expect(parent).to receive(:update_index)
           described_class.perform_now(file_set, file.id)
@@ -63,6 +64,7 @@ RSpec.describe CreateDerivativesJob do
         let(:parent) { GenericWork.new }
 
         it "doesn't update the parent's index" do
+          allow(file_set).to receive(:rdf_type).and_return(['http://pcdm.org/use#IntermediateFile'])
           expect(file_set).to receive(:reload)
           expect(parent).not_to receive(:update_index)
           described_class.perform_now(file_set, file.id)
@@ -74,7 +76,6 @@ RSpec.describe CreateDerivativesJob do
 
         before do
           allow(file_set).to receive(:parent_works).and_return([parent])
-          allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#PreservationFile')
         end
 
         it "does not call #create_derivatives on the file set" do
@@ -83,31 +84,38 @@ RSpec.describe CreateDerivativesJob do
         end
       end
 
-      context "when the parent's rdf_type is OriginalFile" do
-        let(:parent) { create(:attachment, rdf_type: ['http://pcdm.org/use#OriginalFile']) }
+      context "when the parent's rdf_type is PreservationFile and IntermediateFile" do
+        let(:parent) do
+          create(:attachment, rdf_type:
+            ['http://pcdm.org/use#PreservationFile', 'http://pcdm.org/use#IntermediateFile'])
+        end
 
         before do
           allow(file_set).to receive(:parent_works).and_return([parent])
-          allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#OriginalFile')
         end
 
-        it "does not call #create_derivatives on the file set" do
-          expect(file_set).not_to receive(:create_derivatives)
+        it "does call #create_derivatives on the file set" do
+          expect(file_set).to receive(:reload)
+          expect(file_set).to receive(:create_derivatives)
           described_class.perform_now(file_set, file.id)
         end
       end
-    end
 
-    context 'with both IntermediateFile and PreservationFile' do
-      before do
-        allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#PreservationFile | http://pcdm.org/use#IntermediateFile')
-      end
+      context "when the parent's rdf_type is PreservationFile and IntermediateFile" do
+        let(:parent) do
+          create(:attachment, rdf_type:
+            ['http://pcdm.org/use#PreservationFile', 'http://pcdm.org/use#IntermediateFile'])
+        end
 
-      it 'calls create_derivatives and save on a file set' do
-        expect(Hydra::Derivatives::AudioDerivatives).to receive(:create)
-        expect(file_set).to receive(:reload)
-        expect(file_set).to receive(:update_index)
-        described_class.perform_now(file_set, file.id)
+        before do
+          allow(file_set).to receive(:parent_works).and_return([parent])
+        end
+
+        it "does call #create_derivatives on the file set" do
+          expect(file_set).to receive(:reload)
+          expect(file_set).to receive(:create_derivatives)
+          described_class.perform_now(file_set, file.id)
+        end
       end
     end
   end
@@ -124,7 +132,7 @@ RSpec.describe CreateDerivativesJob do
     end
 
     before do
-      allow(file_set).to receive(:rdf_type).and_return('http://pcdm.org/use#IntermediateFile')
+      allow(file_set).to receive(:rdf_type).and_return(['http://pcdm.org/use#IntermediateFile'])
       file_set.original_file = file
       file_set.save!
     end
