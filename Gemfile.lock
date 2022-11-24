@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/notch8/iiif_manifest.git
-  revision: cbdc220390bd9d862906a5e1d9a5d0ebc5a9d503
-  branch: add-thumbnail-property
-  specs:
-    iiif_manifest (1.1.1)
-      activesupport (>= 4)
-
-GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
   revision: c1dfe12e5386f8f4325b3a19dde949ecef1fede3
   specs:
@@ -44,6 +36,17 @@ GIT
       flipflop (~> 2.3)
       hyrax (>= 2.9, < 4.0)
       rails (~> 5.2.4, >= 5.2.4.3)
+
+GIT
+  remote: https://github.com/samvera-labs/hyrax-iiif_av.git
+  revision: 663106777368ec472c23b4b23670ae4de1f902cd
+  branch: utk-hyku-with-hyrax-3
+  specs:
+    hyrax-iiif_av (0.2.0)
+      blacklight
+      hyrax (>= 2.9, < 4.0)
+      iiif_manifest (> 0.5)
+      rails (~> 5.1)
 
 GIT
   remote: https://github.com/samvera/hyrax.git
@@ -605,6 +608,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     ice_nine (0.11.2)
+    iiif_manifest (1.2.0)
+      activesupport (>= 4)
     is_it_working (1.1.0)
     iso-639 (0.3.5)
     iso8601 (0.9.1)
@@ -1275,9 +1280,10 @@ DEPENDENCIES
   flutie
   hyrax!
   hyrax-doi!
+  hyrax-iiif_av!
   i18n-debug
   i18n-tasks
-  iiif_manifest!
+  iiif_manifest
   is_it_working
   jbuilder (~> 2.5)
   jquery-rails

@@ -10,6 +10,8 @@ module Hyrax
     extend ActiveSupport::Concern
     include Blacklight::Base
     include Blacklight::AccessControls::Catalog
+    # Adds behaviors for hyrax-iiif_av plugin.
+    include Hyrax::IiifAv::ControllerBehavior
 
     included do
       with_themed_layout :decide_layout
@@ -20,9 +22,6 @@ module Hyrax
       self.show_presenter = Hyku::WorkShowPresenter
       self.work_form_service = Hyrax::WorkFormService
       self.search_builder_class = WorkSearchBuilder
-      self.iiif_manifest_builder = (
-        Flipflop.cache_work_iiif_manifest? ? Hyrax::CachingIiifManifestBuilder.new : Hyrax::ManifestBuilderService.new
-      )
       attr_accessor :curation_concern
       helper_method :curation_concern, :contextual_path
 
@@ -137,22 +136,7 @@ module Hyrax
       presenter
     end
 
-    def manifest
-      headers['Access-Control-Allow-Origin'] = '*'
-
-      json = iiif_manifest_builder.manifest_for(presenter: iiif_manifest_presenter)
-
-      respond_to do |wants|
-        wants.json { render json: json }
-        wants.html { render json: json }
-      end
-    end
-
     private
-
-      def iiif_manifest_builder
-        self.class.iiif_manifest_builder
-      end
 
       def iiif_manifest_presenter
         IiifManifestPresenter.new(search_result_document(id: params[:id])).tap do |p|

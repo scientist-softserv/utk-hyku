@@ -10,7 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react_ujs": "^2.6.2",
-    "universalviewer": "^3.0.16",
+    "universalviewer": "^3.0.36",
     "webpack": "^4.46.0"
   },
   "scripts": {
