@@ -7355,7 +7355,7 @@ unique-slug@^2.0.0:
   dependencies:
     imurmurhash "^0.1.4"
 
-universalviewer@^3.0.16:
+universalviewer@^3.0.36:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/universalviewer/-/universalviewer-3.1.4.tgz#5355aa77e06a05d1252f473e7b437caa24ecd9ff"
   integrity sha512-1z/0iN0JcGlN3lNX3/hMts2WAaLdmvG+j50lgqdzKsGex6033XmE30otl0U2UvF21S5U7bVlW+KYlMeIQyTRww==
