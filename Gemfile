@@ -93,7 +93,7 @@ gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
 # gem 'hyrax', '~> 3.4.0'
 # lock to graph indexing update commit
-gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'additional-backport-graph-indexer-fixes'
+gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
 gem 'hyrax-iiif_av', git: 'https://github.com/samvera-labs/hyrax-iiif_av.git', branch: 'utk-hyku-with-hyrax-3'
 gem 'iiif_manifest'
 
