@@ -3,9 +3,11 @@
 # OVERRIDE Hyrax 3.4.1 to use IIIF Presentation API V3
 module Hyrax
   module ManifestBuilderServiceDecorator
-    def self.manifest_for(presenter:, iiif_manifest_factory: ::IIIFManifest::V3::ManifestFactory)
-      new(iiif_manifest_factory: iiif_manifest_factory)
-        .manifest_for(presenter: presenter)
+    module ClassMethods
+      def manifest_for(iiif_manifest_factory: ::IIIFManifest::V3::ManifestFactory, presenter:)
+        new(iiif_manifest_factory: iiif_manifest_factory)
+          .manifest_for(presenter: presenter)
+      end
     end
 
     def initialize(iiif_manifest_factory: ::IIIFManifest::V3::ManifestFactory)
@@ -104,3 +106,4 @@ module Hyrax
 end
 
 Hyrax::ManifestBuilderService.prepend(Hyrax::ManifestBuilderServiceDecorator)
+Hyrax::ManifestBuilderService.singleton_class.prepend(Hyrax::ManifestBuilderServiceDecorator::ClassMethods)

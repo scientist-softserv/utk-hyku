@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2022_11_14_153147) do
     t.string "requirement", default: "optional", null: false
     t.string "controlled_value_sources"
     t.string "range"
-    t.string "mappings"
+    t.text "mappings"
     t.index ["profile_id"], name: "index_profile_properties_on_profile_id"
   end
 
