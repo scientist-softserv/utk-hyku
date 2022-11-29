@@ -1,0 +1,13 @@
+<%= f.input :subject,
+            # TODO(shanalmoore) as: :controlled_vocabulary is not working for some reason,
+            as: :multi_value,
+            placeholder: 'Search for a subject',
+            input_html: {
+              class: 'form-control',
+              data: { 'autocomplete-url' => "/authorities/search/loc/subjects",
+                      'autocomplete' => key }
+            },
+            ### Required for the ControlledVocabulary javascript:
+            wrapper_html: { data: { 'autocomplete-url' => "/authorities/search/loc/subjects",
+                                    'field-name' => key }},
+            required: f.object.required?(key) %>
