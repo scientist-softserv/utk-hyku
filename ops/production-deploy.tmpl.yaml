@@ -1,5 +1,13 @@
 replicaCount: 2
 
+resources:
+  limits:
+    memory: "4Gi"
+    cpu: "2"
+  requests:
+    memory: "2Gi"
+    cpu: "1"
+
 livenessProbe:
   enabled: false
 readinessProbe:
@@ -161,6 +169,13 @@ extraEnvVars: &envVars
 
 worker:
   replicaCount: 1
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "2"
+    requests:
+      memory: "2Gi"
+      cpu: "1"
   podSecurityContext:
     runAsUser: 1001
     runAsGroup: 101
