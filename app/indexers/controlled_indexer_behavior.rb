@@ -19,7 +19,8 @@ module ControlledIndexerBehavior
       # end
     begin
         # handle local qa table based vocabs
-      if url.to_s.include?("ucsc.edu") or url.to_s.include?("http://localhost")
+      if url.to_s.include?("http://localhost")
+      # if url.to_s.include?("ucsc.edu") or url.to_s.include?("http://localhost")
         #url.gsub!('http://','https://') if url.to_s.include? "library.ucsc.edu"
         label = JSON.parse(Net::HTTP.get_response(URI(url)).body)["label"]
       # handle geonames specially
@@ -54,9 +55,9 @@ module ControlledIndexerBehavior
         end
       end
       if label == url && (url.include?("id.loc.gov") || url.include?("info:lc"))
-        url.gsub!("info:lc","http://id.loc.gov")
-        url.gsub!('http://','https://')
-        request_url = URI(url)
+        url = url.gsub("info:lc","http://id.loc.gov")
+        url = url.gsub('http://','https://')
+        request_url = URI("#{url}.html")
         request_url.path += '.html'
         response = Net::HTTP.get_response(request_url)
         res = Nokogiri::HTML.parse(response.body)
@@ -122,13 +123,11 @@ module ControlledIndexerBehavior
         label = ""
         case val
         when ActiveTriples::Resource, URI::regexp
-        binding.pry if field_name == 'subject'
           # We need to fetch the string from an external vocabulary
           label = ::AppIndexer.fetch_remote_label(val)
           # skip indexing this one if we can't retrieve the label
           next unless label
         when String
-        binding.pry if field_name == 'subject'
           # This is just a normal string (from a legacy model, etc)
           # Go ahead and create a new entry in the appropriate local vocab, if there is one
           # subauth_name = get_subauthority_for(field: field_name, authority_name: 'local')
