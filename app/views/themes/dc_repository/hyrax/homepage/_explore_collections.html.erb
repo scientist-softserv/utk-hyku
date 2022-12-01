@@ -1,0 +1,20 @@
+<%# OVERRIDE from Hyrax 2.9.0 to add featured collection functionality %>
+<%# OVERRIDE: Hyrax v3.4.2 - removed all hyrax theming for custom client theming for dc_repository theme
+%>
+
+<% featured_collection = f.object.presenter %>
+
+<div class="col-xs-12 col-sm-6 col-md-4 collection-card-container d-flex">
+  <div class="collection-card d-flex">
+    <%= link_to [hyrax, featured_collection] do %>
+      <div class="collection-thumbnail center-block">
+        <%= render_thumbnail_tag(featured_collection, { class: "center-block", alt: "#{featured_collection.title.first} #{ t('hyrax.homepage.admin_sets.thumbnail')}" }, {suppress_link: true}) %>
+      </div>
+      <div class= "collection-label">
+        <%= link_to [hyrax, featured_collection] do %>
+          <%= featured_collection.title.first %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
