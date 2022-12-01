@@ -37,7 +37,6 @@ module Bulkrax
         # parsed_metadata.delete(field_name) # replacing field_name with field_name_attributes
         all_values.each_with_index do |value, i|
           auth_id = sanitize_controlled_field_uri(value) # assume user-provided URI references a valid authority
-          # binding.pry if field_name == 'subject'
           auth_id ||= search_authorities_for_id(field, value)
           auth_id ||= create_local_authority_id(field, value)
           next unless auth_id.present?
@@ -54,12 +53,10 @@ module Bulkrax
     def search_authorities_for_id(field, value)
       found_id = nil
 
-      binding.pry
       SOURCES_OF_AUTHORITIES.each do |auth_source, auth_name|
         subauth_name = get_subauthority_for(field: field, authority_name: auth_name)
         next unless subauth_name.present?
 
-        binding.pry if field == "subject"
         subauthority = auth_source.subauthority_for(subauth_name)
         results = subauthority.search(value)
 

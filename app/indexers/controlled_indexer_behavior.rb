@@ -115,7 +115,6 @@ module ControlledIndexerBehavior
       # Wrap single objects in arrays if necessary (though it shouldn't be)
       #      object[field_name] = Array.wrap(object[field_name])
 
-      # binding.pry if field_name
       # Loop through the different values provided for this property
       next unless object.attribute_names.include?(field_name)
       next unless object[field_name].present?
@@ -166,7 +165,6 @@ module ControlledIndexerBehavior
   end
 
   def get_subauthority_for(field:, authority_name:)
-    # binding.pry
     # field_vocab = field.vocabularies.find { |vocab| vocab['authority'].to_s.downcase == authority_name }
     # return unless field_vocab.present?
 
@@ -174,7 +172,6 @@ module ControlledIndexerBehavior
   end
 
   def mint_local_auth_url(subauth_name, value)
-    binding.pry
     id = value.parameterize
     auth = Qa::LocalAuthority.find_or_create_by(name: subauth_name)
 
