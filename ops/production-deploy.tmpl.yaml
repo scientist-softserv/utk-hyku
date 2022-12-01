@@ -126,6 +126,8 @@ extraEnvVars: &envVars
     value: "true"
   - name: HYKU_BULKRAX_ENABLED
     value: "true"
+  - name: HYRAX_USE_SOLR_GRAPH_NESTING
+    valud: "true"
   - name: SOLR_ADMIN_PASSWORD
     value: $SOLR_ADMIN_PASSWORD
   - name: SOLR_ADMIN_USER
