@@ -9,14 +9,14 @@ module ControlledIndexerBehavior
         resource = url
         url = resource.id.dup
       end
-      # # if it's buffered, return the buffer
-      # if (buffer = LdBuffer.find_by(url: url))
-      #   if (Time.now - buffer.updated_at).seconds > 1.year
-      #     LdBuffer.where(url: url).each{|buffer| buffer.destroy }
-      #   else
-      #     return buffer.label
-      #   end
-      # end
+      # if it's buffered, return the buffer
+      if (buffer = LdBuffer.find_by(url: url))
+        if (Time.now - buffer.updated_at).seconds > 1.year
+          LdBuffer.where(url: url).each{|buffer| buffer.destroy }
+        else
+          return buffer.label
+        end
+      end
     begin
         # handle local qa table based vocabs
       if url.to_s.include?("http://localhost")
@@ -64,13 +64,13 @@ module ControlledIndexerBehavior
         label = res.title.split('-')[0].strip
       end
       Rails.logger.info "Adding buffer entry - label: #{label}, url:  #{url.to_s}"
-      # LdBuffer.create(url: url, label: label)
+      LdBuffer.create(url: url, label: label)
 
-      # # Delete oldest records if we have more than 5K in the buffer
-      # if (cnt = LdBuffer.count - 5000) > 0
-      #   ids = LdBuffer.order('created_at ASC').limit(cnt).pluck(:id)
-      #   LdBuffer.where(id: ids).delete_all
-      # end
+      # Delete oldest records if we have more than 5K in the buffer
+      if (cnt = LdBuffer.count - 5000) > 0
+        ids = LdBuffer.order('created_at ASC').limit(cnt).pluck(:id)
+        LdBuffer.where(id: ids).delete_all
+      end
       raise Exception if label.to_s == url.to_s
 
       return label.to_s
@@ -86,7 +86,7 @@ module ControlledIndexerBehavior
     private
 
     def destroy_buffer(url)
-      # LdBuffer.where(url: url).each{|buffer| buffer.destroy }
+      LdBuffer.where(url: url).each{|buffer| buffer.destroy }
     end
     
     def default_accept_header
