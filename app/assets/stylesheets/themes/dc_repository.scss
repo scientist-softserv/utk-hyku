@@ -128,7 +128,7 @@ body.dc_repository {
       line-height: $golden-ratio-5;
       font-size: $type-5 !important;
       font-weight: 700;
-      padding: 0px $golden-ratio-3;
+      padding: 0 $golden-ratio-3;
       left: 100%;
       color: $smokey !important;
       letter-spacing: -0.03em;
@@ -316,7 +316,7 @@ body.dc_repository {
         }
 
         .utk-description {
-          font-size: 18px;
+          font-size: $type-3;
           color: $white;
           font-family: "Gotham";
           font-weight: 400;
@@ -354,7 +354,7 @@ body.dc_repository {
       .input-group-btn .btn {
         background: none;
         background-color: $white;
-        min-width: 76px;
+        min-width: $golden-ratio-5;
         padding: 0;
         border: none;
         color: $smokey;
@@ -373,9 +373,9 @@ body.dc_repository {
         padding: 0 !important;
         min-height: auto;
         border: none;
-        border-left: 2px solid #f6f6f6;
-        border-right: 2px solid #f6f6f6;
-        min-width: 76px;
+        border-left: 2px solid $gray-0;
+        border-right: 2px solid $gray-0;
+        min-width: $golden-ratio-5;
         font-weight: 400;
 
         .fa {
@@ -426,7 +426,7 @@ body.dc_repository {
     .row {
       display: flex;
       align-items: center;
-      padding: 0 47px;
+      padding: 0 $golden-ratio-4;
     }
 
     .navbar .navbar-nav li,
@@ -871,7 +871,7 @@ body.dc_repository {
 
       a#library-link.navbar-library-link {
         font-size: $type-5 !important;
-        padding: 0px $golden-ratio-1 !important;
+        padding: 0 $golden-ratio-1 !important;
       }
     }
 
@@ -1075,7 +1075,7 @@ body.dc_repository {
 
       .navbar-header {
         float: none;
-        margin-left: 0px;
+        margin-left: 0;
       }
 
       #library-link {
