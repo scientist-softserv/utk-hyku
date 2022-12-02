@@ -456,49 +456,87 @@ body.dc_repository {
 
   // Featured Collections Section
 
-  .collections-container {
-    a {
-      img {
-        display: block;
-        height: auto;
-        margin-left: auto;
+  #featured-collections {
+    .featured-collections {
+      padding-top: $golden-ratio-4;
+
+      h2 {
+        padding-left: $golden-ratio-2;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: $golden-ratio-3;
+        padding-left: $golden-ratio-3;
         margin-right: auto;
-        max-width: 100%;
+        margin-left: auto;
+
+        .home-content {
+          .nav {
+            margin: 0 !important;
+          }
+          .nav-tabs {
+            border: none !important;
+          }
+        }
       }
     }
-  }
 
-  .collections-row {
-    justify-content: space-between;
-  }
+    #homeTabs .collections-container {
+      a {
+        img {
+          display: block;
+          height: auto;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 100%;
+        }
+      }
+    }
 
-  .collection-card {
-    background-color: $white;
-    margin-right: 0px;
-    margin-bottom: 20px;
-    flex-direction: column;
-    flex-grow: 1;
-  }
+    .collections-row {
+      justify-content: space-between;
+    }
+    
+    .collection-card-container {
+      flex-direction: column;
+      height: 500px;
 
-  .collection-card-container {
-    flex-direction: column;
-    height: 500px;
-  }
-  
-  .collection-label {
-    padding: 15px !important;
-  }
+      .collection-card {
+        background-color: $white;
+        margin-right: 0px;
+        margin-bottom: 20px;
+        flex-direction: column;
+        flex-grow: 1;
+        text-align: center;
+      }
+    }
 
-  .collection-thumbnail img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    object-position: center;
-    &[src*="default_collection_images"],
-    &[src^="/assets/collection"] {
-      width: 130px;
-      height: 130px;
-      margin: 35px auto;
+    .collection-label {
+      padding: 15px !important;
+
+      a,
+      a:visited {
+        color: $globe;
+      }
+
+      a:hover,
+      a:focus {
+        color: $leconte;
+      }
+    }
+
+    .collection-thumbnail img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center;
+      &[src*="default_collection_images"],
+      &[src^="/assets/collection"] {
+        width: 130px;
+        height: 130px;
+        margin: 35px auto;
+      }
     }
   }
 
@@ -765,6 +803,14 @@ body.dc_repository {
       }
     }
 
+    #featured-collections {
+      .featured-collections {
+        .container {
+          max-width: 1280px !important;
+        }
+      }
+    }
+
     // Footers
     #utk-lib-footer {
       .footer-libraries,
@@ -987,6 +1033,31 @@ body.dc_repository {
         }
       }
     }
+
+    // Featured collections section
+    #featured-collections {
+      .featured-collections {
+        padding-top: $golden-ratio-3;
+
+        h2 {
+          font-size: $type-4;
+          text-align: center;
+          padding: 0;
+        }
+      }
+
+      .collection-label {
+        padding: 15px !important;
+
+        a {
+          font-size: $type-3;
+        }
+      }
+
+      .home-content > div {
+        margin: 0;
+      }
+    }
   }
 
   @media (max-width: 767px) {
@@ -1013,6 +1084,17 @@ body.dc_repository {
       #logo {
         img {
           height: 29.85px !important;
+        }
+      }
+    }
+
+    // Featured collections section
+    #featured-collections {
+      .featured-collections {
+        .container {
+          max-width: 100%;
+          padding-right: $golden-ratio-2;
+          padding-left: $golden-ratio-2;
         }
       }
     }
@@ -1150,6 +1232,15 @@ body.dc_repository {
   }
 
   @media (min-width: 575px) {
+    // Featured collections section
+    #featured-collections {
+      .featured-collections {
+        .container {
+          max-width: 100%;
+        }
+      }
+    }
+
     // Footers
     #utk-lib-footer {
       .footer-libraries,
