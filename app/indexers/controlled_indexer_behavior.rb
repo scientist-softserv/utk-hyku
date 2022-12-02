@@ -19,41 +19,41 @@ module ControlledIndexerBehavior
       end
     begin
         # handle local qa table based vocabs
-      if url.to_s.include?("http://localhost")
-      # if url.to_s.include?("ucsc.edu") or url.to_s.include?("http://localhost")
-        #url.gsub!('http://','https://') if url.to_s.include? "library.ucsc.edu"
-        label = JSON.parse(Net::HTTP.get_response(URI(url)).body)["label"]
-      # handle geonames specially
-      elsif url.include? "geonames.org"
-        # make sure we fetch the rdf record, not the normal html one
-        if (res_url = url.dup) =~ /geonames.org\/[0-9]+.*\z/ && !res_url.include?("/about.rdf")
-          res_url = url.gsub(/(geonames.org\/[0-9]+).*\z/,"\\1/about.rdf")
-        end
-        # Interpret the xml result ourselves
-        doc = Nokogiri::XML(open(res_url))
-        label = doc.xpath('//gn:name').first.children.first.text.dup
-      # fetch from other normal authorities
-      else
-        # Smoothly handle some common syntax issues
-        cleaned_url = url.dup
-        if url.include?("vocab.getty.edu")
-          cleaned_url.gsub!("/page/","/")
-          cleaned_url.gsub!('http://','https://')
-          response = Net::HTTP.get_response(URI(cleaned_url))
-          res = Nokogiri::HTML.parse(response.body)
-          label = res.title.strip
-        elsif !cleaned_url.is_a? String
-          resource = ActiveTriples::Resource.new(cleaned_url)
-          labels = resource.fetch(headers: { 'Accept'.freeze => default_accept_header }).rdf_label
-          if labels.count == 1
-            label = labels.first.dup.to_s
-          else
-            label = labels.find{|label| label.language.to_s =~ /en/ }.dup.to_s
-          end
-        else
-          label = cleaned_url
-        end
-      end
+      # if url.to_s.include?("http://localhost")
+      # # if url.to_s.include?("ucsc.edu") or url.to_s.include?("http://localhost")
+      #   #url.gsub!('http://','https://') if url.to_s.include? "library.ucsc.edu"
+      #   label = JSON.parse(Net::HTTP.get_response(URI(url)).body)["label"]
+      # # handle geonames specially
+      # elsif url.include? "geonames.org"
+      #   # make sure we fetch the rdf record, not the normal html one
+      #   if (res_url = url.dup) =~ /geonames.org\/[0-9]+.*\z/ && !res_url.include?("/about.rdf")
+      #     res_url = url.gsub(/(geonames.org\/[0-9]+).*\z/,"\\1/about.rdf")
+      #   end
+      #   # Interpret the xml result ourselves
+      #   doc = Nokogiri::XML(open(res_url))
+      #   label = doc.xpath('//gn:name').first.children.first.text.dup
+      # # fetch from other normal authorities
+      # else
+      #   # Smoothly handle some common syntax issues
+      #   cleaned_url = url.dup
+      #   if url.include?("vocab.getty.edu")
+      #     cleaned_url.gsub!("/page/","/")
+      #     cleaned_url.gsub!('http://','https://')
+      #     response = Net::HTTP.get_response(URI(cleaned_url))
+      #     res = Nokogiri::HTML.parse(response.body)
+      #     label = res.title.strip
+      #   elsif !cleaned_url.is_a? String
+      #     resource = ActiveTriples::Resource.new(cleaned_url)
+      #     labels = resource.fetch(headers: { 'Accept'.freeze => default_accept_header }).rdf_label
+      #     if labels.count == 1
+      #       label = labels.first.dup.to_s
+      #     else
+      #       label = labels.find{|label| label.language.to_s =~ /en/ }.dup.to_s
+      #     end
+      #   else
+      #     label = cleaned_url
+      #   end
+      # end
       if label == url && (url.include?("id.loc.gov") || url.include?("info:lc"))
         url = url.gsub("info:lc","http://id.loc.gov")
         url = url.gsub('http://','https://')
@@ -133,9 +133,10 @@ module ControlledIndexerBehavior
           # subauth_name = get_subauthority_for(field: field_name, authority_name: 'local')
           # next unless subauth_name.present? # If have a random string and no local vocab, just move on for now
 
-          # mint_local_auth_url(field_name, val)
-          # mint_local_auth_url(subauth_name, val) if subauth_name.present?
-          label = val
+          # binding.pry
+          # # mint_local_auth_url(field_name, val)
+          # # mint_local_auth_url(subauth_name, val) if subauth_name.present?
+          # label = val
         else
           raise ArgumentError, "Can't handle #{val.class} as a metadata term"
         end
