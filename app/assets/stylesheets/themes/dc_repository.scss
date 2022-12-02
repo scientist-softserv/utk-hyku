@@ -496,8 +496,10 @@ body.dc_repository {
 
     .collections-row {
       justify-content: space-between;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
-    
+
     .collection-card-container {
       flex-direction: column;
       height: 500px;
@@ -1037,7 +1039,7 @@ body.dc_repository {
     // Featured collections section
     #featured-collections {
       .featured-collections {
-        padding-top: $golden-ratio-3;
+        padding-top: $golden-ratio-2;
 
         h2 {
           font-size: $type-4;
@@ -1052,6 +1054,10 @@ body.dc_repository {
         a {
           font-size: $type-3;
         }
+      }
+
+      .collections-row {
+        padding-top: $golden-ratio-3;
       }
 
       .home-content > div {
