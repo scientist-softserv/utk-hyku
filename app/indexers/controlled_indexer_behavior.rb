@@ -118,6 +118,7 @@ module ControlledIndexerBehavior
       # Loop through the different values provided for this property
       next unless object.attribute_names.include?(field_name)
       next unless object[field_name].present?
+      values = []
       object[field_name].each do |val|
         label = ""
         case val
@@ -132,18 +133,21 @@ module ControlledIndexerBehavior
           # subauth_name = get_subauthority_for(field: field_name, authority_name: 'local')
           # next unless subauth_name.present? # If have a random string and no local vocab, just move on for now
 
-          mint_local_auth_url(field_name, val)
+          # mint_local_auth_url(field_name, val)
           # mint_local_auth_url(subauth_name, val) if subauth_name.present?
           label = val
         else
           raise ArgumentError, "Can't handle #{val.class} as a metadata term"
         end
+
+        # values << label
         (solr_doc["#{field_name}_label_tesim"] ||= []) << label
         (solr_doc["#{field_name}_label_ssm"] ||= []) << label
         # field.solr_names.each do |solr_name| 
         #   (solr_doc[solr_name] ||= []) << label
         # end
       end
+      # solr_doc.update({"#{field_name}_tesim" => values})
     end
     solr_doc
   end
@@ -155,7 +159,7 @@ module ControlledIndexerBehavior
   def controlled_field_names
     @controlled_vocabulary_properties ||= []
     metadata_schema.schema['properties'].each do |key, value|
-      @controlled_vocabulary_properties << key if value["controlled_values"] != "[\"null\"]"
+      @controlled_vocabulary_properties << key if value["controlled_values"] != ["null"]
     end
     @controlled_vocabulary_properties
   end
@@ -164,26 +168,29 @@ module ControlledIndexerBehavior
     metadata_schema.schema['properties'][field_name]
   end
 
-  def get_subauthority_for(field:, authority_name:)
-    # field_vocab = field.vocabularies.find { |vocab| vocab['authority'].to_s.downcase == authority_name }
-    # return unless field_vocab.present?
+  # def get_subauthority_for(field:, authority_name:)
+  #   field_vocab = get_field(field)['controlled_values'].find{ |vocab| puts vocab }
 
-    # field_vocab['subauthority']
-  end
+  #   # field_vocab = field.vocabularies.find { |vocab| vocab['authority'].to_s.downcase == authority_name }
+  #   # return unless field_vocab.present?
 
-  def mint_local_auth_url(subauth_name, value)
-    id = value.parameterize
-    auth = Qa::LocalAuthority.find_or_create_by(name: subauth_name)
+  #   # field_vocab['subauthority']
+  # https://github.com/UCSCLibrary/ucsc-library-digital-collections/blob/master/config/metadata.yml#L106-L107
+  # end
 
-    Qa::LocalAuthorityEntry.find_or_create_by!(uri: id) do |entry|
-      entry.local_authority = auth
-      entry.label = value
-    end
+  # def mint_local_auth_url(subauth_name, value)
+  #   id = value.parameterize
+  #   auth = Qa::LocalAuthority.find_or_create_by(name: subauth_name)
 
-    local_id_to_url(id, subauth_name)
-  end
+  #   Qa::LocalAuthorityEntry.find_or_create_by!(uri: id) do |entry|
+  #     entry.local_authority = auth
+  #     entry.label = value
+  #   end
 
-  def local_id_to_url(id, subauth_name)
-    "#{CatalogController.root_url}/authorities/show/local/#{subauth_name}/#{id}"
-  end
+  #   local_id_to_url(id, subauth_name)
+  # end
+
+  # def local_id_to_url(id, subauth_name)
+  #   "#{CatalogController.root_url}/authorities/show/local/#{subauth_name}/#{id}"
+  # end
 end

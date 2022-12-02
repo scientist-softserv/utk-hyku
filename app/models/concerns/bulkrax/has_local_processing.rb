@@ -4,13 +4,13 @@ module Bulkrax
   module HasLocalProcessing
     include ControlledIndexerBehavior
 
-    SOURCES_OF_AUTHORITIES = {
-      # local db, faster
-      ::Qa::Authorities::Local => 'local',
-      # remote, slower
-      ::Qa::Authorities::Loc => 'loc',
-      ::Qa::Authorities::Getty => 'getty'
-    }.freeze
+    # SOURCES_OF_AUTHORITIES = {
+    #   # local db, faster
+    #   ::Qa::Authorities::Local => 'local',
+    #   # remote, slower
+    #   ::Qa::Authorities::Loc => 'loc',
+    #   ::Qa::Authorities::Getty => 'getty'
+    # }.freeze
 
     def add_local
       add_controlled_fields
@@ -37,8 +37,8 @@ module Bulkrax
         # parsed_metadata.delete(field_name) # replacing field_name with field_name_attributes
         all_values.each_with_index do |value, i|
           auth_id = sanitize_controlled_field_uri(value) # assume user-provided URI references a valid authority
-          auth_id ||= search_authorities_for_id(field, value)
-          auth_id ||= create_local_authority_id(field, value)
+          # auth_id ||= search_authorities_for_id(field, value)
+          # auth_id ||= create_local_authority_id(field, value)
           next unless auth_id.present?
 
           parsed_metadata["#{field_name}"] ||= {}
@@ -49,30 +49,30 @@ module Bulkrax
       end
     end
 
-    # @return [String, nil] URI for authority, or nil if one could not be found
-    def search_authorities_for_id(field, value)
-      found_id = nil
+    # # @return [String, nil] URI for authority, or nil if one could not be found
+    # def search_authorities_for_id(field, value)
+    #   found_id = nil
 
-      SOURCES_OF_AUTHORITIES.each do |auth_source, auth_name|
-        subauth_name = get_subauthority_for(field: field, authority_name: auth_name)
-        next unless subauth_name.present?
+    #   SOURCES_OF_AUTHORITIES.each do |auth_source, auth_name|
+    #     subauth_name = get_subauthority_for(field: field, authority_name: auth_name)
+    #     next unless subauth_name.present?
 
-        subauthority = auth_source.subauthority_for(subauth_name)
-        results = subauthority.search(value)
+    #     subauthority = auth_source.subauthority_for(subauth_name)
+    #     results = subauthority.search(value)
 
-        results.each do |result|
-          found_id = result['id'] if result['label'].parameterize == value.parameterize
-        end
-      end
+    #     results.each do |result|
+    #       found_id = result['id'] if result['label'].parameterize == value.parameterize
+    #     end
+    #   end
 
-      found_id
-    end
+    #   found_id
+    # end
 
-    # @return [String, nil] URI for local authority, or nil if one could not be created
-    def create_local_authority_id(field, value)
-      local_subauth_name = get_subauthority_for(field: field, authority_name: 'local')
-      mint_local_auth_url(local_subauth_name, value) if local_subauth_name.present?
-    end
+    # # @return [String, nil] URI for local authority, or nil if one could not be created
+    # def create_local_authority_id(field, value)
+    #   local_subauth_name = get_subauthority_for(field: field, authority_name: 'local')
+    #   mint_local_auth_url(local_subauth_name, value) if local_subauth_name.present?
+    # end
 
     def sanitize_controlled_field_uri(value)
       return unless value.match?(::URI::DEFAULT_PARSER.make_regexp)
@@ -90,7 +90,7 @@ module Bulkrax
     def controlled_field_names
       @controlled_vocabulary_properties ||= []
       metadata_schema.schema['properties'].each do |key, value|
-        @controlled_vocabulary_properties << key if value["controlled_values"] != "[\"null\"]"
+        @controlled_vocabulary_properties << key if value["controlled_values"] != ["null"]
       end
       @controlled_vocabulary_properties
     end
