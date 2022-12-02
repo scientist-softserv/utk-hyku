@@ -9,7 +9,7 @@
     <h2><%= t('hyrax.homepage.featured_collections.title') %></h2>
   </div>
  
-  <div class="row pt-40 collections-row pb-40">
+  <div class="row collections-row">
     <% if @featured_collection_list.empty? %>
       <p id='no-collections'><%= t('hyrax.homepage.featured_collections.no_collections') %></p>
     <% elsif can? :update, FeaturedCollection %>
