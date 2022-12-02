@@ -1102,6 +1102,19 @@ body.dc_repository {
           padding-right: $golden-ratio-2;
           padding-left: $golden-ratio-2;
         }
+
+        .collection-card-container {
+          height: 400px;
+
+          .collection-card {
+            margin-bottom: 0;
+          }
+
+          .collection-thumbnail img {
+            height: 300px;
+            width: 80%;
+          }
+        }
       }
     }
 
