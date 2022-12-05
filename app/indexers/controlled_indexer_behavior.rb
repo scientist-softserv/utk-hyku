@@ -36,7 +36,19 @@ module ControlledIndexerBehavior
       else
         # Smoothly handle some common syntax issues
         cleaned_url = url.dup
-        if url.include?("vocab.getty.edu")
+        if url.include?("vocab.getty.edu") # make factory pattern/single point of entry for the term - pass URL and get back relevant label. This will also make it easier to test
+          # make RemoteAuthority module . Authority.label_for_url(url) -  check for where url is (local, db, remote)
+          # will allow us to make submodules for each type (ie: geoname)
+          # local caching can be done at the remoteAuthority level.
+          # this separates frontend from backend. someone can handle frontend. someone else can handle adding more sub authorities.
+          # with the argument passed we need to figure out where authority is (ask remote, db cache or local)
+          # Break tickets down
+          # UI/Indexing (label show on page (solr), editing should show label(fedora) )
+          # BACKEND How is this done in questioning authority (remote interaction). get authority module working to return a string once passed a url
+          # Insullation layer (=> create wrapper around calling gem directly. can help to protect us from being codependent on the gem)
+          # do we can the label to be saved in fedora? 
+
+
           cleaned_url.gsub!("/page/","/")
           cleaned_url.gsub!('http://','https://')
           response = Net::HTTP.get_response(URI(cleaned_url))
@@ -168,29 +180,29 @@ module ControlledIndexerBehavior
     metadata_schema.schema['properties'][field_name]
   end
 
-  # def get_subauthority_for(field:, authority_name:)
-  #   field_vocab = get_field(field)['controlled_values'].find{ |vocab| puts vocab }
+  def get_subauthority_for(field:, authority_name:)
+    field_vocab = get_field(field)['controlled_values'].find{ |vocab| puts vocab }
 
-  #   # field_vocab = field.vocabularies.find { |vocab| vocab['authority'].to_s.downcase == authority_name }
-  #   # return unless field_vocab.present?
+    # field_vocab = field.vocabularies.find { |vocab| vocab['authority'].to_s.downcase == authority_name }
+    # return unless field_vocab.present?
 
-  #   # field_vocab['subauthority']
+    # field_vocab['subauthority']
   # https://github.com/UCSCLibrary/ucsc-library-digital-collections/blob/master/config/metadata.yml#L106-L107
-  # end
+  end
 
-  # def mint_local_auth_url(subauth_name, value)
-  #   id = value.parameterize
-  #   auth = Qa::LocalAuthority.find_or_create_by(name: subauth_name)
+  def mint_local_auth_url(subauth_name, value)
+    id = value.parameterize
+    auth = Qa::LocalAuthority.find_or_create_by(name: subauth_name)
 
-  #   Qa::LocalAuthorityEntry.find_or_create_by!(uri: id) do |entry|
-  #     entry.local_authority = auth
-  #     entry.label = value
-  #   end
+    Qa::LocalAuthorityEntry.find_or_create_by!(uri: id) do |entry|
+      entry.local_authority = auth
+      entry.label = value
+    end
 
-  #   local_id_to_url(id, subauth_name)
-  # end
+    local_id_to_url(id, subauth_name)
+  end
 
-  # def local_id_to_url(id, subauth_name)
-  #   "#{CatalogController.root_url}/authorities/show/local/#{subauth_name}/#{id}"
-  # end
+  def local_id_to_url(id, subauth_name)
+    "#{CatalogController.root_url}/authorities/show/local/#{subauth_name}/#{id}"
+  end
 end
