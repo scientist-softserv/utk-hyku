@@ -1,0 +1,36 @@
+<%# OVERRIDE: Hyrax v3.4.2 - For dc_repository:
+  add divs and classes for custom theme styles
+  remove table around featured collection items
+  remove 'view all collections' button
+%>
+
+<div class="container">
+  <div class="row">
+    <h2><%= t('hyrax.homepage.featured_collections.title') %></h2>
+  </div>
+ 
+  <div class="row collections-row">
+    <% if @featured_collection_list.empty? %>
+      <p id='no-collections'><%= t('hyrax.homepage.featured_collections.no_collections') %></p>
+    <% elsif can? :update, FeaturedCollection %>
+      <%= form_for [main_app, @featured_collection_list] do |f| %>
+        <div class="panel-group dd" id="ff">
+          <ol class="row pb-40" id="featured_works">
+            <%= f.fields_for :featured_collections do |featured| %>
+              <%= render 'sortable_featured_collections', f: featured %>
+            <% end %>
+          </ol>
+        </div>
+        <%= f.submit("Save order", class: 'btn btn-default') %>
+      <% end %>
+    <% else %>
+      <%# OVERRIDE: Hyrax v3.4.2 - remove table around featured collection items %>
+      <%= form_for [main_app, @featured_collection_list] do |f| %>
+        <%= f.fields_for :featured_collections do |featured| %>
+          <%= render 'explore_collections', f: featured %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <%# OVERRIDE: Hyrax v3.4.2 - remove 'view all collections' button %>
+</div> 

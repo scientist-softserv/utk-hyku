@@ -33,11 +33,11 @@ neutral_repository:
   notes: This theme is neutral and is recommended for all types of repositories
 dc_repository:
   banner_image: true
-  featured_researcher: true
-  home_page_text: true
-  marketing_text: true
+  featured_researcher: false
+  home_page_text: false
+  marketing_text: false
   name: DC Repository
-  notes: Placeholder for custom DC theme for UTK
+  notes: Feature flippers need to be disabled for show featured researcher, show share button, show featured works and show recently uploaded
 trace_repository:
   banner_image: true
   featured_researcher: true

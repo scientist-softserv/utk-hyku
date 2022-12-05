@@ -128,7 +128,7 @@ body.dc_repository {
       line-height: $golden-ratio-5;
       font-size: $type-5 !important;
       font-weight: 700;
-      padding: 0px $golden-ratio-3;
+      padding: 0 $golden-ratio-3;
       left: 100%;
       color: $smokey !important;
       letter-spacing: -0.03em;
@@ -316,7 +316,7 @@ body.dc_repository {
         }
 
         .utk-description {
-          font-size: 18px;
+          font-size: $type-3;
           color: $white;
           font-family: "Gotham";
           font-weight: 400;
@@ -354,7 +354,7 @@ body.dc_repository {
       .input-group-btn .btn {
         background: none;
         background-color: $white;
-        min-width: 76px;
+        min-width: $golden-ratio-5;
         padding: 0;
         border: none;
         color: $smokey;
@@ -373,9 +373,9 @@ body.dc_repository {
         padding: 0 !important;
         min-height: auto;
         border: none;
-        border-left: 2px solid #f6f6f6;
-        border-right: 2px solid #f6f6f6;
-        min-width: 76px;
+        border-left: 2px solid $gray-0;
+        border-right: 2px solid $gray-0;
+        min-width: $golden-ratio-5;
         font-weight: 400;
 
         .fa {
@@ -426,7 +426,7 @@ body.dc_repository {
     .row {
       display: flex;
       align-items: center;
-      padding: 0 47px;
+      padding: 0 $golden-ratio-4;
     }
 
     .navbar .navbar-nav li,
@@ -451,6 +451,94 @@ body.dc_repository {
       background-color: transparent !important;
       color: $white !important;
       font-weight: 400;
+    }
+  }
+
+  // Featured Collections Section
+
+  #featured-collections {
+    .featured-collections {
+      padding-top: $golden-ratio-4;
+
+      h2 {
+        padding-left: $golden-ratio-2;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: $golden-ratio-3;
+        padding-left: $golden-ratio-3;
+        margin-right: auto;
+        margin-left: auto;
+
+        .home-content {
+          .nav {
+            margin: 0 !important;
+          }
+          .nav-tabs {
+            border: none !important;
+          }
+        }
+      }
+    }
+
+    #homeTabs .collections-container {
+      a {
+        img {
+          display: block;
+          height: auto;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 100%;
+        }
+      }
+    }
+
+    .collections-row {
+      justify-content: space-between;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .collection-card-container {
+      flex-direction: column;
+      height: 500px;
+
+      .collection-card {
+        background-color: $white;
+        margin-right: 0px;
+        margin-bottom: 20px;
+        flex-direction: column;
+        flex-grow: 1;
+        text-align: center;
+      }
+    }
+
+    .collection-label {
+      padding: 15px !important;
+
+      a,
+      a:visited {
+        color: $globe;
+      }
+
+      a:hover,
+      a:focus {
+        color: $leconte;
+      }
+    }
+
+    .collection-thumbnail img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center;
+      &[src*="default_collection_images"],
+      &[src^="/assets/collection"] {
+        width: 130px;
+        height: 130px;
+        margin: 35px auto;
+      }
     }
   }
 
@@ -717,6 +805,14 @@ body.dc_repository {
       }
     }
 
+    #featured-collections {
+      .featured-collections {
+        .container {
+          max-width: 1280px !important;
+        }
+      }
+    }
+
     // Footers
     #utk-lib-footer {
       .footer-libraries,
@@ -775,7 +871,7 @@ body.dc_repository {
 
       a#library-link.navbar-library-link {
         font-size: $type-5 !important;
-        padding: 0px $golden-ratio-1 !important;
+        padding: 0 $golden-ratio-1 !important;
       }
     }
 
@@ -939,6 +1035,35 @@ body.dc_repository {
         }
       }
     }
+
+    // Featured collections section
+    #featured-collections {
+      .featured-collections {
+        padding-top: $golden-ratio-2;
+
+        h2 {
+          font-size: $type-4;
+          text-align: center;
+          padding: 0;
+        }
+      }
+
+      .collection-label {
+        padding: 15px !important;
+
+        a {
+          font-size: $type-3;
+        }
+      }
+
+      .collections-row {
+        padding-top: $golden-ratio-3;
+      }
+
+      .home-content > div {
+        margin: 0;
+      }
+    }
   }
 
   @media (max-width: 767px) {
@@ -950,7 +1075,7 @@ body.dc_repository {
 
       .navbar-header {
         float: none;
-        margin-left: 0px;
+        margin-left: 0;
       }
 
       #library-link {
@@ -965,6 +1090,30 @@ body.dc_repository {
       #logo {
         img {
           height: 29.85px !important;
+        }
+      }
+    }
+
+    // Featured collections section
+    #featured-collections {
+      .featured-collections {
+        .container {
+          max-width: 100%;
+          padding-right: $golden-ratio-2;
+          padding-left: $golden-ratio-2;
+        }
+
+        .collection-card-container {
+          height: 400px;
+
+          .collection-card {
+            margin-bottom: 0;
+          }
+
+          .collection-thumbnail img {
+            height: 300px;
+            width: 80%;
+          }
         }
       }
     }
@@ -1102,6 +1251,15 @@ body.dc_repository {
   }
 
   @media (min-width: 575px) {
+    // Featured collections section
+    #featured-collections {
+      .featured-collections {
+        .container {
+          max-width: 100%;
+        }
+      }
+    }
+
     // Footers
     #utk-lib-footer {
       .footer-libraries,
