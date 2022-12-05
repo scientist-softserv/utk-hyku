@@ -1,5 +1,13 @@
 replicaCount: 2
 
+resources:
+  limits:
+    memory: "4Gi"
+    cpu: "2"
+  requests:
+    memory: "2Gi"
+    cpu: "1"
+
 livenessProbe:
   enabled: false
 readinessProbe:
@@ -126,6 +134,8 @@ extraEnvVars: &envVars
     value: "true"
   - name: HYKU_BULKRAX_ENABLED
     value: "true"
+  - name: HYRAX_USE_SOLR_GRAPH_NESTING
+    value: "true"
   - name: SOLR_ADMIN_PASSWORD
     value: $SOLR_ADMIN_PASSWORD
   - name: SOLR_ADMIN_USER
@@ -161,6 +171,13 @@ extraEnvVars: &envVars
 
 worker:
   replicaCount: 1
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "2"
+    requests:
+      memory: "2Gi"
+      cpu: "1"
   podSecurityContext:
     runAsUser: 1001
     runAsGroup: 101
