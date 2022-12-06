@@ -35,7 +35,6 @@ jobs:
     secrets: inherit
     with:
       workerTarget: hyku-worker
-
   test:
     needs: build-web
     uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
