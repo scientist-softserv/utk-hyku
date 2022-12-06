@@ -175,34 +175,4 @@ module ControlledIndexerBehavior
     end
     @controlled_vocabulary_properties
   end
-
-  def get_field(field_name)
-    metadata_schema.schema['properties'][field_name]
-  end
-
-  def get_subauthority_for(field:, authority_name:)
-    field_vocab = get_field(field)['controlled_values'].find{ |vocab| puts vocab }
-
-    # field_vocab = field.vocabularies.find { |vocab| vocab['authority'].to_s.downcase == authority_name }
-    # return unless field_vocab.present?
-
-    # field_vocab['subauthority']
-  # https://github.com/UCSCLibrary/ucsc-library-digital-collections/blob/master/config/metadata.yml#L106-L107
-  end
-
-  def mint_local_auth_url(subauth_name, value)
-    id = value.parameterize
-    auth = Qa::LocalAuthority.find_or_create_by(name: subauth_name)
-
-    Qa::LocalAuthorityEntry.find_or_create_by!(uri: id) do |entry|
-      entry.local_authority = auth
-      entry.label = value
-    end
-
-    local_id_to_url(id, subauth_name)
-  end
-
-  def local_id_to_url(id, subauth_name)
-    "#{CatalogController.root_url}/authorities/show/local/#{subauth_name}/#{id}"
-  end
 end

@@ -25,10 +25,10 @@ module Bulkrax
         # parsed_metadata.delete(field_name) # replacing field_name with field_name_attributes
         all_values.each_with_index do |value, i|
           auth_id = sanitize_controlled_field_uri(value) # assume user-provided URI references a valid authority
-          # fetch and cache authority (job) => background job to go to LOC and pull them into local db. Authority.fetch_cache_term
           next unless auth_id.present?
 
           parsed_metadata["#{field_name}"] ||= {}
+          # fetch and cache authority (job) => background job to go to LOC and pull them into local db. Authority.fetch_cache_term
           parsed_metadata["#{field_name}"][i] = ::AppIndexer.fetch_remote_label(auth_id)
         end
       end
