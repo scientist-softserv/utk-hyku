@@ -29,12 +29,12 @@ jobs:
     uses: scientist-softserv/actions/.github/workflows/build-worker.yaml@arm-wrestle
     secrets: inherit
     with:
-      workerTarget: hyku-worker
+      target: hyku-worker
   build-worker-arm64:
     uses: scientist-softserv/actions/.github/workflows/build-worker-arm64.yaml@arm-wrestle
     secrets: inherit
     with:
-      workerTarget: hyku-worker
+      target: hyku-worker
   test:
     needs: build-web
     uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
