@@ -15,20 +15,33 @@ on:
         default: false
 
 jobs:
-  build:
-    uses: scientist-softserv/actions/.github/workflows/build.yaml@v005-but-on-github-runners
+  build-web:
+    uses: scientist-softserv/actions/.github/workflows/build-web.yaml@arm-wrestle
     secrets: inherit
     with:
       target: hyku-base
-      worker: true
-      workerTarget: hyku-worker
+  build-web-arm64:
+    uses: scientist-softserv/actions/.github/workflows/build-web-arm64.yaml@arm-wrestle
+    secrets: inherit
+    with:
+      target: hyku-base
+  build-worker:
+    uses: scientist-softserv/actions/.github/workflows/build-worker.yaml@arm-wrestle
+    secrets: inherit
+    with:
+      target: hyku-worker
+  build-worker-arm64:
+    uses: scientist-softserv/actions/.github/workflows/build-worker-arm64.yaml@arm-wrestle
+    secrets: inherit
+    with:
+      target: hyku-worker
   test:
-    needs: build
-    uses: scientist-softserv/actions/.github/workflows/test.yaml@v005-but-on-github-runners
+    needs: build-web
+    uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
     with:
       worker: true
   lint:
-    needs: build
-    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v005-but-on-github-runners
+    needs: build-web
+    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.5
     with:
       worker: true
