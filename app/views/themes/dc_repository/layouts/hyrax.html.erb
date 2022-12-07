@@ -1,5 +1,6 @@
 <%# OVERRIDE: Hyrax v3.4.2 - For dc_repository theme:
-  add html elements, id and classes for custom theme styles
+  add html elements, id and classes to featured collections section for custom theme styles
+  add html elements, id and classes to browse collections section for custom theme styles
 %>
 
 <!-- add body classes to make styling easier -->
@@ -19,9 +20,28 @@
     <%= render '/masthead' %>
     <%= content_for(:navbar) %>
     <%= content_for(:precontainer_content) %>
-    <%# OVERRIDE: Hyrax v3.4.2 - add html elements, id and classes for custom theme styles %>
+    <%# OVERRIDE: Hyrax v3.4.2 - add html elements, id and classes to featured collections section for custom theme styles %>
     <section id="featured-collections">
       <div class='featured-collections'>
+        <div class="container" role="main">
+          <%= render '/flash_msg' %>
+          <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
+          <% if content_for?(:page_header) %>
+            <div class="row">
+              <div class="col-xs-12 main-header">
+                <%= yield(:page_header) %>
+              </div>
+            </div>
+          <% end %>
+          <a name="skip-to-content" id="skip-to-content"></a>
+          <%= render 'shared/read_only' if Flipflop.read_only? %>
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </div>
+      </div>
+    </section>
+    <%# OVERRIDE: Hyrax v3.4.2 - add html elements, id and classes to browse collections section for custom theme styles %>
+    <section id="browse-collections">
+      <div class='browse-collections'>
         <div class="container" role="main">
           <%= render '/flash_msg' %>
           <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
