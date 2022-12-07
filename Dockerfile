@@ -1,4 +1,4 @@
-FROM ghcr.io/scientist-softserv/dev-ops/samvera:e9200061 as hyku-base
+FROM ghcr.io/scientist-softserv/dev-ops/samvera:f71b284f as hyku-base
 
 COPY --chown=1001:101 $APP_PATH/Gemfile* /app/samvera/hyrax-webapp/
 RUN sh -l -c " \
@@ -13,13 +13,6 @@ COPY --chown=1001:101 $APP_PATH /app/samvera/hyrax-webapp
 ARG HYKU_BULKRAX_ENABLED="true"
 RUN RAILS_ENV=production SECRET_KEY_BASE=FAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKEFAKE DB_ADAPTER=nulldb DB_URL='postgresql://fake' bundle exec rake assets:precompile
 RUN ln -sf /app/samvera/branding /app/samvera/hyrax-webapp/public/branding
-
-COPY --chown=1001:101 $APP_PATH/ops/fits.xml /app/fits/xml/fits.xml
-USER root
-RUN sh -l -c " \
-  apk del openjdk11-jre && \
-  apk add --no-cache openjdk17-jre"
-USER app
 
 FROM hyku-base as hyku-worker
 ENV MALLOC_ARENA_MAX=2
