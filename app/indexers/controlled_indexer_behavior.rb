@@ -18,6 +18,7 @@ module ControlledIndexerBehavior
         end
       end
     begin
+      binding.pry
         # handle local qa table based vocabs
       if url.to_s.include?("http://localhost")
       # if url.to_s.include?("ucsc.edu") or url.to_s.include?("http://localhost")

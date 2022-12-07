@@ -4,6 +4,8 @@ module Bulkrax
   module HasLocalProcessing
     include ControlledIndexerBehavior
 
+    AuthorityInfo = Struct.new(:authority, :subauthority, :id, :uri, keyword_init: true)
+
     def add_local
       add_controlled_fields
     end
@@ -27,9 +29,16 @@ module Bulkrax
           auth_id = sanitize_controlled_field_uri(value) # assume user-provided URI references a valid authority
           next unless auth_id.present?
 
+          info = extract_authority_info_from(auth_id)
+          label = fetch_remote_label(info)
+          cache_label(info.uri, label)
+
           parsed_metadata["#{field_name}"] ||= {}
           # fetch and cache authority (job) => background job to go to LOC and pull them into local db. Authority.fetch_cache_term
-          parsed_metadata["#{field_name}"][i] = ::AppIndexer.fetch_remote_label(auth_id)
+          # parsed_metadata["#{field_name}"][i] = ::AppIndexer.fetch_remote_label(auth_id)
+          # binding.pry if field_name == 'subject'
+
+          parsed_metadata["#{field_name}"][i] = fetch_remote_label(info)
         end
       end
     end
@@ -41,6 +50,48 @@ module Bulkrax
       valid_value.chop! if valid_value.match?(%r{/$}) # remove trailing forward slash if one is present
 
       valid_value
+    end
+
+    def extract_authority_info_from(url)
+      uri = URI.parse(url)
+      domain = uri.host.downcase # should this come from the metadata profile?
+      # authority = get_field(field_name)
+      subauthority = uri.path.split('/').third # => ["", "authorities", "subjects", "sh85001932"]
+      uri_id = uri.path.split('/').last 
+      AuthorityInfo.new(authority: :LOC, subauthority: subauthority, id: uri_id, uri: url)
+    end
+
+    def fetch_remote_label(info)
+      if info.uri.is_a? ActiveTriples::Resource
+        resource = info.uri
+        url = resource.id.dup
+      end
+      # if it's buffered, return the buffer
+      if (buffer = LdBuffer.find_by(url: url))
+        if (Time.now - buffer.updated_at).seconds > 1.year
+          LdBuffer.where(url: url).each{|buffer| buffer.destroy }
+        else
+          return buffer.label
+        end
+      end
+
+      request_header = {:subauthority => info.subauthority}
+      context = Qa::AuthorityRequestContext.fallback
+      authority = Qa::AuthorityWrapper.new(authority: info.authority, subauthority: info.subauthority, context: context)
+      # authority = Qa::Authorities::LinkedData::GenericAuthority.new(info.authority) # how to get auth?
+      # label = authority.find(info.id, request_header: request_header)[:label]
+      label = authority.find(info.id)
+    end
+
+    def cache_label(url, label)
+      Rails.logger.info "Adding buffer entry - label: #{label}, url:  #{url.to_s}"
+      LdBuffer.create(url: url, label: label)
+
+      # Delete oldest records if we have more than 5K in the buffer
+      if (cnt = LdBuffer.count - 5000) > 0
+        ids = LdBuffer.order('created_at ASC').limit(cnt).pluck(:id)
+        LdBuffer.where(id: ids).delete_all
+      end
     end
 
     def metadata_schema
