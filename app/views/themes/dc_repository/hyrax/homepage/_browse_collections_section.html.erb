@@ -1,0 +1,16 @@
+<%# OVERRIDE: Hyrax v3.4.2 - For dc_repository:
+  add new partial for browse collections section
+%>
+
+<div class="container">
+  <div class="row">
+    <h2><%= t('hyrax.homepage.collections.title') %></h2>
+  </div>
+  <div class="row collections-row">
+    <% @collections_list.each do |collection| %> 
+      <%= render 'browse_collections', collection: collection %>
+    <% end %>
+  </div>
+</div> 
+
+
