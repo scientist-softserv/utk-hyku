@@ -7,6 +7,8 @@
 
 <%# OVERRIDE: Hyrax v3.4.2 - For dc_repository:
   remove Explore Collections li
+  remove surrounding div from featured collection
+  add browse collections section
 %>
 
 <div class="<%= @presenter.display_featured_works? || @presenter.display_recently_uploaded? ? 'home-tabs-left col-sm-6' : ''%>">
@@ -45,18 +47,21 @@
       <li class=""><a aria-expanded="false" href="#tab-col2-second" data-toggle="tab"><%= t('hyrax.homepage.featured_researcher.tab_label') %></a></li>
     <% end %>
   </ul>
-
-  <%# <div class="tab-content"> %>
-    <div class="tab-pane active" id="tab-col2-first">
-      <h2 class="sr-only"><%= t('hyrax.homepage.admin_sets.title') %></h2>
-      <%= render 'featured_collection_section' %>
+  <%# OVERRIDE: Hyrax v3.4.2 - remove surrounding div %>
+  <div class="tab-pane active" id="tab-col2-first">
+    <h2 class="sr-only"><%= t('hyrax.homepage.admin_sets.title') %></h2>
+    <%= render 'featured_collection_section' %>
+  </div>
+  <%# OVERRIDE: Hyrax v3.4.2 - add browse collection section %>
+  <div class="tab-pane active" id="tab-col2-first">
+    <h2 class="sr-only"><%= t('hyrax.homepage.admin_sets.title') %></h2>
+    <%= render 'browse_collections_section' %>
+  </div>
+  <%# add check for featured researcher %>
+  <% if @presenter.display_featured_researcher? %>
+    <div class="tab-pane" id="tab-col2-second">
+      <h2 class="sr-only"><%= t('hyrax.homepage.featured_researcher.title') %></h2>
+      <%= render 'featured_researcher' %>
     </div>
-    <%# add check for featured researcher %>
-    <% if @presenter.display_featured_researcher? %>
-      <div class="tab-pane" id="tab-col2-second">
-        <h2 class="sr-only"><%= t('hyrax.homepage.featured_researcher.title') %></h2>
-        <%= render 'featured_researcher' %>
-      </div>
-    <% end %>
-  <%# </div> %>
+  <% end %>
 </div>
