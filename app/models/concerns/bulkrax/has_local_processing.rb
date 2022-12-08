@@ -3,6 +3,7 @@
 module Bulkrax
   module HasLocalProcessing
     include ControlledIndexerBehavior
+    include Authority
 
     AuthorityInfo = Struct.new(:authority, :subauthority, :id, :uri, keyword_init: true)
 
@@ -55,10 +56,11 @@ module Bulkrax
     def extract_authority_info_from(url)
       uri = URI.parse(url)
       domain = uri.host.downcase # should this come from the metadata profile?
+      authority = :LOC if domain.include?("loc") # focus on implementing LOC first
       # authority = get_field(field_name)
       subauthority = uri.path.split('/').third # => ["", "authorities", "subjects", "sh85001932"]
       uri_id = uri.path.split('/').last 
-      AuthorityInfo.new(authority: :LOC, subauthority: subauthority, id: uri_id, uri: url)
+      AuthorityInfo.new(authority: authority, subauthority: subauthority, id: uri_id, uri: url)
     end
 
     def fetch_remote_label(info)
@@ -76,11 +78,11 @@ module Bulkrax
       end
 
       request_header = {:subauthority => info.subauthority}
-      context = Qa::AuthorityRequestContext.fallback
-      authority = Qa::AuthorityWrapper.new(authority: info.authority, subauthority: info.subauthority, context: context)
+      context = Qa::AuthorityRequestContext.new(subauthority: info.subauthority, headers: request_header)
+      authority = Qa.authority_for(vocab: info.authority, subauthority: info.subauthority, context: context)
       # authority = Qa::Authorities::LinkedData::GenericAuthority.new(info.authority) # how to get auth?
       # label = authority.find(info.id, request_header: request_header)[:label]
-      label = authority.find(info.id)
+      authority.find(info.id)[:label]
     end
 
     def cache_label(url, label)
