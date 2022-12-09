@@ -77,12 +77,19 @@ module Bulkrax
         end
       end
 
-      request_header = {:subauthority => info.subauthority}
-      context = Qa::AuthorityRequestContext.new(subauthority: info.subauthority, headers: request_header)
-      authority = Qa.authority_for(vocab: info.authority, subauthority: info.subauthority, context: context)
-      # authority = Qa::Authorities::LinkedData::GenericAuthority.new(info.authority) # how to get auth?
-      # label = authority.find(info.id, request_header: request_header)[:label]
-      authority.find(info.id)[:label]
+      begin
+        request_header = {:subauthority => info.subauthority}
+        context = Qa::AuthorityRequestContext.new(subauthority: info.subauthority, headers: request_header)
+        authority = Qa.authority_for(vocab: info.authority, subauthority: info.subauthority, context: context)
+        # authority = Qa::Authorities::LinkedData::GenericAuthority.new(info.authority) # how to get auth?
+        # label = authority.find(info.id, request_header: request_header)[:label]
+        return authority.find(info.id)[:label].join
+      rescue Exception => e
+        # IOError could result from a 500 error on the remote server
+        # SocketError results if there is no server to connect to
+        Rails.logger.error "Unable to fetch #{url} from the authorative source.\n#{e.message}"
+        return info.uri
+      end
     end
 
     def cache_label(url, label)
