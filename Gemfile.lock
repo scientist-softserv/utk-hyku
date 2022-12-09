@@ -94,6 +94,21 @@ GIT
       valkyrie (~> 2, >= 2.1.1)
 
 GIT
+  remote: https://github.com/samvera/questioning_authority.git
+  revision: d3c51a573f7d96f2cddb01a1c2379373b8559482
+  branch: jeremyf---extracting-logic-for-determining-qa-authority
+  specs:
+    qa (5.10.0)
+      activerecord-import
+      deprecation
+      faraday (< 3.0, != 2.0.0)
+      geocoder
+      ldpath
+      nokogiri (~> 1.6)
+      rails (>= 5.0, < 7.1)
+      rdf
+
+GIT
   remote: https://github.com/tawan/active-elastic-job.git
   revision: 092a8102cd38cffd7203d408fa03998cdff9dc03
   specs:
@@ -158,7 +173,7 @@ GEM
       activemodel (= 5.2.8)
       activesupport (= 5.2.8)
       arel (>= 9.0)
-    activerecord-import (1.4.0)
+    activerecord-import (1.4.1)
       activerecord (>= 4.2)
     activerecord-nulldb-adapter (0.8.0)
       activerecord (>= 5.2.0, < 7.1)
@@ -505,7 +520,7 @@ GEM
       railties (>= 3.2, < 8.0)
     gender_detector (0.1.2)
       unicode_utils (>= 1.3.0)
-    geocoder (1.8.0)
+    geocoder (1.8.1)
     gitlab (4.19.0)
       httparty (~> 0.20)
       terminal-table (>= 1.5.1)
@@ -637,7 +652,7 @@ GEM
       rdf (~> 3.1)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    json_schemer (0.2.21)
+    json_schemer (0.2.24)
       ecma-re-validator (~> 0.3)
       hana (~> 1.3)
       regexp_parser (~> 2.0)
@@ -680,10 +695,11 @@ GEM
       rdf-turtle
       rdf-vocab (>= 0.8)
       slop
-    ldpath (1.1.0)
+    ldpath (1.2.0)
       nokogiri (~> 1.8)
       parslet
       rdf (~> 3.0)
+      rdf-vocab (~> 3.0)
     legato (0.7.0)
       multi_json
     libxml-ruby (3.1.0)
@@ -850,15 +866,6 @@ GEM
     public_suffix (2.0.5)
     puma (4.3.12)
       nio4r (~> 2.0)
-    qa (5.8.1)
-      activerecord-import
-      deprecation
-      faraday (< 2.0)
-      geocoder
-      ldpath
-      nokogiri (~> 1.6)
-      rails (>= 5.0, < 6.2)
-      rdf
     racc (1.6.0)
     rack (2.2.3)
     rack-proxy (0.7.2)
@@ -1283,6 +1290,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   launchy
+  linkeddata
   listen (>= 3.0.5, < 3.2)
   lograge
   mods (~> 2.4)
@@ -1298,6 +1306,7 @@ DEPENDENCIES
   pronto-rubocop
   pry-byebug
   puma (~> 4.3)
+  qa!
   rack-test (= 0.7.0)
   rails (~> 5.2.5)
   rails-controller-testing

@@ -86,7 +86,7 @@ group :development do
 end
 
 gem 'bulkrax', '~> 4.4'
-gem 'qa', path: 'vendor/questioning_authority' #git: 'https://github.com/samvera/questioning_authority.git' #, branch: 'jeremyf---extracting-logic-for-determining-qa-authority'
+gem 'qa', git: 'https://github.com/samvera/questioning_authority.git', branch: 'jeremyf---extracting-logic-for-determining-qa-authority'
 gem 'linkeddata'
 
 gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
