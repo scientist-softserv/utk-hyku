@@ -2,9 +2,6 @@
 
 module Bulkrax
   module HasLocalProcessing
-    include ControlledIndexerBehavior
-    include Authority
-
     AuthorityInfo = Struct.new(:authority, :subauthority, :id, :uri, keyword_init: true)
 
     def add_local
