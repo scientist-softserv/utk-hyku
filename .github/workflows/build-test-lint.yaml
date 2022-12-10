@@ -36,12 +36,12 @@ jobs:
     with:
       target: hyku-worker
   test:
-    needs: build-web
+    needs: [build-web, build-worker]
     uses: scientist-softserv/actions/.github/workflows/test.yaml@make-pipeline-fail-if-tests-fail
     with:
       worker: true
   lint:
-    needs: build-web
+    needs: [build-web, build-worker]
     uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.5
     with:
       worker: true
