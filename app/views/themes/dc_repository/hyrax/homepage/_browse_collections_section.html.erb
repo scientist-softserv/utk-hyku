@@ -38,10 +38,12 @@
             </div>
           </div>
       </header>
-      <div class="row collections-row">
-        <% @collections_list.each do |collection| %> 
-          <%= render 'browse_collections', collection: collection %>
-        <% end %>
+      <div class='scroll'>
+        <div class="row collections-row">
+          <% @collections_list.each do |collection| %> 
+            <%= render 'browse_collections', collection: collection %>
+          <% end %>
+        </div>
       </div>
     </div>   
   </div>
