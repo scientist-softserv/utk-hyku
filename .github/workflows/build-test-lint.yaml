@@ -21,7 +21,7 @@ jobs:
     with:
       target: hyku-base
       workerTarget: hyku-worker
-      platform: "linux/amd64"
+      platforms: "linux/amd64"
   test:
     needs: build
     uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
