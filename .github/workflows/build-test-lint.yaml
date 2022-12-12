@@ -15,23 +15,20 @@ on:
         default: false
 
 jobs:
-  build-web:
+  build:
     uses: scientist-softserv/actions/.github/workflows/build.yaml@v3plus5
     secrets: inherit
     with:
       target: hyku-base
-  build-worker:
-    uses: scientist-softserv/actions/.github/workflows/build.yaml@v3plus5
-    secrets: inherit
-    with:
-      target: hyku-worker
+      workerTarget: hyku-worker
+      platform: "linux/amd64"
   test:
-    needs: [build-web, build-worker]
+    needs: build
     uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
     with:
       worker: true
   lint:
-    needs: [build-web, build-worker]
+    needs: build
     uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.5
     with:
       worker: true
