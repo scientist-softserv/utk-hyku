@@ -19,9 +19,10 @@ jobs:
     uses: scientist-softserv/actions/.github/workflows/build.yaml@v3plus5
     secrets: inherit
     with:
-      target: hyku-base
-      workerTarget: hyku-worker
       platforms: "linux/amd64"
+      target: hyku-base
+      worker: true
+      workerTarget: hyku-worker
   test:
     needs: build
     uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.5
