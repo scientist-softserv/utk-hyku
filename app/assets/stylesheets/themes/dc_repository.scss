@@ -547,13 +547,10 @@ body.dc_repository {
     .browse-collections {
       padding-top: 0 !important;
 
-      header button:first-child {
-        margin-left: 0;
-      }
-
       header {
         justify-content: space-between;
         margin-top: $golden-ratio-3;
+        margin-bottom: $golden-ratio-3;
 
         button {
           background-color: $white;
@@ -582,6 +579,18 @@ body.dc_repository {
           margin-right: $golden-ratio-0;
           opacity: 0.47;
           display: block;
+        }
+
+        button:first-child {
+          margin-left: 0;
+        }
+
+        // TEMPORARY styling for active state on grid view. Remove once JS enabled for switching.
+        .browse-collections--view {
+          .button-toggle.active {
+            background-color: #00597a !important;
+            color: $white !important;
+          }
         }
 
         .browse-collections--toggles {
@@ -618,6 +627,25 @@ body.dc_repository {
             }
           }
         }
+      }
+
+      .collections-row {
+        padding-top: 0 !important;
+      }
+
+      // Browse Collections Section Scroll
+      .scroll {
+        height: 800px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        // hide scroll bar
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      // hide scroll bar
+      .scroll::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
       }
     }
   }
