@@ -85,6 +85,14 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
 
     # Properties that should not be used in imports/exports. They are reserved for use by Hyrax.
     # config.reserved_properties += ['my_field']
+
+    # TODO: this is not going to work because we don't know what tenant the dynamic schema
+    # should come from. Additionally we would need to add methods to flex
+    # List of Questioning Authority properties that are controlled via YAML files in
+    # the config/authorities/ directory. For example, the :rights_statement property
+    # is controlled by the active terms in config/authorities/rights_statements.yml
+    # Defaults: 'rights_statement' and 'license'
+    # config.qa_controlled_properties += ::AllinsonFlex::DynamicSchema.last.controlled_field_names
   end
 end
 

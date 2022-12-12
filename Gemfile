@@ -86,6 +86,8 @@ group :development do
 end
 
 gem 'bulkrax', '~> 4.4'
+gem 'linkeddata'
+gem 'qa', git: 'https://github.com/samvera/questioning_authority.git', branch: 'jeremyf---extracting-logic-for-determining-qa-authority'
 
 gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
