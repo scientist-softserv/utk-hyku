@@ -813,6 +813,15 @@ es:
         no_works: No se han presentado obras
         tab_label: Trabajos destacados
         title: Trabajos destacados
+      featured_collections:
+        no_collections: No se han presentado colecciones.
+        title: Colecciones destacadas
+        document:
+          title_label: Título
+      collections:
+        title: Explorar colecciones
+        document:
+          title_label: Título  
       recently_uploaded:
         depositor: Depositor
         details: Detalles

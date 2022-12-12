@@ -813,6 +813,15 @@ pt-BR:
         no_works: Nenhum trabalho foi apresentado
         tab_label: Obras em destaque
         title: Obras em destaque
+      featured_collections:
+        no_collections: Nenhuma coleção foi apresentada.
+        title: Coleções em destaque
+        document:
+          title_label: Título
+      collections:
+        title: Procurar coleções
+        document:
+          title_label: Título  
       recently_uploaded:
         depositor: Depositante
         details: Detalhes

@@ -812,6 +812,15 @@ de:
         no_works: Es wurden keine Werke vorgestellt
         tab_label: Ausgewählte Werke
         title: Ausgewählte Werke
+      featured_collections:
+        no_collections: Es wurden keine Sammlungen vorgestellt.
+        title: Ausgewählte Sammlungen
+        document:
+          title_label: Titel
+      collections:
+        title: Sammlungen durchsuchen
+        document:
+          title_label: Titel  
       recently_uploaded:
         depositor: Einleger
         details: Einzelheiten
