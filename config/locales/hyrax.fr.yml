@@ -811,6 +811,15 @@ fr:
         no_works: Aucune œuvre n'a été présentée
         tab_label: Œuvres en vedette
         title: Œuvres en vedette
+      featured_collections:
+        no_collections: Aucune collection n'a été présentée.
+        title: Collections en vedette
+        document:
+          title_label: Titre
+      collections:
+        title: Parcourir les collections
+        document:
+          title_label: Titre  
       recently_uploaded:
         depositor: Déposant
         details: Détails

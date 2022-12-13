@@ -813,6 +813,15 @@ it:
         no_works: Nessun lavoro è stato presentato
         tab_label: Opere in primo piano
         title: Opere in primo piano
+      featured_collections:
+        no_collections: Non sono state presentate raccolte.
+        title: Collezioni in primo piano
+        document:
+          title_label: Titolo
+      collections:
+        title: Sfoglia le collezioni
+        document:
+          title_label: Titolo  
       recently_uploaded:
         depositor: Depositante
         details: Dettagli

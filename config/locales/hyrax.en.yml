@@ -833,6 +833,10 @@ en:
         title: Featured Collections
         document:
           title_label: Title
+      collections:
+        title: Browse Collections
+        document:
+          title_label: Title
       recently_uploaded:
         depositor: Depositor
         details: Details

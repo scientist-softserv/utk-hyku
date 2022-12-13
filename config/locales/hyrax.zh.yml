@@ -813,6 +813,15 @@ zh:
         no_works: 没有作品被推荐
         tab_label: 特色作品
         title: 特色作品
+      featured_collections:
+        no_collections: 沒有收藏。
+        title: 精選系列
+        document:
+          title_label: 标题
+      collections:
+        title: 瀏覽收藏
+        document:
+          title_label: 标题
       recently_uploaded:
         depositor: 储户
         details: 细节
