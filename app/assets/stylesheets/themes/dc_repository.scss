@@ -471,6 +471,7 @@ body.dc_repository {
         padding-left: $golden-ratio-3;
         margin-right: auto;
         margin-left: auto;
+        margin-bottom: $golden-ratio-4;
 
         .home-content {
           .nav {
@@ -497,12 +498,12 @@ body.dc_repository {
 
     .collections-row {
       padding-top: 40px;
-      padding-bottom: 40px;
     }
 
     .collection-card-container {
       flex-direction: column;
       height: 500px;
+      margin-bottom: $golden-ratio-4;
 
       .collection-card {
         background-color: $white;
@@ -516,6 +517,9 @@ body.dc_repository {
 
     .collection-label {
       padding: 15px !important;
+      align-self: center;
+      line-height: 1.29em;
+      letter-spacing: -0.029em;
 
       a,
       a:visited {
@@ -535,9 +539,7 @@ body.dc_repository {
       object-position: center;
       &[src*="default_collection_images"],
       &[src^="/assets/collection"] {
-        width: 130px;
-        height: 130px;
-        margin: 35px auto;
+        object-fit: contain;
       }
     }
   }
@@ -1161,6 +1163,10 @@ body.dc_repository {
         }
       }
 
+      .collection-card-container {
+        margin-bottom: $golden-ratio-3;
+      }
+
       .collection-label {
         padding: 15px !important;
 
@@ -1171,7 +1177,6 @@ body.dc_repository {
 
       .collections-row {
         padding-top: $golden-ratio-3;
-        padding-bottom: $golden-ratio-3;
       }
 
       .home-content > div {
@@ -1208,7 +1213,6 @@ body.dc_repository {
       }
     }
 
-    // Featured collections section
     // Featured Collections & Browse Collections Grid
     #featured-collections,
     #browse-collections {
@@ -1222,6 +1226,7 @@ body.dc_repository {
 
         .collection-card-container {
           height: 400px;
+          margin-bottom: $golden-ratio-2;
 
           .collection-card {
             margin-bottom: 0;
@@ -1230,6 +1235,10 @@ body.dc_repository {
           .collection-thumbnail img {
             height: 300px;
             width: 80%;
+          }
+
+          .collection-label {
+            max-width: 70%;
           }
         }
 
@@ -1376,18 +1385,30 @@ body.dc_repository {
         padding: 0 $golden-ratio-2 !important;
       }
     }
-  }
 
-  @media (min-width: 575px) {
-    // Featured collections section
-    #featured-collections {
-      .featured-collections {
+    // Featured Collections & Browse Collections Grid
+    #featured-collections,
+    #browse-collections {
+      .featured-collections,
+      .browse-collections {
         .container {
           max-width: 100%;
         }
+
+        .collection-label {
+          padding-top: 15px !important;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .collection-card-container {
+          margin-bottom: $golden-ratio-2;
+        }
       }
     }
+  }
 
+  @media (min-width: 575px) {
     // Footers
     #utk-lib-footer {
       .footer-libraries,
