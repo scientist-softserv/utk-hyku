@@ -8,7 +8,7 @@
       <div class="collection-thumbnail center-block">
         <%= render_thumbnail_tag(collection, { class: "center-block", alt: "#{collection.title.first} #{ t('hyrax.homepage.admin_sets.thumbnail')}" }, {suppress_link: true}) %>
       </div>
-      <div class= "collection-label">
+      <div class= "collection-label d-flex">
         <%= link_to [hyrax, collection] do %>
           <%= collection.title.first %>
         <% end %>
