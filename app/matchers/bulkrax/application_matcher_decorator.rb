@@ -7,7 +7,7 @@ module Bulkrax
   module ApplicationMatcherDecorator
     def process_parse
       # New parse methods will need to be added here
-      # OVERRIDE BULKRAX 4.4.0 to remove resource_type from #process_parse
+      # OVERRIDE BULKRAX 4.4.0 to remove resource_type from parsed_fields variable
       parsed_fields = ['remote_files', 'language', 'subject', 'types', 'model', 'format_original']
       # This accounts for prefixed matchers
       parser = parsed_fields.find { |field| to&.include? field }
