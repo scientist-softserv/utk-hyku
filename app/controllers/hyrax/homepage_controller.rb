@@ -9,6 +9,7 @@
 # OVERRIDE: Hyrax v2.9.0 add all_collections page for IR theme
 # OVERRIDE: Hyrax v2.9.0 to add facet counts for resource types for IR theme
 # OVERRIDE: Hyrax v. 2.9.0 to add @featured_collection_list to index method
+# OVERRIDE: Hyrax v3.4.2 - For dc_repository add @collections_list
 
 module Hyrax
   # Changed to inherit from CatalogController for home page facets
@@ -32,6 +33,8 @@ module Hyrax
     helper Hyrax::ContentBlockHelper
 
     # override hyrax v2.9.0 added @home_text - Adding Themes
+    # OVERRIDE: Hyrax v3.4.2 - For dc_repository add @collections_list
+
     def index
       @presenter = presenter_class.new(current_ability, collections)
       @featured_researcher = ContentBlock.for(:researcher)
@@ -43,6 +46,7 @@ module Hyrax
       @announcement_text = ContentBlock.for(:announcement)
       recent
       ir_counts if home_page_theme == 'institutional_repository'
+      @collections_list = collections(rows: 100_000) if home_page_theme == 'dc_repository'
 
       # override hyrax v2.9.0 added for facets on homepage - Adding Themes
       (@response, @document_list) = search_results(params)

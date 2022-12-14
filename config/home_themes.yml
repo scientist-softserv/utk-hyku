@@ -37,7 +37,7 @@ dc_repository:
   home_page_text: false
   marketing_text: false
   name: DC Repository
-  notes: Feature flippers need to be disabled for show featured researcher, show share button, show featured works and show recently uploaded
+  notes: Feature flipper needs to be disabled for show share button
 trace_repository:
   banner_image: true
   featured_researcher: true
