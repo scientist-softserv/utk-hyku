@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# fronen_string_literatl: true
-
 # OVERRIDE BULKRAX 4.4.0 to remove resource_type from #process_parse
 # this app redefined resouce_types.yml to be inline with local questioning
 # authority
