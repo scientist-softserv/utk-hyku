@@ -19,9 +19,8 @@
           <% end %>
         </div>
         <div class='works-count'>
-          <% works_total = ActiveFedora::SolrService.query("member_of_collection_ids_ssim:#{collection.id}").count %>
-          <span><%= works_total %></span>
-          <%= "Work".pluralize(works_total) %> 
+          <span><%= works_count_for(collection: collection) %></span>
+          <%= "Work".pluralize(works_count_for(collection: collection)) %>
         </div>
       </div>
     <% end %>
