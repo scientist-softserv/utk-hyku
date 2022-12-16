@@ -1,0 +1,9 @@
+<div class='scroll'>
+  <div class='view-type-grid'>
+    <div class="row collections-row">
+      <% @collections_list.each do |collection| %>
+        <%= render 'browse_collections', collection: collection %>
+      <% end %>
+    </div>
+  </div>
+</div>

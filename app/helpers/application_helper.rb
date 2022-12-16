@@ -7,4 +7,6 @@ module ApplicationHelper
 
   # OVERRIDE
   include Hyrax::HyraxHelperBehaviorDecorator
+  # OVERRIDE
+  include Hyrax::CollectionsHelperDecorator
 end
