@@ -20,8 +20,8 @@
                 <button class="button-toggle d-flex"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
               </a>
             </li>
-            </div>
-            <div class="browse-collections--toggles d-flex">
+          </div>
+          <div class="browse-collections--toggles d-flex">
             <button class="button-toggle d-flex"><i class="fa fa-caret-up" aria-hidden="true"></i>A-Z</button>
             <button class="button-toggle d-flex">Group</button>
             <div name="group" role="listbox" aria-expanded="false" class="ui dropdown d-flex" tabindex="0">
@@ -30,20 +30,17 @@
               </div>
             </div>
           </div>
-          </ul>
-          </header>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="view-type-list">
-              <%= render "browse_collections_list_view" %>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="view-type-grid">
-              <%= render "browse_collections_grid_view" %>
-            </div>
-          </div>
-          
-        
-     
+        </ul>
+      </header>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="view-type-list">
+          <%= render "browse_collections_list_view" %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="view-type-grid">
+          <%= render "browse_collections_grid_view" %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
