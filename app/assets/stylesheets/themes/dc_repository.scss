@@ -606,6 +606,12 @@ body.dc_repository {
           margin-left: 0;
         }
 
+        button:first-child:active,
+        button:first-child:focus {
+          background-color: $white;
+          color: $globe;
+        }
+
         .browse-collections--view {
           .nav {
             margin: 0;
@@ -646,8 +652,8 @@ body.dc_repository {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             border: none;
-            background-color: #00597a !important;
-            color: $white !important;
+            background-color: #00597a;
+            color: $white;
             box-shadow: 0 2px 5px rgba(51, 51, 51, 0.15) !important;
             cursor: default !important;
             font-weight: 400;
