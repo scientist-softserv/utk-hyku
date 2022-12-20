@@ -22,12 +22,13 @@
             </li>
           </div>
           <div class="browse-collections--toggles d-flex">
-            <button class="button-toggle d-flex"><i class="fa fa-caret-up" aria-hidden="true"></i>A-Z</button>
-            <button class="button-toggle d-flex">Group</button>
-            <div name="group" role="listbox" aria-expanded="false" class="ui dropdown d-flex" tabindex="0">
-              <div class="text" role="alert" aria-live="polite" aria-atomic="true">
-                All Collections
-              </div>
+            <%# These two buttons are hidden due to design change but are left in if they are to be used in the future %>
+            <button class="button-toggle hidden d-flex"><i class="fa fa-caret-up" aria-hidden="true"></i>A-Z</button>
+            <button class="button-toggle hidden d-flex">Group</button>
+            <div class="d-flex">
+              <button class="browse-collections--search" role="alert" aria-live="polite" aria-atomic="true">
+                <%= link_to t('hyrax.homepage.admin_sets.link'), main_app.search_catalog_path(f: { human_readable_type_sim: ["Collection"]}) %>
+              </button>
             </div>
           </div>
         </ul>

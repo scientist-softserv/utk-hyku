@@ -581,7 +581,7 @@ body.dc_repository {
           border-radius: $golden-ratio-4;
           border: 1px solid $gray-2;
           font-size: $type-1;
-          margin-left: $golden-ratio-2;
+          margin-left: 0;
           cursor: pointer;
           outline: none;
           font-weight: 700;
@@ -602,8 +602,10 @@ body.dc_repository {
           display: block;
         }
 
-        button:first-child {
-          margin-left: 0;
+        button:first-child:active,
+        button:first-child:focus {
+          background-color: $white;
+          color: $globe;
         }
 
         .browse-collections--view {
@@ -619,7 +621,7 @@ body.dc_repository {
               a {
                 margin: 0;
                 border: none;
-                border-radius: 0;
+                border-radius: $golden-ratio-4;
                 padding: 0;
               }
             }
@@ -642,36 +644,31 @@ body.dc_repository {
         }
 
         .browse-collections--toggles {
-          .button-toggle:last-of-type {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border: none;
-            background-color: #00597a !important;
-            color: $white !important;
-            box-shadow: 0 2px 5px rgba(51, 51, 51, 0.15) !important;
-            cursor: default !important;
-            font-weight: 400;
+          // Styles for hidden 'Group' button in case it's used in the future
+          // .button-toggle:last-of-type {
+          //   border-top-right-radius: 0;
+          //   border-bottom-right-radius: 0;
+          //   border: none;
+          //   background-color: #00597a;
+          //   color: $white;
+          //   box-shadow: 0 2px 5px rgba(51, 51, 51, 0.15) !important;
+          //   cursor: default !important;
+          //   font-weight: 400;
+          // }
+
+          .browse-collections--search {
+            background-color: $globe;
+
+            a {
+              color: $white;
+            }
           }
 
-          .ui.dropdown {
-            position: relative;
-            z-index: 1000;
-            width: auto;
-            font-size: $type-1;
+          .browse-collections--search:hover {
+            background-color: $white;
 
-            .text {
-              cursor: pointer;
-              height: $golden-ratio-4;
-              padding: 0 $golden-ratio-2;
-              border-radius: $golden-ratio-4;
-              border-top-left-radius: 0;
-              border-bottom-left-radius: 0;
-              line-height: $golden-ratio-4;
-              align-items: center;
-              background-color: $globe;
-              color: $white;
-              opacity: 1;
-              font-weight: 700;
+            a {
+              color: $smokey;
             }
           }
         }
