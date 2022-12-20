@@ -1,0 +1,46 @@
+<%# OVERRIDE: Hyrax v3.4.2 - For dc_repository:
+  add new partial for browse collections section
+%>
+<section id="browse-collections">
+  <div class='browse-collections'>
+    <div class="container">
+      <div class="row">
+        <h2><%= t('hyrax.homepage.collections.title') %></h2>
+      </div>
+      <header class="d-flex">
+        <div class="browse-collections--view d-flex">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#view-type-list" aria-controls="view-type-list" role="tab" data-toggle="tab">
+                <button class="button-toggle d-flex"><i class="fa fa-list" aria-hidden="true"></i><span>List</span></button>
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#view-type-grid" aria-controls="view-type-grid" role="tab" data-toggle="tab">
+                <button class="button-toggle d-flex"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
+              </a>
+            </li>
+          </div>
+          <div class="browse-collections--toggles d-flex">
+            <button class="button-toggle d-flex"><i class="fa fa-caret-up" aria-hidden="true"></i>A-Z</button>
+            <button class="button-toggle d-flex">Group</button>
+            <div name="group" role="listbox" aria-expanded="false" class="ui dropdown d-flex" tabindex="0">
+              <div class="text" role="alert" aria-live="polite" aria-atomic="true">
+                All Collections
+              </div>
+            </div>
+          </div>
+        </ul>
+      </header>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="view-type-list">
+          <%= render "browse_collections_list_view" %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="view-type-grid">
+          <%= render "browse_collections_grid_view" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

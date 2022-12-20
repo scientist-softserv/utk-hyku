@@ -66,7 +66,7 @@ body.dc_repository {
   .btn {
     &.btn-primary,
     &.btn-danger {
-      color: #fff;
+      color: $white;
     }
 
     &.btn-primary {
@@ -81,7 +81,7 @@ body.dc_repository {
 
   // MAIN NAV
   .navbar.navbar-inverse.navbar-fixed-top {
-    border-top: 6px solid $orange;
+    border-top: $golden-ratio-0 solid $orange;
     border-bottom: none;
     height: $golden-ratio-5;
     color: $smokey !important;
@@ -454,8 +454,7 @@ body.dc_repository {
     }
   }
 
-  // Featured Collections Section
-
+  // Featured Collections Grid Section
   #featured-collections {
     .featured-collections {
       padding-top: $golden-ratio-4;
@@ -470,78 +469,421 @@ body.dc_repository {
         padding-left: $golden-ratio-3;
         margin-right: auto;
         margin-left: auto;
+        margin-bottom: $golden-ratio-4;
+      }
 
-        .home-content {
-          .nav {
-            margin: 0 !important;
-          }
-          .nav-tabs {
-            border: none !important;
+      .collections-container {
+        a {
+          img {
+            display: block;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
           }
         }
       }
-    }
 
-    #homeTabs .collections-container {
-      a {
-        img {
-          display: block;
-          height: auto;
-          margin-left: auto;
-          margin-right: auto;
-          max-width: 100%;
-        }
+      .collections-row {
+        padding-top: 40px;
       }
-    }
 
-    .collections-row {
-      justify-content: space-between;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
-    .collection-card-container {
-      flex-direction: column;
-      height: 500px;
-
-      .collection-card {
-        background-color: $white;
-        margin-right: 0px;
-        margin-bottom: 20px;
+      .collection-card-container {
         flex-direction: column;
-        flex-grow: 1;
-        text-align: center;
+        height: 500px;
+        margin-bottom: $golden-ratio-4;
+
+        .collection-card {
+          background-color: $white;
+          margin-right: 0px;
+          margin-bottom: 20px;
+          flex-direction: column;
+          flex-grow: 1;
+          text-align: center;
+        }
       }
-    }
 
-    .collection-label {
-      padding: 15px !important;
+      .collection-label {
+        padding: 15px !important;
+        align-self: center;
+        line-height: 1.29em;
+        letter-spacing: -0.029em;
 
-      a,
-      a:visited {
-        color: $globe;
+        a,
+        a:visited {
+          color: $globe;
+        }
+
+        a:hover,
+        a:focus {
+          color: $leconte;
+        }
       }
 
-      a:hover,
-      a:focus {
-        color: $leconte;
-      }
-    }
-
-    .collection-thumbnail img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      object-position: center;
-      &[src*="default_collection_images"],
-      &[src^="/assets/collection"] {
-        width: 130px;
-        height: 130px;
-        margin: 35px auto;
+      .collection-thumbnail img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        object-position: center;
+        &[src*="default_collection_images"],
+        &[src^="/assets/collection"] {
+          object-fit: contain;
+        }
       }
     }
   }
 
+  // Browse Collections
+  #browse-collections {
+    .browse-collections {
+      padding-top: 0 !important;
+
+      h2 {
+        padding-left: $golden-ratio-2;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: $golden-ratio-3;
+        padding-left: $golden-ratio-3;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: $golden-ratio-4;
+
+        .collections-container {
+          a {
+            img {
+              display: block;
+              height: auto;
+              margin-left: auto;
+              margin-right: auto;
+              max-width: 100%;
+            }
+          }
+        }
+
+        .collections-row {
+          padding-top: 40px;
+        }
+      }
+
+      // Header Section
+      header {
+        justify-content: space-between;
+        margin-top: $golden-ratio-3;
+        margin-bottom: $golden-ratio-3;
+
+        button {
+          background-color: $white;
+          color: $globe;
+          height: $golden-ratio-4;
+          padding: 0 $golden-ratio-2;
+          border-radius: $golden-ratio-4;
+          border: 1px solid $gray-2;
+          font-size: $type-1;
+          margin-left: $golden-ratio-2;
+          cursor: pointer;
+          outline: none;
+          font-weight: 700;
+          display: inline-flex;
+          align-items: center;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active,
+        button:focus {
+          background-color: $globe;
+          color: $white;
+        }
+
+        button i {
+          margin-right: $golden-ratio-0;
+          opacity: 0.47;
+          display: block;
+        }
+
+        button:first-child {
+          margin-left: 0;
+        }
+
+        .browse-collections--view {
+          .nav {
+            margin: 0;
+          }
+          .nav-tabs {
+            border: none;
+
+            li {
+              margin: 0;
+
+              a {
+                margin: 0;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+              }
+            }
+
+            li.active {
+              .button-toggle {
+                background-color: $globe;
+                color: $white;
+              }
+            }
+
+            li:last-child {
+              padding-left: $golden-ratio-2;
+            }
+          }
+        }
+
+        .tab-content {
+          margin-top: $golden-ratio-3;
+        }
+
+        .browse-collections--toggles {
+          .button-toggle:last-of-type {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border: none;
+            background-color: #00597a !important;
+            color: $white !important;
+            box-shadow: 0 2px 5px rgba(51, 51, 51, 0.15) !important;
+            cursor: default !important;
+            font-weight: 400;
+          }
+
+          .ui.dropdown {
+            position: relative;
+            z-index: 1000;
+            width: auto;
+            font-size: $type-1;
+
+            .text {
+              cursor: pointer;
+              height: $golden-ratio-4;
+              padding: 0 $golden-ratio-2;
+              border-radius: $golden-ratio-4;
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+              line-height: $golden-ratio-4;
+              align-items: center;
+              background-color: $globe;
+              color: $white;
+              opacity: 1;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+
+      .collections-row {
+        padding-top: 0 !important;
+      }
+
+      // Browse Collections List/Grid Views
+      .tab-content {
+        .tab-pane {
+          // Browse Collections Section Scroll
+
+          // hide scroll bar
+          .scroll::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+          }
+
+          .scroll {
+            height: 800px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            // hide scroll bar
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+          }
+
+          // List view
+          .view-type-list {
+            .collection-card-container {
+              min-height: 293px;
+              margin-bottom: $golden-ratio-4;
+              flex-flow: wrap;
+              width: calc(100% + 47px);
+              padding: 0;
+
+              .collection-card {
+                background-color: $gray-1 !important;
+                padding: 0;
+                flex-direction: row;
+                width: calc(100% - 47px);
+                flex-basis: calc(100% - 47px);
+                min-height: 293px;
+                justify-content: start;
+                align-items: center;
+
+                .collection-content {
+                  flex-direction: column;
+                  padding: $golden-ratio-4;
+                  flex-grow: 1;
+
+                  .collection-label {
+                    padding: 0 15px 15px 15px !important;
+                    align-self: start;
+                    line-height: 1.29em;
+                    letter-spacing: -0.029em;
+                    font-weight: 700;
+
+                    a,
+                    a:visited {
+                      color: $smokey;
+                    }
+
+                    a:hover,
+                    a:focus {
+                      color: $globe;
+                    }
+                  }
+
+                  .collection-abstract {
+                    color: $smokey;
+                    font-size: $type-2;
+                    padding: 0 15px;
+                    text-align: justify;
+                    line-height: 1.29em;
+                    letter-spacing: -0.029em;
+
+                    a,
+                    a:visited {
+                      color: $smokey;
+                    }
+
+                    a:hover,
+                    a:focus {
+                      color: $smokey;
+                    }
+                  }
+
+                  .works-count {
+                    color: $smokey;
+                    font-size: $type-2;
+                    padding: $golden-ratio-2 15px 0 !important;
+                    line-height: 1.29em;
+                    letter-spacing: -0.029em;
+
+                    span {
+                      font-weight: 700;
+                    }
+
+                    p {
+                      margin-block-start: 0;
+                      margin-block-end: 0;
+                    }
+                  }
+                }
+
+                .collection-thumbnail {
+                  margin-left: 70px;
+
+                  img {
+                    width: 322px;
+                    height: 199px;
+                    object-fit: cover;
+                    object-position: center;
+                    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+                    &[src*="default_collection_images"],
+                    &[src^="/assets/collection"] {
+                      object-fit: contain;
+                      background-color: $white;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          // Grid View
+          .view-type-grid {
+            .collection-card-container {
+              flex-direction: column;
+              height: 500px;
+              margin-bottom: $golden-ratio-4;
+
+              .collection-card {
+                background-color: $white;
+                margin-right: 0px;
+                margin-bottom: 20px;
+                flex-direction: column;
+                flex-grow: 1;
+                text-align: center;
+
+                .collection-content {
+                  justify-content: center;
+
+                  .collection-label {
+                    padding: 15px !important;
+                    align-self: center;
+                    line-height: 1.29em;
+                    letter-spacing: -0.029em;
+
+                    a,
+                    a:visited {
+                      color: $globe;
+                    }
+
+                    a:hover,
+                    a:focus {
+                      color: $leconte;
+                    }
+                  }
+
+                  .collection-abstract,
+                  .works-count {
+                    display: none;
+                  }
+                }
+
+                .collection-thumbnail img {
+                  width: 100%;
+                  height: 400px;
+                  object-fit: cover;
+                  object-position: center;
+                  &[src*="default_collection_images"],
+                  &[src^="/assets/collection"] {
+                    object-fit: contain;
+                  }
+                }
+              }
+
+              .collection-label {
+                padding: 15px !important;
+                align-self: center;
+                line-height: 1.29em;
+                letter-spacing: -0.029em;
+
+                a,
+                a:visited {
+                  color: $globe;
+                }
+
+                a:hover,
+                a:focus {
+                  color: $leconte;
+                }
+              }
+
+              .collection-thumbnail img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                object-position: center;
+                &[src*="default_collection_images"],
+                &[src^="/assets/collection"] {
+                  object-fit: contain;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   // Footers
   #utk-lib-footer {
     // Library footer
@@ -549,7 +891,7 @@ body.dc_repository {
       padding: $golden-ratio-4 0;
       background-color: $white;
       color: $smokeyx;
-      border-top: 6px solid $orange;
+      border-top: $golden-ratio-0 solid $orange;
 
       .container {
         width: 100%;
@@ -632,7 +974,7 @@ body.dc_repository {
               .utk-resources-menu--col a:visited,
               .utk-resources-menu--col a:focus,
               .utk-resources-menu--col a:hover {
-                color: #333333;
+                color: $smokeyx;
                 white-space: nowrap;
               }
               .utk-resources-menu--col:last-child {
@@ -751,7 +1093,7 @@ body.dc_repository {
                 width: auto;
                 flex-shrink: 1;
                 font-size: $type-2;
-                background-color: #e0e0e0;
+                background-color: $gray-1;
                 line-height: 1.29em;
                 padding: $golden-ratio-1 $golden-ratio-2;
                 height: $golden-ratio-4;
@@ -785,7 +1127,7 @@ body.dc_repository {
               margin-right: $golden-ratio-4;
             }
             .utk-resources-menu--col a {
-              color: #333333;
+              color: $smokeyx;
               white-space: nowrap;
               font-size: $type-3;
             }
@@ -805,8 +1147,11 @@ body.dc_repository {
       }
     }
 
-    #featured-collections {
-      .featured-collections {
+    // Featured Collections & Browse Collections
+    #featured-collections,
+    #browse-collections {
+      .featured-collections,
+      .browse-collections {
         .container {
           max-width: 1280px !important;
         }
@@ -1036,7 +1381,7 @@ body.dc_repository {
       }
     }
 
-    // Featured collections section
+    // Featured Collections Grid
     #featured-collections {
       .featured-collections {
         padding-top: $golden-ratio-2;
@@ -1046,6 +1391,10 @@ body.dc_repository {
           text-align: center;
           padding: 0;
         }
+      }
+
+      .collection-card-container {
+        margin-bottom: $golden-ratio-3;
       }
 
       .collection-label {
@@ -1059,9 +1408,91 @@ body.dc_repository {
       .collections-row {
         padding-top: $golden-ratio-3;
       }
+    }
 
-      .home-content > div {
-        margin: 0;
+    // Browse Collections
+    #browse-collections {
+      .browse-collections {
+        padding-top: $golden-ratio-2;
+
+        h2 {
+          font-size: $type-4;
+          text-align: center;
+          padding: 0;
+        }
+
+        .collections-row {
+          padding-top: $golden-ratio-3;
+        }
+
+        .tab-content {
+          .tab-pane {
+            // Grid view
+            .view-type-grid {
+              .collection-card-container {
+                margin-bottom: $golden-ratio-3;
+              }
+
+              .collection-label {
+                padding: 15px !important;
+
+                a {
+                  font-size: $type-3;
+                }
+              }
+            }
+
+            // List view
+            .view-type-list {
+              .collection-card-container {
+                height: auto;
+                margin-bottom: $golden-ratio-3;
+
+                .collection-card {
+                  align-items: center;
+                  flex-direction: column;
+
+                  .collection-thumbnail {
+                    margin-left: 0;
+                    margin-top: $golden-ratio-3;
+                  }
+
+                  .collection-content {
+                    margin: $golden-ratio-3 $golden-ratio-4;
+                    padding: 0;
+                    width: 80%;
+
+                    .collection-label {
+                      align-self: center;
+                      text-align: center;
+                      max-width: 70%;
+
+                      a {
+                        font-size: $type-3;
+                      }
+                    }
+
+                    .collection-abstract {
+                      padding: 0 $golden-ratio-4;
+                    }
+
+                    .works-count {
+                      align-self: center;
+                    }
+                  }
+                }
+
+                .collection-thumbnail {
+                  margin-top: $golden-ratio-4;
+                }
+
+                p {
+                  font-size: $type-2;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1094,7 +1525,7 @@ body.dc_repository {
       }
     }
 
-    // Featured collections section
+    // Featured Collections Grid
     #featured-collections {
       .featured-collections {
         .container {
@@ -1105,6 +1536,7 @@ body.dc_repository {
 
         .collection-card-container {
           height: 400px;
+          margin-bottom: $golden-ratio-2;
 
           .collection-card {
             margin-bottom: 0;
@@ -1113,6 +1545,57 @@ body.dc_repository {
           .collection-thumbnail img {
             height: 300px;
             width: 80%;
+          }
+
+          .collection-label {
+            max-width: 70%;
+          }
+        }
+      }
+    }
+
+    // Browse Collections
+    #browse-collections {
+      .browse-collections {
+        .container {
+          max-width: 100%;
+          padding-right: $golden-ratio-2;
+          padding-left: $golden-ratio-2;
+
+          .tab-content {
+            .tab-pane {
+              // Grid view
+              .view-type-grid {
+                .collection-card-container {
+                  height: 400px;
+                  margin-bottom: $golden-ratio-2;
+
+                  .collection-card {
+                    margin-bottom: 0;
+                  }
+
+                  .collection-thumbnail img {
+                    height: 300px;
+                    width: 80%;
+                  }
+
+                  .collection-label {
+                    max-width: 70%;
+                  }
+                }
+              }
+            }
+          }
+
+          // Browse Collections Header
+          header {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .browse-collections--view {
+              margin-bottom: $golden-ratio-3;
+            }
           }
         }
       }
@@ -1248,18 +1731,49 @@ body.dc_repository {
         padding: 0 $golden-ratio-2 !important;
       }
     }
-  }
 
-  @media (min-width: 575px) {
-    // Featured collections section
+    // Featured Collections Grid
     #featured-collections {
       .featured-collections {
         .container {
           max-width: 100%;
+          margin-bottom: $golden-ratio-2;
+        }
+
+        .collection-label {
+          padding-top: 15px !important;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .collection-card-container {
+          margin-bottom: $golden-ratio-2;
         }
       }
     }
 
+    // Browse Collections
+    #browse-collections {
+      .browse-collections {
+        .container {
+          max-width: 100%;
+          margin-bottom: $golden-ratio-2;
+
+          .collection-label {
+            padding-top: 15px !important;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .collection-card-container {
+            margin-bottom: $golden-ratio-2;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 575px) {
     // Footers
     #utk-lib-footer {
       .footer-libraries,
