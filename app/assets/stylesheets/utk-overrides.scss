@@ -4,4 +4,10 @@
 // PUBLIC FACING
 body.public-facing.utk-public-facing {
   font-family: "Gotham";
+
+  .btn-default {
+    background-color: $white;
+    border-color: $gray-1;
+    color: $smokey !important;
+  }
 }

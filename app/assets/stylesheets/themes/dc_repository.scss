@@ -5,7 +5,7 @@ body.dc_repository {
   line-height: 35px;
   height: 100vh;
 
-  // TEXT STYLES
+  /**** General Text Styles ****/
   h1,
   h2,
   h3,
@@ -62,6 +62,7 @@ body.dc_repository {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
   }
+  /**** End General Text Styles ****/
 
   .btn {
     &.btn-primary,
@@ -79,7 +80,7 @@ body.dc_repository {
     color: $smokey !important;
   }
 
-  // MAIN NAV
+  /**** Main Nav ****/
   .navbar.navbar-inverse.navbar-fixed-top {
     border-top: $golden-ratio-0 solid $orange;
     border-bottom: none;
@@ -87,7 +88,7 @@ body.dc_repository {
     color: $smokey !important;
   }
 
-  // Header
+  /**** Header Section ****/
   #masthead {
     .container-fluid {
       display: flex;
@@ -99,6 +100,8 @@ body.dc_repository {
 
     .utk-logo-flex {
       flex-grow: 1;
+      justify-content: center;
+      align-items: center;
     }
 
     .utk-logo-wrapper {
@@ -106,7 +109,7 @@ body.dc_repository {
       padding: 0;
       width: auto;
       height: 100%;
-      position: absolute;
+      // position: absolute;
     }
 
     #logo {
@@ -122,8 +125,8 @@ body.dc_repository {
     }
 
     #library-link {
-      position: absolute;
-      display: block;
+      // position: absolute;
+      // display: block;
       height: 100%;
       line-height: $golden-ratio-5;
       font-size: $type-5 !important;
@@ -135,8 +138,9 @@ body.dc_repository {
       text-decoration: none;
     }
   }
+  /**** End Hero Section ****/
 
-  // DROPDOWN NAVBAR
+  /**** Dropdown Navbar ****/
   .navbar-inverse .navbar-link {
     color: $smokey !important;
   }
@@ -222,15 +226,17 @@ body.dc_repository {
       display: block;
     }
   }
+  /**** End Dropdown Navbar ****/
+  /**** End Header Section ****/
 
-  // Hero
+  /**** Homepage Hero Section ****/
   .image-masthead {
     width: 100%;
     height: 61.8vw;
     min-height: 500px;
     max-height: calc(90vh - 82px);
     position: relative;
-    margin: 0 !important;
+    margin: 0;
     flex-direction: column;
     justify-content: flex-end;
     z-index: 0;
@@ -453,8 +459,22 @@ body.dc_repository {
       font-weight: 400;
     }
   }
+  /**** End Homepage Hero Section ****/
 
-  // Featured Collections Grid Section
+  /**** Subpage Hero Section ****/
+  .title-masthead {
+    width: 100%;
+    height: 275px !important;
+    min-height: 275px !important;
+    margin-bottom: $golden-ratio-4;
+
+    .utk-digital-elements-wrapper {
+      background-color: rgba(0, 108, 148, 0.95);
+    }
+  }
+  /**** End Subpage Hero Section ****/
+
+  /**** Featured Collections Grid ****/
   #featured-collections {
     .featured-collections {
       padding-top: $golden-ratio-4;
@@ -532,8 +552,9 @@ body.dc_repository {
       }
     }
   }
+  /**** End Featured Collections Grid ****/
 
-  // Browse Collections
+  /**** Browse Collections ****/
   #browse-collections {
     .browse-collections {
       padding-top: 0 !important;
@@ -656,7 +677,8 @@ body.dc_repository {
           //   font-weight: 400;
           // }
 
-          .browse-collections--search {
+          .browse-collections--search,
+          .browse-collections--search:active {
             background-color: $globe;
 
             a {
@@ -881,7 +903,103 @@ body.dc_repository {
       }
     }
   }
-  // Footers
+  /**** End Browse Collections ****/
+
+  /**** Search Results Content Section ****/
+  #content {
+    .search-widgets {
+      .view-type {
+        .view-type-group {
+          box-shadow: none;
+
+          .view-type-gallery {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+          }
+          .view-type-masonry,
+          .view-type-slideshow {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  /**** End Search Results Content Section ****/
+
+  /**** Facet Panel ****/
+  #facets {
+    .top-panel-heading {
+      display: none;
+    }
+
+    .panel-group {
+      background-color: $gray-1;
+
+      .panel-default {
+        border: none;
+        background-color: transparent;
+
+        .panel-heading {
+          background-color: transparent;
+          border: none;
+          color: $smokeyx;
+
+          h3 {
+            color: $smokey !important;
+            font-size: $type-4;
+          }
+
+          .panel-title:after {
+            color: $smokey;
+          }
+        }
+
+        .panel-collapse {
+          border: none;
+
+          .panel-body {
+            border: none;
+            background-color: transparent;
+
+            .facet-values {
+              li .selected {
+                color: $globe;
+                font-size: $type-3;
+              }
+              
+              .remove .glyphicon {
+                top: 0;
+              }
+
+              .facet-label {
+                a,
+                a:visited {
+                  color: $globe !important;
+                  font-size: $type-3;
+                }
+                a:hover {
+                  color: $leconte !important;
+                }
+              }
+
+              .facet-count,
+              .facet-count .selected {
+                font-size: $type-3;
+                color: $smokey !important;
+              }
+            }
+          }
+        }
+      }
+
+      .panel {
+        border-radius: 0;
+      }
+    }
+  }
+  /**** End Facet Panel ****/
+
+  /**** Footers ****/
   #utk-lib-footer {
     // Library footer
     .footer-libraries {
@@ -1133,9 +1251,9 @@ body.dc_repository {
       }
     }
   }
+  /**** End Footers ****/
 
-  // RESPONSIVE STYLES
-
+  /**** Responsive Styles ****/
   @media (min-width: 1200px) {
     // Header
     #masthead {
@@ -1347,7 +1465,7 @@ body.dc_repository {
     }
 
     .circle-container {
-      visibility: hidden;
+      display: none;
       height: 0;
       width: 0;
       margin: 0;
@@ -1361,9 +1479,7 @@ body.dc_repository {
         justify-content: center;
 
         .navbar-nav {
-          visibility: hidden;
-          height: 0;
-          width: 0;
+          display: none;
           margin: 0;
           padding: 0;
         }
@@ -1375,6 +1491,12 @@ body.dc_repository {
         .searchbar-right {
           width: 90%;
         }
+      }
+    }
+
+    .title-masthead {
+      .navbar-nav {
+        display: block;
       }
     }
 
@@ -1782,3 +1904,4 @@ body.dc_repository {
     }
   }
 }
+/**** End Responsive Styles ****/
