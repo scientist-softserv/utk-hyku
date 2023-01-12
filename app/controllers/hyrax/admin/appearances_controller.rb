@@ -82,7 +82,8 @@ module Hyrax
         def load_search_themes
           {
             'List view' => 'list_view',
-            'Gallery view' => 'gallery_view'
+            'Gallery view' => 'gallery_view',
+            'DC view' => 'dc_repository_search'
           }
         end
     end
