@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 025461570d6ae129778076345c3ab0a3a1cd095c
+  revision: 63ca90f278a6c3d424ca32d58d20cbd317a31b4a
   branch: errored-entries-tab
   specs:
     bulkrax (4.4.0)
