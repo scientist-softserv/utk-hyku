@@ -907,6 +907,63 @@ body.dc_repository {
 
   /**** Search Results Content Section ****/
   #content {
+    #sortAndPerPage {
+      border-bottom: none;
+    }
+
+    #search-results {
+      .search-results-title-row {
+        padding-right: $golden-ratio-2;
+        
+        .work {
+          display: none;
+        }
+
+        .search-result-title {
+          font-size: $type-4;
+          color: $globe;
+          font-weight: 500;
+
+          a:visited {
+            color: $globe;
+          }
+        }
+      }
+
+      .search-results-page-metadata {
+        .search-result-title {
+          font-size: $type-4;
+          font-weight: 500;
+        }
+
+        .abstract-search-results {
+          p {
+            padding-right: $golden-ratio-2;
+            text-align: justify;
+            font-size: $type-3;
+            line-height: $type-4;
+          }
+        }
+
+        .collection-member {
+          padding: 0;
+
+          p {
+            font-size: $type-3;
+
+            a:visited {
+              color: $globe;
+            }
+
+            a:hover,
+            a:focus {
+              color: $leconte;
+            }
+          }
+        }
+      }
+    }
+
     .search-widgets {
       .view-type {
         .view-type-group {
@@ -951,6 +1008,7 @@ body.dc_repository {
 
           .panel-title:after {
             color: $smokey;
+            font-size: $type-2;
           }
         }
 
@@ -966,7 +1024,7 @@ body.dc_repository {
                 color: $globe;
                 font-size: $type-3;
               }
-              
+
               .remove .glyphicon {
                 top: 0;
               }
@@ -979,6 +1037,13 @@ body.dc_repository {
                 }
                 a:hover {
                   color: $leconte !important;
+                }
+                .selected {
+                  color: $orange;
+                }
+                a.remove {
+                  color: $smokey !important;
+                  font-size: $type-2;
                 }
               }
 
@@ -1617,6 +1682,11 @@ body.dc_repository {
   }
 
   @media (max-width: 767px) {
+    .search-result-wrapper {
+      margin-bottom: 0;
+      padding: 40px;
+    }
+
     // Header
     #masthead {
       .container-fluid {
