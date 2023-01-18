@@ -46,11 +46,9 @@ body.dc_repository {
     letter-spacing: 1pt;
   }
 
-  a,
-  a:visited {
-    cursor: pointer;
-    color: $smokey;
-    text-decoration: none;
+  a:focus,
+  a:hover {
+    text-decoration-line: none;
   }
 
   p {
@@ -907,14 +905,23 @@ body.dc_repository {
 
   /**** Search Results Content Section ****/
   #content {
+    a#startOverLink {
+      border: 2px solid $gray-1;
+      border-radius: 4px;
+    }
+
     #sortAndPerPage {
       border-bottom: none;
+
+      .page_links {
+        font-size: $type-3;
+      }
     }
 
     #search-results {
       .search-results-title-row {
         padding-right: $golden-ratio-2;
-        
+
         .work {
           display: none;
         }
@@ -923,10 +930,11 @@ body.dc_repository {
           font-size: $type-4;
           color: $globe;
           font-weight: 500;
+        }
 
-          a:visited {
-            color: $globe;
-          }
+        .label {
+          font-size: $type-0;
+          background-color: $orange !important;
         }
       }
 
@@ -934,6 +942,11 @@ body.dc_repository {
         .search-result-title {
           font-size: $type-4;
           font-weight: 500;
+
+          a:hover,
+          a:focus {
+            color: $leconte;
+          }
         }
 
         .abstract-search-results {
@@ -962,6 +975,10 @@ body.dc_repository {
           }
         }
       }
+
+      .collection-counts-wrapper {
+        margin-bottom: $golden-ratio-2;
+      }
     }
 
     .search-widgets {
@@ -979,6 +996,10 @@ body.dc_repository {
           }
         }
       }
+    }
+
+    ul.pagination {
+      font-size: $type-3;
     }
   }
   /**** End Search Results Content Section ****/
@@ -1003,7 +1024,7 @@ body.dc_repository {
 
           h3 {
             color: $smokey !important;
-            font-size: $type-4;
+            font-size: $type-3;
           }
 
           .panel-title:after {
@@ -1679,12 +1700,77 @@ body.dc_repository {
         }
       }
     }
+
+    // Search Results
+    #content {
+      #sortAndPerPage {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #search-results {
+        .search-result-wrapper {
+          padding-bottom: 0;
+
+          .search-result-title {
+            font-size: $type-3;
+          }
+        }
+      }
+    }
+
+    .list-thumbnail img {
+      &[src*="default_collection_images"],
+      &[src^="/assets/collection"],
+      &[src^="/assets/work"] {
+        max-width: 80%;
+      }
+    }
   }
 
   @media (max-width: 767px) {
-    .search-result-wrapper {
-      margin-bottom: 0;
-      padding: 40px;
+    // Search Results
+    .search-container {
+      width: 85%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      #content {
+        #search-results {
+          #sortAndPerPage {
+            margin-bottom: 0;
+          }
+
+          .search-result-wrapper {
+            margin-bottom: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .search-results-title-row {
+              display: flex;
+              align-items: flex-start;
+              padding-right: 0;
+
+              .search-result-title {
+                padding-bottom: 0;
+                margin: 0;
+              }
+            }
+
+            .abstract-search-results {
+              p {
+                padding-right: 0;
+              }
+            }
+          }
+        }
+      }
     }
 
     // Header
