@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-10 collection-member">
       <div class="metadata">
-        <dl class="dl-horizontal">
+        <div>
           <% collection_member =  document['member_of_collections_ssim'] %>
           <% doc_presenter = index_presenter(document) %>
           <% if collection_member.present? %>
@@ -31,7 +31,7 @@
               <p><%= field %></p>
             <% end %>
           <% end %>
-        </dl>
+        </div>
       </div>
     </div>
   <% end %>
