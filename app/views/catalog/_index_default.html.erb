@@ -2,7 +2,7 @@
 
 <% doc_presenter = index_presenter(document) %>
 <%# default partial to display solr document fields in catalog index view -%>
-<dl class="document-metadata dl-horizontal dl-invert">
+<div class="document-metadata">
   <% collection_member =  document['member_of_collections_ssim'] %>
   <% doc_presenter = index_presenter(document) %>
   <% if collection_member.present? %>
@@ -15,4 +15,4 @@
       <p><%= field %></p>
     <% end %>
   <% end %>
-</dl>
+</div>
