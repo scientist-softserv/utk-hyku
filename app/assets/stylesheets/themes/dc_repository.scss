@@ -908,6 +908,7 @@ body.dc_repository {
     a#startOverLink {
       border: 2px solid $gray-1;
       border-radius: 4px;
+      color: $smokey;
     }
 
     #sortAndPerPage {
@@ -915,6 +916,18 @@ body.dc_repository {
 
       .page_links {
         font-size: $type-3;
+      }
+    }
+
+    #documents {
+      .document {
+        .thumbnail {
+          margin-bottom: 0;
+
+          .document-title-heading {
+            font-size: $type-3;
+          }
+        }
       }
     }
 
