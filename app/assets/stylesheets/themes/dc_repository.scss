@@ -904,6 +904,9 @@ body.dc_repository {
   /**** End Browse Collections ****/
 
   /**** Search Results Content Section ****/
+  #content-wrapper.search-container {
+    margin-bottom: $golden-ratio-4;
+  }
   #content {
     a#startOverLink {
       border: 2px solid $gray-1;
@@ -1746,6 +1749,7 @@ body.dc_repository {
   @media (max-width: 767px) {
     // Search Results
     .search-container {
+      margin-bottom: $golden-ratio-2 !important;
       width: 85%;
       display: flex;
       flex-direction: column;
