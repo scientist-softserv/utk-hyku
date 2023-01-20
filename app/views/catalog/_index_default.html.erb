@@ -2,16 +2,15 @@
 
 <% doc_presenter = index_presenter(document) %>
 <%# default partial to display solr document fields in catalog index view -%>
+
 <div class="document-metadata">
-  <% collection_member =  document['member_of_collections_ssim'] %>
+  <% collection_member = document['member_of_collections_ssim'] %>
   <% doc_presenter = index_presenter(document) %>
   <% if collection_member.present? %>
-    <% collection_member.each do |collection|%>
-      <p><%= render_collection_links(document) %></p>
-    <% end %>
+    <p><%= render_collection_links(document) %></p>
   <% end %>
   <% index_fields(document).each do |field_name, field| %>
-    <% if field_name == 'member_of_collections_ssim'  %>
+    <% if field_name == 'member_of_collections_ssim' %>
       <p><%= field %></p>
     <% end %>
   <% end %>
