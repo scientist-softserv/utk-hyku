@@ -10,8 +10,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 68c52a6b97ee6242e866ef4eb8d346516aa93bc3
-  branch: main
+  revision: 63ca90f278a6c3d424ca32d58d20cbd317a31b4a
+  branch: errored-entries-tab
   specs:
     bulkrax (4.4.0)
       bagit (~> 0.4)
