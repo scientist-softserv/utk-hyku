@@ -419,5 +419,9 @@ module Blacklight
     def document_link_params(_doc, opts)
       opts.except(:label, :counter)
     end
+
+    def search_link(document, request)
+      link_to(document.title_or_label, generate_work_url(document, request))
+    end
   end
 end

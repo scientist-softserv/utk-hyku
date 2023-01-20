@@ -1,5 +1,9 @@
 <%# Override Hyrax 3.4.1 to remove thumbnail link supression and use default collection thumbnail %>
+<%# Override Hyrax 3.4.2 updated to use collection thumbnail if present and use default collection thumbnail if not %>
+
 <div class="col-md-2">
-  <% value = collection_thumbnail(document, {}, counter: document_counter_with_offset(document_counter)) %>
-  <%= link_to value, generate_work_url(document.to_h, request)%>
+  <div class="list-thumbnail">
+    <% value = collection_thumbnail(document, {}, counter: document_counter_with_offset(document_counter)) %>
+    <%= link_to value, generate_work_url(document.to_h, request)%>
+  </div>
 </div>

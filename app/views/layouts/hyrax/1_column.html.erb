@@ -1,0 +1,10 @@
+<%# OVERRIDE: Hyrax v3.4.2 - added partial for search results page for custom client theming for dc_repository theme %>
+
+<% if search_results_theme == 'dc_repository_search' %>
+  <%= render template: 'layouts/dc_repository_search' %>
+<% else %>
+  <% content_for(:navbar) do %>
+    <%= render '/controls' %>
+  <% end %>
+  <%= render template: 'layouts/hyrax' %>
+<% end %>

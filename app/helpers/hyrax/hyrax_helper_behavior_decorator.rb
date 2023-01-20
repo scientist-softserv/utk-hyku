@@ -28,7 +28,8 @@ module Hyrax
     #
     # @note This method was initially overridden in 2.5.1, revisited and still relevant for 3.4.1.  It
     # was consolidated into this file from ./app/helpers/hyrax/override_helper_behavior.rb
-    def collection_thumbnail(_document, _image_options = {}, _url_options = {})
+    def collection_thumbnail(document, _image_options = {}, _url_options = {})
+      return image_tag(document.thumbnail_path) unless document.thumbnail_id
       return super if Site.instance.default_collection_image.blank?
 
       image_tag(Site.instance.default_collection_image&.url)

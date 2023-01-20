@@ -1,0 +1,51 @@
+<%# This is a Blacklight file copied to Hyrax by Hyrax maintainers and then copied here from Hyrax
+    hyrax/app/views/catalog/_index_list_default.html.erb to add ability to display json metadata fields %>
+<%# OVERRIDE: Hyrax v3.4.2 - edit classes and change the layout of the metadata for custom theming %>
+
+<div class="search-results-page-metadata col-md-10">
+  <% if document.to_h["has_model_ssim"].first != 'Collection' %>
+    <div class="search-results-row">
+      <h4 class="search-result-title">
+        <%= search_link(document, request)  %>
+      </h4>
+      <% if document.abstract.present? %>
+        <div class="abstract-search-results">
+          <p>
+            <%= document.abstract[0].truncate_words(50) %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-10 collection-member">
+      <div class="metadata">
+        <div>
+          <% collection_member =  document['member_of_collections_ssim'] %>
+          <% doc_presenter = index_presenter(document) %>
+          <% if collection_member.present? %>
+            <% collection_member.each do |collection|%>
+              <p><%= render_collection_links(document) %></p>
+            <% end %>
+          <% end %>
+          <% index_fields(document).each do |field_name, field| %>
+            <% if field_name == 'member_of_collections_ssim'  %>
+              <p><%= field %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if document.collection? %>
+  <% collection_presenter = Hyrax::CollectionPresenter.new(document, current_ability) %>
+  <div class="col-md-4 pull-right">
+    <div class="collection-counts-wrapper">
+      <div class="collection-counts-item">
+        <span><%= collection_presenter.total_viewable_collections %></span>Collections
+      </div>
+      <div class="collection-counts-item">
+        <span><%= collection_presenter.total_viewable_works %></span>Works
+      </div>
+    </div>
+  </div>
+<% end %>

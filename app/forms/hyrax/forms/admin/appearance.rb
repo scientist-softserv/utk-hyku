@@ -35,10 +35,10 @@ module Hyrax
           'primary_button_background_color'  => '#006c93',
           'default_button_background_color'  => '#ffffff',
           'default_button_border_color'      => '#cccccc',
-          'default_button_text_color'        => '#333333',
+          'default_button_text_color'        => '#58595b',
           'active_tabs_background_color'     => '#337ab7',
           'facet_panel_background_color'     => '#f5f5f5',
-          'facet_panel_text_color'           => '#333333'
+          'facet_panel_text_color'           => '#58595b'
         }.freeze
 
         DEFAULT_VALUES = DEFAULT_FONTS.merge(DEFAULT_COLORS).freeze
