@@ -6,7 +6,7 @@
   <% if document.to_h["has_model_ssim"].first != 'Collection' %>
     <div class="search-results-row">
       <h4 class="search-result-title">
-        <%= search_link(document, request)  %>
+        <%= search_link(document, request) %>
       </h4>
       <% if document.abstract.present? %>
         <div class="abstract-search-results">
@@ -19,15 +19,13 @@
     <div class="col-md-10 collection-member">
       <div class="metadata">
         <div>
-          <% collection_member =  document['member_of_collections_ssim'] %>
+          <% collection_member = document['member_of_collections_ssim'] %>
           <% doc_presenter = index_presenter(document) %>
           <% if collection_member.present? %>
-            <% collection_member.each do |collection|%>
-              <p><%= render_collection_links(document) %></p>
-            <% end %>
+            <p><%= render_collection_links(document) %></p>
           <% end %>
           <% index_fields(document).each do |field_name, field| %>
-            <% if field_name == 'member_of_collections_ssim'  %>
+            <% if field_name == 'member_of_collections_ssim' %>
               <p><%= field %></p>
             <% end %>
           <% end %>
