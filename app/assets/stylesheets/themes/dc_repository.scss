@@ -682,20 +682,10 @@ body.dc_repository {
       .tab-content {
         .tab-pane {
           // Browse Collections Section Scroll
-
-          // Leaving this code here but commented out in case client changes mind on showing the inner scroll bar.
-          // hide scroll bar
-          // .scroll::-webkit-scrollbar {
-          //   display: none; /* Safari and Chrome */
-          // }
-
           .scroll {
             height: 1000px;
             overflow-x: hidden;
             overflow-y: auto;
-            // hide scroll bar
-            // -ms-overflow-style: none; /* Internet Explorer 10+ */
-            // scrollbar-width: none; /* Firefox */
           }
 
           // List view
