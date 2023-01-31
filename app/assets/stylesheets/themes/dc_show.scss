@@ -1,0 +1,132 @@
+body.dc_show {
+  .breadcrumb {
+    a,
+    a:active {
+      font-size: $type-3;
+    }
+  }
+
+  .work-type-container {
+    border: 1px solid $gray-3;
+    border-radius: 3px;
+
+    .work-type {
+      .work-type-tag {
+        font-size: $type-3;
+        padding: 11px 23px 0;
+        margin-top: $golden-ratio-1;
+      }
+
+      .title-with-badges {
+        padding: 0 23px;
+
+        h1 {
+          font-size: $type-5;
+        }
+
+        .label,
+        .state {
+          display: none;
+        }
+      }
+
+      .show-actions {
+        padding: 0 23px;
+      }
+    }
+  }
+
+  .works-panel {
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+    padding: 0 $golden-ratio-5;
+
+    .panel-heading {
+      border-bottom: 1px solid $gray-3;
+      padding: 10px 0;
+
+      .panel-title {
+        font-size: $type-5;
+      }
+    }
+
+    .panel-body {
+      .work-show {
+        dt {
+          font-size: $type-3;
+          padding-top: 10px;
+        }
+
+        .tabular {
+          .attribute {
+            // a {
+            font-size: $type-3;
+            // }
+          }
+        }
+      }
+
+      .table {
+        border-collapse: collapse;
+
+        th {
+          font-size: $type-3;
+          background-color: $gray-1;
+        }
+
+        th:first-child {
+          padding-left: 15px;
+        }
+
+        tbody {
+          .attribute {
+            font-size: $type-3;
+          }
+        }
+      }
+
+      .metadata-group {
+        .work-show {
+          display: table-row;
+        }
+        dl {
+          // overflow: hidden;
+          width: 100%;
+        }
+        dt {
+          width: 30%;
+        }
+        dd {
+          width: 70%;
+        }
+      }
+    }
+
+    .abstract-panel {
+      dt {
+        display: none;
+      }
+
+      dd {
+        .tabular {
+          padding-left: 0;
+
+          li {
+            font-size: $type-3;
+          }
+        }
+      }
+    }
+  }
+
+  .uv-panel {
+    padding: 0;
+  }
+
+  .items-panel {
+    .panel-body {
+      padding: 15px 0;
+    }
+  }
+}
