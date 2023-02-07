@@ -1,0 +1,251 @@
+body.dc_show {
+  .breadcrumb {
+    width: 100%;
+    margin-top: 0;
+    padding: $golden-ratio-1 $golden-ratio-2;
+
+    a,
+    a:active {
+      font-size: $type-2;
+    }
+  }
+
+  .breadcrumb li::before {
+    height: 0.6em;
+  }
+
+  .work-type-container {
+    border: 1px solid $gray-3;
+    border-radius: 3px;
+
+    .work-type {
+      .work-title-wrapper {
+        margin-top: $golden-ratio-3;
+        margin-bottom: $golden-ratio-0;
+      }
+
+      .work-type-tag {
+        font-size: $type-3;
+        padding: 0 18px;
+        margin-top: $golden-ratio-1;
+      }
+
+      .title-with-badges {
+        padding: 0 23px;
+
+        h1 {
+          font-size: $type-5;
+        }
+
+        .label,
+        .state {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .works-panel {
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+    padding: 0 $golden-ratio-5;
+
+    .panel-heading {
+      border-bottom: 1px solid $gray-3;
+      padding: 10px 0;
+
+      .panel-title {
+        font-size: $type-5;
+      }
+    }
+
+    .panel-body {
+      .work-show {
+        dt {
+          font-size: $type-3;
+          padding-top: 10px;
+        }
+
+        .tabular {
+          .attribute {
+            font-size: $type-3;
+          }
+        }
+      }
+
+      .table {
+        border-collapse: collapse;
+
+        th {
+          font-size: $type-3;
+          background-color: $gray-1;
+        }
+
+        th:first-child {
+          padding-left: 15px;
+        }
+
+        .thumbnail {
+          margin: $golden-ratio-1;
+        }
+
+        tbody {
+          .attribute {
+            font-size: $type-3;
+            padding: $golden-ratio-3 $golden-ratio-0;
+          }
+        }
+      }
+
+      .metadata-group {
+        padding: 11px;
+        dl {
+          overflow: hidden;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+        }
+        dt {
+          float: left;
+          width: 30%;
+          padding: 0;
+          margin: 0;
+        }
+        dd {
+          float: left;
+          width: 70%;
+          padding: 0;
+          margin: 0;
+
+          ul {
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    .abstract-panel {
+      dt {
+        display: none;
+      }
+
+      dd {
+        .tabular {
+          padding-left: 0;
+
+          li {
+            font-size: $type-3;
+          }
+        }
+      }
+    }
+  }
+
+  .uv-panel {
+    padding: 0;
+  }
+
+  .items-panel {
+    .panel-body {
+      padding: 15px 0;
+    }
+  }
+
+  /**** Responsive Styles ****/
+  @media (max-width: 991px) {
+    .work-type {
+      .work-title-wrapper {
+        margin-bottom: $golden-ratio-1;
+
+        .title-with-badges {
+          h1 {
+            font-size: $type-4 !important;
+          }
+        }
+      }
+    }
+
+    .works-panel {
+      .panel-heading {
+        .panel-title {
+          font-size: $type-4 !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .work-type-container {
+      border: 1px solid $gray-3;
+      border-radius: 3px;
+      margin-bottom: $golden-ratio-2;
+
+      .work-type {
+        .title-with-badges {
+          padding: 0 $golden-ratio-3;
+          h1 {
+            font-size: $type-3 !important;
+          }
+        }
+        .work-type-tag {
+          font-size: $type-2;
+          padding: 0 $golden-ratio-2;
+          margin-bottom: 0;
+          margin-top: $golden-ratio-0;
+        }
+      }
+    }
+
+    .works-panel {
+      padding: 0 $golden-ratio-3;
+
+      .panel-heading {
+        .panel-title {
+          font-size: $type-3 !important;
+        }
+      }
+
+      .panel-body {
+        .work-show {
+          dt {
+            font-size: $type-2;
+          }
+        }
+
+        .table {
+          margin-bottom: 0;
+
+          th {
+            font-size: $type-2;
+          }
+
+          .thumbnail {
+            width: 100px !important;
+          }
+
+          .attribute {
+            font-size: $type-2 !important;
+          }
+
+          .attribute-date_uploaded {
+            text-align: center;
+          }
+        }
+
+        .metadata-group {
+          ul {
+            padding-left: $golden-ratio-1 !important;
+          }
+        }
+      }
+
+      .tabular {
+        li {
+          font-size: $type-2 !important;
+        }
+      }
+    }
+  }
+  /**** End Responsive Styles ****/
+}

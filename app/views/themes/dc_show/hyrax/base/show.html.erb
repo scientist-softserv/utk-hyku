@@ -1,0 +1,81 @@
+<%# OVERRIDE: Hyrax v3.4.2 - show_actions being commented out, citations and social media commented out, add divs and classes for custom client theming of dc_repository theme %>
+
+<% content_for(:extra_body_classes, 'works-show ') %>
+<% provide :page_title, @presenter.page_title %>
+<%= render 'shared/citations' %>
+<%= render 'shared/additional_citations' %>
+<div class="work-type-container">
+  <div class="row work-type">
+    <div itemscope itemtype="http://schema.org/CreativeWork" class="col-xs-12">
+      <%= render 'work_title', presenter: @presenter %>
+      <div class="col-sm-12">
+        <%= render 'work_type', presenter: @presenter %>
+      </div>
+      <%# OVERRIDE: Hyrax v3.4.2 - show_actions being commented out in case they are needed in the future. %>
+      <%#= render 'show_actions', presenter: @presenter %>
+      <%# OVERRIDE: Hyrax v3.4.2 - add classes %>
+      <div class="works-panel uv-panel">
+        <div class="panel-body">
+          <div class="row">
+            <%= render 'workflow_actions_widget', presenter: @presenter %>
+            <% if @presenter.iiif_viewer? %>
+              <div class="col-sm-12">
+                <%= render 'representative_media', presenter: @presenter, viewer: true %>
+              </div>
+            <% end %>
+            <div class="col-sm-3 text-center">
+              <%= render 'representative_media', presenter: @presenter, viewer: false unless @presenter.iiif_viewer? %>
+              <%# OVERRIDE: Hyrax v3.4.2 - Citations and social media items are not included in the custom theming for DC repository. They are commented out in case they are needed in the future. %>
+              <%#= render 'citations', presenter: @presenter %>
+              <%#= render 'social_media' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /panel -->
+      <div class="works-panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Description</h3>
+        </div>
+        <div class="panel-body abstract-panel">
+          <%= @presenter.attribute_to_html(:abstract, html_dl: true, include_empty: false) %>
+        </div>
+      </div>
+      <div class="works-panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Item Details</h3>
+        </div>
+        <div class="panel-body col-sm">
+          <div class="metadata-group">
+            <%= render 'metadata', presenter: @presenter %>
+          </div>
+        </div>
+      </div>
+      <div class="works-panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= t('hyrax.base.show.relationships') %></h3>
+        </div>
+        <div class="panel-body">
+          <%= render 'relationships', presenter: @presenter %>
+        </div>
+      </div>
+      <%# OVERRIDE: Hyrax v3.4.2 - add items-panel class %>
+      <div class="works-panel items-panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= t('.items') %></h3>
+        </div>
+        <div class="panel-body">
+          <%= render 'items', presenter: @presenter %>
+        </div>
+      </div>
+      <%# TODO: we may consider adding these partials in the future %>
+      <%# = render 'sharing_with', presenter: @presenter %>
+      <%# = render 'user_activity', presenter: @presenter %>
+      <span class='hide analytics-event' data-category="work" data-action="work-view" data-name="<%= @presenter.id %>" >
+        <% @presenter.member_of_collection_ids.each do |collection_id| %>
+          <span class='hide analytics-event' data-category="work-in-collection" data-action="work-in-collection-view" data-name="<%= collection_id %>" />
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>
