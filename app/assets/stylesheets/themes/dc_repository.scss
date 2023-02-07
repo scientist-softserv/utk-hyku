@@ -1031,8 +1031,10 @@ body.dc_repository {
           color: $smokeyx;
 
           h3 {
-            color: $smokey !important;
             font-size: $type-3;
+            a {
+              color: $smokey !important;
+            }
           }
 
           .panel-title:after {
