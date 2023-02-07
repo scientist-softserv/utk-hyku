@@ -1,4 +1,4 @@
-<%# OVERRIDE: Hyrax v3.4.2 - Citations and social media commented out, add divs and classes for custom client theming of dc_repository & trace theme %>
+<%# OVERRIDE: Hyrax v3.4.2 - show_actions being commented out, citations and social media commented out, add divs and classes for custom client theming of dc_repository theme %>
 
 <% content_for(:extra_body_classes, 'works-show ') %>
 <% provide :page_title, @presenter.page_title %>
@@ -6,12 +6,13 @@
 <%= render 'shared/additional_citations' %>
 <div class="work-type-container">
   <div class="row work-type">
-    <div class="col-sm-12">
-      <%= render 'work_type', presenter: @presenter %>
-    </div>
     <div itemscope itemtype="http://schema.org/CreativeWork" class="col-xs-12">
       <%= render 'work_title', presenter: @presenter %>
-      <%= render 'show_actions', presenter: @presenter %>
+      <div class="col-sm-12">
+        <%= render 'work_type', presenter: @presenter %>
+      </div>
+      <%# OVERRIDE: Hyrax v3.4.2 - show_actions being commented out in case they are needed in the future. %>
+      <%#= render 'show_actions', presenter: @presenter %>
       <%# OVERRIDE: Hyrax v3.4.2 - add classes %>
       <div class="works-panel uv-panel">
         <div class="panel-body">
