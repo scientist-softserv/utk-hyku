@@ -1051,7 +1051,8 @@ body.dc_repository {
             background-color: transparent;
 
             .facet-values {
-              li .selected {
+              li .selected,
+              li .more_facets_link {
                 color: $globe;
                 font-size: $type-3;
               }
