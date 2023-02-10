@@ -53,7 +53,7 @@ body.dc_show {
 
     .panel-heading {
       border-bottom: 1px solid $gray-3;
-      padding: 10px 0;
+      padding: $golden-ratio-1 0;
 
       .panel-title {
         font-size: $type-5;
@@ -64,7 +64,7 @@ body.dc_show {
       .work-show {
         dt {
           font-size: $type-3;
-          padding-top: 10px;
+          padding-top: $golden-ratio-1;
         }
 
         .tabular {
@@ -74,12 +74,61 @@ body.dc_show {
         }
       }
 
+      .attribute-abstract {
+        text-align: justify;
+        padding-top: $golden-ratio-1;
+      }
+
+      .work-show.metadata-block {
+        .metadata-group {
+          display: flex;
+          align-items: center;
+          padding: $golden-ratio-1;
+
+          dl {
+            overflow: hidden;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+          }
+          dt {
+            float: left;
+            width: 30%;
+            padding: $golden-ratio-0 0;
+            margin: 0 !important;
+          }
+          dd {
+            float: left;
+            width: 70%;
+            padding: $golden-ratio-0 0;
+            margin: 0;
+
+            ul.tabular {
+              padding: 0;
+              margin: 0;
+
+              .attribute {
+                font-size: $type-3;
+              }
+            }
+          }
+        }
+        .metadata-group:nth-child(even) {
+          background-color: $gray-0;
+          border-radius: 5px;
+        }
+        .metadata-group:nth-child(odd) {
+          background-color: $white;
+          border-radius: 5px;
+        }
+      }
+
       .table {
         border-collapse: collapse;
 
         th {
           font-size: $type-3;
-          background-color: $gray-1;
+          background-color: $gray-0;
         }
 
         th:first-child {
@@ -94,32 +143,6 @@ body.dc_show {
           .attribute {
             font-size: $type-3;
             padding: $golden-ratio-3 $golden-ratio-0;
-          }
-        }
-      }
-
-      .metadata-group {
-        padding: 11px;
-        dl {
-          overflow: hidden;
-          width: 100%;
-          padding: 0;
-          margin: 0;
-        }
-        dt {
-          float: left;
-          width: 30%;
-          padding: 0;
-          margin: 0;
-        }
-        dd {
-          float: left;
-          width: 70%;
-          padding: 0;
-          margin: 0;
-
-          ul {
-            padding: 0;
           }
         }
       }
@@ -170,6 +193,16 @@ body.dc_show {
       .panel-heading {
         .panel-title {
           font-size: $type-4 !important;
+        }
+      }
+    }
+
+    .panel-body {
+      .work-show.metadata-block {
+        .metadata-group {
+          dd {
+            padding: $golden-ratio-0 0 $golden-ratio-0 $golden-ratio-2 !important;
+          }
         }
       }
     }
