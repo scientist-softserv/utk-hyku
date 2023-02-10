@@ -1,0 +1,12 @@
+<%# OVERRIDE: Hyrax v3.4.2 - add partial for custom theming of dc_repository theme %>
+
+<% presenter.dynamic_schema_service.view_properties.each_pair do | prop_key, prop_value | %>
+  <%# @todo internationalisation %>
+  <% next if prop_value[:admin_only] && !presenter.current_ability.current_user.admin? %>
+  <% value = presenter.attribute_to_html(prop_key, label: prop_value[:label], html_dl: true) %>
+  <% if value.present? && (prop_key != :abstract) %>
+    <div class='metadata-group'>
+      <%= value %>
+    </div>
+  <% end %>  
+<% end %>
