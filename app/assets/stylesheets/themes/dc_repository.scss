@@ -1,6 +1,6 @@
 body.dc_repository {
   background-color: $white;
-  font-size: $type-4;
+  font-size: $type-3;
   color: $smokey !important;
   line-height: 35px;
   height: 100vh;
@@ -16,31 +16,19 @@ body.dc_repository {
   }
 
   h1 {
-    font-size: 40px;
     font-weight: 500;
   }
 
   h2 {
-    font-size: 32px;
     font-weight: 500;
   }
 
-  h3 {
-    font-size: 28px;
-  }
-
   h4 {
-    font-size: 24px;
     font-weight: 300;
-  }
-
-  h5 {
-    font-size: 20px;
   }
 
   h6 {
     font-family: "Gotham" !important;
-    font-size: 16px;
     text-transform: uppercase;
     color: $smokeyx !important;
     letter-spacing: 1pt;
@@ -107,7 +95,6 @@ body.dc_repository {
       padding: 0;
       width: auto;
       height: 100%;
-      // position: absolute;
     }
 
     #logo {
@@ -123,8 +110,6 @@ body.dc_repository {
     }
 
     #library-link {
-      // position: absolute;
-      // display: block;
       height: 100%;
       line-height: $golden-ratio-5;
       font-size: $type-5 !important;
@@ -189,7 +174,7 @@ body.dc_repository {
 
   #user_utility_links {
     display: flex;
-
+    // TODO Save for header ticket - double check these styles
     li.dropdown.header-actions-item {
       flex-grow: 0;
       flex-shrink: 1;
@@ -219,7 +204,7 @@ body.dc_repository {
       align-self: center;
       color: $rock !important;
     }
-
+    // TODO Save for header ticket - Menu not being used. display: none
     a#utk-lib-menu {
       display: block;
     }
@@ -464,7 +449,7 @@ body.dc_repository {
     width: 100%;
     height: 275px !important;
     min-height: 275px !important;
-    margin-bottom: $golden-ratio-4;
+    margin-bottom: $golden-ratio-3;
 
     .utk-digital-elements-wrapper {
       background-color: rgba(0, 108, 148, 0.95);
@@ -526,6 +511,7 @@ body.dc_repository {
         align-self: center;
         line-height: 1.29em;
         letter-spacing: -0.029em;
+        font-size: $type-4;
 
         a,
         a:visited {
@@ -1592,6 +1578,8 @@ body.dc_repository {
     }
 
     .title-masthead {
+      height: auto !important;
+      min-height: 225px !important;
       .navbar-nav {
         display: block;
       }
