@@ -85,8 +85,7 @@ group :development do
   # gem 'xray-rails' # when using this gem, know that sidekiq will not work
 end
 
-# until errored entries are fully fixed and implemented, pointing to this wip branch
-gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', branch: 'errored-entries-tab'
+gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', branch: 'main'
 
 gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
