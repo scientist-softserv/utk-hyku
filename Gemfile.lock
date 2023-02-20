@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: f8466696b78f711c9b989cb0eba01de16af10a35
+  revision: 88e69db7a5e2c25eb0b70fd051f3c74ceb27b122
   branch: relationship_baggage
   specs:
     bulkrax (5.0.0)
