@@ -14,7 +14,7 @@ module Hyrax
     include Blacklight::SearchHelper
     include Blacklight::AccessControls::Catalog
     before_action :build_contact_form
-    layout 'homepage'
+    layout 'dc_repository_contact'
 
     # OVERRIDE: Adding inject theme views method for theming
     around_action :inject_theme_views
