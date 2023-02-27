@@ -10,7 +10,7 @@ module Hyrax
   # Shows the about and help page
   class PagesController < ApplicationController
     load_and_authorize_resource class: ContentBlock, except: :show
-    layout :pages_layout
+    layout 'dc_repository_about'
 
     # OVERRIDE: Hyrax v3.4.0 Add for theming
     # Adds Hydra behaviors into the application controller
