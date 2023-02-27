@@ -1,0 +1,33 @@
+<%# OVERRIDE: Hyrax v3.4.2 - add classes for custom design of dc repository theme %>
+
+<!-- add body classes to make styling easier -->
+<!DOCTYPE html>
+<html lang="<%= I18n.locale.to_s %>" prefix="og:http://ogp.me/ns#">
+  <head>
+    <%= render partial: 'layouts/head_tag_content' %>
+    <%= content_for(:head) %>
+  </head>
+  <% content_for(:extra_body_classes, 'public-facing utk-public-facing') unless params[:controller].match(/^proprietor/) %>
+  <body class="<%= body_class %> <%= home_page_theme %> <%= search_results_theme %> <%= show_page_theme %>">
+    <%= render_gtm_body(request.original_url) %>
+    <div class="skip-to-content">
+      <%= link_to "Skip to Content", "#skip-to-content" %>
+    </div>
+    <%= render '/themes/dc_repository/shared/subpage_header' %>
+    <%= content_for(:navbar) %>
+    <%= content_for(:precontainer_content) %>
+    <div id="content-wrapper" class="container" role="main">
+      <%= render '/flash_msg' %>
+      <a name="skip-to-content" id="skip-to-content"></a>
+      <%= render 'shared/read_only' if Flipflop.read_only? %>
+      <div id='about'>
+        <div class='about-form'>
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </div>
+      </div>
+    </div>
+    <!-- /#content-wrapper -->
+    <%= render '/themes/dc_repository/shared/footer' %>
+    <%= render 'shared/ajax_modal' %>
+  </body>
+</html>
