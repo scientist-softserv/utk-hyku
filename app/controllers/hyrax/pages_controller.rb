@@ -10,7 +10,7 @@ module Hyrax
   # Shows the about and help page
   class PagesController < ApplicationController
     load_and_authorize_resource class: ContentBlock, except: :show
-    layout 'dc_repository_about'
+    layout :pages_layout
 
     # OVERRIDE: Hyrax v3.4.0 Add for theming
     # Adds Hydra behaviors into the application controller
@@ -84,7 +84,7 @@ module Hyrax
       end
 
       def pages_layout
-        action_name == 'show' ? 'homepage' : 'hyrax/dashboard'
+        action_name == 'show' ? 'dc_repository_about' : 'hyrax/dashboard'
       end
 
       # OVERRIDE: return collections for theming
