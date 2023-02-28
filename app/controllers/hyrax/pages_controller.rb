@@ -84,7 +84,7 @@ module Hyrax
       end
 
       def pages_layout
-        action_name == 'show' ? 'homepage' : 'hyrax/dashboard'
+        action_name == 'show' ? 'dc_repository_about' : 'hyrax/dashboard'
       end
 
       # OVERRIDE: return collections for theming
