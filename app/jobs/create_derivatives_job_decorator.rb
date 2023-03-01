@@ -3,8 +3,6 @@
 # OVERRIDE HYRAX 3.4.1 to skip derivative job unless rdf_type is "pcdm-muse:IntermediateFile"
 module Hyrax
   module CreateDerivativesJobDecorator
-    INTERMEDIATE_FILE = "IntermediateFile".downcase
-
     # @param [FileSet] file_set
     # @param [String] file_id identifier for a Hydra::PCDM::File
     # @param [String, NilClass] filepath the cached file within the Hyrax.config.working_path
@@ -19,7 +17,8 @@ module Hyrax
         return false
       end
 
-      return unless file_set.rdf_type&.join&.downcase&.include?(INTERMEDIATE_FILE)
+      # OVERRIDE HYRAX 3.4.1 to skip derivative job unless rdf_type is "pcdm-muse:IntermediateFile"
+      return unless Hyrax::ConditionalDerivativeDecorator.generate_derivatives_for?(file_set: file_set)
 
       # Ensure a fresh copy of the repo file's latest version is being worked on, if no filepath is directly provided
       unless filepath && File.exist?(filepath)
