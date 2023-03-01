@@ -1351,6 +1351,28 @@ body.dc_repository {
   }
   /**** End Contact Page ****/
 
+  /**** File Set Show Page ****/
+  #dc-file-set {
+    header {
+      h1 {
+        font-size: $type-5;
+
+        span.label {
+          display: none;
+        }
+      }
+    }
+    h2 {
+      font-size: $type-4;
+    }
+    .form-actions {
+      .social-media {
+        display: none;
+      }
+    }
+  }
+  /**** End File Set Show Page ****/
+
   /**** Responsive Styles ****/
   @media (min-width: 1200px) {
     // Header
@@ -2025,6 +2047,17 @@ body.dc_repository {
             }
           }
         }
+      }
+    }
+    // File Set Show Page
+    #dc-file-set {
+      header {
+        h1 {
+          font-size: $type-4;
+        }
+      }
+      h2 {
+        font-size: $type-3;
       }
     }
   }
