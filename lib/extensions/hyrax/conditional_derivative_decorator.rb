@@ -31,3 +31,6 @@ module Hyrax
     end
   end
 end
+
+# NOTE: Until we add the IIIF Print gem, this is adequate for short-circuiting running derivatives.
+Hyrax::FileSetDerivativesService.prepend(Hyrax::ConditionalDerivativeDecorator)

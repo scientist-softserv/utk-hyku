@@ -21,4 +21,8 @@ RSpec.describe Hyrax::ConditionalDerivativeDecorator do
       it { is_expected.to be_falsey }
     end
   end
+
+  it "is included in the Hyrax::FileSetDerivativesService modules" do
+    expect(Hyrax::FileSetDerivativesService.included_modules).to include(described_class)
+  end
 end
