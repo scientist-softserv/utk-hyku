@@ -26,7 +26,7 @@ module Hyrax
     def valid?
       # Yes, I'm calling the module method :generate_derivatives_for? because that is logic likely
       # to repeat elsewhere.
-      return false unless self.class.generate_derivatives_for?(file_set: file_set)
+      return false unless ConditionalDerivativeDecorator.generate_derivatives_for?(file_set: file_set)
       super
     end
   end
