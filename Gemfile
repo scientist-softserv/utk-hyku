@@ -147,3 +147,4 @@ gem 'pronto-flay', require: false
 gem 'pronto-rails_best_practices', require: false
 gem 'pronto-rails_schema', require: false
 gem 'pronto-rubocop', require: false
+gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'main'
