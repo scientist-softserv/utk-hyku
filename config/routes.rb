@@ -3,6 +3,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+
+  concern :iiif_search, BlacklightIiifSearch::Routes.new
 mount AllinsonFlex::Engine, at: '/'
   concern :oai_provider, BlacklightOaiProvider::Routes.new
 
@@ -61,6 +63,7 @@ mount AllinsonFlex::Engine, at: '/'
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
+    concerns :iiif_search
   end
 
   resources :bookmarks do
