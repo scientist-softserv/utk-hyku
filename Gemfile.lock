@@ -114,6 +114,19 @@ GIT
       valkyrie (~> 2, >= 2.1.1)
 
 GIT
+  remote: https://github.com/scientist-softserv/iiif_print.git
+  revision: a91e35226554c87422a1e249cf2421a0278c83ef
+  branch: main
+  specs:
+    iiif_print (1.0.0)
+      blacklight_iiif_search (~> 1.0)
+      dry-monads (~> 1.4.0)
+      hyrax (>= 2.5, < 4.0)
+      nokogiri (>= 1.13.2)
+      rails (~> 5.0)
+      rdf-vocab (~> 3.0)
+
+GIT
   remote: https://github.com/tawan/active-elastic-job.git
   revision: 092a8102cd38cffd7203d408fa03998cdff9dc03
   specs:
@@ -267,6 +280,10 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
+    blacklight_iiif_search (1.0.0)
+      blacklight (~> 6.0)
+      iiif-presentation
+      rails (>= 4.2, < 6)
     blacklight_oai_provider (6.1.1)
       blacklight (~> 6.0)
       oai (~> 1.0)
@@ -609,6 +626,10 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     ice_nine (0.11.2)
+    iiif-presentation (1.1.0)
+      activesupport (>= 3.2.18)
+      faraday (>= 0.9)
+      json
     iiif_manifest (1.2.0)
       activesupport (>= 4)
     is_it_working (1.1.0)
@@ -1285,6 +1306,7 @@ DEPENDENCIES
   i18n-debug
   i18n-tasks
   iiif_manifest
+  iiif_print!
   is_it_working
   jbuilder (~> 2.5)
   jquery-rails
