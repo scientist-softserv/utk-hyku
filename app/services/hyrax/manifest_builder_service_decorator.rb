@@ -105,5 +105,5 @@ module Hyrax
   end
 end
 
-Hyrax::ManifestBuilderService.prepend(Hyrax::ManifestBuilderServiceDecorator)
-Hyrax::ManifestBuilderService.singleton_class.prepend(Hyrax::ManifestBuilderServiceDecorator::ClassMethods)
+# Hyrax::ManifestBuilderService.prepend(Hyrax::ManifestBuilderServiceDecorator)
+# Hyrax::ManifestBuilderService.singleton_class.prepend(Hyrax::ManifestBuilderServiceDecorator::ClassMethods)
