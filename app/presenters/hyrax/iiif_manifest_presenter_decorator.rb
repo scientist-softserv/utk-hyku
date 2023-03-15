@@ -6,9 +6,9 @@ module Hyrax
   module IiifManifestPresenterDecorator
     attr_writer :iiif_version
 
-    # def iiif_version
-    #   @iiif_version || 3
-    # end
+    def iiif_version
+      @iiif_version || 3
+    end
 
     def search_service
       url = Rails.application.routes.url_helpers.solr_document_url(id, host: hostname)
@@ -60,25 +60,33 @@ module Hyrax
     ##
     # @return [String] the URL that is used in the manifest to link back to the show page
     # @see ManifestBuilderServiceDecorator#homepage
-    # def work_url
-    #   protocol = Site.account.ssl_configured ? 'https' : 'http'
-    #   Rails.application.routes.url_helpers.polymorphic_url(model, host: hostname, protocol: protocol)
-    # end
+    def work_url
+      protocol = Site.account.ssl_configured ? 'https' : 'http'
+      Rails.application.routes.url_helpers.polymorphic_url(model, host: hostname, protocol: protocol)
+    end
 
     # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #is_part_of IS SET UP
     ##
     # @return [String] the URL to the Work's Collection show page
-    # def collection_url(collection_id)
-    #   return '' if collection_id.blank?
+    def collection_url(collection_id)
+      return '' if collection_id.blank?
 
-    #   protocol = Site.account.ssl_configured ? 'https' : 'http'
-    #   "#{protocol}://#{hostname}/collections/#{collection_id}"
-    # end
+      protocol = Site.account.ssl_configured ? 'https' : 'http'
+      "#{protocol}://#{hostname}/collections/#{collection_id}"
+    end
+
+
 
     module DisplayImagePresenterDecorator
       # overriding to include #display_content from the hyrax-iiif_av gem
       def display_image; end
       include Hyrax::IiifAv::DisplaysContent
+
+      # override Hyrax to keep pdfs from gumming up the v3 manifest
+      # in app/presenters/hyrax/iiif_manifest_presenter.rb
+      def file_set?
+        super && (image? || audio? || video?)
+      end
     end
 
     private
@@ -90,5 +98,5 @@ module Hyrax
 end
 
 Hyrax::IiifManifestPresenter.prepend(Hyrax::IiifManifestPresenterDecorator)
-# Hyrax::IiifManifestPresenter::DisplayImagePresenter
-#   .prepend(Hyrax::IiifManifestPresenterDecorator::DisplayImagePresenterDecorator)
+Hyrax::IiifManifestPresenter::DisplayImagePresenter
+  .prepend(Hyrax::IiifManifestPresenterDecorator::DisplayImagePresenterDecorator)

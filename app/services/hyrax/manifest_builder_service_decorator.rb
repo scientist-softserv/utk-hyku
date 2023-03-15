@@ -10,18 +10,25 @@ module Hyrax
       end
     end
 
-    def initialize(iiif_manifest_factory: ::IIIFManifest::V3::ManifestFactory)
-      @manifest_factory = iiif_manifest_factory
-    end
+    # def initialize(iiif_manifest_factory: ::IIIFManifest::V3::ManifestFactory)
+    #   @manifest_factory = iiif_manifest_factory
+    # end
 
     private
 
-      def sanitized_manifest(presenter:)
-        manifest = manifest_factory.new(presenter).to_h
+      def build_manifest(presenter:)
+        # OVERRIDE IiifPrint v1.0.0 
+        # ::IIIFManifest::ManifestBuilder#to_h returns a
+        # IIIFManifest::ManifestBuilder::IIIFManifest, not a Hash.
+        # to get a Hash, we have to call its #to_json, then parse.
+        #
+        # wild times. maybe there's a better way to do this with the
+        # ManifestFactory interface?
+        manifest = iiif_manifest_factory_for(@version).new(presenter).to_h
         hash = JSON.parse(manifest.to_json)
         hash.delete('rendering') # removes rendering since UTK does not use this property on the base manifest
         hash.delete('service') # removes service since UTK does not use this property on the base manifest
-        hash['label'] = sanitize_value(hash['label']) if hash.key?('label')
+        # hash['label'] = sanitize_value(hash['label']) if hash.key?('label')
         hash['provider'] = provider
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #is_part_of IS SET UP
         hash['partOf'] = part_of(presenter) if presenter&.member_of_collection_ids.present?
@@ -29,7 +36,8 @@ module Hyrax
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #behavior IS SET UP
         hash['behavior'] = ['paged'] if presenter.human_readable_type == 'Book'
         hash['behavior'] = ['individuals'] if presenter.human_readable_type == 'Compound Object'
-        hash
+        hash = send("sanitize_v#{@version}", hash: hash, presenter: presenter)
+        send("sorted_canvases_v#{@version}", hash: hash, sort_field: IiifPrint.config.sort_iiif_manifest_canvases_by)
       end
 
       ##
@@ -105,5 +113,5 @@ module Hyrax
   end
 end
 
-# Hyrax::ManifestBuilderService.prepend(Hyrax::ManifestBuilderServiceDecorator)
+Hyrax::ManifestBuilderService.prepend(Hyrax::ManifestBuilderServiceDecorator)
 # Hyrax::ManifestBuilderService.singleton_class.prepend(Hyrax::ManifestBuilderServiceDecorator::ClassMethods)
