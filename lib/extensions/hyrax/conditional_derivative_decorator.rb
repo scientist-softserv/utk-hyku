@@ -13,10 +13,7 @@ module Hyrax
     # @return [TrueClass] when we should generate derivatives for the given :file_set
     # @return [FalseClass] when we should **not** generate derivatives for the given :file_set
     def self.generate_derivatives_for?(file_set:, intermediate_file_type_text: INTERMEDIATE_FILE_TYPE_TEXT)
-      return true unless file_set.respond_to?(:rdf_type)
-      return false if file_set.rdf_type&.join&.downcase&.include?(intermediate_file_type_text)
-
-      true
+      file_set.try(:rdf_type)&.join&.downcase&.include?(intermediate_file_type_text)
     end
 
     ##
