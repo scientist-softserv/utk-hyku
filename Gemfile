@@ -91,11 +91,11 @@ gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
-# gem 'hyrax', '~> 3.4.0'
 # lock to graph indexing update commit
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
+
 gem 'hyrax-iiif_av', git: 'https://github.com/samvera-labs/hyrax-iiif_av.git', branch: 'utk-hyku-with-hyrax-3'
-gem 'iiif_manifest'
+gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'main'
 
 gem 'bolognese', '>= 1.9.10'
 gem 'hyrax-doi', git: 'https://github.com/samvera-labs/hyrax-doi.git'
@@ -141,7 +141,6 @@ gem 'tinymce-rails', '~> 5.10' # lock gem to version new Hyrax version will requ
 gem 'webpacker'
 
 # Pronto adds comments to MRs in gitlab when rubocop offenses are made.
-gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'main'
 gem 'pronto'
 gem 'pronto-brakeman', require: false
 gem 'pronto-flay', require: false
