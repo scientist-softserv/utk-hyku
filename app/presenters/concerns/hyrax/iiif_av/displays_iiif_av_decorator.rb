@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Hyrax::IiifAv::DisplaysIiifAv.module_eval do
   def iiif_viewer?
     # Hyrax::IiifAv overrides Hyrax, to add in audio & video files

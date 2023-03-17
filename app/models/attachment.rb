@@ -8,7 +8,7 @@ class Attachment < ActiveFedora::Base
     pdf_splitter_service: IiifPrint::SplitPdfs::PagesToJpgsSplitter,
     pdf_split_child_model: self,
     derivative_service_plugins: [
-      IiifPrint::TextExtractionDerivativeService,
+      IiifPrint::TextExtractionDerivativeService
     ]
   )
 

@@ -3,7 +3,6 @@
 # OVERRIDE Hyrax 3.4.1 to use IIIF Presentation API V3
 module Hyrax
   module ManifestBuilderServiceDecorator
-
     private
 
       def build_manifest(presenter:)
@@ -25,7 +24,8 @@ module Hyrax
         hash['behavior'] = ['individuals'] if presenter.human_readable_type == 'Compound Object'
         hash = send("sanitize_v#{@version}", hash: hash, presenter: presenter)
         if child_works.present?
-          return send("sort_canvases_v#{@version}", hash: hash, sort_field: IiifPrint.config.sort_iiif_manifest_canvases_by)
+          return send("sort_canvases_v#{@version}", hash: hash,
+                                                    sort_field: IiifPrint.config.sort_iiif_manifest_canvases_by)
         end
 
         hash

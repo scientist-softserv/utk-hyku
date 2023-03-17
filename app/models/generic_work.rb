@@ -9,7 +9,7 @@ class GenericWork < ActiveFedora::Base
     pdf_splitter_service: IiifPrint::SplitPdfs::PagesToJpgsSplitter,
     pdf_split_child_model: self
   )
-  
+
   self.indexer = GenericWorkIndexer
 
   # Change this to restrict which works can be added as a child.
