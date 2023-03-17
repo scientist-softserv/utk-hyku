@@ -11,42 +11,9 @@ module Hyrax
     end
 
     def search_service
-      url = Rails.application.routes.url_helpers.solr_document_url(id, host: hostname)
+      url = Rails.application.routes.url_helpers.solr_document_iiif_search_url(id, host: hostname)
       Site.account.ssl_configured ? url.sub(/\Ahttp:/, 'https:') : url
     end
-
-    ##
-    # @return [Array] the "metadata" field of the manifest with labels from Allinson Flex profile
-    #   and values from the Work
-    # def manifest_metadata
-    #   metadata = labels_and_values.map do |property|
-    #     next unless respond_to?(property.value)
-    #     next unless public_send(property.value)&.present?
-    #     {
-    #       'label' => property.label,
-    #       'value' => Array(send(property.value)).map { |v| scrub(v.to_s) }
-    #     }
-    #   end
-    #   metadata.compact
-    # end
-
-    ##
-    # @return [Array] an array of AllinsonFlex::ProfileProperty objects that hold the labels and values
-    #   needed for the manifest metadata
-    # @see #manifest_metadata
-    # def labels_and_values
-    #   # each AR object in this result set will have two attributes, label and value
-    #   @labels_and_values ||= AllinsonFlex::ProfileProperty
-    #                          .find_by_sql(
-    #                            "SELECT DISTINCT allinson_flex_profile_texts.value AS label, " \
-    #                            "allinson_flex_profile_properties.name AS value " \
-    #                            "FROM allinson_flex_profile_properties " \
-    #                            "JOIN allinson_flex_profile_texts " \
-    #                            "ON allinson_flex_profile_properties.id = " \
-    #                              "allinson_flex_profile_texts.profile_property_id " \
-    #                            "WHERE allinson_flex_profile_texts.name = 'display_label'"
-    #                          )
-    # end
 
     ##
     # @return [String] the URL where the manifest can be found
@@ -74,8 +41,6 @@ module Hyrax
       protocol = Site.account.ssl_configured ? 'https' : 'http'
       "#{protocol}://#{hostname}/collections/#{collection_id}"
     end
-
-
 
     module DisplayImagePresenterDecorator
       # overriding to include #display_content from the hyrax-iiif_av gem
