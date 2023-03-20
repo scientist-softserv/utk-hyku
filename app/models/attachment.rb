@@ -4,13 +4,7 @@
 #  `rails generate hyrax:work Attachment`
 class Attachment < ActiveFedora::Base
   include SharedWorkBehavior
-  include IiifPrint.model_configuration(
-    pdf_splitter_service: IiifPrint::SplitPdfs::PagesToJpgsSplitter,
-    pdf_split_child_model: self,
-    derivative_service_plugins: [
-      IiifPrint::TextExtractionDerivativeService
-    ]
-  )
+  include IiifPrint.model_configuration
 
   self.indexer = AttachmentIndexer
 
