@@ -6,7 +6,7 @@ IiifPrint.config do |config|
   # @example
   #   # config.excluded_model_name_solr_field_values = ['Generic Work', 'Image']
   #
-  # config.excluded_model_name_solr_field_values = []
+  config.excluded_model_name_solr_field_values = ['Attachment']
 
   # Add configurable solr field key for searching,
   # default key is: 'human_readable_type_sim'
@@ -19,4 +19,6 @@ IiifPrint.config do |config|
   # but a different model property may be desired such as :date_published
   # @example
   #   config.sort_iiif_manifest_canvases_by = :date_published
+
+  config.default_iiif_manifest_version = 3
 end

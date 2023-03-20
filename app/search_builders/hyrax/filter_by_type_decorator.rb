@@ -6,7 +6,11 @@ Hyrax::FilterByType.module_eval do
   # @return [Array<Class>] a list of classes to include
   def models
     the_models = work_classes + collection_classes
-    return the_models unless ['catalog', 'hyrax/my/works'].include?(blacklight_params[:controller])
-    the_models - [Attachment]
+
+    if IiifPrint.config.excluded_model_name_solr_field_values.present?
+      return the_models unless ['hyrax/my/works', 'hyrax/dashboard/works'].include?(blacklight_params[:controller])
+    end
+
+    the_models - IiifPrint.config.excluded_model_name_solr_field_values.map(&:constantize)
   end
 end

@@ -4,6 +4,10 @@
 #  `rails generate hyrax:work GenericWork`
 class GenericWork < ActiveFedora::Base
   include SharedWorkBehavior
+  include IiifPrint.model_configuration(
+    pdf_splitter_service: IiifPrint::SplitPdfs::PagesToJpgsSplitter,
+    pdf_split_child_model: self
+  )
 
   self.indexer = GenericWorkIndexer
 

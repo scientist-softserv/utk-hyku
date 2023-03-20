@@ -51,10 +51,10 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: ce431a2c282345da2dca12c85f5afb3c16769fb1
+  revision: b334e186e77691d7da8ed59ff27f091be1c2a700
   branch: 3.x-stable
   specs:
-    hyrax (3.4.2)
+    hyrax (3.5.0)
       active-fedora (~> 13.1, >= 13.1.2)
       almond-rails (~> 0.1)
       awesome_nested_set (~> 3.1)
@@ -115,7 +115,7 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: a91e35226554c87422a1e249cf2421a0278c83ef
+  revision: ec8da2e7bb144b9daaaaf0770174f47f00f96fb8
   branch: main
   specs:
     iiif_print (1.0.0)
@@ -191,7 +191,7 @@ GEM
       activemodel (= 5.2.8)
       activesupport (= 5.2.8)
       arel (>= 9.0)
-    activerecord-import (1.4.0)
+    activerecord-import (1.4.1)
       activerecord (>= 4.2)
     activerecord-nulldb-adapter (0.8.0)
       activerecord (>= 5.2.0, < 7.1)
@@ -427,10 +427,10 @@ GEM
     dropbox_api (0.1.21)
       faraday (< 3.0)
       oauth2 (~> 1.1)
-    dry-configurable (0.15.0)
-      concurrent-ruby (~> 1.0)
+    dry-configurable (0.16.1)
       dry-core (~> 0.6)
-    dry-container (0.10.0)
+      zeitwerk (~> 2.6)
+    dry-container (0.11.0)
       concurrent-ruby (~> 1.0)
     dry-core (0.7.1)
       concurrent-ruby (~> 1.0)
@@ -439,7 +439,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4)
       dry-equalizer (~> 0.2)
-    dry-inflector (0.2.1)
+    dry-inflector (0.3.0)
     dry-initializer (3.1.1)
     dry-logic (1.2.0)
       concurrent-ruby (~> 1.0)
@@ -449,12 +449,12 @@ GEM
     dry-monads (1.4.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.7)
-    dry-schema (1.9.3)
+    dry-schema (1.10.6)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.13, >= 0.13.0)
       dry-core (~> 0.5, >= 0.5)
       dry-initializer (~> 3.0)
-      dry-logic (~> 1.0)
+      dry-logic (~> 1.2)
       dry-types (~> 1.5)
     dry-struct (1.4.0)
       dry-core (~> 0.5, >= 0.5)
@@ -495,7 +495,7 @@ GEM
       nokogiri (>= 1.4.3)
     erubi (1.10.0)
     erubis (2.7.0)
-    ethon (0.15.0)
+    ethon (0.16.0)
       ffi (>= 1.15.0)
     excon (0.71.1)
     execjs (2.8.1)
@@ -528,13 +528,13 @@ GEM
       railties (>= 3.2, < 8.0)
     gender_detector (0.1.2)
       unicode_utils (>= 1.3.0)
-    geocoder (1.8.0)
+    geocoder (1.8.1)
     gitlab (4.19.0)
       httparty (~> 0.20)
       terminal-table (>= 1.5.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    google-apis-core (0.7.0)
+    google-apis-core (0.11.0)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.16.2, < 2.a)
       httpclient (>= 2.8.1, < 3.a)
@@ -543,9 +543,9 @@ GEM
       retriable (>= 2.0, < 4.a)
       rexml
       webrick
-    google-apis-drive_v3 (0.25.0)
-      google-apis-core (>= 0.7, < 2.a)
-    googleauth (1.2.0)
+    google-apis-drive_v3 (0.37.0)
+      google-apis-core (>= 0.11.0, < 2.a)
+    googleauth (1.3.0)
       faraday (>= 0.17.3, < 3.a)
       jwt (>= 1.4, < 3.0)
       memoist (~> 0.16)
@@ -559,6 +559,7 @@ GEM
       concurrent-ruby (~> 1.0)
     hana (1.3.7)
     hashdiff (1.0.1)
+    hashie (5.0.0)
     highline (2.0.3)
     hiredis (0.6.3)
     html_tokenizer (0.0.7)
@@ -578,10 +579,9 @@ GEM
     hydra-core (11.0.7)
       hydra-access-controls (= 11.0.7)
       railties (>= 4.0.0, < 6)
-    hydra-derivatives (3.6.1)
+    hydra-derivatives (3.7.0)
       active-fedora (>= 11.5.6, != 13.2.1, != 13.2.0, != 13.1.3, != 13.1.2, != 13.1.1, != 13.1.0, != 13.0.0, != 12.2.1, != 12.2.0, != 12.1.1, != 12.1.0, != 12.0.3, != 12.0.2, != 12.0.1, != 12.0.0)
       active_encode (~> 0.1)
-      activemodel (< 6.1)
       activesupport (>= 4.0, < 7)
       addressable (~> 2.5)
       deprecation
@@ -605,8 +605,8 @@ GEM
     hydra-pcdm (1.1.0)
       active-fedora (>= 10, < 14)
       mime-types (>= 1)
-    hydra-works (2.0.0)
-      activesupport (>= 5.2, < 7.0)
+    hydra-works (2.1.0)
+      activesupport (>= 5.2, < 7.1)
       hydra-derivatives (~> 3.6)
       hydra-file_characterization (~> 1.0)
       hydra-pcdm (>= 0.9)
@@ -630,7 +630,7 @@ GEM
       activesupport (>= 3.2.18)
       faraday (>= 0.9)
       json
-    iiif_manifest (1.2.0)
+    iiif_manifest (1.3.1)
       activesupport (>= 4)
     is_it_working (1.1.0)
     iso-639 (0.3.5)
@@ -662,8 +662,8 @@ GEM
     json-ld-preloaded (3.1.6)
       json-ld (~> 3.1)
       rdf (~> 3.1)
-    json-schema (2.8.1)
-      addressable (>= 2.4)
+    json-schema (3.0.0)
+      addressable (>= 2.8)
     json_schemer (0.2.21)
       ecma-re-validator (~> 0.3)
       hana (~> 1.3)
@@ -672,7 +672,7 @@ GEM
     jsonlint (0.3.0)
       oj (~> 3)
       optimist (~> 3)
-    jwt (2.4.1)
+    jwt (2.7.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -707,10 +707,11 @@ GEM
       rdf-turtle
       rdf-vocab (>= 0.8)
       slop
-    ldpath (1.1.0)
+    ldpath (1.2.0)
       nokogiri (~> 1.8)
       parslet
       rdf (~> 3.0)
+      rdf-vocab (~> 3.0)
     legato (0.7.0)
       multi_json
     libxml-ruby (3.2.4)
@@ -746,7 +747,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    logger (1.5.1)
+    logger (1.5.3)
     lograge (0.12.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -778,7 +779,7 @@ GEM
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
-    mini_magick (4.11.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.16.2)
     mods (2.4.1)
@@ -814,13 +815,18 @@ GEM
       builder (>= 3.1.0)
       faraday
       faraday_middleware
-    oauth (0.5.10)
-    oauth2 (1.4.10)
+    oauth (1.1.0)
+      oauth-tty (~> 1.0, >= 1.0.1)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    oauth-tty (1.0.5)
+      version_gem (~> 1.1, >= 1.1.1)
+    oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
-      rack (>= 1.2, < 3)
+      rack (>= 1.2, < 4)
     octokit (4.22.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -877,14 +883,14 @@ GEM
     public_suffix (2.0.5)
     puma (4.3.12)
       nio4r (~> 2.0)
-    qa (5.8.1)
+    qa (5.10.0)
       activerecord-import
       deprecation
-      faraday (< 2.0)
+      faraday (< 3.0, != 2.0.0)
       geocoder
       ldpath
       nokogiri (~> 1.6)
-      rails (>= 5.0, < 6.2)
+      rails (>= 5.0, < 7.1)
       rdf
     racc (1.6.0)
     rack (2.2.3)
@@ -917,8 +923,10 @@ GEM
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
-    rails_autolink (1.1.6)
-      rails (> 3.1)
+    rails_autolink (1.1.8)
+      actionview (> 3.1)
+      activesupport (> 3.1)
+      railties (> 3.1)
     rails_best_practices (1.23.1)
       activesupport
       code_analyzer (~> 0.5.5)
@@ -1008,10 +1016,12 @@ GEM
     redic (1.5.3)
       hiredis
     redis (4.7.1)
-    redis-namespace (1.8.2)
-      redis (>= 3.0.4)
-    redlock (1.2.2)
-      redis (>= 3.0.0, < 5.0)
+    redis-client (0.14.0)
+      connection_pool
+    redis-namespace (1.10.0)
+      redis (>= 4)
+    redlock (2.0.1)
+      redis-client
     reform (2.5.0)
       disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
@@ -1158,6 +1168,9 @@ GEM
     simplecov_json_formatter (0.1.4)
     slop (4.9.2)
     smart_properties (1.17.0)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     solr_wrapper (2.2.0)
       faraday
       retriable
@@ -1238,6 +1251,7 @@ GEM
       rdf-vocab
       reform (~> 2.2)
       reform-rails
+    version_gem (1.1.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -1258,12 +1272,13 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    webrick (1.7.0)
+    webrick (1.8.1)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   aarch64-linux-musl
@@ -1305,7 +1320,6 @@ DEPENDENCIES
   hyrax-iiif_av!
   i18n-debug
   i18n-tasks
-  iiif_manifest
   iiif_print!
   is_it_working
   jbuilder (~> 2.5)
