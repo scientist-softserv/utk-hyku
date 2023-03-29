@@ -4,6 +4,7 @@
 #  `rails generate hyrax:work Attachment`
 class Attachment < ActiveFedora::Base
   include SharedWorkBehavior
+  include IiifPrint.model_configuration
 
   self.indexer = AttachmentIndexer
 

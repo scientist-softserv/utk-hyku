@@ -4,6 +4,10 @@
 #  `rails generate hyrax:work Pdf`
 class Pdf < ActiveFedora::Base
   include SharedWorkBehavior
+  include IiifPrint.model_configuration(
+    pdf_splitter_service: IiifPrint::SplitPdfs::PagesToJpgsSplitter,
+    pdf_split_child_model: self
+  )
 
   self.indexer = PdfIndexer
 
