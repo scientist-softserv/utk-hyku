@@ -3,7 +3,7 @@
 # @api public
 module CustomDerivativeService
   def valid?
-    false if file_set.rdf_type&.join&.downcase&.include?("intermediate_file")
+    true if file_set.rdf_type&.join&.downcase&.include?("intermediate_file")
   end
 end
 
