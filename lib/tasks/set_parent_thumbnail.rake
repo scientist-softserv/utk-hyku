@@ -23,8 +23,7 @@ namespace :hyku do
                   child_work_thumbnail = child_work.file_sets.first
                   parent_work.representative = child_work_thumbnail if parent_work.representative_id.blank?
                   parent_work.thumbnail = child_work_thumbnail if parent_work.thumbnail_id.blank?
-                  # pdf = child_work.file_sets.select { |f| f.label.match(/.pdf/) }.first
-                  parent_work.update_attributes!(rendering_ids: [child_work_thumbnail.id]) #if pdf.present?
+                  parent_work.update_attributes!(rendering_ids: [child_work_thumbnail.id])
                   parent_work.save
                   parent_work_ids << parent_work.id
               end
