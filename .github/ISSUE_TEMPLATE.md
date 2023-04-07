@@ -1,20 +1,18 @@
-### Descriptive summary
+# Story
 
-Include what version of Hyku relates to this issue (0.x, 1.x, HEAD, etc.) if appropriate, and any relevant tracebacks if you're reporting a bug.
+# Acceptance Criteria
 
-### Rationale
+- [ ]
 
-Provide the rationale or user story that describes "why" this issue should be addressed. Especially if this is a new feature or significant change to the existing implementation.
+# Screenshots / Video
 
-### Expected behavior
+<details>
+<summary></summary>
 
-### Actual behavior
+</details>
 
-### Steps to reproduce the behavior
+# Testing Instructions and Sample Files
 
-1. Do this
-1. Then do this...
+-
 
-### Related work
-
-Link to related tickets or prior related work here.
+# Notes
