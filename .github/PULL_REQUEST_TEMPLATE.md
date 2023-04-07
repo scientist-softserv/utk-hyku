@@ -1,22 +1,16 @@
-Fixes #issuenumber ; refs #issuenumber
+# Story
 
-Present tense short summary (50 characters or less)
+Refs #issuenumber
 
-More detailed description, if necessary. Try to be as descriptive as you can: even if you think that the PR content is obvious, it may not be obvious to others. Include tracebacks if helpful, and be sure to call out any bits of the PR that may be work-in-progress.
+# Expected Behavior Before Changes
 
-Description can have multiple paragraphs and you can use code examples inside:
+# Expected Behavior After Changes
 
-``` ruby
-class PostsController
-  def index
-    respond_with Post.limit(10)
-  end
-end
-```
+# Screenshots / Video
 
-Changes proposed in this pull request:
-*
-*
-*
+<details>
+<summary></summary>
 
-@samvera/hyku-code-reviewers
+</details>
+
+# Notes
