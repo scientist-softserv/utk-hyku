@@ -95,7 +95,7 @@ gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
 # we need redlock to be at a lower version that Hyrax 3.x defines, otherwise it causes fileset attachment errors
 # ref: https://github.com/samvera/hyrax/blob/d83b8392e6a30c6ad4915a2f13d174de199afb07/hyrax.gemspec#L78
-gem 'redlock', '~>1.2.2' 
+gem 'redlock', '~>1.2.2'
 
 gem 'hyrax-iiif_av', git: 'https://github.com/samvera-labs/hyrax-iiif_av.git', branch: 'utk-hyku-with-hyrax-3'
 gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'main'
