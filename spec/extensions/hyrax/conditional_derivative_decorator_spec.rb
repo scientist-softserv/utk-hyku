@@ -12,13 +12,13 @@ RSpec.describe Hyrax::ConditionalDerivativeDecorator do
     context "when none of file_set's the RDF types are \"IntermediateFile\"" do
       let(:rdf_type) { ["Ketchup", "Sandwich"] }
 
-      it { is_expected.to be_truthy }
+      it { is_expected.to be_falsey }
     end
 
     context "when one of the file_set's RDF types for the file is \"IntermediateFile\"" do
       let(:rdf_type) { ["Ketchup", "IntermediateFile", "Sandwich"] }
 
-      it { is_expected.to be_falsey }
+      it { is_expected.to be_truthy }
     end
   end
 
@@ -38,13 +38,13 @@ RSpec.describe Hyrax::ConditionalDerivativeDecorator do
     context "when none of file_set's the RDF types are \"IntermediateFile\"" do
       let(:rdf_type) { ["Ketchup", "Sandwich"] }
 
-      it { is_expected.to be_valid }
+      it { is_expected.not_to be_valid }
     end
 
     context "when one of the file_set's RDF types for the file is \"IntermediateFile\"" do
       let(:rdf_type) { ["Ketchup", "IntermediateFile", "Sandwich"] }
 
-      it { is_expected.not_to be_valid }
+      it { is_expected.to be_valid }
     end
   end
 

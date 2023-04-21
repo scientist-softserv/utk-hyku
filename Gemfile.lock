@@ -10,10 +10,10 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 491a6ae6fbaac644f2b735f7a07ce23dc19ef0bf
+  revision: 09e8d2f05aa0822f544a8545cf263013ffd52d9a
   branch: main
   specs:
-    bulkrax (5.0.0)
+    bulkrax (5.1.0)
       bagit (~> 0.4)
       coderay
       iso8601 (~> 0.9.0)
@@ -115,7 +115,7 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: ec8da2e7bb144b9daaaaf0770174f47f00f96fb8
+  revision: 683c06b6bd5b08fd8c712e67ab0184de4cad197a
   branch: main
   specs:
     iiif_print (1.0.0)
@@ -1016,12 +1016,10 @@ GEM
     redic (1.5.3)
       hiredis
     redis (4.7.1)
-    redis-client (0.14.0)
-      connection_pool
     redis-namespace (1.10.0)
       redis (>= 4)
-    redlock (2.0.1)
-      redis-client
+    redlock (1.2.2)
+      redis (>= 3.0.0, < 5.0)
     reform (2.5.0)
       disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
@@ -1345,6 +1343,7 @@ DEPENDENCIES
   rails-controller-testing
   rdf (~> 3.1.15)
   react-rails
+  redlock (~> 1.2.2)
   riiif (~> 1.1)
   rolify
   rsolr (~> 2.0)
