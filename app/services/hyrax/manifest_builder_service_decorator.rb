@@ -6,15 +6,8 @@ module Hyrax
     private
 
       def build_manifest(presenter:)
-        # OVERRIDE IiifPrint v1.0.0
-        # ::IIIFManifest::ManifestBuilder#to_h returns a
-        # IIIFManifest::ManifestBuilder::IIIFManifest, not a Hash.
-        # to get a Hash, we have to call its #to_json, then parse.
-        #
-        # wild times. maybe there's a better way to do this with the
-        # ManifestFactory interface?
-        manifest = manifest_factory.new(presenter).to_h
-        hash = JSON.parse(manifest.to_json)
+        hash = super
+
         hash['provider'] = provider
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #is_part_of IS SET UP
         hash['partOf'] = part_of(presenter) if presenter&.member_of_collection_ids.present?
@@ -22,12 +15,6 @@ module Hyrax
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #behavior IS SET UP
         hash['behavior'] = ['paged'] if presenter.human_readable_type == 'Book'
         hash['behavior'] = ['individuals'] if presenter.human_readable_type == 'Compound Object'
-        hash = send("sanitize_v#{@version}", hash: hash, presenter: presenter)
-        if child_works.present?
-          return send("sort_canvases_v#{@version}", hash: hash,
-                                                    sort_field: IiifPrint.config.sort_iiif_manifest_canvases_by)
-        end
-
         hash
       end
 
