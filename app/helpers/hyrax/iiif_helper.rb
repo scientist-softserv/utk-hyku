@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# OVERRIDE: Hyrax v3.4.2 to add #uv_search_param for IIIF Print
+# OVERRIDE: IIIF Print IiifPrint::IiifHelperDecorator to add #uv_search_param, because it was not being loaded
 
 module Hyrax
   module IiifHelper
