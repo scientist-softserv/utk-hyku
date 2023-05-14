@@ -9,8 +9,8 @@ RSpec.describe Hyrax::FileSetIndexerDecorator, type: :decorator do
     work.save
     work
   end
-
-  let(:file_set) { work.file_sets.first }
+  # Reload the file_set from the database to reset the memoized rdf_type.
+  let(:file_set) { FileSet.find(work.file_sets.first.id) }
   let(:indexer) { Hyrax::FileSetIndexer.new(file_set) }
 
   it 'includes rdf_type_ssim' do
