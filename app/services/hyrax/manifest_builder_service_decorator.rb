@@ -3,12 +3,37 @@
 # OVERRIDE Hyrax 3.4.1 to use IIIF Presentation API V3
 module Hyrax
   module ManifestBuilderServiceDecorator
+    UTK_PROVIDER = [{
+      id: "https://www.lib.utk.edu/about/",
+      type: "Agent",
+      label: {
+        en: ["University of Tennessee, Knoxville. Libraries"]
+      },
+      homepage: [
+        { id: "https://www.lib.utk.edu/",
+          type: "Text",
+          label: {
+            en: ["University of Tennessee Libraries Homepage"]
+          },
+          format: "text/html" }
+      ],
+      logo: [
+        {
+          id: "https://utkdigitalinitiatives.github.io/iiif-level-0/ut_libraries_centered/full/full/0/default.jpg",
+          type: "Image",
+          format: "image/jpeg",
+          width: 200,
+          height: 200
+        }
+      ]
+    }].freeze
+
     private
 
       def build_manifest(presenter:)
         hash = super
 
-        hash['provider'] = provider
+        hash['provider'] = UTK_PROVIDER
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #is_part_of IS SET UP
         hash['partOf'] = part_of(presenter) if presenter&.member_of_collection_ids.present?
         hash['homepage'] = homepage(presenter)
@@ -41,35 +66,6 @@ module Hyrax
             type: "Collection"
           }
         end
-      end
-
-      ##
-      # @return [Array<Hash>] the hardcoded "provider" property for the manifest.json
-      def provider
-        [{
-          id: "https://www.lib.utk.edu/about/",
-          type: "Agent",
-          label: {
-            en: ["University of Tennessee, Knoxville. Libraries"]
-          },
-          homepage: [
-            { id: "https://www.lib.utk.edu/",
-              type: "Text",
-              label: {
-                en: ["University of Tennessee Libraries Homepage"]
-              },
-              format: "text/html" }
-          ],
-          logo: [
-            {
-              id: "https://utkdigitalinitiatives.github.io/iiif-level-0/ut_libraries_centered/full/full/0/default.jpg",
-              type: "Image",
-              format: "image/jpeg",
-              width: 200,
-              height: 200
-            }
-          ]
-        }]
       end
 
       ##
