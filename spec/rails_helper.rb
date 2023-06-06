@@ -149,17 +149,37 @@ RSpec.configure do |config|
     allinson_flex_profile.save
   end
 
-  config.before do |example|
+  config.around do |example|
+    #  Sometimes tests need a clean Fedora and Solr environment to work properly. To invoke the ActiveFedora
+    #  cleaner use the :clean metadata directive like:
+    #   describe "#structure", :clean do
+    #      some example
+    #    end
+    #
     # make sure we are on the default fedora config
     ActiveFedora::Fedora.reset!
     ActiveFedora::SolrService.reset!
-    # Pass `:clean' to destroy objects in fedora/solr and start from scratch
-    ActiveFedora::Cleaner.clean! if example.metadata[:clean]
-    if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
-      DatabaseCleaner.strategy = :truncation
+    if example.metadata[:clean]
+
+      # Pass `:clean' to destroy objects in fedora/solr and start from scratch
+      ActiveFedora::Cleaner.clean! #if example.metadata[:clean]
+
+      # Recreate only the AdminSet, not the associated permission template that is still in the database.
+      # (Instead of AdminSet.find_or_create_default_admin_set_id)
+      AdminSet.create id: AdminSet::DEFAULT_ID, title: Array.wrap(AdminSet::DEFAULT_TITLE)
+
+      if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
+        DatabaseCleaner.strategy = :truncation
+      else
+        DatabaseCleaner.strategy = :transaction
+        DatabaseCleaner.start
+      end
+
+      DatabaseCleaner.cleaning do
+        example.run
+      end
     else
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.start
+      example.run
     end
   end
 
