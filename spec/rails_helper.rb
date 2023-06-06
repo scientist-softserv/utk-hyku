@@ -185,7 +185,7 @@ RSpec.configure do |config|
 
   config.after(:each, type: :feature) do |example|
     # rubocop:disable Lint/Debugger
-    save_and_open_page if example.exception.present?
+    save_timestamped_page_and_screenshot(Capybara.page, example.metadata) if example.exception.present?
     # rubocop:enable Lint/Debugger
     Warden.test_reset!
     Capybara.reset_sessions!
@@ -206,4 +206,23 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+def save_timestamped_page_and_screenshot(page, meta)
+  filename = File.basename(meta[:file_path])
+  line_number = meta[:line_number]
+
+  time_now = Time.now
+  timestamp = "#{time_now.strftime('%Y-%m-%d-%H-%M-%S.')}#{'%03d' % (time_now.usec/1000).to_i}"
+
+  screenshot_name = "screenshot-#{filename}-#{line_number}-#{timestamp}.png"
+  screenshot_path = "#{Rails.root.join('tmp/capybara')}/#{screenshot_name}"
+  page.save_screenshot(screenshot_path)
+
+  page_name = "html-#{filename}-#{line_number}-#{timestamp}.html"
+  page_path = "#{Rails.root.join('tmp/capybara')}/#{page_name}"
+  page.save_page(page_path)
+
+  puts "\n  Screenshot: tmp/capybara/#{screenshot_name}"
+  puts "  HTML: tmp/capybara/#{page_name}"
 end
