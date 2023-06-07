@@ -168,7 +168,7 @@ RSpec.configure do |config|
     if example.metadata[:clean]
 
       # Pass `:clean' to destroy objects in fedora/solr and start from scratch
-      ActiveFedora::Cleaner.clean! #if example.metadata[:clean]
+      ActiveFedora::Cleaner.clean! # if example.metadata[:clean]
 
       # Recreate only the AdminSet, not the associated permission template that is still in the database.
       # (Instead of AdminSet.find_or_create_default_admin_set_id)
@@ -190,7 +190,6 @@ RSpec.configure do |config|
   end
 
   config.after(:each, type: :feature) do |example|
-    # rubocop:disable Lint/Debugger
     save_timestamped_page_and_screenshot(Capybara.page, example.metadata) if example.exception.present?
     # rubocop:enable Lint/Debugger
     Warden.test_reset!
@@ -218,15 +217,28 @@ def save_timestamped_page_and_screenshot(page, meta)
   filename = File.basename(meta[:file_path])
   line_number = meta[:line_number]
 
-  time_now = Time.now
-  timestamp = "#{time_now.strftime('%Y-%m-%d-%H-%M-%S.')}#{'%03d' % (time_now.usec/1000).to_i}"
+  time_now = Time.zone.now
+  # rubocop:disable Style/FormatStringToken
+  timestamp = format('%<year>s-%<month>s-%<day>s-%<hour>s-%<minute>s-%<second>s.%<millis>s',
+                     year: time_now.strftime('%Y'),
+                     month: time_now.strftime('%m'),
+                     day: time_now.strftime('%d'),
+                     hour: time_now.strftime('%H'),
+                     minute: time_now.strftime('%M'),
+                     second: time_now.strftime('%S'),
+                     millis: format('%03d', (time_now.usec / 1000).to_i))
+  # rubocop:enable Style/FormatStringToken
 
   screenshot_name = "screenshot-#{filename}-#{line_number}-#{timestamp}.png"
-  screenshot_path = "#{Rails.root.join('tmp/capybara')}/#{screenshot_name}"
+  # rubocop:disable Rails/FilePath
+  screenshot_path = Rails.root.join('tmp/capybara', screenshot_name).to_s
+  # rubocop:enable Rails/FilePath
   page.save_screenshot(screenshot_path)
 
   page_name = "html-#{filename}-#{line_number}-#{timestamp}.html"
-  page_path = "#{Rails.root.join('tmp/capybara')}/#{page_name}"
+  # rubocop:disable Rails/FilePath
+  page_path = Rails.root.join('tmp/capybara', page_name).to_s
+  # rubocop:enable Rails/FilePath
   page.save_page(page_path)
 
   puts "\n  Screenshot: tmp/capybara/#{screenshot_name}"
