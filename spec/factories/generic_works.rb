@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :generic_work do
+  factory :generic_work, aliases: [:work] do
     title { ["Test title"] }
     visibility { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
     state { "complete" }

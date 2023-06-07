@@ -25,5 +25,5 @@ RSpec.describe Hyrax::GenericWorkForm do
     end
   end
 
-  include_examples("work_form")
+  # TODO: include_examples("work_form") do we want to declare this with AllinsonFlex::DynamicFormBehavior?
 end

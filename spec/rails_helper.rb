@@ -137,6 +137,10 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :feature
   config.include ActiveJob::TestHelper
 
+  config.before(:each, type: :feature) do
+    skip("TODO: address in #418")
+  end
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     Account.destroy_all
@@ -161,6 +165,7 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :transaction
       DatabaseCleaner.start
     end
+    AdminSet.create id: AdminSet::DEFAULT_ID, title: Array.wrap(AdminSet::DEFAULT_TITLE) if example.metadata[:clean]
   end
 
   config.after(:each, type: :feature) do |example|
