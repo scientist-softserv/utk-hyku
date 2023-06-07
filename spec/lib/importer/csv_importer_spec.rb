@@ -28,7 +28,7 @@ RSpec.describe Importer::CSVImporter do
     let(:importer) { described_class.new(csv_file, image_directory) }
     let(:collection_factory) { double }
     let(:image_factory) { double }
-    
+
     # TODO: Address in #414
     #       likely needs to be updated due to allinsonflex changes
     xit 'creates new images and collections' do
