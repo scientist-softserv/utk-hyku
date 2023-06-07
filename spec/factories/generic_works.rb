@@ -14,7 +14,7 @@ FactoryBot.define do
       work.apply_depositor_metadata(evaluator.user.user_key)
     end
 
-    factory :generic_work_with_one_file do
+    factory :generic_work_with_one_file, aliases: [:work_with_one_file] do
       after(:build) do |work, evaluator|
         work.ordered_members << file_set = FactoryBot.create(
           :file_set,
