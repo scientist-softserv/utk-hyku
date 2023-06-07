@@ -168,7 +168,7 @@ RSpec.configure do |config|
     if example.metadata[:clean]
 
       # Pass `:clean' to destroy objects in fedora/solr and start from scratch
-      ActiveFedora::Cleaner.clean! # if example.metadata[:clean]
+      ActiveFedora::Cleaner.clean!
 
       # Recreate only the AdminSet, not the associated permission template that is still in the database.
       # (Instead of AdminSet.find_or_create_default_admin_set_id)
