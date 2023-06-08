@@ -8,6 +8,7 @@ module Hyrax
     self.model_class = ::GenericWork
     self.terms += [:resource_type]
 
+    # TODO: include Hyrax::FormTerms do we want to declare this with AllinsonFlex::DynamicFormBehavior?
     include HydraEditor::Form::Permissions
     include AllinsonFlex::DynamicFormBehavior
     include UtkBaseTerms
