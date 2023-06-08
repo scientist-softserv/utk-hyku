@@ -137,20 +137,16 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :feature
   config.include ActiveJob::TestHelper
 
-  config.before(:each, type: :feature) do
-    skip("TODO: address in #418")
-  end
-
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     Account.destroy_all
     CreateSolrCollectionJob.new.without_account('hydra-test') if ENV['IN_DOCKER']
     CreateSolrCollectionJob.new.without_account('hydra-sample')
     CreateSolrCollectionJob.new.without_account('hydra-cross-search-tenant', 'hydra-test, hydra-sample')
-    AdminSet.find_or_create_default_admin_set_id
-    profile_path = Rails.root.join('spec', 'fixtures', 'allinson_flex', 'yaml_example.yml')
-    allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: profile_path.to_s)
-    allinson_flex_profile.save
+    # AdminSet.find_or_create_default_admin_set_id
+    # profile_path = Rails.root.join('spec', 'fixtures', 'allinson_flex', 'yaml_example.yml')
+    # allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: profile_path.to_s)
+    # allinson_flex_profile.save
   end
 
   config.before do |example|
@@ -165,12 +161,22 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :transaction
       DatabaseCleaner.start
     end
-    AdminSet.create id: AdminSet::DEFAULT_ID, title: Array.wrap(AdminSet::DEFAULT_TITLE) if example.metadata[:clean]
+  end
+
+  # TODO: There has to be a better/faster way to do this
+  config.before(:each) do
+    AdminSet.find_or_create_default_admin_set_id
+    profile_path = Rails.root.join('spec', 'fixtures', 'allinson_flex', 'yaml_example.yml')
+    allinson_flex_profile = AllinsonFlex::Importer.load_profile_from_path(path: profile_path.to_s)
+    allinson_flex_profile.save
+    AllinsonFlex::Context.all.each do |context|
+      context.update(admin_set_ids: [AdminSet&.last&.id])
+    end
   end
 
   config.after(:each, type: :feature) do |example|
     # rubocop:disable Lint/Debugger
-    save_and_open_page if example.exception.present?
+    save_timestamped_page_and_screenshot(Capybara.page, example.metadata) if example.exception.present?
     # rubocop:enable Lint/Debugger
     Warden.test_reset!
     Capybara.reset_sessions!
@@ -191,4 +197,36 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+def save_timestamped_page_and_screenshot(page, meta)
+  filename = File.basename(meta[:file_path])
+  line_number = meta[:line_number]
+
+  time_now = Time.zone.now
+  # rubocop:disable Style/FormatStringToken
+  timestamp = format('%<year>s-%<month>s-%<day>s-%<hour>s-%<minute>s-%<second>s.%<millis>s',
+                     year: time_now.strftime('%Y'),
+                     month: time_now.strftime('%m'),
+                     day: time_now.strftime('%d'),
+                     hour: time_now.strftime('%H'),
+                     minute: time_now.strftime('%M'),
+                     second: time_now.strftime('%S'),
+                     millis: format('%03d', (time_now.usec / 1000).to_i))
+  # rubocop:enable Style/FormatStringToken
+
+  screenshot_name = "screenshot-#{filename}-#{line_number}-#{timestamp}.png"
+  # rubocop:disable Rails/FilePath
+  screenshot_path = Rails.root.join('tmp/capybara', screenshot_name).to_s
+  # rubocop:enable Rails/FilePath
+  page.save_screenshot(screenshot_path)
+
+  page_name = "html-#{filename}-#{line_number}-#{timestamp}.html"
+  # rubocop:disable Rails/FilePath
+  page_path = Rails.root.join('tmp/capybara', page_name).to_s
+  # rubocop:enable Rails/FilePath
+  page.save_page(page_path)
+
+  puts "\n  Screenshot: tmp/capybara/#{screenshot_name}"
+  puts "  HTML: tmp/capybara/#{page_name}"
 end
