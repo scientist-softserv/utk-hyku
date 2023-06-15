@@ -115,8 +115,8 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: 683c06b6bd5b08fd8c712e67ab0184de4cad197a
-  branch: main
+  revision: 8fdf56e151b5adb7e6aab1cd29d39b74554ed48a
+  ref: 8fdf56e
   specs:
     iiif_print (1.0.0)
       blacklight_iiif_search (~> 1.0)
@@ -125,6 +125,7 @@ GIT
       nokogiri (>= 1.13.2)
       rails (~> 5.0)
       rdf-vocab (~> 3.0)
+      reform-rails (= 0.2.3)
 
 GIT
   remote: https://github.com/tawan/active-elastic-job.git
