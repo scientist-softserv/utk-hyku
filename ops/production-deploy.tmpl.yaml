@@ -173,10 +173,10 @@ worker:
   replicaCount: 3
   resources:
     limits:
-      memory: "12Gi"
+      memory: "6Gi"
       cpu: "6"
     requests:
-      memory: "6Gi"
+      memory: "3Gi"
       cpu: "3"
   podSecurityContext:
     runAsUser: 1001
