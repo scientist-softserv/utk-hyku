@@ -3,7 +3,7 @@
 # @api public
 module CustomDerivativeService
   def valid?
-    file_set.rdf_type&.join&.downcase&.include?(Hyrax::ConditionalDerivativeDecorator::INTERMEDIATE_FILE_TYPE_TEXT)
+    Hyrax::ConditionalDerivativeDecorator.generate_derivatives_for?(file_set: file_set)
   end
 end
 

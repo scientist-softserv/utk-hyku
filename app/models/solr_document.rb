@@ -84,7 +84,7 @@ class SolrDocument
     rdf_type = self['rdf_type_ssim']
     return unless rdf_type
 
-    rdf_type.map(&:downcase).join.include?(Hyrax::ConditionalDerivativeDecorator::INTERMEDIATE_FILE_TYPE_TEXT)
+    Hyrax::ConditionalDerivativeDecorator.intermediate_file?(object: self)
   end
 
   field_semantics.merge!(

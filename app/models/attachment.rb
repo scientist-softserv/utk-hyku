@@ -15,6 +15,6 @@ class Attachment < ActiveFedora::Base
   def intermediate_file?
     return false if rdf_type.blank?
 
-    rdf_type.join.downcase.include?(Hyrax::ConditionalDerivativeDecorator::INTERMEDIATE_FILE_TYPE_TEXT)
+    Hyrax::ConditionalDerivativeDecorator.intermediate_file?(object: self)
   end
 end
