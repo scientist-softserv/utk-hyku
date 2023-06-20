@@ -21,4 +21,13 @@ IiifPrint.config do |config|
   #   config.sort_iiif_manifest_canvases_by = :date_published
 
   config.default_iiif_manifest_version = 3
+
+  config.child_work_attributes_function = lambda do |parent_work:, admin_set_id:|
+    {
+      admin_set_id: admin_set_id.to_s,
+      visibility: parent_work.visibility.to_s,
+      is_child: true,
+      rdf_type: ["http://pcdm.org/IntermediateFile"]
+    }
+  end
 end

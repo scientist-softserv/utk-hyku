@@ -80,6 +80,13 @@ class SolrDocument
     self['utk_publisher_tesim']
   end
 
+  def intermediate_file?
+    rdf_type = self['rdf_type_ssim']
+    return unless rdf_type
+
+    Hyrax::ConditionalDerivativeDecorator.intermediate_file?(object: self)
+  end
+
   field_semantics.merge!(
     contributor: 'contributor_tesim',
     creator: 'creator_tesim',

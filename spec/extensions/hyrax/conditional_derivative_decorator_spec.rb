@@ -22,6 +22,45 @@ RSpec.describe Hyrax::ConditionalDerivativeDecorator do
     end
   end
 
+  describe '.intermediate_file?' do
+    subject { described_class.intermediate_file?(object: object) }
+
+    context "when the rdf_type does not have the intermediate file type text" do
+      context "when the object is a FileSet" do
+        # I had to use a FactoryBot FileSet because the double was not catching an error
+        # where file_set.try(:[], 'rdf_type_ssim') was causing an
+        # ArgumentError Exception: Unknown attribute rdf_type_ssim
+        # The method has been refactored since then but I thought I'd keep this here still since it's
+        # sturdier than a double.
+        let(:object) { create(:file_set) }
+
+        it { is_expected.to be_falsey }
+      end
+    end
+
+    context "when the rdf_type has the intermediate file type text" do
+      let(:rdf_type) { ["Ketchup", "IntermediateFile", "Sandwich"] }
+
+      context "when the object is a FileSet" do
+        let(:object) { file_set }
+
+        it { is_expected.to be_truthy }
+      end
+
+      context "when the object is a SolrDocument" do
+        let(:object) { SolrDocument.new(rdf_type_ssim: rdf_type) }
+
+        it { is_expected.to be_truthy }
+      end
+
+      context "when the object is an Attachment" do
+        let(:object) { double(Attachment, rdf_type: rdf_type) }
+
+        it { is_expected.to be_truthy }
+      end
+    end
+  end
+
   describe "mixing in module to base class" do
     subject { model.new(file_set: file_set) }
 

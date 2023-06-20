@@ -3,31 +3,43 @@
 # OVERRIDE Hyrax 3.4.1 to use IIIF Presentation API V3
 module Hyrax
   module ManifestBuilderServiceDecorator
+    UTK_PROVIDER = [{
+      id: "https://www.lib.utk.edu/about/",
+      type: "Agent",
+      label: {
+        en: ["University of Tennessee, Knoxville. Libraries"]
+      },
+      homepage: [
+        { id: "https://www.lib.utk.edu/",
+          type: "Text",
+          label: {
+            en: ["University of Tennessee Libraries Homepage"]
+          },
+          format: "text/html" }
+      ],
+      logo: [
+        {
+          id: "https://utkdigitalinitiatives.github.io/iiif-level-0/ut_libraries_centered/full/full/0/default.jpg",
+          type: "Image",
+          format: "image/jpeg",
+          width: 200,
+          height: 200
+        }
+      ]
+    }].freeze
+
     private
 
       def build_manifest(presenter:)
-        # OVERRIDE IiifPrint v1.0.0
-        # ::IIIFManifest::ManifestBuilder#to_h returns a
-        # IIIFManifest::ManifestBuilder::IIIFManifest, not a Hash.
-        # to get a Hash, we have to call its #to_json, then parse.
-        #
-        # wild times. maybe there's a better way to do this with the
-        # ManifestFactory interface?
-        manifest = manifest_factory.new(presenter).to_h
-        hash = JSON.parse(manifest.to_json)
-        hash['provider'] = provider
+        hash = super
+
+        hash['provider'] = UTK_PROVIDER
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #is_part_of IS SET UP
         hash['partOf'] = part_of(presenter) if presenter&.member_of_collection_ids.present?
         hash['homepage'] = homepage(presenter)
         # TODO: MAY BE A TEMPORARY IMPLEMENTATION UNTIL #behavior IS SET UP
         hash['behavior'] = ['paged'] if presenter.human_readable_type == 'Book'
         hash['behavior'] = ['individuals'] if presenter.human_readable_type == 'Compound Object'
-        hash = send("sanitize_v#{@version}", hash: hash, presenter: presenter)
-        if child_works.present?
-          return send("sort_canvases_v#{@version}", hash: hash,
-                                                    sort_field: IiifPrint.config.sort_iiif_manifest_canvases_by)
-        end
-
         hash
       end
 
@@ -54,35 +66,6 @@ module Hyrax
             type: "Collection"
           }
         end
-      end
-
-      ##
-      # @return [Array<Hash>] the hardcoded "provider" property for the manifest.json
-      def provider
-        [{
-          id: "https://www.lib.utk.edu/about/",
-          type: "Agent",
-          label: {
-            en: ["University of Tennessee, Knoxville. Libraries"]
-          },
-          homepage: [
-            { id: "https://www.lib.utk.edu/",
-              type: "Text",
-              label: {
-                en: ["University of Tennessee Libraries Homepage"]
-              },
-              format: "text/html" }
-          ],
-          logo: [
-            {
-              id: "https://utkdigitalinitiatives.github.io/iiif-level-0/ut_libraries_centered/full/full/0/default.jpg",
-              type: "Image",
-              format: "image/jpeg",
-              width: 200,
-              height: 200
-            }
-          ]
-        }]
       end
 
       ##
