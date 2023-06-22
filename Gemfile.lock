@@ -10,12 +10,13 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 09e8d2f05aa0822f544a8545cf263013ffd52d9a
+  revision: ae05be9a0dd7fa95d260069c5274c816e24293bd
   branch: main
   specs:
-    bulkrax (5.1.0)
+    bulkrax (5.2.1)
       bagit (~> 0.4)
       coderay
+      dry-monads (~> 1.4.0)
       iso8601 (~> 0.9.0)
       kaminari
       language_list (~> 1.2, >= 1.2.1)
@@ -112,6 +113,14 @@ GIT
       signet
       tinymce-rails (~> 5.10)
       valkyrie (~> 2, >= 2.1.1)
+
+GIT
+  remote: https://github.com/samvera/iiif_manifest.git
+  revision: e5d8a2d3b775665e59dc123bd461cac5ac7c9cce
+  ref: e5d8a2d
+  specs:
+    iiif_manifest (1.3.1)
+      activesupport (>= 4)
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
@@ -631,8 +640,6 @@ GEM
       activesupport (>= 3.2.18)
       faraday (>= 0.9)
       json
-    iiif_manifest (1.3.1)
-      activesupport (>= 4)
     is_it_working (1.1.0)
     iso-639 (0.3.5)
     iso8601 (0.9.1)
@@ -1319,6 +1326,7 @@ DEPENDENCIES
   hyrax-iiif_av!
   i18n-debug
   i18n-tasks
+  iiif_manifest!
   iiif_print!
   is_it_working
   jbuilder (~> 2.5)
