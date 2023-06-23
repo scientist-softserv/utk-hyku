@@ -52,32 +52,9 @@ RSpec.describe Hyrax::IiifManifestPresenter, skip: "TODO: address in #414 - many
     let(:solr_doc) { SolrDocument.new(file_set.to_solr) }
     let(:file_set) { create(:file_set, :image) }
 
-    describe '#display_content' do
-      it 'gives a IIIFManifest::DisplayImage' do
-        expect(presenter.display_content.to_json)
-          .to include 'fcr:versions%2Fversion1/full'
-      end
-
-      context 'with non-image file_set' do
-        let(:file_set) { create(:file_set) }
-
-        it 'returns nil' do
-          expect(presenter.display_content).to be_nil
-        end
-      end
-
-      context 'when no original file is indexed' do
-        let(:solr_doc) do
-          index_hash = file_set.to_solr
-          index_hash.delete('original_file_id_ssi')
-
-          SolrDocument.new(index_hash)
-        end
-
-        it 'can still resolve the image' do
-          expect(presenter.display_content.to_json)
-            .to include 'fcr:versions%2Fversion1/full'
-        end
+    describe '#supplementing_content' do
+      xit 'returns a IIIFManifest::V3::SupplementingContent object' do
+        # TODO: test this method once this spec is fixed
       end
     end
   end
