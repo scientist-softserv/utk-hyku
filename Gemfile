@@ -98,7 +98,7 @@ gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
 gem 'redlock', '~>1.2.2'
 
 gem 'hyrax-iiif_av', git: 'https://github.com/samvera-labs/hyrax-iiif_av.git', branch: 'utk-hyku-with-hyrax-3'
-gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', ref: '8fdf56e'
+gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'main'
 
 gem 'bolognese', '>= 1.9.10'
 gem 'hyrax-doi', git: 'https://github.com/samvera-labs/hyrax-doi.git'
