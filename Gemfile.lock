@@ -10,12 +10,13 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 09e8d2f05aa0822f544a8545cf263013ffd52d9a
+  revision: ae05be9a0dd7fa95d260069c5274c816e24293bd
   branch: main
   specs:
-    bulkrax (5.1.0)
+    bulkrax (5.2.1)
       bagit (~> 0.4)
       coderay
+      dry-monads (~> 1.4.0)
       iso8601 (~> 0.9.0)
       kaminari
       language_list (~> 1.2, >= 1.2.1)
