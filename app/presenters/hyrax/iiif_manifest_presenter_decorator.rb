@@ -84,7 +84,7 @@ module Hyrax
           hash = get_file_set_ids_and_languages(attachment)
           captions_url = get_captions_url(hash[:file_set_id])
           IIIFManifest::V3::SupplementingContent.new(captions_url,
-                                                     type: 'text',
+                                                     type: 'Text',
                                                      format: 'text/vtt',
                                                      label: hash[:title],
                                                      language: hash[:language].first || 'en')
