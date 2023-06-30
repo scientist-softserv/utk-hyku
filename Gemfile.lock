@@ -124,7 +124,7 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: d44ea621b0751d11f054d4ae30b994ea5454c591
+  revision: 9f20467a6ff1f14872087f1e1dddda0f9fea91fd
   branch: no-rodeo
   specs:
     iiif_print (1.0.0)
