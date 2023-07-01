@@ -219,4 +219,4 @@ ActiveFedora::SolrService.class_eval do
   end
 end
 
-Hyrax::IiifAv.config.iiif_av_viewer = :universal_viewer
+Hyrax::IiifAv.config.iiif_av_viewer = :clover_iiif
