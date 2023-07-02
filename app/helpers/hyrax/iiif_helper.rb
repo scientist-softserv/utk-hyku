@@ -25,6 +25,10 @@ module Hyrax
       "#{request&.base_url}/clover-iiif"
     end
 
+    def clover_iiif_config_url
+      "#{request&.base_url}/clover-iiif/clover-iiif-config.json"
+    end
+
     # Extract query param from search
     def uv_search_param
       search_params = current_search_session.try(:query_params) || {}
