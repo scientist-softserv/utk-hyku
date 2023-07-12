@@ -47,6 +47,15 @@ Hyrax::CollectionPresenter.class_eval do
     end
   end
 
+  # override to hide empty fields
+  def terms_with_values
+    self.class.terms.select do |t|
+      value = send(t).try(:first)
+      # total_items is always displayed
+      t == :total_items || value.present?
+    end
+  end
+
   # override banner_file in hyrax to include all banner information rather than just relative_path
   def banner_file
     @banner_file ||= begin
