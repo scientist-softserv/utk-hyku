@@ -3,8 +3,9 @@
 # SearchBuilder for full-text searches with highlighting and snippets
 class IiifSearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
+  include IiifPrint::AllinsonFlexFields
 
-  self.default_processor_chain += [:ocr_search_params]
+  self.default_processor_chain += %i[ocr_search_params include_allinson_flex_fields]
 
   # set params for ocr field searching
   def ocr_search_params(solr_parameters = {})

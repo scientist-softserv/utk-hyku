@@ -124,7 +124,7 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: 0c3edc4f9855e2066a4622970a7d401648b5eb2a
+  revision: 7b82aa323db891f5f8e362e13bf3f14b4fe9e0dc
   branch: main
   specs:
     iiif_print (1.0.0)
@@ -405,7 +405,7 @@ GEM
     declarative-option (0.1.0)
     deprecation (1.1.0)
       activesupport
-    derivative-rodeo (0.4.0)
+    derivative-rodeo (0.4.2)
       activesupport (>= 5)
       aws-sdk-s3
       aws-sdk-sqs
