@@ -56,7 +56,8 @@ module Hyrax
 
     # changed to add feature flag for featured work
     def display_featured_works?
-      Flipflop.show_featured_works?
+      # Flipflop.show_featured_works?
+      false
     end
 
     # changed to add feature flag for recently uploaded
