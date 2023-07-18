@@ -85,7 +85,7 @@ group :development do
   # gem 'xray-rails' # when using this gem, know that sidekiq will not work
 end
 
-gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', branch: 'main'
+gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', ref: 'e6f2cf9'
 
 gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
@@ -99,7 +99,7 @@ gem 'redlock', '~>1.2.2'
 
 gem 'hyrax-iiif_av', git: 'https://github.com/samvera-labs/hyrax-iiif_av.git', branch: 'utk-hyku-with-hyrax-3'
 gem 'iiif_manifest', git: 'https://github.com/samvera/iiif_manifest.git', ref: 'e5d8a2d'
-gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'no-rodeo'
+gem 'iiif_print', git: 'https://github.com/scientist-softserv/iiif_print.git', branch: 'main'
 
 gem 'bolognese', '>= 1.9.10'
 gem 'hyrax-doi', git: 'https://github.com/samvera-labs/hyrax-doi.git'

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: c1dfe12e5386f8f4325b3a19dde949ecef1fede3
+  revision: e98815f6178cc17fab70c189d0fe96a618384a7a
   specs:
     allinson_flex (0.1.0)
       json_schemer
@@ -10,8 +10,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: ae05be9a0dd7fa95d260069c5274c816e24293bd
-  branch: main
+  revision: e6f2cf94730ea7db236a6f3280d3dc3967f5495e
+  ref: e6f2cf9
   specs:
     bulkrax (5.2.1)
       bagit (~> 0.4)
@@ -124,17 +124,17 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: 9f20467a6ff1f14872087f1e1dddda0f9fea91fd
-  branch: no-rodeo
+  revision: 7b82aa323db891f5f8e362e13bf3f14b4fe9e0dc
+  branch: main
   specs:
     iiif_print (1.0.0)
       blacklight_iiif_search (~> 1.0)
+      derivative-rodeo (~> 0.4)
       dry-monads (~> 1.4.0)
-      hyrax (>= 2.5, < 4.0)
+      hyrax (>= 2.5, < 4)
       nokogiri (>= 1.13.2)
       rails (~> 5.0)
       rdf-vocab (~> 3.0)
-      reform-rails (= 0.2.3)
 
 GIT
   remote: https://github.com/tawan/active-elastic-job.git
@@ -405,6 +405,15 @@ GEM
     declarative-option (0.1.0)
     deprecation (1.1.0)
       activesupport
+    derivative-rodeo (0.4.2)
+      activesupport (>= 5)
+      aws-sdk-s3
+      aws-sdk-sqs
+      httparty
+      marcel
+      mime-types
+      mini_magick
+      nokogiri
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)

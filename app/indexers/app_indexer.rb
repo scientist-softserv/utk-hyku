@@ -13,6 +13,7 @@ class AppIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc["account_cname_tesim"] = Site.instance&.account&.cname
+      solr_doc[CatalogController.title_field] = object.title.first
     end
   end
 end

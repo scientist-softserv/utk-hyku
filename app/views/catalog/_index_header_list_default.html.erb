@@ -1,12 +1,21 @@
 <%# OVERRIDE Hyrax 3.4.0 to support shared search %>
 <%# OVERRIDE Hyrax 3.4.2 add classes for custom styling %>
+<%# OVERRIDE Hyrax 3.5.0 to bring in parent_query for UV auto searching %>
 
 <% model = document.hydra_model %>
 <div class="search-results-title-row">
-    <% if model == Hyrax::PcdmCollection || model < Hyrax::PcdmCollection %>
-        <h4 class="search-result-title collection"><%= link_to document.title_or_label, generate_work_url(document, request) %></h4>
-        <%= Hyrax::CollectionPresenter.new(document, current_ability).collection_type_badge %>
-    <% else %>
-        <h4 class="search-result-title work"><%= link_to document.title_or_label, generate_work_url(document, request) %></h4>
-    <% end %>
+  <% if model == Hyrax::PcdmCollection || model < Hyrax::PcdmCollection %>
+    <h4 class="search-result-title collection"><%= link_to document.title_or_label, generate_work_url(document, request) %></h4>
+    <%= Hyrax::CollectionPresenter.new(document, current_ability).collection_type_badge %>
+  <% else %>
+    <h3 class="search-result-title work">
+      <% if params['q'].present? && document.any_highlighting? %>
+        <%= link_to document.title_or_label, [document, { parent_query: params['q'] }] %>
+      <% elsif params['q'].present? %>
+        <%= link_to document.title_or_label, [document, { query: params['q'] }] %>
+      <% else %>
+        <%= link_to document.title_or_label, document %>
+      <% end %>
+    </h3>
+  <% end %>
 </div>
