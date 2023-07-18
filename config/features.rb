@@ -9,9 +9,12 @@ Flipflop.configure do
           default: true,
           description: "Shows the 'Share Your Work' button on the homepage."
 
-  feature :show_featured_works,
-          default: true,
-          description: "Shows the Featured Works tab on the homepage."
+  # Commenting this out means all tenants won't get this the show_featured_works flipper
+  # TODO: We should find a way to make this tenant specific
+  # ref: https://github.com/scientist-softserv/utk-hyku/issues/47
+  #   feature :show_featured_works,
+  #           default: true,
+  #           description: "Shows the Featured Works tab on the homepage."
 
   feature :show_recently_uploaded,
           default: true,
