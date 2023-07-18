@@ -36,7 +36,7 @@ module Hyrax
     # OVERRIDE: Hyrax v3.4.2 - For dc_repository add @collections_list
 
     def index
-      @presenter = presenter_class.new(current_ability, collections)
+      @presenter = presenter_class.new(current_ability, collections, current_account)
       @featured_researcher = ContentBlock.for(:researcher)
       @marketing_text = ContentBlock.for(:marketing)
       @home_text = ContentBlock.for(:home_text)
