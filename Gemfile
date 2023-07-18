@@ -86,8 +86,9 @@ group :development do
 end
 
 gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', ref: 'e6f2cf9'
+gem 'xray-rails'
 
-gem 'allinson_flex', git: 'https://github.com/samvera-labs/allinson_flex.git'
+gem 'allinson_flex', path: 'vendor/allinson_flex' #git: 'https://github.com/samvera-labs/allinson_flex.git'
 gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 
