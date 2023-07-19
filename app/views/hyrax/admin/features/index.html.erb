@@ -29,7 +29,6 @@
                 </tr>
               <% end -%>
               <% #OVERRIDE HYRAX 3.5.0 to skip show_featured_works per denylist: TENANTS_WITH_NO_WORK_FEATURES %>
-              <% raise '' %>
               <% modified_features = features.reject { |item| item.instance_variable_get(:@key) == :show_featured_works && AccountsHelper::TENANTS_WITH_NO_WORK_FEATURES.include?(current_account.name) } %>
               <% modified_features.each do |feature| %>
               <tr data-feature="<%= feature.name.dasherize.parameterize %>">
