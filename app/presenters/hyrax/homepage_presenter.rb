@@ -57,7 +57,7 @@ module Hyrax
 
     # changed to add feature flag for featured work
     def display_featured_works?
-      return false if AccountsHelper::TENANTS_WITH_NO_WORK_FEATURES.include?(@current_account.name) 
+      return false if AccountsHelper::TENANTS_WITH_NO_WORK_FEATURES.include?(@current_account.name)
 
       Flipflop.show_featured_works?
     end
