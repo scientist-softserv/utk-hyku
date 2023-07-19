@@ -11,9 +11,10 @@ module Hyrax
     self.create_work_presenter_class = Hyrax::SelectTypeListPresenter
     attr_reader :current_ability, :collections
 
-    def initialize(current_ability, collections)
+    def initialize(current_ability, collections, current_account = nil)
       @current_ability = current_ability
       @collections = collections
+      @current_account = current_account
     end
 
     # OVERRIDE: Hyrax v3.4.0 to removed: @return [Boolean] If the
@@ -56,6 +57,8 @@ module Hyrax
 
     # changed to add feature flag for featured work
     def display_featured_works?
+      return false if AccountsHelper::TENANTS_WITH_NO_WORK_FEATURES.include?(@current_account.name)
+
       Flipflop.show_featured_works?
     end
 

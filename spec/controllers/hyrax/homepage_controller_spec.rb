@@ -110,7 +110,8 @@ RSpec.describe Hyrax::HomepageController, type: :controller, clean: true do
 
       it "initializes the presenter with ability and a list of collections" do
         expect(Hyrax::HomepagePresenter).to receive(:new).with(Ability,
-                                                               [collection])
+                                                               [collection],
+                                                               Account)
                                                          .and_return(presenter)
         get :index
         expect(response).to be_success
