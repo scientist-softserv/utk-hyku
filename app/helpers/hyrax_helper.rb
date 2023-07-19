@@ -42,6 +42,6 @@ module HyraxHelper
   end
 
   def default_work_image
-    Site.instance.default_work_image? ? Site.instance.default_work_image.url : 'default.png'
+    Site.instance.default_work_image? ? Site.instance.default_work_image.url : 'work.png'
   end
 end
