@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: e98815f6178cc17fab70c189d0fe96a618384a7a
+  revision: f493853597c71334d436bbe57d62e1ee7f5ada74
   specs:
     allinson_flex (0.1.0)
       json_schemer
@@ -124,7 +124,7 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: 7b82aa323db891f5f8e362e13bf3f14b4fe9e0dc
+  revision: eb320b1c454f0219d9e17fd12fd2b525770123b2
   branch: main
   specs:
     iiif_print (1.0.0)
