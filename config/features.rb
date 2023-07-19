@@ -10,7 +10,7 @@ Flipflop.configure do
           description: "Shows the 'Share Your Work' button on the homepage."
 
   feature :show_featured_works,
-          default: false,
+          default: true,
           description: "Shows the Featured Works tab on the homepage."
 
   feature :show_recently_uploaded,
