@@ -10,15 +10,16 @@
                       data: { toggle: "modal", target: "#collection-list-container" } %>
       <% end %>
       <%# OVERRIDE begin %>
-      <%# if presenter.work_featurable? %>
-        <%#= link_to t('.feature'), hyrax.featured_work_path(presenter, format: :json),
+      <% if presenter.work_featurable? && current_account.name != 'dc' %>
+        <%= link_to t('.feature'), hyrax.featured_work_path(presenter, format: :json),
             data: { behavior: 'feature' },
             class: presenter.display_feature_link? ? 'btn btn-default' : 'btn btn-default collapse' %>
-
-        <%#= link_to t('.unfeature'), hyrax.featured_work_path(presenter, format: :json),
+        <%= link_to t('.unfeature'), hyrax.featured_work_path(presenter, format: :json),
             data: { behavior: 'unfeature' },
             class: presenter.display_unfeature_link? ? 'btn btn-default' : 'btn btn-default collapse' %>
-      <%# end %>
+      <% end %>
+
+
       <%# OVERRIDE end %>
     <% end %>
     <% if Hyrax.config.analytics? %>
