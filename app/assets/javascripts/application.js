@@ -13,6 +13,7 @@
 //= require codemirror
 //= require codemirror-autorefresh
 //= require codemirror/modes/css
+//= require bulkrax/application
 //= require jquery3
 //= require jquery_ujs
 //= require jquery.fontselect
@@ -39,8 +40,6 @@
 //= require proprietor
 //= require bootstrap_carousel
 //= require bootstrap-datepicker
-
-//= require bulkrax/application
 
 //= require hyrax
 //= require iiif_print
