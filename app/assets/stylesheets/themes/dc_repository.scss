@@ -2122,5 +2122,35 @@ body.dc_repository {
       }
     }
   }
+
+  @media (max-width: 575px ) {
+    #masthead #library-link {
+      font-size: 16px !important;
+    }
+
+    .nav > li > a {
+      padding: 10px 0;
+    }
+
+    .nav > li > .notify-number {
+      position: relative;
+      top: 2px;
+      right: -25px;
+    }
+
+    .nav > li:last-child {
+      position: relative;
+      top: 1px;
+    }
+
+    .label, td.status span {
+      padding: 0.2em 0.5em 0.3em;
+      font-size: 60%;
+      position: relative;
+      top: 6px;
+      right: 13px;
+      z-index: -1;
+    }
+  }
 }
 /**** End Responsive Styles ****/
