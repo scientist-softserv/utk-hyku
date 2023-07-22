@@ -2151,6 +2151,16 @@ body.dc_repository {
       right: 13px;
       z-index: -1;
     }
+
+    .utk-digital-elements-wrapper .row .utk-digital-search-container .utk-digital-search-heading {
+      .utk-heading-1 {
+        font-size: $type-4;
+      }
+
+      .utk-description {
+        font-size: $type-2;
+      }
+    }
   }
 }
 /**** End Responsive Styles ****/
