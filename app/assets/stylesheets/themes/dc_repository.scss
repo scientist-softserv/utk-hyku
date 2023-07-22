@@ -76,6 +76,8 @@ body.dc_repository {
 
   /**** Header Section ****/
   #masthead {
+    box-shadow: 0 2px 5px rgba(51, 51, 51, 0.15);
+
     .container-fluid {
       display: flex;
       justify-content: space-between;
@@ -1827,6 +1829,8 @@ body.dc_repository {
 
     // Header
     #masthead {
+      height: 60px;
+
       .container-fluid {
         padding: 0 $golden-ratio-2 !important;
       }
@@ -1839,6 +1843,9 @@ body.dc_repository {
       #library-link {
         padding: 0 $golden-ratio-1 !important;
         font-size: $type-4 !important;
+        position: relative;
+        top: -6px;
+        left: 0;
       }
 
       a#utk-lib-menu {
@@ -1850,6 +1857,10 @@ body.dc_repository {
           height: 29.85px !important;
         }
       }
+    }
+
+    .title-masthead {
+      min-height: 213px !important;
     }
 
     // Featured Collections Grid
@@ -2060,6 +2071,10 @@ body.dc_repository {
         font-size: $type-3;
       }
     }
+
+    .header-actions {
+      height: 60px;
+    }
   }
 
   @media (max-width: 575px) {
@@ -2176,7 +2191,7 @@ body.dc_repository {
     }
 
     #search-bar {
-      padding: 4px 0 0 0;
+      padding: 0;
     }
   }
 }
