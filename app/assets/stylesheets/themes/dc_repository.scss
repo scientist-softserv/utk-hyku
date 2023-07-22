@@ -2125,7 +2125,7 @@ body.dc_repository {
 
   @media (max-width: 575px ) {
     #masthead #library-link {
-      font-size: 16px !important;
+      font-size: $type-3 !important;
     }
 
     .nav > li > a {
@@ -2160,6 +2160,23 @@ body.dc_repository {
       .utk-description {
         font-size: $type-2;
       }
+    }
+
+    .search-submit-text {
+      display: none;
+    }
+
+    #search-form-header .input-group-btn #search-submit-header {
+      min-width: 0;
+      padding: 0 12px;
+    }
+
+    nav.navbar.navbar-default.navbar-static-top .container-fluid .row {
+      padding: 0;
+    }
+
+    #search-bar {
+      padding: 4px 0 0 0;
     }
   }
 }
