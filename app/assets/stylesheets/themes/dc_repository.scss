@@ -2074,6 +2074,8 @@ body.dc_repository {
 
     .header-actions {
       height: 60px;
+      position: relative;
+      left: 12px;
     }
   }
 
@@ -2192,6 +2194,25 @@ body.dc_repository {
 
     #search-bar {
       padding: 0;
+    }
+
+    .page_links, .search-widgets {
+      position: relative;
+      top: -13px;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      * {
+        margin: 0 3px;
+      }
+    }
+
+    .search-widgets {
+      * {
+        margin: 1px 1px;
+      }
     }
   }
 }
