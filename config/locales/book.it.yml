@@ -1,8 +1,9 @@
+---
 it:
   hyrax:
     icons:
-      book:     'fa fa-file-text-o'
+      book: fa fa-file-text-o
     select_type:
       book:
-        description:        "Book opere"
-        name:               "Book"
+        description: Book opere
+        name: Book

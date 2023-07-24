@@ -95,7 +95,16 @@ it:
       accounts:
         nav: conti
       users:
+        edit:
+          header: Modifica utente
+        index:
+          confirm_delete: Sei sicuro di voler eliminare questo utente? Questa azione non può essere annullata.
+          header: Gestisci utenti
+          manage: Maneggio
         nav: utenti
+        show:
+          header: Gestisci utente
+          update: Aggiornamento
     splash:
       account_denied: Non sei autorizzato a creare inquilini
       account_login: Accedi per iniziare
@@ -149,10 +158,12 @@ it:
             fonts: Font
             themes: Temi
       sidebar:
+        account: Account
         accounts: conti
         activity_summary: Riepilogo attività
         labels: etichette
         manage_groups: Gestisci gruppi
+        repository_activity: Attività di deposito
         system_status: Stato del sistema
       users:
         destroy:
@@ -171,6 +182,8 @@ it:
   proprietor:
     accounts:
       edit:
+        account_settings: Impostazione conto
+        data_cite_endpoint: Endpoint DataCite
         fcrepo_endpoint: Fedora Endpoint
         header: Modifica account
         solr_endpoint: Solr Endpoint
@@ -187,6 +200,7 @@ it:
         add: Inserisci
         current_admins:
           actions: Azione
+          header: Amministratori di account correnti
           no_admins: Nessun amministratore esiste
         edit: Modifica account
         header: Gestisci profilo

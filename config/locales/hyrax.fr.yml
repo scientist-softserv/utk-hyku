@@ -19,7 +19,7 @@ fr:
           no_works: L'ensemble administratif ne contient aucune œuvre.
           title: Liste des éléments de cet ensemble administratif
         edit:
-          header: "Modifier le jeu d'administration: %{title}"
+          header: 'Modifier le jeu d''administration: %{title}'
         form:
           cancel: Annuler
           note: Les utilisateurs bénéficiant d'un nouveau rôle n'obtiendront le rôle que sur les œuvres déposées après l'octroi de ce rôle.
@@ -41,6 +41,9 @@ fr:
             participants: Les participants
             visibility: Libération et visibilité
             workflow: Workflow
+        form_metadata_context:
+          no_metadata_context: Aucun contexte de métadonnées disponible
+          page_description: Contexte des métadonnées pour l'ensemble d'administration
         form_participant_table:
           admin_users: Administrateurs de référentiel
           allow_all_registered: Autoriser tous les utilisateurs enregistrés à effectuer un dépôt
@@ -70,9 +73,9 @@ fr:
             title: Les spectateurs
             type: Type
         form_participants:
-          add_group: "Ajouter un groupe:"
+          add_group: 'Ajouter un groupe:'
           add_participants: Ajouter des participants
-          add_user: "Ajouter un utilisateur:"
+          add_user: 'Ajouter un utilisateur:'
           current_participants: Participants actuels
         form_visibility:
           cancel: Annuler
@@ -84,15 +87,15 @@ fr:
             title: Libération
             varies:
               any: Le déposant peut choisir n'importe quelle durée d'embargo; les baux sont autorisés
-              between: "Le déposant peut choisir l'embargo à jour:"
-              description: "Autoriser le déposant à choisir les paramètres:"
+              between: 'Le déposant peut choisir l''embargo à jour:'
+              description: 'Autoriser le déposant à choisir les paramètres:'
               embargo:
                 1yr: 1 an après le dépôt
                 2yrs: 2 ans après le dépôt
                 3yrs: 3 ans après le dépôt
                 6mos: 6 mois après le dépôt
                 select: Sélectionnez la période d'embargo.
-              period: "Le déposant peut choisir la période d'embargo jusqu'à:"
+              period: 'Le déposant peut choisir la période d''embargo jusqu''à:'
           visibility:
             description: Définissez des politiques de visibilité pour l'ensemble administratif. Définir les politiques d'embargo sur les honneurs ci-dessus.
             everyone: Public - le déposant ne peut choisir que le paramètre de visibilité publique
@@ -164,7 +167,7 @@ fr:
           update_notice: Participants mis à jour
         form_settings:
           instructions: Ces paramètres déterminent comment les collections de ce type peuvent être gérées et découvertes.
-          warning: "Avertissement: ces paramètres ne peuvent pas être modifiés après la création d'une collection de ce type."
+          warning: 'Avertissement: ces paramètres ne peuvent pas être modifiés après la création d''une collection de ce type.'
         index:
           breadcrumb: Types de collections
           create_new_button: Créer un nouveau type de collection
@@ -182,7 +185,7 @@ fr:
             actions: Actions
             name: Nom
         multiple_membership_checker:
-          error_preamble: "Erreur: vous avez spécifié plusieurs du même type de collection à adhésion unique"
+          error_preamble: 'Erreur: vous avez spécifié plusieurs du même type de collection à adhésion unique'
           error_type_and_collections: "(type: %{type}, collections: %{collections})"
         new:
           header: Créer un nouveau type de collection
@@ -218,7 +221,7 @@ fr:
       stats:
         deposited_form:
           end_label: fin [par défaut à maintenant]
-          heading: "Afficher les fichiers déposés:"
+          heading: 'Afficher les fichiers déposés:'
           start_label: Début
         repository_objects:
           series:
@@ -232,7 +235,7 @@ fr:
         works:
           headers:
             main: Statistiques de travail
-            total: "Total des travaux:"
+            total: 'Total des travaux:'
             visibility: Totaux par visibilité
       users:
         index:
@@ -279,10 +282,10 @@ fr:
         default: Vous devez être connecté pour faire cela!
       unprocessable_entity:
         default: La ressource que vous avez tenté de modifier ne peut pas être modifiée en fonction de votre demande.
-    background_attribution_html: ""
+    background_attribution_html: ''
     base:
       citations:
-        header: "Citations:"
+        header: 'Citations:'
       form_child_work_relationships:
         actions:
           remove: Supprimer de ce travail
@@ -349,7 +352,7 @@ fr:
         empty: Ce %{type} n'est actuellement dans aucune collection.
         header: Des relations
       relationships_parent_row:
-        label: "Dans %{type}:"
+        label: 'Dans %{type}:'
       show:
         last_modified: Dernière modification
       social_media:
@@ -421,7 +424,7 @@ fr:
         create: sauver
         create_new: Ajouter à une nouvelle collection
         no_collections: Vous n'avez accès à aucune collection existante. Vous pouvez créer une nouvelle collection.
-        select_heading: "Sélectionnez la collection à laquelle ajouter vos fichiers:"
+        select_heading: 'Sélectionnez la collection à laquelle ajouter vos fichiers:'
         title: Ajouter à la collection
         update: Sauvegarder les modifications
     collection_type:
@@ -501,7 +504,7 @@ fr:
         select_type_of_collection: Sélectionnez le type de collection
       collections:
         edit:
-          header: "Modifier %{type_title}: %{title}"
+          header: 'Modifier %{type_title}: %{title}'
         form:
           permission_update_errors:
             error: Option de mise à jour non valide pour le modèle d'autorisation.
@@ -524,6 +527,9 @@ fr:
           logo:
             description: Une ou plusieurs images à afficher en haut de la page de collection. Pour de meilleurs résultats, téléchargez une image (JPG, GIF ou PNG) d'une hauteur de 40 pixels. Les images plus grandes seront redimensionnées à 40 pixels de hauteur.
             label: Logo
+          thumbnail:
+            description: Une image à afficher dans les résultats de recherche et sur la page d'accueil si vous décidez de présenter cette collection. L'image sera recadrée et redimensionnée de différentes manières dans l'application, mais pour de meilleurs résultats, utilisez une image (JPG, GIF ou PNG) avec une orientation paysage.
+            label: Vignette
         form_discovery:
           para1: Ces paramètres déterminent qui peut découvrir et afficher la page de destination de cette collection; ils n'affectent pas la visibilité des éléments de la collection.
           para2: Si vous avez choisi de ne pas rendre cette collection en accès libre, vous pouvez toujours partager la collection avec des utilisateurs et des groupes spécifiques à l'aide de l'onglet Partage.
@@ -638,20 +644,20 @@ fr:
           view_collection: Voir la collection
           work_confirmation: La suppression d'une œuvre de %{application_name} est définitive. Cliquez sur OK pour supprimer ce travail de %{application_name}, ou sur Annuler pour annuler cette opération
         collection_list:
-          description: "La description:"
-          edit_access: "Modifier l'accès:"
-          groups: "Groupes:"
+          description: 'La description:'
+          edit_access: 'Modifier l''accès:'
+          groups: 'Groupes:'
           managed_access:
             deposit: Dépôt
             manage: Gérer
             view: Vue
-          users: "Utilisateurs:"
+          users: 'Utilisateurs:'
         collections: Les collections
         facet_label:
-          collections: "Filtrer les collections:"
-          highlighted: "Filtrez les faits saillants:"
-          shared: "Filtrer les partages:"
-          works: "Le filtre fonctionne:"
+          collections: 'Filtrer les collections:'
+          highlighted: 'Filtrez les faits saillants:'
+          shared: 'Filtrer les partages:'
+          works: 'Le filtre fonctionne:'
         heading:
           access: Accès
           action: Actions
@@ -794,8 +800,17 @@ fr:
       admin_sets:
         link: Voir toutes les collections
         tab_label: Explorez les collections
-        title: Explorez les collections
         thumbnail: Miniature
+        title: Explorez les collections
+      collections:
+        document:
+          title_label: Titre
+        title: Parcourir les collections
+      featured_collections:
+        document:
+          title_label: Titre
+        no_collections: Aucune collection n'a été présentée.
+        title: Collections en vedette
       featured_researcher:
         missing: Aucun chercheur n'a été présenté.
         tab_label: Chercheur en vedette
@@ -811,15 +826,6 @@ fr:
         no_works: Aucune œuvre n'a été présentée
         tab_label: Œuvres en vedette
         title: Œuvres en vedette
-      featured_collections:
-        no_collections: Aucune collection n'a été présentée.
-        title: Collections en vedette
-        document:
-          title_label: Titre
-      collections:
-        title: Parcourir les collections
-        document:
-          title_label: Titre  
       recently_uploaded:
         depositor: Déposant
         details: Détails
@@ -913,7 +919,7 @@ fr:
         terms_page: Conditions d'utilisation
       updated: Pages mises à jour.
     passive_consent_to_agreement: En enregistrant ce travail, j'accepte les
-    product_name: "Hyku"
+    product_name: Hyku
     product_twitter_handle: "@HydraInABox"
     search:
       button:
@@ -1042,7 +1048,7 @@ fr:
       default:
         deposit: Dépôt
       load:
-        state_error: "Le workflow: %{workflow_name} n'a pas été mis à jour. Vous supprimez un état: %{state_name} avec entité (s) %{entity_count}. Un état ne peut pas être supprimé tant qu'il a des entités actives!"
+        state_error: 'Le workflow: %{workflow_name} n''a pas été mis à jour. Vous supprimez un état: %{state_name} avec entité (s) %{entity_count}. Un état ne peut pas être supprimé tant qu''il a des entités actives!'
       unauthorized: Le travail n'est pas disponible actuellement car il n'a pas encore terminé le processus d'approbation
     works:
       create:
@@ -1099,7 +1105,7 @@ fr:
         require_membership: Une œuvre doit appartenir à au moins une collection de ce type
         sharable: Autoriser les utilisateurs à affecter des gestionnaires de collections, des déposants et des visualiseurs aux collections qu'ils gèrent
         share_applies_to_new_works: Lorsque de nouvelles œuvres sont créées directement dans la collection, accordez aux utilisateurs de partage et aux groupes des autorisations pour la nouvelle œuvre en fonction de leurs rôles de collection.
-        title: ""
+        title: ''
       defaults:
         based_near: Un nom de lieu lié à l'œuvre, tel que son site de publication, ou la ville, l'état ou le pays sur lequel porte le contenu de l'œuvre. Appelle le <a href='http://www.geonames.org'> service Web GeoNames </a>.
         contributor: Une personne ou un groupe que vous souhaitez reconnaître pour avoir joué un rôle dans la création de l'œuvre, mais pas le rôle principal.
@@ -1120,8 +1126,22 @@ fr:
         extent: Ampleur
     labels:
       collection:
+        date_created_d: Date de création lisible par machine
+        date_issued: Date de délivrance
+        date_issued_d: Date de publication lisible par machine
+        extent: Étendue
+        form: Former
+        note: Note
+        publication_place: Lieu de publication
+        repository: Dépôt
+        resource_link: Lien vers la ressource
+        rights_notes: Remarques sur les droits
         size: Taille
+        spatial: Couverture spatiale
         total_items: Articles au total
+        utk_contributor: Contributeur local
+        utk_creator: Créateur local
+        utk_publisher: Éditeur local
       collection_type:
         allow_multiple_membership: ADHÉSION MULTIPLE
         assigns_visibility: VISIBILITÉ

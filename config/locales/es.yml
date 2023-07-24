@@ -47,10 +47,10 @@ es:
             invalid: Los grupos deben tener un nombre
             success: "%{group} creado"
           destroy:
-            failure: "No pudo ser destruido %{group} "
+            failure: 'No pudo ser destruido %{group} '
             success: "%{group} destruido"
           update:
-            failure: "No se pudo actualizar %{group} "
+            failure: 'No se pudo actualizar %{group} '
             success: "%{group} actualizado"
         label:
           actions: Comportamiento
@@ -95,7 +95,16 @@ es:
       accounts:
         nav: Cuentas
       users:
+        edit:
+          header: Usuario de edición
+        index:
+          confirm_delete: "¿Está seguro de que desea eliminar este usuario? Esta acción no se puede deshacer."
+          header: Administrar usuarios
+          manage: Administrar
         nav: Usuarios
+        show:
+          header: Administrar usuario
+          update: Actualizar
     splash:
       account_denied: No estás autorizado para crear inquilinos.
       account_login: Inicia sesión para comenzar
@@ -149,10 +158,12 @@ es:
             fonts: Fuentes
             themes: Temas
       sidebar:
+        account: Cuenta
         accounts: Cuentas
         activity_summary: Resumen de la actividad
         labels: Etiquetas
         manage_groups: Administrar Grupos
+        repository_activity: Actividad del repositorio
         system_status: Estado del sistema
       users:
         destroy:
@@ -171,6 +182,8 @@ es:
   proprietor:
     accounts:
       edit:
+        account_settings: Configuración de cuenta
+        data_cite_endpoint: Extremo de DataCite
         fcrepo_endpoint: Punto final de Fedora
         header: Cuenta de edición
         solr_endpoint: Punto final de Solr
@@ -187,6 +200,7 @@ es:
         add: Añadir
         current_admins:
           actions: Acción
+          header: Administradores de cuentas corrientes
           no_admins: No existen administradores
         edit: Editar cuenta
         header: Administrar cuenta

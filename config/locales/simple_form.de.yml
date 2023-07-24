@@ -7,10 +7,33 @@ de:
     hints:
       account:
         admin_emails: Geben Sie jeweils eine E-Mail-Adresse ein
+        allow_signup: Erlauben Sie Benutzern, sich bei Ihrem Repository anzumelden
+        cache_api: Aktiviert den Cache für API-Endpunkte. Experimental
+        contact_email: E-Mail-Empfänger von Nachrichten, die über das Kontaktformular gesendet werden
+        contact_email_to: E-Mail-Adresse, die Kontakt-E-Mails erhalten soll
+        doi_reader: Zeigen Sie die Fähigkeit, aus Datacite zu lesen, um Datensätze zu füllen. WIP nicht verwenden
+        doi_writer: Schreiben Sie DOIs für Datensätze. WIP nicht verwenden
+        email_format: Legen Sie eine Liste der E-Mail-Domänen fest, die sich bei diesem Repository anmelden dürfen, z. B. (@ubiquitypress.com @gmail.com). Lassen Sie zwischen jeder Domäne ein einzelnes Leerzeichen.
+        email_subjet_prefix: Zeichenfolge, die den Betreffzeilen der System-E-Mail vorangestellt wird.
+        enable_oai_metadata: OAI-Link aktivieren oder deaktivieren
         fcrepo_endpoint:
           base_path: Fedora-Basispfad sollte mit einem Schrägstrich beginnen und nicht mit einem Schrägstrich enden
           url: Fedora-URL sollte nicht mit einem Schrägstrich enden
+        file_acl: Deaktivieren Sie diese Option, wenn Sie ein Dateisystem wie Samba oder NFS verwenden, das das Festlegen von Zugriffskontrolllisten nicht unterstützt
+        file_size_limit: Dieser sollte mindestens auf 536870912000 eingestellt sein
+        geonames_username: Registrieren Sie sich unter http://www.geonames.org/manageaccount
+        gtm_id: Die ID Ihres Google Tag Manager-Kontos
+        is_public: Können Benutzer Ihre Website auf der Startseite entdecken oder ohne einen speziellen Benutzernamen/Passwort auf Ihre Seiten zugreifen?
+        locale_name: 'Der Name des mandantenspezifischen Gebietsschemasuffixes, das zu den Dateien „locale.yml“ hinzugefügt wurde. Es sollten nur alphabetische Zeichen hinzugefügt werden, keine Symbole oder Zahlen, diese werden dann großgeschrieben.
+
+          '
+        monthly_email_list: Liste der E-Mail-Adressen zum Versenden des Monatsberichts per E-Mail. Lassen Sie zwischen jeder E-Mail ein Leerzeichen
         name: Ein einzelner oder mit Bindestrich versehener Name, der für technische Aspekte des Repositorys verwendet wird (z. B. "acme" oder "acme-library").
+        oai_admin_email: Kontakt-E-Mail-Adresse des OAI-Endpunkts
+        shared_login: Aktivieren oder deaktivieren Sie die gemeinsame Anmeldung
+        ssl_configured: Setzen Sie es auf „true“, wenn Sie https verwenden
+        weekly_email_list: Liste der E-Mail-Adressen zum Versenden des wöchentlichen Berichts per E-Mail. Lassen Sie zwischen jeder E-Mail ein Leerzeichen
+        yearly_email_list: Liste der E-Mail-Adressen zum Versenden des Jahresberichts per E-Mail. Lassen Sie zwischen jeder E-Mail ein Leerzeichen
       hyku_group:
         description: Eine kurze Zusammenfassung der Rolle der Gruppe
       user:
@@ -22,12 +45,15 @@ de:
         fcrepo_endpoint:
           base_path: Basispfad
           url: URL
+        gtm_id: Google-Tag-Manager
         name: Kurzer Name
         solr_endpoint:
           url: URL
         tenant: Mandanten UUID
       add_user_to_group:
         user_ids: Benutzeridentifikation
+      domain_names:
+        cname: Domainname
       group_search:
         q: Suche
       hyku_group:

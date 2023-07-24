@@ -1,8 +1,9 @@
+---
 fr:
   hyrax:
     icons:
-      attachment:     'fa fa-file-text-o'
+      attachment: fa fa-file-text-o
     select_type:
       attachment:
-        description:        "Attachment œuvres"
-        name:               "Attachment"
+        description: Attachment œuvres
+        name: Attachment

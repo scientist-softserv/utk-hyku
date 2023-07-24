@@ -95,7 +95,16 @@ zh:
       accounts:
         nav: 帐号
       users:
+        edit:
+          header: 编辑用户
+        index:
+          confirm_delete: 您确定要删除该用户吗？此操作无法撤消。
+          header: 管理用户
+          manage: 管理
         nav: 用户
+        show:
+          header: 管理用户
+          update: 更新
     splash:
       account_denied: 您无权创建租户
       account_login: 登录即可开始使用
@@ -149,10 +158,12 @@ zh:
             fonts: 字形
             themes: 主题
       sidebar:
+        account: 帐户
         accounts: 帐号
         activity_summary: 活动摘要
         labels: 标签
         manage_groups: 管理组
+        repository_activity: 存储库活动
         system_status: 系统状态
       users:
         destroy:
@@ -171,6 +182,8 @@ zh:
   proprietor:
     accounts:
       edit:
+        account_settings: 账户设置
+        data_cite_endpoint: DataCite 端点
         fcrepo_endpoint: Fedora端点
         header: 编辑帐号
         solr_endpoint: Solr端点
@@ -187,6 +200,7 @@ zh:
         add: 加
         current_admins:
           actions: 行动
+          header: 往来账户管理员
           no_admins: 没有管理员
         edit: 编辑帐户
         header: 管理帐户

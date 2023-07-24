@@ -41,6 +41,9 @@ zh:
             participants: 参加者
             visibility: 发布和可见性
             workflow: 工作流程
+        form_metadata_context:
+          no_metadata_context: 没有可用的元数据上下文
+          page_description: 管理集的元数据上下文
         form_participant_table:
           admin_users: 仓库管理员
           allow_all_registered: 允许所有注册用户存款
@@ -281,7 +284,7 @@ zh:
         default: 你必须先登录才能做到这一点！
       unprocessable_entity:
         default: 您尝试修改的资源无法根据您的请求进行修改。
-    background_attribution_html: ""
+    background_attribution_html: ''
     base:
       citations:
         header: 引文：
@@ -526,6 +529,9 @@ zh:
           logo:
             description: 一幅或多幅图像将显示在集合页面的顶部。为了获得最佳效果，请上传40像素高的图像（JPG，GIF或PNG）。较大的图像将被调整为40像素高。
             label: 商标
+          thumbnail:
+            description: 如果您决定展示此集合，则将在搜索结果和主页上显示图像。在整个应用程序中，图像将以各种方式裁剪和调整大小，但为了获得最佳效果，请使用横向图像（JPG、GIF 或 PNG）。
+            label: 缩略图
         form_discovery:
           para1: 这些设置确定谁可以发现和查看此收藏的登录页面；它们不会影响集合中项目的可见性。
           para2: 如果您选择不使该收藏集成为开放访问权限，您仍然可以使用“共享”选项卡与特定用户和组共享收藏集。
@@ -796,8 +802,17 @@ zh:
       admin_sets:
         link: 查看所有收藏
         tab_label: 探索收藏
-        title: 探索收藏
         thumbnail: 缩略图
+        title: 探索收藏
+      collections:
+        document:
+          title_label: 标题
+        title: 瀏覽收藏
+      featured_collections:
+        document:
+          title_label: 标题
+        no_collections: 沒有收藏。
+        title: 精選系列
       featured_researcher:
         missing: 没有研究人员的特色。
         tab_label: 特色研究员
@@ -813,15 +828,6 @@ zh:
         no_works: 没有作品被推荐
         tab_label: 特色作品
         title: 特色作品
-      featured_collections:
-        no_collections: 沒有收藏。
-        title: 精選系列
-        document:
-          title_label: 标题
-      collections:
-        title: 瀏覽收藏
-        document:
-          title_label: 标题
       recently_uploaded:
         depositor: 储户
         details: 细节
@@ -915,7 +921,7 @@ zh:
         terms_page: 使用条款
       updated: 页面已更新。
     passive_consent_to_agreement: 保存此作品，我同意
-    product_name: "俳句"
+    product_name: 俳句
     product_twitter_handle: "@HydraInABox"
     search:
       button:
@@ -1101,7 +1107,7 @@ zh:
         require_membership: 一件作品必须至少属于这一类型的收藏
         sharable: 允许用户为他们管理的收藏指派收藏经理，存款人和查看者
         share_applies_to_new_works: 在集合中直接创建新作品时，请根据其收藏角色授予共享用户和组新作品的权限。
-        title: ""
+        title: ''
       defaults:
         based_near: 与该作品相关的地名，例如其出版地或该作品所涉及的城市，州或国家。调用<a href='http://www.geonames.org'> GeoNames Web服务</a>。
         contributor: 您希望因在作品创作中扮演的角色而被认可的个人或团体，而不是主要角色。
@@ -1122,8 +1128,22 @@ zh:
         extent: 程度
     labels:
       collection:
+        date_created_d: 机器可读创建日期
+        date_issued: 发行日期
+        date_issued_d: 机读出版日期
+        extent: 程度
+        form: 形式
+        note: 笔记
+        publication_place: 出版地点
+        repository: 存储库
+        resource_link: 资源链接
+        rights_notes: 权利注释
         size: 尺寸
+        spatial: 空间覆盖范围
         total_items: 项目总数
+        utk_contributor: 本地贡献者
+        utk_creator: 本地创作者
+        utk_publisher: 本地出版商
       collection_type:
         allow_multiple_membership: 多会员
         assigns_visibility: 能见度

@@ -1,10 +1,9 @@
+---
 es:
   hyrax:
     icons:
-      compound_object:     'fa fa-file-text-o'
+      compound_object: fa fa-file-text-o
     select_type:
       compound_object:
-        # TODO: translate `human_name` into Spanish
-        description:        "Compound object trabajos"
-        name:               "Compound Object"
-        # TODO: translate `human_name` into Spanish
+        description: Compound object trabajos
+        name: Compound Object
