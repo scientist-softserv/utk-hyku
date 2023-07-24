@@ -1,8 +1,9 @@
+---
 fr:
   hyrax:
     icons:
-      book:     'fa fa-file-text-o'
+      book: fa fa-file-text-o
     select_type:
       book:
-        description:        "Book œuvres"
-        name:               "Book"
+        description: Book œuvres
+        name: Book

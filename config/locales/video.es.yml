@@ -1,10 +1,9 @@
+---
 es:
   hyrax:
     icons:
-      video:     'fa fa-file-text-o'
+      video: fa fa-file-text-o
     select_type:
       video:
-        # TODO: translate `human_name` into Spanish
-        description:        "Video trabajos"
-        name:               "Video"
-        # TODO: translate `human_name` into Spanish
+        description: Video trabajos
+        name: Video

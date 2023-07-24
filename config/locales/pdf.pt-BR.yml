@@ -1,8 +1,9 @@
+---
 pt-BR:
   hyrax:
     icons:
-      pdf:     'fa fa-file-text-o'
+      pdf: fa fa-file-text-o
     select_type:
       pdf:
-        description:        "Pdf obras"
-        name:               "Pdf"
+        description: Pdf obras
+        name: Pdf

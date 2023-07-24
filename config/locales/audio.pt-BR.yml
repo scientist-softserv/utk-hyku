@@ -1,8 +1,9 @@
+---
 pt-BR:
   hyrax:
     icons:
-      audio:     'fa fa-file-text-o'
+      audio: fa fa-file-text-o
     select_type:
       audio:
-        description:        "Audio obras"
-        name:               "Audio"
+        description: Audio obras
+        name: Audio

@@ -1,8 +1,9 @@
+---
 it:
   hyrax:
     icons:
-      pdf:     'fa fa-file-text-o'
+      pdf: fa fa-file-text-o
     select_type:
       pdf:
-        description:        "Pdf opere"
-        name:               "Pdf"
+        description: Pdf opere
+        name: Pdf
