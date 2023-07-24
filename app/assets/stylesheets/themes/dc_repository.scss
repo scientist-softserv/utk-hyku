@@ -1863,6 +1863,22 @@ body.dc_repository {
       min-height: 213px !important;
     }
 
+    .navbar-nav .open .dropdown-menu {
+      li > a {
+        color: #006c93;
+        padding: 3px 20px;
+
+        &:hover {
+          color: #812948;
+          background-color: #F5F5F5;
+        }
+      }
+
+      .divider {
+        background-color: #e5e5e5;
+      }
+    }
+
     // Featured Collections Grid
     #featured-collections {
       .featured-collections {
@@ -2077,6 +2093,33 @@ body.dc_repository {
       position: relative;
       left: 12px;
     }
+
+    #language-dropdown-menu {
+      background-color: #ffffff;
+      position: absolute;
+      left: -120px;
+      top: 41px;
+    }
+
+    .open .dropdown-menu {
+      z-index: 1000;
+      float: left;
+      min-width: 160px;
+      padding: 5px 0;
+      margin: 2px 0 0;
+      font-size: 14px;
+      text-align: left;
+      list-style: none;
+      background-clip: padding-box;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      position: absolute;
+      background-color: #fff;
+      top: 31px;
+    }
+
+
   }
 
   @media (max-width: 575px) {
@@ -2213,6 +2256,19 @@ body.dc_repository {
       * {
         margin: 1px 1px;
       }
+    }
+
+    .open .dropdown-menu {
+      scale: 1.5;
+      top: 58px;
+    }
+
+    #language-dropdown-menu {
+      scale: 1.5;
+      background-color: #ffffff;
+      position: absolute;
+      left: -163px;
+      top: 100px;
     }
   }
 }
