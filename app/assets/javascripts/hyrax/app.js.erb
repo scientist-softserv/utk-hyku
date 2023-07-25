@@ -165,17 +165,33 @@ Hyrax = {
 
     // Minimize/maximize the dashboard sidebar
     sidebar: function () {
-        $('.sidebar-toggle').on('click', function() {
-            $('.sidebar, .main-content').toggleClass('maximized');
-        });
 
-        $(window).on('resize', function() {
-            if ($(window).width() >= 768) {
-                $('.sidebar, .main-content').addClass('maximized');
-            } else {
-                $('.sidebar, .main-content').removeClass('maximized');
-            }
-        }).trigger('resize');
+      // default behavior
+      $(window).on('load', function() {
+        if ($(window).width() >= 768) {
+          $('.sidebar, .main-content').addClass('maximized');
+        } else {
+          $('.sidebar, .main-content').removeClass('maximized');
+        }
+      });
+
+      $('.sidebar-toggle').on('click', function() {
+        $('.sidebar').toggleClass('maximized');
+
+        if ($(window).width() >= 768) {
+          if ($('.sidebar').hasClass('maximized')) {
+            $('.main-content').addClass('maximized');
+          } else if (!$('.sidebar').hasClass('maximized')) {
+            $('.main-content').removeClass('maximized');
+          };
+        } else {
+          if ($('.sidebar').hasClass('maximized')) {
+            $('.main-content').removeClass('maximized');
+          } else if (!$('.sidebar').hasClass('maximized')) {
+            $('.main-content').removeClass('maximized');
+          };
+        } 
+      });
     },
     // OVERRIDE end
 
