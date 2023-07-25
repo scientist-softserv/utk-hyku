@@ -1601,9 +1601,11 @@ body.dc_repository {
         justify-content: center;
 
         .navbar-nav {
-          display: none;
           margin: 0;
           padding: 0;
+          display: flex;
+          width:90%;
+          justify-content: space-evenly;
         }
 
         .row {
@@ -1785,6 +1787,24 @@ body.dc_repository {
   }
 
   @media (max-width: 767px) {
+    .image-masthead {
+      .controls,
+      .container-fluid,
+      .row {
+        height: 100px;
+      }
+
+      .row {
+        flex-direction: column;
+      }
+    }
+
+    .utk-digital-elements-wrapper {
+      height: 76px !important;
+      position: relative;
+      top: 24px;
+    }
+
     // Search Results
     .search-container {
       width: 85%;
@@ -2240,8 +2260,6 @@ body.dc_repository {
     }
 
     .page_links, .search-widgets {
-      position: relative;
-      top: -13px;
       padding: 0;
       display: flex;
       flex-wrap: wrap;
