@@ -285,12 +285,12 @@ body.dc_show {
       width: 120%;
     }
 
-    .uv-panel {
-      padding: 0 !important;
+    .col-xs-12 .uv-panel {
+      padding: 0;
     }
 
-    .thumbnail {
-      width: 80px !important;
+    .works-panel .panel-body .table tr .thumbnail {
+      width: 80px;
     }
   }
   /**** End Responsive Styles ****/
