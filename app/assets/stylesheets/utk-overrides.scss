@@ -10,4 +10,9 @@ body.public-facing.utk-public-facing {
     border-color: $gray-1;
     color: $smokey !important;
   }
+
+  // This override removes the dotted border on the grid
+  #documents .document {
+    border-bottom: none;
+  }
 }
