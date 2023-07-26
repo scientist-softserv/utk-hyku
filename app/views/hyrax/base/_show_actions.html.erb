@@ -10,7 +10,7 @@
                       data: { toggle: "modal", target: "#collection-list-container" } %>
       <% end %>
       <%# OVERRIDE begin %>
-      <% if presenter.work_featurable? && AccountsHelper::TENANTS_WITH_NO_WORK_FEATURES.include?(@current_account.name) %>
+      <% if presenter.work_featurable? && !AccountsHelper::TENANTS_WITH_NO_WORK_FEATURES.include?(@current_account.name) %>
         <%= link_to t('.feature'), hyrax.featured_work_path(presenter, format: :json),
             data: { behavior: 'feature' },
             class: presenter.display_feature_link? ? 'btn btn-default' : 'btn btn-default collapse' %>
