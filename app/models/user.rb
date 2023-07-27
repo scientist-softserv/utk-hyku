@@ -9,13 +9,15 @@ class User < ApplicationRecord
   include Hyrax::User
   include Hyrax::UserUsageStats
 
-  attr_accessible :email, :password, :password_confirmation if Blacklight::Utils.needs_attr_accessible?
+  attr_accessible :email if Blacklight::Utils.needs_attr_accessible?
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :invitable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  providers = %i[cas]
+  providers << :developer unless Rails.env.production?
+  devise :database_authenticatable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: providers
 
   before_create :add_default_roles
 
@@ -95,5 +97,19 @@ class User < ApplicationRecord
     add_role :admin, Site.instance unless self.class.joins(:roles).where("roles.name = ?", "admin").any?
     # Role for any given site
     add_role :registered, Site.instance
+  end
+
+  def self.find_for_cas(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      # validator expects a password but there is no input for a password so instead we're giving it one
+      user.password ||= Devise.friendly_token[0, 20]
+      # TODO: Is the email provided in the auth data structure?
+      user.email = [auth.uid, '@', ENV.fetch('CAS_EMAIL_DOMAIN')].join if user.email.blank?
+    end
+  end
+  class << self
+    alias find_for_developer find_for_cas
   end
 end

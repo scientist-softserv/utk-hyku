@@ -850,6 +850,13 @@ GEM
     oj (3.13.16)
     oj_mimic_json (1.0.1)
     okcomputer (1.18.4)
+    omniauth (1.9.2)
+      hashie (>= 3.4.6)
+      rack (>= 1.6.2, < 3)
+    omniauth-cas (2.0.0)
+      addressable (~> 2.3)
+      nokogiri (~> 1.5)
+      omniauth (~> 1.2)
     openseadragon (0.6.0)
       rails (> 3.2.0)
     optimist (3.0.1)
@@ -1345,6 +1352,7 @@ DEPENDENCIES
   lograge
   mods (~> 2.4)
   okcomputer
+  omniauth-cas (~> 2.0)
   parser (~> 2.5.3)
   pg
   postrank-uri (>= 1.0.24)

@@ -111,6 +111,8 @@ gem 'devise-guests', '~> 0.3'
 gem 'devise-i18n'
 gem 'devise_invitable', '~> 1.6'
 
+gem 'omniauth-cas', '~> 2.0'
+
 gem 'apartment'
 gem 'is_it_working'
 gem 'rolify'

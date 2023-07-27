@@ -41,7 +41,12 @@ mount AllinsonFlex::Engine, at: '/'
 
   root 'hyrax/homepage#index'
 
-  devise_for :users, controllers: { invitations: 'hyku/invitations', registrations: 'hyku/registrations' }
+  if Rails.env.production?
+    get 'users/sign_in', to: redirect('/users/auth/cas')
+    post 'users/sign_in', to: redirect('/')
+  end
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   mount Qa::Engine => '/authorities'
 
   mount Blacklight::Engine => '/'
