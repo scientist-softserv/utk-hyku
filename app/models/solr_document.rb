@@ -9,6 +9,7 @@ class SolrDocument
   # Adds Hyrax behaviors to the SolrDocument.
   include Hyrax::SolrDocumentBehavior
   include AllinsonFlex::DynamicSolrDocument
+  include ModsSolrDocument
 
   # self.unique_key = 'id'
 
@@ -87,18 +88,24 @@ class SolrDocument
     Hyrax::ConditionalDerivativeDecorator.intermediate_file?(object: self)
   end
 
+  # oai_dc basic terms: [:contributor, :coverage, :creator, :date, :description,
+  #                      :format, :identifier, :language, :publisher, :relation,
+  #                      :rights, :source, :subject, :title, :type]
   field_semantics.merge!(
-    contributor: 'contributor_tesim',
-    creator: 'creator_tesim',
-    date: 'date_created_tesim',
-    description: 'description_tesim',
-    identifier: 'identifier_tesim',
+    creator: ['creator_tesim', 'architect_tesim', 'artist_tesim',
+              'author_tesim', 'composer_tesim', 'illustrator_tesim',
+              'interviewee_tesim', 'photographer_tesim', 'utk_artist_tesim',
+              'utk_author_tesim', 'utk_creator_tesim', 'utk_interviewee_tesim',
+              'utk_photographer_tesim'],
+    date: ['date_created_d_tesim', 'date_issued_d_tesim'],
+    description: 'abstract_tesim',
+    format: ['form_tesim', 'form_local_tesim', 'extent_tesim'],
+    identifier: ['identifier_tesim', 'local_identifier_tesim', 'issn_tesim', 'isbn_tesim'],
     language: 'language_tesim',
-    publisher: 'publisher_tesim',
-    relation: 'nesting_collection__pathnames_ssim',
-    rights: 'rights_statement_tesim',
-    subject: 'subject_tesim',
+    publisher: ['provider_tesim', 'intermediate_provider_tesim'],
+    rights: ['rights_statement_tesim', 'license_tesim'],
+    subject: ['subject_tesim', 'keyword_tesim'],
     title: 'title_tesim',
-    type: 'human_readable_type_tesim'
+    type: 'resource_type_tesim'
   )
 end
