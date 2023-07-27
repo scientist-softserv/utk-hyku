@@ -4,11 +4,11 @@
   <% @presenter.terms_with_values.each do |field_name| %>
     <% next if field_name == :total_items %>
     <div id=<%= "hyc-collection-metadata-#{field_name}" %>>
-      <dt>
-        <% unless field_name == :abstract %>
-          <%= collection_metadata_label(@presenter, field_name) %>
-        <% end %>
-      </dt>
+      <% unless field_name == :abstract %>
+        <dt><%= collection_metadata_label(@presenter, field_name) %></dt>
+      <% else %>
+        <dt></dt>
+      <% end %>
       <dd><%= collection_metadata_value(@presenter, field_name) %></dd>
     </div>
   <% end %>
