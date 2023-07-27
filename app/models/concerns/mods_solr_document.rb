@@ -51,7 +51,11 @@ module ModsSolrDocument
   private
 
     def oai_url
-      @oai ||= "https://#{Site.account.cname}/catalog/oai"
+      tenant_url + "/catalog/oai"
+    end
+
+    def tenant_url
+      @base_url ||= "https://#{Site.account.cname}"
     end
 
     # titleInfo
@@ -140,6 +144,14 @@ module ModsSolrDocument
         location_terms.each do |location_term|
           send(location_term)&.each { |term| xml.physicalLocation term.to_s }
         end
+
+        url = tenant_url + self[:thumbnail_path_ss]
+        object_url = tenant_url + "/concern/#{self[:has_model_ssim][0]&.downcase&.pluralize}/#{self[:id]}"
+        xml.url({ usage: 'primary', access: "object in context" }, object_url)
+        if self[:thumbnail_path_ss].present?
+          thumbnail_url = url.gsub('?file=thumbnail', '')
+          xml.url(access: 'preview', "xlink:href" => thumbnail_url)
+        end
       end
     end
 
@@ -147,7 +159,7 @@ module ModsSolrDocument
     def load_access(xml)
       access_terms.each do |access_term|
         Array.wrap(send(access_term))&.each do |access|
-          xml.accessCondition(type: 'use and reproduction', valueUri: access.to_s)
+          xml.accessCondition(type: 'use and reproduction', "xlink:href" => access.to_s)
         end
       end
     end
