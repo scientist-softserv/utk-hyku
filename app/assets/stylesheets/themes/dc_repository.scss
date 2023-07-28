@@ -882,42 +882,6 @@ body.dc_repository {
   }
   /**** End Browse Collections ****/
 
-  /**** Collection Show ****/ 
-      .collection-image-masthead {
-        width: 100%;
-        height: 61.8vw;
-        min-height: 500px;
-        max-height: calc(90vh - 82px);
-        position: relative;
-        margin: 0;
-        flex-direction: column;
-        justify-content: flex-end;
-        z-index: 0;
-        
-        .background-container {
-          position: absolute;
-          left: 0;
-          right: 0;
-          display: block;
-          width: auto;
-          height: 100%;
-          background-repeat: no-repeat;
-          background-size: cover;
-          -webkit-filter: blur(1px);
-          filter: blur(1px);
-        }
-      }
-
-      .collection-title-masthead {
-        width: 100%;
-        height: 275px !important;
-        min-height: 275px !important;
-        margin-bottom: $golden-ratio-3;
-      }
-
-      
-  /**** End Collection Show ****/
-
   /**** Search Results Content Section ****/
   #content-wrapper.search-container {
     margin-bottom: $golden-ratio-4;

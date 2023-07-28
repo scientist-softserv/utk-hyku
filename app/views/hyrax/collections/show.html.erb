@@ -50,13 +50,15 @@
       <% unless @presenter.total_viewable_items.blank? %>
         <div class="hyc-bugs">
           <div class="hyc-item-count">
-            <%= pluralize(@presenter.total_viewable_items, t('.item_count')) %></div>
-          <% unless @presenter.creator.blank? %>
-            <div class="hyc-created-by">Created by: <%= @presenter.creator.first %></div>
-          <% end %>
-          <% unless @presenter.modified_date.blank? %>
-            <div class="hyc-last-updated">Last Updated: <%= @presenter.modified_date %></div>
-          <% end %>
+            <strong><%= @presenter.total_viewable_items %></strong> <%= t('.item_count').pluralize(@presenter.total_viewable_items) %>
+            <strong> | </strong>
+            <% unless @presenter.creator.blank? %>
+              <strong> | </strong><span class="hyc-created-by">Created by: <%= @presenter.creator.first %></span>
+            <% end %>
+            <% unless @presenter.modified_date.blank? %>
+              <span class="hyc-last-updated">Last Updated: <%= @presenter.modified_date %></span>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
