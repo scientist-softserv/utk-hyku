@@ -7,7 +7,7 @@
       <%= render "/themes/dc_repository/controls" %>
     </div>
   </div>
-  <div class="utk-digital-elements-wrapper">
+  <div class="utk-digital-elements-wrapper <%= collections_show? ? 'dc-repository-show-elements-wrapper' : '' %>">
     <div class="container-fluid d-flex">
       <div class="row">
         <div class="utk-digital-search-container d-flex">

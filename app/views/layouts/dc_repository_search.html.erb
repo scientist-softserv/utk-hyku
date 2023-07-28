@@ -16,7 +16,7 @@
     <%= render '/themes/dc_repository/shared/subpage_header' %>
     <%= content_for(:navbar) %>
     <%= content_for(:precontainer_content) %>
-    <div id="content-wrapper" class="container search-container" role="main">
+    <div id="content-wrapper" class="container <%= collections_show? ? 'collection-container' : 'search-container' %>" role="main">
       <%= render '/flash_msg' %>
       <%= render_breadcrumbs builder: Hyrax::BootstrapBreadcrumbsBuilder %>
       <% if content_for?(:page_header) %>

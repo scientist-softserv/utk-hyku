@@ -454,7 +454,7 @@ body.dc_repository {
     margin-bottom: $golden-ratio-3;
 
     .utk-digital-elements-wrapper {
-      background-color: rgba(0, 108, 148, 0.65);
+      background-color: rgba(0, 108, 148, 0.95);
     }
   }
   /**** End Subpage Hero Section ****/
@@ -883,9 +883,15 @@ body.dc_repository {
   /**** End Browse Collections ****/
 
   /**** Search Results Content Section ****/
-  #content-wrapper.search-container {
+  #content-wrapper.search-container, #content-wrapper.collection-container {
     margin-bottom: $golden-ratio-4;
   }
+
+  // adding this to compensate for the absence of a subpage header on collections show
+  #content-wrapper.collection-container {
+    margin-top: -92px;
+  }
+
   #content {
     a#startOverLink {
       border: 2px solid $gray-1;
