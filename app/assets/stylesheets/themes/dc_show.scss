@@ -215,6 +215,11 @@ body.dc_show {
       padding-top: 5px
     }
   }
+
+  // requested by the client, hide the breadcrumb on the collection show page
+  #content-wrapper .breadcrumb {
+    display: none;
+  }
   /**** End Collection Show ****/
 
   /**** Responsive Styles ****/
