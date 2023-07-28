@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
-  revision: 2141b481e2f4a35b4df87c54edf6bc7c1611bfb0
+  revision: 72e2cbeda64ea68769067ebb94ff1766101a94c3
   specs:
     allinson_flex (0.1.0)
       json_schemer
@@ -10,8 +10,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/bulkrax.git
-  revision: 6c67f16fb922e22dc11552e670f4b90bc5379e4a
-  ref: 6c67f16
+  revision: 817e4bb826260c2b402f730e7696dd90027f0c0c
+  ref: 817e4bb
   specs:
     bulkrax (5.2.1)
       bagit (~> 0.4)

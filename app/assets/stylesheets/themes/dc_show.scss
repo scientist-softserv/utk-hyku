@@ -278,7 +278,7 @@ body.dc_show {
     }
 
     .works-panel {
-      padding: 0 $golden-ratio-3;
+      padding: 0px 12px;
 
       .panel-heading {
         .panel-title {
@@ -301,7 +301,7 @@ body.dc_show {
           }
 
           .thumbnail {
-            width: 100px !important;
+            width: 100px
           }
 
           .attribute {
@@ -325,6 +325,20 @@ body.dc_show {
           font-size: $type-2 !important;
         }
       }
+    }
+  }
+
+  @media (max-width: 575px ) {
+    .work-type-container {
+      width: 120%;
+    }
+
+    .col-xs-12 .uv-panel {
+      padding: 0;
+    }
+
+    .works-panel .panel-body .table tr .thumbnail {
+      width: 80px;
     }
   }
   /**** End Responsive Styles ****/

@@ -24,7 +24,7 @@
         <% if (collection_presenter.thumbnail_path == nil) %>
           <span class="<%= Hyrax::ModelIcon.css_class_for(::Collection) %> collection-icon-small"></span>
         <% else %>
-          <%= image_tag(collection_presenter.thumbnail_path, alt: "#{collection_presenter.title_or_label} #{t('hyrax.dashboard.my.sr.thumbnail')}") %>
+          <%= image_tag(collection_presenter.thumbnail_path, alt: block_for(name: 'default_collection_image_text') || "#{collection_presenter.title_or_label} #{t('hyrax.dashboard.my.sr.thumbnail')}") %>
         <% end %>
       </div>
       <%= link_to collection_presenter.show_path, id: "src_copy_link#{id}" do %>
