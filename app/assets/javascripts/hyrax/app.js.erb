@@ -172,6 +172,18 @@ Hyrax = {
             }
         });
 
+        $('.sidebar').on('mouseenter', function() {
+            if ($(window).width() < 768) {
+                $('.sidebar').addClass('maximized');
+            }
+        });
+
+        $('.sidebar').on('mouseleave', function() {
+            if ($(window).width() < 768) {
+                $('.sidebar').removeClass('maximized');
+            }
+        });
+
         $(window).on('resize', function() {
             if ($(window).width() >= 768) {
                 $('.sidebar, .main-content').addClass('maximized');
