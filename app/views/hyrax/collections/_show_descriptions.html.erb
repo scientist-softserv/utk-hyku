@@ -1,0 +1,15 @@
+<%# OVERRIDE Hyrax 3.5.0 hide total items badge on the collection show page %>
+
+<dl class="hyc-collection-metadata">
+  <% @presenter.terms_with_values.each do |field_name| %>
+    <% next if field_name == :total_items %>
+    <div id=<%= "hyc-collection-metadata-#{field_name}" %>>
+      <% unless field_name == :abstract %>
+        <dt><%= collection_metadata_label(@presenter, field_name) %></dt>
+      <% else %>
+        <dt></dt>
+      <% end %>
+      <dd><%= collection_metadata_value(@presenter, field_name) %></dd>
+    </div>
+  <% end %>
+</dl>

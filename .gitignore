@@ -9,6 +9,7 @@ capybara-*.html
 pg_upgrade_*.log
 /public/system
 /public/uv
+/public/branding
 /node_modules
 /coverage/
 /spec/tmp

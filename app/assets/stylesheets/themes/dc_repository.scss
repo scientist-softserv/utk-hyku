@@ -215,7 +215,7 @@ body.dc_repository {
   /**** End Header Section ****/
 
   /**** Homepage Hero Section ****/
-  .image-masthead {
+  .image-masthead, .collection-image-masthead {
     width: 100%;
     height: 61.8vw;
     min-height: 500px;
@@ -883,9 +883,15 @@ body.dc_repository {
   /**** End Browse Collections ****/
 
   /**** Search Results Content Section ****/
-  #content-wrapper.search-container {
+  #content-wrapper.search-container, #content-wrapper.collection-container {
     margin-bottom: $golden-ratio-4;
   }
+
+  // adding this to compensate for the absence of a subpage header on collections show
+  #content-wrapper.collection-container {
+    margin-top: -92px;
+  }
+
   #content {
     a#startOverLink {
       border: 2px solid $gray-1;
@@ -1800,7 +1806,7 @@ body.dc_repository {
       white-space: nowrap;
     }
 
-    .image-masthead {
+    .image-masthead, .collection-image-masthead {
       .controls,
       .container-fluid,
       .row {

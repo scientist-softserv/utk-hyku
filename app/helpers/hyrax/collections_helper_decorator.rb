@@ -8,5 +8,9 @@ module Hyrax
     def works_count_for(collection:)
       ActiveFedora::SolrService.query("member_of_collection_ids_ssim:#{collection.id}").count
     end
+
+    def collections_show?
+      controller_name == 'collections' && action_name == 'show'
+    end
   end
 end
