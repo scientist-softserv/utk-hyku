@@ -1794,7 +1794,7 @@ body.dc_repository {
 
   @media (max-width: 767px) {
     // FileSet show page
-    .col-xs-12 {
+    .file-show-details {
       word-break: break-word;
     }
 
@@ -1826,6 +1826,7 @@ body.dc_repository {
 
     // Search Results
     .search-container {
+      width: 85%;
       display: flex;
       flex-direction: column;
       justify-content: center;
