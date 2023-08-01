@@ -153,6 +153,22 @@ services:
 
   worker:
     <<: *app
+    ################################################################################
+    ## Note on commands: by default the commands don't run bundle.  That is to
+    ## reduce boot times.  However, when the application is in active
+    ## development, we might be adjusting the Gemfile and Gemfile.lock.  That
+    ## means you'll want to be regularly running bundle.
+    ##
+    ## With the following line, uncommented during active development, we'll
+    ## run bundle then run good_job.
+    # command: sh -l -c "bundle && bundle exec good_job start"
+    ##
+    ## Similar to the above, except we will bundle and then tell the container
+    ## to wait.  You'll then need to bash into the worker container and start
+    ## good_job (e.g. with `bundle exec good_job start`. This allows you to add byebug
+    ## in your code, bash into the worker container, and interact with the
+    ## breakpoints.
+    # command: sh -l -c "bundle && tail -f /dev/null"
     build:
       context: .
       target: hyku-worker

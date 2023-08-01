@@ -1,7 +1,5 @@
 # OVERRIDE Hyrax 2.9.0 to add featured collection routes
 
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
 
   concern :iiif_search, BlacklightIiifSearch::Routes.new
@@ -12,7 +10,6 @@ mount AllinsonFlex::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
 
   authenticate :user, lambda { |u| u.is_superadmin } do
-    mount Sidekiq::Web => '/sidekiq'
   end
 
   if ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))

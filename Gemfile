@@ -82,7 +82,7 @@ group :development do
   gem 'scss_lint', require: false
   gem 'spring', '~> 1.7'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # gem 'xray-rails' # when using this gem, know that sidekiq will not work
+  # gem 'xray-rails'
 end
 
 gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', ref: '817e4bb'
@@ -131,6 +131,7 @@ end
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'codemirror-rails'
+gem "good_job", "~> 2.99"
 gem 'okcomputer'
 gem 'parser', '~> 2.5.3'
 gem 'rdf', '~> 3.1.15' # rdf 3.2.0 removed SerializedTransaction which ldp requires
@@ -138,7 +139,6 @@ gem 'react-rails'
 gem 'riiif', '~> 1.1'
 gem 'secure_headers'
 gem "sentry-raven" # Notch8 Sentry Error Reporting
-gem 'sidekiq'
 gem 'terser' # to support the Safe Navigation / Optional Chaining operator (?.) and avoid uglifier precompile issue
 gem 'tether-rails'
 gem 'tinymce-rails', '~> 5.10' # lock gem to version new Hyrax version will require
