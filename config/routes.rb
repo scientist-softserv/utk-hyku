@@ -10,6 +10,7 @@ mount AllinsonFlex::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
 
   authenticate :user, lambda { |u| u.is_superadmin } do
+    mount GoodJob::Engine => 'jobs'
   end
 
   if ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_MULTITENANT', false))
