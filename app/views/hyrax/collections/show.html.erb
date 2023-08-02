@@ -3,7 +3,7 @@
 <div class="hyc-container" itemscope itemtype="http://schema.org/CollectionPage">
   <div class="row hyc-header">
     <div class="col-md-12">
-      <% if @presenter.banner_file.present? %>
+      <% if @presenter.banner_file[:filename] %>
       <div class='hyc-banner'>
         <%= render partial: '/themes/dc_repository/shared/collection_splash_header', locals: { bg_image: @presenter.banner_file[:relative_path], bg_title: @presenter.banner_file[:alt_text] }%>
         </div>
@@ -47,20 +47,7 @@
   <div class="row hyc-body">
     <div class="hyc-blacklight hyc-bl-title">
       <%= render 'show_descriptions' %>
-      <% unless @presenter.total_viewable_items.blank? %>
-        <div class="hyc-bugs">
-          <div class="hyc-item-count">
-            <strong><%= @presenter.total_viewable_items %></strong> <%= t('.item_count').pluralize(@presenter.total_viewable_items) %>
-            <strong> | </strong>
-            <% unless @presenter.creator.blank? %>
-              <strong> | </strong><span class="hyc-created-by">Created by: <%= @presenter.creator.first %></span>
-            <% end %>
-            <% unless @presenter.modified_date.blank? %>
-              <span class="hyc-last-updated">Last Updated: <%= @presenter.modified_date %></span>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <%# OVERRIDE Hyrax 2.9.1 remove item count and creator info from collection show page per client request %>
     </div>
   </div>
   <!-- Search results label -->
