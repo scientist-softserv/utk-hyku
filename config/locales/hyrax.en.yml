@@ -452,7 +452,7 @@ en:
         default_description: A User Collection can be created by any user to organize their works.
     collections:
       search_form:
-        button_label: Go
+        button_label: Search
         label: Search Collection %{title}
         placeholder: Search subcollections and works in this collection
       show:
@@ -690,7 +690,7 @@ en:
         shared: Works Shared with Me
         sr:
           batch_checkbox: Check to batch edit, delete or add to a collection.
-          collections_batch_checkbox: Check to batch delete collections. 
+          collections_batch_checkbox: Check to batch delete collections.
           check_all_label: Select all files to be added to a collection or edited
           detail_label: Display summary details of
           listing: Listing of items you have deposited in
