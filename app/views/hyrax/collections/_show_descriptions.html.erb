@@ -1,8 +1,8 @@
-<%# OVERRIDE Hyrax 3.5.0 hide total items badge on the collection show page %>
+<%# OVERRIDE Hyrax 3.5.0 to hide all unwanted metadata fields and remove abstract label
+    @see Hyrax::CollectionsHelperDecorator::METADATA_FOR_SHOW_PAGE %>
 
 <dl class="hyc-collection-metadata">
-  <% @presenter.terms_with_values.each do |field_name| %>
-    <% next if field_name == :total_items %>
+  <% metadata_fields_for_show_page(@presenter.terms_with_values).each do |field_name| %>
     <div id=<%= "hyc-collection-metadata-#{field_name}" %>>
       <% unless field_name == :abstract %>
         <dt><%= collection_metadata_label(@presenter, field_name) %></dt>
