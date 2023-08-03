@@ -12,7 +12,7 @@ if ENV['DB_ADAPTER'] != 'nulldb' && db_created?
 
     # Add any models that you do not want to be multi-tenanted, but remain in the global (public) namespace.
     # A typical example would be a Customer or Tenant model that stores each Tenant's information.
-    config.excluded_models = %w{ Account AccountCrossSearch DomainName Endpoint User UserStat SolrEndpoint FcrepoEndpoint RedisEndpoint }
+    config.excluded_models = %w{ Account AccountCrossSearch DomainName Endpoint User UserStat SolrEndpoint FcrepoEndpoint RedisEndpoint GoodJob::Execution GoodJob::Job GoodJob::Process }
 
     # In order to migrate all of your Tenants you need to provide a list of Tenant names to Apartment.
     # You can make this dynamic by providing a Proc object to be called on migrations.
@@ -38,7 +38,7 @@ if ENV['DB_ADAPTER'] != 'nulldb' && db_created?
     # e.g when using a PostgreSQL extension like hstore.
     # Any schemas added here will be available along with your selected Tenant.
     #
-    # config.persistent_schemas = %w{ hstore }
+    config.persistent_schemas = ['shared_extensions']
 
     # <== PostgreSQL only options
     #

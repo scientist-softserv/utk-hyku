@@ -100,6 +100,8 @@ extraEnvVars: &envVars
     value: /rest
   - name: FCREPO_URL
     value: http://fcrepo.fcrepo.svc.cluster.local:8080/rest
+  - name: GOOD_JOB_MAX_THREADS
+    value: "5"
   - name: HYKU_FILE_ACL
     value: "true"
   - name: IN_DOCKER
@@ -123,9 +125,9 @@ extraEnvVars: &envVars
   - name: REDIS_URL
     value: redis://:$REDIS_PASSWORD@utk-hyku-production-redis-master:6379/utk-hyku
   - name: HYKU_ACTIVE_JOB_QUEUE_URL
-    value: sidekiq
+    value: good_job
   - name: HYRAX_ACTIVE_JOB_QUEUE
-    value: sidekiq
+    value: good_job
   - name: HYKU_CONTACT_EMAIL
     value: support@notch8.com
   - name: HYRAX_FITS_PATH

@@ -58,7 +58,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   require 'active_job/queue_adapters/better_active_elastic_job_adapter'
-  config.active_job.queue_adapter     = ENV.fetch('HYRAX_ACTIVE_JOB_QUEUE', 'sidekiq')
+  config.active_job.queue_adapter     = ENV.fetch('HYRAX_ACTIVE_JOB_QUEUE', 'good_job')
   # config.active_job.queue_name_prefix = "hyku_#{Rails.env}"
 
   if ENV['SMTP_ENABLED'].present? && ENV['SMTP_ENABLED'].to_s == 'true'

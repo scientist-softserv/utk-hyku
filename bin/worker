@@ -6,4 +6,4 @@ else
   puts 'DB_URL not set, no pool change needed'
 end
 
-exec "echo $DB_URL && bundle exec sidekiq"
+exec "echo $DB_URL && bundle exec good_job"

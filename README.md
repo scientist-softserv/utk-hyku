@@ -85,7 +85,7 @@ fcrepo_wrapper
 postgres -D ./db/postgres
 redis-server /usr/local/etc/redis.conf
 bin/setup
-DISABLE_REDIS_CLUSTER=true bundle exec sidekiq
+DISABLE_REDIS_CLUSTER=true bundle exec good_job start
 DISABLE_REDIS_CLUSTER=true bundle exec rails server -b 0.0.0.0
 ```
 #### For testing
@@ -165,6 +165,7 @@ switch!('myaccount')
 | FCREPO_PORT | port for the fedora repo | 8080 | no |
 | FCREPO_TEST_PORT | Test port for the fedora repo, only if FCREPO_URL is blank | 8986 | yes |
 | FCREPO_URL | URL of the fedora repo, including port and prefix, but not repo name. | http://fcrepo:8080/rest | no |
+| GOOD_JOB_MAX_THREADS | Number of threads to use in good_job | 5 | no | 
 | HYKU_ADMIN_HOST | URL of the admin / proprietor host in a multitenant environment | hyku.test | no |
 | HYKU_ADMIN_ONLY_TENANT_CREATION | Restrict signing up a new tenant to the admin | false | no | |
 | HYKU_ALLOW_SIGNUP | Can users register themselves on a given Tenant | true  | no |
@@ -202,7 +203,7 @@ switch!('myaccount')
 | HYKU_SSL_CONFIGURED | Force SSL on page loads and IIIF manifest links | false | no |
 | HYKU_WEEKLY_EMAIL_LIST | Not used. Placeholder for upcoming Ubiquity feature | en | no |
 | HYKU_YEARLY_EMAIL_LIST | Not used. Placeholder for upcoming Ubiquity feature | en | no |
-| HYRAX_ACTIVE_JOB_QUEUE | Which Rails background job runner should be used? | sidekiq | no |
+| HYRAX_ACTIVE_JOB_QUEUE | Which Rails background job runner should be used? | good_job | no |
 | HYRAX_FITS_PATH | Where is fits.sh installed on the system. Will try the PATH if not set. | /app/fits/fits.sh | no |
 | HYRAX_REDIS_NAMESPACE | What namespace should the application use by default | hyrax | no |
 | I18N_DEBUG | See [Working with Translations] above | false | yes |
@@ -212,7 +213,7 @@ switch!('myaccount')
 | LD_LIBRARY_PATH | Path used for fits | /app/fits/tools/mediainfo/linux | no |
 | RAILS_ENV | https://guides.rubyonrails.org/configuring.html#creating-rails-environments | development | no |
 | RAILS_LOG_TO_STDOUT | Redirect all logging to stdout | true | no |
-| RAILS_MAX_THREADS | Number of threads to use in puma or sidekiq | 5 | no |
+| RAILS_MAX_THREADS | Number of threads to use in puma | 5 | no |
 | REDIS_HOST | Host location of redis | redis | no |
 | REDIS_PASSWORD | Password for redis, optional | - | no |
 | REDIS_URL | Optional explicit redis url, build from host/passsword if not specified | redis://:staging@redis:6397/ | no |
@@ -229,7 +230,7 @@ switch!('myaccount')
 | SOLR_HOST | Host for the Solr connection | solr | no |
 | SOLR_PORT | Solr port | 8983 | no |
 | SOLR_URL | URL for the Solr connection | http://admin:admin@solr:8983/solr/ | no |
-| WEB_CONCURRENCY | Number of processes to run in either puma or sidekiq | 2 | no |
+| WEB_CONCURRENCY | Number of processes to run in either puma | 2 | no |
 
 ## Development Dependencies
 
