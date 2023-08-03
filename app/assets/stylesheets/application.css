@@ -17,6 +17,7 @@
  *= require hyrax
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require bootstrap-datepicker
+ *= require single_signon
  *= require utk-overrides
  *= require allinson_flex/application
  *= require_self

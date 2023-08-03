@@ -210,6 +210,7 @@ en:
       sidebar:
         activity: Activity
         appearance: Appearance
+        identity_provider: Identity Provider
         collection_types: Collection Types
         collections: Collections
         configuration: Configuration
