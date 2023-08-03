@@ -226,6 +226,11 @@ body.dc_show {
     }
   }
 
+  .hyc-blacklight.hyc-bl-search.hyc-body.row {
+    display: flex;
+    justify-content: center;
+  }
+
   // requested by the client, hide the breadcrumb on the collection show page
   #content-wrapper .breadcrumb {
     display: none;
