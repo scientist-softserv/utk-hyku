@@ -13,10 +13,8 @@
 ActiveRecord::Schema.define(version: 2023_08_01_210841) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
 
   create_table "account_cross_searches", force: :cascade do |t|
     t.bigint "search_account_id"
@@ -954,6 +952,8 @@ ActiveRecord::Schema.define(version: 2023_08_01_210841) do
     t.integer "invited_by_id"
     t.string "invited_by_type"
     t.string "preferred_locale"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
