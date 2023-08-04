@@ -10,14 +10,13 @@
 <% if presenter.collection_type_is_nestable? && presenter.user_can_nest_collection? %>
     <%= render 'hyrax/my/collections/modal_add_to_collection', source: 'show' %>
 <!-- The user should have deposit access to the parent and read access to the child (the collection we are already showing, so no test is necessary). -->
-    <%= button_tag '',
-                  class: 'btn btn-primary add-to-collection',
-                  title: t("hyrax.collection.actions.nested_subcollection.desc"),
-                  type: 'button',
-                  data: { nestable: presenter.collection_type_is_nestable?,
-                          hasaccess: true } do %>
-                  <%= t('hyrax.collection.actions.nested_subcollection.button_label') %>
-                <% end %>
+    <%# OVERRIDE to change to a link_to instead of a button_tag because it had a weird effect on styling %>
+    <%= link_to t('hyrax.collection.actions.nested_subcollection.button_label'),
+                '#',
+                class: 'btn btn-primary add-to-collection',
+                title: t("hyrax.collection.actions.nested_subcollection.desc"),
+                data: { nestable: presenter.collection_type_is_nestable?,
+                        hasaccess: true } %>
 <% end %>
 <%# OVERRIDE Hyrax 2.9.0 here to add Feature/Unfeature buttons %>
 <% if presenter.collection_featurable? %>
@@ -27,7 +26,7 @@
 <%= link_to "Unfeature", main_app.featured_collection_path(presenter, format: :json),
     data: { behavior: 'unfeature' },
     class: presenter.display_unfeature_collection_link? ? 'btn btn-primary' : 'btn btn-primary collapse' %>
-<% end %> 
+<% end %>
 
 <% if can? :destroy, presenter.solr_document %>
     <%= link_to t('hyrax.collection.actions.delete.label'),
