@@ -214,7 +214,7 @@ services:
     entrypoint: ["sh", "-c"]
     command:
       - >
-        bundle && solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/conf &&
+        solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/conf &&
         solrcloud-assign-configset.sh &&
         SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
         db-migrate-seed.sh
