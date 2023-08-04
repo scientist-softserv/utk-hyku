@@ -154,7 +154,7 @@ module Hyrax
       end
 
       def admin_set_id_for_new
-        Hyrax::AdminSetCreateService.find_or_create_default_admin_set.id.to_s
+        AdminSet.first.id.to_s
       end
 
       def build_form
