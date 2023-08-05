@@ -677,6 +677,7 @@ zh:
         sr:
           batch_checkbox: 检查添加到收藏夹或编辑列表
           check_all_label: 选择所有要添加到集合或编辑的文件
+          collections_batch_checkbox: 勾选批量删除集合。
           detail_label: 显示的摘要详细信息
           listing: 您存放的物品清单
           press_to: 按到
