@@ -59,13 +59,13 @@ ingress:
 
 extraEnvVars: &envVars
   - name: HYKU_ADMIN_HOST
-    value: utk-hyku-production.notch8.cloud
+    value: digitalcollections.lib.utk.edu
   - name: HYKU_ADMIN_ONLY_TENANT_CREATION
     value: "false"
   - name: HYKU_DEFAULT_HOST
-    value: "%{tenant}.utk-hyku-production.notch8.cloud"
+    value: "%{tenant}.digitalcollections.lib.utk.edu"
   - name: HYKU_ROOT_HOST
-    value: utk-hyku-production.notch8.cloud
+    value: digitalcollections.lib.utk.edu
   - name: HYKU_MULTITENANT
     value: "true"
   - name: CONFDIR
