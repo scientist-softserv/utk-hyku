@@ -2,12 +2,10 @@
 
 # OVERRIDE Hyrax 2.9.0 to add featured collection routes
 
-Rails.application.routes.draw do
-
 Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   resources :identity_providers
   concern :iiif_search, BlacklightIiifSearch::Routes.new
-mount AllinsonFlex::Engine, at: '/'
+  mount AllinsonFlex::Engine, at: '/'
   concern :oai_provider, BlacklightOaiProvider::Routes.new
 
   mount Hyrax::IiifAv::Engine, at: '/'
@@ -44,8 +42,8 @@ mount AllinsonFlex::Engine, at: '/'
   root 'hyrax/homepage#index'
 
   devise_for :users, skip: [:omniauth_callbacks], controllers: { invitations: 'hyku/invitations',
-                                    registrations: 'hyku/registrations',
-                                    omniauth_callbacks: 'users/omniauth_callbacks' }
+    registrations: 'hyku/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks' }
   as :user do
     resources :single_signon, only: [:index]
 
@@ -131,6 +129,6 @@ mount AllinsonFlex::Engine, at: '/'
 
   # Upload a collection thumbnail
   post "/dashboard/collections/:id/delete_uploaded_thumbnail",
-       to: "hyrax/dashboard/collections#delete_uploaded_thumbnail",
-       as: :delete_uploaded_thumbnail
+    to: "hyrax/dashboard/collections#delete_uploaded_thumbnail",
+    as: :delete_uploaded_thumbnail
 end

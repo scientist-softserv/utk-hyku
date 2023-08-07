@@ -16,6 +16,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :invitable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: %i[saml openid_connect cas]
 
   before_create :add_default_roles
   # set default scope to exclude guest users
