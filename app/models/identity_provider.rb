@@ -11,6 +11,6 @@ class IdentityProvider < ApplicationRecord
     return @parsed_options unless @parsed_options['idp_metadata_url']
     idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
     idp_metadata = idp_metadata_parser.parse_remote_to_hash(@parsed_options['idp_metadata_url'])
-    @paresd_options = idp_metadata.merge(@parsed_options)
+    @parsed_options = idp_metadata.merge(@parsed_options)
   end
 end
