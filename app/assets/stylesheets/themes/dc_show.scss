@@ -188,7 +188,6 @@ body.dc_show {
   .collection-image-masthead {
     width: 100%;
     height: 61.8vw;
-    min-height: 500px;
     max-height: calc(90vh - 82px);
     position: relative;
     margin: 0;
@@ -341,6 +340,48 @@ body.dc_show {
         }
       }
     }
+
+    // Collection show page
+    .media-heading {
+      margin-block-start: 0;
+    }
+
+    .media-left {
+      display: none;
+    }
+
+    .hyc-bl-results {
+      margin: 2em 0;
+    }
+
+    #content-wrapper.collection-container {
+      margin-top: -65px;
+    }
+
+    .hyc-collection-metadata {
+      word-wrap: break-word;
+    }
+
+    .hyc-blacklight.hyc-bl-results table {
+      word-break: break-all;
+    }
+    .utk-digital-elements-wrapper > .container-fluid.d-flex {
+      height: inherit;
+
+      .row {
+        height: inherit;
+        justify-content: center;
+        padding: 0 14px;
+      }
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    .collection-sub-banner, .homepage-sub-banner {
+      top: 0;
+    }
   }
 
   @media (max-width: 575px ) {
@@ -354,6 +395,43 @@ body.dc_show {
 
     .works-panel .panel-body .table tr .thumbnail {
       width: 80px;
+    }
+
+    // Collection show page
+    .hyc-blacklight.hyc-bl-results table, .media-heading {
+      font-size: 15px;
+    }
+
+    // The first and last elements of the table are hidden at such a small screen size
+    .hyc-blacklight.hyc-bl-results table th:first-child,
+    .hyc-blacklight.hyc-bl-results table td:first-child,
+    .hyc-blacklight.hyc-bl-results table th:last-child,
+    .hyc-blacklight.hyc-bl-results table td:last-child {
+      display: none;
+    }
+
+    .hyc-blacklight.hyc-bl-search.hyc-body.row > .col-sm-8,
+    .hyc-blacklight.hyc-bl-sort,
+    .hyc-blacklight.hyc-bl-results {
+      padding: 0;
+    }
+
+    .hyc-blacklight.hyc-bl-title > h2 {
+      text-align: center;
+    }
+
+    .collection-title-row-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      div, a {
+        margin: 4px;
+      }
+    }
+
+    .feature {
+      margin: 0;
     }
   }
   /**** End Responsive Styles ****/
