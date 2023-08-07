@@ -40,22 +40,32 @@ extraVolumeMounts: &volMounts
 ingress:
   enabled: true
   hosts:
-    - host: digitalcollections.lib.utk.edu
+    - host: utk-hyku-production.notch8.cloud
       paths:
         - path: /
-tls:
+    - host: "*.utk-hyku-production.notch8.cloud"
+      paths:
+        - path: /
+  annotations: {
+    kubernetes.io/ingress.class: "nginx",
+    nginx.ingress.kubernetes.io/proxy-body-size: "0",
+    cert-manager.io/cluster-issuer: letsencrypt-production-dns
+    }
+  tls:
     - hosts:
-      - digitalcollections.lib.utk.edu
-      secretName: digitalcollections-tls
+        - utk-hyku-production.notch8.cloud
+        - "*.utk-hyku-production.notch8.cloud"
+      secretName: notch8cloud
+
 extraEnvVars: &envVars
   - name: HYKU_ADMIN_HOST
-    value: digitalcollections.lib.utk.edu
+    value: utk-hyku-production.notch8.cloud
   - name: HYKU_ADMIN_ONLY_TENANT_CREATION
     value: "false"
   - name: HYKU_DEFAULT_HOST
-    value: "%{tenant}.digitalcollections.lib.utk.edu"
+    value: "%{tenant}.utk-hyku-production.notch8.cloud"
   - name: HYKU_ROOT_HOST
-    value: digitalcollections.lib.utk.edu
+    value: utk-hyku-production.notch8.cloud
   - name: HYKU_MULTITENANT
     value: "true"
   - name: CONFDIR
