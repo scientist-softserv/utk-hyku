@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class IdentityProvider < ApplicationRecord
+  validates :name, presence: true
+  validates :provider, presence: true
+
   mount_uploader :logo_image, LogoUploader
 
   def parsed_options(rack_env = nil)
