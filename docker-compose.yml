@@ -5,8 +5,10 @@ x-app: &app
     context: .
     target: hyku-base
     args:
-      - HYKU_BULKRAX_ENABLED=true
-      - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
+      BUILDKIT_INLINE_CACHE: 1
+    cache_from:
+      - ghcr.io/samvera/hyku:latest
+      - ghcr.io/scientist-softserv/utk-hyku:latest
   image: ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
   env_file:
     - .env
@@ -174,11 +176,10 @@ services:
       context: .
       target: hyku-worker
       args:
-        - EXTRA_APK_PACKAGES=less vim bash openjdk11-jre ffmpeg rsync
-        - HYKU_BULKRAX_ENABLED=true
+        BUILDKIT_INLINE_CACHE: 1
       cache_from:
         - ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
-        - ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
+        - ghcr.io/scientist-softserv/utk-hyku/worker:latest
     image: ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
     depends_on:
       check_volumes:
