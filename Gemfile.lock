@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/active-elastic-job/active-elastic-job.git
+  revision: ec51c5d9dedc4a1b47f2db41f26d5fceb251e979
+  ref: ec51c5d9dedc4a1b47f2db41f26d5fceb251e979
+  specs:
+    active_elastic_job (2.0.1)
+      aws-sdk-sqs (~> 1)
+      rails (>= 4.2)
+
+GIT
   remote: https://github.com/samvera-labs/allinson_flex.git
   revision: 72e2cbeda64ea68769067ebb94ff1766101a94c3
   specs:
@@ -31,10 +40,11 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-doi.git
-  revision: c7466b65b517456a13c8e08b8177092c37411a59
+  revision: d494a50ef8ce3eae594c7ed7148c33b3c977d4a7
+  branch: main
   specs:
     hyrax-doi (0.2.0)
-      bolognese (>= 1.8.6, < 1.10)
+      bolognese (~> 1.8, >= 1.8.6)
       flipflop (~> 2.3)
       hyrax (>= 2.9, < 4.0)
       rails (~> 5.2.4, >= 5.2.4.3)
@@ -137,12 +147,14 @@ GIT
       rdf-vocab (~> 3.0)
 
 GIT
-  remote: https://github.com/tawan/active-elastic-job.git
-  revision: 092a8102cd38cffd7203d408fa03998cdff9dc03
+  remote: https://github.com/stanhu/omniauth-cas.git
+  revision: 4211e6d05941b4a981f9a36b49ec166cecd0e271
+  ref: 4211e6d05941b4a981f9a36b49ec166cecd0e271
   specs:
-    active_elastic_job (3.2.0)
-      aws-sdk-sqs (~> 1)
-      rails (>= 5.2.6, < 7.1)
+    omniauth-cas (2.0.0)
+      addressable (~> 2.3)
+      nokogiri (~> 1.5)
+      omniauth (>= 1.2, < 3)
 
 GEM
   remote: https://rubygems.org/
@@ -214,8 +226,9 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
+    aes_key_wrap (1.1.0)
     almond-rails (0.3.0)
       rails (>= 4.2)
     amazing_print (1.4.0)
@@ -226,6 +239,7 @@ GEM
       rack (>= 1.3.6)
     arel (9.0.0)
     ast (2.4.2)
+    attr_required (1.0.1)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     awesome_nested_set (3.5.0)
@@ -270,6 +284,7 @@ GEM
       smart_properties
     bibtex-ruby (6.0.0)
       latex-decode (~> 0.0)
+    bindata (2.4.15)
     bindex (0.8.1)
     blacklight (6.24.0)
       bootstrap-sass (~> 3.2)
@@ -539,9 +554,8 @@ GEM
       path_expander (~> 1.0)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.0)
-    flipflop (2.7.0)
+    flipflop (2.6.0)
       activesupport (>= 4.0)
-      terminal-table (>= 1.8)
     flot-rails (0.0.7)
       jquery-rails
     flutie (2.2.0)
@@ -663,7 +677,6 @@ GEM
       activesupport (>= 3.2.18)
       faraday (>= 0.9)
       json
-    is_it_working (1.1.0)
     iso-639 (0.3.5)
     iso8601 (0.9.1)
     jbuilder (2.11.5)
@@ -683,6 +696,11 @@ GEM
       railties (>= 3.2.16)
     json (2.6.2)
     json-canonicalization (0.3.0)
+    json-jwt (1.15.3)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      httpclient
     json-ld (3.1.10)
       htmlentities (~> 4.3)
       json-canonicalization (~> 0.2)
@@ -822,10 +840,17 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.2.3)
     namae (1.1.1)
+    negative_captcha (0.5)
+      actionpack
+      activesupport
     nest (3.2.0)
       redic
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
     nio4r (2.5.8)
     noid (0.9.0)
     noid-rails (3.0.3)
@@ -864,6 +889,32 @@ GEM
     oj (3.13.16)
     oj_mimic_json (1.0.1)
     okcomputer (1.18.4)
+    omniauth (2.1.1)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-multi-provider (0.4.0)
+      omniauth
+    omniauth-rails_csrf_protection (1.0.1)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
+    omniauth-saml (2.1.0)
+      omniauth (~> 2.0)
+      ruby-saml (~> 1.12)
+    omniauth_openid_connect (0.6.1)
+      omniauth (>= 1.9, < 3)
+      openid_connect (~> 1.1)
+    openid_connect (1.4.2)
+      activemodel
+      attr_required (>= 1.0.0)
+      json-jwt (>= 1.15.0)
+      net-smtp
+      rack-oauth2 (~> 1.21)
+      swd (~> 1.3)
+      tzinfo
+      validate_email
+      validate_url
+      webfinger (~> 1.2)
     openseadragon (0.6.0)
       rails (> 3.2.0)
     optimist (3.0.1)
@@ -926,6 +977,14 @@ GEM
     raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-oauth2 (1.21.3)
+      activesupport
+      attr_required
+      httpclient
+      json-jwt (>= 1.11.0)
+      rack (>= 2.1.0)
+    rack-protection (3.0.6)
+      rack
     rack-proxy (0.7.2)
       rack
     rack-test (0.7.0)
@@ -1126,6 +1185,9 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.11.0)
+    ruby-saml (1.14.0)
+      nokogiri (>= 1.10.5)
+      rexml
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
     ruby_parser (3.19.1)
@@ -1230,6 +1292,10 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
+    swd (1.3.0)
+      activesupport (>= 3)
+      attr_required (>= 0.0.5)
+      httpclient (>= 2.4)
     sxp (1.1.0)
       rdf (~> 3.1)
     temple (0.8.2)
@@ -1243,6 +1309,7 @@ GEM
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timeout (0.4.0)
     tinymce-rails (5.10.6)
       railties (>= 3.1.1)
     turbolinks (5.2.1)
@@ -1262,6 +1329,12 @@ GEM
     unicode_utils (1.4.0)
     uri_template (0.7.0)
     validatable (1.6.7)
+    validate_email (0.1.6)
+      activemodel (>= 3.0)
+      mail (>= 2.2.5)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
     valkyrie (2.2.0)
       activemodel
       activesupport
@@ -1289,6 +1362,9 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (> 3.141, < 5.0)
+    webfinger (1.2.0)
+      activesupport
+      httpclient (>= 2.4)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -1304,7 +1380,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.11)
 
 PLATFORMS
   aarch64-linux-musl
@@ -1316,6 +1392,7 @@ DEPENDENCIES
   active-fedora (>= 11.1.4)
   active_elastic_job!
   activerecord-nulldb-adapter
+  addressable (= 2.8.1)
   allinson_flex!
   apartment
   aws-sdk-sqs
@@ -1336,10 +1413,11 @@ DEPENDENCIES
   devise-guests (~> 0.3)
   devise-i18n
   devise_invitable (~> 1.6)
+  dry-monads (~> 1.4.0)
   easy_translate
   factory_bot_rails
   fcrepo_wrapper (~> 0.4)
-  flipflop (~> 2.3)
+  flipflop (~> 2.6.0)
   flutie
   good_job (~> 2.99)
   hyrax!
@@ -1349,14 +1427,19 @@ DEPENDENCIES
   i18n-tasks
   iiif_manifest!
   iiif_print!
-  is_it_working
   jbuilder (~> 2.5)
   jquery-rails
   launchy
   listen (>= 3.0.5, < 3.2)
   lograge
   mods (~> 2.4)
+  negative_captcha
   okcomputer
+  omniauth-cas!
+  omniauth-multi-provider
+  omniauth-rails_csrf_protection (~> 1.0)
+  omniauth-saml (~> 2.1)
+  omniauth_openid_connect
   parser (~> 2.5.3)
   pg
   postrank-uri (>= 1.0.24)
@@ -1400,7 +1483,7 @@ DEPENDENCIES
   tinymce-rails (~> 5.10)
   turbolinks (~> 5)
   web-console (>= 3.3.0)
-  webdrivers (~> 4.0)
+  webdrivers (~> 4.7.0)
   webmock
   webpacker
 

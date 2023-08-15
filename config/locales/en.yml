@@ -1,5 +1,8 @@
 ---
 en:
+  single_signon:
+   index:
+     sign_in_with_provider: Sign in with %{provider}
   activerecord:
     attributes:
       site:
@@ -89,6 +92,14 @@ en:
           roles: Group Roles
       title: Administration
       work_types: Available Work Types
+    identity_provider:
+      header: Authentication Identity Provider
+      label:
+        name: Name or Description
+        provider: Provider
+        optoins: Options
+        logo_image: Image for SSO Page
+        logo_image_alt_text: Alt Text for Image
     footer:
       admin_login: Administrator login
     proprietor:
