@@ -65,7 +65,7 @@ extraEnvVars: &envVars
   - name: HYKU_DEFAULT_HOST
     value: "%{tenant}.lib.utk.edu"
   - name: HYKU_ROOT_HOST
-    value: hykuadmin.lib.utk.edu
+    value: lib.utk.edu
   - name: HYKU_MULTITENANT
     value: "true"
   - name: CONFDIR
