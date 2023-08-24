@@ -59,7 +59,7 @@ ingress:
 
 extraEnvVars: &envVars
   - name: HYKU_ADMIN_HOST
-    value: utk-hyku-production.notch8.cloud
+    value: hykuadmin.lib.utk.edu
   - name: HYKU_ADMIN_ONLY_TENANT_CREATION
     value: "false"
   - name: HYKU_DEFAULT_HOST
