@@ -166,6 +166,7 @@ en:
         account: Account
         accounts: Accounts
         activity_summary: Activity Summary
+        identity_proivders: Identity Providers
         labels: Labels
         manage_groups: Manage Groups
         repository_activity: Repository Activity

@@ -2,24 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.col-centered {
-  background-color: #ff0000;
-  margin: 80px auto;
-  text-align: center;
-}
-
-.sso-button {
-  background-color: #ffffff;
-  border: 1px solid;
-  margin: 100px 0 200px;
-  min-height: 300px;
-  padding: 20px 50px;
-}
-
-.sso-button-fake {
-  margin-top: 100px;
-}
-
 .loader {
   -webkit-animation: spin 2s linear infinite; // Safari
   animation: spin 2s linear infinite;

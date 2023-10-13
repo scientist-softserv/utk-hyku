@@ -12,6 +12,11 @@
           <span class="fa fa-gear"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.account') %></span>
         <% end %>
 
+        <%= menu.nav_link(main_app.identity_providers_path,
+                          title: t('hyrax.admin.sidebar.identity_providers')) do %>
+          <span class="fa fa-key"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.identity_providers') %></span>
+        <% end %>
+
         <%= menu.nav_link(main_app.edit_site_labels_path,
                           title: t('hyrax.admin.sidebar.labels')) do %>
           <span class="fa fa-institution"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.labels') %></span>

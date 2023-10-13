@@ -1,0 +1,17 @@
+name: 'Bundler Audit'
+run-name: Bundler Audit of ${{ github.ref_name }} by @${{ github.actor }}
+on:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
+
+jobs:
+  bundler-audit:
+    uses: scientist-softserv/actions/.github/workflows/bundler-audit.yaml@v0.0.14
+    with:
+      webTarget: web
+      tag: latest
