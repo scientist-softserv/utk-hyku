@@ -95,7 +95,7 @@ extraEnvVars: &envVars
   - name: DB_HOST
     value: pg-postgresql.staging-postgres.svc.cluster.local
   - name: DB_NAME
-    value: utk-hyku
+    value: utk-hyku-staging-hyrax
   - name: DB_PASSWORD
     value: $DB_PASSWORD
   - name: DB_URL
