@@ -17,21 +17,22 @@ on:
 
 jobs:
   build:
-    uses: scientist-softserv/actions/.github/workflows/build.yaml@v0.0.14
+    uses: scientist-softserv/actions/.github/workflows/build.yaml@v0.0.15
     secrets: inherit
     with:
       platforms: "linux/amd64"
       webTarget: hyku-base
       workerTarget: hyku-worker
+      solrTarget: hyku-solr
   test:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.14
+    uses: scientist-softserv/actions/.github/workflows/test.yaml@v0.0.15
     with:
       webTarget: hyku-base
       workerTarget: hyku-worker
   lint:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.14
+    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.15
     with:
       webTarget: hyku-base
       workerTarget: hyku-worker

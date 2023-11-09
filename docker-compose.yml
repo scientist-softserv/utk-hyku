@@ -12,6 +12,7 @@ x-app: &app
   image: ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
   env_file:
     - .env
+    - .env.development
   # NOTE: all common env variables moved to .env
   volumes:
     - node_modules:/app/samvera/hyrax-webapp/node_modules:cached
@@ -58,10 +59,10 @@ services:
       timeout: "8s"
 
   solr:
-    image: hyku/solr:8
+    image: ghcr.io/scientist-softserv/utk-hyku/solr:${TAG:-latest}
     build:
-      context: solr
-      dockerfile: Dockerfile
+      context: ./solr
+      target: hyku-solr
     environment:
       - OOM=script
       - SOLR_ADMIN_USERNAME=solr
