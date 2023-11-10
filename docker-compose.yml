@@ -9,8 +9,6 @@ x-app: &app
     cache_from:
       - ghcr.io/samvera/hyku/base:latest
       - ghcr.io/scientist-softserv/utk-hyku:latest
-    args:
-      BUILDKIT_INLINE_CACHE: 1
   image: ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
   env_file:
     - .env
