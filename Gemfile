@@ -17,7 +17,7 @@ gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 gem 'bolognese', '>= 1.9.10'
 gem 'bootstrap-datepicker-rails'
-gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', ref: '817e4bb'
+gem 'bulkrax', git: 'https://github.com/samvera-labs/bulkrax.git', branch: 'configurable_search_string'
 gem 'byebug', group: %i[development test]
 gem 'capybara', group: %i[test]
 gem 'capybara-screenshot', '~> 1.0', group: %i[test]

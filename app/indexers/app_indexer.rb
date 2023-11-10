@@ -13,6 +13,9 @@ class AppIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc["account_cname_tesim"] = Site.instance&.account&.cname
+      solr_doc["bulkrax_identifier_ssim"] = object.bulkrax_identifier
+      # tesim is the wrong field for this, but until we reindex everything we need to keep it
+      solr_doc["bulkrax_identifier_tesim"] = object.bulkrax_identifier
       solr_doc[CatalogController.title_field] = object.title.first
     end
   end
