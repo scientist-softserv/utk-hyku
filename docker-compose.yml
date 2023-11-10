@@ -7,12 +7,13 @@ x-app: &app
     args:
       BUILDKIT_INLINE_CACHE: 1
     cache_from:
-      - ghcr.io/samvera/hyku:latest
+      - ghcr.io/samvera/hyku/base:latest
       - ghcr.io/scientist-softserv/utk-hyku:latest
+    args:
+      BUILDKIT_INLINE_CACHE: 1
   image: ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
   env_file:
     - .env
-    - .env.development
   # NOTE: all common env variables moved to .env
   volumes:
     - node_modules:/app/samvera/hyrax-webapp/node_modules:cached
