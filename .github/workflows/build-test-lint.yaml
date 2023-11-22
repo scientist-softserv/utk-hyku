@@ -31,7 +31,7 @@ jobs:
       workerTarget: hyku-worker
   lint:
     needs: build
-    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.14
+    uses: scientist-softserv/actions/.github/workflows/lint.yaml@v0.0.15
     with:
       webTarget: hyku-base
       workerTarget: hyku-worker
