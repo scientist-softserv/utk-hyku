@@ -41,8 +41,8 @@ services:
   zoo:
     image: zookeeper:3.6.2
     ports:
-      - 2181
-      - 7000
+      - 2181:2181
+      - 7001:7000
     environment:
       - ZOO_MY_ID=1
       - ZOO_SERVERS=server.1=zoo:2888:3888;2181
@@ -58,14 +58,15 @@ services:
       timeout: "8s"
 
   solr:
-    image: hyku/solr:8
     build:
-      context: solr
+      context: ./solr
       target: hyku-solr
-      dockerfile: Dockerfile
+      cache_from:
+        - ghcr.io/scientist-softserv/utk-hyku/solr:${TAG:-latest}
+    image: ghcr.io/scientist-softserv/utk-hyku/solr:${TAG:-latest}
     environment:
       - OOM=script
-      - SOLR_ADMIN_USERNAME=solr
+      - SOLR_ADMIN_USER=solr
       - SOLR_ADMIN_PASSWORD=SolrRocks
       - SOLR_COLLECTION=hydra-development
       - SOLR_CLOUD_BOOTSTRAP=yes
@@ -86,11 +87,11 @@ services:
     networks:
       internal:
     healthcheck:
-      test: curl -sf http://$$SOLR_ADMIN_USERNAME:$$SOLR_ADMIN_PASSWORD@localhost:8983/solr/admin/cores?action=STATUS || exit 1
-      start_period: 30s
-      interval: 20s
+      test: curl -sf http://$$SOLR_ADMIN_USER:$$SOLR_ADMIN_PASSWORD@solr:8983/solr/admin/cores?action=STATUS || exit 1
+      start_period: 3s
+      interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 6
     depends_on:
       zoo:
         condition: service_healthy
@@ -127,7 +128,9 @@ services:
 
   web:
     <<: *app
-    # command: sh -l -c "bundle && bundle exec puma -v -b tcp://0.0.0.0:3000"
+    # Uncomment command to access container with out starting Rails. Useful for debugging
+    # command: sleep infinity
+    # command: sh -l -c "bundle && bundle exec rails s -b 0.0.0.0"
     environment:
       - VIRTUAL_PORT=3000
       - VIRTUAL_HOST=.utk-hyku.test
@@ -150,9 +153,7 @@ services:
         condition: service_started
       initialize_app:
         condition: service_completed_successfully
-    # ports:
-    #   - 3000:3000
-    expose:
+    ports:
       - 3000
 
   worker:
@@ -180,7 +181,7 @@ services:
         BUILDKIT_INLINE_CACHE: 1
       cache_from:
         - ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
-        - ghcr.io/scientist-softserv/utk-hyku/worker:latest
+        - ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
     image: ghcr.io/scientist-softserv/utk-hyku/worker:${TAG:-latest}
     depends_on:
       check_volumes:
