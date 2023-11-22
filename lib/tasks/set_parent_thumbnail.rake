@@ -5,7 +5,7 @@ require 'ruby-progressbar'
 namespace :hyku do
   namespace :update do
     desc 'Make sure all works have a thumbnail'
-    task :set_parent_thumbnail, [:accounts] => [:environment] do |t, args|
+    task :set_parent_thumbnail, [:accounts] => [:environment] do |_t, args|
       accounts = if args[:accounts].present?
                    args[:accounts].split(',').map { |a| Account.find_by(name: a.strip) }.compact
                  else
