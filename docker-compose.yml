@@ -61,6 +61,7 @@ services:
     image: hyku/solr:8
     build:
       context: solr
+      target: hyku-solr
       dockerfile: Dockerfile
     environment:
       - OOM=script
