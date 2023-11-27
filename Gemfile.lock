@@ -134,7 +134,7 @@ GIT
 
 GIT
   remote: https://github.com/scientist-softserv/iiif_print.git
-  revision: e42cfd2a6d9b0aac9901084625ee1e1a0a3ccb6d
+  revision: 475453717d52628413bbfd8c2116db288457c870
   branch: main
   specs:
     iiif_print (1.0.0)
@@ -142,7 +142,6 @@ GIT
       derivative-rodeo (~> 0.5)
       hyrax (>= 2.5, < 6)
       nokogiri (>= 1.13.2)
-      rails (>= 5.0, < 8.0)
       rdf-vocab (~> 3.0)
 
 GIT
