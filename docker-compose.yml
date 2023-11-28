@@ -7,7 +7,7 @@ x-app: &app
     args:
       BUILDKIT_INLINE_CACHE: 1
     cache_from:
-      - ghcr.io/samvera/hyku:latest
+      - ghcr.io/samvera/hyku/base:latest
       - ghcr.io/scientist-softserv/utk-hyku:latest
   image: ghcr.io/scientist-softserv/utk-hyku:${TAG:-latest}
   env_file:
@@ -58,12 +58,10 @@ services:
       timeout: "8s"
 
   solr:
+    image: ghcr.io/scientist-softserv/utk-hyku/solr:${TAG:-latest}
     build:
       context: ./solr
       target: hyku-solr
-      cache_from:
-        - ghcr.io/scientist-softserv/utk-hyku/solr:${TAG:-latest}
-    image: ghcr.io/scientist-softserv/utk-hyku/solr:${TAG:-latest}
     environment:
       - OOM=script
       - SOLR_ADMIN_USER=solr
