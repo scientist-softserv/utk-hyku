@@ -10,13 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_04_073106) do
+ActiveRecord::Schema.define(version: 2023_11_28_200116) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
 
   create_table "account_cross_searches", force: :cascade do |t|
     t.bigint "search_account_id"
@@ -519,6 +517,9 @@ ActiveRecord::Schema.define(version: 2023_08_04_073106) do
     t.string "child_order", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "parent_model"
+    t.string "child_model"
+    t.string "file_id"
     t.index ["parent_id"], name: "index_iiif_print_pending_relationships_on_parent_id"
   end
 
