@@ -99,11 +99,11 @@ extraEnvVars: &envVars
   - name: DB_PASSWORD
     value: $DB_PASSWORD
   - name: DB_URL
-    value: postgresql://postgres:$DB_PASSWORD@pg-postgresql.staging-postgres.svc.cluster.local
+    value: postgresql://postgres:$DB_PASSWORD@pg-postgresql.staging-postgres.svc.cluster.local/utk-hyku-staging-hyrax
   - name: DB_USER
     value: postgres
   - name: FCREPO_BASE_PATH
-    value: /utk-hyku
+    value: /utk-hyku-staging-hyrax
   - name: FCREPO_HOST
     value: fcrepo.staging-fcrepo.svc.cluster.local:8080
   - name: FCREPO_PATH
@@ -121,7 +121,7 @@ extraEnvVars: &envVars
   - name: PASSENGER_APP_ENV
     value: production
   - name: RAILS_CACHE_STORE_URL
-    value: redis://:$REDIS_PASSWORD@utk-hyku-staging-redis-master:6379/utk-hyku
+    value: redis://:$REDIS_PASSWORD@utk-hyku-staging-redis-master:6379/utk-hyku-staging-hyrax
   - name: RAILS_ENV
     value: production
   - name: RAILS_LOG_TO_STDOUT
@@ -133,7 +133,7 @@ extraEnvVars: &envVars
   - name: REDIS_HOST
     value: utk-hyku-staging-redis-master
   - name: REDIS_URL
-    value: redis://:$REDIS_PASSWORD@utk-hyku-staging-redis-master:6379/utk-hyku
+    value: redis://:$REDIS_PASSWORD@utk-hyku-staging-redis-master:6379/utk-hyku-staging-hyrax
   - name: HYKU_ACTIVE_JOB_QUEUE_URL
     value: good_job
   - name: HYRAX_ACTIVE_JOB_QUEUE
@@ -155,7 +155,7 @@ extraEnvVars: &envVars
   - name: SOLR_COLLECTION_NAME
     value: utk-hyku
   - name: SOLR_CONFIGSET_NAME
-    value: utk-hyku
+    value: utk-hyku-staging-hyrax
   - name: SOLR_HOST
     value: solr.staging-solr
   - name: SOLR_PORT
@@ -210,7 +210,7 @@ leaseRelease:
   enabled: false
 
 imagePullSecrets:
-  - name: github-registry
+  - name: github
 
 fcrepo:
   resources:
@@ -235,8 +235,9 @@ externalPostgresql:
   host: pg-postgresql.staging-postgres.svc.cluster.local
   username: postgres
   password: $DB_PASSWORD
+  database: utk-hyku-staging-hyrax
 
 externalSolrPassword: $SOLR_ADMIN_PASSWORD
 externalSolrHost: solr.staging-solr.svc.cluster.local
 externalSolrUser: admin
-externalSolrCollection: "utk-hyku"
+externalSolrCollection: "utk-hyku-staging-hyrax"
