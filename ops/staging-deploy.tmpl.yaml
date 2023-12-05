@@ -89,11 +89,11 @@ extraEnvVars: &envVars
   - name: FCREPO_BASE_PATH
     value: /utk-hyku-staging
   - name: FCREPO_HOST
-    value: fcrepo.fcrepo.svc.cluster.local:8080
+    value: fcrepo.fcrepo-staging.svc.cluster.local:8080
   - name: FCREPO_PATH
     value: /rest
   - name: FCREPO_URL
-    value: http://fcrepo.fcrepo.svc.cluster.local:8080/rest
+    value: http://fcrepo.fcrepo-staging.svc.cluster.local:8080/rest
   - name: GOOD_JOB_MAX_THREADS
     value: "5"
   - name: HYKU_ACTIVE_JOB_QUEUE_URL
