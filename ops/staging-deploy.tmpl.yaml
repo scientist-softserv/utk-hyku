@@ -79,9 +79,9 @@ extraEnvVars: &envVars
   - name: DB_HOST
     value: pg-postgresql.staging-postgres.svc.cluster.local
   - name: DB_NAME
-    value: utk-hyku
+    value: utk-hyku-staging-hyrax
   - name: DB_PASSWORD
-    value: gGqelsjZTY
+    value: $DB_PASSWORD
   - name: DB_URL
     value: postgresql://postgres:$DB_PASSWORD@pg-postgresql.staging-postgres.svc.cluster.local
   - name: DB_USER
@@ -255,7 +255,6 @@ externalPostgresql:
   host: pg-postgresql.staging-postgres.svc.cluster.local
   username: postgres
   password: $DB_PASSWORD
-  database: utk-hyku
 
 # the host and auth details for an external solr service;
 #   ignored if `solr.enabled` is true
