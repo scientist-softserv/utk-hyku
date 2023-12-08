@@ -82,6 +82,8 @@ extraEnvVars: &envVars
     value: utk-hyku-staging
   - name: DB_PASSWORD
     value: gGqelsjZTY
+  - name: DB_URL
+    value: postgresql://postgres:$DB_PASSWORD@pg-postgresql.staging-postgres.svc.cluster.local
   - name: DB_USER
     value: postgres
   # - name: EXTERNAL_IIIF_URL
