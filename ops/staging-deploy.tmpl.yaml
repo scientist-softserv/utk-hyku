@@ -184,9 +184,9 @@ extraEnvVars: &envVars
   - name: SOLR_ADMIN_USER
     value: admin
   - name: SOLR_COLLECTION_NAME
-    value: utk-hyku-staging
+    value: utk-hyku
   - name: SOLR_CONFIGSET_NAME
-    value: utk-hyku-staging
+    value: utk-hyku
   - name: SOLR_HOST
     value: solr.staging-solr
   - name: SOLR_PORT
@@ -265,7 +265,7 @@ externalSolrHost: "solr.staging-solr.svc.cluster.local"
 externalSolrPort: "8983"
 externalSolrUser: "admin"
 externalSolrPassword: $SOLR_ADMIN_PASSWORD
-externalSolrCollection: "utk-hyku-staging"
+externalSolrCollection: "utk-hyku"
 
 
 # configuration for an external/existing fcrepo service;

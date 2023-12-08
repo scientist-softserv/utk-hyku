@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 class CreateGoodJobs < ActiveRecord::Migration[5.2]
   def change
-    enable_extension 'hstore' unless extension_enabled?('hstore')
-    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
-    enable_extension 'uuid-ossp' unless extension_enabled?('uuid-ossp')
+    enable_extension 'pgcrypto'
 
     create_table :good_jobs, id: :uuid do |t|
       t.text :queue_name
