@@ -1435,7 +1435,7 @@ DEPENDENCIES
   iiif_print!
   jbuilder (~> 2.5)
   jquery-rails
-  json-canonicalization (= 0.3.1)
+  json-canonicalization (= 0.3.3)
   launchy
   listen (>= 3.0.5, < 3.2)
   lograge
