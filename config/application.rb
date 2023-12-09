@@ -29,6 +29,8 @@ module Hyku
       "I18n::InvalidLocale" => :not_found
     )
 
+    config.active_record.yaml_column_permitted_classes = [OpenStruct, Symbol, Time, URI, BigDecimal, Date, DateTime, ActiveSupport::TimeWithZone, ActiveSupport::Duration, ActiveSupport::TimeZone, ActiveSupport::HashWithIndifferentAccess, ActiveSupport::OrderedHash]
+
     if defined?(ActiveElasticJob) && ENV.fetch('HYRAX_ACTIVE_JOB_QUEUE', '') == 'elastic'
       Rails.application.configure do
         process_jobs = ActiveModel::Type::Boolean.new.cast(ENV.fetch('HYKU_ELASTIC_JOBS', false))

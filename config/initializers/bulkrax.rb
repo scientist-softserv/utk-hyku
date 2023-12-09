@@ -14,7 +14,7 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
 
     # Field mappings
     config.field_mappings['Bulkrax::CsvParser'] = {
-      'bulkrax_identifier' => { from: ['source_identifier'], source_identifier: true },
+      'bulkrax_identifier' => { from: ['source_identifier'], source_identifier: true, search_field: 'bulkrax_identifier_tesim' },
       'children' => { from: ['children'], split: /\s*[;|]\s*/, related_children_field_mapping: true },
       'parents' => { from: ['parents'], split: /\s*[;|]\s*/, related_parents_field_mapping: true }
     }
