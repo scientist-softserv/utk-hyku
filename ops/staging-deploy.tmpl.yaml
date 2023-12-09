@@ -110,6 +110,12 @@ extraEnvVars: &envVars
     value: /rest
   - name: FCREPO_URL
     value: http://fcrepo.staging-fcrepo.svc.cluster.local:8080/rest
+  - name: GOOD_JOB_CLEANUP_DISCARDED_JOBS
+    value: "false"
+  - name: GOOD_JOB_CLEANUP_INTERVAL_SECONDS
+    value: "86400"
+  - name: GOOD_JOB_CLEANUP_PRESERVED_JOBS_BEFORE_SECONDS_AGO
+    value: "604800"
   - name: GOOD_JOB_MAX_THREADS
     value: "5"
   - name: HYKU_FILE_ACL
