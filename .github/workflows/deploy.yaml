@@ -17,7 +17,8 @@ on:
         required: false
         default: false
 
+# We are using version 14 since this project has not been knap-sackerized yet
 jobs:
   deploy:
-    uses: scientist-softserv/actions/.github/workflows/deploy.yaml@v0.0.15
+    uses: scientist-softserv/actions/.github/workflows/deploy.yaml@v0.0.14
     secrets: inherit
