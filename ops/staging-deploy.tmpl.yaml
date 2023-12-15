@@ -62,6 +62,14 @@ ingress:
       secretName: notch8cloud
 
 extraEnvVars: &envVars
+  - name: AWS_ACCESS_KEY_ID
+    value: $AWS_ACCESS_KEY_ID
+  - name: AWS_BUCKET
+    value: "staging-fcrepo"
+  - name: AWS_REGION
+    value: 'us-west-2'
+  - name: AWS_SECRET_ACCESS_KEY
+    value: $AWS_SECRET_ACCESS_KEY
   - name: CONFDIR
     value: "/app/samvera/hyrax-webapp/solr/conf"
   - name: DB_ADAPTER
