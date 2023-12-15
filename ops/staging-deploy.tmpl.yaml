@@ -150,6 +150,8 @@ extraEnvVars: &envVars
     value: rob@notch8.com
   - name: ROB_PASSWORD
     value: testing123
+  - name: S3_DOWNLOADS
+    value: "true"
   - name: SENTRY_DSN
     value: https://ab7f8b39ca414630bd07f6657f57f641@o1008683.ingest.sentry.io/6745049
   - name: SENTRY_ENVIRONMENT
