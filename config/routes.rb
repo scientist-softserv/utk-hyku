@@ -112,6 +112,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         end
       end
     end
+    get 'qa_files/csvs'
+    get 'qa_files/generate_csvs'
   end
 
   # OVERRIDE here to add featured collection routes

@@ -1,0 +1,22 @@
+<% content_for :page_title, construct_page_title('CSV Test Files', t('hyku.admin.title')) %>
+<% provide :page_header do %>
+  <h1>
+    <span class="fa fa-users"></span>
+    CSV Test Files
+  </h1>
+<% end %>
+
+<div class="panel panel-default group-listing">
+  <div class="panel-heading">
+    Be sure to use the QA account, staging or development only.
+  </div>
+  <div class="panel-body">
+    <div class="container-fluid full-width-container">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to 'generate', '/admin/qa_files/generate_csvs' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
