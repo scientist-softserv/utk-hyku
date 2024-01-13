@@ -73,7 +73,7 @@
       <%= @importer.last_run&.total_file_set_entries %>
     </p>
 
-    <% if @importer.last_run&.failed_records.positive? %>
+    <% if @importer.last_run&.failed_records&.positive? %>
       <p class="bulkrax-p-align" title="<%= @importer.last_run&.processed_file_sets %> processed, <%= @importer.last_run&.failed_file_sets %> failed">
         <strong>Total Errored Entries:</strong>
         <%= @importer.last_run&.failed_records %>
