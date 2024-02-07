@@ -14,8 +14,15 @@ class UniqueQaCsvs
     Dir.glob("#{input_path}/*.csv").each do |csv_file|
       Rails.logger.debug "Processing #{csv_file}"
       CSV.open(csv_file, headers: true) do |in_csv|
+        # We load the first row to get the headers, then we write the first row to the output file
+        # this prevents reading the whole file in to memory but still gets us access to the headers
+        first_row = in_csv.first
+        first_row['source_identifier'] = modify_value(first_row['source_identifier'])
+        first_row['parents'] = modify_value(first_row['parents'])
+
         out_csv_path = File.join(output_subpath, File.basename(csv_file))
         CSV.open(out_csv_path, 'w', headers: in_csv.headers, write_headers: true) do |out_csv|
+          out_csv << first_row
           in_csv.each do |row|
             row['source_identifier'] = modify_value(row['source_identifier'])
             row['parents'] = modify_value(row['parents'])
