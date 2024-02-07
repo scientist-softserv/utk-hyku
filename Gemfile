@@ -17,7 +17,7 @@ gem 'blacklight', '~> 6.7'
 gem 'blacklight_oai_provider', '~> 6.1', '>= 6.1.1'
 gem 'bolognese', '>= 1.9.10'
 gem 'bootstrap-datepicker-rails'
-gem 'bulkrax', '~> 6.0'
+gem 'bulkrax', github: 'samvera/bulkrax', branch: 'main' # '~> 6.0'
 gem 'byebug', group: %i[development test]
 gem 'capybara', group: %i[test]
 gem 'capybara-screenshot', '~> 1.0', group: %i[test]
@@ -40,6 +40,7 @@ gem 'good_job', '~> 2.99'
 gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
 gem 'hyrax-doi', github: 'samvera-labs/hyrax-doi', branch: 'main'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av', branch: 'utk-hyku-with-hyrax-3'
+gem 'i18n', '1.11.0' # TODO why does updating to 1.14.1 break allinson flex?
 gem 'i18n-debug', require: false, group: %i[development test]
 gem 'i18n-tasks', group: %i[development test]
 gem 'iiif_manifest', git: 'https://github.com/samvera/iiif_manifest.git', ref: 'e5d8a2d'
@@ -92,6 +93,7 @@ gem 'secure_headers'
 gem 'selenium-webdriver', '3.142.7', group: %i[test]
 gem 'sentry-raven' # Notch8 Sentry Error Reporting
 gem 'shoulda-matchers', '~> 4.0', group: %i[test]
+gem 'simple_form', '5.1.0' # TODO simple form and allinson flex seem to have issues with 5.4.0. specifically an error on the edit form for multi_value
 gem 'simplecov', require: false, group: %i[development test]
 gem 'solr_wrapper', '~> 2.0', group: %i[development test]
 gem 'spring', '~> 1.7', group: %i[development]
