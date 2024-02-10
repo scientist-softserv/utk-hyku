@@ -41,8 +41,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera/bulkrax.git
-  revision: b6a9f49a801a8ea80b0b5cc8447a15ad726fff26
-  branch: utk-tmp
+  revision: bf0628b360bb6e14fdd55c64e3c20b848b7cad04
+  branch: main
   specs:
     bulkrax (6.0.1)
       bagit (~> 0.4)
