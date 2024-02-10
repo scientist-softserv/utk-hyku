@@ -3,6 +3,20 @@
 require 'ruby-progressbar'
 
 namespace :hyku do
+  desc 'update all the bulkrax status messages for each tenant'
+  task update_bulkrax_status: :environment do
+    Account.find_each do |account|
+      puts "=============== #{account.name}============"
+      next if account.name == "search"
+      switch!(account)
+      begin
+        Rake::Task["bulkrax:update_status_messages"].execute
+      rescue StandardError => e
+        puts "(#{e.message})"
+      end
+    end
+  end
+
   desc "reindex just the works in the background"
   task reindex_works: :environment do
     Account.find_each do |account|

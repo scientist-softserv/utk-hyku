@@ -4,6 +4,10 @@ module HyraxHelper
   include ::BlacklightHelper
   include Hyrax::BlacklightOverride
   include Hyrax::HyraxHelperBehavior
+  # OVERRIDE some Hyrax helper behavior methods
+  include Hyrax::HyraxHelperBehaviorOverrides
+  include Hyrax::CollectionCountHelper
+
   include AllinsonFlex::AllinsonFlexHelper
   include Hyrax::WorkFormHelperDecorator
 

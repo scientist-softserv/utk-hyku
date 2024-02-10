@@ -7,7 +7,7 @@ module Hyrax
   #
   # @see https://github.com/samvera/hyrax/pull/5819 for original source.
   # @see app/helpers/application_helper.rb for module inclusion
-  module HyraxHelperBehaviorDecorator
+  module HyraxHelperBehaviorOverrides
     ##
     # @param value [Object] the thing we'll attempt to cast to a formatted date.
     # @param format [String] the `DateTime.strftime` format string
@@ -50,7 +50,8 @@ module Hyrax
   end
 end
 
-## Why not the following prepend behavior?  Because we're amending a module which appears to not
-## quite work with our playbook
+## Why not the following decorator / prepend behavior?  Because we're amending a module which appears to not
+## quite work with our playbook. Also, helper modules get dynamically reloaded in rails in complex ways
+## We also don't include it in the preloaded decorator code
 ## (https://playbook-staging.notch8.com/en/dev/ruby/decorators-and-class-eval)
 # Hyrax::HyraxHelperBehavior.prepend(HyraxHelperBehaviorDecorator)
