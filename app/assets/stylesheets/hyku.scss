@@ -482,3 +482,10 @@ body.public-facing {
 .mt-20 {
   margin-top: 20px;
 }
+
+// Making this very specific so it doesn't affect other tables.  This doesn't
+// appear to be actually displaying anything but it throws off the layout in
+// the dashboard on mobile, so we're hiding it
+body.dashboard #content-wrapper table[aria-label="Resource Types"].table.table-striped.sr-only.text-left {
+  display: none;
+}
