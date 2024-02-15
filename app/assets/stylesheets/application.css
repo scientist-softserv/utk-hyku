@@ -21,4 +21,9 @@
  *= require utk-overrides
  *= require allinson_flex/application
  *= require_self
- */
+ 
+ *
+ * Used by blacklight_range_limit
+ *= require  'blacklight_range_limit'
+ *
+*/

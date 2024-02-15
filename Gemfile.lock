@@ -310,6 +310,11 @@ GEM
     blacklight_oai_provider (6.1.1)
       blacklight (~> 6.0)
       oai (~> 1.0)
+    blacklight_range_limit (7.0.1)
+      blacklight
+      jquery-rails
+      rails (>= 3.0)
+      tether-rails
     bolognese (1.9.17)
       activesupport (>= 4.2.5)
       benchmark_methods (~> 0.7)
@@ -1413,6 +1418,7 @@ DEPENDENCIES
   aws-sdk-sqs
   blacklight (~> 6.7)
   blacklight_oai_provider (~> 6.1, >= 6.1.1)
+  blacklight_range_limit (~> 7.0)
   bolognese (>= 1.9.10)
   bootstrap-datepicker-rails
   bulkrax!

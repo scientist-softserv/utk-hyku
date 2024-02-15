@@ -50,3 +50,9 @@
 //= require statistics_tab_manager
 //= require blacklight_gallery/default
 //= require allinson_flex/application
+
+
+// For blacklight_range_limit built-in JS, if you don't want it you don't need
+// this:
+//= require 'blacklight_range_limit'
+

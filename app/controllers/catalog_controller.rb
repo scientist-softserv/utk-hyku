@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
+
+  include BlacklightRangeLimit::ControllerOverride
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
   include BlacklightOaiProvider::Controller

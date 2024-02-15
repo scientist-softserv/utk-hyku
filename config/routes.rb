@@ -3,6 +3,7 @@
 # OVERRIDE Hyrax 2.9.0 to add featured collection routes
 
 Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
+  concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   resources :identity_providers
   concern :iiif_search, BlacklightIiifSearch::Routes.new
   mount AllinsonFlex::Engine, at: '/'
@@ -81,6 +82,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
     concerns :oai_provider
 
     concerns :searchable
+    concerns :range_searchable
   end
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
