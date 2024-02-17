@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
-
   include BlacklightRangeLimit::ControllerOverride
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
@@ -79,8 +78,8 @@ class CatalogController < ApplicationController
     config.add_facet_field 'date_created_sim', label: "Date Created",
                                                range: {
                                                  num_segments: 6,
-                                                 assumed_boundaries: [1100, Time.now.year + 2],
-                                                 segments: false,
+                                                 assumed_boundaries: [1100, Time.zone.now.year + 2],
+                                                 segments: true,
                                                  maxlength: 4
                                                }
     config.add_facet_field 'human_readable_type_sim', label: "Type", limit: 5
