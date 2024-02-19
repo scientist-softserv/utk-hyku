@@ -14,6 +14,9 @@
 //= require codemirror-autorefresh
 //= require codemirror/modes/css
 //= require jquery3
+//= require 'blacklight_range_limit'
+//= require range_limit_distro_facets
+//= require range_limit_slider
 //= require jquery_ujs
 //= require jquery.fontselect
 //= require dataTables/jquery.dataTables

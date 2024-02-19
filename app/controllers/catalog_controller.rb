@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
+  include BlacklightRangeLimit::ControllerOverride
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
   include BlacklightOaiProvider::Controller
@@ -74,6 +75,13 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
+    config.add_facet_field 'date_created_sim', label: "Date Created",
+                                               range: {
+                                                 num_segments: 6,
+                                                 assumed_boundaries: [1100, Time.zone.now.year + 2],
+                                                 segments: true,
+                                                 maxlength: 4
+                                               }
     config.add_facet_field 'human_readable_type_sim', label: "Type", limit: 5
     config.add_facet_field 'resource_type_sim', label: "Resource Type", limit: 5
     config.add_facet_field 'creator_sim', limit: 5
