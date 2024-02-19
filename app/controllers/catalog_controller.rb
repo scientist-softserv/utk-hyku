@@ -26,11 +26,11 @@ class CatalogController < ApplicationController
 
   configure_blacklight do |config|
     # IiifPrint index fields
-    config.add_index_field 'all_text_tsimv', highlight: true, helper_method: :render_ocr_snippets
+    config.add_index_field 'all_text_tesimv', highlight: true, helper_method: :render_ocr_snippets
 
     # configuration for Blacklight IIIF Content Search
     config.iiif_search = {
-      full_text_field: 'all_text_tsimv',
+      full_text_field: 'all_text_tesimv',
       object_relation_field: 'is_page_of_ssim',
       supported_params: %w[q page],
       autocomplete_handler: 'iiif_suggest',
@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: "search",
       rows: 10,
-      qf: "title_tesim description_tesim creator_tesim keyword_tesim all_text_timv"
+      qf: "title_tesim description_tesim creator_tesim keyword_tesim all_text_timv all_text_tesimv"
     }
 
     # Specify which field to use in the tag cloud on the homepage.
