@@ -12,6 +12,7 @@ class AppIndexer < Hyrax::WorkIndexer
   # Uncomment this block if you want to add custom indexing behavior:
   def generate_solr_document
     super.tap do |solr_doc|
+      solr_doc["creator_sim"] = all_creators
       solr_doc["account_cname_tesim"] = Site.instance&.account&.cname
       solr_doc["bulkrax_identifier_ssim"] = object.bulkrax_identifier
       # tesim is the wrong field for this, but until we reindex everything we need to keep it
@@ -19,4 +20,11 @@ class AppIndexer < Hyrax::WorkIndexer
       solr_doc[CatalogController.title_field] = object.title.first
     end
   end
+
+  private
+
+    def all_creators
+      props = SolrDocument.creator_fields
+      props.map { |prop| Array(object.try(prop)) }.flatten.compact
+    end
 end
