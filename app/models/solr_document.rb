@@ -88,24 +88,51 @@ class SolrDocument
     Hyrax::ConditionalDerivativeDecorator.intermediate_file?(object: self)
   end
 
-  # oai_dc basic terms: [:contributor, :coverage, :creator, :date, :description,
-  #                      :format, :identifier, :language, :publisher, :relation,
-  #                      :rights, :source, :subject, :title, :type]
-  field_semantics.merge!(
-    creator: ['creator_tesim', 'architect_tesim', 'artist_tesim',
-              'author_tesim', 'composer_tesim', 'illustrator_tesim',
-              'interviewee_tesim', 'photographer_tesim', 'utk_artist_tesim',
-              'utk_author_tesim', 'utk_creator_tesim', 'utk_interviewee_tesim',
-              'utk_photographer_tesim'],
-    date: ['date_created_d_tesim', 'date_issued_d_tesim'],
-    description: 'abstract_tesim',
-    format: ['form_tesim', 'form_local_tesim', 'extent_tesim'],
-    identifier: ['identifier_tesim', 'local_identifier_tesim', 'issn_tesim', 'isbn_tesim'],
-    language: 'language_tesim',
-    publisher: ['provider_tesim', 'intermediate_provider_tesim'],
-    rights: ['rights_statement_tesim', 'license_tesim'],
-    subject: ['subject_tesim', 'keyword_tesim'],
-    title: 'title_tesim',
-    type: 'resource_type_tesim'
-  )
+  class << self
+    def field_semantics
+      super.merge!(semantics)
+    end
+
+    def creator_fields
+      fields = []
+
+      # A tenant is initially created without an AllinsonFlex profile which leads to an
+      # ActiveRecord::StatementInvalid exception when trying to query the 'allinson_flex_profiles' table.
+      begin
+        profile = AllinsonFlex::Profile.current_version
+      rescue ActiveRecord::StatementInvalid
+        return fields
+      end
+
+      return @creator_fields = fields if profile.blank?
+
+      profile.properties.each do |prop|
+        next unless prop.mappings&.include?('blacklight')
+
+        fields << prop.name.to_s if YAML.safe_load(prop.mappings.gsub(/=>/, ':'))['blacklight'] == 'creator_sim'
+      end
+      fields.uniq
+    end
+
+    private
+
+      def semantics
+        # oai_dc basic terms: [:contributor, :coverage, :creator, :date, :description,
+        #                      :format, :identifier, :language, :publisher, :relation,
+        #                      :rights, :source, :subject, :title, :type]
+        {
+          creator: creator_fields.map { |field| field + '_tesim' },
+          date: ['date_created_d_tesim', 'date_issued_d_tesim'],
+          description: 'abstract_tesim',
+          format: ['form_tesim', 'form_local_tesim', 'extent_tesim'],
+          identifier: ['identifier_tesim', 'local_identifier_tesim', 'issn_tesim', 'isbn_tesim'],
+          language: 'language_tesim',
+          publisher: ['provider_tesim', 'intermediate_provider_tesim'],
+          rights: ['rights_statement_tesim', 'license_tesim'],
+          subject: ['subject_tesim', 'keyword_tesim'],
+          title: 'title_tesim',
+          type: 'resource_type_tesim'
+        }
+      end
+  end
 end
