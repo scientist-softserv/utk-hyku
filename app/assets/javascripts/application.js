@@ -14,9 +14,6 @@
 //= require codemirror-autorefresh
 //= require codemirror/modes/css
 //= require jquery3
-//= require 'blacklight_range_limit'
-//= require range_limit_distro_facets
-//= require range_limit_slider
 //= require jquery_ujs
 //= require jquery.fontselect
 //= require dataTables/jquery.dataTables
@@ -29,6 +26,9 @@
 // Required by Blacklight
 //= require blacklight/blacklight
 //= require admin_font_select
+//= require 'blacklight_range_limit'
+//= require range_limit_distro_facets
+//= require range_limit_slider
 
 // Moved the Hyku JS *above* the Hyrax JS to resolve #1187 (following
 // a pattern found in ScholarSphere)
