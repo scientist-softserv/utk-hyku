@@ -9,6 +9,8 @@ class AppIndexer < Hyrax::WorkIndexer
   # Utk does not include based_near and does not need deep indexing.
   # include Hyrax::IndexesLinkedMetadata
 
+  include AllinsonFlex::DynamicIndexerBehavior
+
   # Uncomment this block if you want to add custom indexing behavior:
   def generate_solr_document
     super.tap do |solr_doc|
@@ -24,7 +26,6 @@ class AppIndexer < Hyrax::WorkIndexer
   private
 
     def all_creators
-      props = SolrDocument.creator_fields
-      props.map { |prop| Array(object.try(prop)) }.flatten.compact
+      SolrDocument.creator_fields.map { |prop| uri_to_value_for(object.try(prop)) }.flatten.compact
     end
 end
