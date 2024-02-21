@@ -14,11 +14,13 @@
 //= require codemirror-autorefresh
 //= require codemirror/modes/css
 //= require jquery3
-//= require 'blacklight_range_limit'
-//= require range_limit_distro_facets
-//= require range_limit_slider
 //= require jquery_ujs
 //= require jquery.fontselect
+//= require flot/jquery.flot.js
+//= require flot/jquery.flot.selection.js
+//= require bootstrap-slider
+//= require bootstrap/tooltip
+//= require_tree ./blacklight_range_limit
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require stat_slider
