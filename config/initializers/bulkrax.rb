@@ -6,8 +6,7 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
     config.parsers -= [
       { name: "OAI - Dublin Core", class_name: "Bulkrax::OaiDcParser", partial: "oai_fields" },
       { name: "OAI - Qualified Dublin Core", class_name: "Bulkrax::OaiQualifiedDcParser", partial: "oai_fields" },
-      { name: "XML", class_name: "Bulkrax::XmlParser", partial: "xml_fields" },
-      { name: "Bagit", class_name: "Bulkrax::BagitParser", partial: "bagit_fields" }
+      { name: "XML", class_name: "Bulkrax::XmlParser", partial: "xml_fields" }
     ]
 
     config.fill_in_blank_source_identifiers = ->(obj, index) { "#{Site.instance.account.name}-#{obj.importerexporter.id}-#{index}" }
