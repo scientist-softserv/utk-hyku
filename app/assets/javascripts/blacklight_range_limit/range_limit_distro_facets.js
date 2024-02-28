@@ -1,12 +1,14 @@
+// for Blacklight.onLoad:
+
 /* A custom event "plotDrawn.blacklight.rangeLimit" will be sent when flot plot
    is (re-)drawn on screen possibly with a new size. target of event will be the DOM element
    containing the plot.  Used to resize slider to match. */
 
-$(document).on('turbolinks:load', function() {
-  // ratio of width to height for desired display, multiply width by this ratio
-  // to get height. hard-coded in for now.
-  var display_ratio = 1/(1.618 * 2); // half a golden rectangle, why not
-  var redrawnEvent = "plotDrawn.blacklight.rangeLimit";
+   Blacklight.onLoad(function() {
+    // ratio of width to height for desired display, multiply width by this ratio
+    // to get height. hard-coded in for now.
+    var display_ratio = 1/(1.618 * 2); // half a golden rectangle, why not
+    var redrawnEvent = "plotDrawn.blacklight.rangeLimit";
 
 
 
@@ -294,4 +296,4 @@ $(document).on('turbolinks:load', function() {
 
         return (flotLoaded && canvasAvailable);
       }
-});
+  });

@@ -16,11 +16,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require jquery.fontselect
-//= require flot/jquery.flot.js
-//= require flot/jquery.flot.selection.js
-//= require bootstrap-slider
 //= require bootstrap/tooltip
-//= require_tree ./blacklight_range_limit
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require stat_slider
@@ -55,3 +51,13 @@
 //= require statistics_tab_manager
 //= require blacklight_gallery/default
 //= require allinson_flex/application
+
+// This is required for the Blacklight Range Limit gem v7.0.1
+//
+// We copied all the js over in the ./blacklight_range_limit because
+// In the gem, there is a `//= require 'jquery'` in the `blacklight_range_limit.js`
+// that double loads jquery which causes issues beacuse we are using jquery3 in this project.
+//= require flot/jquery.flot.js
+//= require flot/jquery.flot.selection.js
+//= require bootstrap-slider
+//= require_tree ./blacklight_range_limit

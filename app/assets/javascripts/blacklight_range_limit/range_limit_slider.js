@@ -1,6 +1,7 @@
 // for Blacklight.onLoad:
 
-$(document).on('turbolinks:load', function() {
+Blacklight.onLoad(function() {
+
   $(".range_limit .profile .range.slider_js").each(function() {
      var range_element = $(this);
 
