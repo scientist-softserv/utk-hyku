@@ -41,10 +41,10 @@ GIT
 
 GIT
   remote: https://github.com/samvera/bulkrax.git
-  revision: a6b44d1ed77b29d7486652cc635fbdf1d678fb43
+  revision: db6cacfb661773613fbfe8898ca0d829073451a5
   branch: main
   specs:
-    bulkrax (6.0.1)
+    bulkrax (7.0.0)
       bagit (~> 0.4)
       coderay
       denormalize_fields
@@ -53,6 +53,7 @@ GIT
       language_list (~> 1.2, >= 1.2.1)
       libxml-ruby (~> 3.2.4)
       loofah (>= 2.2.3)
+      marcel
       oai (>= 0.4, < 2.x)
       rack (>= 2.0.6)
       rails (>= 5.1.6)
