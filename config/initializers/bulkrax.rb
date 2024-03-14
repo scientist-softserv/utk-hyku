@@ -12,11 +12,13 @@ if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
     config.fill_in_blank_source_identifiers = ->(obj, index) { "#{Site.instance.account.name}-#{obj.importerexporter.id}-#{index}" }
 
     # Field mappings
-    config.field_mappings['Bulkrax::CsvParser'] = {
+    parser_mappings = {
       'bulkrax_identifier' => { from: ['source_identifier'], source_identifier: true, search_field: 'bulkrax_identifier_tesim' },
       'children' => { from: ['children'], split: /\s*[;|]\s*/, related_children_field_mapping: true },
       'parents' => { from: ['parents'], split: /\s*[;|]\s*/, related_parents_field_mapping: true }
     }
+    config.field_mappings['Bulkrax::CsvParser'] = parser_mappings
+    config.field_mappings['Bulkrax::BagitParser'] = parser_mappings
 
     # OVERRIDE Bulkrax v4.3.0: change the default "split" behavior
     config.default_field_mapping = lambda do |field|
