@@ -49,6 +49,10 @@ class SolrDocument
     self['extent_tesim']
   end
 
+  def sequence_number
+    self['sequence_ssm']&.first&.to_i
+  end
+
   def form
     self['form_tesim']
   end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # OVERRIDE here to add featured collection methods and to delegate collection presenters to the member presenter factory
+# OVERRIDE Hyrax 3.6 to show items in sequence order
 
 module Hyku
   class WorkShowPresenter < Hyrax::WorkShowPresenter
@@ -8,7 +9,7 @@ module Hyku
     include Hyrax::IiifAv::DisplaysIiifAv
     Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::IiifAv::IiifFileSetPresenter
 
-    delegate :title_or_label, :extent, to: :solr_document
+    delegate :title_or_label, :extent, :sequence_number, to: :solr_document
 
     # OVERRIDE Hyrax v2.9.0 here to make featured collections work
     delegate :collection_presenters, to: :member_presenter_factory
@@ -63,6 +64,15 @@ module Hyku
       file_set_presenters.any? do |presenter|
         iiif_media?(presenter: presenter) && current_ability.can?(:read, presenter.id)
       end
+    end
+
+    # OVERRIDE Hyrax 3.6 to show items in sequence order
+    # list of item ids to display is based on ordered_ids
+    def authorized_item_ids(filter_unreadable: Flipflop.hide_private_items?)
+      @member_item_list_ids ||=
+        filter_unreadable ? ordered_ids.reject { |id| !current_ability.can?(:read, id) } : ordered_ids
+      new_order = member_presenters(@member_item_list_ids).sort { |item| item.solr_document['sequence_ssm'].present? ? item.solr_document.sequence_number : @member_item_list_ids.index(item.id) }
+      @member_item_list_ids = new_order.map &:id
     end
 
     private
