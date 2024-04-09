@@ -3,6 +3,8 @@
 # OVERRIDE BULKRAX 4.4.0 to remove resource_type from #process_parse
 # this app redefined resouce_types.yml to be inline with local questioning
 # authority
+
+# OVERRIDE BULKRAX 7.0.0 to return early if the subject is a URI
 module Bulkrax
   module ApplicationMatcherDecorator
     def process_parse
@@ -19,6 +21,13 @@ module Bulkrax
       elsif parsed && respond_to?("parse_#{parser}")
         @result = send("parse_#{parser}", @result)
       end
+    end
+
+    def parse_subject(src)
+      # OVERRIDE: we don't want to capitalize URIs
+      return src if src.starts_with?('http')
+
+      super
     end
   end
 end
