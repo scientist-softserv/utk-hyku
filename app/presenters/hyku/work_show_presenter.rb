@@ -71,7 +71,7 @@ module Hyku
     def authorized_item_ids(filter_unreadable: Flipflop.hide_private_items?)
       @member_item_list_ids ||=
         filter_unreadable ? ordered_ids.select { |id| current_ability.can?(:read, id) } : ordered_ids
-      new_order = member_presenters(@member_item_list_ids).sort do |item|
+      new_order = member_presenters(@member_item_list_ids).sort_by do |item|
         if item.solr_document['sequence_ssm'].present?
           item.solr_document.sequence_number
         else
