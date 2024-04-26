@@ -105,7 +105,7 @@ extraEnvVars: &envVars
   - name: HYKU_BULKRAX_ENABLED
     value: "true"
   - name: HYKU_CONTACT_EMAIL
-    value: support@notch8.com
+    value: ut_LibDI_Admin@live.utk.edu
   - name: HYKU_DEFAULT_HOST
     value: "%{tenant}.lib.utk.edu"
   - name: HYKU_ENABLED
@@ -155,7 +155,7 @@ extraEnvVars: &envVars
   - name: SMTP_ADDRESS
     value: smtp.sendgrid.net
   - name: SMTP_DOMAIN
-    value: utk.edu
+    value: live.utk.edu
   - name: SMTP_ENABLED
     value: "true"
   - name: SMTP_PASSWORD
