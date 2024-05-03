@@ -47,8 +47,8 @@ module AllinsonFlex
       end
 
       def local_authorities
-        # Hyku has these pluralized while m3 has these singularized
-        Qa::Authorities::Local.names.map(&:singularize)
+        # Hyku has these pluralized while m3 has these singularized, resource type is needed however
+        Qa::Authorities::Local.names.map(&:singularize) - ['resource_type']
       end
   end
 end
