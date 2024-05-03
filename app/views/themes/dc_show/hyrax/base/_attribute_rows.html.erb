@@ -3,10 +3,15 @@
 <% presenter.dynamic_schema_service.view_properties.each_pair do | prop_key, prop_value | %>
   <%# @todo internationalisation %>
   <% next if prop_value[:admin_only] && !presenter.current_ability.current_user.admin? %>
-  <% value = presenter.attribute_to_html(prop_key, label: prop_value[:label], html_dl: true) %>
+  <%# Only rights_statement and license have special render_as options %>
+  <% value = if [:rights_statement, :license].include? prop_key %>
+    <% presenter.attribute_to_html(prop_key, render_as: prop_key, html_dl: true) %>
+  <% else %>
+    <% presenter.attribute_to_html(prop_key, label: prop_value[:label], html_dl: true) %>
+  <% end %>
   <% if value.present? && (prop_key != :abstract) %>
     <div class='metadata-group'>
       <%= value %>
     </div>
-  <% end %>  
+  <% end %>
 <% end %>
