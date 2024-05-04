@@ -6,6 +6,27 @@ module Hyrax
   module IiifManifestPresenterDecorator
     attr_writer :iiif_version
 
+    ##
+    # @return [Array<#to_s>]
+    def member_ids
+      case model
+      when Valkyrie::Resource
+        Array(model.try(:member_ids))
+      else
+        return @member_item_list_ids if @member_item_list_ids.present?
+        ordered_ids = Hyrax::SolrDocument::OrderedMembers.decorate(model).ordered_member_ids
+        docs = Hyrax::SolrQueryService.new(query: ["id:(#{ordered_ids.join(' ')})"]).solr_documents
+        new_order = docs.sort_by do |item|
+          if item['sequence_ssm'].present?
+            item.sequence_number
+          else
+            ordered_ids.index(item.id)
+          end
+        end
+        @member_item_list_ids = new_order.map(&:id)
+      end
+    end
+
     def iiif_version
       @iiif_version || 3
     end
@@ -56,60 +77,60 @@ module Hyrax
       # OVERRIDE Hyrax 3.5.0 to use #supplementing_content for IIIF Manifest v1.3.1
       def supplementing_content
         @supplementing_content ||= begin
-          return [] unless media_and_transcript?
+                                     return [] unless media_and_transcript?
 
-          attachments = transcript_attachments
-          attachments.map do |attachment|
-            create_supplementing_content(attachment)
-          end
-        end
+                                     attachments = transcript_attachments
+                                     attachments.map do |attachment|
+                                       create_supplementing_content(attachment)
+                                     end
+                                   end
       end
 
       private
 
-        TRANSCRIPT_RDF_TYPE = "http://pcdm.org/use#Transcript"
+      TRANSCRIPT_RDF_TYPE = "http://pcdm.org/use#Transcript"
 
-        def media_and_transcript?
-          (audio? || video?) && transcript_attachments.present?
-        end
+      def media_and_transcript?
+        (audio? || video?) && transcript_attachments.present?
+      end
 
-        def transcript_attachments
-          parent = ::FileSet.find(id).parent.member_of.first
-          return [] unless parent
+      def transcript_attachments
+        parent = ::FileSet.find(id).parent.member_of.first
+        return [] unless parent
 
-          parent.members.select { |member| member.rdf_type == [TRANSCRIPT_RDF_TYPE] }
-        end
+        parent.members.select { |member| member.rdf_type == [TRANSCRIPT_RDF_TYPE] }
+      end
 
-        def create_supplementing_content(attachment)
-          hash = get_file_set_ids_and_languages(attachment)
-          captions_url = get_captions_url(hash[:file_set_id])
-          IIIFManifest::V3::SupplementingContent.new(captions_url,
-                                                     type: 'Text',
-                                                     format: 'text/vtt',
-                                                     label: hash[:title],
-                                                     language: hash[:language].first || 'en')
-        end
+      def create_supplementing_content(attachment)
+        hash = get_file_set_ids_and_languages(attachment)
+        captions_url = get_captions_url(hash[:file_set_id])
+        IIIFManifest::V3::SupplementingContent.new(captions_url,
+          type: 'Text',
+          format: 'text/vtt',
+          label: hash[:title],
+          language: hash[:language].first || 'en')
+      end
 
-        def get_file_set_ids_and_languages(attachment)
-          {
-            file_set_id: attachment.file_sets.first.id,
-            title: attachment.title.first,
-            language: attachment.file_language
-          }
-        end
+      def get_file_set_ids_and_languages(attachment)
+        {
+          file_set_id: attachment.file_sets.first.id,
+          title: attachment.title.first,
+          language: attachment.file_language
+        }
+      end
 
-        def get_captions_url(file_set_id)
-          captions_url = Hyrax::Engine.routes.url_helpers.download_url(file_set_id, host: hostname)
-          ssl_configured = Site.account.ssl_configured
-          ssl_configured ? captions_url.sub!(/\Ahttp:/, 'https:') : captions_url
-        end
+      def get_captions_url(file_set_id)
+        captions_url = Hyrax::Engine.routes.url_helpers.download_url(file_set_id, host: hostname)
+        ssl_configured = Site.account.ssl_configured
+        ssl_configured ? captions_url.sub!(/\Ahttp:/, 'https:') : captions_url
+      end
     end
 
     private
 
-      def scrub(value)
-        CGI.unescapeHTML(Loofah.fragment(value).scrub!(:whitewash).to_s)
-      end
+    def scrub(value)
+      CGI.unescapeHTML(Loofah.fragment(value).scrub!(:whitewash).to_s)
+    end
   end
 end
 
