@@ -115,7 +115,7 @@ class Account < ApplicationRecord
     ActionController::Base.perform_caching = is_enabled
     # rubocop:disable Style/ConditionalAssignment
     if is_enabled
-      Rails.application.config.cache_store = :redis_cache_store, { url: Redis.current.id }
+      Rails.application.config.cache_store = :redis_cache_store, { redis: Hyrax::RedisEventStore.instance }
     else
       Rails.application.config.cache_store = :file_store, ENV.fetch('HYKU_CACHE_ROOT', '/app/samvera/file_cache')
     end

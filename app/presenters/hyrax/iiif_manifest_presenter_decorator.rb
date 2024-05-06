@@ -88,49 +88,49 @@ module Hyrax
 
       private
 
-      TRANSCRIPT_RDF_TYPE = "http://pcdm.org/use#Transcript"
+        TRANSCRIPT_RDF_TYPE = "http://pcdm.org/use#Transcript"
 
-      def media_and_transcript?
-        (audio? || video?) && transcript_attachments.present?
-      end
+        def media_and_transcript?
+          (audio? || video?) && transcript_attachments.present?
+        end
 
-      def transcript_attachments
-        parent = ::FileSet.find(id).parent.member_of.first
-        return [] unless parent
+        def transcript_attachments
+          parent = ::FileSet.find(id).parent.member_of.first
+          return [] unless parent
 
-        parent.members.select { |member| member.rdf_type == [TRANSCRIPT_RDF_TYPE] }
-      end
+          parent.members.select { |member| member.rdf_type == [TRANSCRIPT_RDF_TYPE] }
+        end
 
-      def create_supplementing_content(attachment)
-        hash = get_file_set_ids_and_languages(attachment)
-        captions_url = get_captions_url(hash[:file_set_id])
-        IIIFManifest::V3::SupplementingContent.new(captions_url,
-          type: 'Text',
-          format: 'text/vtt',
-          label: hash[:title],
-          language: hash[:language].first || 'en')
-      end
+        def create_supplementing_content(attachment)
+          hash = get_file_set_ids_and_languages(attachment)
+          captions_url = get_captions_url(hash[:file_set_id])
+          IIIFManifest::V3::SupplementingContent.new(captions_url,
+                                                     type: 'Text',
+                                                     format: 'text/vtt',
+                                                     label: hash[:title],
+                                                     language: hash[:language].first || 'en')
+        end
 
-      def get_file_set_ids_and_languages(attachment)
-        {
-          file_set_id: attachment.file_sets.first.id,
-          title: attachment.title.first,
-          language: attachment.file_language
-        }
-      end
+        def get_file_set_ids_and_languages(attachment)
+          {
+            file_set_id: attachment.file_sets.first.id,
+            title: attachment.title.first,
+            language: attachment.file_language
+          }
+        end
 
-      def get_captions_url(file_set_id)
-        captions_url = Hyrax::Engine.routes.url_helpers.download_url(file_set_id, host: hostname)
-        ssl_configured = Site.account.ssl_configured
-        ssl_configured ? captions_url.sub!(/\Ahttp:/, 'https:') : captions_url
-      end
+        def get_captions_url(file_set_id)
+          captions_url = Hyrax::Engine.routes.url_helpers.download_url(file_set_id, host: hostname)
+          ssl_configured = Site.account.ssl_configured
+          ssl_configured ? captions_url.sub!(/\Ahttp:/, 'https:') : captions_url
+        end
     end
 
     private
 
-    def scrub(value)
-      CGI.unescapeHTML(Loofah.fragment(value).scrub!(:whitewash).to_s)
-    end
+      def scrub(value)
+        CGI.unescapeHTML(Loofah.fragment(value).scrub!(:whitewash).to_s)
+      end
   end
 end
 
