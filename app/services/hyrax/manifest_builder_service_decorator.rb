@@ -88,3 +88,4 @@ module Hyrax
 end
 
 Hyrax::ManifestBuilderService.prepend(Hyrax::ManifestBuilderServiceDecorator)
+Hyrax::CachingIiifManifestBuilder.prepend(Hyrax::ManifestBuilderServiceDecorator)

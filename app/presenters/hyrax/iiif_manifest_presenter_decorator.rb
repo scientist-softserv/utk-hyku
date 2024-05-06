@@ -15,7 +15,7 @@ module Hyrax
       else
         return @member_item_list_ids if @member_item_list_ids.present?
         ordered_ids = Hyrax::SolrDocument::OrderedMembers.decorate(model).ordered_member_ids
-        docs = Hyrax::SolrQueryService.new(query: ["id:(#{ordered_ids.join(' ')})"]).solr_documents
+        docs = Hyrax::SolrQueryService.new(query: ["id:(#{ordered_ids.join(' ')})"]).solr_documents(rows: 2_000_000)
         new_order = docs.sort_by do |item|
           if item['sequence_ssm'].present?
             item.sequence_number
