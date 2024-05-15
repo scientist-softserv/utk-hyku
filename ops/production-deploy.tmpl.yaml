@@ -71,7 +71,7 @@ extraEnvVars: &envVars
   - name: DB_ADAPTER
     value: postgresql
   - name: DB_HOST
-    value: postgres-cluster-alpha-ha.postgres.svc.cluster.local
+    value: acid-postgres-cluster-delta.postgres.svc.cluster.local
   - name: DB_NAME
     value: utk-hyku-production-hyrax
   - name: DB_PASSWORD
@@ -240,7 +240,7 @@ solr:
 
 externalFcrepoHost: fcrepo.fcrepo.svc.cluster.local
 externalPostgresql:
-  host: postgres-cluster-alpha-ha.postgres.svc.cluster.local
+  host: acid-postgres-cluster-delta.postgres.svc.cluster.local
   username: main
   password: $DB_PASSWORD
   database: utk-hyku-production-hyrax
