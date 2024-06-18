@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # OVERRIDE Hydra-works 2.0.0 to deal with fcrepo + s3s inability to upload empty files
 
 module Hydra
