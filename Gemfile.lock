@@ -44,8 +44,8 @@ GIT
   revision: 31da660e766c66073375df1848c8e45b03675652
   branch: download_imported_file
   specs:
-    bulkrax (7.0.0)
-      bagit (~> 0.4)
+    bulkrax (8.1.0)
+      bagit (~> 0.4.6)
       coderay
       denormalize_fields
       iso8601 (~> 0.9.0)

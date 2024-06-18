@@ -2,6 +2,7 @@
 
 if ENV.fetch('HYKU_BULKRAX_ENABLED', 'true') == 'true'
   Bulkrax.setup do |config|
+    Bulkrax.object_factory = Bulkrax::ObjectFactory
     # Add or remove local parsers
     config.parsers -= [
       { name: "OAI - Dublin Core", class_name: "Bulkrax::OaiDcParser", partial: "oai_fields" },
