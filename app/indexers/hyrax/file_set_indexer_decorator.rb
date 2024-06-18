@@ -6,6 +6,8 @@ module Hyrax
   module FileSetIndexerDecorator
     def generate_solr_document
       super.tap do |solr_doc|
+        # digest of the original file if we are using an external file due to s3 direct upload
+        solr_doc['digest_ssim'] = "urn:sha1:#{object.s3_only}" if object.s3_only.present?
         solr_doc['rdf_type_ssim'] = object.parent_works.first.rdf_type if attachment?
         solr_doc['all_text_tesimv'] = solr_doc['all_text_tsimv'] if solr_doc['all_text_tsimv'].present?
       end

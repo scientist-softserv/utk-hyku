@@ -8,6 +8,12 @@ class FileSet < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  property :s3_only,
+    predicate: ::RDF::URI("https://hykucommons.org/terms/s3_only"),
+    multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
+
   include ::Hyrax::FileSetBehavior
   # @return [String] the Attachment's rdf type for the given FileSet
   # @return [NilClass] when there is no rdf_type for the parent work (Attachment).
