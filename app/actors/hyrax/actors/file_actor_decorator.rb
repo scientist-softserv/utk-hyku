@@ -23,9 +23,9 @@ module Hyrax
           # Skip versioning because versions will be minted by VersionCommitter as necessary during
           # save_characterize_and_record_committer.
           Hydra::Works::AddFileToFileSet.call(file_set,
-            io,
-            relation,
-            versioning: false)
+                                              io,
+                                              relation,
+                                              versioning: false)
         end
         return false unless file_set.save
         repository_file = related_file

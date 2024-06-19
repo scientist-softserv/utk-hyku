@@ -95,7 +95,7 @@ services:
         condition: service_healthy
 
   fcrepo:
-    image: ghcr.io/samvera/fcrepo4:4.7.5
+    image: ghcr.io/scientist-softserv/docker-fcrepo:4.7.6-s3-streaming
     volumes:
       - fcrepo:/data:cached
     env_file:
@@ -217,7 +217,7 @@ services:
       - >
         solrcloud-upload-configset.sh /app/samvera/hyrax-webapp/solr/conf &&
         solrcloud-assign-configset.sh &&
-        SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh &&
+        SOLR_COLLECTION_NAME=hydra-test solrcloud-assign-configset.sh && bundle &&
         db-migrate-seed.sh
     depends_on:
       db:
