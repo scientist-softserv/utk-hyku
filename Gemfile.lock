@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera/bulkrax.git
-  revision: 1a4d7f6af07d9511b046ce12b9dce00b63025255
+  revision: c58f8707905092dcbc410ed818230d4af165c24b
   branch: main
   specs:
     bulkrax (8.1.0)
@@ -846,7 +846,7 @@ GEM
     mime-types-data (3.2023.1003)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.23.1)
+    minitest (5.24.0)
     mods (2.4.1)
       edtf
       iso-639
