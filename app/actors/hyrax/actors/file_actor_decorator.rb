@@ -10,7 +10,7 @@ module Hyrax
         # save_characterize_and_record_committer.
         # these are files too big to send to S3 w/o Streaming
         Rails.logger.error("[FileActor] starting write for #{file_set.id}")
-        if io.size.to_i >= 3.gigabytes
+        if io.size.to_i >= 2.gigabytes
           Rails.logger.error("[FileActor] Uploading directly to S3 for file_set #{file_set.id}")
           digest = `sha1sum #{io.path}`.split.first
           file_set.s3_only = digest
