@@ -99,6 +99,7 @@ gem 'simplecov', require: false, group: %i[development test]
 gem 'solr_wrapper', '~> 2.0', group: %i[development test]
 gem 'spring', '~> 1.7', group: %i[development]
 gem 'spring-watcher-listen', '~> 2.0.0', group: %i[development]
+gem 'sprockets', '3.7.2' # there is a js build issue with 3.7.3 and hyrax
 gem 'terser' # to support the Safe Navigation / Optional Chaining operator (?.) and avoid uglifier precompile issue
 gem 'tether-rails'
 gem 'tinymce-rails', '~> 5.10' # lock gem to version new Hyrax version will require
