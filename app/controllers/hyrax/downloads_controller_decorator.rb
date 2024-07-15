@@ -17,7 +17,7 @@ module Hyrax
           redirect_to s3_object.presigned_url(
             :get,
             expires_in: 3600,
-            response_content_disposition: "attachment\; filename=#{file.original_name}"
+            response_content_disposition: "attachment\; filename=#{file_name}"
           )
           return
         end
@@ -25,6 +25,19 @@ module Hyrax
 
       # If s3 downloads is off, or if the file isn't in s3.
       super
+    end
+
+    # Override this if you'd like a different filename
+    # @return [String] the filename
+    def file_name
+      fname = params[:filename] || file.original_name || (asset.respond_to?(:label) && asset.label) || file.id
+      fname = CGI.unescape(fname) if Rails.version >= '6.0'
+      if File.extname(fname).blank?
+        new_ext = MIME::Types[file.mime_type]&.first&.preferred_extension
+        fname += '.' + new_ext if new_ext.present?
+      end
+
+      fname
     end
   end
 end
