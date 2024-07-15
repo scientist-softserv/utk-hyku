@@ -420,6 +420,11 @@ class CatalogController < ApplicationController
     config.spell_max = 5
   end
 
+  def index
+    params['q'] = '' unless params['q']
+    super
+  end
+
   # This is overridden just to give us a JSON response for debugging.
   def show
     _, @document = fetch params[:id]
