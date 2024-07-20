@@ -83,7 +83,6 @@ class CatalogController < ApplicationController
                                                    maxlength: 4
                                                  }
     config.add_facet_field 'human_readable_type_sim', label: "Type", limit: 5
-    config.add_facet_field 'resource_type_sim', label: "Resource Type", limit: 5
     config.add_facet_field 'creator_sim', limit: 5
     config.add_facet_field 'contributor_sim', label: "Contributor", limit: 5
     config.add_facet_field 'keyword_sim', limit: 5
