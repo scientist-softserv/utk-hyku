@@ -116,6 +116,8 @@ extraEnvVars: &envVars
     value: "true"
   - name: HYKU_ROOT_HOST
     value: lib.utk.edu
+  - name: HYKU_SSL_CONFIGURED
+    value: "true"
   - name: HYRAX_ACTIVE_JOB_QUEUE
     value: good_job
   - name: HYRAX_FITS_PATH
