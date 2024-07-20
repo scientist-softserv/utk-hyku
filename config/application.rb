@@ -9,6 +9,7 @@ groups = Rails.groups
 Bundler.require(*groups)
 module Hyku
   class Application < Rails::Application
+    config.hidden_properties = [:date_created_d, :coordinates, :date_issued_d]
     config.to_prepare do
       Dir.glob(File.join(File.dirname(__FILE__), '../lib/extensions/allinson_flex/extensions.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)

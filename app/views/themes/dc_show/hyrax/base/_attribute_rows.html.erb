@@ -2,6 +2,7 @@
 
 <% presenter.dynamic_schema_service.view_properties.each_pair do | prop_key, prop_value | %>
   <%# @todo internationalisation %>
+  <% next if Rails.configuration.hidden_properties.include?(prop_key) %>
   <% next if prop_value[:admin_only] && !presenter.current_ability.current_user.admin? %>
   <%# Only rights_statement and license have special render_as options %>
   <% value = if [:rights_statement, :license].include? prop_key %>
