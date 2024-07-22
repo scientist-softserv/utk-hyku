@@ -6,11 +6,14 @@ require 'ruby-progressbar'
 ## Reprocessor for iterating through large sets of ids
 # There are two steps for any reprocessing. The first is to store all the ids to processin a ids.log file.
 # The second to to run a lambda against every id
-# No matter whether it is the first run or not, a run of the Reprocessor should always start with Reprocessor.load('tmp/imports/SOME_UNIQUE_NAME')
-# This creates a context for the Reprocessor to run. After that, calling Reprocessor.capture_ids (or capture_work_ids, capture_file_set_ids or capture collection_ids)
+# No matter whether it is the first run or not, a run of the Reprocessor should always start with
+# Reprocessor.load('tmp/imports/SOME_UNIQUE_NAME'). This creates a context for the Reprocessor to run.
+# After that, calling Reprocessor.capture_ids (or capture_work_ids, capture_file_set_ids or capture collection_ids)
 # will record all the ids in a file
-# finally, once all the ids are split, then calling Reprocessor.process_ids with a lambda (like Reprocessor.process_ids(Reprocessor.save)) to call the process on each item
-# At any point, the process can be stopped (or killed) and then resumed by doing Reprocessor.load(SAME_PATH) and then calling the process_ids again.
+# finally, once all the ids are split, then calling Reprocessor.process_ids with a lambda
+# (like Reprocessor.process_ids(Reprocessor.save)) to call the process on each item
+# At any point, the process can be stopped (or killed) and then resumed by doing Reprocessor.load(SAME_PATH)
+# and then calling the process_ids again.
 class Reprocessor # rubocop:disable Metrics/ClassLength
   include Singleton
 
@@ -29,12 +32,14 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
 
   # Missing methods will be delegated to `instance` if an implementation is available.
   # Else `NoMethodError` will be raised via call to `super`
-  def self.method_missing method_name, *args
+  # rubocop:disable Style/MethodMissing
+  # rubocop:disable Rails/Output
+  def self.method_missing(method_name, *args)
     if instance.respond_to? method_name
       puts "** Defining new method: '#{method_name}'"
       (class << self; self; end).instance_eval do
-        define_method(method_name) do |*args|
-          instance.send(method_name, *args)
+        define_method(method_name) do |*args_i|
+          instance.send(method_name, *args_i)
         end
       end
       instance.send(method_name, *args)
@@ -42,6 +47,8 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
       super
     end
   end
+  # rubocop:enable Style/MethodMissing
+  # rubocop:enable Rails/Output
 
   SETTINGS.each do |method|
     define_singleton_method(method) do |*args|
@@ -138,7 +145,7 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
         break if limit && current_location >= limit
         begin
           lamb.call(line, progress)
-        rescue => e
+        rescue StandardError => e
           error(line, e)
         end
         self.current_location += 1
