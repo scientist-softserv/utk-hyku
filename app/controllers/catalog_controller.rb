@@ -22,6 +22,14 @@ class CatalogController < ApplicationController
     'title_ssi'
   end
 
+  def self.published_field
+    'date_issued_d_ssi'
+  end
+
+  def self.created_field
+    'date_created_d_ssi'
+  end
+
   # CatalogController-scope behavior and configuration for BlacklightIiifSearch
   include BlacklightIiifSearch::Controller
 
@@ -396,6 +404,10 @@ class CatalogController < ApplicationController
     config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
+    config.add_sort_field "#{published_field} desc", label: "date published \u25BC"
+    config.add_sort_field "#{published_field} asc", label: "date published \u25B2"
+    config.add_sort_field "#{created_field} desc", label: "date created \u25BC"
+    config.add_sort_field "#{created_field} asc", label: "date created \u25B2"
 
     # OAI Config fields
     config.oai = {
