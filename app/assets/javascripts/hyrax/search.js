@@ -1,9 +1,12 @@
+// Override Hyrax v3.6.0 to fix the set label
+
 (function($){
   Hyrax.Search = function (element) {
     this.$element = $(element);
 
     this.init = function() {
       this.$label = this.$element.find('[data-search-element="label"]');
+      this.$visibleLabel = this.$element.find('.dropdown-toggle').find('span[aria-hidden="true"]');
       this.$items = this.$element.find('[data-search-option]');
       this.setDefault();
     }
@@ -43,6 +46,7 @@
 
     setLabel: function(label) {
       this.$label.html(label);
+      this.$visibleLabel.html(label);
     }
 
   }
