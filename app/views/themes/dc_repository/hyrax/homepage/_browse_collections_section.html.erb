@@ -35,11 +35,12 @@
       </header>
       <!-- Tab panes -->
       <div class="tab-content">
+        <% collections_list = @collections_list.shuffle %>
         <div role="tabpanel" class="tab-pane active" id="view-type-grid">
-          <%= render "browse_collections_grid_view" %>
+          <%= render "browse_collections_grid_view", collections_list: collections_list %>
         </div>
         <div role="tabpanel" class="tab-pane" id="view-type-list">
-          <%= render "browse_collections_list_view" %>
+          <%= render "browse_collections_list_view", collections_list: collections_list %>
         </div>
       </div>
     </div>
