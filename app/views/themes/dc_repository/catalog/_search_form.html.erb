@@ -5,35 +5,28 @@
   <%= hidden_field_tag :search_field, 'all_fields' %>
   <div class="form-group">
     <%# OVERRIDE: Hyrax v3.4.1 Remove label from form-group %>
-
     <div class="input-group">
       <%= text_field_tag :q, current_search_parameters , class: "q form-control", id: "search-field-header", placeholder: t("hyrax.search.form.q.placeholder") %>
       <%# OVERRIDE: Hyrax v3.4.1 switch button order %>
       <div class="input-group-btn">
-        <% if current_user %>
-          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-
-            <span class="sr-only" data-search-element="label"><%= t("hyrax.search.form.option.all.label_long", application_name: application_name) %></span>
-            <span aria-hidden="true"><%= t("hyrax.search.form.option.all.label_short") %></span>
-            <%# OVERRIDE: Hyrax v3.4.1 change dropdown icon %>
-            <span class="fa fa-thin fa-chevron-down"></span>
-          </button>
-
-          <ul class="dropdown-menu pull-right">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+          <span class="sr-only" data-search-element="label"><%= t("hyrax.search.form.option.all.label_long", application_name: application_name) %></span>
+          <span aria-hidden="true"><%= t("hyrax.search.form.option.all.label_short") %></span>
+          <%# OVERRIDE: Hyrax v3.4.1 change dropdown icon %>
+          <span class="fa fa-thin fa-chevron-down"></span>
+        </button>
+        <ul class="dropdown-menu pull-right">
+          <li>
+            <%= link_to t("hyrax.search.form.option.all.label_long", application_name: application_name), "#",
+                data: { "search-option" => main_app.search_catalog_path, "search-label" => t("hyrax.search.form.option.all.label_short") } %>
+          </li>
+          <% Hyrax.config.registered_curation_concern_types.map(&:titleize).each do |concern| %>
+            <% next if concern == 'Attachment' %>
             <li>
-              <%= link_to t("hyrax.search.form.option.all.label_long", application_name: application_name), "#",
-                  data: { "search-option" => main_app.search_catalog_path, "search-label" => t("hyrax.search.form.option.all.label_short") } %>
-            </li>
-            <li>
-              <%= link_to t("hyrax.search.form.option.my_works.label_long"), "#",
-                  data: { "search-option" => hyrax.my_works_path, "search-label" => t("hyrax.search.form.option.my_works.label_short") } %>
-            </li>
-            <li>
-              <%= link_to t("hyrax.search.form.option.my_collections.label_long"), "#",
-                  data: { "search-option" => hyrax.my_collections_path, "search-label" => t("hyrax.search.form.option.my_collections.label_short") } %>
+              <%= link_to concern, "#",
+                  data: { "search-option" => main_app.search_catalog_path(f: { human_readable_type_sim: [concern] }), "search-label" => concern } %>
             </li>
           <% end %>
-
         </ul>
         <button type="submit" class="btn" id="search-submit-header">
           <span class="glyphicon glyphicon-search"></span>
@@ -41,6 +34,5 @@
         </button>
       </div><!-- /.input-group-btn -->
     </div><!-- /.input-group -->
-
   </div><!-- /.form-group -->
 <% end %>
