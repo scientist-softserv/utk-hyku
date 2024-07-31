@@ -1,4 +1,4 @@
-// Override Hyrax v3.6.0 to fix the set label
+// Override Hyrax v3.6.0 to fix the set label and modify set form action to support searching with resource types
 
 (function($){
   Hyrax.Search = function (element) {
@@ -33,6 +33,11 @@
 
     setFormAction: function(path) {
       this.$element.attr('action', path);
+      this.$element.find('input[type="hidden"]').remove();
+      var params = new URLSearchParams(path.split('?')[1]);
+      for (const [key, value] of params) {
+        this.$element.append('<input type="hidden" name="' + key + '" value="' + value + '">');
+      }
     },
 
     getLabelForValue: function(value) {
