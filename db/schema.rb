@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_09_070952) do
+ActiveRecord::Schema.define(version: 2024_08_02_192928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -870,7 +870,6 @@ ActiveRecord::Schema.define(version: 2024_02_09_070952) do
     t.integer "account_id"
     t.string "institution_name"
     t.string "institution_name_full"
-    t.string "banner_image"
     t.string "logo_image"
     t.string "default_collection_image"
     t.string "default_work_image"
@@ -880,6 +879,7 @@ ActiveRecord::Schema.define(version: 2024_02_09_070952) do
     t.string "home_theme"
     t.string "show_theme"
     t.string "search_theme"
+    t.string "banner_images", default: [], array: true
   end
 
   create_table "subject_local_authority_entries", id: :serial, force: :cascade do |t|
