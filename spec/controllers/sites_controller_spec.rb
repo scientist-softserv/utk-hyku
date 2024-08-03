@@ -37,17 +37,17 @@ RSpec.describe SitesController, type: :controller, singletenant: true do
           .and_return(CarrierWave::Storage::File)
           .at_least(3).times
         f = fixture_file_upload('/images/nypl-hydra-of-lerna.jpg', 'image/jpg')
-        Site.instance.update(banner_image: f)
+        Site.instance.update(banner_images: [f])
         ContentBlock.find_or_create_by(name: 'banner_image_text').update!(value: 'Sample text')
       end
 
-      it "#update with remove_banner_image deletes a banner image" do
-        expect(Site.instance.banner_image?).to be true
+      it "#update with remove_banner_images deletes a banner image" do
+        expect(Site.instance.banner_images.any?).to be true
         expect(ContentBlock.find_by(name: 'banner_image_text')).not_to be nil
-        post :update, params: { id: Site.instance.id, remove_banner_image: 'Remove banner image' }
+        post :update, params: { id: Site.instance.id, remove_banner_images: 'Remove all banner images' }
         expect(response).to redirect_to('/admin/appearance?locale=en')
         expect(flash[:notice]).to include("The appearance was successfully updated")
-        expect(Site.instance.banner_image?).to be false
+        expect(Site.instance.banner_images.any?).to be false
         expect(ContentBlock.find_by(name: 'banner_image_text')).to be nil
       end
     end

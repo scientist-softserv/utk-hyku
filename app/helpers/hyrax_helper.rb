@@ -23,8 +23,8 @@ module HyraxHelper
     Site.institution_name_full || super
   end
 
-  def banner_image
-    Site.instance.banner_image? ? Site.instance.banner_image.url : super
+  def banner_images
+    Site.instance.banner_images.any? ? Site.instance.banner_images.map(&:url) : [banner_image]
   end
 
   def logo_image

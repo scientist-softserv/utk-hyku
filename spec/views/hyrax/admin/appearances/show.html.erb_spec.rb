@@ -38,13 +38,16 @@ RSpec.describe "hyrax/admin/appearances/show", type: :view do
     end
   end
 
+  # rubocop:disable RSpec/ExampleLength
   it "renders the edit site form" do
     assert_select "form[action='/path'][method=?]", "post" do
       # logo tab
       assert_select "input#admin_appearance_logo_image[name=?]", "admin_appearance[logo_image]"
       # banner image tab
-      assert_select "input#admin_appearance_banner_image[name=?]", "admin_appearance[banner_image]"
-      assert_select "input#admin_appearance_banner_image[type=?]", "file"
+      assert_select "input#admin_appearance_banner_images[name=?]", "admin_appearance[banner_images][]"
+      assert_select "input#admin_appearance_banner_images[type=?]", "file"
+      assert_select "input#admin_appearance_banner_images[multiple=?]", "multiple"
+      assert_select "input#admin_appearance_banner_images[accept=?]", "image/*"
       # directory image
       assert_select "input#admin_appearance_directory_image[name=?]", "admin_appearance[directory_image]"
       # default collection image
@@ -64,4 +67,5 @@ RSpec.describe "hyrax/admin/appearances/show", type: :view do
     # themes
     assert_select "select#site_home_theme[name=?]", "site[home_theme]"
   end
+  # rubocop:enable RSpec/ExampleLength
 end
