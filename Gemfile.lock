@@ -41,8 +41,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera/bulkrax.git
-  revision: c58f8707905092dcbc410ed818230d4af165c24b
-  branch: main
+  revision: 58b353bce74497144b14411e1657007d8f68310d
+  branch: lets_get_back_together
   specs:
     bulkrax (8.1.0)
       bagit (~> 0.4.6)
