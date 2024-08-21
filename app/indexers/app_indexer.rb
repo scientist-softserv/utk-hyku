@@ -19,7 +19,15 @@ class AppIndexer < Hyrax::WorkIndexer
       solr_doc["bulkrax_identifier_ssim"] = object.bulkrax_identifier
       # tesim is the wrong field for this, but until we reindex everything we need to keep it
       solr_doc["bulkrax_identifier_tesim"] = object.bulkrax_identifier
-      solr_doc[CatalogController.title_field] = object.title.first
+      # using Array() vs Array.wrap() since the objects are ActiveTriples::Relation
+      # Array.wrap() will create nested arrays
+      solr_doc[CatalogController.title_field] = Array(object.title).first
+      solr_doc[CatalogController.published_field] = (
+        Array(object.date_issued_d).first if object.respond_to?(:date_issued_d)
+      )
+      solr_doc[CatalogController.created_field] = (
+        Array(object.date_created_d).first if object.respond_to?(:date_created_d)
+      )
     end
   end
 

@@ -2,8 +2,10 @@
 
 <% content_for(:navbar) do %>
   <div class="image-masthead d-flex">
-<!-- dc-repository homepage -->
-    <div class="background-container"  title="<%= block_for(name: 'banner_image_text') %>" style="background-image: url('<%= banner_image %>')"></div>
+    <!-- dc-repository homepage -->
+    <% banner_images.shuffle.each_with_index do |image, index| %>
+      <div id="background-container-<%= index %>" class="background-container <%= index == 0 ? 'active' : '' %>" style="background-image: url('<%= image %>');" title="<%= block_for(name: 'banner_image_text') %>"></div>
+    <% end %>
     <% # OVERRIDE: Hyrax v3.4.1 - remove background-container-gradient %>
     <% # OVERRIDE: Hyrax v3.4.1 - remove site-title-container %>
     <% # OVERRIDE: Hyrax v3.4.1 - add divs and classes for custom styles %>
@@ -45,3 +47,21 @@
 <% end %>
 
 <%= render template: 'layouts/hyrax' %>
+
+<% if banner_images.size > 1 %>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var containers = document.querySelectorAll('.background-container');
+      var currentIndex = 0;
+      var changeInterval = 7500;
+
+      function changeBackgroundImage() {
+        containers[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % containers.length;
+        containers[currentIndex].classList.add('active');
+      }
+
+      setInterval(changeBackgroundImage, changeInterval);
+    });
+  </script>
+<% end %>

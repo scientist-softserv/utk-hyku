@@ -39,6 +39,12 @@ module Hyrax
           ReindexWorksJob.perform_later
         end
 
+        if update_params['banner_images']
+          site = Site.instance
+          site.banner_images = update_params['banner_images']
+          site.save
+        end
+
         redirect_to({ action: :show }, notice: t('.flash.success'))
       end
 

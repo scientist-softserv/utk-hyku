@@ -112,7 +112,7 @@ RSpec.describe UriToStringBehavior do
               'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
               'User-Agent' => 'Ruby RDF.rb/3.1.15'
             }
-            # rubocop:enable Matrics/LineLength
+            # rubocop:enable Metrics/LineLength
           )
           .to_return(status: 200, body: "", headers: {})
       end

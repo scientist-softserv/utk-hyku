@@ -10,7 +10,7 @@ module Hyrax
       # customization menu
       class Appearance
         extend ActiveModel::Naming
-        delegate :banner_image, :banner_image?, to: :site
+        delegate :banner_images, to: :site
         delegate :logo_image, :logo_image?, to: :site
         delegate :directory_image, :directory_image?, to: :site
         delegate :default_collection_image, :default_collection_image?, to: :site
@@ -62,7 +62,7 @@ module Hyrax
         end
 
         def self.image_params
-          %i[banner_image logo_image directory_image default_collection_image default_work_image]
+          [{ banner_images: [] }, :logo_image, :directory_image, :default_collection_image, :default_work_image]
         end
 
         def site

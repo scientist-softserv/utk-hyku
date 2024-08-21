@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe HyraxHelper, type: :helper do
-  describe "#banner_image" do
+  describe "#banner_images" do
     context "with uploaded banner image" do
       before do
         f = fixture_file_upload('/images/nypl-hydra-of-lerna.jpg', 'image/jpg')
-        Site.instance.update(banner_image: f)
+        Site.instance.update(banner_images: [f])
       end
 
       it "returns the uploaded banner image" do
-        expect(helper.banner_image).to eq(Site.instance.banner_image.url)
+        expect(helper.banner_images.first).to eq(Site.instance.banner_images.first.url)
       end
     end
 

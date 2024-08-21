@@ -6,8 +6,9 @@ require 'ruby-progressbar'
 ## Reprocessor for iterating through large sets of ids
 # There are two steps for any reprocessing. The first is to store all the ids to processin a ids.log file.
 # The second to to run a lambda against every id
-# No matter whether it is the first run or not, a run of the Reprocessor should always start with
-# Reprocessor.load('tmp/imports/SOME_UNIQUE_NAME'). This creates a context for the Reprocessor to run.
+# No matter whether it is the first run or not, a run of the Reprocessor should
+# always start with Reprocessor.load('tmp/imports/SOME_UNIQUE_NAME')
+# This creates a context for the Reprocessor to run.
 # After that, calling Reprocessor.capture_ids (or capture_work_ids, capture_file_set_ids or capture collection_ids)
 # will record all the ids in a file
 # finally, once all the ids are split, then calling Reprocessor.process_ids with a lambda

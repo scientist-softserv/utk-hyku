@@ -11,13 +11,13 @@
         <div class="browse-collections--view d-flex">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-              <a href="#view-type-list" aria-controls="view-type-list" role="tab" data-toggle="tab">
-                <button class="button-toggle d-flex"><i class="fa fa-list" aria-hidden="true"></i><span>List</span></button>
+              <a href="#view-type-grid" aria-controls="view-type-grid" role="tab" data-toggle="tab">
+                <button class="button-toggle d-flex"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
               </a>
             </li>
             <li role="presentation">
-              <a href="#view-type-grid" aria-controls="view-type-grid" role="tab" data-toggle="tab">
-                <button class="button-toggle d-flex"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
+              <a href="#view-type-list" aria-controls="view-type-list" role="tab" data-toggle="tab">
+                <button class="button-toggle d-flex"><i class="fa fa-list" aria-hidden="true"></i><span>List</span></button>
               </a>
             </li>
           </div>
@@ -35,11 +35,12 @@
       </header>
       <!-- Tab panes -->
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="view-type-list">
-          <%= render "browse_collections_list_view" %>
+        <% collections_list = @collections_list.shuffle %>
+        <div role="tabpanel" class="tab-pane active" id="view-type-grid">
+          <%= render "browse_collections_grid_view", collections_list: collections_list %>
         </div>
-        <div role="tabpanel" class="tab-pane" id="view-type-grid">
-          <%= render "browse_collections_grid_view" %>
+        <div role="tabpanel" class="tab-pane" id="view-type-list">
+          <%= render "browse_collections_list_view", collections_list: collections_list %>
         </div>
       </div>
     </div>

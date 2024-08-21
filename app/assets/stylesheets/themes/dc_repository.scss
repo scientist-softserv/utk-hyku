@@ -234,9 +234,17 @@ body.dc_repository {
     }
 
     .background-container {
-      height: 90%;
+      height: 100%;
       z-index: 0;
       align-self: flex-end;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .background-container.active {
+      opacity: 1;
     }
 
     .circle-container {
@@ -361,7 +369,7 @@ body.dc_repository {
         border-radius: 0 !important;
         position: relative;
         z-index: 3;
-        padding: 0 !important;
+        padding: 0 1em !important;
         min-height: auto;
         border: none;
         border-left: 2px solid $gray-0;
