@@ -22,8 +22,12 @@ class AppIndexer < Hyrax::WorkIndexer
       # using Array() vs Array.wrap() since the objects are ActiveTriples::Relation
       # Array.wrap() will create nested arrays
       solr_doc[CatalogController.title_field] = Array(object.title).first
-      solr_doc[CatalogController.published_field] = Array(object.date_issued_d).first
-      solr_doc[CatalogController.created_field] = Array(object.date_created_d).first
+      solr_doc[CatalogController.published_field] = (
+        Array(object.date_issued_d).first if object.respond_to?(:date_issued_d)
+      )
+      solr_doc[CatalogController.created_field] = (
+        Array(object.date_created_d).first if object.respond_to?(:date_created_d)
+      )
     end
   end
 
