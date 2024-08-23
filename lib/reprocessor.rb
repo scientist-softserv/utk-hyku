@@ -190,8 +190,7 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
   def lambda_missing_files
     @lambda_missing_files ||= lambda { |line, _progress|
       id = line.strip
-      file_set = FileSet.find(id)
-      Reprocessor.instance.error_log.error(id)
+      Reprocessor.instance.error_log.error(id) if FileSet.find(id).files.blank?
     }
   end
 
