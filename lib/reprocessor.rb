@@ -187,6 +187,14 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
     end
   end
 
+  def lambda_missing_files
+    @lambda_missing_files ||= lambda { |line, _progress|
+      id = line.strip
+      file_set = FileSet.find(id)
+      Reprocessor.instance.error_log.error(id)
+    }
+  end
+
   def lambda_create_relationships
     @lambda_create_relationships ||= lambda { |line, _progress|
       id = line.strip
