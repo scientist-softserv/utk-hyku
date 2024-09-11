@@ -1205,8 +1205,8 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.13.0)
-    ruby-saml (1.14.0)
-      nokogiri (>= 1.10.5)
+    ruby-saml (1.17.0)
+      nokogiri (>= 1.13.10)
       rexml
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
@@ -1491,6 +1491,7 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop (~> 0.50, <= 0.52.1)
   rubocop-rspec (~> 1.22, <= 1.22.2)
+  ruby-saml (>= 1.17.0)
   sass-rails (~> 5.0)
   scss_lint
   secure_headers
