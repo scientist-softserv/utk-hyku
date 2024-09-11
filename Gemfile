@@ -88,6 +88,7 @@ gem 'rspec-retry', group: %i[test]
 gem 'rspec_junit_formatter', group: %i[test]
 gem 'rubocop', '~> 0.50', '<= 0.52.1', group: %i[development test]
 gem 'rubocop-rspec', '~> 1.22', '<= 1.22.2', group: %i[development test]
+gem 'ruby-saml', '>= 1.17.0'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'scss_lint', require: false, group: %i[development]
 gem 'secure_headers'
