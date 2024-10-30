@@ -187,10 +187,75 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
     end
   end
 
+
+  def gone
+    @gone ||= ActiveSupport::Logger.new("#{log_dir}/gone.log")
+  end
+
+  def no_bulkrax
+    @no_bulkrax ||= ActiveSupport::Logger.new("#{log_dir}/no_bulkrax.log")
+  end
+
+  def re_run
+    @re_run ||= ActiveSupport::Logger.new("#{log_dir}/re_run.log")
+  end
+
+  def upstream_issue
+    @upstream_issue ||= ActiveSupport::Logger.new("#{log_dir}/upstream_issue.log")
+  end
+
+  def unknown
+    @unknown ||= ActiveSupport::Logger.new("#{log_dir}/unknown.log")
+  end
+
+  def file_errors(line)
+    begin
+    id = line.strip
+    begin
+      file_set = FileSet.find(id)
+    rescue Ldp::Gone, ActiveFedora::ObjectNotFoundError
+      gone.error(id)
+      return
+    end
+    if file_set.bulkrax_identifier
+      entry = Bulkrax::Entry.find_by(identifier: file_set.bulkrax_identifier)
+    else
+      no_bulkrax.error(id)
+      return
+    end
+
+    if entry
+      result = %x{curl #{entry.parsed_metadata['remote_files'].first['url']}}
+    else
+      no_bulkrax.error(id)
+      return
+    end
+
+    if result.blank?
+      parent = file_set.member_of.first
+      upstream_issue.error(["https://digitalcollections.lib.utk.edu/concern/attachments/#{parent.id}", entry.parsed_metadata['remote_files'].first['url']])
+      return
+    end
+
+    re_run.error(line)
+    rescue => e
+      unknown.error([line, e.message])
+    end
+  end
+
+  def lambda_file_errors
+    @lambda_file_errors ||= lambda { |line, _progress|
+      file_errors(line)
+    }
+  end
+
   def lambda_missing_files
     @lambda_missing_files ||= lambda { |line, _progress|
       id = line.strip
-      Reprocessor.instance.error_log.error(id) if FileSet.find(id).files.blank?
+      if FileSet.find(id).files.blank?
+        Reprocessor.instance.error_log.error(id)
+        puts "no files found for #{id}"
+      end
     }
   end
 
