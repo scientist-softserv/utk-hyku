@@ -11,7 +11,10 @@ resources:
 livenessProbe:
   enabled: false
 readinessProbe:
-  enabled: false
+  enabled: true
+  path: "/healthz"
+  periodSeconds: 30
+  timeoutSeconds: 10
 
 brandingVolume:
   storageClass: efs-sc
@@ -83,11 +86,11 @@ extraEnvVars: &envVars
   - name: FCREPO_BASE_PATH
     value: /utk-hyku
   - name: FCREPO_HOST
-    value: fcrepo.fcrepo.svc.cluster.local:8080
+    value: fcrepo.utk-hyku-production.svc.cluster.local:8080
   - name: FCREPO_PATH
     value: /rest
   - name: FCREPO_URL
-    value: http://fcrepo.fcrepo.svc.cluster.local:8080/rest
+    value: http://fcrepo.utk-hyku-production.svc.cluster.local:8080/rest
   - name: GOOD_JOB_CLEANUP_DISCARDED_JOBS
     value: "false"
   - name: GOOD_JOB_CLEANUP_INTERVAL_SECONDS
@@ -240,7 +243,7 @@ redis:
 solr:
   enabled: false
 
-externalFcrepoHost: fcrepo.fcrepo.svc.cluster.local
+externalFcrepoHost: fcrepo.utk-hyku-production.svc.cluster.local
 externalPostgresql:
   host: postgres-cluster-alpha-primary.postgres.svc.cluster.local
   username: main
