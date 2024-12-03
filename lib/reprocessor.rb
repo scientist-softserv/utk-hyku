@@ -187,7 +187,6 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
     end
   end
 
-
   def gone
     @gone ||= ActiveSupport::Logger.new("#{log_dir}/gone.log")
   end
@@ -209,7 +208,6 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
   end
 
   def file_errors(line)
-    begin
     id = line.strip
     begin
       file_set = FileSet.find(id)
@@ -225,7 +223,7 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
     end
 
     if entry
-      result = %x{curl #{entry.parsed_metadata['remote_files'].first['url']}}
+      result = `curl #{entry.parsed_metadata['remote_files'].first['url']}`
     else
       no_bulkrax.error(id)
       return
@@ -233,14 +231,14 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
 
     if result.blank?
       parent = file_set.member_of.first
-      upstream_issue.error(["https://digitalcollections.lib.utk.edu/concern/attachments/#{parent.id}", entry.parsed_metadata['remote_files'].first['url']])
+      upstream_issue.error(["https://digitalcollections.lib.utk.edu/concern/attachments/#{parent.id}",
+                            entry.parsed_metadata['remote_files'].first['url']])
       return
     end
 
     re_run.error(line)
-    rescue => e
-      unknown.error([line, e.message])
-    end
+  rescue StandardError => e
+    unknown.error([line, e.message])
   end
 
   def lambda_file_errors
@@ -249,6 +247,7 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
     }
   end
 
+  # rubocop:disable Rails/Output
   def lambda_missing_files
     @lambda_missing_files ||= lambda { |line, _progress|
       id = line.strip
@@ -258,6 +257,7 @@ class Reprocessor # rubocop:disable Metrics/ClassLength
       end
     }
   end
+  # rubocop:enable Rails/Output
 
   def lambda_create_relationships
     @lambda_create_relationships ||= lambda { |line, _progress|
