@@ -38,7 +38,7 @@ gem 'fcrepo_wrapper', '~> 0.4', group: %i[development test]
 gem 'flipflop', '~> 2.6.0' # waiting for hyrax 4 upgrade
 gem 'flutie'
 gem 'good_job', '~> 2.99'
-gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: '3.x-stable'
+gem 'hyrax', git: 'https://github.com/samvera/hyrax.git', branch: 'hyrax-3.x+chunked'
 gem 'hyrax-doi', github: 'samvera-labs/hyrax-doi', branch: 'main'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av', branch: 'utk-hyku-with-hyrax-3'
 gem 'i18n', '1.11.0' # TODO: why does updating to 1.14.1 break allinson flex?
