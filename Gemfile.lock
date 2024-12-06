@@ -41,8 +41,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera/bulkrax.git
-  revision: a94e796883ced0bcd9b5b0478022d128ae073627
-  branch: faster_entries_list
+  revision: ca08ee47eddb3fe7072f37f622bd4636f3ce2cfd
+  branch: main
   specs:
     bulkrax (8.3.0)
       bagit (~> 0.4.6)
